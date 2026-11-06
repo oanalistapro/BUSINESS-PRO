@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<title>MEU PDF — Business Pro</title>
+<style>
+:root{--blue:#2563eb;--dark:#132849;--muted:#64748b;--bg:#f3f7fd;--line:#dce6f3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Inter,system-ui,Arial,sans-serif;color:var(--dark)}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+header{background:#fff;padding:17px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+.brand{font-size:23px;font-weight:950;color:var(--blue)}
+.brand small{display:block;font-size:10px;letter-spacing:2px;color:var(--muted)}
+.back{font-size:13px;font-weight:800}
+.hero{padding:65px 5%;color:white;background:linear-gradient(120deg,#0c2044,#164b9f,#3478ff)}
+.hero h1{font-size:clamp(34px,5vw,55px);margin:0 0 14px;letter-spacing:-1.5px}
+.hero p{color:#dbeafe;line-height:1.8;max-width:750px}
+main{max-width:1250px;margin:auto;padding:40px 18px}
+h2{font-size:28px;letter-spacing:-.7px}
+.subtitle{color:var(--muted);line-height:1.7}
+.search{width:100%;max-width:420px;padding:14px;border:1px solid var(--line);border-radius:12px;margin:18px 0 25px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:19px}
+.card{background:white;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 10px 30px #163c7a12;transition:.3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 45px #163c7a22}
+.photo{height:160px;background-position:center;background-size:cover;display:flex;align-items:end;padding:15px}
+.symbol{font-size:28px;background:#fff;border-radius:15px;padding:12px}
+.content{padding:22px}
+.content h3{margin:0 0 10px;font-size:19px}
+.content p{color:var(--muted);font-size:14px;line-height:1.7;min-height:75px}
+.btn{border:0;border-radius:11px;padding:12px 17px;background:var(--blue);color:white;font-weight:800}
+.btn.alt{background:#eaf1ff;color:#1d4ed8}
+.btn:disabled{opacity:.5}
+.workspace{background:white;border:1px solid var(--line);border-radius:20px;padding:25px;margin-top:35px;box-shadow:0 10px 30px #163c7a12}
+label{display:block;font-size:13px;font-weight:800;margin:17px 0 8px}
+input[type=file],input[type=text],select{width:100%;border:1px solid #cbd5e1;border-radius:11px;padding:13px;background:white}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.notice{background:#eff6ff;border:1px solid #dbeafe;color:#1e40af;border-radius:12px;padding:15px;font-size:13px;line-height:1.7}
+#status{white-space:pre-wrap;color:#475569;font-size:14px;line-height:1.7;margin-top:18px}
+#preview{width:100%;height:600px;border:1px solid var(--line);border-radius:12px;margin-top:18px}
+footer{text-align:center;padding:30px;background:#0d1c35;color:#cbd5e1;font-size:13px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.workspace{padding:17px}.hero{padding:43px 5%}#preview{height:400px}}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="brand">📄 MEU PDF<small>BUSINESS PRO</small></div>
+ <a class="back" href="../">← Voltar ao Business Pro</a>
+</header>
+
+<section class="hero">
+ <h1>Seus PDFs, do seu jeito.</h1>
+ <p>Junte, divida, organize, numere e transforme seus documentos com ferramentas práticas para o trabalho e o dia a dia.</p>
+</section>
+
+<main>
+ <h2>Ferramentas de PDF</h2>
+ <p class="subtitle">Selecione uma ferramenta para começar. Os documentos são processados no seu navegador.</p>
+ <input class="search" id="search" placeholder="Pesquisar ferramenta...">
+ <div class="grid" id="cards"></div>
+
+ <section class="workspace" id="workspace" hidden>
+  <h2 id="toolTitle"></h2>
+  <p class="subtitle" id="toolDesc"></p>
+  <div class="notice">Os arquivos são processados localmente, sem envio para um servidor por este aplicativo. A biblioteca de PDF e as imagens são carregadas pela internet.</div>
+  <label>Selecionar arquivo(s)</label>
+  <input type="file" id="files" accept=".pdf,application/pdf">
+  <div id="options"></div>
+  <div class="actions">
+   <button class="btn" id="process">Processar e baixar</button>
+   <button class="btn alt" id="clear">Limpar</button>
+  </div>
+  <div id="status" role="status"></div>
+  <iframe id="preview" title="Prévia do PDF" hidden></iframe>
+ </section>
+</main>
+
+<footer>MEU PDF · BUSINESS PRO · Documentos e produtividade</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+"use strict";
+
+const tools=[
+ ["merge","Juntar PDFs","📚","Combine vários arquivos PDF em um documento.","photo-1450101499163-c8848c66ca85"],
+ ["split","Dividir PDF","✂️","Separe as páginas em documentos individuais.","photo-1506784983877-45594efa4cbe"],
+ ["extract","Extrair páginas","📑","Selecione páginas específicas para criar outro PDF.","photo-1586281380349-632531db7ed4"],
+ ["rotate","Girar páginas","🔄","Corrija a orientação das páginas.","photo-1499951360447-b19be8fe80f5"],
+ ["remove","Remover páginas","🗑️","Exclua páginas desnecessárias.","photo-1434030216411-0b793f4b4173"],
+ ["reverse","Inverter ordem","🔃","Inverta a sequência das páginas.","photo-1484480974693-6ca0a78fb36b"],
+ ["number","Numerar páginas","🔢","Adicione numeração automática ao documento.","photo-1454165804606-c3d57bc86b40"],
+ ["watermark","Marca-d'água","💧","Adicione um texto de identificação às páginas.","photo-1497366754035-f200968a6e72"],
+ ["images","Imagens para PDF","🖼️","Transforme imagens JPG ou PNG em PDF.","photo-1499951360447-b19be8fe80f5"],
+ ["info","Informações do PDF","🔍","Consulte páginas e metadados do documento.","photo-1450101499163-c8848c66ca85"]
+];
+
+const $=id=>document.getElementById(id);
+let current=null,previewURL=null,busy=false;
+
+function escapeHTML(s){
+ return String(s??"").replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ })[c]);
+}
+
+function render(){
+ const q=$("search").value.toLowerCase();
+ $("cards").innerHTML=tools.filter(t=>
+  (t[1]+" "+t[3]).toLowerCase().includes(q)
+ ).map(t=>`
+  <article class="card">
+   <div class="photo" style="background-image:url('https://images.unsplash.com/${t[4]}?auto=format&fit=crop&w=850&q=80')">
+    <span class="symbol">${t[2]}</span>
+   </div>
+   <div class="content">
+    <h3>${escapeHTML(t[1])}</h3>
+    <p>${escapeHTML(t[3])}</p>
+    <button class="btn" data-id="${t[0]}">Abrir ferramenta</button>
+   </div>
+  </article>
+ `).join("");
+}
+
+$("search").oninput=render;
+
+$("cards").onclick=e=>{
+ const b=e.target.closest("[data-id]");
+ if(b)openTool(b.dataset.id);
+};
+
+function clearPreview(){
+ if(previewURL)URL.revokeObjectURL(previewURL);
+ previewURL=null;
+ $("preview").hidden=true;
+ $("preview").removeAttribute("src");
+}
+
+function openTool(id){
+ current=tools.find(t=>t[0]===id);
+ if(!current)return;
+ $("workspace").hidden=false;
+ $("toolTitle").textContent=current[1];
+ $("toolDesc").textContent=current[3];
+ $("files").value="";
+ $("files").multiple=["merge","images"].includes(id);
+ $("files").accept=id==="images"
+  ?"image/jpeg,image/png,.jpg,.jpeg,.png"
+  :".pdf,application/pdf";
+ $("status").textContent="";
+ clearPreview();
+
+ let html="";
+ if(["extract","remove","rotate"].includes(id)){
+  html+=`<label>Páginas (ex.: 1,3,5-8)</label>
+   <input id="pages" type="text" placeholder="${id==="rotate"?"Deixe vazio para todas":"1,3,5-8"}">`;
+ }
+ if(id==="rotate"){
+  html+=`<label>Rotação</label><select id="angle">
+   <option value="90">90°</option>
+   <option value="180">180°</option>
+   <option value="270">270°</option></select>`;
+ }
+ if(id==="watermark"){
+  html+=`<label>Texto da marca-d'água</label>
+   <input id="watermark" type="text" maxlength="80" placeholder="CONFIDENCIAL">`;
+ }
+ if(id==="number"){
+  html+=`<label>Posição</label><select id="position">
+   <option value="bottom">Rodapé</option>
+   <option value="top">Cabeçalho</option></select>`;
+ }
+ $("options").innerHTML=html;
+ $("workspace").scrollIntoView({behavior:"smooth"});
+}
+
+function pageIndexes(text,count){
+ const result=new Set();
+ for(const part of text.split(",")){
+  const m=part.trim().match(/^(\d+)(?:\s*-\s*(\d+))?$/);
+  if(!m)throw Error("Intervalo inválido: "+part);
+  const start=Number(m[1]),end=m[2]?Number(m[2]):start;
+  if(start<1||end>count||end<start)
+   throw Error("Página fora do intervalo.");
+  for(let n=start;n<=end;n++)result.add(n-1);
+ }
+ return [...result].sort((a,b)=>a-b);
+}
+
+const all=n=>Array.from({length:n},(_,i)=>i);
+
+async function load(file){
+ try{
+  return await PDFLib.PDFDocument.load(await file.arrayBuffer());
+ }catch(e){
+  throw Error("PDF inválido, corrompido ou protegido por senha.");
+ }
+}
+
+function download(blob,name,show=true){
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;a.download=name;
+ document.body.append(a);a.click();a.remove();
+ if(show){
+  clearPreview();
+  previewURL=url;
+  $("preview").src=url;
+  $("preview").hidden=false;
+ }else{
+  setTimeout(()=>URL.revokeObjectURL(url),30000);
+ }
+}
+
+async function output(pdf,name){
+ const bytes=await pdf.save();
+ download(new Blob([bytes],{type:"application/pdf"}),name);
+}
+
+async function run(){
+ if(busy||!current)return;
+ if(!window.PDFLib){
+  $("status").textContent="Biblioteca de PDF indisponível. Verifique a internet.";
+  return;
+ }
+ const files=[...$("files").files];
+ if(!files.length){
+  $("status").textContent="Selecione pelo menos um arquivo.";
+  return;
+ }
+ busy=true;
+ $("process").disabled=true;
+ $("status").textContent="Processando...";
+ try{
+  const id=current[0];
+  const {PDFDocument,degrees,rgb,StandardFonts}=PDFLib;
+
+  if(id==="images"){
+   const out=await PDFDocument.create();
+   for(const f of files){
+    const bytes=await f.arrayBuffer();
+    const img=f.type==="image/png"
+     ?await out.embedPng(bytes)
+     :f.type==="image/jpeg"
+      ?await out.embedJpg(bytes)
+      :null;
+    if(!img)throw Error("Selecione somente imagens JPG ou PNG.");
+    const p=out.addPage([595.28,841.89]);
+    const scale=Math.min(525/img.width,770/img.height);
+    const w=img.width*scale,h=img.height*scale;
+    p.drawImage(img,{x:(595.28-w)/2,y:(841.89-h)/2,width:w,height:h});
+   }
+   await output(out,"imagens-convertidas.pdf");
+  }
+  else if(id==="merge"){
+   if(files.length<2)throw Error("Selecione pelo menos dois PDFs.");
+   const out=await PDFDocument.create();
+   for(const f of files){
+    const src=await load(f);
+    const pages=await out.copyPages(src,all(src.getPageCount()));
+    pages.forEach(p=>out.addPage(p));
+   }
+   await output(out,"pdf-unificado.pdf");
+  }
+  else{
+   const src=await load(files[0]);
+   const count=src.getPageCount();
+
+   if(id==="info"){
+    $("status").textContent=[
+     "Arquivo: "+files[0].name,
+     "Páginas: "+count,
+     "Tamanho: "+(files[0].size/1048576).toFixed(2)+" MB",
+     "Título: "+(src.getTitle()||"Não informado"),
+     "Autor: "+(src.getAuthor()||"Não informado")
+    ].join("\n");
+    return;
+   }
+
+   if(id==="split"){
+    if(count>40&&!confirm(
+     "Serão gerados "+count+" downloads separados. Continuar?"
+    ))return;
+    for(let i=0;i<count;i++){
+     const out=await PDFDocument.create();
+     const [page]=await out.copyPages(src,[i]);
+     out.addPage(page);
+     download(new Blob([await out.save()],{type:"application/pdf"}),
+      "pagina-"+(i+1)+".pdf",false);
+    }
+    $("status").textContent="Páginas separadas. Autorize downloads múltiplos se solicitado.";
+    return;
+   }
+
+   if(["extract","remove","reverse"].includes(id)){
+    let indexes=all(count);
+    if(id==="reverse")indexes.reverse();
+    if(id==="extract")indexes=pageIndexes($("pages").value,count);
+    if(id==="remove"){
+     const excluded=new Set(pageIndexes($("pages").value,count));
+     indexes=indexes.filter(i=>!excluded.has(i));
+    }
+    if(!indexes.length)throw Error("Nenhuma página restante.");
+    const out=await PDFDocument.create();
+    const pages=await out.copyPages(src,indexes);
+    pages.forEach(p=>out.addPage(p));
+    await output(out,"pdf-editado.pdf");
+   }
+
+   if(id==="rotate"){
+    const angle=Number($("angle").value);
+    const indexes=$("pages").value.trim()
+     ?pageIndexes($("pages").value,count):all(count);
+    indexes.forEach(i=>{
+     const p=src.getPage(i);
+     p.setRotation(degrees((p.getRotation().angle+angle)%360));
+    });
+    await output(src,"pdf-girado.pdf");
+   }
+
+   if(id==="number"){
+    const font=await src.embedFont(StandardFonts.Helvetica);
+    src.getPages().forEach((p,i)=>{
+     const {width,height}=p.getSize();
+     const text=String(i+1);
+     const tw=font.widthOfTextAtSize(text,11);
+     p.drawText(text,{
+      x:(width-tw)/2,
+      y:$("position").value==="top"?height-30:22,
+      size:11,font,color:rgb(.3,.3,.4)
+     });
+    });
+    await output(src,"pdf-numerado.pdf");
+   }
+
+   if(id==="watermark"){
+    const text=$("watermark").value.trim();
+    if(!text)throw Error("Digite o texto da marca-d'água.");
+    const font=await src.embedFont(StandardFonts.HelveticaBold);
+    src.getPages().forEach(p=>{
+     const {width,height}=p.getSize();
+     const size=Math.min(36,Math.max(10,width/(text.length*.8)));
+     const tw=font.widthOfTextAtSize(text,size);
+     p.drawText(text,{
+      x:(width-tw)/2,y:height/2,
+      size,font,rotate:degrees(35),
+      color:rgb(.35,.4,.5),opacity:.22
+     });
+    });
+    await output(src,"pdf-marca-dagua.pdf");
+   }
+  }
+
+  $("status").textContent="Documento processado. Confira seus downloads.";
+ }catch(e){
+  console.error(e);
+  $("status").textContent="Erro: "+e.message;
+ }finally{
+  busy=false;
+  $("process").disabled=false;
+ }
+}
+
+$("process").onclick=run;
+$("clear").onclick=()=>{
+ $("files").value="";
+ $("status").textContent="";
+ clearPreview();
+};
+render();
+</script>
+</body>
+</html>
