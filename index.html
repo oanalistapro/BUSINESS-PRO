@@ -491,4 +491,321 @@ onAuthStateChanged(auth,user=>{
 });
 </script>
 </body>
+<!-- BUSINESS PRO | FOTOS PREMIUM DOS APLICATIVOS -->
+<style>
+/* Visual premium sem alterar os aplicativos existentes */
+
+#cards .card{
+  border-radius:22px!important;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #e2eaf5;
+  box-shadow:0 12px 30px rgba(15,35,75,.08);
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease;
+}
+
+#cards .card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 24px 55px rgba(15,35,75,.18);
+  border-color:#a9c6ff;
+}
+
+#cards .card-cover{
+  height:190px!important;
+  padding:0!important;
+  background:#dce7f7;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+
+#cards .card-cover::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background-image:var(--app-photo);
+  background-size:cover;
+  background-position:center;
+  transform:scale(1);
+  transition:transform .7s ease;
+}
+
+#cards .card:hover .card-cover::before{
+  transform:scale(1.09);
+}
+
+#cards .card-cover::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  width:auto;
+  height:auto;
+  border-radius:0;
+  transform:none;
+  right:0;
+  top:0;
+  background:linear-gradient(
+    180deg,
+    transparent 25%,
+    rgba(7,23,49,.72) 100%
+  );
+  z-index:1;
+}
+
+#cards .card-cover .symbol{
+  position:absolute;
+  bottom:15px;
+  left:17px;
+  z-index:2;
+  display:grid;
+  place-items:center;
+  width:56px;
+  height:56px;
+  font-size:28px;
+  background:rgba(255,255,255,.94);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:17px;
+  box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+
+#cards .card-body{
+  padding:23px;
+}
+
+#cards .card h3{
+  font-size:19px;
+  font-weight:900;
+  letter-spacing:-.4px;
+}
+
+#cards .card .btn{
+  border-radius:11px;
+  transition:transform .2s,filter .2s;
+}
+
+#cards .card .btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+}
+
+#cards .card-cover .photo-label{
+  position:absolute;
+  right:13px;
+  bottom:18px;
+  z-index:2;
+  background:rgba(255,255,255,.93);
+  color:#1e40af;
+  font-size:10px;
+  font-weight:900;
+  border-radius:30px;
+  padding:8px 11px;
+  max-width:55%;
+  text-align:center;
+}
+
+@media(max-width:600px){
+  #cards .card-cover{
+    height:170px!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  #cards .card,
+  #cards .card-cover::before{
+    transition:none!important;
+  }
+}
+</style>
+
+<script>
+/*
+  Fotografias individuais dos aplicativos.
+  As imagens são externas e precisam de internet.
+  Os links dos aplicativos não são modificados.
+*/
+
+(function(){
+
+const PHOTO_BASE =
+  "https://images.unsplash.com/";
+
+const PHOTO_OPTIONS =
+  "?auto=format&fit=crop&w=900&q=82";
+
+const PHOTOS = {
+
+"MEU CURRÍCULO":
+"photo-1586281380349-632531db7ed4",
+
+"MEU ORÇAMENTO":
+"photo-1454165804606-c3d57bc86b40",
+
+"MEU PDF":
+"photo-1499951360447-b19be8fe80f5",
+
+"MEU NEGÓCIO":
+"photo-1497366754035-f200968a6e72",
+
+"MEU DOCUMENTO":
+"photo-1506784983877-45594efa4cbe",
+
+"MEU CONTRATO":
+"photo-1450101499163-c8848c66ca85",
+
+"MEU FINANCEIRO":
+"photo-1554224155-6726b3ff858f",
+
+"MEU ESTOQUE":
+"photo-1586528116311-ad8dd3c8310d",
+
+"MEU TRABALHO":
+"photo-1521737711867-e3b97375f902",
+
+"MEU EMPREENDEDOR":
+"photo-1556761175-b413da4baf72",
+
+"MEU PROTOCOLO":
+"photo-1484480974693-6ca0a78fb36b",
+
+"MEU RH":
+"photo-1552664730-d307ca884978",
+
+"MEU REQUERIMENTO":
+"photo-1434030216411-0b793f4b4173",
+
+"MEU ATENDIMENTO":
+"photo-1551836022-d5d88e9218df",
+
+"MEU PRAZO":
+"photo-1506784983877-45594efa4cbe",
+
+"MEU IMÓVEL":
+"photo-1600585154340-be6161a56a0c",
+
+"MEU CONCURSO":
+"photo-1434030216411-0b793f4b4173",
+
+"MEU DIREITO":
+"photo-1589829545856-d10d557cf95f",
+
+"MEU CONSUMIDOR":
+"photo-1556742049-0cfed4f6a45d",
+
+"MEU MIGRANTE":
+"photo-1436491865332-7a61a109cc05",
+
+"MEU EDITAL":
+"photo-1506784983877-45594efa4cbe",
+
+"MEU PLANEJAMENTO":
+"photo-1484480974693-6ca0a78fb36b"
+
+};
+
+const FALLBACK = {
+  "Gestão":"photo-1497366754035-f200968a6e72",
+  "Documentos":"photo-1450101499163-c8848c66ca85",
+  "Carreira":"photo-1521737711867-e3b97375f902"
+};
+
+const cardsContainer =
+  document.getElementById("cards");
+
+if(!cardsContainer)return;
+
+function normalizeName(text){
+ return String(text||"")
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g,"")
+  .toUpperCase()
+  .trim();
+}
+
+const photoLookup = new Map(
+ Object.entries(PHOTOS).map(
+  ([name,id])=>[normalizeName(name),id]
+ )
+);
+
+function updatePhotos(){
+
+ const cards =
+  cardsContainer.querySelectorAll(".card");
+
+ cards.forEach(card=>{
+
+  const title =
+   card.querySelector("h3")?.textContent||"";
+
+  const category =
+   card.dataset.category||"";
+
+  const cover =
+   card.querySelector(".card-cover");
+
+  if(!cover)return;
+
+  const id =
+   photoLookup.get(normalizeName(title))||
+   FALLBACK[category]||
+   "photo-1497366754035-f200968a6e72";
+
+  const url =
+   PHOTO_BASE+id+PHOTO_OPTIONS;
+
+  cover.style.setProperty(
+   "--app-photo",
+   'url("'+url+'")'
+  );
+
+  if(!cover.querySelector(".photo-label")){
+
+   const label=document.createElement("span");
+
+   label.className="photo-label";
+
+   const ready=Boolean(
+    card.querySelector('a[href]')
+   );
+
+   label.textContent=ready
+    ?"DISPONÍVEL"
+    :"EM PREPARAÇÃO";
+
+   cover.appendChild(label);
+  }
+
+ });
+
+}
+
+let pending=false;
+
+const observer=new MutationObserver(()=>{
+
+ if(pending)return;
+
+ pending=true;
+
+ requestAnimationFrame(()=>{
+  pending=false;
+  updatePhotos();
+ });
+
+});
+
+observer.observe(cardsContainer,{
+ childList:true
+});
+
+updatePhotos();
+
+})();
+</script>
+<!-- FIM DAS FOTOS PREMIUM -->
+
 </html>
