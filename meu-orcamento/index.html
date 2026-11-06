@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meu Orçamento Pro | Business Pro</title>
+<style>
+:root{
+ --blue:#2563eb;--navy:#142849;--bg:#f3f6fc;
+ --line:#dce5f2;--muted:#64748b;--green:#059669
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--navy);font-family:Arial,Helvetica,sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+header{background:#fff;border-bottom:1px solid var(--line);padding:17px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-size:21px;font-weight:900;color:var(--blue)}
+.logo small{display:block;font-size:11px;letter-spacing:2px;color:var(--muted);margin-top:4px}
+.back{color:var(--navy);text-decoration:none;font-weight:700}
+.hero{background:linear-gradient(115deg,#10254b,#2563eb);color:#fff;padding:34px 5%}
+.hero h1{margin:0 0 10px;font-size:clamp(27px,4vw,42px)}
+.hero p{max-width:760px;line-height:1.6;margin:0;color:#e0ecff}
+.layout{max-width:1550px;margin:24px auto;padding:0 18px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:20px;align-items:start}
+.panel{background:white;border:1px solid var(--line);border-radius:19px;padding:23px;box-shadow:0 12px 35px #1d355b0b}
+h2{margin:0 0 15px;font-size:22px}
+h3{margin:26px 0 14px;font-size:17px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{margin-bottom:12px;min-width:0}
+label{display:block;font-weight:700;font-size:13px;margin-bottom:7px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;background:white;color:#172b4d;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2563eb15}
+textarea{min-height:80px;resize:vertical}
+.btn{border:0;border-radius:11px;background:var(--blue);color:#fff;padding:12px 16px;font-weight:800}
+.btn.secondary{background:#eaf1ff;color:#1d4ed8}
+.btn.danger{background:#fee2e2;color:#991b1b}
+.btn.green{background:var(--green)}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}
+.muted{font-size:13px;color:var(--muted);line-height:1.6}
+.item{border:1px solid var(--line);border-radius:13px;padding:14px;margin:12px 0;background:#fbfdff}
+.itemhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.itemhead strong{font-size:14px}
+.itemgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+.itemgrid .wide{grid-column:1/-1}
+.totals{background:#eff5ff;border:1px solid #d9e7ff;padding:18px;border-radius:15px;margin-top:20px}
+.totalrow{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #dbe7fa}
+.totalrow.final{border:0;font-size:23px;font-weight:900;color:#174fbb}
+.previewbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}
+.paper{background:#fff;border:1px solid var(--line);padding:30px;min-height:550px;overflow-wrap:anywhere}
+.paper h1{font-size:28px;margin:0;color:#1d4ed8}
+.paper h2{font-size:18px}
+.paper h3{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1d4ed8;border-bottom:2px solid #dbeafe;padding-bottom:8px}
+.paper p{font-size:12px;line-height:1.6;white-space:pre-line}
+.paper table{border-collapse:collapse;width:100%;font-size:12px;margin:15px 0}
+.paper th,.paper td{border-bottom:1px solid #e2e8f0;text-align:left;padding:9px 5px;vertical-align:top}
+.paper th{background:#f1f5f9}
+.paper .right{text-align:right}
+.paper .big{font-size:24px;font-weight:900;color:#1d4ed8}
+.paper.classic{font-family:Georgia,serif}
+.paper.classic h1,.paper.classic h3,.paper.classic .big{color:#1f2937}
+.paper.minimal h1,.paper.minimal h3,.paper.minimal .big{color:#111827}
+.saved{border:1px solid var(--line);border-radius:11px;padding:12px;margin:9px 0;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.saved b{display:block;font-size:13px}
+.saved small{display:block;color:var(--muted);margin-top:5px}
+.saved .actions{margin:0}
+.saved button{padding:8px 10px;font-size:12px}
+footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}}
+@media(max-width:650px){.grid,.itemgrid{grid-template-columns:1fr}.itemgrid .wide{grid-column:auto}.panel{padding:16px}.paper{padding:16px}.saved{display:block}}
+@media print{
+ @page{size:A4;margin:12mm}
+ body{background:white}
+ header,.hero,.editor,.previewbar,footer{display:none!important}
+ .layout{display:block;max-width:none;padding:0;margin:0}
+ .panel{border:0;box-shadow:none;padding:0}
+ .paper{border:0;min-height:0;padding:0}
+ .paper tr{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">MEU ORÇAMENTO<small>BUSINESS PRO</small></div>
+ <a href="../" class="back">← Voltar ao Business Pro</a>
+</header>
+
+<section class="hero">
+ <h1>Orçamentos profissionais para qualquer tamanho de negócio.</h1>
+ <p>Monte propostas detalhadas, organize serviços e produtos, calcule valores com precisão e apresente seus preços aos clientes.</p>
+</section>
+
+<main class="layout">
+<section class="panel editor">
+<h2>Nova proposta comercial</h2>
+<p class="muted">Preencha os dados reais da sua empresa e do cliente. Nenhum valor fictício será adicionado automaticamente.</p>
+
+<div class="grid">
+ <div class="field"><label>Número do orçamento</label><input id="number" placeholder="Ex.: ORC-2026-001"></div>
+ <div class="field"><label>Data de emissão</label><input id="date" type="date"></div>
+ <div class="field"><label>Validade da proposta</label><input id="validity" type="date"></div>
+ <div class="field"><label>Status</label><select id="proposalStatus"><option>Rascunho</option><option>Enviado</option><option>Aprovado</option><option>Recusado</option><option>Concluído</option></select></div>
+</div>
+
+<h3>Dados da sua empresa</h3>
+<div class="grid">
+ <div class="field"><label>Nome da empresa ou profissional</label><input id="company"></div>
+ <div class="field"><label>CNPJ ou CPF (opcional)</label><input id="companyDoc"></div>
+ <div class="field"><label>Telefone</label><input id="companyPhone"></div>
+ <div class="field"><label>E-mail</label><input id="companyEmail" type="email"></div>
+ <div class="field"><label>Endereço</label><input id="companyAddress"></div>
+ <div class="field"><label>Cidade / Estado</label><input id="companyCity"></div>
+</div>
+
+<h3>Dados do cliente</h3>
+<div class="grid">
+ <div class="field"><label>Nome do cliente</label><input id="client"></div>
+ <div class="field"><label>CPF / CNPJ (opcional)</label><input id="clientDoc"></div>
+ <div class="field"><label>Telefone</label><input id="clientPhone"></div>
+ <div class="field"><label>E-mail</label><input id="clientEmail" type="email"></div>
+ <div class="field"><label>Endereço do cliente ou obra</label><input id="clientAddress"></div>
+ <div class="field"><label>Cidade / Estado</label><input id="clientCity"></div>
+</div>
+
+<h3>Descrição da proposta</h3>
+<div class="field"><label>Título do serviço ou projeto</label><input id="title" placeholder="Ex.: Reforma residencial, criação de site, fornecimento de materiais"></div>
+<div class="field"><label>Escopo do trabalho</label><textarea id="scope" placeholder="Descreva o que será entregue, etapas e especificações."></textarea></div>
+
+<h3>Produtos e serviços</h3>
+<p class="muted">Adicione quantos itens precisar. Cada item pode ter sua própria quantidade, unidade, preço e desconto.</p>
+<div id="items"></div>
+<button class="btn secondary" type="button" onclick="addItem()">+ Adicionar produto ou serviço</button>
+
+<h3>Ajustes financeiros</h3>
+<div class="grid">
+ <div class="field"><label>Desconto geral (R$)</label><input id="discount" type="number" min="0" step="0.01" value="0"></div>
+ <div class="field"><label>Impostos ou taxas (%)</label><input id="tax" type="number" min="0" step="0.01" value="0"></div>
+ <div class="field"><label>Frete / deslocamento (R$)</label><input id="shipping" type="number" min="0" step="0.01" value="0"></div>
+ <div class="field"><label>Custos adicionais (R$)</label><input id="extra" type="number" min="0" step="0.01" value="0"></div>
+</div>
+<p class="muted">A taxa percentual é aplicada sobre o valor após os descontos. Informe apenas taxas aplicáveis ao seu caso; este aplicativo não calcula tributos legais automaticamente.</p>
+
+<h3>Condições comerciais</h3>
+<div class="grid">
+ <div class="field"><label>Forma de pagamento</label><select id="payment"><option>Pix</option><option>Transferência bancária</option><option>Dinheiro</option><option>Cartão de crédito</option><option>Boleto</option><option>Conforme contrato</option></select></div>
+ <div class="field"><label>Prazo de entrega</label><input id="deadline" placeholder="Ex.: 15 dias úteis após aprovação"></div>
+ <div class="field"><label>Garantia</label><input id="warranty" placeholder="Ex.: 90 dias"></div>
+ <div class="field"><label>Responsável pela proposta</label><input id="responsible"></div>
+</div>
+<div class="field"><label>Condições de pagamento</label><textarea id="paymentTerms" placeholder="Ex.: 30% na aprovação e 70% na entrega."></textarea></div>
+<div class="field"><label>Observações e exclusões</label><textarea id="notes" placeholder="Informações importantes, materiais não inclusos, condições e outras observações."></textarea></div>
+
+<h3>Modelo do documento</h3>
+<div class="field"><select id="template"><option value="modern">Moderno — Azul</option><option value="classic">Clássico — Tradicional</option><option value="minimal">Minimalista</option></select></div>
+
+<div class="totals">
+ <div class="totalrow"><span>Subtotal dos itens</span><b id="subtotalView">R$ 0,00</b></div>
+ <div class="totalrow"><span>Descontos</span><b id="discountView">R$ 0,00</b></div>
+ <div class="totalrow"><span>Taxas</span><b id="taxView">R$ 0,00</b></div>
+ <div class="totalrow"><span>Adicionais e frete</span><b id="extrasView">R$ 0,00</b></div>
+ <div class="totalrow final"><span>Total</span><span id="totalView">R$ 0,00</span></div>
+</div>
+
+<div class="actions">
+ <button class="btn green" onclick="saveProposal()">Salvar orçamento</button>
+ <button class="btn" onclick="window.print()">Gerar PDF</button>
+ <button class="btn secondary" onclick="newProposal()">Novo orçamento</button>
+ <button class="btn secondary" onclick="exportBackup()">Exportar backup</button>
+ <button class="btn secondary" onclick="document.getElementById('importFile').click()">Importar backup</button>
+</div>
+<input id="importFile" type="file" accept=".json,application/json" hidden>
+<p id="message" class="muted" role="status"></p>
+
+<h3>Orçamentos salvos</h3>
+<div id="savedList"></div>
+</section>
+
+<section class="panel">
+<div class="previewbar">
+ <div><h2 style="margin-bottom:4px">Pré-visualização</h2><span class="muted">Documento pronto para impressão</span></div>
+ <button class="btn" onclick="window.print()">Imprimir / PDF</button>
+</div>
+<div id="paper" class="paper modern"></div>
+</section>
+</main>
+
+<footer>MEU ORÇAMENTO · BUSINESS PRO · Os dados são armazenados localmente no navegador.</footer>
+
+<script>
+const KEY="business_pro_orcamentos_v1";
+const fields=[
+"number","date","validity","proposalStatus","company","companyDoc",
+"companyPhone","companyEmail","companyAddress","companyCity",
+"client","clientDoc","clientPhone","clientEmail","clientAddress",
+"clientCity","title","scope","discount","tax","shipping","extra",
+"payment","deadline","warranty","responsible","paymentTerms","notes","template"
+];
+let editingId=null;
+const $=id=>document.getElementById(id);
+const value=id=>$(id).value.trim();
+const money=n=>new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(Number(n)||0);
+const num=n=>Math.max(0,Number(n)||0);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const dateBR=s=>s?s.split("-").reverse().join("/"):"";
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
+function message(s){$("message").textContent=s}
+function addItem(data={}){
+ const el=document.createElement("div");
+ el.className="item";
+ el.innerHTML=`
+ <div class="itemhead"><strong>Item do orçamento</strong><button type="button" class="btn danger remove">Remover</button></div>
+ <div class="itemgrid">
+  <div class="field wide"><label>Descrição do produto ou serviço</label><input class="description" placeholder="Descreva o item"></div>
+  <div class="field"><label>Tipo</label><select class="type"><option>Serviço</option><option>Produto</option><option>Material</option><option>Outro</option></select></div>
+  <div class="field"><label>Unidade</label><select class="unit"><option>un</option><option>hora</option><option>dia</option><option>m²</option><option>m³</option><option>metro</option><option>kg</option><option>litro</option><option>pacote</option><option>projeto</option></select></div>
+  <div class="field"><label>Quantidade</label><input class="qty" type="number" min="0" step="0.001" value="1"></div>
+  <div class="field"><label>Valor unitário (R$)</label><input class="price" type="number" min="0" step="0.01" value="0"></div>
+  <div class="field"><label>Desconto do item (%)</label><input class="itemDiscount" type="number" min="0" max="100" step="0.01" value="0"></div>
+ </div>`;
+ for(const k of ["description","type","unit","qty","price","itemDiscount"]){
+  if(data[k]!==undefined)el.querySelector("."+k).value=data[k];
+ }
+ el.querySelector(".remove").onclick=()=>{el.remove();render()};
+ el.querySelectorAll("input,select").forEach(x=>x.addEventListener("input",render));
+ $("items").appendChild(el);
+ render();
+}
+function getItems(){
+ return [...document.querySelectorAll("#items .item")].map(el=>{
+  const x={};
+  ["description","type","unit","qty","price","itemDiscount"].forEach(k=>x[k]=el.querySelector("."+k).value);
+  return x;
+ });
+}
+function calculate(){
+ const items=getItems().map(x=>{
+  const gross=num(x.qty)*num(x.price);
+  const discount=gross*Math.min(100,num(x.itemDiscount))/100;
+  return {...x,total:Math.max(0,gross-discount)};
+ });
+ const subtotal=items.reduce((s,x)=>s+x.total,0);
+ const discount=Math.min(subtotal,num(value("discount")));
+ const base=Math.max(0,subtotal-discount);
+ const tax=base*num(value("tax"))/100;
+ const extras=num(value("shipping"))+num(value("extra"));
+ return {items,subtotal,discount,tax,extras,total:base+tax+extras};
+}
+function block(title,text){
+ return text?`<section><h3>${title}</h3><p>${esc(text)}</p></section>`:"";
+}
+function render(){
+ const c=calculate();
+ $("subtotalView").textContent=money(c.subtotal);
+ $("discountView").textContent="- "+money(c.discount);
+ $("taxView").textContent=money(c.tax);
+ $("extrasView").textContent=money(c.extras);
+ $("totalView").textContent=money(c.total);
+ const company=[value("company"),value("companyDoc"),value("companyPhone"),value("companyEmail"),value("companyAddress"),value("companyCity")].filter(Boolean).map(esc).join(" · ");
+ const client=[value("client"),value("clientDoc"),value("clientPhone"),value("clientEmail"),value("clientAddress"),value("clientCity")].filter(Boolean).map(esc).join(" · ");
+ $("paper").className="paper "+value("template");
+ $("paper").innerHTML=`
+ <h1>ORÇAMENTO</h1>
+ <p><b>Número:</b> ${esc(value("number")||"Não informado")}<br>
+ <b>Emissão:</b> ${dateBR(value("date"))||"—"}<br>
+ <b>Validade:</b> ${dateBR(value("validity"))||"—"}<br>
+ <b>Status:</b> ${esc(value("proposalStatus"))}</p>
+ ${block("Empresa / profissional",company)}
+ ${block("Cliente",client)}
+ ${block("Proposta",value("title"))}
+ ${block("Descrição do trabalho",value("scope"))}
+ <h3>Produtos e serviços</h3>
+ <table>
+ <thead><tr><th>Descrição</th><th>Qtd.</th><th>Un.</th><th class="right">Valor</th><th class="right">Total</th></tr></thead>
+ <tbody>${c.items.map(x=>`<tr>
+ <td>${esc(x.description||"Item sem descrição")}<br><small>${esc(x.type)}${num(x.itemDiscount)>0?" · Desconto "+num(x.itemDiscount)+"%":""}</small></td>
+ <td>${esc(x.qty)}</td><td>${esc(x.unit)}</td>
+ <td class="right">${money(x.price)}</td>
+ <td class="right">${money(x.total)}</td></tr>`).join("")}</tbody>
+ </table>
+ <p>Subtotal: <b>${money(c.subtotal)}</b><br>
+ Descontos: <b>- ${money(c.discount)}</b><br>
+ Taxas: <b>${money(c.tax)}</b><br>
+ Frete e adicionais: <b>${money(c.extras)}</b></p>
+ <p class="big">TOTAL: ${money(c.total)}</p>
+ ${block("Forma de pagamento",value("payment"))}
+ ${block("Condições de pagamento",value("paymentTerms"))}
+ ${block("Prazo de entrega",value("deadline"))}
+ ${block("Garantia",value("warranty"))}
+ ${block("Observações",value("notes"))}
+ ${block("Responsável",value("responsible"))}
+ <p style="margin-top:30px;color:#64748b">Proposta sujeita à aprovação das partes. Este documento não substitui nota fiscal ou contrato quando exigidos.</p>`;
+}
+function collect(){
+ const data={};
+ fields.forEach(k=>data[k]=$(k).value);
+ data.items=getItems();
+ return data;
+}
+function fill(data){
+ fields.forEach(k=>{
+  if(data[k]!==undefined)$(k).value=data[k];
+ });
+ $("items").innerHTML="";
+ (data.items||[]).forEach(addItem);
+ render();
+}
+function readSaved(){
+ try{
+  const x=JSON.parse(localStorage.getItem(KEY)||"[]");
+  return Array.isArray(x)?x:[];
+ }catch(e){return []}
+}
+function writeSaved(data){
+ localStorage.setItem(KEY,JSON.stringify(data));
+}
+function saveProposal(){
+ const data=collect();
+ if(!data.company.trim()||!data.client.trim()){
+  message("Informe o nome da empresa ou profissional e o nome do cliente.");
+  return;
+ }
+ if(!data.items.length||data.items.some(x=>!x.description.trim()||num(x.qty)<=0)){
+  message("Adicione ao menos um item com descrição e quantidade maior que zero.");
+  return;
+ }
+ try{
+  const list=readSaved();
+  const id=editingId||uid();
+  const entry={id,updatedAt:new Date().toISOString(),data};
+  const index=list.findIndex(x=>x.id===id);
+  if(index>=0)list[index]=entry;else list.unshift(entry);
+  writeSaved(list);
+  editingId=id;
+  showSaved();
+  message("Orçamento salvo neste navegador.");
+ }catch(e){
+  message("Não foi possível salvar. Verifique o espaço de armazenamento.");
+ }
+}
+function showSaved(){
+ const list=readSaved();
+ const root=$("savedList");
+ root.innerHTML="";
+ if(!list.length){
+  root.innerHTML='<p class="muted">Nenhum orçamento salvo ainda.</p>';
+  return;
+ }
+ list.forEach(x=>{
+  const row=document.createElement("div");
+  row.className="saved";
+  const info=document.createElement("div");
+  const title=document.createElement("b");
+  title.textContent=(x.data.number||"Sem número")+" — "+(x.data.client||"Cliente");
+  const small=document.createElement("small");
+  small.textContent="Atualizado: "+new Date(x.updatedAt).toLocaleString("pt-BR");
+  info.append(title,small);
+  const actions=document.createElement("div");
+  actions.className="actions";
+  const open=document.createElement("button");
+  open.className="btn secondary";open.textContent="Abrir";
+  open.onclick=()=>{editingId=x.id;fill(x.data);window.scrollTo({top:0,behavior:"smooth"});message("Orçamento carregado.")};
+  const duplicate=document.createElement("button");
+  duplicate.className="btn secondary";duplicate.textContent="Duplicar";
+  duplicate.onclick=()=>{editingId=null;fill(x.data);$("number").value="";render();message("Cópia preparada. Informe um novo número e salve.")};
+  const remove=document.createElement("button");
+  remove.className="btn danger";remove.textContent="Excluir";
+  remove.onclick=()=>{
+   if(!confirm("Excluir este orçamento salvo?"))return;
+   writeSaved(readSaved().filter(z=>z.id!==x.id));
+   if(editingId===x.id)editingId=null;
+   showSaved();message("Orçamento excluído.");
+  };
+  actions.append(open,duplicate,remove);
+  row.append(info,actions);
+  root.appendChild(row);
+ });
+}
+function newProposal(){
+ if(!confirm("Criar um novo orçamento? As alterações não salvas serão perdidas."))return;
+ editingId=null;
+ fields.forEach(k=>$(k).value="");
+ $("date").value=new Date().toISOString().slice(0,10);
+ $("proposalStatus").value="Rascunho";
+ $("payment").value="Pix";
+ $("template").value="modern";
+ ["discount","tax","shipping","extra"].forEach(k=>$(k).value="0");
+ $("items").innerHTML="";
+ addItem();
+ render();
+ message("Novo orçamento iniciado.");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function exportBackup(){
+ const data=JSON.stringify({app:"Meu Orçamento Pro",version:1,proposals:readSaved()},null,2);
+ const blob=new Blob([data],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;a.download="backup-meu-orcamento.json";
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+$("importFile").addEventListener("change",async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+ try{
+  if(file.size>5*1024*1024)throw Error("Arquivo maior que 5 MB.");
+  const data=JSON.parse(await file.text());
+  if(data.app!=="Meu Orçamento Pro"||!Array.isArray(data.proposals))throw Error("Backup inválido.");
+  if(!confirm("Importar o backup? Orçamentos com o mesmo identificador serão substituídos."))return;
+  const map=new Map(readSaved().map(x=>[x.id,x]));
+  data.proposals.forEach(x=>{
+   if(x&&typeof x.id==="string"&&x.data&&typeof x.data==="object")map.set(x.id,x);
+  });
+  writeSaved([...map.values()]);
+  showSaved();message("Backup importado.");
+ }catch(err){message("Erro na importação: "+err.message)}
+ e.target.value="";
+});
+fields.forEach(k=>{
+ $(k).addEventListener("input",render);
+ $(k).addEventListener("change",render);
+});
+$("date").value=new Date().toISOString().slice(0,10);
+addItem();
+showSaved();
+render();
+</script>
+</body>
+</html>
