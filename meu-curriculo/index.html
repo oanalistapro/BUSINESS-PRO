@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meu Currículo | Business Pro</title>
+<style>
+:root{--blue:#2563eb;--dark:#14233f;--line:#dce5f1;--bg:#f3f6fb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--dark);font-family:Arial,Helvetica,sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+header{background:#fff;border-bottom:1px solid var(--line);padding:17px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:22px;font-weight:900;color:var(--blue)}
+.logo small{display:block;font-size:11px;color:#64748b;letter-spacing:2px}
+.back{color:var(--dark);text-decoration:none;font-weight:700}
+.hero{padding:35px 5%;background:linear-gradient(120deg,#112954,#2563eb);color:white}
+.hero h1{font-size:clamp(27px,4vw,42px);margin:0 0 10px}
+.hero p{line-height:1.6;max-width:750px}
+.container{max-width:1450px;margin:25px auto;padding:0 20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 12px 30px #20355b0b}
+h2{margin:0 0 18px;font-size:22px}
+h3{margin:25px 0 14px;font-size:17px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{margin-bottom:13px;min-width:0}
+label{display:block;font-weight:700;font-size:13px;margin-bottom:7px}
+input,textarea,select{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:12px;background:#fff;color:#14233f;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2563eb16}
+textarea{min-height:100px;resize:vertical}
+.btn{background:var(--blue);border:0;color:white;padding:12px 17px;border-radius:11px;font-weight:800}
+.btn.secondary{background:#eaf1ff;color:#1d4ed8}
+.btn.danger{background:#fee2e2;color:#991b1b}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}
+.entry{padding:16px;border:1px solid var(--line);border-radius:13px;margin:12px 0;background:#fafcff}
+.entryhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.entryhead h4{margin:0}
+.muted{color:#64748b;font-size:13px;line-height:1.5}
+.previewbar{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+.resume{background:white;color:#1e293b;min-height:680px;padding:38px;border:1px solid #e2e8f0;box-shadow:0 8px 28px #0000000c;overflow-wrap:anywhere}
+.resume h1{margin:0;font-size:29px;color:#163e83}
+.resume .jobtitle{margin:7px 0;color:#475569}
+.resume .contact{font-size:12px;line-height:1.7;color:#475569}
+.resume h3{font-size:14px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid #2563eb;padding-bottom:7px;margin:24px 0 10px;color:#163e83}
+.resume p{font-size:13px;line-height:1.6;white-space:pre-line;margin:7px 0}
+.resume .item{margin:0 0 14px}
+.resume .item b{font-size:13px}
+.resume .item small{display:block;color:#64748b;margin-top:4px}
+.resume.modern{border-top:9px solid #2563eb}
+.resume.classic{font-family:Georgia,serif}
+.resume.classic h1,.resume.classic h3{color:#1f2937}
+.resume.classic h3{border-color:#475569}
+.resume.minimal h1,.resume.minimal h3{color:#111827}
+.resume.minimal h3{border-color:#d1d5db}
+footer{text-align:center;color:#64748b;font-size:12px;padding:25px}
+@media(max-width:950px){.container{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.panel{padding:17px}.resume{padding:25px}}
+@media print{
+ @page{size:A4;margin:12mm}
+ body{background:white}
+ header,.hero,.editor,.previewbar,footer{display:none!important}
+ .container{display:block;margin:0;padding:0;max-width:none}
+ .panel{border:0;box-shadow:none;padding:0}
+ .resume{border:0;box-shadow:none;min-height:0;padding:0}
+ .resume .item{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">MEU CURRÍCULO<small>BUSINESS PRO</small></div>
+ <a class="back" href="../">← Voltar ao Business Pro</a>
+</header>
+
+<section class="hero">
+ <h1>Seu próximo passo começa com um bom currículo.</h1>
+ <p>Organize suas experiências, apresente suas habilidades e prepare um currículo profissional para novas oportunidades.</p>
+</section>
+
+<main class="container">
+<section class="panel editor">
+<h2>Editar currículo</h2>
+<p class="muted">Preencha apenas as informações que deseja apresentar. O currículo é atualizado automaticamente.</p>
+
+<h3>Dados pessoais</h3>
+<div class="grid">
+ <div class="field"><label>Nome completo</label><input id="name" placeholder="Seu nome completo"></div>
+ <div class="field"><label>Cargo ou área profissional</label><input id="role" placeholder="Ex.: Assistente administrativo"></div>
+ <div class="field"><label>E-mail</label><input id="email" type="email" placeholder="seuemail@exemplo.com"></div>
+ <div class="field"><label>Telefone</label><input id="phone" type="tel" placeholder="(00) 00000-0000"></div>
+ <div class="field"><label>Cidade e estado</label><input id="city" placeholder="Ex.: Curitiba, PR"></div>
+ <div class="field"><label>LinkedIn ou portfólio</label><input id="link" placeholder="https://..."></div>
+</div>
+
+<h3>Objetivo profissional</h3>
+<div class="field"><textarea id="objective" placeholder="Descreva o tipo de oportunidade que procura e o que deseja contribuir."></textarea></div>
+
+<h3>Resumo profissional</h3>
+<div class="field"><textarea id="summary" placeholder="Apresente sua trajetória, principais competências e resultados."></textarea></div>
+
+<h3>Experiências profissionais</h3>
+<div id="experiences"></div>
+<button class="btn secondary" type="button" onclick="addEntry('experiences')">+ Adicionar experiência</button>
+
+<h3>Formação acadêmica</h3>
+<div id="education"></div>
+<button class="btn secondary" type="button" onclick="addEntry('education')">+ Adicionar formação</button>
+
+<h3>Cursos e certificações</h3>
+<div id="courses"></div>
+<button class="btn secondary" type="button" onclick="addEntry('courses')">+ Adicionar curso</button>
+
+<h3>Habilidades</h3>
+<div class="field"><textarea id="skills" placeholder="Ex.: Excel, atendimento ao cliente, organização, comunicação..."></textarea></div>
+
+<h3>Idiomas</h3>
+<div class="field"><input id="languages" placeholder="Ex.: Português fluente, Inglês intermediário"></div>
+
+<h3>Modelo de currículo</h3>
+<div class="field">
+ <select id="template">
+  <option value="modern">Moderno — Azul profissional</option>
+  <option value="classic">Clássico — Tradicional</option>
+  <option value="minimal">Minimalista — Discreto</option>
+ </select>
+</div>
+
+<div class="actions">
+ <button class="btn" onclick="saveData()">Salvar rascunho</button>
+ <button class="btn secondary" onclick="loadData()">Recuperar rascunho</button>
+ <button class="btn danger" onclick="clearData()">Limpar tudo</button>
+</div>
+<p id="status" class="muted" role="status"></p>
+</section>
+
+<section class="panel">
+<div class="previewbar">
+ <div>
+  <h2 style="margin-bottom:4px">Pré-visualização</h2>
+  <span class="muted">Formato preparado para impressão A4</span>
+ </div>
+ <button class="btn" onclick="window.print()">Gerar PDF / Imprimir</button>
+</div>
+<div id="resume" class="resume modern"></div>
+</section>
+</main>
+
+<footer>MEU CURRÍCULO · BUSINESS PRO · Seus dados permanecem no navegador, salvo quando você os exporta ou compartilha.</footer>
+
+<script>
+const fields=[
+"name","role","email","phone","city","link",
+"objective","summary","skills","languages","template"
+];
+const collections=["experiences","education","courses"];
+
+function escapeHTML(value){
+ return String(value??"").replace(/[&<>"']/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+ });
+}
+function val(id){return document.getElementById(id).value.trim()}
+function showStatus(message){document.getElementById("status").textContent=message}
+
+function addEntry(type,data={}){
+ const container=document.getElementById(type);
+ const entry=document.createElement("div");
+ entry.className="entry";
+ const isExperience=type==="experiences";
+ const isEducation=type==="education";
+ const labels=isExperience
+  ?["Empresa","Cargo","Período","Atividades e resultados"]
+  :isEducation
+  ?["Instituição","Curso ou formação","Período","Informações adicionais"]
+  :["Instituição","Nome do curso","Ano ou período","Informações adicionais"];
+
+ entry.innerHTML=`
+ <div class="entryhead">
+  <h4>${isExperience?"Experiência":isEducation?"Formação":"Curso"}</h4>
+  <button type="button" class="btn danger remove">Remover</button>
+ </div>
+ <div class="grid">
+  <div class="field"><label>${labels[0]}</label><input class="entry-a"></div>
+  <div class="field"><label>${labels[1]}</label><input class="entry-b"></div>
+  <div class="field"><label>${labels[2]}</label><input class="entry-c"></div>
+ </div>
+ <div class="field"><label>${labels[3]}</label><textarea class="entry-d"></textarea></div>`;
+ ["a","b","c","d"].forEach(k=>{
+  entry.querySelector(".entry-"+k).value=data[k]||"";
+ });
+ entry.querySelector(".remove").onclick=()=>{
+  entry.remove();
+  render();
+ };
+ entry.querySelectorAll("input,textarea").forEach(el=>{
+  el.addEventListener("input",render);
+ });
+ container.appendChild(entry);
+ render();
+}
+
+function getEntries(type){
+ return [...document.querySelectorAll("#"+type+" .entry")].map(el=>{
+  const result={};
+  ["a","b","c","d"].forEach(k=>{
+   result[k]=el.querySelector(".entry-"+k).value.trim();
+  });
+  return result;
+ }).filter(x=>Object.values(x).some(Boolean));
+}
+
+function section(title,content){
+ return content?`<section><h3>${title}</h3>${content}</section>`:"";
+}
+
+function renderItems(type){
+ const items=getEntries(type);
+ return items.map(x=>{
+  let heading="";
+  if(type==="experiences") heading=[x.b,x.a].filter(Boolean).join(" · ");
+  else heading=[x.b,x.a].filter(Boolean).join(" — ");
+  return `<div class="item">
+   <b>${escapeHTML(heading)}</b>
+   ${x.c?`<small>${escapeHTML(x.c)}</small>`:""}
+   ${x.d?`<p>${escapeHTML(x.d)}</p>`:""}
+  </div>`;
+ }).join("");
+}
+
+function render(){
+ const name=escapeHTML(val("name")||"Seu nome");
+ const role=escapeHTML(val("role"));
+ const contacts=[
+  val("email"),val("phone"),val("city"),val("link")
+ ].filter(Boolean).map(escapeHTML).join("  •  ");
+
+ const summary=val("summary");
+ const objective=val("objective");
+ const skills=val("skills");
+ const languages=val("languages");
+
+ const resume=document.getElementById("resume");
+ resume.className="resume "+document.getElementById("template").value;
+
+ resume.innerHTML=`
+ <h1>${name}</h1>
+ ${role?`<p class="jobtitle">${role}</p>`:""}
+ ${contacts?`<div class="contact">${contacts}</div>`:""}
+ ${section("Objetivo profissional",objective?`<p>${escapeHTML(objective)}</p>`:"")}
+ ${section("Resumo profissional",summary?`<p>${escapeHTML(summary)}</p>`:"")}
+ ${section("Experiência profissional",renderItems("experiences"))}
+ ${section("Formação acadêmica",renderItems("education"))}
+ ${section("Cursos e certificações",renderItems("courses"))}
+ ${section("Habilidades",skills?`<p>${escapeHTML(skills)}</p>`:"")}
+ ${section("Idiomas",languages?`<p>${escapeHTML(languages)}</p>`:"")}
+ `;
+}
+
+function collectData(){
+ const data={};
+ fields.forEach(id=>data[id]=document.getElementById(id).value);
+ collections.forEach(id=>data[id]=getEntries(id));
+ return data;
+}
+
+function saveData(){
+ try{
+  localStorage.setItem("businesspro_curriculo_v1",JSON.stringify(collectData()));
+  showStatus("Rascunho salvo neste navegador.");
+ }catch(e){
+  showStatus("Não foi possível salvar. Verifique o armazenamento do navegador.");
+ }
+}
+
+function loadData(){
+ try{
+  const raw=localStorage.getItem("businesspro_curriculo_v1");
+  if(!raw){showStatus("Nenhum rascunho salvo neste navegador.");return}
+  const data=JSON.parse(raw);
+  fields.forEach(id=>{
+   document.getElementById(id).value=data[id]||"";
+  });
+  collections.forEach(id=>{
+   document.getElementById(id).innerHTML="";
+   (data[id]||[]).forEach(item=>addEntry(id,item));
+  });
+  render();
+  showStatus("Rascunho recuperado com sucesso.");
+ }catch(e){
+  showStatus("Não foi possível recuperar o rascunho.");
+ }
+}
+
+function clearData(){
+ if(!confirm("Deseja limpar o formulário? O rascunho salvo também será excluído."))return;
+ fields.forEach(id=>document.getElementById(id).value=id==="template"?"modern":"");
+ collections.forEach(id=>document.getElementById(id).innerHTML="");
+ try{localStorage.removeItem("businesspro_curriculo_v1")}catch(e){}
+ render();
+ showStatus("Formulário limpo.");
+}
+
+fields.forEach(id=>{
+ document.getElementById(id).addEventListener("input",render);
+ document.getElementById(id).addEventListener("change",render);
+});
+render();
+</script>
+</body>
+</html>
