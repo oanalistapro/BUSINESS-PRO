@@ -1,0 +1,770 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<title>MEU REQUERIMENTO | BUSINESS PRO</title>
+
+<style>
+:root{
+ --blue:#2563eb;
+ --blue2:#1d4ed8;
+ --navy:#142747;
+ --bg:#f3f7ff;
+ --line:#dce5f3;
+ --muted:#64748b;
+ --white:#fff;
+ --green:#15803d;
+ --red:#dc2626;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:var(--bg);
+ color:var(--navy);
+ font-family:Inter,Arial,sans-serif;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{
+ background:white;
+ border-bottom:1px solid var(--line);
+ padding:18px 5%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px;
+}
+.brand{font-size:22px;font-weight:900}
+.brand span{color:var(--blue)}
+.back{
+ text-decoration:none;
+ color:var(--blue);
+ font-weight:800;
+}
+main{
+ max-width:1250px;
+ margin:auto;
+ padding:25px 18px;
+}
+.hero{
+ border-radius:24px;
+ padding:36px;
+ color:white;
+ background:linear-gradient(125deg,#14366d,#2563eb);
+ box-shadow:0 15px 35px #2563eb25;
+}
+.hero small{
+ letter-spacing:2px;
+ font-weight:900;
+}
+.hero h1{
+ font-size:clamp(28px,4vw,43px);
+ margin:12px 0;
+}
+.hero p{
+ line-height:1.7;
+ opacity:.94;
+ max-width:720px;
+}
+.toolbar{
+ display:flex;
+ flex-wrap:wrap;
+ gap:12px;
+ margin:25px 0;
+}
+.btn{
+ border:0;
+ border-radius:12px;
+ padding:13px 19px;
+ background:var(--blue);
+ color:white;
+ font-weight:800;
+}
+.btn:hover{filter:brightness(.94)}
+.secondary{
+ background:white;
+ color:var(--navy);
+ border:1px solid var(--line);
+}
+.danger{
+ background:#fff1f2;
+ color:var(--red);
+}
+.search{
+ flex:1;
+ min-width:200px;
+ border:1px solid var(--line);
+ border-radius:12px;
+ padding:13px 15px;
+ background:white;
+}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:14px;
+ margin-bottom:25px;
+}
+.stat,.panel,.record{
+ background:white;
+ border:1px solid var(--line);
+ border-radius:19px;
+ padding:22px;
+ box-shadow:0 10px 25px #1e3a8a08;
+}
+.stat small{color:var(--muted)}
+.stat strong{
+ display:block;
+ font-size:30px;
+ margin-top:9px;
+}
+.panel h2{margin-top:0}
+.records{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:15px;
+}
+.record h3{
+ margin:15px 0 10px;
+ overflow-wrap:anywhere;
+}
+.record p{
+ color:var(--muted);
+ line-height:1.6;
+ overflow-wrap:anywhere;
+}
+.tag{
+ display:inline-block;
+ background:#eaf1ff;
+ color:#1d4ed8;
+ border-radius:25px;
+ padding:7px 12px;
+ font-size:12px;
+ font-weight:900;
+}
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:8px;
+ margin-top:20px;
+}
+.empty{
+ grid-column:1/-1;
+ text-align:center;
+ padding:55px 15px;
+ color:var(--muted);
+}
+dialog{
+ border:0;
+ border-radius:23px;
+ padding:0;
+ width:min(800px,96vw);
+ max-height:92vh;
+ overflow:auto;
+ box-shadow:0 25px 100px #0f172a60;
+}
+dialog::backdrop{background:#071326aa}
+.modalhead{
+ background:#f4f8ff;
+ border-bottom:1px solid var(--line);
+ padding:24px 28px;
+}
+.modalhead h2{margin:0}
+form{padding:25px 28px}
+.fields{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:16px;
+}
+.field{
+ display:flex;
+ flex-direction:column;
+ gap:7px;
+}
+.full{grid-column:1/-1}
+label{
+ font-size:13px;
+ font-weight:800;
+}
+input,select,textarea{
+ width:100%;
+ border:1px solid #cbd8eb;
+ border-radius:11px;
+ padding:13px;
+ background:white;
+ color:var(--navy);
+}
+textarea{
+ min-height:115px;
+ resize:vertical;
+}
+.modalactions{
+ display:flex;
+ flex-wrap:wrap;
+ justify-content:flex-end;
+ gap:10px;
+ margin-top:25px;
+}
+.notice{
+ font-size:13px;
+ color:var(--muted);
+ line-height:1.7;
+ margin:25px 0;
+}
+.preview{
+ background:white;
+ color:#111;
+ padding:40px;
+ max-width:800px;
+ margin:auto;
+ font-family:Georgia,"Times New Roman",serif;
+ line-height:1.8;
+}
+.preview h2{text-align:center}
+.preview .date{text-align:right}
+.preview .signature{
+ text-align:center;
+ margin-top:70px;
+}
+.preview p{white-space:pre-wrap}
+@media(max-width:700px){
+ header{padding:17px}
+ main{padding:18px 12px}
+ .hero{padding:25px}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .records,.fields{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .stat{padding:16px}
+}
+@media print{
+ header,.hero,.toolbar,.stats,.panel,.notice,
+ dialog,.no-print{display:none!important}
+ body{background:white}
+ main{padding:0}
+ .preview{
+  display:block!important;
+  max-width:none;
+  padding:10mm;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="brand">◆ BUSINESS <span>PRO</span></div>
+ <a class="back" href="../">← Voltar ao portal</a>
+</header>
+
+<main>
+
+<section class="hero">
+ <small>DOCUMENTOS PROFISSIONAIS</small>
+ <h1>📝 MEU REQUERIMENTO</h1>
+ <p>
+  Crie requerimentos formais, organize solicitações,
+  acompanhe protocolos e prepare documentos para
+  impressão ou envio.
+ </p>
+</section>
+
+<div class="toolbar">
+ <button class="btn" id="newBtn">+ Novo requerimento</button>
+ <input class="search" id="search"
+ placeholder="Pesquisar requerimentos...">
+ <button class="btn secondary" id="exportBtn">Exportar CSV</button>
+ <button class="btn secondary" id="backupBtn">Backup JSON</button>
+ <button class="btn secondary" id="importBtn">Importar backup</button>
+ <input type="file" id="importFile" accept=".json,application/json" hidden>
+</div>
+
+<section class="stats">
+ <div class="stat">
+  <small>Total de requerimentos</small>
+  <strong id="total">0</strong>
+ </div>
+ <div class="stat">
+  <small>Em análise</small>
+  <strong id="analysis">0</strong>
+ </div>
+ <div class="stat">
+  <small>Atendidos</small>
+  <strong id="approved">0</strong>
+ </div>
+ <div class="stat">
+  <small>Rascunhos</small>
+  <strong id="drafts">0</strong>
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Meus requerimentos</h2>
+ <div class="records" id="records"></div>
+</section>
+
+<p class="notice">
+ Os documentos são armazenados localmente neste navegador.
+ Faça backups regularmente. Os dados não são sincronizados
+ entre dispositivos. Evite armazenar informações sensíveis
+ em computadores compartilhados.
+</p>
+
+<section class="preview" id="printArea" hidden></section>
+
+</main>
+
+<dialog id="modal">
+ <div class="modalhead">
+  <h2 id="modalTitle">Novo requerimento</h2>
+ </div>
+
+ <form id="form">
+  <div class="fields">
+
+   <div class="field full">
+    <label for="titulo">Assunto do requerimento *</label>
+    <input id="titulo" required
+     placeholder="Ex.: Solicitação de declaração">
+   </div>
+
+   <div class="field">
+    <label for="nome">Nome do requerente *</label>
+    <input id="nome" required>
+   </div>
+
+   <div class="field">
+    <label for="documento">CPF ou documento de referência</label>
+    <input id="documento">
+   </div>
+
+   <div class="field">
+    <label for="email">E-mail</label>
+    <input id="email" type="email">
+   </div>
+
+   <div class="field">
+    <label for="telefone">Telefone</label>
+    <input id="telefone" type="tel">
+   </div>
+
+   <div class="field full">
+    <label for="destinatario">Órgão, empresa ou destinatário *</label>
+    <input id="destinatario" required>
+   </div>
+
+   <div class="field">
+    <label for="cidade">Cidade</label>
+    <input id="cidade">
+   </div>
+
+   <div class="field">
+    <label for="data">Data do requerimento</label>
+    <input id="data" type="date">
+   </div>
+
+   <div class="field">
+    <label for="protocolo">Número de protocolo</label>
+    <input id="protocolo">
+   </div>
+
+   <div class="field">
+    <label for="prazo">Prazo de resposta</label>
+    <input id="prazo" type="date">
+   </div>
+
+   <div class="field">
+    <label for="situacao">Situação</label>
+    <select id="situacao">
+     <option>Rascunho</option>
+     <option>Enviado</option>
+     <option>Em análise</option>
+     <option>Atendido</option>
+     <option>Indeferido</option>
+     <option>Arquivado</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="prioridade">Prioridade</label>
+    <select id="prioridade">
+     <option>Normal</option>
+     <option>Alta</option>
+     <option>Urgente</option>
+    </select>
+   </div>
+
+   <div class="field full">
+    <label for="pedido">Descrição do pedido *</label>
+    <textarea id="pedido" required
+     placeholder="Descreva claramente o que está solicitando."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="justificativa">Justificativa</label>
+    <textarea id="justificativa"
+     placeholder="Explique os motivos do requerimento."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="anexos">Documentos anexos</label>
+    <textarea id="anexos"
+     placeholder="Liste os documentos que acompanharão o pedido."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="observacoes">Observações internas</label>
+    <textarea id="observacoes"></textarea>
+   </div>
+
+  </div>
+
+  <div class="modalactions">
+   <button type="button" class="btn secondary"
+    id="cancelBtn">Cancelar</button>
+   <button type="submit" class="btn">Salvar requerimento</button>
+  </div>
+ </form>
+</dialog>
+
+<script>
+"use strict";
+
+const $=id=>document.getElementById(id);
+
+const KEY="businesspro_meu_requerimento_v2";
+
+const FIELDS=[
+ "titulo","nome","documento","email","telefone",
+ "destinatario","cidade","data","protocolo","prazo",
+ "situacao","prioridade","pedido","justificativa",
+ "anexos","observacoes"
+];
+
+let items=[];
+let editing=null;
+
+try{
+ const saved=JSON.parse(localStorage.getItem(KEY)||"[]");
+ items=Array.isArray(saved)?saved:[];
+}catch(e){
+ alert("Não foi possível ler os dados armazenados.");
+}
+
+function persist(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(items));
+  return true;
+ }catch(e){
+  alert("Não foi possível salvar os dados neste navegador.");
+  return false;
+ }
+}
+
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",
+  '"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+function dateBR(v){
+ if(!v)return "Não informado";
+ const p=v.split("-");
+ return p.length===3?p.reverse().join("/"):v;
+}
+
+function openForm(id=null){
+ editing=id;
+ const item=items.find(x=>x.id===id);
+ $("modalTitle").textContent=item?
+  "Editar requerimento":"Novo requerimento";
+
+ FIELDS.forEach(f=>{
+  $(f).value=item?.data?.[f]??"";
+ });
+
+ if(!item){
+  $("data").value=new Date().toLocaleDateString("en-CA");
+  $("situacao").value="Rascunho";
+  $("prioridade").value="Normal";
+ }
+
+ $("modal").showModal();
+}
+
+function render(){
+ const term=$("search").value.toLowerCase().trim();
+
+ $("total").textContent=items.length;
+ $("analysis").textContent=items.filter(x=>
+  x.data.situacao==="Em análise").length;
+ $("approved").textContent=items.filter(x=>
+  x.data.situacao==="Atendido").length;
+ $("drafts").textContent=items.filter(x=>
+  x.data.situacao==="Rascunho").length;
+
+ const filtered=items.filter(x=>
+  JSON.stringify(x.data).toLowerCase().includes(term)
+ );
+
+ if(!filtered.length){
+  $("records").innerHTML=`
+   <div class="empty">
+    <h3>Nenhum requerimento encontrado</h3>
+    <p>Crie seu primeiro requerimento para começar.</p>
+   </div>`;
+  return;
+ }
+
+ $("records").innerHTML=filtered.map(x=>`
+  <article class="record">
+   <span class="tag">${esc(x.data.situacao)}</span>
+   <h3>${esc(x.data.titulo)}</h3>
+   <p><strong>Requerente:</strong> ${esc(x.data.nome)}</p>
+   <p><strong>Destinatário:</strong> ${esc(x.data.destinatario)}</p>
+   <p><strong>Data:</strong> ${esc(dateBR(x.data.data))}</p>
+   <p><strong>Protocolo:</strong> ${esc(x.data.protocolo||"Não informado")}</p>
+   <p><strong>Prioridade:</strong> ${esc(x.data.prioridade)}</p>
+   <div class="actions">
+    <button class="btn secondary" data-action="edit"
+     data-id="${esc(x.id)}">Editar</button>
+    <button class="btn" data-action="print"
+     data-id="${esc(x.id)}">Imprimir / PDF</button>
+    <button class="btn secondary" data-action="copy"
+     data-id="${esc(x.id)}">Copiar texto</button>
+    <button class="btn danger" data-action="delete"
+     data-id="${esc(x.id)}">Excluir</button>
+   </div>
+  </article>
+ `).join("");
+}
+
+$("form").onsubmit=e=>{
+ e.preventDefault();
+
+ const data={};
+ FIELDS.forEach(f=>data[f]=$(f).value.trim());
+
+ if(!data.titulo||!data.nome||!data.destinatario||!data.pedido){
+  alert("Preencha os campos obrigatórios.");
+  return;
+ }
+
+ const old=items.find(x=>x.id===editing);
+
+ const record={
+  id:old?.id||crypto.randomUUID(),
+  createdAt:old?.createdAt||new Date().toISOString(),
+  updatedAt:new Date().toISOString(),
+  data
+ };
+
+ const previous=items;
+
+ items=old?
+  items.map(x=>x.id===editing?record:x):
+  [record,...items];
+
+ if(!persist()){
+  items=previous;
+  return;
+ }
+
+ $("modal").close();
+ editing=null;
+ render();
+};
+
+function textDocument(d){
+ return [
+  "REQUERIMENTO",
+  "",
+  "À "+d.destinatario,
+  "",
+  "Assunto: "+d.titulo,
+  "",
+  "Eu, "+d.nome+
+   (d.documento?", documento "+d.documento:"")+
+   ", venho apresentar o seguinte requerimento:",
+  "",
+  d.pedido,
+  "",
+  d.justificativa?"Justificativa:\n"+d.justificativa:"",
+  "",
+  d.anexos?"Documentos anexos:\n"+d.anexos:"",
+  "",
+  (d.cidade?d.cidade+", ":"")+dateBR(d.data),
+  "",
+  "________________________________",
+  d.nome,
+  d.email?"E-mail: "+d.email:"",
+  d.telefone?"Telefone: "+d.telefone:""
+ ].filter((v,i,a)=>v!==undefined).join("\n");
+}
+
+function printDocument(item){
+ const d=item.data;
+ const area=$("printArea");
+
+ area.innerHTML=`
+  <h2>REQUERIMENTO</h2>
+  <p><strong>À ${esc(d.destinatario)}</strong></p>
+  <p><strong>Assunto:</strong> ${esc(d.titulo)}</p>
+  <p>
+   Eu, <strong>${esc(d.nome)}</strong>,
+   ${d.documento?"documento "+esc(d.documento)+",":""}
+   venho apresentar o seguinte requerimento:
+  </p>
+  <p>${esc(d.pedido)}</p>
+  ${d.justificativa?`
+   <p><strong>Justificativa:</strong></p>
+   <p>${esc(d.justificativa)}</p>`:""}
+  ${d.anexos?`
+   <p><strong>Documentos anexos:</strong></p>
+   <p>${esc(d.anexos)}</p>`:""}
+  <p class="date">
+   ${esc(d.cidade?d.cidade+", ":"")}
+   ${esc(dateBR(d.data))}
+  </p>
+  <div class="signature">
+   ________________________________<br>
+   ${esc(d.nome)}
+  </div>
+ `;
+
+ area.hidden=false;
+ window.print();
+ area.hidden=true;
+}
+
+$("records").onclick=async e=>{
+ const btn=e.target.closest("button[data-action]");
+ if(!btn)return;
+
+ const item=items.find(x=>x.id===btn.dataset.id);
+ if(!item)return;
+
+ const action=btn.dataset.action;
+
+ if(action==="edit")openForm(item.id);
+
+ if(action==="print")printDocument(item);
+
+ if(action==="copy"){
+  const content=textDocument(item.data);
+  try{
+   await navigator.clipboard.writeText(content);
+   alert("Requerimento copiado.");
+  }catch(e){
+   const ta=document.createElement("textarea");
+   ta.value=content;
+   document.body.appendChild(ta);
+   ta.select();
+   const ok=document.execCommand("copy");
+   ta.remove();
+   alert(ok?"Requerimento copiado.":"Não foi possível copiar.");
+  }
+ }
+
+ if(action==="delete"){
+  if(!confirm("Excluir este requerimento?"))return;
+  const old=items;
+  items=items.filter(x=>x.id!==item.id);
+  if(!persist())items=old;
+  render();
+ }
+};
+
+function download(name,content,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download=name;
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function csvCell(v){
+ return '"'+String(v??"").replace(/"/g,'""')+'"';
+}
+
+$("exportBtn").onclick=()=>{
+ if(!items.length)return alert("Não há registros.");
+
+ const headers=["ID","Criado em","Atualizado em",...FIELDS];
+ const rows=items.map(x=>[
+  x.id,x.createdAt,x.updatedAt,
+  ...FIELDS.map(f=>x.data[f]||"")
+ ]);
+
+ const csv="\uFEFF"+[headers,...rows]
+  .map(row=>row.map(csvCell).join(";"))
+  .join("\r\n");
+
+ download("meus-requerimentos.csv",csv,"text/csv;charset=utf-8");
+};
+
+$("backupBtn").onclick=()=>{
+ download(
+  "backup-meu-requerimento.json",
+  JSON.stringify({app:"meu-requerimento",version:2,items},null,2),
+  "application/json"
+ );
+};
+
+$("importBtn").onclick=()=>$("importFile").click();
+
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  const parsed=JSON.parse(await file.text());
+
+  if(parsed.app!=="meu-requerimento"||
+     !Array.isArray(parsed.items)){
+   throw Error("Arquivo incompatível.");
+  }
+
+  const valid=parsed.items.every(x=>
+   x&&typeof x.id==="string"&&
+   x.data&&typeof x.data==="object"&&
+   FIELDS.every(f=>
+    x.data[f]===undefined||typeof x.data[f]==="string")
+  );
+
+  if(!valid)throw Error("Estrutura de dados inválida.");
+
+  if(!confirm("Importar backup e substituir os registros atuais?"))return;
+
+  const old=items;
+  items=parsed.items;
+
+  if(!persist()){
+   items=old;
+   return;
+  }
+
+  render();
+  alert("Backup importado com sucesso.");
+ }catch(err){
+  alert("Não foi possível importar: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+$("newBtn").onclick=()=>openForm();
+$("cancelBtn").onclick=()=>$("modal").close();
+$("search").oninput=render;
+
+render();
+</script>
+</body>
+</html>
