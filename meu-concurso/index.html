@@ -6,1257 +6,775 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2563eb">
 <title>MEU CONCURSO | BUSINESS PRO</title>
-
 <style>
 :root{
- --blue:#2563eb;
- --navy:#142747;
- --bg:#f3f7ff;
- --line:#dce5f3;
- --muted:#64748b;
- --green:#15803d;
- --red:#dc2626;
- --orange:#d97706;
+ --blue:#2563eb;--navy:#17376e;--ink:#102747;
+ --muted:#64748b;--bg:#f2f6ff;--line:#d8e4f5;
+ --green:#059669;--red:#dc2626
 }
 *{box-sizing:border-box}
-body{
- margin:0;
- background:var(--bg);
- color:var(--navy);
- font-family:Inter,Arial,sans-serif;
-}
+body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-header{
- background:white;
- border-bottom:1px solid var(--line);
- padding:18px 5%;
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:12px;
-}
-.brand{font-size:22px;font-weight:900}
-.brand span{color:var(--blue)}
-.back{
- color:var(--blue);
- font-weight:800;
- text-decoration:none;
-}
-main{
- max-width:1250px;
- margin:auto;
- padding:25px 18px;
-}
-.hero{
- background:linear-gradient(125deg,#14366d,#2563eb);
- color:white;
- border-radius:24px;
- padding:36px;
- box-shadow:0 15px 35px #2563eb25;
-}
-.hero small{
- letter-spacing:2px;
- font-weight:900;
-}
-.hero h1{
- font-size:clamp(28px,4vw,43px);
- margin:12px 0;
-}
-.hero p{
- line-height:1.7;
- opacity:.94;
- max-width:760px;
-}
-.toolbar{
- display:flex;
- flex-wrap:wrap;
- gap:12px;
- margin:25px 0;
-}
-.btn{
- background:var(--blue);
- border:0;
- border-radius:12px;
- padding:13px 18px;
- color:white;
- font-weight:800;
-}
-.btn:hover{filter:brightness(.95)}
-.secondary{
- background:white;
- color:var(--navy);
- border:1px solid var(--line);
-}
-.danger{
- background:#fff1f2;
- color:var(--red);
-}
-.search{
- flex:1;
- min-width:190px;
- padding:13px 15px;
- background:white;
- border:1px solid var(--line);
- border-radius:12px;
-}
-.stats{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:14px;
- margin-bottom:25px;
-}
-.stat,.panel,.record{
- background:white;
- border:1px solid var(--line);
- border-radius:19px;
- padding:22px;
- box-shadow:0 10px 25px #1e3a8a08;
-}
+a{text-decoration:none;color:inherit}
+header{background:white;padding:16px 4%;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+.logo{font-size:22px;font-weight:900}
+.logo span{color:var(--blue)}
+main{max-width:1550px;margin:auto;padding:25px 18px}
+.hero{background:linear-gradient(115deg,#19396f,#2563eb);color:white;padding:44px;border-radius:27px;margin-bottom:30px}
+.hero small{letter-spacing:2px;font-weight:900}
+.hero h1{font-size:clamp(32px,5vw,56px);margin:22px 0}
+.hero p{font-size:18px;line-height:1.7;max-width:950px}
+.btn{border:0;border-radius:12px;padding:13px 17px;background:var(--blue);color:white;font-weight:800}
+.btn.light{background:white;color:var(--ink);border:1px solid var(--line)}
+.btn.alt{background:#e9f0ff;color:#1d4ed8}
+.btn.red{background:#fee2e2;color:#b91c1c}
+.btn.sm{font-size:12px;padding:9px 12px}
+.btn:hover{filter:brightness(.96)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+.toolbar input{flex:1;min-width:210px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #cbd8eb;border-radius:12px;background:white;color:var(--ink);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+textarea{min-height:100px;resize:vertical}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;margin-bottom:30px}
+.stat,.panel{background:white;border:1px solid var(--line);border-radius:21px;box-shadow:0 8px 25px #17376e08}
+.stat{padding:27px}
 .stat small{color:var(--muted)}
-.stat strong{
- display:block;
- font-size:30px;
- margin-top:9px;
-}
+.stat strong{display:block;font-size:32px;margin-top:14px}
+.panel{padding:27px;margin-bottom:25px}
 .panel h2{margin-top:0}
-.filters{
- display:flex;
- flex-wrap:wrap;
- gap:9px;
- margin-bottom:20px;
-}
-.filter{
- border:1px solid var(--line);
- background:white;
- border-radius:30px;
- padding:9px 15px;
- color:var(--navy);
- font-weight:700;
-}
-.filter.active{
- background:var(--blue);
- color:white;
- border-color:var(--blue);
-}
-.records{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:15px;
-}
-.record h3{
- margin:15px 0 10px;
- overflow-wrap:anywhere;
-}
-.record p{
- color:var(--muted);
- line-height:1.6;
- overflow-wrap:anywhere;
-}
-.tag{
- display:inline-block;
- background:#eaf1ff;
- color:#1d4ed8;
- border-radius:25px;
- padding:7px 12px;
- font-size:12px;
- font-weight:900;
-}
-.actions{
- display:flex;
- flex-wrap:wrap;
- gap:8px;
- margin-top:18px;
-}
-.empty{
- grid-column:1/-1;
- text-align:center;
- padding:55px 15px;
- color:var(--muted);
-}
-.progress{
- height:12px;
- background:#e5edf9;
- border-radius:20px;
- overflow:hidden;
- margin:12px 0;
-}
-.progressbar{
- height:100%;
- background:linear-gradient(90deg,#2563eb,#22c55e);
- border-radius:20px;
- transition:width .3s;
-}
-.studyGrid{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:15px;
-}
-.studyBox{
- padding:20px;
- background:#f8fbff;
- border:1px solid var(--line);
- border-radius:15px;
-}
-.studyBox h3{margin-top:0}
-.studyBox strong{font-size:25px}
-dialog{
- border:0;
- border-radius:23px;
- padding:0;
- width:min(850px,96vw);
- max-height:92vh;
- overflow:auto;
- box-shadow:0 25px 100px #0f172a60;
-}
-dialog::backdrop{background:#071326aa}
-.modalhead{
- background:#f4f8ff;
- border-bottom:1px solid var(--line);
- padding:24px 28px;
-}
-.modalhead h2{margin:0}
-form{padding:25px 28px}
-.fields{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:16px;
-}
-.field{
- display:flex;
- flex-direction:column;
- gap:7px;
-}
+.performance{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.performance>div{border:1px solid var(--line);border-radius:17px;background:#f8fbff;padding:23px}
+.performance strong{font-size:29px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field label{font-size:12px;font-weight:800}
 .full{grid-column:1/-1}
-label{
- font-size:13px;
- font-weight:800;
+.mini{font-size:12px;color:var(--muted);line-height:1.7}
+.card{border:1px solid var(--line);background:#f9fbff;border-radius:17px;padding:20px;margin-bottom:12px;overflow-wrap:anywhere}
+.card h3{margin:0 0 12px}
+.card p{font-size:13px;color:var(--muted);line-height:1.7}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.badge{display:inline-block;background:#e9f0ff;color:#1d4ed8;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:800}
+.progress{height:12px;background:#e5eaf4;border-radius:20px;overflow:hidden;margin:12px 0}
+.progress>div{height:100%;background:var(--blue);transition:width .2s}
+.tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}
+.tab{border:1px solid var(--line);background:white;padding:10px 15px;border-radius:22px;font-weight:800}
+.tab.active{background:var(--blue);color:white}
+.hidden{display:none!important}
+.empty{text-align:center;padding:40px;color:var(--muted)}
+.calendarHeader{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.day{min-height:85px;border:1px solid var(--line);border-radius:10px;padding:7px;font-size:12px;overflow:hidden}
+.day.today{border:2px solid var(--blue)}
+.day.other{background:#f3f6fb}
+.day b{display:block;margin-bottom:7px}
+.event{background:#dbeafe;color:#1d4ed8;border-radius:5px;padding:3px;margin:3px 0;font-size:10px;overflow-wrap:anywhere}
+#toast{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:white;padding:14px 20px;border-radius:12px;z-index:20;max-width:90vw}
+#printArea{display:none}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
+@media(max-width:600px){
+ main{padding:12px 9px}.hero{padding:28px 20px}.hero p{font-size:14px}
+ .stat{padding:17px}.stat strong{font-size:24px}
+ .panel{padding:16px}.fields,.performance{grid-template-columns:1fr}
+ .full{grid-column:auto}.toolbar>*{width:100%}
+ .day{min-height:65px;padding:3px;font-size:10px}
+ .event{font-size:9px}.logo{font-size:17px}
 }
-input,select,textarea{
- width:100%;
- border:1px solid #cbd8eb;
- border-radius:11px;
- padding:13px;
- background:white;
- color:var(--navy);
-}
-textarea{
- min-height:105px;
- resize:vertical;
-}
-.modalactions{
- display:flex;
- flex-wrap:wrap;
- justify-content:flex-end;
- gap:10px;
- margin-top:25px;
-}
-.notice{
- font-size:13px;
- color:var(--muted);
- line-height:1.7;
- margin:25px 0;
-}
-.tablewrap{overflow-x:auto}
-table{
- width:100%;
- border-collapse:collapse;
- background:white;
-}
-th,td{
- padding:13px;
- text-align:left;
- border-bottom:1px solid var(--line);
-}
-th{
- background:#f4f8ff;
- font-size:13px;
-}
-td{font-size:14px}
-.smallbtn{
- border:0;
- border-radius:9px;
- padding:9px 12px;
- background:#eaf1ff;
- color:#1d4ed8;
- font-weight:800;
-}
-@media(max-width:700px){
- header{padding:17px}
- main{padding:18px 12px}
- .hero{padding:25px}
- .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
- .records,.fields,.studyGrid{grid-template-columns:1fr}
- .full{grid-column:auto}
- .stat{padding:16px}
-}
+@page{size:A4;margin:15mm}
 @media print{
- header,.hero,.toolbar,.filters,.actions,dialog,
- .notice,.smallbtn{display:none!important}
- body{background:white}
- main{padding:0}
- .stat,.panel,.record{
-  box-shadow:none;
-  break-inside:avoid;
- }
+ body>*:not(#printArea){display:none!important}
+ #printArea{display:block!important;color:black}
+ #printArea table{width:100%;border-collapse:collapse}
+ #printArea td,#printArea th{border:1px solid #aaa;padding:8px;text-align:left;font-size:11px}
 }
 </style>
 </head>
-
 <body>
-
 <header>
- <div class="brand">◆ BUSINESS <span>PRO</span></div>
- <a class="back" href="../">← Voltar ao portal</a>
+ <div class="logo">🎓 MEU <span>CONCURSO</span></div>
+ <a href="../" class="btn alt">← Business Pro</a>
 </header>
 
 <main>
-
 <section class="hero">
  <small>CARREIRA E PREPARAÇÃO</small>
  <h1>🎓 MEU CONCURSO</h1>
- <p>
-  Organize concursos públicos, inscrições, editais,
-  datas de provas, matérias, metas de estudo e simulados.
-  Acompanhe sua preparação em um único lugar.
- </p>
+ <p>Organize concursos públicos, inscrições, editais, datas de provas, matérias, metas de estudo e simulados. Acompanhe sua preparação em um único lugar.</p>
 </section>
 
 <div class="toolbar">
- <button class="btn" id="newBtn">+ Cadastrar concurso</button>
- <button class="btn secondary" id="studyBtn">+ Registrar estudo</button>
- <button class="btn secondary" id="examBtn">+ Registrar simulado</button>
- <input class="search" id="search" placeholder="Pesquisar concursos...">
- <button class="btn secondary" id="csvBtn">Exportar CSV</button>
- <button class="btn secondary" id="backupBtn">Backup JSON</button>
- <button class="btn secondary" id="importBtn">Importar backup</button>
- <input type="file" id="importFile" accept=".json,application/json" hidden>
+ <button class="btn" onclick="showForm('contest')">+ Cadastrar concurso</button>
+ <button class="btn light" onclick="showForm('study')">+ Registrar estudo</button>
+ <button class="btn light" onclick="showForm('exam')">+ Registrar simulado</button>
+ <input id="search" placeholder="🔎 Pesquisar concursos...">
+ <button class="btn light" onclick="exportCSV()">Exportar CSV</button>
+ <button class="btn light" onclick="exportBackup()">Backup JSON</button>
+ <button class="btn light" onclick="$('backupFile').click()">Importar backup</button>
+ <input id="backupFile" type="file" accept=".json,application/json" hidden>
 </div>
 
-<section class="stats">
- <div class="stat">
-  <small>Concursos cadastrados</small>
-  <strong id="total">0</strong>
- </div>
- <div class="stat">
-  <small>Em preparação</small>
-  <strong id="preparing">0</strong>
- </div>
- <div class="stat">
-  <small>Horas estudadas</small>
-  <strong id="hours">0h</strong>
- </div>
- <div class="stat">
-  <small>Simulados realizados</small>
-  <strong id="exams">0</strong>
- </div>
-</section>
-
-<section class="panel" style="margin-bottom:22px">
- <h2>Meu desempenho nos estudos</h2>
- <div class="studyGrid">
-  <div class="studyBox">
-   <h3>Horas registradas</h3>
-   <strong id="studyHours">0h</strong>
-   <p>Tempo total de estudo cadastrado.</p>
-  </div>
-  <div class="studyBox">
-   <h3>Aproveitamento nos simulados</h3>
-   <strong id="accuracy">—</strong>
-   <p>Percentual de questões corretas.</p>
-  </div>
- </div>
-</section>
-
-<section class="panel" style="margin-bottom:22px">
- <h2>Meus concursos</h2>
- <div class="filters" id="filters">
-  <button class="filter active" data-filter="Todos">Todos</button>
-  <button class="filter" data-filter="Planejado">Planejados</button>
-  <button class="filter" data-filter="Inscrito">Inscritos</button>
-  <button class="filter" data-filter="Em preparação">Em preparação</button>
-  <button class="filter" data-filter="Prova realizada">Prova realizada</button>
-  <button class="filter" data-filter="Finalizado">Finalizados</button>
- </div>
- <div class="records" id="records"></div>
-</section>
-
-<section class="panel" style="margin-bottom:22px">
- <h2>Histórico de estudos</h2>
- <div class="tablewrap">
-  <table>
-   <thead>
-    <tr>
-     <th>Data</th>
-     <th>Concurso</th>
-     <th>Matéria</th>
-     <th>Horas</th>
-     <th>Ações</th>
-    </tr>
-   </thead>
-   <tbody id="studyTable"></tbody>
-  </table>
- </div>
-</section>
+<div class="stats">
+ <div class="stat"><small>Concursos cadastrados</small><strong id="count">0</strong></div>
+ <div class="stat"><small>Em preparação</small><strong id="preparing">0</strong></div>
+ <div class="stat"><small>Horas estudadas</small><strong id="hours">0h</strong></div>
+ <div class="stat"><small>Simulados realizados</small><strong id="exams">0</strong></div>
+</div>
 
 <section class="panel">
- <h2>Histórico de simulados</h2>
- <div class="tablewrap">
-  <table>
-   <thead>
-    <tr>
-     <th>Data</th>
-     <th>Concurso</th>
-     <th>Questões</th>
-     <th>Acertos</th>
-     <th>Desempenho</th>
-     <th>Ações</th>
-    </tr>
-   </thead>
-   <tbody id="examTable"></tbody>
-  </table>
+ <h2>Meu desempenho nos estudos</h2>
+ <div class="performance">
+  <div>
+   <h3>Horas registradas</h3>
+   <strong id="totalHours">0h</strong>
+   <p class="mini">Tempo total de estudo cadastrado.</p>
+  </div>
+  <div>
+   <h3>Aproveitamento nos simulados</h3>
+   <strong id="average">—</strong>
+   <p class="mini">Percentual geral de questões corretas.</p>
+  </div>
  </div>
 </section>
 
-<p class="notice">
- Os dados são armazenados neste navegador, sem sincronização
- entre dispositivos. Faça backups regularmente.
- Datas, inscrições e requisitos devem ser conferidos
- diretamente nos editais e nos sites oficiais das bancas.
-</p>
+<section id="contestForm" class="panel hidden">
+ <h2 id="contestTitle">Cadastrar concurso</h2>
+ <div class="fields">
+  <div class="field"><label>Nome do concurso *</label><input id="cName" placeholder="Ex.: Concurso Prefeitura"></div>
+  <div class="field"><label>Cargo *</label><input id="cRole" placeholder="Ex.: Assistente administrativo"></div>
+  <div class="field"><label>Órgão / instituição</label><input id="cAgency"></div>
+  <div class="field"><label>Banca organizadora</label><input id="cBoard"></div>
+  <div class="field"><label>Estado / local</label><input id="cLocation"></div>
+  <div class="field"><label>Remuneração prevista (R$)</label><input id="cSalary" type="number" min="0" step="0.01"></div>
+  <div class="field"><label>Início das inscrições</label><input id="cStart" type="date"></div>
+  <div class="field"><label>Fim das inscrições</label><input id="cEnd" type="date"></div>
+  <div class="field"><label>Data da prova</label><input id="cDate" type="date"></div>
+  <div class="field"><label>Situação</label>
+   <select id="cStatus"><option>Em preparação</option><option>Inscrições abertas</option><option>Inscrito</option><option>Prova realizada</option><option>Aprovado</option><option>Encerrado</option></select>
+  </div>
+  <div class="field"><label>Meta de estudo (horas)</label><input id="cGoal" type="number" min="0" step="0.5"></div>
+  <div class="field"><label>Link do edital</label><input id="cLink" type="url" placeholder="https://..."></div>
+  <div class="field full"><label>Matérias (separe por vírgula)</label><textarea id="cSubjects" placeholder="Português, Matemática, Informática..."></textarea></div>
+  <div class="field full"><label>Observações</label><textarea id="cNotes"></textarea></div>
+ </div>
+ <div class="actions">
+  <button class="btn" onclick="saveContest()">Salvar concurso</button>
+  <button class="btn light" onclick="hideForms()">Cancelar</button>
+ </div>
+</section>
 
+<section id="studyForm" class="panel hidden">
+ <h2>Registrar sessão de estudo</h2>
+ <div class="fields">
+  <div class="field"><label>Concurso *</label><select id="sContest"></select></div>
+  <div class="field"><label>Matéria *</label><input id="sSubject" placeholder="Ex.: Português"></div>
+  <div class="field"><label>Data</label><input id="sDate" type="date"></div>
+  <div class="field"><label>Tempo estudado (minutos) *</label><input id="sMinutes" type="number" min="1" step="1"></div>
+  <div class="field full"><label>Conteúdo estudado</label><textarea id="sNotes"></textarea></div>
+ </div>
+ <div class="actions">
+  <button class="btn" onclick="saveStudy()">Salvar estudo</button>
+  <button class="btn light" onclick="hideForms()">Cancelar</button>
+ </div>
+</section>
+
+<section id="examForm" class="panel hidden">
+ <h2>Registrar simulado</h2>
+ <div class="fields">
+  <div class="field"><label>Concurso *</label><select id="eContest"></select></div>
+  <div class="field"><label>Data</label><input id="eDate" type="date"></div>
+  <div class="field"><label>Total de questões *</label><input id="eTotal" type="number" min="1" step="1"></div>
+  <div class="field"><label>Questões corretas *</label><input id="eCorrect" type="number" min="0" step="1"></div>
+  <div class="field full"><label>Observações</label><textarea id="eNotes"></textarea></div>
+ </div>
+ <div class="actions">
+  <button class="btn" onclick="saveExam()">Salvar simulado</button>
+  <button class="btn light" onclick="hideForms()">Cancelar</button>
+ </div>
+</section>
+
+<div class="grid">
+ <section class="panel">
+  <h2>Meus concursos</h2>
+  <div id="contestList"></div>
+ </section>
+ <section class="panel">
+  <h2>Calendário de concursos</h2>
+  <div class="calendarHeader">
+   <button class="btn light sm" onclick="changeMonth(-1)">←</button>
+   <h3 id="monthTitle"></h3>
+   <button class="btn light sm" onclick="changeMonth(1)">→</button>
+  </div>
+  <div class="calendar" id="calendar"></div>
+ </section>
+</div>
+
+<div class="grid">
+ <section class="panel">
+  <h2>Histórico de estudos</h2>
+  <div id="studyList"></div>
+ </section>
+ <section class="panel">
+  <h2>Resultados dos simulados</h2>
+  <div id="examList"></div>
+ </section>
+</div>
+
+<section class="panel">
+ <h2>Relatório da preparação</h2>
+ <div class="actions">
+  <button class="btn" onclick="printReport()">Imprimir / Salvar PDF</button>
+  <button class="btn alt" onclick="exportStudies()">Exportar estudos CSV</button>
+  <button class="btn alt" onclick="exportExams()">Exportar simulados CSV</button>
+ </div>
+ <p class="mini">Os registros ficam salvos neste navegador. O sistema não consulta automaticamente editais oficiais nem envia inscrições. Confirme datas e requisitos nos sites dos órgãos responsáveis.</p>
+</section>
 </main>
 
-<dialog id="contestModal">
- <div class="modalhead">
-  <h2 id="contestModalTitle">Cadastrar concurso</h2>
- </div>
- <form id="contestForm">
-  <div class="fields">
-
-   <div class="field full">
-    <label for="titulo">Nome do concurso *</label>
-    <input id="titulo" required
-     placeholder="Ex.: Concurso Prefeitura Municipal">
-   </div>
-
-   <div class="field">
-    <label for="orgao">Órgão ou instituição</label>
-    <input id="orgao">
-   </div>
-
-   <div class="field">
-    <label for="cargo">Cargo pretendido</label>
-    <input id="cargo">
-   </div>
-
-   <div class="field">
-    <label for="banca">Banca organizadora</label>
-    <input id="banca">
-   </div>
-
-   <div class="field">
-    <label for="escolaridade">Escolaridade exigida</label>
-    <select id="escolaridade">
-     <option>Não informado</option>
-     <option>Fundamental</option>
-     <option>Médio</option>
-     <option>Técnico</option>
-     <option>Superior</option>
-     <option>Pós-graduação</option>
-    </select>
-   </div>
-
-   <div class="field">
-    <label for="vagas">Número de vagas</label>
-    <input id="vagas" type="number" min="0" step="1">
-   </div>
-
-   <div class="field">
-    <label for="salario">Salário previsto (R$)</label>
-    <input id="salario" type="number" min="0" step="0.01">
-   </div>
-
-   <div class="field">
-    <label for="inscricaoInicio">Início das inscrições</label>
-    <input id="inscricaoInicio" type="date">
-   </div>
-
-   <div class="field">
-    <label for="inscricaoFim">Fim das inscrições</label>
-    <input id="inscricaoFim" type="date">
-   </div>
-
-   <div class="field">
-    <label for="prova">Data da prova</label>
-    <input id="prova" type="date">
-   </div>
-
-   <div class="field">
-    <label for="local">Cidade ou local da prova</label>
-    <input id="local">
-   </div>
-
-   <div class="field">
-    <label for="taxa">Taxa de inscrição (R$)</label>
-    <input id="taxa" type="number" min="0" step="0.01">
-   </div>
-
-   <div class="field">
-    <label for="situacao">Situação</label>
-    <select id="situacao">
-     <option>Planejado</option>
-     <option>Inscrição aberta</option>
-     <option>Inscrito</option>
-     <option>Em preparação</option>
-     <option>Prova realizada</option>
-     <option>Finalizado</option>
-    </select>
-   </div>
-
-   <div class="field">
-    <label for="meta">Meta semanal de estudo (horas)</label>
-    <input id="meta" type="number" min="0" step="0.5">
-   </div>
-
-   <div class="field full">
-    <label for="edital">Link oficial do edital</label>
-    <input id="edital" type="url"
-     placeholder="https://...">
-   </div>
-
-   <div class="field full">
-    <label for="materias">Matérias do concurso</label>
-    <textarea id="materias"
-     placeholder="Português, Matemática, Informática, Direito..."></textarea>
-   </div>
-
-   <div class="field full">
-    <label for="plano">Plano de estudos</label>
-    <textarea id="plano"
-     placeholder="Descreva suas metas e sua rotina de preparação."></textarea>
-   </div>
-
-   <div class="field full">
-    <label for="observacoes">Observações</label>
-    <textarea id="observacoes"></textarea>
-   </div>
-
-  </div>
-  <div class="modalactions">
-   <button type="button" class="btn secondary"
-    id="cancelContest">Cancelar</button>
-   <button type="submit" class="btn">Salvar concurso</button>
-  </div>
- </form>
-</dialog>
-
-<dialog id="studyModal">
- <div class="modalhead">
-  <h2>Registrar sessão de estudo</h2>
- </div>
- <form id="studyForm">
-  <div class="fields">
-   <div class="field full">
-    <label for="studyContest">Concurso *</label>
-    <select id="studyContest" required></select>
-   </div>
-   <div class="field">
-    <label for="studyDate">Data *</label>
-    <input id="studyDate" type="date" required>
-   </div>
-   <div class="field">
-    <label for="studySubject">Matéria *</label>
-    <input id="studySubject" required
-     placeholder="Ex.: Língua Portuguesa">
-   </div>
-   <div class="field">
-    <label for="studyDuration">Tempo estudado (horas) *</label>
-    <input id="studyDuration" type="number"
-     min="0.1" step="0.1" required>
-   </div>
-   <div class="field full">
-    <label for="studyNotes">Conteúdo estudado</label>
-    <textarea id="studyNotes"></textarea>
-   </div>
-  </div>
-  <div class="modalactions">
-   <button type="button" class="btn secondary"
-    id="cancelStudy">Cancelar</button>
-   <button type="submit" class="btn">Registrar estudo</button>
-  </div>
- </form>
-</dialog>
-
-<dialog id="examModal">
- <div class="modalhead">
-  <h2>Registrar simulado</h2>
- </div>
- <form id="examForm">
-  <div class="fields">
-   <div class="field full">
-    <label for="examContest">Concurso *</label>
-    <select id="examContest" required></select>
-   </div>
-   <div class="field">
-    <label for="examDate">Data *</label>
-    <input id="examDate" type="date" required>
-   </div>
-   <div class="field">
-    <label for="examTotal">Total de questões *</label>
-    <input id="examTotal" type="number"
-     min="1" step="1" required>
-   </div>
-   <div class="field">
-    <label for="examCorrect">Questões corretas *</label>
-    <input id="examCorrect" type="number"
-     min="0" step="1" required>
-   </div>
-   <div class="field full">
-    <label for="examNotes">Observações</label>
-    <textarea id="examNotes"></textarea>
-   </div>
-  </div>
-  <div class="modalactions">
-   <button type="button" class="btn secondary"
-    id="cancelExam">Cancelar</button>
-   <button type="submit" class="btn">Salvar simulado</button>
-  </div>
- </form>
-</dialog>
+<div id="printArea"></div>
+<div id="toast" role="status"></div>
 
 <script>
 "use strict";
 
 const $=id=>document.getElementById(id);
+const KEY="businesspro_meu_concurso_v3";
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
 
-const KEY="businesspro_meu_concurso_v1";
+const uid=()=>crypto.randomUUID?
+ crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
 
-const FIELDS=[
- "titulo","orgao","cargo","banca","escolaridade",
- "vagas","salario","inscricaoInicio","inscricaoFim",
- "prova","local","taxa","situacao","meta","edital",
- "materias","plano","observacoes"
-];
+function today(){
+ const d=new Date();
+ return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),
+ String(d.getDate()).padStart(2,"0")].join("-");
+}
 
-let data={
- contests:[],
- studies:[],
- exams:[]
-};
+function fmtDate(s){
+ if(!s)return "—";
+ const p=s.split("-");
+ return p.length===3?p.reverse().join("/"):s;
+}
 
-let editing=null;
-let activeFilter="Todos";
+function toast(msg){
+ $("toast").textContent=msg;
+ $("toast").style.display="block";
+ clearTimeout(toast.timer);
+ toast.timer=setTimeout(()=>$("toast").style.display="none",3000);
+}
+
+let db={contests:[],studies:[],exams:[]};
 
 try{
  const saved=JSON.parse(localStorage.getItem(KEY)||"null");
- if(saved&&typeof saved==="object"){
-  data.contests=Array.isArray(saved.contests)?saved.contests:[];
-  data.studies=Array.isArray(saved.studies)?saved.studies:[];
-  data.exams=Array.isArray(saved.exams)?saved.exams:[];
- }
-}catch(e){
- alert("Não foi possível carregar os dados locais.");
-}
+ if(saved&&Array.isArray(saved.contests)&&Array.isArray(saved.studies)&&Array.isArray(saved.exams))db=saved;
+}catch(e){}
 
-function save(){
+let editingId=null;
+let viewMonth=new Date().getMonth();
+let viewYear=new Date().getFullYear();
+
+function persist(){
  try{
-  localStorage.setItem(KEY,JSON.stringify(data));
+  localStorage.setItem(KEY,JSON.stringify(db));
   return true;
  }catch(e){
-  alert("Não foi possível salvar. Verifique o armazenamento do navegador.");
+  toast("Erro ao salvar. Verifique o armazenamento.");
   return false;
  }
 }
 
-function esc(v){
- return String(v??"").replace(/[&<>"']/g,c=>({
-  "&":"&amp;",
-  "<":"&lt;",
-  ">":"&gt;",
-  '"':"&quot;",
-  "'":"&#39;"
- }[c]));
+function hideForms(){
+ ["contestForm","studyForm","examForm"].forEach(id=>$(id).classList.add("hidden"));
+ editingId=null;
 }
 
-function makeId(){
- return typeof crypto!=="undefined"&&crypto.randomUUID
-  ?crypto.randomUUID()
-  :Date.now()+"-"+Math.random().toString(36).slice(2);
+function fillContestSelectors(){
+ const options='<option value="">Selecione um concurso</option>'+
+ db.contests.map(c=>`<option value="${esc(c.id)}">${esc(c.name)} — ${esc(c.role)}</option>`).join("");
+ $("sContest").innerHTML=options;
+ $("eContest").innerHTML=options;
 }
 
-function today(){
- const d=new Date();
- return d.getFullYear()+"-"+
-  String(d.getMonth()+1).padStart(2,"0")+"-"+
-  String(d.getDate()).padStart(2,"0");
+function showForm(type){
+ hideForms();
+ if(type!=="contest"&&!db.contests.length){
+  toast("Cadastre um concurso primeiro.");
+  return;
+ }
+
+ fillContestSelectors();
+
+ if(type==="contest"){
+  ["cName","cRole","cAgency","cBoard","cLocation","cSalary",
+   "cStart","cEnd","cDate","cGoal","cLink","cSubjects","cNotes"]
+   .forEach(id=>$(id).value="");
+  $("cStatus").value="Em preparação";
+  $("contestTitle").textContent="Cadastrar concurso";
+  $("contestForm").classList.remove("hidden");
+ }else if(type==="study"){
+  ["sSubject","sMinutes","sNotes"].forEach(id=>$(id).value="");
+  $("sDate").value=today();
+  $("studyForm").classList.remove("hidden");
+ }else{
+  ["eTotal","eCorrect","eNotes"].forEach(id=>$(id).value="");
+  $("eDate").value=today();
+  $("examForm").classList.remove("hidden");
+ }
+
+ const id=type==="contest"?"contestForm":type==="study"?"studyForm":"examForm";
+ $(id).scrollIntoView({behavior:"smooth",block:"start"});
 }
 
-function dateBR(v){
- if(!v)return "Não informado";
- const p=v.split("-");
- return p.length===3?p.reverse().join("/"):v;
+function saveContest(){
+ const name=$("cName").value.trim();
+ const role=$("cRole").value.trim();
+
+ if(!name||!role){
+  toast("Informe o concurso e o cargo.");
+  return;
+ }
+
+ if($("cStart").value&&$("cEnd").value&&$("cStart").value>$("cEnd").value){
+  toast("Confira o período de inscrições.");
+  return;
+ }
+
+ const data={
+  name,role,agency:$("cAgency").value.trim(),
+  board:$("cBoard").value.trim(),
+  location:$("cLocation").value.trim(),
+  salary:$("cSalary").value,
+  start:$("cStart").value,
+  end:$("cEnd").value,
+  date:$("cDate").value,
+  status:$("cStatus").value,
+  goal:Number($("cGoal").value||0),
+  link:$("cLink").value.trim(),
+  subjects:$("cSubjects").value.trim(),
+  notes:$("cNotes").value.trim()
+ };
+
+ const previous=JSON.stringify(db);
+
+ if(editingId){
+  const c=db.contests.find(x=>x.id===editingId);
+  if(!c)return;
+  Object.assign(c,data);
+ }else{
+  db.contests.unshift({id:uid(),...data});
+ }
+
+ if(!persist()){
+  db=JSON.parse(previous);
+  return;
+ }
+
+ hideForms();
+ render();
+ toast("Concurso salvo.");
 }
 
-function money(v){
- return Number(v||0).toLocaleString("pt-BR",{
-  style:"currency",
-  currency:"BRL"
+function editContest(id){
+ const c=db.contests.find(x=>x.id===id);
+ if(!c)return;
+
+ showForm("contest");
+ editingId=id;
+ $("contestTitle").textContent="Editar concurso";
+
+ const map={
+  cName:"name",cRole:"role",cAgency:"agency",cBoard:"board",
+  cLocation:"location",cSalary:"salary",cStart:"start",cEnd:"end",
+  cDate:"date",cStatus:"status",cGoal:"goal",cLink:"link",
+  cSubjects:"subjects",cNotes:"notes"
+ };
+
+ Object.entries(map).forEach(([field,key])=>$(field).value=c[key]??"");
+}
+
+function deleteContest(id){
+ const c=db.contests.find(x=>x.id===id);
+ if(!c||!confirm("Excluir este concurso, seus estudos e simulados?"))return;
+
+ const previous=JSON.stringify(db);
+ db.contests=db.contests.filter(x=>x.id!==id);
+ db.studies=db.studies.filter(x=>x.contestId!==id);
+ db.exams=db.exams.filter(x=>x.contestId!==id);
+
+ if(!persist()){
+  db=JSON.parse(previous);
+  return;
+ }
+
+ render();
+ toast("Concurso excluído.");
+}
+
+function saveStudy(){
+ const contestId=$("sContest").value;
+ const subject=$("sSubject").value.trim();
+ const minutes=Number($("sMinutes").value);
+
+ if(!db.contests.some(c=>c.id===contestId)||!subject||
+  !Number.isInteger(minutes)||minutes<=0){
+  toast("Informe concurso, matéria e minutos válidos.");
+  return;
+ }
+
+ db.studies.unshift({
+  id:uid(),contestId,subject,minutes,
+  date:$("sDate").value||today(),
+  notes:$("sNotes").value.trim()
  });
+
+ if(!persist()){db.studies.shift();return;}
+ hideForms();
+ render();
+ toast("Estudo registrado.");
+}
+
+function saveExam(){
+ const contestId=$("eContest").value;
+ const total=Number($("eTotal").value);
+ const correct=Number($("eCorrect").value);
+
+ if(!db.contests.some(c=>c.id===contestId)||
+  !Number.isInteger(total)||total<=0||
+  !Number.isInteger(correct)||correct<0||correct>total){
+  toast("Confira os dados do simulado.");
+  return;
+ }
+
+ db.exams.unshift({
+  id:uid(),contestId,total,correct,
+  date:$("eDate").value||today(),
+  notes:$("eNotes").value.trim()
+ });
+
+ if(!persist()){db.exams.shift();return;}
+ hideForms();
+ render();
+ toast("Simulado registrado.");
+}
+
+function deleteRecord(type,id){
+ if(!confirm("Excluir este registro?"))return;
+
+ const previous=JSON.stringify(db);
+ db[type]=db[type].filter(x=>x.id!==id);
+
+ if(!persist()){
+  db=JSON.parse(previous);
+  return;
+ }
+
+ render();
 }
 
 function contestName(id){
- const item=data.contests.find(x=>x.id===id);
- return item?item.info.titulo:"Concurso não encontrado";
+ return db.contests.find(c=>c.id===id)?.name||"Concurso removido";
 }
 
-function hoursFormat(v){
- return Number(v||0).toLocaleString("pt-BR",{
-  maximumFractionDigits:1
- })+"h";
+function hoursFor(id){
+ return db.studies.filter(s=>s.contestId===id)
+  .reduce((a,s)=>a+Number(s.minutes||0),0)/60;
 }
 
-function openContest(id=null){
- editing=id;
- const item=data.contests.find(x=>x.id===id);
-
- $("contestModalTitle").textContent=item?
-  "Editar concurso":"Cadastrar concurso";
-
- FIELDS.forEach(f=>{
-  $(f).value=item?.info?.[f]??"";
- });
-
- if(!item){
-  $("situacao").value="Planejado";
-  $("escolaridade").value="Não informado";
- }
-
- $("contestModal").showModal();
+function formatHours(h){
+ return h.toLocaleString("pt-BR",{maximumFractionDigits:1})+"h";
 }
 
-function fillContestOptions(id){
- const select=$(id);
- select.replaceChildren();
+function renderStats(){
+ const minutes=db.studies.reduce((a,s)=>a+Number(s.minutes||0),0);
+ const total=db.exams.reduce((a,e)=>a+Number(e.total||0),0);
+ const correct=db.exams.reduce((a,e)=>a+Number(e.correct||0),0);
 
- const first=document.createElement("option");
- first.value="";
- first.textContent="Selecione um concurso";
- select.appendChild(first);
-
- data.contests.forEach(x=>{
-  const option=document.createElement("option");
-  option.value=x.id;
-  option.textContent=x.info.titulo;
-  select.appendChild(option);
- });
+ $("count").textContent=db.contests.length;
+ $("preparing").textContent=db.contests.filter(c=>c.status==="Em preparação").length;
+ $("hours").textContent=formatHours(minutes/60);
+ $("totalHours").textContent=formatHours(minutes/60);
+ $("exams").textContent=db.exams.length;
+ $("average").textContent=total?((correct/total)*100).toFixed(1).replace(".",",")+"%":"—";
 }
 
-function openStudy(){
- if(!data.contests.length){
-  alert("Cadastre primeiro um concurso.");
-  return;
- }
-
- $("studyForm").reset();
- fillContestOptions("studyContest");
- $("studyDate").value=today();
- $("studyModal").showModal();
-}
-
-function openExam(){
- if(!data.contests.length){
-  alert("Cadastre primeiro um concurso.");
-  return;
- }
-
- $("examForm").reset();
- fillContestOptions("examContest");
- $("examDate").value=today();
- $("examModal").showModal();
-}
-
-function render(){
- const term=$("search").value.toLocaleLowerCase("pt-BR").trim();
-
- const totalHours=data.studies.reduce(
-  (sum,x)=>sum+Number(x.hours||0),0
+function renderContests(){
+ const q=$("search").value.toLowerCase();
+ const list=db.contests.filter(c=>
+  [c.name,c.role,c.agency,c.board,c.location].join(" ").toLowerCase().includes(q)
  );
 
- const totalQuestions=data.exams.reduce(
-  (sum,x)=>sum+Number(x.total||0),0
- );
+ $("contestList").innerHTML=list.length?list.map(c=>{
+  const studied=hoursFor(c.id);
+  const progress=c.goal>0?Math.min(100,studied/c.goal*100):0;
 
- const totalCorrect=data.exams.reduce(
-  (sum,x)=>sum+Number(x.correct||0),0
- );
+  let link="";
+  try{
+   const url=new URL(c.link);
+   if(["https:","http:"].includes(url.protocol)){
+    link=`<a class="btn alt sm" href="${esc(url.href)}" target="_blank" rel="noopener noreferrer">Abrir edital</a>`;
+   }
+  }catch(e){}
 
- $("total").textContent=data.contests.length;
-
- $("preparing").textContent=data.contests.filter(x=>
-  x.info.situacao==="Em preparação"
- ).length;
-
- $("hours").textContent=hoursFormat(totalHours);
- $("studyHours").textContent=hoursFormat(totalHours);
- $("exams").textContent=data.exams.length;
-
- $("accuracy").textContent=totalQuestions?
-  (totalCorrect/totalQuestions*100).toFixed(1).replace(".",",")+"%":
-  "—";
-
- const filtered=data.contests.filter(x=>{
-  const matchStatus=activeFilter==="Todos"||
-   x.info.situacao===activeFilter;
-
-  const matchText=JSON.stringify(x.info)
-   .toLocaleLowerCase("pt-BR").includes(term);
-
-  return matchStatus&&matchText;
- });
-
- if(!filtered.length){
-  $("records").innerHTML=`
-   <div class="empty">
-    <h3>Nenhum concurso encontrado</h3>
-    <p>Cadastre seu primeiro concurso ou altere os filtros.</p>
-   </div>`;
- }else{
-  $("records").innerHTML=filtered.map(x=>{
-   const d=x.info;
-
-   const studyHours=data.studies
-    .filter(s=>s.contestId===x.id)
-    .reduce((sum,s)=>sum+Number(s.hours||0),0);
-
-   const weeklyStart=new Date();
-   const day=weeklyStart.getDay();
-   weeklyStart.setDate(weeklyStart.getDate()-day);
-   const weekKey=weeklyStart.getFullYear()+"-"+
-    String(weeklyStart.getMonth()+1).padStart(2,"0")+"-"+
-    String(weeklyStart.getDate()).padStart(2,"0");
-
-   const weeklyHours=data.studies
-    .filter(s=>s.contestId===x.id&&s.date>=weekKey)
-    .reduce((sum,s)=>sum+Number(s.hours||0),0);
-
-   const goal=Number(d.meta||0);
-   const progress=goal?
-    Math.min(100,weeklyHours/goal*100):0;
-
-   const days=d.prova?
-    Math.ceil((new Date(d.prova+"T12:00:00")-
-     new Date(today()+"T12:00:00"))/86400000):null;
-
-   const examInfo=days===null?"Data não informada":
-    days<0?"Data da prova já passou":
-    days===0?"Prova hoje":
-    days+" dia(s) até a prova";
-
-   let editalLink="";
-   try{
-    const url=new URL(d.edital);
-    if(["https:","http:"].includes(url.protocol)){
-     editalLink=`<a href="${esc(url.href)}"
-      target="_blank" rel="noopener noreferrer"
-      class="btn secondary"
-      style="text-decoration:none;display:inline-block">Ver edital</a>`;
-    }
-   }catch(e){}
-
-   return `<article class="record">
-    <span class="tag">${esc(d.situacao)}</span>
-    <h3>${esc(d.titulo)}</h3>
-
-    <p><strong>Órgão:</strong> ${esc(d.orgao||"—")}</p>
-    <p><strong>Cargo:</strong> ${esc(d.cargo||"—")}</p>
-    <p><strong>Banca:</strong> ${esc(d.banca||"—")}</p>
-    <p><strong>Salário:</strong> ${esc(money(d.salario))}</p>
-    <p><strong>Fim das inscrições:</strong> ${esc(dateBR(d.inscricaoFim))}</p>
-    <p><strong>Data da prova:</strong> ${esc(dateBR(d.prova))}</p>
-    <p><strong>Contagem:</strong> ${esc(examInfo)}</p>
-    <p><strong>Matérias:</strong> ${esc(d.materias||"Não informadas")}</p>
-
-    <p><strong>Horas totais estudadas:</strong> ${esc(hoursFormat(studyHours))}</p>
-    <p><strong>Meta semanal:</strong>
-     ${esc(hoursFormat(weeklyHours))} /
-     ${esc(hoursFormat(goal))}</p>
-
-    <div class="progress">
-     <div class="progressbar" style="width:${progress}%"></div>
-    </div>
-
-    <p><strong>Meta concluída:</strong>
-     ${goal?progress.toFixed(1).replace(".",",")+"%":"Não definida"}</p>
-
+  return `
+   <article class="card">
+    <span class="badge">${esc(c.status)}</span>
+    <h3 style="margin-top:13px">${esc(c.name)}</h3>
+    <p><b>Cargo:</b> ${esc(c.role)}</p>
+    <p><b>Órgão:</b> ${esc(c.agency||"—")}</p>
+    <p><b>Banca:</b> ${esc(c.board||"—")}</p>
+    <p><b>Inscrições até:</b> ${fmtDate(c.end)}</p>
+    <p><b>Prova:</b> ${fmtDate(c.date)}</p>
+    <p><b>Matérias:</b> ${esc(c.subjects||"Não informadas")}</p>
+    <p><b>Meta:</b> ${formatHours(studied)} / ${formatHours(Number(c.goal||0))}</p>
+    <div class="progress"><div style="width:${progress}%"></div></div>
     <div class="actions">
-     <button class="btn secondary" data-action="edit"
-      data-id="${esc(x.id)}">Editar</button>
-     ${editalLink}
-     <button class="btn danger" data-action="delete"
-      data-id="${esc(x.id)}">Excluir</button>
+     <button class="btn sm" data-action="edit" data-id="${esc(c.id)}">Editar</button>
+     ${link}
+     <button class="btn red sm" data-action="delete" data-id="${esc(c.id)}">Excluir</button>
     </div>
-   </article>`;
-  }).join("");
- }
-
- renderStudies();
- renderExams();
+   </article>
+  `;
+ }).join(""):"<div class='empty'>Nenhum concurso encontrado.</div>";
 }
+
+$("contestList").addEventListener("click",e=>{
+ const b=e.target.closest("[data-action]");
+ if(!b)return;
+ if(b.dataset.action==="edit")editContest(b.dataset.id);
+ if(b.dataset.action==="delete")deleteContest(b.dataset.id);
+});
 
 function renderStudies(){
- if(!data.studies.length){
-  $("studyTable").innerHTML=`
-   <tr><td colspan="5">Nenhuma sessão de estudo registrada.</td></tr>`;
-  return;
- }
-
- $("studyTable").innerHTML=[...data.studies]
-  .sort((a,b)=>b.date.localeCompare(a.date))
-  .map(x=>`
-   <tr>
-    <td>${esc(dateBR(x.date))}</td>
-    <td>${esc(contestName(x.contestId))}</td>
-    <td>${esc(x.subject)}</td>
-    <td>${esc(hoursFormat(x.hours))}</td>
-    <td><button class="smallbtn" data-delete-study="${esc(x.id)}">
-     Excluir</button></td>
-   </tr>
-  `).join("");
+ $("studyList").innerHTML=db.studies.length?
+ db.studies.map(s=>`
+  <div class="card">
+   <h3>${esc(s.subject)}</h3>
+   <p><b>Concurso:</b> ${esc(contestName(s.contestId))}</p>
+   <p><b>Data:</b> ${fmtDate(s.date)}</p>
+   <p><b>Duração:</b> ${s.minutes} minutos</p>
+   <p>${esc(s.notes)}</p>
+   <button class="btn red sm" data-id="${esc(s.id)}">Excluir</button>
+  </div>
+ `).join(""):"<p class='mini'>Nenhum estudo registrado.</p>";
 }
 
 function renderExams(){
- if(!data.exams.length){
-  $("examTable").innerHTML=`
-   <tr><td colspan="6">Nenhum simulado registrado.</td></tr>`;
-  return;
- }
-
- $("examTable").innerHTML=[...data.exams]
-  .sort((a,b)=>b.date.localeCompare(a.date))
-  .map(x=>{
-   const pct=x.total?x.correct/x.total*100:0;
-   return `<tr>
-    <td>${esc(dateBR(x.date))}</td>
-    <td>${esc(contestName(x.contestId))}</td>
-    <td>${esc(x.total)}</td>
-    <td>${esc(x.correct)}</td>
-    <td>${pct.toFixed(1).replace(".",",")}%</td>
-    <td><button class="smallbtn"
-     data-delete-exam="${esc(x.id)}">Excluir</button></td>
-   </tr>`;
-  }).join("");
+ $("examList").innerHTML=db.exams.length?
+ db.exams.map(e=>{
+  const percent=e.total?e.correct/e.total*100:0;
+  return `
+   <div class="card">
+    <h3>${esc(contestName(e.contestId))}</h3>
+    <p><b>Data:</b> ${fmtDate(e.date)}</p>
+    <p><b>Acertos:</b> ${e.correct} de ${e.total}</p>
+    <strong>${percent.toFixed(1).replace(".",",")}%</strong>
+    <div class="progress"><div style="width:${percent}%"></div></div>
+    <p>${esc(e.notes)}</p>
+    <button class="btn red sm" data-id="${esc(e.id)}">Excluir</button>
+   </div>
+  `;
+ }).join(""):"<p class='mini'>Nenhum simulado registrado.</p>";
 }
 
-$("contestForm").onsubmit=e=>{
- e.preventDefault();
+$("studyList").addEventListener("click",e=>{
+ const b=e.target.closest("[data-id]");
+ if(b)deleteRecord("studies",b.dataset.id);
+});
 
- const info={};
- FIELDS.forEach(f=>info[f]=$(f).value.trim());
+$("examList").addEventListener("click",e=>{
+ const b=e.target.closest("[data-id]");
+ if(b)deleteRecord("exams",b.dataset.id);
+});
 
- if(!info.titulo){
-  alert("Informe o nome do concurso.");
-  return;
+function changeMonth(n){
+ viewMonth+=n;
+ if(viewMonth<0){viewMonth=11;viewYear--;}
+ if(viewMonth>11){viewMonth=0;viewYear++;}
+ renderCalendar();
+}
+
+function renderCalendar(){
+ const month=new Date(viewYear,viewMonth,1);
+ $("monthTitle").textContent=month.toLocaleDateString("pt-BR",{
+  month:"long",year:"numeric"
+ });
+
+ const first=month.getDay();
+ const days=new Date(viewYear,viewMonth+1,0).getDate();
+ const labels=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+
+ let html=labels.map(d=>`<div style="text-align:center;font-size:12px;font-weight:800;padding:8px 0">${d}</div>`).join("");
+
+ for(let i=0;i<first;i++)html+='<div class="day other"></div>';
+
+ for(let day=1;day<=days;day++){
+  const date=[viewYear,String(viewMonth+1).padStart(2,"0"),String(day).padStart(2,"0")].join("-");
+  const events=[];
+
+  db.contests.forEach(c=>{
+   if(c.date===date)events.push("📝 Prova: "+c.name);
+   if(c.end===date)events.push("⏰ Inscrição: "+c.name);
+  });
+
+  db.studies.forEach(s=>{
+   if(s.date===date)events.push("📚 "+s.subject);
+  });
+
+  html+=`
+   <div class="day ${date===today()?"today":""}">
+    <b>${day}</b>
+    ${events.slice(0,3).map(t=>`<div class="event">${esc(t)}</div>`).join("")}
+    ${events.length>3?`<small>+${events.length-3}</small>`:""}
+   </div>
+  `;
  }
 
- if(info.inscricaoInicio&&info.inscricaoFim&&
-    info.inscricaoInicio>info.inscricaoFim){
-  alert("O fim das inscrições deve ser igual ou posterior ao início.");
-  return;
- }
+ $("calendar").innerHTML=html;
+}
 
- const old=data.contests.find(x=>x.id===editing);
+function render(){
+ renderStats();
+ renderContests();
+ renderStudies();
+ renderExams();
+ renderCalendar();
+ fillContestSelectors();
+}
 
- const record={
-  id:old?.id||makeId(),
-  createdAt:old?.createdAt||new Date().toISOString(),
-  updatedAt:new Date().toISOString(),
-  info
- };
+$("search").addEventListener("input",renderContests);
 
- const previous=data.contests;
-
- data.contests=old?
-  data.contests.map(x=>x.id===editing?record:x):
-  [record,...data.contests];
-
- if(!save()){
-  data.contests=previous;
-  return;
- }
-
- $("contestModal").close();
- editing=null;
- render();
-};
-
-$("studyForm").onsubmit=e=>{
- e.preventDefault();
-
- const contestId=$("studyContest").value;
- const date=$("studyDate").value;
- const subject=$("studySubject").value.trim();
- const hours=Number($("studyDuration").value);
-
- if(!data.contests.some(x=>x.id===contestId)||
-    !date||!subject||!Number.isFinite(hours)||hours<=0){
-  alert("Preencha corretamente os dados do estudo.");
-  return;
- }
-
- const record={
-  id:makeId(),
-  contestId,
-  date,
-  subject,
-  hours,
-  notes:$("studyNotes").value.trim()
- };
-
- data.studies.unshift(record);
-
- if(!save()){
-  data.studies.shift();
-  return;
- }
-
- $("studyModal").close();
- render();
-};
-
-$("examForm").onsubmit=e=>{
- e.preventDefault();
-
- const contestId=$("examContest").value;
- const date=$("examDate").value;
- const total=Number($("examTotal").value);
- const correct=Number($("examCorrect").value);
-
- if(!data.contests.some(x=>x.id===contestId)||
-    !date||!Number.isInteger(total)||total<1||
-    !Number.isInteger(correct)||correct<0||correct>total){
-  alert("Informe um número válido de questões e acertos.");
-  return;
- }
-
- const record={
-  id:makeId(),
-  contestId,
-  date,
-  total,
-  correct,
-  notes:$("examNotes").value.trim()
- };
-
- data.exams.unshift(record);
-
- if(!save()){
-  data.exams.shift();
-  return;
- }
-
- $("examModal").close();
- render();
-};
-
-$("records").onclick=e=>{
- const btn=e.target.closest("button[data-action]");
- if(!btn)return;
-
- const item=data.contests.find(x=>x.id===btn.dataset.id);
- if(!item)return;
-
- if(btn.dataset.action==="edit"){
-  openContest(item.id);
- }
-
- if(btn.dataset.action==="delete"){
-  if(!confirm(
-   "Excluir este concurso e todos os estudos e simulados associados?"
-  ))return;
-
-  const previous=JSON.stringify(data);
-
-  data.contests=data.contests.filter(x=>x.id!==item.id);
-  data.studies=data.studies.filter(x=>x.contestId!==item.id);
-  data.exams=data.exams.filter(x=>x.contestId!==item.id);
-
-  if(!save())data=JSON.parse(previous);
-  render();
- }
-};
-
-$("studyTable").onclick=e=>{
- const btn=e.target.closest("[data-delete-study]");
- if(!btn)return;
- if(!confirm("Excluir esta sessão de estudo?"))return;
-
- const previous=data.studies;
- data.studies=data.studies.filter(x=>x.id!==btn.dataset.deleteStudy);
-
- if(!save())data.studies=previous;
- render();
-};
-
-$("examTable").onclick=e=>{
- const btn=e.target.closest("[data-delete-exam]");
- if(!btn)return;
- if(!confirm("Excluir este simulado?"))return;
-
- const previous=data.exams;
- data.exams=data.exams.filter(x=>x.id!==btn.dataset.deleteExam);
-
- if(!save())data.exams=previous;
- render();
-};
-
-$("filters").onclick=e=>{
- const btn=e.target.closest("[data-filter]");
- if(!btn)return;
-
- activeFilter=btn.dataset.filter;
-
- document.querySelectorAll(".filter").forEach(b=>
-  b.classList.toggle("active",b===btn)
- );
-
- render();
-};
-
-function download(name,content,type){
- const blob=new Blob([content],{type});
- const url=URL.createObjectURL(blob);
+function download(name,text,type){
+ const url=URL.createObjectURL(new Blob([text],{type}));
  const a=document.createElement("a");
- a.href=url;
- a.download=name;
+ a.href=url;a.download=name;
  document.body.appendChild(a);
  a.click();
  a.remove();
- setTimeout(()=>URL.revokeObjectURL(url),1000);
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
 
-function csvCell(v){
- return '"'+String(v??"").replace(/"/g,'""')+'"';
+function csv(rows){
+ return "\uFEFF"+rows.map(row=>row.map(v=>
+  '"'+String(v??"").replace(/"/g,'""')+'"'
+ ).join(";")).join("\r\n");
 }
 
-$("csvBtn").onclick=()=>{
- if(!data.contests.length){
-  alert("Não existem concursos para exportar.");
-  return;
- }
+function exportCSV(){
+ download("meus-concursos.csv",csv([
+  ["Concurso","Cargo","Órgão","Banca","Situação","Inscrição final","Prova","Meta (h)"],
+  ...db.contests.map(c=>[
+   c.name,c.role,c.agency,c.board,c.status,c.end,c.date,c.goal
+  ])
+ ]),"text/csv;charset=utf-8");
+}
 
- const headers=["ID","Criado em","Atualizado em",...FIELDS];
+function exportStudies(){
+ download("estudos.csv",csv([
+  ["Concurso","Matéria","Data","Minutos","Observações"],
+  ...db.studies.map(s=>[
+   contestName(s.contestId),s.subject,s.date,s.minutes,s.notes
+  ])
+ ]),"text/csv;charset=utf-8");
+}
 
- const rows=data.contests.map(x=>[
-  x.id,
-  x.createdAt,
-  x.updatedAt,
-  ...FIELDS.map(f=>x.info[f]||"")
- ]);
+function exportExams(){
+ download("simulados.csv",csv([
+  ["Concurso","Data","Questões","Acertos","Aproveitamento"],
+  ...db.exams.map(e=>[
+   contestName(e.contestId),e.date,e.total,e.correct,
+   (100*e.correct/e.total).toFixed(2)+"%"
+  ])
+ ]),"text/csv;charset=utf-8");
+}
 
- const csv="\uFEFF"+[headers,...rows]
-  .map(r=>r.map(csvCell).join(";"))
-  .join("\r\n");
+function exportBackup(){
+ download("backup-meu-concurso.json",
+  JSON.stringify({version:3,...db},null,2),
+  "application/json");
+ toast("Backup exportado.");
+}
 
- download("meus-concursos.csv",csv,"text/csv;charset=utf-8");
-};
-
-$("backupBtn").onclick=()=>{
- download(
-  "backup-meu-concurso.json",
-  JSON.stringify({
-   app:"meu-concurso",
-   version:1,
-   data
-  },null,2),
-  "application/json"
- );
-};
-
-$("importBtn").onclick=()=>$("importFile").click();
-
-$("importFile").onchange=async e=>{
+$("backupFile").addEventListener("change",async e=>{
  const file=e.target.files[0];
  if(!file)return;
 
  try{
-  const obj=JSON.parse(await file.text());
+  if(file.size>10*1024*1024)throw Error("Arquivo muito grande.");
 
-  if(obj.app!=="meu-concurso"||
-     !obj.data||
-     !Array.isArray(obj.data.contests)||
-     !Array.isArray(obj.data.studies)||
-     !Array.isArray(obj.data.exams)){
-   throw Error("Arquivo de backup incompatível.");
+  const data=JSON.parse(await file.text());
+
+  if(data.version!==3||
+   !["contests","studies","exams"].every(k=>Array.isArray(data[k]))||
+   !data.contests.every(c=>typeof c.id==="string"&&typeof c.name==="string")||
+   !data.studies.every(s=>typeof s.id==="string"&&typeof s.contestId==="string")||
+   !data.exams.every(s=>typeof s.id==="string"&&typeof s.contestId==="string")){
+   throw Error("Formato de backup inválido.");
   }
 
-  const validContests=obj.data.contests.every(x=>
-   x&&typeof x.id==="string"&&
-   x.info&&typeof x.info==="object"&&
-   FIELDS.every(f=>
-    x.info[f]===undefined||typeof x.info[f]==="string")
-  );
+  if(!confirm("Substituir todos os dados atuais pelos dados do backup?"))return;
 
-  const validStudies=obj.data.studies.every(x=>
-   x&&typeof x.id==="string"&&
-   typeof x.contestId==="string"&&
-   typeof x.date==="string"&&
-   typeof x.subject==="string"&&
-   Number.isFinite(x.hours)&&x.hours>0
-  );
+  const previous=db;
+  db={contests:data.contests,studies:data.studies,exams:data.exams};
 
-  const validExams=obj.data.exams.every(x=>
-   x&&typeof x.id==="string"&&
-   typeof x.contestId==="string"&&
-   typeof x.date==="string"&&
-   Number.isInteger(x.total)&&x.total>0&&
-   Number.isInteger(x.correct)&&
-   x.correct>=0&&x.correct<=x.total
-  );
+  if(!persist()){db=previous;return;}
 
-  if(!validContests||!validStudies||!validExams){
-   throw Error("Estrutura dos registros inválida.");
-  }
-
-  if(!confirm(
-   "Substituir todos os concursos, estudos e simulados atuais pelos dados do backup?"
-  ))return;
-
-  const previous=data;
-
-  data={
-   contests:obj.data.contests,
-   studies:obj.data.studies,
-   exams:obj.data.exams
-  };
-
-  if(!save()){
-   data=previous;
-   return;
-  }
-
+  hideForms();
   render();
-  alert("Backup importado com sucesso.");
-
+  toast("Backup importado.");
  }catch(err){
-  alert("Erro ao importar: "+err.message);
+  toast("Erro: "+err.message);
  }finally{
   e.target.value="";
  }
-};
+});
 
-$("newBtn").onclick=()=>openContest();
-$("studyBtn").onclick=openStudy;
-$("examBtn").onclick=openExam;
+function printReport(){
+ const minutes=db.studies.reduce((a,s)=>a+Number(s.minutes||0),0);
+ const total=db.exams.reduce((a,e)=>a+Number(e.total||0),0);
+ const correct=db.exams.reduce((a,e)=>a+Number(e.correct||0),0);
 
-$("cancelContest").onclick=()=>$("contestModal").close();
-$("cancelStudy").onclick=()=>$("studyModal").close();
-$("cancelExam").onclick=()=>$("examModal").close();
-
-$("search").oninput=render;
+ $("printArea").innerHTML=`
+  <h1>MEU CONCURSO — RELATÓRIO DE PREPARAÇÃO</h1>
+  <p>Gerado em ${new Date().toLocaleString("pt-BR")}</p>
+  <p><b>Concursos:</b> ${db.contests.length} |
+   <b>Horas estudadas:</b> ${formatHours(minutes/60)} |
+   <b>Simulados:</b> ${db.exams.length} |
+   <b>Aproveitamento:</b> ${total?(correct/total*100).toFixed(1)+"%":"—"}</p>
+  <h2>Concursos</h2>
+  <table>
+   <tr><th>Concurso</th><th>Cargo</th><th>Situação</th><th>Prova</th></tr>
+   ${db.contests.map(c=>`
+    <tr><td>${esc(c.name)}</td><td>${esc(c.role)}</td>
+    <td>${esc(c.status)}</td><td>${fmtDate(c.date)}</td></tr>
+   `).join("")}
+  </table>
+  <h2>Estudos</h2>
+  <table>
+   <tr><th>Concurso</th><th>Matéria</th><th>Data</th><th>Minutos</th></tr>
+   ${db.studies.map(s=>`
+    <tr><td>${esc(contestName(s.contestId))}</td>
+    <td>${esc(s.subject)}</td><td>${fmtDate(s.date)}</td>
+    <td>${s.minutes}</td></tr>
+   `).join("")}
+  </table>
+  <h2>Simulados</h2>
+  <table>
+   <tr><th>Concurso</th><th>Data</th><th>Acertos</th><th>Total</th></tr>
+   ${db.exams.map(e=>`
+    <tr><td>${esc(contestName(e.contestId))}</td>
+    <td>${fmtDate(e.date)}</td><td>${e.correct}</td>
+    <td>${e.total}</td></tr>
+   `).join("")}
+  </table>
+ `;
+ window.print();
+}
 
 render();
 </script>
-
 </body>
 </html>
