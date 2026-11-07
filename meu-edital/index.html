@@ -1,0 +1,1248 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<meta name="description" content="MEU EDITAL - Organize editais, inscrições, documentos, prazos e etapas importantes.">
+<title>MEU EDITAL | BUSINESS PRO</title>
+
+<style>
+:root{
+ --blue:#2563eb;
+ --navy:#142747;
+ --bg:#f3f7ff;
+ --line:#dce5f3;
+ --muted:#64748b;
+ --green:#15803d;
+ --red:#dc2626;
+ --orange:#d97706;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:var(--bg);
+ color:var(--navy);
+ font-family:Arial,Helvetica,sans-serif;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+header{
+ background:white;
+ border-bottom:1px solid var(--line);
+ padding:18px 5%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:12px;
+}
+.brand{font-size:22px;font-weight:900}
+.brand span{color:var(--blue)}
+.back{font-weight:800;text-decoration:none}
+main{
+ max-width:1250px;
+ margin:auto;
+ padding:25px 18px;
+}
+.hero{
+ background:linear-gradient(125deg,#14366d,#2563eb);
+ color:white;
+ border-radius:24px;
+ padding:36px;
+ box-shadow:0 15px 35px #2563eb25;
+}
+.hero small{
+ letter-spacing:2px;
+ font-weight:900;
+}
+.hero h1{
+ font-size:clamp(28px,4vw,43px);
+ margin:12px 0;
+}
+.hero p{
+ line-height:1.7;
+ max-width:780px;
+ opacity:.94;
+}
+.toolbar{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ margin:24px 0;
+}
+.btn{
+ border:0;
+ background:var(--blue);
+ color:white;
+ padding:12px 16px;
+ border-radius:12px;
+ font-weight:800;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ gap:7px;
+ text-decoration:none;
+}
+.btn:hover{filter:brightness(.96)}
+.secondary{
+ background:white;
+ color:var(--navy);
+ border:1px solid var(--line);
+}
+.danger{
+ background:#fff1f2;
+ color:var(--red);
+}
+.search{
+ flex:1;
+ min-width:190px;
+ background:white;
+ border:1px solid var(--line);
+ border-radius:12px;
+ padding:13px;
+}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:14px;
+ margin-bottom:24px;
+}
+.stat,.panel,.record{
+ background:white;
+ border:1px solid var(--line);
+ border-radius:19px;
+ padding:22px;
+ box-shadow:0 10px 25px #1e3a8a08;
+}
+.stat small{color:var(--muted)}
+.stat strong{
+ display:block;
+ font-size:29px;
+ margin-top:9px;
+}
+.panel{margin-bottom:22px}
+.panel h2{margin-top:0}
+.filters{
+ display:flex;
+ flex-wrap:wrap;
+ gap:9px;
+ margin-bottom:20px;
+}
+.filter{
+ border:1px solid var(--line);
+ background:white;
+ border-radius:30px;
+ padding:9px 15px;
+ color:var(--navy);
+ font-weight:700;
+}
+.filter.active{
+ background:var(--blue);
+ border-color:var(--blue);
+ color:white;
+}
+.records{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:15px;
+}
+.record h3{
+ margin:13px 0;
+ overflow-wrap:anywhere;
+}
+.record p{
+ line-height:1.6;
+ color:var(--muted);
+ overflow-wrap:anywhere;
+}
+.tag{
+ display:inline-block;
+ padding:7px 12px;
+ border-radius:30px;
+ background:#eaf1ff;
+ color:#1d4ed8;
+ font-size:12px;
+ font-weight:900;
+}
+.tag.green{
+ background:#dcfce7;
+ color:#166534;
+}
+.tag.red{
+ background:#fee2e2;
+ color:#b91c1c;
+}
+.tag.orange{
+ background:#fef3c7;
+ color:#92400e;
+}
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:8px;
+ margin-top:17px;
+}
+.empty{
+ grid-column:1/-1;
+ text-align:center;
+ padding:45px;
+ color:var(--muted);
+}
+.progress{
+ height:11px;
+ background:#e6edf8;
+ border-radius:20px;
+ overflow:hidden;
+ margin:13px 0;
+}
+.progressbar{
+ height:100%;
+ background:linear-gradient(90deg,#2563eb,#22c55e);
+ border-radius:20px;
+}
+.checklist{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:10px;
+ margin-top:10px;
+}
+.checkitem{
+ display:flex;
+ align-items:flex-start;
+ gap:9px;
+ background:#f8fbff;
+ border:1px solid var(--line);
+ padding:12px;
+ border-radius:11px;
+ font-size:13px;
+ font-weight:700;
+}
+.checkitem input{
+ width:auto;
+ margin:2px 0;
+ accent-color:var(--blue);
+}
+.links{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:12px;
+}
+.linkcard{
+ display:flex;
+ flex-direction:column;
+ gap:9px;
+ padding:19px;
+ border:1px solid var(--line);
+ border-radius:15px;
+ text-decoration:none;
+ background:#f8fbff;
+}
+.linkcard strong{color:var(--blue)}
+.linkcard small{
+ color:var(--muted);
+ line-height:1.5;
+}
+.tablewrap{overflow-x:auto}
+table{
+ width:100%;
+ border-collapse:collapse;
+}
+th,td{
+ padding:13px;
+ text-align:left;
+ border-bottom:1px solid var(--line);
+ font-size:14px;
+}
+th{background:#f4f8ff}
+dialog{
+ border:0;
+ border-radius:22px;
+ padding:0;
+ width:min(850px,96vw);
+ max-height:92vh;
+ overflow:auto;
+ box-shadow:0 25px 100px #0f172a60;
+}
+dialog::backdrop{background:#071326aa}
+.modalhead{
+ background:#f4f8ff;
+ padding:23px 27px;
+ border-bottom:1px solid var(--line);
+}
+.modalhead h2{margin:0}
+form{padding:25px 27px}
+.fields{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:16px;
+}
+.field{
+ display:flex;
+ flex-direction:column;
+ gap:7px;
+}
+.full{grid-column:1/-1}
+label{
+ font-size:13px;
+ font-weight:800;
+}
+input,select,textarea{
+ width:100%;
+ border:1px solid #cbd8eb;
+ border-radius:11px;
+ padding:13px;
+ background:white;
+ color:var(--navy);
+}
+textarea{
+ min-height:105px;
+ resize:vertical;
+}
+.modalactions{
+ display:flex;
+ gap:10px;
+ justify-content:flex-end;
+ flex-wrap:wrap;
+ margin-top:24px;
+}
+.note{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.7;
+}
+.printarea{display:none}
+@media(max-width:800px){
+ .links{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ header{padding:16px}
+ main{padding:17px 12px}
+ .hero{padding:25px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .records,.fields,.links,.checklist{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .stat{padding:17px}
+ .stat strong{font-size:25px}
+}
+@media print{
+ header,main>*:not(.printarea),dialog{display:none!important}
+ body{background:white}
+ main{padding:0}
+ .printarea{
+  display:block!important;
+  padding:12mm;
+  color:#111;
+  font:14px/1.7 Arial,sans-serif;
+ }
+ .printarea h1{font-size:23px}
+ .printarea p{
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="brand">◆ BUSINESS <span>PRO</span></div>
+ <a class="back" href="../">← Voltar ao portal</a>
+</header>
+
+<main>
+
+<section class="hero">
+ <small>EDITAIS, INSCRIÇÕES E DOCUMENTAÇÃO</small>
+ <h1>📚 MEU EDITAL</h1>
+ <p>
+  Organize editais de concursos, processos seletivos,
+  bolsas, licitações e oportunidades. Controle inscrições,
+  documentos, prazos, etapas e resultados em um único lugar.
+ </p>
+</section>
+
+<div class="toolbar">
+ <button class="btn" id="newBtn">+ Cadastrar edital</button>
+ <input class="search" id="search" placeholder="Pesquisar edital, instituição ou número...">
+ <button class="btn secondary" id="csvBtn">Exportar CSV</button>
+ <button class="btn secondary" id="backupBtn">Backup JSON</button>
+ <button class="btn secondary" id="importBtn">Importar backup</button>
+ <input type="file" id="importFile" accept=".json,application/json" hidden>
+</div>
+
+<section class="stats">
+ <div class="stat">
+  <small>Editais cadastrados</small>
+  <strong id="total">0</strong>
+ </div>
+ <div class="stat">
+  <small>Inscrições abertas</small>
+  <strong id="opened">0</strong>
+ </div>
+ <div class="stat">
+  <small>Em acompanhamento</small>
+  <strong id="progressCount">0</strong>
+ </div>
+ <div class="stat">
+  <small>Prazos informados vencidos</small>
+  <strong id="lateCount">0</strong>
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Portais oficiais para consultar editais</h2>
+
+ <div class="links">
+  <a class="linkcard" href="https://www.gov.br/pt-br" target="_blank" rel="noopener noreferrer">
+   <strong>🏛️ Gov.br</strong>
+   <small>Serviços públicos e informações oficiais.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.in.gov.br/" target="_blank" rel="noopener noreferrer">
+   <strong>📰 Diário Oficial da União</strong>
+   <small>Publicações oficiais, atos e editais federais.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.gov.br/compras/pt-br" target="_blank" rel="noopener noreferrer">
+   <strong>📑 Compras Governamentais</strong>
+   <small>Informações oficiais sobre contratações públicas.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.gov.br/pncp/pt-br" target="_blank" rel="noopener noreferrer">
+   <strong>📋 PNCP</strong>
+   <small>Portal Nacional de Contratações Públicas.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.gov.br/capes/pt-br" target="_blank" rel="noopener noreferrer">
+   <strong>🎓 CAPES</strong>
+   <small>Informações sobre programas e oportunidades acadêmicas.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.gov.br/cnpq/pt-br" target="_blank" rel="noopener noreferrer">
+   <strong>🔬 CNPq</strong>
+   <small>Informações sobre chamadas e oportunidades de pesquisa.</small>
+  </a>
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Meus editais</h2>
+
+ <div class="filters" id="filters">
+  <button class="filter active" data-filter="Todos">Todos</button>
+  <button class="filter" data-filter="Planejado">Planejados</button>
+  <button class="filter" data-filter="Inscrição aberta">Inscrição aberta</button>
+  <button class="filter" data-filter="Inscrito">Inscritos</button>
+  <button class="filter" data-filter="Em análise">Em análise</button>
+  <button class="filter" data-filter="Aprovado">Aprovados</button>
+  <button class="filter" data-filter="Finalizado">Finalizados</button>
+  <button class="filter" data-filter="Vencidos">Prazos vencidos</button>
+ </div>
+
+ <div class="records" id="records"></div>
+</section>
+
+<section class="panel">
+ <h2>Próximos prazos cadastrados</h2>
+ <div class="tablewrap">
+  <table>
+   <thead>
+    <tr>
+     <th>Edital</th>
+     <th>Instituição</th>
+     <th>Prazo</th>
+     <th>Tempo restante</th>
+    </tr>
+   </thead>
+   <tbody id="deadlineTable"></tbody>
+  </table>
+ </div>
+</section>
+
+<p class="note">
+ Este aplicativo funciona como organizador pessoal.
+ Ele não publica editais, não realiza inscrições e não consulta
+ automaticamente os portais oficiais.
+ As datas, exigências e regras devem ser verificadas no edital original.
+ Os dados ficam armazenados apenas neste navegador.
+ Faça backups regularmente.
+</p>
+
+<section class="printarea" id="printArea"></section>
+
+</main>
+
+<dialog id="modal">
+ <div class="modalhead">
+  <h2 id="modalTitle">Cadastrar edital</h2>
+ </div>
+
+ <form id="form">
+  <div class="fields">
+
+   <div class="field full">
+    <label for="titulo">Título do edital *</label>
+    <input id="titulo" required placeholder="Ex.: Processo seletivo 2026">
+   </div>
+
+   <div class="field">
+    <label for="numero">Número do edital</label>
+    <input id="numero" placeholder="Ex.: 001/2026">
+   </div>
+
+   <div class="field">
+    <label for="tipo">Tipo de edital</label>
+    <select id="tipo">
+     <option>Concurso público</option>
+     <option>Processo seletivo</option>
+     <option>Bolsa de estudo</option>
+     <option>Licitação</option>
+     <option>Chamamento público</option>
+     <option>Curso ou capacitação</option>
+     <option>Estágio</option>
+     <option>Emprego</option>
+     <option>Pesquisa</option>
+     <option>Outro</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="instituicao">Instituição responsável *</label>
+    <input id="instituicao" required>
+   </div>
+
+   <div class="field">
+    <label for="banca">Banca ou organizadora</label>
+    <input id="banca">
+   </div>
+
+   <div class="field">
+    <label for="local">Cidade, estado ou local</label>
+    <input id="local">
+   </div>
+
+   <div class="field">
+    <label for="publicacao">Data de publicação</label>
+    <input id="publicacao" type="date">
+   </div>
+
+   <div class="field">
+    <label for="inicio">Início das inscrições</label>
+    <input id="inicio" type="date">
+   </div>
+
+   <div class="field">
+    <label for="fim">Fim das inscrições</label>
+    <input id="fim" type="date">
+   </div>
+
+   <div class="field">
+    <label for="etapa">Data da próxima etapa</label>
+    <input id="etapa" type="date">
+   </div>
+
+   <div class="field">
+    <label for="resultado">Previsão de resultado</label>
+    <input id="resultado" type="date">
+   </div>
+
+   <div class="field">
+    <label for="prazo">Prazo principal para acompanhamento</label>
+    <input id="prazo" type="date">
+   </div>
+
+   <div class="field">
+    <label for="vagas">Quantidade de vagas</label>
+    <input id="vagas" type="number" min="0" step="1">
+   </div>
+
+   <div class="field">
+    <label for="taxa">Taxa de inscrição (R$)</label>
+    <input id="taxa" type="number" min="0" step="0.01">
+   </div>
+
+   <div class="field">
+    <label for="situacao">Situação</label>
+    <select id="situacao">
+     <option>Planejado</option>
+     <option>Inscrição aberta</option>
+     <option>Inscrito</option>
+     <option>Em análise</option>
+     <option>Aguardando resultado</option>
+     <option>Aprovado</option>
+     <option>Não aprovado</option>
+     <option>Finalizado</option>
+     <option>Cancelado</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="prioridade">Prioridade</label>
+    <select id="prioridade">
+     <option>Normal</option>
+     <option>Alta</option>
+     <option>Urgente</option>
+     <option>Baixa</option>
+    </select>
+   </div>
+
+   <div class="field full">
+    <label for="link">Link oficial do edital</label>
+    <input id="link" type="url" placeholder="https://...">
+   </div>
+
+   <div class="field full">
+    <label for="descricao">Descrição e objetivo *</label>
+    <textarea id="descricao" required placeholder="Descreva a oportunidade, objetivo e informações importantes."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="requisitos">Requisitos de participação</label>
+    <textarea id="requisitos" placeholder="Escolaridade, idade, experiência, critérios e exigências do edital."></textarea>
+   </div>
+
+   <div class="field full">
+    <label>Checklist de organização</label>
+    <p class="note">
+     Lista genérica para controle pessoal. Consulte os documentos
+     obrigatórios no edital oficial.
+    </p>
+    <div class="checklist" id="documentChecklist"></div>
+   </div>
+
+   <div class="field full">
+    <label for="documentos">Outros documentos necessários</label>
+    <textarea id="documentos" placeholder="Liste os documentos exigidos no edital."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="etapas">Etapas do processo</label>
+    <textarea id="etapas" placeholder="Ex.: inscrição, avaliação documental, prova, entrevista, resultado."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="observacoes">Observações</label>
+    <textarea id="observacoes"></textarea>
+   </div>
+
+  </div>
+
+  <div class="modalactions">
+   <button type="button" class="btn secondary" id="cancelBtn">Cancelar</button>
+   <button type="submit" class="btn">Salvar edital</button>
+  </div>
+ </form>
+</dialog>
+
+<script>
+"use strict";
+
+const $=id=>document.getElementById(id);
+const KEY="businesspro_meu_edital_v1";
+
+const FIELDS=[
+ "titulo","numero","tipo","instituicao","banca",
+ "local","publicacao","inicio","fim","etapa",
+ "resultado","prazo","vagas","taxa","situacao",
+ "prioridade","link","descricao","requisitos",
+ "documentos","etapas","observacoes"
+];
+
+const LABELS={
+ titulo:"Título do edital",
+ numero:"Número",
+ tipo:"Tipo",
+ instituicao:"Instituição",
+ banca:"Banca ou organizadora",
+ local:"Local",
+ publicacao:"Publicação",
+ inicio:"Início das inscrições",
+ fim:"Fim das inscrições",
+ etapa:"Próxima etapa",
+ resultado:"Previsão de resultado",
+ prazo:"Prazo principal",
+ vagas:"Vagas",
+ taxa:"Taxa de inscrição",
+ situacao:"Situação",
+ prioridade:"Prioridade",
+ link:"Link oficial",
+ descricao:"Descrição",
+ requisitos:"Requisitos",
+ documentos:"Documentos adicionais",
+ etapas:"Etapas",
+ observacoes:"Observações"
+};
+
+const DOCS=[
+ "Edital oficial consultado",
+ "Requisitos de participação conferidos",
+ "Documento de identificação separado",
+ "Comprovantes exigidos separados",
+ "Formulário de inscrição preenchido",
+ "Comprovante de inscrição salvo",
+ "Pagamento ou isenção conferido, se aplicável",
+ "Datas importantes anotadas",
+ "Documentos enviados, se exigidos",
+ "Resultado acompanhado"
+];
+
+let records=[];
+let editing=null;
+let activeFilter="Todos";
+
+try{
+ const stored=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(stored))records=stored;
+}catch(e){
+ alert("Não foi possível carregar os editais locais.");
+}
+
+function esc(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ }[c]));
+}
+
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(records));
+  return true;
+ }catch(e){
+  alert("Não foi possível salvar os dados neste navegador.");
+  return false;
+ }
+}
+
+function makeId(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
+}
+
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+
+  String(d.getMonth()+1).padStart(2,"0")+"-"+
+  String(d.getDate()).padStart(2,"0");
+}
+
+function dateBR(value){
+ if(!value)return "Não informado";
+ const p=value.split("-");
+ return p.length===3?p.reverse().join("/"):value;
+}
+
+function money(value){
+ return Number(value||0).toLocaleString("pt-BR",{
+  style:"currency",
+  currency:"BRL"
+ });
+}
+
+function closed(record){
+ return [
+  "Aprovado","Não aprovado","Finalizado","Cancelado"
+ ].includes(record.data.situacao);
+}
+
+function late(record){
+ return !!record.data.prazo&&
+  record.data.prazo<today()&&!closed(record);
+}
+
+function daysUntil(value){
+ if(!value)return null;
+
+ const target=new Date(value+"T12:00:00");
+ const current=new Date(today()+"T12:00:00");
+
+ return Math.round((target-current)/86400000);
+}
+
+function deadlineText(value){
+ const days=daysUntil(value);
+
+ if(days===null)return "Não informado";
+ if(days<0)return "Vencido há "+Math.abs(days)+" dia(s)";
+ if(days===0)return "Hoje";
+ return days+" dia(s)";
+}
+
+function buildChecklist(selected=[]){
+ $("documentChecklist").replaceChildren();
+
+ DOCS.forEach((name,index)=>{
+  const label=document.createElement("label");
+  label.className="checkitem";
+
+  const input=document.createElement("input");
+  input.type="checkbox";
+  input.value=name;
+  input.id="doc"+index;
+  input.checked=selected.includes(name);
+
+  const span=document.createElement("span");
+  span.textContent=name;
+
+  label.appendChild(input);
+  label.appendChild(span);
+
+  $("documentChecklist").appendChild(label);
+ });
+}
+
+function selectedDocs(){
+ return [...$("documentChecklist").querySelectorAll("input:checked")]
+  .map(input=>input.value);
+}
+
+function openForm(id=null){
+ editing=id;
+
+ const record=records.find(x=>x.id===id);
+
+ $("modalTitle").textContent=record?
+  "Editar edital":"Cadastrar edital";
+
+ FIELDS.forEach(f=>{
+  $(f).value=record?.data?.[f]??"";
+ });
+
+ if(!record){
+  $("situacao").value="Planejado";
+  $("prioridade").value="Normal";
+ }
+
+ buildChecklist(record?.checklist||[]);
+ $("modal").showModal();
+}
+
+function officialLink(value){
+ if(!value)return "";
+
+ try{
+  const url=new URL(value);
+
+  if(!["https:","http:"].includes(url.protocol))return "";
+
+  return `<a class="btn secondary"
+   href="${esc(url.href)}"
+   target="_blank" rel="noopener noreferrer">
+   Abrir edital oficial</a>`;
+ }catch(e){
+  return "";
+ }
+}
+
+function render(){
+ const q=$("search").value.toLocaleLowerCase("pt-BR").trim();
+
+ $("total").textContent=records.length;
+
+ $("opened").textContent=records.filter(x=>
+  x.data.situacao==="Inscrição aberta"&&
+  (!x.data.inicio||x.data.inicio<=today())&&
+  (!x.data.fim||x.data.fim>=today())
+ ).length;
+
+ $("progressCount").textContent=records.filter(x=>
+  ["Inscrito","Em análise","Aguardando resultado"]
+   .includes(x.data.situacao)
+ ).length;
+
+ $("lateCount").textContent=records.filter(late).length;
+
+ const filtered=records.filter(x=>{
+  const status=activeFilter==="Todos"||
+   (activeFilter==="Vencidos"?
+    late(x):x.data.situacao===activeFilter);
+
+  const search=JSON.stringify(x.data)
+   .toLocaleLowerCase("pt-BR").includes(q);
+
+  return status&&search;
+ });
+
+ if(!filtered.length){
+  $("records").innerHTML=`
+   <div class="empty">
+    <h3>Nenhum edital encontrado</h3>
+    <p>Cadastre um edital ou altere os filtros.</p>
+   </div>`;
+ }else{
+  $("records").innerHTML=filtered.map(x=>{
+   const d=x.data;
+   const checked=Array.isArray(x.checklist)?x.checklist:[];
+   const completed=checked.filter(v=>DOCS.includes(v)).length;
+   const percent=Math.round(completed/DOCS.length*100);
+
+   const cls=["Aprovado","Finalizado"].includes(d.situacao)?"green":
+    ["Não aprovado","Cancelado"].includes(d.situacao)?"red":
+    late(x)?"orange":"";
+
+   return `<article class="record">
+    <span class="tag ${cls}">${esc(d.situacao)}</span>
+    <h3>${esc(d.titulo)}</h3>
+
+    <p><strong>Número:</strong> ${esc(d.numero||"Não informado")}</p>
+    <p><strong>Tipo:</strong> ${esc(d.tipo)}</p>
+    <p><strong>Instituição:</strong> ${esc(d.instituicao)}</p>
+    <p><strong>Banca:</strong> ${esc(d.banca||"Não informada")}</p>
+    <p><strong>Local:</strong> ${esc(d.local||"Não informado")}</p>
+    <p><strong>Inscrições:</strong>
+     ${esc(dateBR(d.inicio))} até ${esc(dateBR(d.fim))}</p>
+    <p><strong>Próxima etapa:</strong> ${esc(dateBR(d.etapa))}</p>
+    <p><strong>Prazo principal:</strong> ${esc(dateBR(d.prazo))}</p>
+    <p><strong>Tempo restante:</strong> ${esc(deadlineText(d.prazo))}</p>
+    <p><strong>Vagas:</strong> ${esc(d.vagas||"Não informadas")}</p>
+    <p><strong>Taxa:</strong> ${esc(money(d.taxa))}</p>
+    <p><strong>Descrição:</strong> ${esc(d.descricao)}</p>
+
+    <p><strong>Checklist:</strong> ${completed} de ${DOCS.length}</p>
+
+    <div class="progress">
+     <div class="progressbar" style="width:${percent}%"></div>
+    </div>
+
+    <p class="note">Checklist pessoal, não representa aprovação oficial.</p>
+
+    <div class="actions">
+     <button class="btn secondary" data-action="edit"
+      data-id="${esc(x.id)}">Editar</button>
+     <button class="btn" data-action="print"
+      data-id="${esc(x.id)}">Relatório / PDF</button>
+     <button class="btn secondary" data-action="copy"
+      data-id="${esc(x.id)}">Copiar resumo</button>
+     ${officialLink(d.link)}
+     <button class="btn danger" data-action="delete"
+      data-id="${esc(x.id)}">Excluir</button>
+    </div>
+   </article>`;
+  }).join("");
+ }
+
+ renderDeadlines();
+}
+
+function renderDeadlines(){
+ const upcoming=records
+  .filter(x=>x.data.prazo&&!closed(x))
+  .sort((a,b)=>a.data.prazo.localeCompare(b.data.prazo));
+
+ if(!upcoming.length){
+  $("deadlineTable").innerHTML=`
+   <tr><td colspan="4">Nenhum prazo de acompanhamento cadastrado.</td></tr>`;
+  return;
+ }
+
+ $("deadlineTable").innerHTML=upcoming.map(x=>`
+  <tr>
+   <td>${esc(x.data.titulo)}</td>
+   <td>${esc(x.data.instituicao)}</td>
+   <td>${esc(dateBR(x.data.prazo))}</td>
+   <td>${esc(deadlineText(x.data.prazo))}</td>
+  </tr>
+ `).join("");
+}
+
+$("form").onsubmit=e=>{
+ e.preventDefault();
+
+ const data={};
+
+ FIELDS.forEach(f=>{
+  data[f]=$(f).value.trim();
+ });
+
+ if(!data.titulo||!data.instituicao||!data.descricao){
+  alert("Preencha o título, a instituição e a descrição.");
+  return;
+ }
+
+ if(data.inicio&&data.fim&&data.inicio>data.fim){
+  alert("O fim das inscrições deve ser igual ou posterior ao início.");
+  return;
+ }
+
+ const old=records.find(x=>x.id===editing);
+
+ const record={
+  id:old?.id||makeId(),
+  createdAt:old?.createdAt||new Date().toISOString(),
+  updatedAt:new Date().toISOString(),
+  data,
+  checklist:selectedDocs()
+ };
+
+ const previous=records;
+
+ records=old?
+  records.map(x=>x.id===editing?record:x):
+  [record,...records];
+
+ if(!save()){
+  records=previous;
+  return;
+ }
+
+ $("modal").close();
+ editing=null;
+ render();
+};
+
+function reportText(record){
+ const d=record.data;
+
+ const dates=[
+  "publicacao","inicio","fim",
+  "etapa","resultado","prazo"
+ ];
+
+ const lines=[
+  "BUSINESS PRO — MEU EDITAL",
+  "RELATÓRIO DE ACOMPANHAMENTO",
+  "",
+  ...FIELDS.map(f=>{
+   let value=d[f]||"Não informado";
+
+   if(dates.includes(f)){
+    value=dateBR(d[f]);
+   }
+
+   if(f==="taxa"){
+    value=money(d[f]);
+   }
+
+   return LABELS[f]+": "+value;
+  }),
+  "",
+  "CHECKLIST DE ORGANIZAÇÃO",
+  ""
+ ];
+
+ DOCS.forEach(doc=>{
+  lines.push(
+   (record.checklist||[]).includes(doc)?
+    "[X] "+doc:"[ ] "+doc
+  );
+ });
+
+ lines.push(
+  "",
+  "Documento de organização pessoal.",
+  "Consulte o edital original para confirmar as informações."
+ );
+
+ return lines.join("\n");
+}
+
+function printReport(record){
+ $("printArea").innerHTML=`
+  <h1>MEU EDITAL — RELATÓRIO</h1>
+  <hr>
+  <p>${esc(reportText(record))}</p>
+  <hr>
+  <p>Gerado em ${esc(new Date().toLocaleString("pt-BR"))}</p>
+ `;
+
+ window.print();
+}
+
+$("records").onclick=async e=>{
+ const btn=e.target.closest("button[data-action]");
+ if(!btn)return;
+
+ const record=records.find(x=>x.id===btn.dataset.id);
+ if(!record)return;
+
+ const action=btn.dataset.action;
+
+ if(action==="edit"){
+  openForm(record.id);
+ }
+
+ if(action==="print"){
+  printReport(record);
+ }
+
+ if(action==="copy"){
+  const content=reportText(record);
+
+  try{
+   await navigator.clipboard.writeText(content);
+   alert("Resumo copiado.");
+  }catch(e){
+   const ta=document.createElement("textarea");
+   ta.value=content;
+   document.body.appendChild(ta);
+   ta.select();
+   const ok=document.execCommand("copy");
+   ta.remove();
+   alert(ok?"Resumo copiado.":"Não foi possível copiar.");
+  }
+ }
+
+ if(action==="delete"){
+  if(!confirm("Excluir este edital?"))return;
+
+  const previous=records;
+
+  records=records.filter(x=>x.id!==record.id);
+
+  if(!save())records=previous;
+
+  render();
+ }
+};
+
+$("filters").onclick=e=>{
+ const btn=e.target.closest("[data-filter]");
+ if(!btn)return;
+
+ activeFilter=btn.dataset.filter;
+
+ document.querySelectorAll(".filter").forEach(b=>{
+  b.classList.toggle("active",b===btn);
+ });
+
+ render();
+};
+
+function download(name,content,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+
+ const a=document.createElement("a");
+ a.href=url;
+ a.download=name;
+
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function csvCell(value){
+ return '"'+String(value??"").replace(/"/g,'""')+'"';
+}
+
+$("csvBtn").onclick=()=>{
+ if(!records.length){
+  alert("Não existem editais para exportar.");
+  return;
+ }
+
+ const headers=[
+  "ID","Criado em","Atualizado em",
+  ...FIELDS.map(f=>LABELS[f]),
+  "Checklist concluído"
+ ];
+
+ const rows=records.map(x=>[
+  x.id,
+  x.createdAt,
+  x.updatedAt,
+  ...FIELDS.map(f=>x.data[f]||""),
+  (x.checklist||[]).join(" | ")
+ ]);
+
+ const csv="\uFEFF"+[headers,...rows]
+  .map(row=>row.map(csvCell).join(";"))
+  .join("\r\n");
+
+ download(
+  "meus-editais.csv",
+  csv,
+  "text/csv;charset=utf-8"
+ );
+};
+
+$("backupBtn").onclick=()=>{
+ download(
+  "backup-meu-edital.json",
+  JSON.stringify({
+   app:"meu-edital",
+   version:1,
+   records
+  },null,2),
+  "application/json"
+ );
+};
+
+$("importBtn").onclick=()=>{
+ $("importFile").click();
+};
+
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  const obj=JSON.parse(await file.text());
+
+  if(obj.app!=="meu-edital"||
+     !Array.isArray(obj.records)){
+   throw Error("Backup incompatível.");
+  }
+
+  const valid=obj.records.every(x=>
+   x&&
+   typeof x.id==="string"&&
+   x.data&&
+   typeof x.data==="object"&&
+   FIELDS.every(f=>
+    x.data[f]===undefined||
+    typeof x.data[f]==="string"
+   )&&
+   (
+    x.checklist===undefined||
+    (
+     Array.isArray(x.checklist)&&
+     x.checklist.every(v=>typeof v==="string")
+    )
+   )
+  );
+
+  if(!valid){
+   throw Error("Estrutura dos registros inválida.");
+  }
+
+  if(!confirm(
+   "Substituir todos os editais atuais pelos dados do backup?"
+  ))return;
+
+  const previous=records;
+  records=obj.records;
+
+  if(!save()){
+   records=previous;
+   return;
+  }
+
+  render();
+  alert("Backup importado com sucesso.");
+
+ }catch(err){
+  alert("Erro ao importar: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+$("newBtn").onclick=()=>openForm();
+$("cancelBtn").onclick=()=>$("modal").close();
+$("search").oninput=render;
+
+render();
+</script>
+
+</body>
+</html>
