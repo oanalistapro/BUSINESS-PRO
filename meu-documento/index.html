@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<title>MEU DOCUMENTO | Business Pro</title>
+<style>
+:root{
+--azul:#2563eb;--escuro:#142744;--cinza:#64748b;
+--fundo:#f3f7fd;--linha:#dfe7f2;--verde:#059669
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--escuro);font-family:Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{background:#fff;border-bottom:1px solid var(--linha);padding:18px}
+.top{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:22px;font-weight:900}
+.logo span{color:var(--azul)}
+a{text-decoration:none;color:inherit}
+.btn{background:var(--azul);color:#fff;border:0;border-radius:11px;padding:12px 18px;font-weight:700}
+.btn.sec{background:#eaf1ff;color:#1d4ed8}
+.btn.red{background:#fee2e2;color:#b91c1c}
+.wrap{max-width:1200px;margin:auto;padding:25px 16px}
+.hero{background:linear-gradient(120deg,#132849,#2563eb);border-radius:22px;padding:35px;color:#fff;margin-bottom:24px}
+.hero h1{font-size:clamp(28px,4vw,42px);margin:0 0 12px}
+.hero p{color:#dbeafe;line-height:1.7}
+.tabs{display:flex;gap:10px;overflow-x:auto;margin-bottom:20px}
+.tab{border:1px solid var(--linha);border-radius:12px;padding:13px 17px;background:#fff;color:var(--escuro);font-weight:700;white-space:nowrap}
+.tab.active{background:var(--azul);color:white}
+.page{display:none}
+.page.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card,.panel{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:22px;box-shadow:0 10px 30px #14284908}
+.card h3{margin:12px 0}
+.card p{color:var(--cinza);line-height:1.6}
+.card .emoji{font-size:35px}
+.panel{margin-bottom:18px}
+.panel h2{margin:0 0 18px}
+.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.field{margin-bottom:15px}
+label{display:block;font-size:13px;font-weight:700;color:#475569;margin-bottom:7px}
+input,select,textarea{width:100%;padding:12px;border:1px solid var(--linha);border-radius:10px;background:#f8fbff;outline:none}
+input:focus,textarea:focus{border-color:var(--azul)}
+textarea{min-height:110px;resize:vertical}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+table{width:100%;border-collapse:collapse;min-width:600px}
+th,td{padding:13px;text-align:left;border-bottom:1px solid var(--linha);font-size:13px}
+th{background:#f8fbff}
+.tablewrap{overflow:auto}
+.muted{color:var(--cinza)}
+.preview{background:white;border:1px solid var(--linha);padding:35px;min-height:400px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
+.status{background:#eaf1ff;padding:12px;border-radius:10px;color:#1d4ed8;margin-top:15px}
+footer{text-align:center;color:var(--cinza);padding:30px}
+@media(max-width:700px){.grid,.formgrid{grid-template-columns:1fr}.hero{padding:25px}.card,.panel{padding:17px}}
+@media print{
+header,.hero,.tabs,.actions,.panel:not(.printpanel),footer{display:none!important}
+.page{display:none!important}
+#editor{display:block!important}
+.printpanel{display:block!important;border:0;box-shadow:none;padding:0}
+.printpanel h2{display:none}
+.preview{border:0;padding:0;white-space:pre-wrap}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="top">
+<a class="logo" href="../">📁 MEU <span>DOCUMENTO</span></a>
+<a href="../" class="btn sec">← Business Pro</a>
+</div>
+</header>
+
+<main class="wrap">
+<section class="hero">
+<h1>Seus documentos, organizados.</h1>
+<p>Crie documentos, organize informações importantes, gere arquivos PDF e mantenha seus registros em um só lugar.</p>
+</section>
+
+<nav class="tabs">
+<button class="tab active" data-page="inicio">🏠 Início</button>
+<button class="tab" data-page="editor">📝 Criar documento</button>
+<button class="tab" data-page="arquivos">📂 Meus documentos</button>
+<button class="tab" data-page="modelos">📋 Modelos</button>
+<button class="tab" data-page="config">⚙️ Configurações</button>
+</nav>
+
+<section class="page active" id="inicio">
+<div class="grid">
+<div class="card">
+<div class="emoji">📝</div>
+<h3>Criar documento</h3>
+<p>Prepare declarações, autorizações, recibos, requerimentos e documentos personalizados.</p>
+<button class="btn" onclick="abrir('editor')">Criar agora</button>
+</div>
+<div class="card">
+<div class="emoji">📂</div>
+<h3>Meus documentos</h3>
+<p>Organize seus documentos por nome, tipo e data de criação.</p>
+<button class="btn" onclick="abrir('arquivos')">Ver documentos</button>
+</div>
+<div class="card">
+<div class="emoji">📄</div>
+<h3>Exportar PDF</h3>
+<p>Imprima seus documentos ou salve em PDF usando o navegador.</p>
+<button class="btn" onclick="abrir('editor')">Abrir editor</button>
+</div>
+</div>
+<div class="panel" style="margin-top:20px">
+<h2>Resumo</h2>
+<p>Documentos cadastrados: <strong id="total">0</strong></p>
+<p class="muted">Seus documentos de texto ficam salvos neste navegador. Faça backups para evitar perdas.</p>
+</div>
+</section>
+
+<section class="page" id="editor">
+<div class="panel">
+<h2>Editor de documentos</h2>
+<form id="formDoc">
+<input type="hidden" id="docId">
+<div class="formgrid">
+<div class="field">
+<label>Título do documento *</label>
+<input id="titulo" required placeholder="Ex.: Declaração de residência">
+</div>
+<div class="field">
+<label>Tipo de documento</label>
+<select id="tipo">
+<option>Declaração</option>
+<option>Autorização</option>
+<option>Recibo</option>
+<option>Requerimento</option>
+<option>Comunicado</option>
+<option>Ofício</option>
+<option>Documento personalizado</option>
+</select>
+</div>
+<div class="field">
+<label>Nome do responsável</label>
+<input id="responsavel">
+</div>
+<div class="field">
+<label>CPF / CNPJ</label>
+<input id="documento">
+</div>
+<div class="field">
+<label>Cidade</label>
+<input id="cidade">
+</div>
+<div class="field">
+<label>Data</label>
+<input type="date" id="data">
+</div>
+</div>
+<div class="field">
+<label>Conteúdo do documento *</label>
+<textarea id="conteudo" required style="min-height:240px" placeholder="Digite o texto completo do documento..."></textarea>
+</div>
+<div class="actions">
+<button class="btn" type="submit">💾 Salvar documento</button>
+<button class="btn sec" type="button" onclick="visualizar()">👁️ Visualizar</button>
+<button class="btn sec" type="button" onclick="imprimir()">📄 Salvar PDF / Imprimir</button>
+<button class="btn sec" type="button" onclick="baixarTXT()">⬇️ Baixar TXT</button>
+<button class="btn sec" type="button" onclick="novo()">Novo</button>
+</div>
+</form>
+</div>
+<div class="panel printpanel">
+<h2>Prévia do documento</h2>
+<div id="preview" class="preview"></div>
+</div>
+</section>
+
+<section class="page" id="arquivos">
+<div class="panel">
+<h2>Documentos salvos</h2>
+<div class="field">
+<label>Pesquisar documentos</label>
+<input id="busca" placeholder="Pesquisar por título ou tipo..." oninput="listar()">
+</div>
+<div class="tablewrap" id="lista"></div>
+</div>
+</section>
+
+<section class="page" id="modelos">
+<h2>Modelos disponíveis</h2>
+<div class="grid" id="listaModelos"></div>
+</section>
+
+<section class="page" id="config">
+<div class="panel">
+<h2>Backup e segurança dos dados</h2>
+<p class="muted">Este aplicativo funciona localmente. Não envia seus documentos para um servidor próprio. Os dados podem ser perdidos se você limpar o navegador ou mudar de dispositivo.</p>
+<div class="actions">
+<button class="btn" onclick="backup()">Baixar backup JSON</button>
+<button class="btn sec" onclick="document.getElementById('importar').click()">Restaurar backup</button>
+<button class="btn red" onclick="apagarTudo()">Apagar documentos</button>
+</div>
+<input type="file" id="importar" accept=".json" hidden>
+</div>
+</section>
+</main>
+
+<footer>MEU DOCUMENTO · BUSINESS PRO</footer>
+
+<script>
+"use strict";
+const KEY="businesspro_meu_documento_v1";
+let docs=[];
+try{
+const value=JSON.parse(localStorage.getItem(KEY)||"[]");
+if(Array.isArray(value))docs=value;
+}catch(e){alert("Não foi possível ler os documentos salvos.");}
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
+function salvarLocal(){
+try{localStorage.setItem(KEY,JSON.stringify(docs));return true}
+catch(e){alert("Não foi possível salvar. Verifique o espaço do navegador.");return false}
+}
+function abrir(id){
+document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id===id));
+document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.page===id));
+if(id==="arquivos")listar();
+window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".tab").forEach(x=>x.onclick=()=>abrir(x.dataset.page));
+function dados(){
+return{
+id:$("docId").value||uid(),
+titulo:$("titulo").value.trim(),
+tipo:$("tipo").value,
+responsavel:$("responsavel").value.trim(),
+documento:$("documento").value.trim(),
+cidade:$("cidade").value.trim(),
+data:$("data").value,
+conteudo:$("conteudo").value.trim()
+};
+}
+function texto(d){
+const partes=[d.titulo.toUpperCase(),"",d.conteudo,""];
+if(d.cidade||d.data)partes.push([d.cidade,d.data?new Date(d.data+"T12:00:00").toLocaleDateString("pt-BR"):""].filter(Boolean).join(", ")+".","");
+if(d.responsavel)partes.push("________________________________",d.responsavel);
+if(d.documento)partes.push("CPF/CNPJ: "+d.documento);
+return partes.join("\n");
+}
+function visualizar(){
+$("preview").textContent=texto(dados());
+}
+$("formDoc").addEventListener("input",visualizar);
+$("formDoc").addEventListener("submit",e=>{
+e.preventDefault();
+const d=dados();
+if(!d.titulo||!d.conteudo){alert("Preencha o título e o conteúdo.");return}
+const anterior=[...docs];
+const index=docs.findIndex(x=>x.id===d.id);
+d.atualizadoEm=new Date().toISOString();
+if(index>=0)docs[index]=d;else docs.unshift(d);
+if(!salvarLocal()){docs=anterior;return}
+$("docId").value=d.id;
+listar();
+alert("Documento salvo.");
+});
+function novo(){
+$("formDoc").reset();$("docId").value="";
+$("data").value=new Date().toLocaleDateString("en-CA");
+visualizar();
+}
+function imprimir(){
+const d=dados();
+if(!d.titulo||!d.conteudo){alert("Preencha o documento antes de imprimir.");return}
+visualizar();window.print();
+}
+function download(texto,nome,tipo){
+const blob=new Blob([texto],{type:tipo});
+const url=URL.createObjectURL(blob);
+const a=document.createElement("a");
+a.href=url;a.download=nome;document.body.appendChild(a);a.click();a.remove();
+setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function baixarTXT(){
+const d=dados();
+if(!d.titulo||!d.conteudo){alert("Preencha o documento.");return}
+download(texto(d),d.titulo.replace(/[^\wÀ-ÿ -]/g,"").slice(0,60)+".txt","text/plain;charset=utf-8");
+}
+function listar(){
+$("total").textContent=docs.length;
+const q=$("busca").value.toLowerCase();
+const filtrados=docs.filter(d=>(d.titulo+" "+d.tipo).toLowerCase().includes(q));
+$("lista").innerHTML=filtrados.length?
+`<table><thead><tr><th>Título</th><th>Tipo</th><th>Atualizado</th><th>Ações</th></tr></thead><tbody>`+
+filtrados.map(d=>`<tr><td>${esc(d.titulo)}</td><td>${esc(d.tipo)}</td><td>${esc(d.atualizadoEm?new Date(d.atualizadoEm).toLocaleDateString("pt-BR"):"")}</td><td>
+<button class="btn sec" data-edit="${esc(d.id)}">Abrir</button>
+<button class="btn red" data-delete="${esc(d.id)}">Excluir</button>
+</td></tr>`).join("")+"</tbody></table>":
+'<p class="muted">Nenhum documento encontrado.</p>';
+}
+function editar(id){
+const d=docs.find(x=>x.id===id);
+if(!d)return;
+["id","titulo","tipo","responsavel","documento","cidade","data","conteudo"].forEach(k=>{
+const el=$(k==="id"?"docId":k);
+if(el)el.value=d[k]||"";
+});
+visualizar();abrir("editor");
+}
+function excluir(id){
+if(!confirm("Excluir este documento?"))return;
+const old=docs;docs=docs.filter(x=>x.id!==id);
+if(!salvarLocal()){docs=old;return}
+listar();
+}
+document.addEventListener("click",e=>{
+const edit=e.target.closest("[data-edit]");
+const del=e.target.closest("[data-delete]");
+if(edit)editar(edit.dataset.edit);
+if(del)excluir(del.dataset.delete);
+});
+const modelos=[
+{titulo:"Declaração de residência",tipo:"Declaração",conteudo:"Eu, [NOME COMPLETO], inscrito(a) no CPF sob nº [CPF], declaro, para os devidos fins, que resido no endereço [ENDEREÇO COMPLETO].\n\nDeclaro serem verdadeiras as informações prestadas."},
+{titulo:"Autorização simples",tipo:"Autorização",conteudo:"Eu, [NOME COMPLETO], inscrito(a) no CPF sob nº [CPF], autorizo [PESSOA OU EMPRESA] a realizar [ATIVIDADE AUTORIZADA], nas condições descritas neste documento."},
+{titulo:"Recibo de pagamento",tipo:"Recibo",conteudo:"Recebi de [NOME DO PAGADOR] a quantia de R$ [VALOR], referente a [DESCRIÇÃO DO PAGAMENTO], por meio de [FORMA DE PAGAMENTO].\n\nDeclaro o recebimento do valor acima indicado."},
+{titulo:"Requerimento",tipo:"Requerimento",conteudo:"À [INSTITUIÇÃO OU DESTINATÁRIO]\n\nEu, [NOME COMPLETO], venho respeitosamente requerer [DESCREVER O PEDIDO].\n\nJustificativa: [INFORMAR OS MOTIVOS].\n\nNestes termos, solicito análise e deferimento."},
+{titulo:"Comunicado",tipo:"Comunicado",conteudo:"COMUNICADO\n\nInformamos que [DESCREVER A INFORMAÇÃO OU AVISO].\n\nAgradecemos a atenção."},
+{titulo:"Ofício",tipo:"Ofício",conteudo:"OFÍCIO Nº [NÚMERO]\n\nAo(À) [DESTINATÁRIO]\n\nAssunto: [ASSUNTO]\n\nPrezado(a),\n\nPor meio deste, comunicamos/solicitamos [DESCREVER O CONTEÚDO].\n\nAtenciosamente,\n[REMETENTE]"}
+];
+$("listaModelos").innerHTML=modelos.map((m,i)=>`<div class="card"><div class="emoji">📄</div><h3>${esc(m.titulo)}</h3><p>Modelo editável para preencher com suas informações.</p><button class="btn" data-modelo="${i}">Usar modelo</button></div>`).join("");
+document.addEventListener("click",e=>{
+const b=e.target.closest("[data-modelo]");
+if(!b)return;
+const m=modelos[Number(b.dataset.modelo)];
+novo();$("titulo").value=m.titulo;$("tipo").value=m.tipo;
+$("conteudo").value=m.conteudo;visualizar();abrir("editor");
+});
+function backup(){
+download(JSON.stringify({version:1,documentos:docs},null,2),"meu-documento-backup.json","application/json");
+}
+$("importar").addEventListener("change",async e=>{
+const file=e.target.files[0];if(!file)return;
+try{
+const obj=JSON.parse(await file.text());
+const dados=Array.isArray(obj)?obj:obj.documentos;
+if(!Array.isArray(dados)||!dados.every(d=>d&&typeof d.id==="string"&&typeof d.titulo==="string"&&typeof d.conteudo==="string"))throw Error("Backup inválido");
+if(!confirm("Substituir os documentos atuais pelo backup?"))return;
+const old=docs;docs=dados;
+if(!salvarLocal()){docs=old;return}
+listar();alert("Backup restaurado.");
+}catch(err){alert("Erro ao restaurar: "+err.message)}
+e.target.value="";
+});
+function apagarTudo(){
+if(!confirm("Excluir TODOS os documentos?"))return;
+if(prompt("Digite APAGAR para confirmar")!=="APAGAR")return;
+const old=docs;docs=[];
+if(!salvarLocal()){docs=old;return}
+novo();listar();
+}
+novo();listar();
+</script>
+</body>
+</html>
