@@ -1,6 +1,14 @@
 {
   "apps": [
     {
+      "slug": "meu-contrato",
+      "name": "MEU CONTRATO",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-curriculo",
       "name": "MEU CURRÍCULO",
       "category": "Carreira",
