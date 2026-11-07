@@ -57,6 +57,14 @@
       "ready": true
     },
     {
+      "slug": "meu-imovel",
+      "name": "MEU IMOVEL",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-negocio",
       "name": "MEU NEGÓCIO",
       "category": "Gestão",
