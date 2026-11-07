@@ -97,6 +97,14 @@
       "ready": true
     },
     {
+      "slug": "meu-imposto",
+      "name": "MEU IMPOSTO",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-migrante",
       "name": "MEU MIGRANTE",
       "category": "Gestão",
