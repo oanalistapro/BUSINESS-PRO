@@ -5,359 +5,1029 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2563eb">
-<title>MEU DOCUMENTO | Business Pro</title>
+<meta name="description" content="MEU DOCUMENTO BUSINESS PRO - Crie, edite e organize documentos profissionais.">
+<title>MEU DOCUMENTO | BUSINESS PRO</title>
 <style>
 :root{
---azul:#2563eb;--escuro:#142744;--cinza:#64748b;
---fundo:#f3f7fd;--linha:#dfe7f2;--verde:#059669
+ --blue:#2563eb;--navy:#142d58;--ink:#142543;
+ --muted:#64748b;--bg:#f3f6fc;--line:#dce5f2;
+ --green:#059669;--red:#dc2626;--white:#fff
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--fundo);color:var(--escuro);font-family:Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{
+ margin:0;background:var(--bg);color:var(--ink);
+ font-family:Arial,Helvetica,sans-serif
+}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-header{background:#fff;border-bottom:1px solid var(--linha);padding:18px}
-.top{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-size:22px;font-weight:900}
-.logo span{color:var(--azul)}
+button:disabled{opacity:.5;cursor:not-allowed}
 a{text-decoration:none;color:inherit}
-.btn{background:var(--azul);color:#fff;border:0;border-radius:11px;padding:12px 18px;font-weight:700}
-.btn.sec{background:#eaf1ff;color:#1d4ed8}
-.btn.red{background:#fee2e2;color:#b91c1c}
-.wrap{max-width:1200px;margin:auto;padding:25px 16px}
-.hero{background:linear-gradient(120deg,#132849,#2563eb);border-radius:22px;padding:35px;color:#fff;margin-bottom:24px}
-.hero h1{font-size:clamp(28px,4vw,42px);margin:0 0 12px}
-.hero p{color:#dbeafe;line-height:1.7}
-.tabs{display:flex;gap:10px;overflow-x:auto;margin-bottom:20px}
-.tab{border:1px solid var(--linha);border-radius:12px;padding:13px 17px;background:#fff;color:var(--escuro);font-weight:700;white-space:nowrap}
-.tab.active{background:var(--azul);color:white}
-.page{display:none}
-.page.active{display:block}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card,.panel{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:22px;box-shadow:0 10px 30px #14284908}
-.card h3{margin:12px 0}
-.card p{color:var(--cinza);line-height:1.6}
-.card .emoji{font-size:35px}
-.panel{margin-bottom:18px}
-.panel h2{margin:0 0 18px}
-.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-.field{margin-bottom:15px}
-label{display:block;font-size:13px;font-weight:700;color:#475569;margin-bottom:7px}
-input,select,textarea{width:100%;padding:12px;border:1px solid var(--linha);border-radius:10px;background:#f8fbff;outline:none}
-input:focus,textarea:focus{border-color:var(--azul)}
-textarea{min-height:110px;resize:vertical}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-table{width:100%;border-collapse:collapse;min-width:600px}
-th,td{padding:13px;text-align:left;border-bottom:1px solid var(--linha);font-size:13px}
-th{background:#f8fbff}
-.tablewrap{overflow:auto}
-.muted{color:var(--cinza)}
-.preview{background:white;border:1px solid var(--linha);padding:35px;min-height:400px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
-.status{background:#eaf1ff;padding:12px;border-radius:10px;color:#1d4ed8;margin-top:15px}
-footer{text-align:center;color:var(--cinza);padding:30px}
-@media(max-width:700px){.grid,.formgrid{grid-template-columns:1fr}.hero{padding:25px}.card,.panel{padding:17px}}
+.top{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;padding:16px 3%;background:white;
+ border-bottom:1px solid var(--line)
+}
+.brand{font-size:24px;font-weight:900}
+.brand span{color:var(--blue)}
+.btn{
+ border:0;border-radius:11px;padding:12px 16px;
+ background:var(--blue);color:white;font-weight:800;
+ display:inline-flex;align-items:center;justify-content:center;gap:7px
+}
+.btn.secondary{background:#eaf1ff;color:#1d4ed8}
+.btn.outline{background:white;color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:#fee2e2;color:#b91c1c}
+.btn.small{font-size:12px;padding:8px 11px}
+.btn:hover:not(:disabled){filter:brightness(.96)}
+main{max-width:1550px;margin:auto;padding:28px 18px}
+.hero{
+ background:linear-gradient(110deg,#142d58,#2563eb);
+ color:white;border-radius:25px;padding:42px;margin-bottom:25px
+}
+.hero h1{font-size:clamp(29px,4vw,49px);margin:0 0 16px}
+.hero p{line-height:1.7;color:#e6efff;margin:0}
+.nav{
+ display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;
+ margin-bottom:17px
+}
+.nav button{
+ border:1px solid var(--line);border-radius:12px;
+ padding:14px 18px;background:white;
+ color:#40516e;font-weight:900;white-space:nowrap
+}
+.nav button.active{background:var(--blue);color:white;border-color:var(--blue)}
+.view{display:none}
+.view.active{display:block}
+.panel{
+ background:white;border:1px solid var(--line);
+ border-radius:20px;padding:25px;margin-bottom:18px;
+ box-shadow:0 8px 25px #17365a09
+}
+.panel h2{margin:0 0 15px;font-size:24px}
+.hint{font-size:13px;color:var(--muted);line-height:1.7}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{
+ background:white;border:1px solid var(--line);
+ border-radius:18px;padding:25px;
+ box-shadow:0 8px 25px #17365a09
+}
+.card .icon{font-size:35px;margin-bottom:14px}
+.card h3{font-size:19px;margin:0 0 13px}
+.card p{font-size:14px;color:var(--muted);line-height:1.7}
+.panel-head{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;flex-wrap:wrap;margin-bottom:18px
+}
+.panel-head h2{margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:9px}
+input,select,textarea{
+ border:1px solid #cbd6e6;border-radius:11px;
+ padding:12px;background:white;color:var(--ink);
+ outline:none;width:100%
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+label{font-size:12px;font-weight:800}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.search{max-width:350px}
+.document-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.doc-card{
+ border:1px solid var(--line);border-radius:15px;
+ padding:19px;background:#fbfcff
+}
+.doc-card h3{font-size:17px;margin:0 0 9px;overflow-wrap:anywhere}
+.doc-card p{font-size:12px;color:var(--muted);line-height:1.6}
+.doc-card .actions{margin-top:14px}
+.tag{
+ background:#eaf1ff;color:#1d4ed8;
+ padding:6px 10px;border-radius:20px;
+ font-size:11px;font-weight:900;display:inline-block
+}
+.editor-layout{
+ display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);
+ gap:18px;align-items:start
+}
+.editor-panel{min-width:0}
+.toolbar{
+ display:flex;flex-wrap:wrap;gap:6px;
+ padding:12px;border:1px solid var(--line);
+ border-radius:13px;background:#f7f9fd;margin-top:15px
+}
+.toolbar button,.toolbar select{
+ width:auto;min-width:40px;border:1px solid var(--line);
+ background:white;padding:9px;border-radius:8px
+}
+.toolbar button{font-weight:800}
+.toolbar button:hover{background:#eaf1ff}
+.editable{
+ min-height:440px;border:1px solid var(--line);
+ border-radius:12px;padding:25px;background:white;
+ line-height:1.65;outline:none;overflow-wrap:anywhere
+}
+.editable:focus{border-color:var(--blue)}
+.editable img{max-width:100%;height:auto}
+.editable table{border-collapse:collapse;width:100%}
+.editable td,.editable th{border:1px solid #cbd5e1;padding:8px}
+.preview-shell{background:#e8edf6;padding:17px;border-radius:14px}
+.paper{
+ background:white;width:100%;min-height:600px;
+ padding:40px;box-shadow:0 6px 25px #00000012;
+ overflow-wrap:anywhere;line-height:1.6
+}
+.paper img{max-width:100%;height:auto}
+.paper table{border-collapse:collapse;width:100%}
+.paper td,.paper th{border:1px solid #cbd5e1;padding:8px}
+.paper h1,.paper h2,.paper h3{color:#173b79}
+.empty{text-align:center;padding:35px;color:var(--muted)}
+.template{
+ border:1px solid var(--line);background:#fbfcff;
+ border-radius:16px;padding:20px
+}
+.template h3{margin:0 0 10px}
+.template p{color:var(--muted);font-size:13px;line-height:1.7}
+.notice{font-size:12px;color:var(--muted);line-height:1.8}
+.toast{
+ position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+ background:#172b4e;color:white;padding:13px 18px;
+ border-radius:12px;display:none;z-index:50;max-width:90vw
+}
+#printArea{display:none}
+@media(max-width:1100px){
+ .editor-layout{grid-template-columns:1fr}
+ .document-list,.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ .top{padding:13px}
+ .brand{font-size:18px}
+ .top .btn{font-size:11px;padding:10px}
+ main{padding:14px 10px}
+ .hero{padding:29px 21px;border-radius:17px}
+ .panel,.card{padding:17px;border-radius:16px}
+ .grid3,.grid2,.document-list,.form-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+ .search{max-width:none}
+ .editable{padding:15px;min-height:340px}
+ .paper{padding:20px;min-height:420px}
+}
+@page{size:A4;margin:15mm}
 @media print{
-header,.hero,.tabs,.actions,.panel:not(.printpanel),footer{display:none!important}
-.page{display:none!important}
-#editor{display:block!important}
-.printpanel{display:block!important;border:0;box-shadow:none;padding:0}
-.printpanel h2{display:none}
-.preview{border:0;padding:0;white-space:pre-wrap}
+ body{background:white}
+ body>*:not(#printArea){display:none!important}
+ #printArea{display:block!important;color:#111}
+ #printArea h1,#printArea h2,#printArea h3{color:#111}
+ #printArea img{max-width:100%}
+ #printArea table{border-collapse:collapse;width:100%}
+ #printArea td,#printArea th{border:1px solid #999;padding:8px}
 }
 </style>
 </head>
 <body>
-<header>
-<div class="top">
-<a class="logo" href="../">📁 MEU <span>DOCUMENTO</span></a>
-<a href="../" class="btn sec">← Business Pro</a>
-</div>
+
+<header class="top">
+ <div class="brand">📁 MEU <span>DOCUMENTO</span></div>
+ <a class="btn secondary" href="../">← Business Pro</a>
 </header>
 
-<main class="wrap">
+<main>
 <section class="hero">
-<h1>Seus documentos, organizados.</h1>
-<p>Crie documentos, organize informações importantes, gere arquivos PDF e mantenha seus registros em um só lugar.</p>
+ <h1>Seus documentos, organizados.</h1>
+ <p>Crie documentos, organize informações importantes, prepare arquivos para impressão e mantenha seus registros em um só lugar.</p>
 </section>
 
-<nav class="tabs">
-<button class="tab active" data-page="inicio">🏠 Início</button>
-<button class="tab" data-page="editor">📝 Criar documento</button>
-<button class="tab" data-page="arquivos">📂 Meus documentos</button>
-<button class="tab" data-page="modelos">📋 Modelos</button>
-<button class="tab" data-page="config">⚙️ Configurações</button>
+<nav class="nav" id="navigation">
+ <button class="active" data-view="inicio">🏠 Início</button>
+ <button data-view="editor">📝 Criar documento</button>
+ <button data-view="documentos">📁 Meus documentos</button>
+ <button data-view="modelos">📋 Modelos</button>
+ <button data-view="configuracoes">⚙️ Configurações</button>
 </nav>
 
-<section class="page active" id="inicio">
-<div class="grid">
-<div class="card">
-<div class="emoji">📝</div>
-<h3>Criar documento</h3>
-<p>Prepare declarações, autorizações, recibos, requerimentos e documentos personalizados.</p>
-<button class="btn" onclick="abrir('editor')">Criar agora</button>
-</div>
-<div class="card">
-<div class="emoji">📂</div>
-<h3>Meus documentos</h3>
-<p>Organize seus documentos por nome, tipo e data de criação.</p>
-<button class="btn" onclick="abrir('arquivos')">Ver documentos</button>
-</div>
-<div class="card">
-<div class="emoji">📄</div>
-<h3>Exportar PDF</h3>
-<p>Imprima seus documentos ou salve em PDF usando o navegador.</p>
-<button class="btn" onclick="abrir('editor')">Abrir editor</button>
-</div>
-</div>
-<div class="panel" style="margin-top:20px">
-<h2>Resumo</h2>
-<p>Documentos cadastrados: <strong id="total">0</strong></p>
-<p class="muted">Seus documentos de texto ficam salvos neste navegador. Faça backups para evitar perdas.</p>
-</div>
+<section class="view active" id="view-inicio">
+ <div class="grid3">
+  <div class="card">
+   <div class="icon">📝</div>
+   <h3>Criar documento</h3>
+   <p>Prepare declarações, autorizações, recibos, requerimentos e documentos personalizados.</p>
+   <button class="btn" onclick="newDocument()">Criar agora</button>
+  </div>
+  <div class="card">
+   <div class="icon">📂</div>
+   <h3>Meus documentos</h3>
+   <p>Organize seus documentos por nome, tipo, pasta e data de criação.</p>
+   <button class="btn" onclick="showView('documentos')">Ver documentos</button>
+  </div>
+  <div class="card">
+   <div class="icon">📄</div>
+   <h3>Exportar PDF</h3>
+   <p>Imprima seus documentos ou salve em PDF usando o navegador.</p>
+   <button class="btn" onclick="showView('editor')">Abrir editor</button>
+  </div>
+ </div>
+ <div class="panel" style="margin-top:20px">
+  <h2>Resumo</h2>
+  <p id="summaryCount">Documentos cadastrados: 0</p>
+  <p class="hint">Seus documentos ficam salvos neste navegador. Faça backups para evitar perdas.</p>
+ </div>
 </section>
 
-<section class="page" id="editor">
-<div class="panel">
-<h2>Editor de documentos</h2>
-<form id="formDoc">
-<input type="hidden" id="docId">
-<div class="formgrid">
-<div class="field">
-<label>Título do documento *</label>
-<input id="titulo" required placeholder="Ex.: Declaração de residência">
-</div>
-<div class="field">
-<label>Tipo de documento</label>
-<select id="tipo">
-<option>Declaração</option>
-<option>Autorização</option>
-<option>Recibo</option>
-<option>Requerimento</option>
-<option>Comunicado</option>
-<option>Ofício</option>
-<option>Documento personalizado</option>
-</select>
-</div>
-<div class="field">
-<label>Nome do responsável</label>
-<input id="responsavel">
-</div>
-<div class="field">
-<label>CPF / CNPJ</label>
-<input id="documento">
-</div>
-<div class="field">
-<label>Cidade</label>
-<input id="cidade">
-</div>
-<div class="field">
-<label>Data</label>
-<input type="date" id="data">
-</div>
-</div>
-<div class="field">
-<label>Conteúdo do documento *</label>
-<textarea id="conteudo" required style="min-height:240px" placeholder="Digite o texto completo do documento..."></textarea>
-</div>
-<div class="actions">
-<button class="btn" type="submit">💾 Salvar documento</button>
-<button class="btn sec" type="button" onclick="visualizar()">👁️ Visualizar</button>
-<button class="btn sec" type="button" onclick="imprimir()">📄 Salvar PDF / Imprimir</button>
-<button class="btn sec" type="button" onclick="baixarTXT()">⬇️ Baixar TXT</button>
-<button class="btn sec" type="button" onclick="novo()">Novo</button>
-</div>
-</form>
-</div>
-<div class="panel printpanel">
-<h2>Prévia do documento</h2>
-<div id="preview" class="preview"></div>
-</div>
+<section class="view" id="view-editor">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>📝 Editor profissional</h2>
+   <div class="actions">
+    <button class="btn secondary" onclick="newDocument()">+ Novo</button>
+    <button class="btn" onclick="saveDocument()">💾 Salvar</button>
+    <button class="btn outline" onclick="printDocument()">🖨️ PDF / Imprimir</button>
+    <button class="btn outline" onclick="exportWord()">⬇ Word</button>
+   </div>
+  </div>
+  <div class="editor-layout">
+   <div class="editor-panel">
+    <div class="form-grid">
+     <div class="field full">
+      <label for="docTitle">Título do documento</label>
+      <input id="docTitle" placeholder="Ex.: Declaração de residência">
+     </div>
+     <div class="field">
+      <label for="docType">Tipo</label>
+      <select id="docType">
+       <option>Documento personalizado</option>
+       <option>Declaração</option>
+       <option>Autorização</option>
+       <option>Recibo</option>
+       <option>Requerimento</option>
+       <option>Ofício</option>
+       <option>Carta</option>
+       <option>Contrato simples</option>
+       <option>Relatório</option>
+       <option>Outro</option>
+      </select>
+     </div>
+     <div class="field">
+      <label for="docFolder">Pasta</label>
+      <input id="docFolder" placeholder="Ex.: Pessoal">
+     </div>
+    </div>
+
+    <div class="toolbar" id="toolbar">
+     <button type="button" data-cmd="bold" title="Negrito"><b>B</b></button>
+     <button type="button" data-cmd="italic" title="Itálico"><i>I</i></button>
+     <button type="button" data-cmd="underline" title="Sublinhado"><u>U</u></button>
+     <button type="button" data-cmd="insertUnorderedList" title="Lista">☷</button>
+     <button type="button" data-cmd="insertOrderedList" title="Lista numerada">1.</button>
+     <button type="button" data-cmd="justifyLeft" title="Alinhar à esquerda">☰</button>
+     <button type="button" data-cmd="justifyCenter" title="Centralizar">≡</button>
+     <button type="button" data-cmd="justifyRight" title="Alinhar à direita">☷</button>
+     <select id="formatBlock" title="Estilo do texto">
+      <option value="p">Parágrafo</option>
+      <option value="h1">Título 1</option>
+      <option value="h2">Título 2</option>
+      <option value="h3">Título 3</option>
+     </select>
+     <button type="button" id="insertDate">📅 Data</button>
+     <button type="button" id="insertTable">▦ Tabela</button>
+     <button type="button" id="insertLink">🔗 Link</button>
+     <button type="button" id="insertImage">🖼️ Imagem</button>
+     <button type="button" data-cmd="undo">↶</button>
+     <button type="button" data-cmd="redo">↷</button>
+    </div>
+
+    <p class="hint">Digite e formate o conteúdo abaixo. As alterações são salvas automaticamente como rascunho neste navegador.</p>
+
+    <div id="editor" class="editable" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Conteúdo do documento"></div>
+
+    <input type="file" id="imageFile" accept="image/png,image/jpeg,image/webp" hidden>
+
+    <div class="actions" style="margin-top:16px">
+     <button class="btn" onclick="saveDocument()">💾 Salvar documento</button>
+     <button class="btn secondary" onclick="copyDocument()">📋 Copiar texto</button>
+     <button class="btn outline" onclick="exportHTML()">⬇ HTML</button>
+     <button class="btn outline" onclick="exportTXT()">⬇ TXT</button>
+    </div>
+    <p class="hint" id="saveStatus">Nenhum documento salvo nesta sessão.</p>
+   </div>
+
+   <div class="editor-panel">
+    <div class="panel-head">
+     <h2>Pré-visualização</h2>
+     <button class="btn small" onclick="printDocument()">Gerar PDF / Imprimir</button>
+    </div>
+    <div class="preview-shell">
+     <article class="paper" id="preview"></article>
+    </div>
+   </div>
+  </div>
+ </div>
 </section>
 
-<section class="page" id="arquivos">
-<div class="panel">
-<h2>Documentos salvos</h2>
-<div class="field">
-<label>Pesquisar documentos</label>
-<input id="busca" placeholder="Pesquisar por título ou tipo..." oninput="listar()">
-</div>
-<div class="tablewrap" id="lista"></div>
-</div>
+<section class="view" id="view-documentos">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>📁 Meus documentos</h2>
+   <button class="btn" onclick="newDocument()">+ Novo documento</button>
+   <input class="search" id="docSearch" placeholder="Pesquisar documentos...">
+  </div>
+  <div class="form-grid" style="margin-bottom:20px">
+   <div class="field">
+    <label for="folderFilter">Filtrar pasta</label>
+    <select id="folderFilter"><option value="">Todas as pastas</option></select>
+   </div>
+   <div class="field">
+    <label for="sortDocs">Ordenar</label>
+    <select id="sortDocs">
+     <option value="new">Mais recentes</option>
+     <option value="old">Mais antigos</option>
+     <option value="title">Título A-Z</option>
+    </select>
+   </div>
+  </div>
+  <div class="document-list" id="documentList"></div>
+ </div>
 </section>
 
-<section class="page" id="modelos">
-<h2>Modelos disponíveis</h2>
-<div class="grid" id="listaModelos"></div>
+<section class="view" id="view-modelos">
+ <div class="panel">
+  <h2>📋 Modelos de documentos</h2>
+  <p class="hint">Escolha um modelo e personalize os campos conforme sua necessidade. Os modelos são exemplos e devem ser revisados antes do uso.</p>
+  <div class="grid3" id="templateList"></div>
+ </div>
 </section>
 
-<section class="page" id="config">
-<div class="panel">
-<h2>Backup e segurança dos dados</h2>
-<p class="muted">Este aplicativo funciona localmente. Não envia seus documentos para um servidor próprio. Os dados podem ser perdidos se você limpar o navegador ou mudar de dispositivo.</p>
-<div class="actions">
-<button class="btn" onclick="backup()">Baixar backup JSON</button>
-<button class="btn sec" onclick="document.getElementById('importar').click()">Restaurar backup</button>
-<button class="btn red" onclick="apagarTudo()">Apagar documentos</button>
-</div>
-<input type="file" id="importar" accept=".json" hidden>
-</div>
+<section class="view" id="view-configuracoes">
+ <div class="panel">
+  <h2>⚙️ Configurações</h2>
+  <div class="form-grid">
+   <div class="field">
+    <label for="defaultFolder">Pasta padrão</label>
+    <input id="defaultFolder" placeholder="Geral">
+   </div>
+   <div class="field">
+    <label for="defaultName">Nome padrão do responsável</label>
+    <input id="defaultName" placeholder="Seu nome">
+   </div>
+   <div class="field full">
+    <button class="btn" onclick="saveSettings()">Salvar configurações</button>
+   </div>
+  </div>
+ </div>
+ <div class="panel">
+  <h2>💾 Backup e recuperação</h2>
+  <p class="hint">Exporte todos os seus documentos para um arquivo JSON ou importe um backup anterior.</p>
+  <div class="actions">
+   <button class="btn" onclick="exportBackup()">⬇ Baixar backup JSON</button>
+   <button class="btn secondary" onclick="document.getElementById('backupFile').click()">⬆ Importar backup</button>
+   <button class="btn danger" onclick="clearDocuments()">🗑️ Apagar documentos</button>
+  </div>
+  <input type="file" id="backupFile" accept=".json,application/json" hidden>
+ </div>
 </section>
+
+<p class="notice">Este aplicativo funciona diretamente no navegador e não possui sincronização automática entre dispositivos. A exportação PDF utiliza a função de impressão do navegador. A exportação Word gera um arquivo .doc compatível com editores de texto, não um DOCX nativo. Documentos jurídicos ou oficiais devem ser revisados antes da utilização.</p>
 </main>
 
-<footer>MEU DOCUMENTO · BUSINESS PRO</footer>
+<div id="printArea"></div>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
 "use strict";
-const KEY="businesspro_meu_documento_v1";
-let docs=[];
-try{
-const value=JSON.parse(localStorage.getItem(KEY)||"[]");
-if(Array.isArray(value))docs=value;
-}catch(e){alert("Não foi possível ler os documentos salvos.");}
+
 const $=id=>document.getElementById(id);
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
-function salvarLocal(){
-try{localStorage.setItem(KEY,JSON.stringify(docs));return true}
-catch(e){alert("Não foi possível salvar. Verifique o espaço do navegador.");return false}
+const KEY="businesspro_meu_documento_v3";
+const DRAFT_KEY="businesspro_meu_documento_draft_v3";
+
+function uid(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
 }
-function abrir(id){
-document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id===id));
-document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.page===id));
-if(id==="arquivos")listar();
-window.scrollTo({top:0,behavior:"smooth"});
+
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
 }
-document.querySelectorAll(".tab").forEach(x=>x.onclick=()=>abrir(x.dataset.page));
-function dados(){
-return{
-id:$("docId").value||uid(),
-titulo:$("titulo").value.trim(),
-tipo:$("tipo").value,
-responsavel:$("responsavel").value.trim(),
-documento:$("documento").value.trim(),
-cidade:$("cidade").value.trim(),
-data:$("data").value,
-conteudo:$("conteudo").value.trim()
-};
+
+function notify(msg){
+ const el=$("toast");
+ el.textContent=msg;el.style.display="block";
+ clearTimeout(notify.timer);
+ notify.timer=setTimeout(()=>el.style.display="none",3000);
 }
-function texto(d){
-const partes=[d.titulo.toUpperCase(),"",d.conteudo,""];
-if(d.cidade||d.data)partes.push([d.cidade,d.data?new Date(d.data+"T12:00:00").toLocaleDateString("pt-BR"):""].filter(Boolean).join(", ")+".","");
-if(d.responsavel)partes.push("________________________________",d.responsavel);
-if(d.documento)partes.push("CPF/CNPJ: "+d.documento);
-return partes.join("\n");
+
+function dateBR(value){
+ if(!value)return "—";
+ return new Date(value).toLocaleDateString("pt-BR");
 }
-function visualizar(){
-$("preview").textContent=texto(dados());
+
+function download(name,content,type){
+ const blob=content instanceof Blob?content:new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;a.download=name;
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
-$("formDoc").addEventListener("input",visualizar);
-$("formDoc").addEventListener("submit",e=>{
-e.preventDefault();
-const d=dados();
-if(!d.titulo||!d.conteudo){alert("Preencha o título e o conteúdo.");return}
-const anterior=[...docs];
-const index=docs.findIndex(x=>x.id===d.id);
-d.atualizadoEm=new Date().toISOString();
-if(index>=0)docs[index]=d;else docs.unshift(d);
-if(!salvarLocal()){docs=anterior;return}
-$("docId").value=d.id;
-listar();
-alert("Documento salvo.");
-});
-function novo(){
-$("formDoc").reset();$("docId").value="";
-$("data").value=new Date().toLocaleDateString("en-CA");
-visualizar();
+
+function safeHTML(html){
+ const template=document.createElement("template");
+ template.innerHTML=String(html||"");
+
+ const allowed=new Set([
+  "P","DIV","SPAN","BR","B","STRONG","I","EM","U",
+  "H1","H2","H3","H4","UL","OL","LI","BLOCKQUOTE",
+  "TABLE","THEAD","TBODY","TR","TH","TD","A","IMG","HR"
+ ]);
+
+ const clean=node=>{
+  for(const child of [...node.childNodes]){
+   if(child.nodeType===8){
+    child.remove();continue;
+   }
+   if(child.nodeType!==1)continue;
+
+   if(!allowed.has(child.tagName)){
+    child.replaceWith(...child.childNodes);
+    continue;
+   }
+
+   for(const attr of [...child.attributes]){
+    const key=attr.name.toLowerCase();
+    const value=attr.value;
+    const validLink=child.tagName==="A"&&key==="href"&&
+     /^(https?:|mailto:)/i.test(value);
+    const validImage=child.tagName==="IMG"&&key==="src"&&
+     /^data:image\/(png|jpeg|webp);base64,/i.test(value);
+    const validAlt=child.tagName==="IMG"&&key==="alt";
+    const validStyle=key==="style"&&
+     !/url\s*\(|expression\s*\(|@import|position\s*:/i.test(value);
+
+    if(!validLink&&!validImage&&!validAlt&&!validStyle)
+     child.removeAttribute(attr.name);
+   }
+
+   clean(child);
+  }
+ };
+
+ clean(template.content);
+ return template.innerHTML;
 }
-function imprimir(){
-const d=dados();
-if(!d.titulo||!d.conteudo){alert("Preencha o documento antes de imprimir.");return}
-visualizar();window.print();
+
+function fresh(){
+ return {
+  version:3,
+  settings:{folder:"Geral",name:""},
+  documents:[]
+ };
 }
-function download(texto,nome,tipo){
-const blob=new Blob([texto],{type:tipo});
-const url=URL.createObjectURL(blob);
-const a=document.createElement("a");
-a.href=url;a.download=nome;document.body.appendChild(a);a.click();a.remove();
-setTimeout(()=>URL.revokeObjectURL(url),1500);
-}
-function baixarTXT(){
-const d=dados();
-if(!d.titulo||!d.conteudo){alert("Preencha o documento.");return}
-download(texto(d),d.titulo.replace(/[^\wÀ-ÿ -]/g,"").slice(0,60)+".txt","text/plain;charset=utf-8");
-}
-function listar(){
-$("total").textContent=docs.length;
-const q=$("busca").value.toLowerCase();
-const filtrados=docs.filter(d=>(d.titulo+" "+d.tipo).toLowerCase().includes(q));
-$("lista").innerHTML=filtrados.length?
-`<table><thead><tr><th>Título</th><th>Tipo</th><th>Atualizado</th><th>Ações</th></tr></thead><tbody>`+
-filtrados.map(d=>`<tr><td>${esc(d.titulo)}</td><td>${esc(d.tipo)}</td><td>${esc(d.atualizadoEm?new Date(d.atualizadoEm).toLocaleDateString("pt-BR"):"")}</td><td>
-<button class="btn sec" data-edit="${esc(d.id)}">Abrir</button>
-<button class="btn red" data-delete="${esc(d.id)}">Excluir</button>
-</td></tr>`).join("")+"</tbody></table>":
-'<p class="muted">Nenhum documento encontrado.</p>';
-}
-function editar(id){
-const d=docs.find(x=>x.id===id);
-if(!d)return;
-["id","titulo","tipo","responsavel","documento","cidade","data","conteudo"].forEach(k=>{
-const el=$(k==="id"?"docId":k);
-if(el)el.value=d[k]||"";
-});
-visualizar();abrir("editor");
-}
-function excluir(id){
-if(!confirm("Excluir este documento?"))return;
-const old=docs;docs=docs.filter(x=>x.id!==id);
-if(!salvarLocal()){docs=old;return}
-listar();
-}
-document.addEventListener("click",e=>{
-const edit=e.target.closest("[data-edit]");
-const del=e.target.closest("[data-delete]");
-if(edit)editar(edit.dataset.edit);
-if(del)excluir(del.dataset.delete);
-});
-const modelos=[
-{titulo:"Declaração de residência",tipo:"Declaração",conteudo:"Eu, [NOME COMPLETO], inscrito(a) no CPF sob nº [CPF], declaro, para os devidos fins, que resido no endereço [ENDEREÇO COMPLETO].\n\nDeclaro serem verdadeiras as informações prestadas."},
-{titulo:"Autorização simples",tipo:"Autorização",conteudo:"Eu, [NOME COMPLETO], inscrito(a) no CPF sob nº [CPF], autorizo [PESSOA OU EMPRESA] a realizar [ATIVIDADE AUTORIZADA], nas condições descritas neste documento."},
-{titulo:"Recibo de pagamento",tipo:"Recibo",conteudo:"Recebi de [NOME DO PAGADOR] a quantia de R$ [VALOR], referente a [DESCRIÇÃO DO PAGAMENTO], por meio de [FORMA DE PAGAMENTO].\n\nDeclaro o recebimento do valor acima indicado."},
-{titulo:"Requerimento",tipo:"Requerimento",conteudo:"À [INSTITUIÇÃO OU DESTINATÁRIO]\n\nEu, [NOME COMPLETO], venho respeitosamente requerer [DESCREVER O PEDIDO].\n\nJustificativa: [INFORMAR OS MOTIVOS].\n\nNestes termos, solicito análise e deferimento."},
-{titulo:"Comunicado",tipo:"Comunicado",conteudo:"COMUNICADO\n\nInformamos que [DESCREVER A INFORMAÇÃO OU AVISO].\n\nAgradecemos a atenção."},
-{titulo:"Ofício",tipo:"Ofício",conteudo:"OFÍCIO Nº [NÚMERO]\n\nAo(À) [DESTINATÁRIO]\n\nAssunto: [ASSUNTO]\n\nPrezado(a),\n\nPor meio deste, comunicamos/solicitamos [DESCREVER O CONTEÚDO].\n\nAtenciosamente,\n[REMETENTE]"}
-];
-$("listaModelos").innerHTML=modelos.map((m,i)=>`<div class="card"><div class="emoji">📄</div><h3>${esc(m.titulo)}</h3><p>Modelo editável para preencher com suas informações.</p><button class="btn" data-modelo="${i}">Usar modelo</button></div>`).join("");
-document.addEventListener("click",e=>{
-const b=e.target.closest("[data-modelo]");
-if(!b)return;
-const m=modelos[Number(b.dataset.modelo)];
-novo();$("titulo").value=m.titulo;$("tipo").value=m.tipo;
-$("conteudo").value=m.conteudo;visualizar();abrir("editor");
-});
-function backup(){
-download(JSON.stringify({version:1,documentos:docs},null,2),"meu-documento-backup.json","application/json");
-}
-$("importar").addEventListener("change",async e=>{
-const file=e.target.files[0];if(!file)return;
+
+let db=fresh();
+let currentId=null;
+let autosaveTimer=null;
+let savedSelection=null;
+
 try{
-const obj=JSON.parse(await file.text());
-const dados=Array.isArray(obj)?obj:obj.documentos;
-if(!Array.isArray(dados)||!dados.every(d=>d&&typeof d.id==="string"&&typeof d.titulo==="string"&&typeof d.conteudo==="string"))throw Error("Backup inválido");
-if(!confirm("Substituir os documentos atuais pelo backup?"))return;
-const old=docs;docs=dados;
-if(!salvarLocal()){docs=old;return}
-listar();alert("Backup restaurado.");
-}catch(err){alert("Erro ao restaurar: "+err.message)}
-e.target.value="";
-});
-function apagarTudo(){
-if(!confirm("Excluir TODOS os documentos?"))return;
-if(prompt("Digite APAGAR para confirmar")!=="APAGAR")return;
-const old=docs;docs=[];
-if(!salvarLocal()){docs=old;return}
-novo();listar();
+ const raw=JSON.parse(localStorage.getItem(KEY)||"null");
+ if(raw&&raw.version===3&&Array.isArray(raw.documents)){
+  db=fresh();
+  db.settings={...db.settings,...raw.settings};
+  db.documents=raw.documents;
+ }
+}catch(e){}
+
+function persist(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(db));
+  return true;
+ }catch(e){
+  notify("Armazenamento cheio. Exporte um backup.");
+  return false;
+ }
 }
-novo();listar();
+
+function showView(view){
+ document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
+ $("view-"+view).classList.add("active");
+ document.querySelectorAll("[data-view]").forEach(x=>
+  x.classList.toggle("active",x.dataset.view===view)
+ );
+ if(view==="documentos")renderDocuments();
+ if(view==="inicio")renderSummary();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+$("navigation").onclick=e=>{
+ const btn=e.target.closest("[data-view]");
+ if(btn)showView(btn.dataset.view);
+};
+
+function editorData(){
+ return {
+  title:$("docTitle").value.trim()||"Documento sem título",
+  type:$("docType").value,
+  folder:$("docFolder").value.trim()||"Geral",
+  html:safeHTML($("editor").innerHTML)
+ };
+}
+
+function updatePreview(){
+ const data=editorData();
+ $("preview").innerHTML=`
+  <h1>${esc(data.title)}</h1>
+  ${data.html||'<p style="color:#94a3b8">Seu documento aparecerá aqui.</p>'}
+ `;
+}
+
+function saveDraft(){
+ try{
+  sessionStorage.setItem(DRAFT_KEY,JSON.stringify({
+   id:currentId,...editorData()
+  }));
+  $("saveStatus").textContent="Rascunho atualizado automaticamente.";
+ }catch(e){
+  $("saveStatus").textContent="Não foi possível salvar o rascunho.";
+ }
+}
+
+function scheduleAutosave(){
+ updatePreview();
+ clearTimeout(autosaveTimer);
+ autosaveTimer=setTimeout(saveDraft,600);
+}
+
+["docTitle","docType","docFolder"].forEach(id=>{
+ $(id).addEventListener("input",scheduleAutosave);
+});
+$("editor").addEventListener("input",scheduleAutosave);
+
+function newDocument(){
+ currentId=null;
+ $("docTitle").value="";
+ $("docType").value="Documento personalizado";
+ $("docFolder").value=db.settings.folder||"Geral";
+ $("editor").innerHTML="";
+ $("saveStatus").textContent="Novo documento.";
+ updatePreview();
+ showView("editor");
+ $("docTitle").focus();
+}
+
+function saveDocument(){
+ const data=editorData();
+ if(!data.html.trim()){
+  notify("Digite o conteúdo do documento.");
+  return;
+ }
+
+ const now=new Date().toISOString();
+ const previous=JSON.stringify(db.documents);
+
+ if(currentId){
+  const index=db.documents.findIndex(x=>x.id===currentId);
+  if(index>=0){
+   db.documents[index]={...db.documents[index],...data,updatedAt:now};
+  }else{
+   currentId=null;
+  }
+ }
+
+ if(!currentId){
+  currentId=uid();
+  db.documents.push({
+   id:currentId,...data,createdAt:now,updatedAt:now
+  });
+ }
+
+ if(!persist()){
+  db.documents=JSON.parse(previous);
+  return;
+ }
+
+ saveDraft();
+ renderSummary();
+ $("saveStatus").textContent="Documento salvo em "+dateBR(now)+".";
+ notify("Documento salvo com sucesso.");
+}
+
+function openDocument(id){
+ const doc=db.documents.find(x=>x.id===id);
+ if(!doc)return;
+
+ currentId=doc.id;
+ $("docTitle").value=doc.title||"";
+ $("docType").value=doc.type||"Documento personalizado";
+ $("docFolder").value=doc.folder||"Geral";
+ $("editor").innerHTML=safeHTML(doc.html);
+ $("saveStatus").textContent="Última alteração: "+dateBR(doc.updatedAt);
+ updatePreview();
+ showView("editor");
+}
+
+function duplicateDocument(id){
+ const original=db.documents.find(x=>x.id===id);
+ if(!original)return;
+
+ const now=new Date().toISOString();
+ db.documents.push({
+  ...original,id:uid(),title:original.title+" (cópia)",
+  createdAt:now,updatedAt:now
+ });
+
+ if(persist()){
+  renderDocuments();renderSummary();
+  notify("Documento duplicado.");
+ }
+}
+
+function deleteDocument(id){
+ if(!confirm("Excluir este documento?"))return;
+
+ const previous=db.documents;
+ db.documents=db.documents.filter(x=>x.id!==id);
+
+ if(!persist()){
+  db.documents=previous;
+  return;
+ }
+
+ if(currentId===id)currentId=null;
+ renderDocuments();renderSummary();
+ notify("Documento excluído.");
+}
+
+function renderSummary(){
+ $("summaryCount").textContent=
+  "Documentos cadastrados: "+db.documents.length;
+}
+
+function renderDocuments(){
+ const query=$("docSearch").value.toLowerCase().trim();
+ const folder=$("folderFilter").value;
+ const folders=[...new Set(db.documents.map(x=>x.folder||"Geral"))].sort();
+
+ $("folderFilter").innerHTML=
+  '<option value="">Todas as pastas</option>'+
+  folders.map(x=>`<option value="${esc(x)}" ${x===folder?"selected":""}>${esc(x)}</option>`).join("");
+
+ let list=db.documents.filter(x=>
+  (!folder||x.folder===folder)&&
+  (x.title+" "+x.type+" "+x.folder+" "+x.html).toLowerCase().includes(query)
+ );
+
+ const sort=$("sortDocs").value;
+ list.sort((a,b)=>{
+  if(sort==="title")return a.title.localeCompare(b.title,"pt-BR");
+  if(sort==="old")return a.createdAt.localeCompare(b.createdAt);
+  return b.updatedAt.localeCompare(a.updatedAt);
+ });
+
+ $("documentList").innerHTML=list.length?list.map(x=>`
+  <article class="doc-card">
+   <span class="tag">${esc(x.type)}</span>
+   <h3 style="margin-top:13px">📄 ${esc(x.title)}</h3>
+   <p>📁 ${esc(x.folder||"Geral")}</p>
+   <p>Atualizado: ${esc(dateBR(x.updatedAt))}</p>
+   <div class="actions">
+    <button class="btn small" data-open="${esc(x.id)}">Abrir</button>
+    <button class="btn small secondary" data-duplicate="${esc(x.id)}">Duplicar</button>
+    <button class="btn small danger" data-delete="${esc(x.id)}">Excluir</button>
+   </div>
+  </article>
+ `).join(""):'<div class="empty">Nenhum documento encontrado.</div>';
+}
+
+$("documentList").onclick=e=>{
+ const open=e.target.closest("[data-open]");
+ if(open)return openDocument(open.dataset.open);
+ const dup=e.target.closest("[data-duplicate]");
+ if(dup)return duplicateDocument(dup.dataset.duplicate);
+ const del=e.target.closest("[data-delete]");
+ if(del)return deleteDocument(del.dataset.delete);
+};
+
+$("docSearch").oninput=renderDocuments;
+$("folderFilter").onchange=renderDocuments;
+$("sortDocs").onchange=renderDocuments;
+
+const templates=[
+ {
+  title:"Declaração simples",type:"Declaração",icon:"📃",
+  desc:"Modelo para declarar informações pessoais ou profissionais.",
+  html:`<h2 style="text-align:center">DECLARAÇÃO</h2>
+   <p>Eu, [NOME COMPLETO], portador(a) do documento [DOCUMENTO], declaro, para os devidos fins, que [DESCREVA A INFORMAÇÃO].</p>
+   <p>Declaro que as informações acima são verdadeiras.</p>
+   <p>[CIDADE], [DATA].</p>
+   <p>________________________________</p>
+   <p>[ASSINATURA]</p>`
+ },
+ {
+  title:"Autorização",type:"Autorização",icon:"✍️",
+  desc:"Modelo para autorizar uma atividade ou procedimento.",
+  html:`<h2 style="text-align:center">AUTORIZAÇÃO</h2>
+   <p>Eu, [NOME COMPLETO], documento [DOCUMENTO], autorizo [NOME DO AUTORIZADO] a [DESCREVA A AUTORIZAÇÃO].</p>
+   <p>Esta autorização é válida para [FINALIDADE E PERÍODO].</p>
+   <p>[CIDADE], [DATA].</p>
+   <p>________________________________</p>
+   <p>[ASSINATURA]</p>`
+ },
+ {
+  title:"Recibo",type:"Recibo",icon:"💰",
+  desc:"Registre um recebimento de valor.",
+  html:`<h2 style="text-align:center">RECIBO</h2>
+   <p>Recebi de [NOME DO PAGADOR], documento [DOCUMENTO], a importância de [VALOR], referente a [DESCRIÇÃO DO PAGAMENTO].</p>
+   <p>Forma de pagamento: [FORMA].</p>
+   <p>Data do recebimento: [DATA].</p>
+   <p>________________________________</p>
+   <p>[NOME E ASSINATURA DO RECEBEDOR]</p>`
+ },
+ {
+  title:"Requerimento",type:"Requerimento",icon:"📝",
+  desc:"Formalize uma solicitação por escrito.",
+  html:`<h2 style="text-align:center">REQUERIMENTO</h2>
+   <p>À [INSTITUIÇÃO OU DESTINATÁRIO]</p>
+   <p>Assunto: [ASSUNTO]</p>
+   <p>Eu, [NOME COMPLETO], venho respeitosamente requerer [DESCREVA O PEDIDO].</p>
+   <p>Justificativa: [JUSTIFICATIVA].</p>
+   <p>Aguardo análise e resposta.</p>
+   <p>[CIDADE], [DATA].</p>
+   <p>________________________________</p>
+   <p>[ASSINATURA]</p>`
+ },
+ {
+  title:"Ofício",type:"Ofício",icon:"🏢",
+  desc:"Comunicação formal entre pessoas e instituições.",
+  html:`<h2>OFÍCIO Nº [NÚMERO]</h2>
+   <p>[CIDADE], [DATA]</p>
+   <p>Ao(À) [DESTINATÁRIO]</p>
+   <p><strong>Assunto:</strong> [ASSUNTO]</p>
+   <p>Prezado(a) Senhor(a),</p>
+   <p>[CONTEÚDO DA COMUNICAÇÃO]</p>
+   <p>Atenciosamente,</p>
+   <p>[NOME E CARGO]</p>`
+ },
+ {
+  title:"Relatório",type:"Relatório",icon:"📊",
+  desc:"Estruture resultados e informações.",
+  html:`<h1>RELATÓRIO</h1>
+   <h2>1. Objetivo</h2><p>[OBJETIVO DO RELATÓRIO]</p>
+   <h2>2. Atividades realizadas</h2><p>[DESCRIÇÃO]</p>
+   <h2>3. Resultados</h2><p>[RESULTADOS]</p>
+   <h2>4. Conclusão</h2><p>[CONCLUSÃO]</p>
+   <p>[RESPONSÁVEL] — [DATA]</p>`
+ }
+];
+
+function renderTemplates(){
+ $("templateList").innerHTML=templates.map((t,i)=>`
+  <article class="template">
+   <h3>${t.icon} ${esc(t.title)}</h3>
+   <p>${esc(t.desc)}</p>
+   <button class="btn" data-template="${i}">Usar modelo</button>
+  </article>
+ `).join("");
+}
+
+$("templateList").onclick=e=>{
+ const btn=e.target.closest("[data-template]");
+ if(!btn)return;
+ const t=templates[Number(btn.dataset.template)];
+ if(!t)return;
+
+ currentId=null;
+ $("docTitle").value=t.title;
+ $("docType").value=t.type;
+ $("docFolder").value=db.settings.folder||"Geral";
+ $("editor").innerHTML=t.html.replaceAll("[DATA]",new Date().toLocaleDateString("pt-BR"));
+ updatePreview();
+ showView("editor");
+ notify("Modelo carregado. Personalize os campos.");
+};
+
+function execCommand(command,value=null){
+ $("editor").focus();
+ document.execCommand(command,false,value);
+ scheduleAutosave();
+}
+
+$("toolbar").addEventListener("mousedown",e=>{
+ if(e.target.closest("button[data-cmd]"))e.preventDefault();
+});
+
+$("toolbar").onclick=e=>{
+ const btn=e.target.closest("[data-cmd]");
+ if(btn)execCommand(btn.dataset.cmd);
+};
+
+$("formatBlock").onchange=e=>{
+ execCommand("formatBlock",e.target.value);
+};
+
+function insertHTML(html){
+ $("editor").focus();
+ document.execCommand("insertHTML",false,html);
+ scheduleAutosave();
+}
+
+$("insertDate").onclick=()=>{
+ insertHTML(esc(new Date().toLocaleDateString("pt-BR")));
+};
+
+$("insertTable").onclick=()=>{
+ insertHTML(`<table><tbody>
+  <tr><th>Coluna 1</th><th>Coluna 2</th></tr>
+  <tr><td>Informação</td><td>Informação</td></tr>
+  </tbody></table><p></p>`);
+};
+
+$("insertLink").onclick=()=>{
+ const url=prompt("Digite o endereço do link (https://...)");
+ if(!url)return;
+ if(!/^https?:\/\//i.test(url)){
+  notify("Use um endereço começando com http:// ou https://");
+  return;
+ }
+ execCommand("createLink",url);
+};
+
+$("insertImage").onclick=()=>{
+ $("imageFile").click();
+};
+
+$("imageFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ if(!["image/png","image/jpeg","image/webp"].includes(file.type)){
+  notify("Use PNG, JPG ou WebP.");
+  return;
+ }
+
+ if(file.size>2*1024*1024){
+  notify("Use imagens menores que 2 MB.");
+  return;
+ }
+
+ const reader=new FileReader();
+ reader.onload=()=>{
+  insertHTML(`<img src="${reader.result}" alt="Imagem do documento">`);
+ };
+ reader.readAsDataURL(file);
+ e.target.value="";
+};
+
+function printDocument(){
+ const data=editorData();
+ $("printArea").innerHTML=`<h1>${esc(data.title)}</h1>${data.html}`;
+ window.print();
+}
+
+function documentHTML(){
+ const data=editorData();
+ return `<!DOCTYPE html><html lang="pt-BR"><head>
+ <meta charset="UTF-8"><title>${esc(data.title)}</title>
+ <style>
+ body{font-family:Arial,sans-serif;line-height:1.6;margin:40px;color:#111}
+ img{max-width:100%}
+ table{border-collapse:collapse;width:100%}
+ td,th{border:1px solid #999;padding:8px}
+ </style></head><body>
+ <h1>${esc(data.title)}</h1>${data.html}
+ </body></html>`;
+}
+
+function fileName(){
+ return (editorData().title||"documento")
+  .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+  .replace(/[^a-zA-Z0-9_-]+/g,"-").slice(0,70);
+}
+
+function exportHTML(){
+ download(fileName()+".html",documentHTML(),"text/html;charset=utf-8");
+}
+
+function exportTXT(){
+ download(fileName()+".txt",
+  $("docTitle").value+"\n\n"+$("editor").innerText,
+  "text/plain;charset=utf-8");
+}
+
+function exportWord(){
+ download(fileName()+".doc",
+  "\uFEFF"+documentHTML(),
+  "application/msword");
+ notify("Arquivo .doc exportado.");
+}
+
+async function copyDocument(){
+ try{
+  await navigator.clipboard.writeText(
+   $("docTitle").value+"\n\n"+$("editor").innerText
+  );
+  notify("Texto copiado.");
+ }catch(e){
+  notify("Não foi possível copiar automaticamente.");
+ }
+}
+
+function saveSettings(){
+ db.settings={
+  folder:$("defaultFolder").value.trim()||"Geral",
+  name:$("defaultName").value.trim()
+ };
+ if(persist())notify("Configurações salvas.");
+}
+
+function renderSettings(){
+ $("defaultFolder").value=db.settings.folder||"Geral";
+ $("defaultName").value=db.settings.name||"";
+}
+
+function exportBackup(){
+ download("backup-meu-documento.json",
+  JSON.stringify(db,null,2),"application/json");
+ notify("Backup exportado.");
+}
+
+$("backupFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  if(file.size>20*1024*1024)throw Error("Arquivo muito grande.");
+  const raw=JSON.parse(await file.text());
+
+  if(raw.version!==3||!Array.isArray(raw.documents))
+   throw Error("Backup incompatível.");
+
+  if(!confirm("Substituir todos os documentos atuais pelo backup?"))return;
+
+  const previous=db;
+  db={
+   version:3,
+   settings:{...fresh().settings,...raw.settings},
+   documents:raw.documents.map(x=>({
+    ...x,html:safeHTML(x.html)
+   }))
+  };
+
+  if(!persist()){
+   db=previous;
+   return;
+  }
+
+  currentId=null;
+  renderAll();
+  notify("Backup importado.");
+ }catch(err){
+  notify("Erro: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+function clearDocuments(){
+ if(!confirm("Excluir todos os documentos?"))return;
+ if(!confirm("Confirme novamente. Essa ação é irreversível sem backup."))return;
+
+ const previous=db.documents;
+ db.documents=[];
+
+ if(!persist()){
+  db.documents=previous;
+  return;
+ }
+
+ currentId=null;
+ renderAll();
+ notify("Documentos apagados.");
+}
+
+function renderAll(){
+ renderSummary();
+ renderDocuments();
+ renderTemplates();
+ renderSettings();
+ updatePreview();
+}
+
+function restoreDraft(){
+ try{
+  const raw=JSON.parse(sessionStorage.getItem(DRAFT_KEY)||"null");
+  if(!raw)return;
+  currentId=raw.id||null;
+  $("docTitle").value=raw.title||"";
+  $("docType").value=raw.type||"Documento personalizado";
+  $("docFolder").value=raw.folder||"Geral";
+  $("editor").innerHTML=safeHTML(raw.html);
+  updatePreview();
+ }catch(e){}
+}
+
+renderAll();
+restoreDraft();
 </script>
 </body>
 </html>
