@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<title>MEU NEGÓCIO | Business Pro</title>
+<style>
+:root{--blue:#2563eb;--dark:#142744;--muted:#64748b;--line:#dfe7f2;--bg:#f3f7fd;--green:#059669;--red:#dc2626}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--dark);font-family:Inter,system-ui,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+header{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.top{max-width:1250px;margin:auto;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:21px}
+.logo span{color:var(--blue)}
+.btn{border:0;border-radius:11px;padding:11px 16px;background:var(--blue);color:white;font-weight:750}
+.btn.secondary{background:#eaf1ff;color:#1d4ed8}
+.btn.danger{background:#fee2e2;color:#b91c1c}
+.btn.green{background:#059669}
+.wrap{max-width:1250px;margin:auto;padding:24px 16px 70px}
+.hero{background:linear-gradient(115deg,#10274d,#2563eb);color:white;padding:35px;border-radius:22px;margin-bottom:22px}
+.hero h1{font-size:clamp(27px,4vw,42px);margin:0 0 12px}
+.hero p{color:#dbeafe;line-height:1.7;margin:0}
+.tabs{display:flex;gap:9px;overflow-x:auto;padding:4px 0 18px}
+.tab{white-space:nowrap;border:1px solid var(--line);background:white;border-radius:12px;padding:12px 17px;font-weight:750;color:#475569}
+.tab.active{background:var(--blue);color:white;border-color:var(--blue)}
+.page{display:none}
+.page.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.card,.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 26px #14284908}
+.card small{color:var(--muted)}
+.card strong{display:block;font-size:clamp(20px,2.5vw,29px);margin:12px 0}
+.panel{margin-top:18px}
+.panel h2{margin:0 0 18px;font-size:21px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+label{display:block;font-size:13px;font-weight:750;margin-bottom:7px;color:#475569}
+input,select,textarea{width:100%;border:1px solid var(--line);background:#f8fbff;border-radius:10px;padding:12px;color:var(--dark);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+textarea{min-height:90px;resize:vertical}
+.field{margin-bottom:14px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:620px}
+th,td{text-align:left;padding:13px;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--muted);background:#f8fbff}
+.muted{color:var(--muted)}
+.empty{padding:22px;color:var(--muted);text-align:center}
+.sectiontitle{font-size:25px;margin:10px 0 18px}
+.good{color:var(--green)}
+.bad{color:var(--red)}
+.pill{display:inline-block;background:#eaf1ff;color:#1d4ed8;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:800}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:35px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid,.formgrid{grid-template-columns:1fr}.hero{padding:25px}.card,.panel{padding:16px}}
+@media print{header,.tabs,.actions,.btn,form{display:none!important}.page{display:none!important}#relatorios{display:block!important}body{background:white}.panel{box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="top">
+<a class="logo" href="../">◆ MEU <span>NEGÓCIO</span></a>
+<div>
+<a class="btn secondary" href="../">← Business Pro</a>
+<button class="btn" onclick="openTab('configuracoes')">Minha empresa</button>
+</div>
+</div>
+</header>
+
+<main class="wrap">
+<section class="hero">
+<h1>Seu negócio sob controle.</h1>
+<p>Gerencie clientes, fornecedores, produtos, serviços, receitas, despesas e tarefas em um único espaço.</p>
+</section>
+
+<nav class="tabs" id="tabs">
+<button class="tab active" data-tab="inicio">📊 Painel</button>
+<button class="tab" data-tab="clientes">👥 Clientes</button>
+<button class="tab" data-tab="fornecedores">🚚 Fornecedores</button>
+<button class="tab" data-tab="produtos">📦 Produtos</button>
+<button class="tab" data-tab="servicos">🛠️ Serviços</button>
+<button class="tab" data-tab="financeiro">💰 Financeiro</button>
+<button class="tab" data-tab="tarefas">📅 Tarefas</button>
+<button class="tab" data-tab="relatorios">📈 Relatórios</button>
+<button class="tab" data-tab="configuracoes">⚙️ Configurações</button>
+</nav>
+
+<section class="page active" id="inicio">
+<div class="grid">
+<div class="card"><small>Receitas</small><strong class="good" id="totalReceitas">R$ 0,00</strong><small>Entradas registradas</small></div>
+<div class="card"><small>Despesas</small><strong class="bad" id="totalDespesas">R$ 0,00</strong><small>Saídas registradas</small></div>
+<div class="card"><small>Saldo</small><strong id="saldo">R$ 0,00</strong><small>Receitas menos despesas</small></div>
+<div class="card"><small>Clientes</small><strong id="totalClientes">0</strong><small>Clientes cadastrados</small></div>
+</div>
+<div class="panel">
+<h2>Visão geral</h2>
+<div class="grid">
+<div class="card"><small>Fornecedores</small><strong id="countFornecedores">0</strong></div>
+<div class="card"><small>Produtos</small><strong id="countProdutos">0</strong></div>
+<div class="card"><small>Serviços</small><strong id="countServicos">0</strong></div>
+<div class="card"><small>Tarefas pendentes</small><strong id="countTarefas">0</strong></div>
+</div>
+</div>
+<div class="panel">
+<h2>Acesso rápido</h2>
+<div class="actions">
+<button class="btn" onclick="openTab('financeiro')">Registrar movimentação</button>
+<button class="btn secondary" onclick="openTab('clientes')">Cadastrar cliente</button>
+<button class="btn secondary" onclick="openTab('produtos')">Cadastrar produto</button>
+<button class="btn secondary" onclick="openTab('relatorios')">Ver relatórios</button>
+</div>
+</div>
+</section>
+
+<section class="page" id="clientes">
+<h2 class="sectiontitle">Clientes</h2>
+<div class="panel">
+<h2>Novo cliente</h2>
+<form id="formClientes">
+<div class="formgrid">
+<div><label>Nome / Razão social *</label><input name="nome" required></div>
+<div><label>CPF / CNPJ</label><input name="documento"></div>
+<div><label>E-mail</label><input type="email" name="email"></div>
+<div><label>Telefone</label><input name="telefone"></div>
+<div><label>Endereço</label><input name="endereco"></div>
+<div><label>Cidade / Estado</label><input name="cidade"></div>
+</div>
+<div class="field"><label>Observações</label><textarea name="observacoes"></textarea></div>
+<button class="btn">Salvar cliente</button>
+</form>
+</div>
+<div class="panel"><h2>Clientes cadastrados</h2><div class="tablewrap" id="listaClientes"></div></div>
+</section>
+
+<section class="page" id="fornecedores">
+<h2 class="sectiontitle">Fornecedores</h2>
+<div class="panel">
+<h2>Novo fornecedor</h2>
+<form id="formFornecedores">
+<div class="formgrid">
+<div><label>Nome / Empresa *</label><input name="nome" required></div>
+<div><label>CNPJ / CPF</label><input name="documento"></div>
+<div><label>Telefone</label><input name="telefone"></div>
+<div><label>E-mail</label><input type="email" name="email"></div>
+<div><label>Categoria</label><input name="categoria"></div>
+<div><label>Cidade</label><input name="cidade"></div>
+</div>
+<div class="field"><label>Observações</label><textarea name="observacoes"></textarea></div>
+<button class="btn">Salvar fornecedor</button>
+</form>
+</div>
+<div class="panel"><h2>Fornecedores cadastrados</h2><div class="tablewrap" id="listaFornecedores"></div></div>
+</section>
+
+<section class="page" id="produtos">
+<h2 class="sectiontitle">Produtos e estoque</h2>
+<div class="panel">
+<h2>Cadastrar produto</h2>
+<form id="formProdutos">
+<div class="formgrid">
+<div><label>Nome do produto *</label><input name="nome" required></div>
+<div><label>Código / SKU</label><input name="codigo"></div>
+<div><label>Categoria</label><input name="categoria"></div>
+<div><label>Quantidade em estoque</label><input type="number" name="quantidade" min="0" step="1" value="0"></div>
+<div><label>Custo unitário (R$)</label><input type="number" name="custo" min="0" step=".01" value="0"></div>
+<div><label>Preço de venda (R$)</label><input type="number" name="preco" min="0" step=".01" value="0"></div>
+<div><label>Estoque mínimo</label><input type="number" name="minimo" min="0" step="1" value="0"></div>
+<div><label>Unidade</label><select name="unidade"><option>Unidade</option><option>Kg</option><option>Metro</option><option>Litro</option><option>Caixa</option><option>Pacote</option></select></div>
+</div>
+<button class="btn">Salvar produto</button>
+</form>
+</div>
+<div class="panel"><h2>Estoque cadastrado</h2><div class="tablewrap" id="listaProdutos"></div></div>
+</section>
+
+<section class="page" id="servicos">
+<h2 class="sectiontitle">Serviços</h2>
+<div class="panel">
+<h2>Cadastrar serviço</h2>
+<form id="formServicos">
+<div class="formgrid">
+<div><label>Nome do serviço *</label><input name="nome" required></div>
+<div><label>Categoria</label><input name="categoria"></div>
+<div><label>Preço (R$)</label><input type="number" name="preco" min="0" step=".01" value="0"></div>
+<div><label>Duração estimada</label><input name="duracao" placeholder="Ex.: 2 horas"></div>
+</div>
+<div class="field"><label>Descrição</label><textarea name="descricao"></textarea></div>
+<button class="btn">Salvar serviço</button>
+</form>
+</div>
+<div class="panel"><h2>Serviços cadastrados</h2><div class="tablewrap" id="listaServicos"></div></div>
+</section>
+
+<section class="page" id="financeiro">
+<h2 class="sectiontitle">Controle financeiro</h2>
+<div class="panel">
+<h2>Nova movimentação</h2>
+<form id="formFinanceiro">
+<div class="formgrid">
+<div><label>Tipo *</label><select name="tipo"><option value="receita">Receita</option><option value="despesa">Despesa</option></select></div>
+<div><label>Descrição *</label><input name="descricao" required></div>
+<div><label>Valor (R$) *</label><input name="valor" type="number" min=".01" step=".01" required></div>
+<div><label>Data *</label><input name="data" type="date" required></div>
+<div><label>Categoria</label><input name="categoria" placeholder="Ex.: Vendas, aluguel, materiais"></div>
+<div><label>Forma de pagamento</label><select name="pagamento"><option>Pix</option><option>Dinheiro</option><option>Cartão</option><option>Transferência</option><option>Boleto</option><option>Outro</option></select></div>
+</div>
+<div class="field"><label>Observações</label><textarea name="observacoes"></textarea></div>
+<button class="btn green">Registrar movimentação</button>
+</form>
+</div>
+<div class="panel"><h2>Histórico financeiro</h2><div class="tablewrap" id="listaFinanceiro"></div></div>
+</section>
+
+<section class="page" id="tarefas">
+<h2 class="sectiontitle">Tarefas e compromissos</h2>
+<div class="panel">
+<h2>Nova tarefa</h2>
+<form id="formTarefas">
+<div class="formgrid">
+<div><label>Título *</label><input name="titulo" required></div>
+<div><label>Prazo</label><input name="prazo" type="date"></div>
+<div><label>Prioridade</label><select name="prioridade"><option>Normal</option><option>Alta</option><option>Baixa</option></select></div>
+<div><label>Responsável</label><input name="responsavel"></div>
+</div>
+<div class="field"><label>Descrição</label><textarea name="descricao"></textarea></div>
+<button class="btn">Salvar tarefa</button>
+</form>
+</div>
+<div class="panel"><h2>Lista de tarefas</h2><div class="tablewrap" id="listaTarefas"></div></div>
+</section>
+
+<section class="page" id="relatorios">
+<h2 class="sectiontitle">Relatórios</h2>
+<div class="grid">
+<div class="card"><small>Total de receitas</small><strong id="rReceitas"></strong></div>
+<div class="card"><small>Total de despesas</small><strong id="rDespesas"></strong></div>
+<div class="card"><small>Saldo</small><strong id="rSaldo"></strong></div>
+<div class="card"><small>Valor de estoque a custo</small><strong id="rEstoque"></strong></div>
+</div>
+<div class="panel">
+<h2>Resumo financeiro por categoria</h2>
+<div class="tablewrap" id="relatorioCategorias"></div>
+</div>
+<div class="panel">
+<h2>Relatório de estoque</h2>
+<div class="tablewrap" id="relatorioEstoque"></div>
+</div>
+<div class="actions">
+<button class="btn" onclick="window.print()">Imprimir relatório / Salvar PDF</button>
+<button class="btn secondary" onclick="exportCSV()">Exportar financeiro CSV</button>
+</div>
+</section>
+
+<section class="page" id="configuracoes">
+<h2 class="sectiontitle">Configurações da empresa</h2>
+<div class="panel">
+<form id="formEmpresa">
+<div class="formgrid">
+<div><label>Nome fantasia</label><input name="nome"></div>
+<div><label>Razão social</label><input name="razao"></div>
+<div><label>CNPJ / CPF</label><input name="documento"></div>
+<div><label>Telefone</label><input name="telefone"></div>
+<div><label>E-mail</label><input name="email" type="email"></div>
+<div><label>Endereço</label><input name="endereco"></div>
+<div><label>Cidade</label><input name="cidade"></div>
+<div><label>Estado</label><input name="estado"></div>
+</div>
+<div class="field"><label>Descrição da empresa</label><textarea name="descricao"></textarea></div>
+<button class="btn">Salvar empresa</button>
+</form>
+</div>
+<div class="panel">
+<h2>Seus dados e backups</h2>
+<p class="muted">Os registros são guardados neste navegador. Faça backups regularmente. Limpar os dados do navegador pode apagar seus registros.</p>
+<div class="actions">
+<button class="btn" onclick="backup()">Baixar backup JSON</button>
+<button class="btn secondary" onclick="document.getElementById('importFile').click()">Restaurar backup</button>
+<button class="btn danger" onclick="clearAll()">Apagar todos os dados</button>
+</div>
+<input id="importFile" type="file" accept=".json,application/json" hidden>
+</div>
+</section>
+
+<footer>MEU NEGÓCIO · BUSINESS PRO — Gestão local de informações empresariais.</footer>
+</main>
+
+<script>
+"use strict";
+const KEY="businesspro_meu_negocio_v1";
+const names=["clientes","fornecedores","produtos","servicos","financeiro","tarefas"];
+const empty=()=>({
+ empresa:{},clientes:[],fornecedores:[],produtos:[],
+ servicos:[],financeiro:[],tarefas:[]
+});
+let db;
+try{
+ const saved=JSON.parse(localStorage.getItem(KEY)||"null");
+ db=saved&&typeof saved==="object"&&!Array.isArray(saved)
+  ?{...empty(),...saved}:empty();
+ names.forEach(k=>{if(!Array.isArray(db[k]))db[k]=[]});
+}catch(e){db=empty();alert("Não foi possível ler os dados salvos. Faça um backup antes de continuar.");}
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(Number(n)||0);
+const safe=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
+function save(){
+ try{localStorage.setItem(KEY,JSON.stringify(db))}
+ catch(e){alert("Não foi possível salvar. Verifique o espaço disponível no navegador.");return false}
+ return true;
+}
+function openTab(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
+ document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>openTab(b.dataset.tab));
+function formData(form){
+ return Object.fromEntries(new FormData(form).entries());
+}
+names.forEach(k=>{
+ $("form"+k[0].toUpperCase()+k.slice(1)).addEventListener("submit",e=>{
+  e.preventDefault();
+  const data=formData(e.target);
+  if(k==="financeiro"&&!(Number(data.valor)>0)){alert("Informe um valor maior que zero.");return}
+  data.id=uid();
+  data.createdAt=new Date().toISOString();
+  if(k==="tarefas")data.concluida=false;
+  db[k].push(data);
+  if(!save()){db[k].pop();return}
+  e.target.reset();
+  if(k==="financeiro")e.target.elements.data.value=new Date().toLocaleDateString("en-CA");
+  render();
+  alert("Registro salvo com sucesso.");
+ });
+});
+function removeItem(k,id){
+ if(!confirm("Excluir este registro?"))return;
+ const old=db[k];
+ db[k]=old.filter(x=>String(x.id)!==String(id));
+ if(!save()){db[k]=old;return}
+ render();
+}
+function toggleTask(id){
+ const item=db.tarefas.find(x=>String(x.id)===String(id));
+ if(!item)return;
+ item.concluida=!item.concluida;
+ if(!save())item.concluida=!item.concluida;
+ render();
+}
+function table(k,cols){
+ const data=db[k];
+ if(!data.length)return '<div class="empty">Nenhum registro cadastrado.</div>';
+ return `<table><thead><tr>${cols.map(c=>`<th>${safe(c[0])}</th>`).join("")}<th>Ações</th></tr></thead><tbody>`+
+ data.map(x=>`<tr>${cols.map(c=>`<td>${safe(c[2]?c[2](x[c[1]],x):x[c[1]])}</td>`).join("")}
+ <td><button class="btn danger" data-remove="${safe(k)}" data-id="${safe(x.id)}">Excluir</button></td></tr>`).join("")+
+ "</tbody></table>";
+}
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-remove]");
+ if(b)removeItem(b.dataset.remove,b.dataset.id);
+ const t=e.target.closest("[data-task]");
+ if(t)toggleTask(t.dataset.task);
+});
+function render(){
+ const rec=db.financeiro.filter(x=>x.tipo==="receita").reduce((s,x)=>s+Number(x.valor||0),0);
+ const des=db.financeiro.filter(x=>x.tipo==="despesa").reduce((s,x)=>s+Number(x.valor||0),0);
+ const saldo=rec-des;
+ $("totalReceitas").textContent=money(rec);
+ $("totalDespesas").textContent=money(des);
+ $("saldo").textContent=money(saldo);
+ $("saldo").className=saldo<0?"bad":"good";
+ $("totalClientes").textContent=db.clientes.length;
+ $("countFornecedores").textContent=db.fornecedores.length;
+ $("countProdutos").textContent=db.produtos.length;
+ $("countServicos").textContent=db.servicos.length;
+ $("countTarefas").textContent=db.tarefas.filter(x=>!x.concluida).length;
+ $("rReceitas").textContent=money(rec);
+ $("rDespesas").textContent=money(des);
+ $("rSaldo").textContent=money(saldo);
+ $("rEstoque").textContent=money(db.produtos.reduce((s,x)=>s+Number(x.quantidade||0)*Number(x.custo||0),0));
+
+ $("listaClientes").innerHTML=table("clientes",[
+ ["Nome","nome"],["Documento","documento"],["Telefone","telefone"],["E-mail","email"],["Cidade","cidade"]
+ ]);
+ $("listaFornecedores").innerHTML=table("fornecedores",[
+ ["Fornecedor","nome"],["Documento","documento"],["Telefone","telefone"],["Categoria","categoria"]
+ ]);
+ $("listaProdutos").innerHTML=table("produtos",[
+ ["Produto","nome"],["SKU","codigo"],["Estoque","quantidade"],
+ ["Mínimo","minimo"],["Custo","custo",money],["Venda","preco",money],
+ ["Situação","quantidade",(_,x)=>Number(x.quantidade)<=Number(x.minimo)?"Estoque baixo":"Normal"]
+ ]);
+ $("listaServicos").innerHTML=table("servicos",[
+ ["Serviço","nome"],["Categoria","categoria"],["Preço","preco",money],["Duração","duracao"]
+ ]);
+ $("listaFinanceiro").innerHTML=table("financeiro",[
+ ["Data","data"],["Tipo","tipo"],["Descrição","descricao"],["Categoria","categoria"],
+ ["Pagamento","pagamento"],["Valor","valor",money]
+ ]);
+ const tarefas=db.tarefas;
+ $("listaTarefas").innerHTML=tarefas.length?
+ `<table><thead><tr><th>Tarefa</th><th>Prazo</th><th>Prioridade</th><th>Responsável</th><th>Status</th><th>Ações</th></tr></thead><tbody>`+
+ tarefas.map(x=>`<tr><td>${safe(x.titulo)}</td><td>${safe(x.prazo)}</td>
+ <td>${safe(x.prioridade)}</td><td>${safe(x.responsavel)}</td>
+ <td>${x.concluida?"Concluída":"Pendente"}</td>
+ <td><button class="btn secondary" data-task="${safe(x.id)}">${x.concluida?"Reabrir":"Concluir"}</button>
+ <button class="btn danger" data-remove="tarefas" data-id="${safe(x.id)}">Excluir</button></td></tr>`).join("")+
+ "</tbody></table>":'<div class="empty">Nenhuma tarefa cadastrada.</div>';
+
+ const categorias={};
+ db.financeiro.forEach(x=>{
+  const k=(x.tipo==="receita"?"Receita":"Despesa")+" · "+(x.categoria||"Sem categoria");
+  categorias[k]=(categorias[k]||0)+Number(x.valor||0);
+ });
+ $("relatorioCategorias").innerHTML=Object.keys(categorias).length?
+ `<table><tr><th>Categoria</th><th>Total</th></tr>`+
+ Object.entries(categorias).map(([k,v])=>`<tr><td>${safe(k)}</td><td>${money(v)}</td></tr>`).join("")+"</table>":
+ '<div class="empty">Sem movimentações financeiras.</div>';
+ $("relatorioEstoque").innerHTML=db.produtos.length?
+ `<table><tr><th>Produto</th><th>Quantidade</th><th>Valor a custo</th></tr>`+
+ db.produtos.map(x=>`<tr><td>${safe(x.nome)}</td><td>${safe(x.quantidade)}</td><td>${money(Number(x.quantidade)*Number(x.custo))}</td></tr>`).join("")+"</table>":
+ '<div class="empty">Sem produtos cadastrados.</div>';
+}
+$("formEmpresa").addEventListener("submit",e=>{
+ e.preventDefault();
+ const old=db.empresa;
+ db.empresa=formData(e.target);
+ if(!save()){db.empresa=old;return}
+ alert("Dados da empresa salvos.");
+});
+function loadEmpresa(){
+ Object.entries(db.empresa||{}).forEach(([k,v])=>{
+  const el=$("formEmpresa").elements.namedItem(k);
+  if(el)el.value=v;
+ });
+}
+function download(content,name,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function backup(){
+ download(JSON.stringify({version:1,exportedAt:new Date().toISOString(),data:db},null,2),
+ "meu-negocio-backup-"+new Date().toISOString().slice(0,10)+".json","application/json");
+}
+$("importFile").addEventListener("change",async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+ try{
+  const raw=JSON.parse(await file.text());
+  const incoming=raw.data||raw;
+  if(!incoming||typeof incoming!=="object"||Array.isArray(incoming)||
+   !names.every(k=>Array.isArray(incoming[k]))||
+   !incoming.empresa||typeof incoming.empresa!=="object"||Array.isArray(incoming.empresa))
+   throw Error("Estrutura de backup inválida");
+  if(!confirm("Restaurar este backup? Os dados atuais serão substituídos."))return;
+  const previous=db;
+  db={...empty(),...incoming};
+  if(!save()){db=previous;return}
+  loadEmpresa();render();alert("Backup restaurado.");
+ }catch(err){alert("Não foi possível restaurar: "+err.message)}
+ e.target.value="";
+});
+function clearAll(){
+ if(!confirm("ATENÇÃO: apagar todos os dados deste aplicativo?"))return;
+ if(prompt('Digite APAGAR para confirmar:')!=="APAGAR")return;
+ const old=db;db=empty();
+ if(!save()){db=old;return}
+ $("formEmpresa").reset();
+ render();
+}
+function exportCSV(){
+ const cols=["data","tipo","descricao","categoria","pagamento","valor","observacoes"];
+ const quote=v=>'"'+String(v??"").replace(/"/g,'""')+'"';
+ const rows=[cols,...db.financeiro.map(x=>cols.map(c=>x[c]))];
+ const csv="\uFEFF"+rows.map(r=>r.map(quote).join(";")).join("\r\n");
+ download(csv,"meu-negocio-financeiro.csv","text/csv;charset=utf-8");
+}
+$("formFinanceiro").elements.data.value=new Date().toLocaleDateString("en-CA");
+loadEmpresa();
+render();
+</script>
+</body>
+</html>
