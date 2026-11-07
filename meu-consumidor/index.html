@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<meta name="description" content="MEU CONSUMIDOR - Organize compras, reclamações, garantias, protocolos e direitos do consumidor.">
+<title>MEU CONSUMIDOR | BUSINESS PRO</title>
+<style>
+:root{
+ --blue:#2563eb;
+ --dark:#142747;
+ --bg:#f3f7ff;
+ --line:#dce5f3;
+ --muted:#64748b;
+ --green:#15803d;
+ --red:#dc2626;
+ --orange:#d97706;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--dark);font-family:Arial,Helvetica,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+a{color:var(--blue)}
+header{
+ background:#fff;border-bottom:1px solid var(--line);
+ padding:18px 5%;display:flex;align-items:center;
+ justify-content:space-between;gap:12px
+}
+.brand{font-size:22px;font-weight:900}
+.brand span{color:var(--blue)}
+.back{font-weight:800;text-decoration:none}
+main{max-width:1250px;margin:auto;padding:25px 18px}
+.hero{
+ background:linear-gradient(125deg,#14366d,#2563eb);
+ color:white;border-radius:24px;padding:36px;
+ box-shadow:0 15px 35px #2563eb25
+}
+.hero small{letter-spacing:2px;font-weight:900}
+.hero h1{font-size:clamp(28px,4vw,43px);margin:12px 0}
+.hero p{line-height:1.7;max-width:780px;opacity:.94}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.btn{
+ border:0;background:var(--blue);color:#fff;
+ padding:12px 16px;border-radius:12px;font-weight:800;
+ display:inline-flex;align-items:center;justify-content:center;
+ gap:7px;text-decoration:none
+}
+.btn:hover{filter:brightness(.96)}
+.secondary{background:#fff;color:var(--dark);border:1px solid var(--line)}
+.danger{background:#fff1f2;color:var(--red)}
+.success{background:#dcfce7;color:var(--green)}
+.search{
+ flex:1;min-width:190px;background:white;
+ border:1px solid var(--line);border-radius:12px;padding:13px
+}
+.stats{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:14px;margin-bottom:24px
+}
+.stat,.panel,.record{
+ background:white;border:1px solid var(--line);
+ border-radius:19px;padding:22px;
+ box-shadow:0 10px 25px #1e3a8a08
+}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:29px;margin-top:9px;overflow-wrap:anywhere}
+.panel{margin-bottom:22px}
+.panel h2{margin-top:0}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
+.filter{
+ border:1px solid var(--line);background:white;
+ border-radius:30px;padding:9px 15px;
+ color:var(--dark);font-weight:700
+}
+.filter.active{background:var(--blue);border-color:var(--blue);color:white}
+.records{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.record h3{margin:13px 0;overflow-wrap:anywhere}
+.record p{line-height:1.6;color:var(--muted);overflow-wrap:anywhere}
+.tag{
+ display:inline-block;padding:7px 12px;border-radius:30px;
+ background:#eaf1ff;color:#1d4ed8;font-size:12px;font-weight:900
+}
+.tag.green{background:#dcfce7;color:#166534}
+.tag.red{background:#fee2e2;color:#b91c1c}
+.tag.orange{background:#fef3c7;color:#92400e}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.empty{grid-column:1/-1;text-align:center;padding:45px;color:var(--muted)}
+.links{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:12px
+}
+.linkcard{
+ display:flex;flex-direction:column;gap:9px;
+ padding:19px;border:1px solid var(--line);
+ border-radius:15px;text-decoration:none;background:#f8fbff
+}
+.linkcard strong{color:var(--blue)}
+.linkcard small{color:var(--muted);line-height:1.5}
+dialog{
+ border:0;border-radius:22px;padding:0;
+ width:min(850px,96vw);max-height:92vh;overflow:auto;
+ box-shadow:0 25px 100px #0f172a60
+}
+dialog::backdrop{background:#071326aa}
+.modalhead{background:#f4f8ff;padding:23px 27px;border-bottom:1px solid var(--line)}
+.modalhead h2{margin:0}
+form{padding:25px 27px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.full{grid-column:1/-1}
+label{font-size:13px;font-weight:800}
+input,select,textarea{
+ width:100%;border:1px solid #cbd8eb;
+ border-radius:11px;padding:13px;background:white;color:var(--dark)
+}
+textarea{min-height:105px;resize:vertical}
+.modalactions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:24px}
+.note{color:var(--muted);font-size:13px;line-height:1.7}
+.preview{
+ background:#f8fbff;border:1px solid var(--line);
+ padding:18px;border-radius:14px;white-space:pre-wrap;
+ line-height:1.7;overflow-wrap:anywhere
+}
+.printarea{display:none}
+@media(max-width:800px){
+ .links{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ header{padding:16px}
+ main{padding:17px 12px}
+ .hero{padding:25px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .records,.fields,.links{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .stat{padding:17px}
+ .stat strong{font-size:25px}
+}
+@media print{
+ header,main>*:not(.printarea),dialog{display:none!important}
+ body{background:white}
+ main{padding:0}
+ .printarea{
+  display:block!important;
+  padding:12mm;color:#111;
+  font:14px/1.7 Arial,sans-serif
+ }
+ .printarea h1{font-size:23px}
+ .printarea p{white-space:pre-wrap;overflow-wrap:anywhere}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="brand">◆ BUSINESS <span>PRO</span></div>
+ <a class="back" href="../">← Voltar ao portal</a>
+</header>
+
+<main>
+
+<section class="hero">
+ <small>COMPRAS, GARANTIAS E RECLAMAÇÕES</small>
+ <h1>🛒 MEU CONSUMIDOR</h1>
+ <p>
+  Organize suas compras, acompanhe garantias, registre
+  problemas com produtos e serviços, controle protocolos
+  e prepare reclamações para encaminhar às empresas.
+ </p>
+</section>
+
+<div class="toolbar">
+ <button class="btn" id="newBtn">+ Novo registro</button>
+ <input class="search" id="search" placeholder="Pesquisar produto, empresa ou protocolo...">
+ <button class="btn secondary" id="csvBtn">Exportar CSV</button>
+ <button class="btn secondary" id="backupBtn">Backup JSON</button>
+ <button class="btn secondary" id="importBtn">Importar backup</button>
+ <input type="file" id="importFile" accept=".json,application/json" hidden>
+</div>
+
+<section class="stats">
+ <div class="stat">
+  <small>Total de registros</small>
+  <strong id="total">0</strong>
+ </div>
+ <div class="stat">
+  <small>Reclamações abertas</small>
+  <strong id="opened">0</strong>
+ </div>
+ <div class="stat">
+  <small>Resolvidos</small>
+  <strong id="resolved">0</strong>
+ </div>
+ <div class="stat">
+  <small>Valor das compras</small>
+  <strong id="totalValue">R$ 0</strong>
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Seus canais oficiais de atendimento</h2>
+ <div class="links">
+  <a class="linkcard" href="https://www.consumidor.gov.br/" target="_blank" rel="noopener noreferrer">
+   <strong>🏛️ Consumidor.gov.br</strong>
+   <small>Plataforma pública de resolução de conflitos entre consumidores e empresas participantes.</small>
+  </a>
+  <a class="linkcard" href="https://www.gov.br/mj/pt-br/assuntos/seus-direitos/consumidor" target="_blank" rel="noopener noreferrer">
+   <strong>⚖️ Direitos do consumidor</strong>
+   <small>Informações oficiais sobre proteção e defesa do consumidor.</small>
+  </a>
+  <a class="linkcard" href="https://www.procon.sc.gov.br/" target="_blank" rel="noopener noreferrer">
+   <strong>📋 PROCON SC</strong>
+   <small>Orientações e canais de atendimento ao consumidor em Santa Catarina.</small>
+  </a>
+  <a class="linkcard" href="https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm" target="_blank" rel="noopener noreferrer">
+   <strong>📖 Código de Defesa do Consumidor</strong>
+   <small>Consulte a legislação federal brasileira.</small>
+  </a>
+  <a class="linkcard" href="https://www.gov.br/anatel/pt-br/consumidor" target="_blank" rel="noopener noreferrer">
+   <strong>📱 ANATEL</strong>
+   <small>Orientações sobre direitos e reclamações de serviços de telecomunicações.</small>
+  </a>
+  <a class="linkcard" href="https://www.gov.br/ans/pt-br/assuntos/consumidor" target="_blank" rel="noopener noreferrer">
+   <strong>🏥 ANS</strong>
+   <small>Informações e orientações para consumidores de planos de saúde.</small>
+  </a>
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Minhas compras e reclamações</h2>
+
+ <div class="filters" id="filters">
+  <button class="filter active" data-filter="Todos">Todos</button>
+  <button class="filter" data-filter="Registrado">Registrados</button>
+  <button class="filter" data-filter="Reclamação aberta">Reclamações abertas</button>
+  <button class="filter" data-filter="Aguardando resposta">Aguardando resposta</button>
+  <button class="filter" data-filter="Resolvido">Resolvidos</button>
+  <button class="filter" data-filter="Cancelado">Cancelados</button>
+ </div>
+
+ <div class="records" id="records"></div>
+</section>
+
+<p class="note">
+ Este aplicativo organiza informações localmente no navegador.
+ Ele não envia reclamações automaticamente a empresas, PROCON ou órgãos públicos.
+ O backup JSON permite guardar e restaurar seus registros.
+ Não armazene senhas, números completos de cartão ou documentos pessoais sensíveis.
+ Prazos e direitos específicos devem ser confirmados conforme a legislação aplicável.
+</p>
+
+<section class="printarea" id="printArea"></section>
+
+</main>
+
+<dialog id="recordModal">
+ <div class="modalhead">
+  <h2 id="modalTitle">Novo registro de consumidor</h2>
+ </div>
+
+ <form id="recordForm">
+  <div class="fields">
+
+   <div class="field full">
+    <label for="titulo">Produto, serviço ou assunto *</label>
+    <input id="titulo" required placeholder="Ex.: Celular com defeito">
+   </div>
+
+   <div class="field">
+    <label for="tipo">Tipo de registro</label>
+    <select id="tipo">
+     <option>Compra</option>
+     <option>Reclamação</option>
+     <option>Garantia</option>
+     <option>Troca ou devolução</option>
+     <option>Cancelamento</option>
+     <option>Cobrança indevida</option>
+     <option>Serviço não prestado</option>
+     <option>Outro</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="categoria">Categoria</label>
+    <select id="categoria">
+     <option>Eletrônicos</option>
+     <option>Eletrodomésticos</option>
+     <option>Roupas e acessórios</option>
+     <option>Alimentação</option>
+     <option>Telefonia e internet</option>
+     <option>Serviços financeiros</option>
+     <option>Transporte</option>
+     <option>Saúde</option>
+     <option>Educação</option>
+     <option>Outros</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="empresa">Empresa ou fornecedor *</label>
+    <input id="empresa" required>
+   </div>
+
+   <div class="field">
+    <label for="contato">Contato do fornecedor</label>
+    <input id="contato" placeholder="Telefone ou e-mail">
+   </div>
+
+   <div class="field">
+    <label for="pedido">Número do pedido ou nota fiscal</label>
+    <input id="pedido">
+   </div>
+
+   <div class="field">
+    <label for="protocolo">Protocolo de atendimento</label>
+    <input id="protocolo">
+   </div>
+
+   <div class="field">
+    <label for="compra">Data da compra</label>
+    <input id="compra" type="date">
+   </div>
+
+   <div class="field">
+    <label for="entrega">Data da entrega</label>
+    <input id="entrega" type="date">
+   </div>
+
+   <div class="field">
+    <label for="valor">Valor da compra (R$)</label>
+    <input id="valor" type="number" min="0" step="0.01">
+   </div>
+
+   <div class="field">
+    <label for="garantia">Fim da garantia informada</label>
+    <input id="garantia" type="date">
+   </div>
+
+   <div class="field">
+    <label for="reclamacao">Data da reclamação</label>
+    <input id="reclamacao" type="date">
+   </div>
+
+   <div class="field">
+    <label for="retorno">Data prevista de retorno</label>
+    <input id="retorno" type="date">
+   </div>
+
+   <div class="field">
+    <label for="situacao">Situação</label>
+    <select id="situacao">
+     <option>Registrado</option>
+     <option>Reclamação aberta</option>
+     <option>Aguardando resposta</option>
+     <option>Em negociação</option>
+     <option>Resolvido</option>
+     <option>Cancelado</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="prioridade">Prioridade</label>
+    <select id="prioridade">
+     <option>Normal</option>
+     <option>Alta</option>
+     <option>Urgente</option>
+     <option>Baixa</option>
+    </select>
+   </div>
+
+   <div class="field full">
+    <label for="problema">Descrição do problema *</label>
+    <textarea id="problema" required placeholder="Descreva o ocorrido, datas, defeitos e informações relevantes."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="pedidoSolucao">O que você deseja solicitar?</label>
+    <select id="pedidoSolucao">
+     <option>Não definido</option>
+     <option>Reembolso</option>
+     <option>Troca do produto</option>
+     <option>Reparo</option>
+     <option>Cancelamento</option>
+     <option>Entrega do produto</option>
+     <option>Correção da cobrança</option>
+     <option>Explicação formal</option>
+     <option>Outra solução</option>
+    </select>
+   </div>
+
+   <div class="field full">
+    <label for="providencias">Providências já realizadas</label>
+    <textarea id="providencias" placeholder="Contatos feitos, respostas recebidas e tentativas de solução."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="solucao">Solução apresentada pela empresa</label>
+    <textarea id="solucao"></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="observacoes">Observações e comprovantes disponíveis</label>
+    <textarea id="observacoes" placeholder="Liste nota fiscal, recibos, mensagens, fotos e outros comprovantes."></textarea>
+   </div>
+
+  </div>
+
+  <div class="modalactions">
+   <button type="button" class="btn secondary" id="cancelBtn">Cancelar</button>
+   <button type="submit" class="btn">Salvar registro</button>
+  </div>
+ </form>
+</dialog>
+
+<dialog id="letterModal">
+ <div class="modalhead">
+  <h2>Gerador de reclamação</h2>
+ </div>
+ <div style="padding:24px">
+  <p class="note">Revise e personalize o texto antes de encaminhar ao fornecedor.</p>
+  <div class="preview" id="letterPreview"></div>
+  <div class="modalactions">
+   <button class="btn secondary" id="closeLetter">Fechar</button>
+   <button class="btn secondary" id="copyLetter">Copiar texto</button>
+   <button class="btn" id="printLetter">Imprimir / PDF</button>
+  </div>
+ </div>
+</dialog>
+
+<script>
+"use strict";
+
+const $=id=>document.getElementById(id);
+const KEY="businesspro_meu_consumidor_v1";
+
+const FIELDS=[
+ "titulo","tipo","categoria","empresa","contato",
+ "pedido","protocolo","compra","entrega","valor",
+ "garantia","reclamacao","retorno","situacao",
+ "prioridade","problema","pedidoSolucao",
+ "providencias","solucao","observacoes"
+];
+
+const LABELS={
+ titulo:"Produto ou assunto",
+ tipo:"Tipo de registro",
+ categoria:"Categoria",
+ empresa:"Empresa ou fornecedor",
+ contato:"Contato",
+ pedido:"Pedido ou nota fiscal",
+ protocolo:"Protocolo",
+ compra:"Data da compra",
+ entrega:"Data da entrega",
+ valor:"Valor",
+ garantia:"Fim da garantia informada",
+ reclamacao:"Data da reclamação",
+ retorno:"Data prevista de retorno",
+ situacao:"Situação",
+ prioridade:"Prioridade",
+ problema:"Descrição do problema",
+ pedidoSolucao:"Solução solicitada",
+ providencias:"Providências realizadas",
+ solucao:"Resposta ou solução da empresa",
+ observacoes:"Observações"
+};
+
+let records=[];
+let editing=null;
+let filter="Todos";
+let currentLetter="";
+
+try{
+ const stored=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(stored))records=stored;
+}catch(e){
+ alert("Não foi possível carregar os registros locais.");
+}
+
+function esc(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ }[c]));
+}
+
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(records));
+  return true;
+ }catch(e){
+  alert("Não foi possível salvar. Verifique o espaço disponível no navegador.");
+  return false;
+ }
+}
+
+function makeId(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
+}
+
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+
+  String(d.getMonth()+1).padStart(2,"0")+"-"+
+  String(d.getDate()).padStart(2,"0");
+}
+
+function dateBR(value){
+ if(!value)return "Não informado";
+ const p=value.split("-");
+ return p.length===3?p.reverse().join("/"):value;
+}
+
+function money(value){
+ return Number(value||0).toLocaleString("pt-BR",{
+  style:"currency",currency:"BRL"
+ });
+}
+
+function openForm(id=null){
+ editing=id;
+ const item=records.find(x=>x.id===id);
+
+ $("modalTitle").textContent=item?
+  "Editar registro de consumidor":"Novo registro de consumidor";
+
+ FIELDS.forEach(f=>{
+  $(f).value=item?.data?.[f]??"";
+ });
+
+ if(!item){
+  $("situacao").value="Registrado";
+  $("prioridade").value="Normal";
+  $("pedidoSolucao").value="Não definido";
+ }
+
+ $("recordModal").showModal();
+}
+
+function warrantyStatus(d){
+ if(!d.garantia)return "Não informada";
+ if(d.garantia<today())return "Data informada encerrada";
+ if(d.garantia===today())return "Termina hoje";
+ return "Dentro da data informada";
+}
+
+function render(){
+ const q=$("search").value.toLocaleLowerCase("pt-BR").trim();
+
+ $("total").textContent=records.length;
+
+ $("opened").textContent=records.filter(x=>
+  ["Reclamação aberta","Aguardando resposta","Em negociação"]
+   .includes(x.data.situacao)
+ ).length;
+
+ $("resolved").textContent=records.filter(x=>
+  x.data.situacao==="Resolvido"
+ ).length;
+
+ $("totalValue").textContent=money(records.reduce(
+  (sum,x)=>sum+Number(x.data.valor||0),0
+ ));
+
+ const filtered=records.filter(x=>{
+  const status=filter==="Todos"||x.data.situacao===filter;
+  const search=JSON.stringify(x.data)
+   .toLocaleLowerCase("pt-BR").includes(q);
+  return status&&search;
+ });
+
+ if(!filtered.length){
+  $("records").innerHTML=`
+   <div class="empty">
+    <h3>Nenhum registro encontrado</h3>
+    <p>Cadastre uma compra ou reclamação para começar.</p>
+   </div>`;
+  return;
+ }
+
+ $("records").innerHTML=filtered.map(x=>{
+  const d=x.data;
+  const cls=d.situacao==="Resolvido"?"green":
+   d.situacao==="Cancelado"?"red":
+   d.situacao==="Aguardando resposta"?"orange":"";
+
+  return `<article class="record">
+   <span class="tag ${cls}">${esc(d.situacao)}</span>
+   <h3>${esc(d.titulo)}</h3>
+
+   <p><strong>Empresa:</strong> ${esc(d.empresa)}</p>
+   <p><strong>Categoria:</strong> ${esc(d.categoria)}</p>
+   <p><strong>Tipo:</strong> ${esc(d.tipo)}</p>
+   <p><strong>Valor:</strong> ${esc(money(d.valor))}</p>
+   <p><strong>Compra:</strong> ${esc(dateBR(d.compra))}</p>
+   <p><strong>Protocolo:</strong> ${esc(d.protocolo||"Não informado")}</p>
+   <p><strong>Garantia:</strong> ${esc(warrantyStatus(d))}</p>
+   <p><strong>Retorno previsto:</strong> ${esc(dateBR(d.retorno))}</p>
+   <p><strong>Problema:</strong> ${esc(d.problema)}</p>
+
+   <div class="actions">
+    <button class="btn secondary" data-action="edit"
+     data-id="${esc(x.id)}">Editar</button>
+    <button class="btn" data-action="letter"
+     data-id="${esc(x.id)}">Gerar reclamação</button>
+    <button class="btn secondary" data-action="print"
+     data-id="${esc(x.id)}">Relatório / PDF</button>
+    <button class="btn danger" data-action="delete"
+     data-id="${esc(x.id)}">Excluir</button>
+   </div>
+  </article>`;
+ }).join("");
+}
+
+$("recordForm").onsubmit=e=>{
+ e.preventDefault();
+
+ const data={};
+ FIELDS.forEach(f=>data[f]=$(f).value.trim());
+
+ if(!data.titulo||!data.empresa||!data.problema){
+  alert("Preencha o assunto, a empresa e a descrição do problema.");
+  return;
+ }
+
+ const old=records.find(x=>x.id===editing);
+
+ const record={
+  id:old?.id||makeId(),
+  createdAt:old?.createdAt||new Date().toISOString(),
+  updatedAt:new Date().toISOString(),
+  data
+ };
+
+ const previous=records;
+
+ records=old?
+  records.map(x=>x.id===editing?record:x):
+  [record,...records];
+
+ if(!save()){
+  records=previous;
+  return;
+ }
+
+ $("recordModal").close();
+ editing=null;
+ render();
+};
+
+function generateLetter(d){
+ return [
+  "RECLAMAÇÃO FORMAL AO FORNECEDOR",
+  "",
+  "À empresa: "+d.empresa,
+  "Assunto: "+d.titulo,
+  "Data: "+new Date().toLocaleDateString("pt-BR"),
+  "",
+  "Prezados(as),",
+  "",
+  "Venho apresentar uma reclamação referente ao seguinte produto ou serviço:",
+  "",
+  "Produto/serviço: "+d.titulo,
+  "Data da compra: "+dateBR(d.compra),
+  "Valor: "+money(d.valor),
+  "Pedido ou nota fiscal: "+(d.pedido||"Não informado"),
+  "Protocolo anterior: "+(d.protocolo||"Não informado"),
+  "",
+  "DESCRIÇÃO DO PROBLEMA",
+  d.problema,
+  "",
+  "PROVIDÊNCIAS JÁ REALIZADAS",
+  d.providencias||"Não informadas.",
+  "",
+  "SOLUÇÃO SOLICITADA",
+  d.pedidoSolucao==="Não definido"?
+   "Solicito a análise da situação e uma resposta formal com proposta de solução.":
+   "Solicito: "+d.pedidoSolucao+".",
+  "",
+  "Peço que a empresa analise o caso e apresente uma resposta pelos canais de atendimento disponíveis.",
+  "",
+  "Atenciosamente,",
+  "",
+  "Nome: __________________________________",
+  "Contato: _________________________________",
+  "Data: ____/____/________"
+ ].join("\n");
+}
+
+function printContent(title,content){
+ $("printArea").innerHTML=`
+  <h1>${esc(title)}</h1>
+  <hr>
+  <p>${esc(content)}</p>
+  <hr>
+  <p>Gerado em ${esc(new Date().toLocaleString("pt-BR"))}</p>
+ `;
+ window.print();
+}
+
+function reportText(d){
+ return [
+  "BUSINESS PRO — MEU CONSUMIDOR",
+  "",
+  ...FIELDS.map(f=>{
+   let value=d[f]||"Não informado";
+   if(["compra","entrega","garantia","reclamacao","retorno"].includes(f)){
+    value=dateBR(d[f]);
+   }
+   if(f==="valor")value=money(d[f]);
+   return LABELS[f]+": "+value;
+  })
+ ].join("\n");
+}
+
+$("records").onclick=e=>{
+ const btn=e.target.closest("button[data-action]");
+ if(!btn)return;
+
+ const item=records.find(x=>x.id===btn.dataset.id);
+ if(!item)return;
+
+ const action=btn.dataset.action;
+
+ if(action==="edit"){
+  openForm(item.id);
+ }
+
+ if(action==="letter"){
+  currentLetter=generateLetter(item.data);
+  $("letterPreview").textContent=currentLetter;
+  $("letterModal").showModal();
+ }
+
+ if(action==="print"){
+  printContent("RELATÓRIO DO CONSUMIDOR",reportText(item.data));
+ }
+
+ if(action==="delete"){
+  if(!confirm("Excluir este registro?"))return;
+
+  const previous=records;
+  records=records.filter(x=>x.id!==item.id);
+
+  if(!save())records=previous;
+  render();
+ }
+};
+
+$("filters").onclick=e=>{
+ const btn=e.target.closest("[data-filter]");
+ if(!btn)return;
+
+ filter=btn.dataset.filter;
+
+ document.querySelectorAll(".filter").forEach(b=>
+  b.classList.toggle("active",b===btn)
+ );
+
+ render();
+};
+
+$("copyLetter").onclick=async()=>{
+ try{
+  await navigator.clipboard.writeText(currentLetter);
+  alert("Reclamação copiada.");
+ }catch(e){
+  const ta=document.createElement("textarea");
+  ta.value=currentLetter;
+  document.body.appendChild(ta);
+  ta.select();
+  const ok=document.execCommand("copy");
+  ta.remove();
+  alert(ok?"Reclamação copiada.":"Não foi possível copiar.");
+ }
+};
+
+$("printLetter").onclick=()=>{
+ printContent("RECLAMAÇÃO FORMAL",currentLetter);
+};
+
+$("closeLetter").onclick=()=>$("letterModal").close();
+
+function download(name,content,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+
+ a.href=url;
+ a.download=name;
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function csvCell(v){
+ return '"'+String(v??"").replace(/"/g,'""')+'"';
+}
+
+$("csvBtn").onclick=()=>{
+ if(!records.length){
+  alert("Não existem registros para exportar.");
+  return;
+ }
+
+ const headers=["ID","Criado em","Atualizado em",...FIELDS.map(f=>LABELS[f])];
+
+ const rows=records.map(x=>[
+  x.id,x.createdAt,x.updatedAt,
+  ...FIELDS.map(f=>x.data[f]||"")
+ ]);
+
+ const csv="\uFEFF"+[headers,...rows]
+  .map(row=>row.map(csvCell).join(";"))
+  .join("\r\n");
+
+ download("meus-registros-consumidor.csv",csv,"text/csv;charset=utf-8");
+};
+
+$("backupBtn").onclick=()=>{
+ download(
+  "backup-meu-consumidor.json",
+  JSON.stringify({
+   app:"meu-consumidor",
+   version:1,
+   records
+  },null,2),
+  "application/json"
+ );
+};
+
+$("importBtn").onclick=()=>$("importFile").click();
+
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  const obj=JSON.parse(await file.text());
+
+  if(obj.app!=="meu-consumidor"||!Array.isArray(obj.records)){
+   throw Error("Backup incompatível.");
+  }
+
+  const valid=obj.records.every(x=>
+   x&&typeof x.id==="string"&&
+   x.data&&typeof x.data==="object"&&
+   FIELDS.every(f=>
+    x.data[f]===undefined||typeof x.data[f]==="string")
+  );
+
+  if(!valid)throw Error("Estrutura de registros inválida.");
+
+  if(!confirm(
+   "Substituir todos os registros atuais pelos dados do backup?"
+  ))return;
+
+  const previous=records;
+  records=obj.records;
+
+  if(!save()){
+   records=previous;
+   return;
+  }
+
+  render();
+  alert("Backup importado com sucesso.");
+
+ }catch(err){
+  alert("Erro ao importar: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+$("newBtn").onclick=()=>openForm();
+$("cancelBtn").onclick=()=>$("recordModal").close();
+$("search").oninput=render;
+
+render();
+</script>
+
+</body>
+</html>
