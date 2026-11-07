@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MEU PROTOCOLO | BUSINESS PRO</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f7ff;color:#142b4b;font:15px Arial,sans-serif}
+header{background:white;padding:20px 5%;display:flex;justify-content:space-between;border-bottom:1px solid #dce5f3}
+a{color:#2563eb;text-decoration:none}
+main{max-width:1150px;margin:auto;padding:24px 16px}
+.hero{background:linear-gradient(115deg,#102b5b,#2563eb);color:white;border-radius:22px;padding:32px}
+.hero h1{margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
+.card{background:white;border:1px solid #dce5f3;border-radius:18px;padding:22px}
+.card strong{display:block;font-size:29px;margin-top:8px}
+.layout{display:grid;grid-template-columns:350px 1fr;gap:18px}
+label{display:block;margin:14px 0 6px;font-weight:bold;font-size:13px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd8e9;border-radius:10px;font:inherit}
+textarea{min-height:90px}
+button{background:#2563eb;color:white;border:0;border-radius:10px;padding:12px 15px;font-weight:bold;cursor:pointer;margin:4px 4px 4px 0}
+.alt{background:#eaf0ff;color:#174fc6}
+.danger{background:#ffeded;color:#b42318}
+.item{border:1px solid #dce5f3;border-radius:14px;padding:17px;margin:12px 0}
+.item h3{margin:0 0 8px}
+small{color:#64748b}
+@media(max-width:750px){.layout,.grid{grid-template-columns:1fr}}
+@media print{header,.hero,.grid,.layout,.no-print{display:none!important}#comprovante{display:block!important;padding:25px}body{background:white}}
+#comprovante{display:none}
+</style>
+</head>
+<body>
+<header><b>◆ BUSINESS PRO</b><a href="../">Voltar ao portal</a></header>
+<main>
+<div class="hero">
+<h1>📋 MEU PROTOCOLO</h1>
+<p>Registre atendimentos, documentos, solicitações e acompanhe prazos.</p>
+</div>
+<div class="grid">
+<div class="card">Total<strong id="total">0</strong></div>
+<div class="card">Pendentes<strong id="pendentes">0</strong></div>
+<div class="card">Finalizados<strong id="finalizados">0</strong></div>
+</div>
+<div class="layout">
+<section class="card">
+<h2 id="titulo">Novo protocolo</h2>
+<form id="form">
+<input type="hidden" id="editId">
+<label>Assunto</label>
+<input id="assunto" required placeholder="Ex.: Solicitação de documento">
+<label>Solicitante</label>
+<input id="solicitante" required>
+<label>Contato</label>
+<input id="contato">
+<label>Setor</label>
+<input id="setor" placeholder="Ex.: Administrativo">
+<label>Responsável</label>
+<input id="responsavel">
+<label>Prazo</label>
+<input id="prazo" type="date">
+<label>Prioridade</label>
+<select id="prioridade"><option>Normal</option><option>Alta</option><option>Urgente</option></select>
+<label>Situação</label>
+<select id="situacao"><option>Pendente</option><option>Em análise</option><option>Finalizado</option><option>Cancelado</option></select>
+<label>Descrição</label>
+<textarea id="descricao"></textarea>
+<label>Observações</label>
+<textarea id="observacoes"></textarea>
+<button type="submit">Salvar protocolo</button>
+<button type="button" class="alt" onclick="limpar()">Limpar</button>
+</form>
+</section>
+<section class="card">
+<h2>Protocolos registrados</h2>
+<input id="busca" placeholder="Pesquisar número, nome ou assunto..." oninput="render()">
+<div style="margin:14px 0">
+<button class="alt" onclick="backup()">Backup JSON</button>
+<button class="alt" onclick="exportar()">Exportar CSV</button>
+<button class="alt" onclick="document.getElementById('importar').click()">Importar</button>
+<input type="file" id="importar" accept=".json" hidden onchange="restaurar(event)">
+</div>
+<div id="lista"></div>
+</section>
+</div>
+<p><small>Os registros ficam somente neste navegador. O comprovante é um registro interno, não uma autenticação oficial.</small></p>
+</main>
+<section id="comprovante"></section>
+<script>
+const KEY="businesspro_protocolo_v1";
+let dados=JSON.parse(localStorage.getItem(KEY)||"[]");
+const $=id=>document.getElementById(id);
+const salvar=()=>localStorage.setItem(KEY,JSON.stringify(dados));
+function limpar(){$("form").reset();$("editId").value="";$("titulo").textContent="Novo protocolo"}
+$("form").onsubmit=e=>{
+e.preventDefault();
+const anterior=dados.find(x=>x.id===$("editId").value);
+const id=anterior?.id||crypto.randomUUID();
+const numero=anterior?.numero||("PR-"+new Date().getFullYear()+"-"+Date.now().toString().slice(-9));
+const item={id,numero,data:anterior?.data||new Date().toLocaleString("pt-BR")};
+["assunto","solicitante","contato","setor","responsavel","prazo","prioridade","situacao","descricao","observacoes"].forEach(k=>item[k]=$(k).value);
+dados=dados.filter(x=>x.id!==id);
+dados.unshift(item);salvar();limpar();render();
+};
+function editar(id){
+const x=dados.find(v=>v.id===id);if(!x)return;
+$("editId").value=x.id;
+["assunto","solicitante","contato","setor","responsavel","prazo","prioridade","situacao","descricao","observacoes"].forEach(k=>$(k).value=x[k]||"");
+$("titulo").textContent="Editar "+x.numero;
+window.scrollTo({top:300,behavior:"smooth"});
+}
+function excluir(id){
+if(confirm("Excluir este protocolo?")){dados=dados.filter(x=>x.id!==id);salvar();render()}
+}
+function imprimir(id){
+const x=dados.find(v=>v.id===id);if(!x)return;
+const el=$("comprovante");el.replaceChildren();
+const titulo=document.createElement("h1");titulo.textContent="BUSINESS PRO — Comprovante de protocolo";el.append(titulo);
+["numero","data","assunto","solicitante","contato","setor","responsavel","prazo","prioridade","situacao","descricao","observacoes"].forEach(k=>{
+const p=document.createElement("p");const b=document.createElement("b");b.textContent=k.toUpperCase()+": ";
+p.append(b,document.createTextNode(x[k]||"Não informado"));el.append(p);
+});
+const aviso=document.createElement("p");aviso.textContent="Comprovante gerado localmente, sem validação oficial.";el.append(aviso);
+window.print();
+}
+function render(){
+$("total").textContent=dados.length;
+$("pendentes").textContent=dados.filter(x=>["Pendente","Em análise"].includes(x.situacao)).length;
+$("finalizados").textContent=dados.filter(x=>x.situacao==="Finalizado").length;
+const q=$("busca").value.toLowerCase();
+$("lista").replaceChildren();
+const itens=dados.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
+if(!itens.length){$("lista").textContent="Nenhum protocolo encontrado.";return}
+itens.forEach(x=>{
+const el=document.createElement("div");el.className="item";
+const h=document.createElement("h3");h.textContent=x.numero;el.append(h);
+const p=document.createElement("p");p.textContent=x.assunto+" — "+x.solicitante;el.append(p);
+const s=document.createElement("small");s.textContent=x.situacao+" | "+x.prioridade+" | "+x.data;el.append(s);
+const div=document.createElement("div");div.style.marginTop="12px";
+[["Editar",()=>editar(x.id)],["Comprovante",()=>imprimir(x.id)],["Excluir",()=>excluir(x.id)]].forEach(([nome,fn])=>{
+const b=document.createElement("button");b.textContent=nome;b.onclick=fn;
+if(nome==="Excluir")b.className="danger";else if(nome==="Comprovante")b.className="alt";
+div.append(b);
+});el.append(div);$("lista").append(el);
+});
+}
+function baixar(nome,conteudo,tipo){
+const url=URL.createObjectURL(new Blob([conteudo],{type:tipo}));
+const a=document.createElement("a");a.href=url;a.download=nome;a.click();
+setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function backup(){baixar("protocolos.json",JSON.stringify(dados,null,2),"application/json")}
+function exportar(){
+const cols=["numero","data","assunto","solicitante","contato","setor","responsavel","prazo","prioridade","situacao","descricao","observacoes"];
+const csv=[cols,...dados.map(x=>cols.map(k=>String(x[k]||"")))].map(row=>row.map(v=>'"'+v.replaceAll('"','""')+'"').join(";")).join("\r\n");
+baixar("protocolos.csv","\uFEFF"+csv,"text/csv;charset=utf-8");
+}
+async function restaurar(e){
+try{
+const d=JSON.parse(await e.target.files[0].text());
+if(!Array.isArray(d))throw Error();
+if(confirm("Substituir os protocolos atuais pelo backup?")){dados=d;salvar();render()}
+}catch{alert("Backup inválido.")}
+e.target.value="";
+}
+render();
+</script>
+</body>
+</html>
