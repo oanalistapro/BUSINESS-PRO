@@ -8,80 +8,141 @@
 <title>MEU IMÓVEL | BUSINESS PRO</title>
 <style>
 :root{
- --blue:#2563eb;--navy:#142747;--bg:#f3f7ff;
- --line:#dce5f3;--muted:#64748b;--green:#15803d;
- --red:#dc2626;--orange:#d97706
+ --blue:#2563eb;--dark:#142f60;--ink:#102747;
+ --muted:#64748b;--bg:#f2f6ff;--line:#d9e4f5;
+ --green:#059669;--red:#dc2626;--orange:#d97706
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,Arial,sans-serif}
+body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-header{background:white;border-bottom:1px solid var(--line);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.brand{font-size:22px;font-weight:900}
-.brand span{color:var(--blue)}
-.back{color:var(--blue);font-weight:800;text-decoration:none}
-main{max-width:1300px;margin:auto;padding:25px 18px}
-.hero{background:linear-gradient(125deg,#14366d,#2563eb);color:white;border-radius:24px;padding:36px;box-shadow:0 15px 35px #2563eb25}
-.hero small{letter-spacing:2px;font-weight:900}
-.hero h1{font-size:clamp(28px,4vw,43px);margin:12px 0}
-.hero p{line-height:1.7;opacity:.94;max-width:750px}
-.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0}
-.btn{background:var(--blue);border:0;border-radius:12px;padding:13px 18px;color:white;font-weight:800}
-.btn:hover{filter:brightness(.95)}
-.secondary{background:white;color:var(--navy);border:1px solid var(--line)}
-.danger{background:#fff1f2;color:var(--red)}
-.search{flex:1;min-width:190px;padding:13px 15px;background:white;border:1px solid var(--line);border-radius:12px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:25px}
-.stat,.panel,.record{background:white;border:1px solid var(--line);border-radius:19px;padding:22px;box-shadow:0 10px 25px #1e3a8a08}
-.stat small{color:var(--muted)}
-.stat strong{display:block;font-size:27px;margin-top:9px;overflow-wrap:anywhere}
-.panel h2{margin-top:0}
-.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
-.filter{border:1px solid var(--line);background:white;border-radius:30px;padding:9px 15px;color:var(--navy);font-weight:700}
-.filter.active{background:var(--blue);color:white;border-color:var(--blue)}
-.records{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
-.record{padding:0;overflow:hidden}
-.recordBody{padding:21px}
-.record h3{margin:15px 0 10px;overflow-wrap:anywhere}
-.record p{color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
-.tag{display:inline-block;background:#eaf1ff;color:#1d4ed8;border-radius:25px;padding:7px 12px;font-size:12px;font-weight:900}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.photo{height:190px;background:#e8effb;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:50px;overflow:hidden}
-.photo img{width:100%;height:100%;object-fit:cover}
-.empty{grid-column:1/-1;text-align:center;padding:55px 15px;color:var(--muted)}
-dialog{border:0;border-radius:23px;padding:0;width:min(850px,96vw);max-height:92vh;overflow:auto;box-shadow:0 25px 100px #0f172a60}
-dialog::backdrop{background:#071326aa}
-.modalhead{background:#f4f8ff;border-bottom:1px solid var(--line);padding:24px 28px}
-.modalhead h2{margin:0}
-form{padding:25px 28px}
-.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.field{display:flex;flex-direction:column;gap:7px}
-.full{grid-column:1/-1}
-label{font-size:13px;font-weight:800}
-input,select,textarea{width:100%;border:1px solid #cbd8eb;border-radius:11px;padding:13px;background:white;color:var(--navy)}
-textarea{min-height:105px;resize:vertical}
-.modalactions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin-top:25px}
-.notice{font-size:13px;color:var(--muted);line-height:1.7;margin:25px 0}
-.previewPhoto{max-width:220px;max-height:140px;object-fit:cover;border-radius:12px}
-@media(max-width:1000px){.records{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:700px){
- header{padding:17px}main{padding:18px 12px}.hero{padding:25px}
- .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
- .records,.fields{grid-template-columns:1fr}
- .full{grid-column:auto}.stat{padding:16px}
+a{text-decoration:none;color:inherit}
+header{
+ background:#fff;border-bottom:1px solid var(--line);
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;padding:17px 4%
 }
+.logo{font-size:22px;font-weight:900}
+.logo span{color:var(--blue)}
+main{max-width:1550px;margin:auto;padding:20px 15px}
+.hero{
+ background:linear-gradient(115deg,#18396f,#2563eb);
+ color:white;border-radius:27px;padding:43px;margin-bottom:30px
+}
+.hero small{font-weight:900;letter-spacing:2px}
+.hero h1{font-size:clamp(32px,5vw,55px);margin:22px 0}
+.hero p{font-size:18px;line-height:1.7;max-width:950px}
+.btn{
+ display:inline-flex;align-items:center;justify-content:center;gap:7px;
+ background:var(--blue);color:white;border:0;border-radius:12px;
+ padding:13px 17px;font-weight:800
+}
+.btn.light{background:white;color:var(--ink);border:1px solid var(--line)}
+.btn.alt{background:#eaf0ff;color:#1d4ed8}
+.btn.red{background:#fee2e2;color:#b91c1c}
+.btn.sm{font-size:12px;padding:9px 12px}
+.btn:hover{filter:brightness(.96)}
+.toolbar{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:28px}
+.toolbar input{flex:1;min-width:220px}
+input,select,textarea{
+ width:100%;border:1px solid #cbd8eb;border-radius:12px;
+ padding:13px;background:white;color:var(--ink);outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+textarea{min-height:100px;resize:vertical}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;margin-bottom:30px}
+.stat,.panel{
+ background:white;border:1px solid var(--line);
+ border-radius:22px;box-shadow:0 8px 25px #12376d08
+}
+.stat{padding:27px}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:32px;margin-top:14px}
+.panel{padding:27px;margin-bottom:24px}
+.panel h2{margin:0 0 22px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:25px}
+.filter{
+ border:1px solid var(--line);background:white;border-radius:25px;
+ padding:10px 17px;font-weight:800
+}
+.filter.active{background:var(--blue);color:white;border-color:var(--blue)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.property{
+ background:#fbfcff;border:1px solid var(--line);
+ border-radius:18px;overflow:hidden;min-width:0
+}
+.propertyImage{
+ height:195px;background:linear-gradient(135deg,#dbeafe,#eff6ff);
+ display:flex;align-items:center;justify-content:center;
+ font-size:70px;overflow:hidden
+}
+.propertyImage img{width:100%;height:100%;object-fit:cover}
+.propertyBody{padding:20px}
+.property h3{font-size:20px;overflow-wrap:anywhere}
+.property p{font-size:13px;color:var(--muted);line-height:1.7;overflow-wrap:anywhere}
+.price{font-size:23px;font-weight:900;color:var(--blue);margin:13px 0}
+.badge{
+ display:inline-block;background:#eaf0ff;color:#1d4ed8;
+ border-radius:25px;padding:7px 12px;font-size:12px;font-weight:800
+}
+.badge.green{background:#dcfce7;color:#166534}
+.badge.orange{background:#fef3c7;color:#92400e}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.editor{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);gap:20px;align-items:start}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field label{font-size:12px;font-weight:800}
+.full{grid-column:1/-1}
+.mini{font-size:12px;color:var(--muted);line-height:1.7}
+.empty{text-align:center;padding:70px 10px;color:var(--muted);grid-column:1/-1}
+.hidden{display:none!important}
+.summary{border:1px solid var(--line);border-radius:15px;padding:18px;background:#f8fbff}
+.summary p{line-height:1.6;overflow-wrap:anywhere}
+.transaction{
+ border:1px solid var(--line);padding:15px;
+ border-radius:13px;margin-bottom:10px
+}
+.transaction p{margin:6px 0;font-size:13px;color:var(--muted)}
+#printArea{display:none}
+#toast{
+ display:none;position:fixed;bottom:20px;left:50%;
+ transform:translateX(-50%);background:var(--ink);color:white;
+ padding:14px 20px;border-radius:12px;z-index:100;max-width:90vw
+}
+@media(max-width:1100px){
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .editor{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+ main{padding:12px 9px}
+ .hero{padding:29px 20px;border-radius:20px}
+ .hero p{font-size:14px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .stat{padding:17px}
+ .stat strong{font-size:24px}
+ .cards,.fields{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .panel{padding:16px}
+ .toolbar>*{width:100%}
+ header .logo{font-size:17px}
+ header .btn{font-size:11px;padding:10px}
+}
+@page{size:A4;margin:16mm}
 @media print{
- header,.hero,.toolbar,.filters,.actions,dialog,.notice{display:none!important}
- body{background:white}main{padding:0}
- .stat,.panel,.record{box-shadow:none;break-inside:avoid}
+ body>*:not(#printArea){display:none!important}
+ #printArea{display:block!important;color:black}
+ #printArea h1{border-bottom:2px solid #222;padding-bottom:10px}
+ #printArea table{width:100%;border-collapse:collapse;font-size:10pt}
+ #printArea th,#printArea td{border:1px solid #bbb;padding:8px;text-align:left;overflow-wrap:anywhere}
+ #printArea tr{break-inside:avoid}
 }
 </style>
 </head>
 <body>
 
 <header>
- <div class="brand">◆ BUSINESS <span>PRO</span></div>
- <a class="back" href="../">← Voltar ao portal</a>
+ <div class="logo">🏠 MEU <span>IMÓVEL</span></div>
+ <a class="btn alt" href="../">← Business Pro</a>
 </header>
 
 <main>
@@ -91,403 +152,718 @@ textarea{min-height:105px;resize:vertical}
  <p>Cadastre imóveis, organize fotos, acompanhe valores, despesas, receitas de aluguel, contratos e informações importantes do seu patrimônio imobiliário.</p>
 </section>
 
-<div class="toolbar">
- <button class="btn" id="newBtn">+ Cadastrar imóvel</button>
- <input class="search" id="search" placeholder="Pesquisar imóvel, endereço ou cidade...">
- <button class="btn secondary" id="csvBtn">Exportar CSV</button>
- <button class="btn secondary" id="backupBtn">Backup JSON</button>
- <button class="btn secondary" id="importBtn">Importar backup</button>
- <button class="btn secondary" onclick="window.print()">Imprimir</button>
- <input type="file" id="importFile" accept=".json,application/json" hidden>
-</div>
-
-<section class="stats">
- <div class="stat"><small>Imóveis cadastrados</small><strong id="total">0</strong></div>
- <div class="stat"><small>Disponíveis</small><strong id="available">0</strong></div>
- <div class="stat"><small>Alugados</small><strong id="rented">0</strong></div>
- <div class="stat"><small>Valor total cadastrado</small><strong id="totalValue">R$ 0</strong></div>
-</section>
-
-<section class="panel">
- <h2>Meu patrimônio imobiliário</h2>
- <div class="filters" id="filters">
-  <button class="filter active" data-filter="Todos">Todos</button>
-  <button class="filter" data-filter="Disponível">Disponíveis</button>
-  <button class="filter" data-filter="Alugado">Alugados</button>
-  <button class="filter" data-filter="Ocupado">Ocupados</button>
-  <button class="filter" data-filter="Em negociação">Em negociação</button>
-  <button class="filter" data-filter="Vendido">Vendidos</button>
+<section id="home">
+ <div class="toolbar">
+  <button class="btn" onclick="newProperty()">+ Cadastrar imóvel</button>
+  <input id="search" placeholder="🔎 Pesquisar imóvel, endereço ou cidade...">
+  <button class="btn light" onclick="exportCSV()">Exportar CSV</button>
+  <button class="btn light" onclick="exportBackup()">Backup JSON</button>
+  <button class="btn light" onclick="document.getElementById('backupFile').click()">Importar backup</button>
+  <button class="btn light" onclick="printReport()">Imprimir</button>
+  <input type="file" id="backupFile" accept=".json,application/json" hidden>
  </div>
- <div class="records" id="records"></div>
+
+ <div class="stats">
+  <div class="stat"><small>Imóveis cadastrados</small><strong id="total">0</strong></div>
+  <div class="stat"><small>Disponíveis</small><strong id="available">0</strong></div>
+  <div class="stat"><small>Alugados</small><strong id="rented">0</strong></div>
+  <div class="stat"><small>Valor total cadastrado</small><strong id="totalValue">R$ 0,00</strong></div>
+ </div>
+
+ <section class="panel">
+  <h2>Meu patrimônio imobiliário</h2>
+  <div id="filters" class="filters">
+   <button class="filter active" data-filter="Todos">Todos</button>
+   <button class="filter" data-filter="Disponível">Disponíveis</button>
+   <button class="filter" data-filter="Alugado">Alugados</button>
+   <button class="filter" data-filter="Ocupado">Ocupados</button>
+   <button class="filter" data-filter="Em negociação">Em negociação</button>
+   <button class="filter" data-filter="Vendido">Vendidos</button>
+  </div>
+  <div id="propertyList" class="cards"></div>
+ </section>
 </section>
 
-<p class="notice">
- Os registros e fotos são armazenados neste navegador. Fotos grandes podem ultrapassar o limite de armazenamento.
- Faça backups regularmente. O sistema não substitui registro imobiliário, contrato oficial ou avaliação profissional.
- Não armazene documentos pessoais sensíveis nesta versão local.
-</p>
+<section id="editorSection" class="hidden">
+ <div class="actions" style="margin-bottom:20px">
+  <button class="btn alt" onclick="goHome()">← Voltar</button>
+  <button class="btn" onclick="saveProperty()">💾 Salvar imóvel</button>
+  <button class="btn light" onclick="printProperty()">Imprimir / PDF</button>
+ </div>
+
+ <div class="editor">
+  <div>
+   <section class="panel">
+    <h2 id="editorTitle">Cadastrar imóvel</h2>
+    <div class="fields">
+     <div class="field full">
+      <label>Nome / identificação do imóvel *</label>
+      <input id="name" placeholder="Ex.: Apartamento Centro">
+     </div>
+     <div class="field">
+      <label>Tipo de imóvel</label>
+      <select id="type">
+       <option>Casa</option><option>Apartamento</option>
+       <option>Terreno</option><option>Sala comercial</option>
+       <option>Loja</option><option>Galpão</option>
+       <option>Chácara</option><option>Fazenda</option>
+       <option>Outro</option>
+      </select>
+     </div>
+     <div class="field">
+      <label>Situação</label>
+      <select id="status">
+       <option>Disponível</option><option>Alugado</option>
+       <option>Ocupado</option><option>Em negociação</option>
+       <option>Vendido</option>
+      </select>
+     </div>
+     <div class="field full">
+      <label>Endereço</label>
+      <input id="address" placeholder="Rua, número e complemento">
+     </div>
+     <div class="field">
+      <label>Cidade</label>
+      <input id="city" placeholder="Cidade">
+     </div>
+     <div class="field">
+      <label>Estado / região</label>
+      <input id="state" placeholder="Ex.: SC">
+     </div>
+     <div class="field">
+      <label>CEP</label>
+      <input id="postal" placeholder="CEP">
+     </div>
+     <div class="field">
+      <label>Área (m²)</label>
+      <input id="area" type="number" min="0" step="0.01">
+     </div>
+     <div class="field">
+      <label>Quartos</label>
+      <input id="bedrooms" type="number" min="0" step="1">
+     </div>
+     <div class="field">
+      <label>Banheiros</label>
+      <input id="bathrooms" type="number" min="0" step="1">
+     </div>
+     <div class="field">
+      <label>Vagas</label>
+      <input id="parking" type="number" min="0" step="1">
+     </div>
+     <div class="field">
+      <label>Valor estimado (R$)</label>
+      <input id="value" type="number" min="0" step="0.01">
+     </div>
+     <div class="field">
+      <label>Aluguel mensal (R$)</label>
+      <input id="rent" type="number" min="0" step="0.01">
+     </div>
+     <div class="field">
+      <label>IPTU anual (R$)</label>
+      <input id="tax" type="number" min="0" step="0.01">
+     </div>
+     <div class="field">
+      <label>Condomínio mensal (R$)</label>
+      <input id="condo" type="number" min="0" step="0.01">
+     </div>
+     <div class="field">
+      <label>Proprietário</label>
+      <input id="owner" placeholder="Nome">
+     </div>
+     <div class="field">
+      <label>Contato</label>
+      <input id="contact" placeholder="Telefone ou e-mail">
+     </div>
+     <div class="field">
+      <label>Início do contrato</label>
+      <input id="contractStart" type="date">
+     </div>
+     <div class="field">
+      <label>Fim do contrato</label>
+      <input id="contractEnd" type="date">
+     </div>
+     <div class="field">
+      <label>Inquilino</label>
+      <input id="tenant" placeholder="Nome do inquilino">
+     </div>
+     <div class="field">
+      <label>Identificação / matrícula</label>
+      <input id="registration" placeholder="Referência do imóvel">
+     </div>
+     <div class="field full">
+      <label>Observações</label>
+      <textarea id="notes" placeholder="Informações adicionais..."></textarea>
+     </div>
+     <div class="field full">
+      <label>Foto principal (JPEG, PNG ou WebP, até 1 MB)</label>
+      <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp">
+      <button class="btn red sm" type="button" onclick="removePhoto()">Remover foto</button>
+     </div>
+    </div>
+   </section>
+
+   <section class="panel">
+    <h2>Controle financeiro do imóvel</h2>
+    <p class="mini">Registre recebimentos de aluguel e despesas. Salve o imóvel antes de registrar movimentações.</p>
+    <div class="fields">
+     <div class="field">
+      <label>Tipo de lançamento</label>
+      <select id="txType">
+       <option>Receita</option><option>Despesa</option>
+      </select>
+     </div>
+     <div class="field">
+      <label>Valor (R$)</label>
+      <input id="txValue" type="number" min="0.01" step="0.01">
+     </div>
+     <div class="field">
+      <label>Data</label>
+      <input id="txDate" type="date">
+     </div>
+     <div class="field">
+      <label>Categoria</label>
+      <select id="txCategory">
+       <option>Aluguel</option><option>Condomínio</option>
+       <option>IPTU</option><option>Manutenção</option>
+       <option>Reforma</option><option>Seguro</option>
+       <option>Taxa</option><option>Outro</option>
+      </select>
+     </div>
+     <div class="field full">
+      <label>Descrição</label>
+      <input id="txDescription" placeholder="Ex.: Aluguel de novembro">
+     </div>
+    </div>
+    <div style="margin-top:15px">
+     <button class="btn" onclick="addTransaction()">+ Registrar lançamento</button>
+    </div>
+    <h3>Histórico financeiro</h3>
+    <div id="transactions"></div>
+   </section>
+  </div>
+
+  <aside>
+   <section class="panel">
+    <h2>Resumo do imóvel</h2>
+    <div id="preview" class="summary"></div>
+   </section>
+   <section class="panel">
+    <h2>Resultado financeiro</h2>
+    <div class="summary">
+     <p>Receitas registradas</p><h2 id="income">R$ 0,00</h2>
+     <p>Despesas registradas</p><h2 id="expenses">R$ 0,00</h2>
+     <p>Saldo</p><h2 id="balance">R$ 0,00</h2>
+    </div>
+   </section>
+  </aside>
+ </div>
+</section>
+
+<p class="mini">Os dados e as fotos ficam armazenados neste navegador. O aplicativo não realiza registro em cartório, assinatura eletrônica ou sincronização automática entre dispositivos. Faça backups regularmente.</p>
 </main>
 
-<dialog id="modal">
- <div class="modalhead"><h2 id="modalTitle">Cadastrar imóvel</h2></div>
- <form id="form">
-  <div class="fields">
-   <div class="field full">
-    <label for="titulo">Nome ou identificação do imóvel *</label>
-    <input id="titulo" required placeholder="Ex.: Apartamento Centro">
-   </div>
-   <div class="field">
-    <label for="tipo">Tipo de imóvel</label>
-    <select id="tipo">
-     <option>Casa</option><option>Apartamento</option>
-     <option>Terreno</option><option>Sala comercial</option>
-     <option>Galpão</option><option>Sítio</option>
-     <option>Chácara</option><option>Outro</option>
-    </select>
-   </div>
-   <div class="field">
-    <label for="finalidade">Finalidade</label>
-    <select id="finalidade">
-     <option>Uso próprio</option><option>Venda</option>
-     <option>Aluguel</option><option>Investimento</option>
-    </select>
-   </div>
-   <div class="field full">
-    <label for="endereco">Endereço</label>
-    <input id="endereco" placeholder="Rua, número e complemento">
-   </div>
-   <div class="field">
-    <label for="bairro">Bairro</label>
-    <input id="bairro">
-   </div>
-   <div class="field">
-    <label for="cidade">Cidade</label>
-    <input id="cidade">
-   </div>
-   <div class="field">
-    <label for="estado">Estado</label>
-    <input id="estado" maxlength="2" placeholder="SC">
-   </div>
-   <div class="field">
-    <label for="cep">CEP</label>
-    <input id="cep" inputmode="numeric" placeholder="00000-000">
-   </div>
-   <div class="field">
-    <label for="area">Área construída (m²)</label>
-    <input id="area" type="number" min="0" step="0.01">
-   </div>
-   <div class="field">
-    <label for="terreno">Área do terreno (m²)</label>
-    <input id="terreno" type="number" min="0" step="0.01">
-   </div>
-   <div class="field">
-    <label for="quartos">Quartos</label>
-    <input id="quartos" type="number" min="0" step="1">
-   </div>
-   <div class="field">
-    <label for="banheiros">Banheiros</label>
-    <input id="banheiros" type="number" min="0" step="1">
-   </div>
-   <div class="field">
-    <label for="vagas">Vagas de garagem</label>
-    <input id="vagas" type="number" min="0" step="1">
-   </div>
-   <div class="field">
-    <label for="valor">Valor estimado ou de venda (R$)</label>
-    <input id="valor" type="number" min="0" step="0.01">
-   </div>
-   <div class="field">
-    <label for="aluguel">Valor mensal do aluguel (R$)</label>
-    <input id="aluguel" type="number" min="0" step="0.01">
-   </div>
-   <div class="field">
-    <label for="condominio">Condomínio mensal (R$)</label>
-    <input id="condominio" type="number" min="0" step="0.01">
-   </div>
-   <div class="field">
-    <label for="iptu">IPTU anual (R$)</label>
-    <input id="iptu" type="number" min="0" step="0.01">
-   </div>
-   <div class="field">
-    <label for="situacao">Situação</label>
-    <select id="situacao">
-     <option>Disponível</option><option>Alugado</option>
-     <option>Ocupado</option><option>Em negociação</option>
-     <option>Vendido</option><option>Em reforma</option>
-    </select>
-   </div>
-   <div class="field">
-    <label for="aquisicao">Data de aquisição</label>
-    <input id="aquisicao" type="date">
-   </div>
-   <div class="field">
-    <label for="contrato">Fim do contrato</label>
-    <input id="contrato" type="date">
-   </div>
-   <div class="field">
-    <label for="responsavel">Responsável pela gestão</label>
-    <input id="responsavel">
-   </div>
-   <div class="field">
-    <label for="referencia">Referência ou matrícula</label>
-    <input id="referencia">
-   </div>
-   <div class="field full">
-    <label for="descricao">Descrição e características</label>
-    <textarea id="descricao" placeholder="Detalhes do imóvel, acabamentos, localização e diferenciais."></textarea>
-   </div>
-   <div class="field full">
-    <label for="observacoes">Observações de gestão</label>
-    <textarea id="observacoes" placeholder="Manutenção, pendências e outras informações."></textarea>
-   </div>
-   <div class="field full">
-    <label for="foto">Foto do imóvel</label>
-    <input id="foto" type="file" accept="image/jpeg,image/png,image/webp">
-    <small>Uma foto por imóvel, comprimida automaticamente. Máximo de 8 MB no arquivo original.</small>
-    <div id="photoPreview"></div>
-    <button type="button" class="btn secondary" id="removePhoto">Remover foto</button>
-   </div>
-  </div>
-  <div class="modalactions">
-   <button type="button" class="btn secondary" id="cancelBtn">Cancelar</button>
-   <button type="submit" class="btn">Salvar imóvel</button>
-  </div>
- </form>
-</dialog>
+<div id="printArea"></div>
+<div id="toast" role="status"></div>
 
 <script>
 "use strict";
+
 const $=id=>document.getElementById(id);
-const KEY="businesspro_meu_imovel_v1";
+const KEY="businesspro_meu_imovel_v3";
 const FIELDS=[
- "titulo","tipo","finalidade","endereco","bairro","cidade",
- "estado","cep","area","terreno","quartos","banheiros",
- "vagas","valor","aluguel","condominio","iptu",
- "situacao","aquisicao","contrato","responsavel",
- "referencia","descricao","observacoes"
+ "name","type","status","address","city","state","postal",
+ "area","bedrooms","bathrooms","parking","value","rent",
+ "tax","condo","owner","contact","contractStart","contractEnd",
+ "tenant","registration","notes"
 ];
-let items=[],editing=null,activeFilter="Todos",currentPhoto="";
+
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+
+const money=n=>Number(n||0).toLocaleString("pt-BR",{
+ style:"currency",currency:"BRL"
+});
+
+const uid=()=>crypto.randomUUID?
+ crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
+
+function localDate(){
+ const d=new Date();
+ return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),
+ String(d.getDate()).padStart(2,"0")].join("-");
+}
+
+function toast(message){
+ $("toast").textContent=message;
+ $("toast").style.display="block";
+ clearTimeout(toast.timer);
+ toast.timer=setTimeout(()=>$("toast").style.display="none",3000);
+}
+
+let properties=[];
 try{
  const saved=JSON.parse(localStorage.getItem(KEY)||"[]");
- if(Array.isArray(saved))items=saved;
-}catch(e){alert("Não foi possível carregar os imóveis cadastrados.");}
-function esc(v){
- return String(v??"").replace(/[&<>"']/g,c=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
- }[c]));
-}
-function save(){
+ if(Array.isArray(saved))properties=saved;
+}catch(e){}
+
+let currentId=null;
+let currentPhoto="";
+let activeFilter="Todos";
+
+function persist(){
  try{
-  localStorage.setItem(KEY,JSON.stringify(items));
+  localStorage.setItem(KEY,JSON.stringify(properties));
   return true;
  }catch(e){
-  alert("Não foi possível salvar. O armazenamento pode estar cheio. Exporte um backup e reduza as fotos.");
+  toast("Falha ao salvar. Verifique o espaço do navegador.");
   return false;
  }
 }
-function money(v){
- return Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+
+function getData(){
+ return Object.fromEntries(FIELDS.map(k=>[k,$(k).value.trim()]));
 }
-function makeId(){
- return crypto.randomUUID?crypto.randomUUID():
-  Date.now()+"-"+Math.random().toString(36).slice(2);
+
+function newProperty(){
+ currentId=null;
+ currentPhoto="";
+ FIELDS.forEach(k=>$(k).value="");
+ $("type").value="Casa";
+ $("status").value="Disponível";
+ $("editorTitle").textContent="Cadastrar imóvel";
+ $("photoInput").value="";
+ $("home").classList.add("hidden");
+ $("editorSection").classList.remove("hidden");
+ $("txDate").value=localDate();
+ renderTransactions();
+ updatePreview();
+ window.scrollTo({top:0,behavior:"smooth"});
 }
-function showPhoto(){
- $("photoPreview").replaceChildren();
- if(!currentPhoto)return;
- const img=document.createElement("img");
- img.src=currentPhoto;
- img.className="previewPhoto";
- img.alt="Foto selecionada";
- img.style.marginTop="12px";
- $("photoPreview").appendChild(img);
+
+function editProperty(id){
+ const r=properties.find(x=>x.id===id);
+ if(!r)return;
+ currentId=id;
+ currentPhoto=r.photo||"";
+ FIELDS.forEach(k=>$(k).value=r[k]??"");
+ $("editorTitle").textContent="Editar imóvel";
+ $("photoInput").value="";
+ $("home").classList.add("hidden");
+ $("editorSection").classList.remove("hidden");
+ $("txDate").value=localDate();
+ renderTransactions();
+ updatePreview();
+ window.scrollTo({top:0,behavior:"smooth"});
 }
-function openForm(id=null){
- editing=id;
- const item=items.find(x=>x.id===id);
- $("modalTitle").textContent=item?"Editar imóvel":"Cadastrar imóvel";
- FIELDS.forEach(f=>$(f).value=item?.data?.[f]??"");
- currentPhoto=item?.photo||"";
- $("foto").value="";
- showPhoto();
- $("modal").showModal();
+
+function goHome(){
+ $("editorSection").classList.add("hidden");
+ $("home").classList.remove("hidden");
+ render();
+ window.scrollTo({top:0,behavior:"smooth"});
 }
-async function compressPhoto(file){
- if(!file.type.startsWith("image/"))throw Error("Selecione uma imagem.");
- if(file.size>8*1024*1024)throw Error("A imagem deve ter no máximo 8 MB.");
- const bitmap=await createImageBitmap(file);
- try{
-  const scale=Math.min(1,1100/Math.max(bitmap.width,bitmap.height));
-  const canvas=document.createElement("canvas");
-  canvas.width=Math.max(1,Math.round(bitmap.width*scale));
-  canvas.height=Math.max(1,Math.round(bitmap.height*scale));
-  canvas.getContext("2d").drawImage(bitmap,0,0,canvas.width,canvas.height);
-  return canvas.toDataURL("image/jpeg",0.72);
- }finally{bitmap.close();}
+
+function saveProperty(){
+ const data=getData();
+ if(!data.name){
+  toast("Informe o nome do imóvel.");
+  return false;
+ }
+
+ if(data.contractStart&&data.contractEnd&&
+  data.contractStart>data.contractEnd){
+  toast("O fim do contrato deve ser posterior ao início.");
+  return false;
+ }
+
+ const previous=JSON.stringify(properties);
+ const now=new Date().toISOString();
+
+ if(currentId){
+  const r=properties.find(x=>x.id===currentId);
+  if(!r)return false;
+  Object.assign(r,data,{photo:currentPhoto,updatedAt:now});
+ }else{
+  currentId=uid();
+  properties.unshift({
+   id:currentId,...data,photo:currentPhoto,
+   transactions:[],createdAt:now,updatedAt:now
+  });
+ }
+
+ if(!persist()){
+  properties=JSON.parse(previous);
+  return false;
+ }
+
+ toast("Imóvel salvo com sucesso.");
+ render();
+ return true;
 }
-$("foto").onchange=async e=>{
+
+function removeProperty(id){
+ const r=properties.find(x=>x.id===id);
+ if(!r||!confirm("Excluir o imóvel "+r.name+" e todo seu histórico financeiro?"))return;
+
+ const previous=properties;
+ properties=properties.filter(x=>x.id!==id);
+
+ if(!persist()){properties=previous;return;}
+ render();
+ toast("Imóvel excluído.");
+}
+
+function removePhoto(){
+ currentPhoto="";
+ $("photoInput").value="";
+ updatePreview();
+}
+
+$("photoInput").addEventListener("change",e=>{
  const file=e.target.files[0];
  if(!file)return;
- try{
-  currentPhoto=await compressPhoto(file);
-  showPhoto();
- }catch(err){
-  alert("Erro ao carregar foto: "+err.message);
+
+ if(file.size>1024*1024){
+  toast("Escolha uma foto de até 1 MB.");
   e.target.value="";
- }
-};
-$("removePhoto").onclick=()=>{
- currentPhoto="";
- $("foto").value="";
- showPhoto();
-};
-function render(){
- const q=$("search").value.toLocaleLowerCase("pt-BR").trim();
- $("total").textContent=items.length;
- $("available").textContent=items.filter(x=>x.data.situacao==="Disponível").length;
- $("rented").textContent=items.filter(x=>x.data.situacao==="Alugado").length;
- $("totalValue").textContent=money(items.reduce((s,x)=>s+Number(x.data.valor||0),0));
- const filtered=items.filter(x=>{
-  const match=activeFilter==="Todos"||x.data.situacao===activeFilter;
-  return match&&JSON.stringify(x.data).toLocaleLowerCase("pt-BR").includes(q);
- });
- if(!filtered.length){
-  $("records").innerHTML='<div class="empty"><h3>Nenhum imóvel encontrado</h3><p>Cadastre um imóvel ou altere os filtros.</p></div>';
   return;
  }
- $("records").innerHTML=filtered.map(x=>{
-  const d=x.data;
-  return `<article class="record">
-   <div class="photo">${x.photo?`<img src="${esc(x.photo)}" alt="Foto do imóvel">`:"🏠"}</div>
-   <div class="recordBody">
-    <span class="tag">${esc(d.situacao)}</span>
-    <h3>${esc(d.titulo)}</h3>
-    <p><strong>Tipo:</strong> ${esc(d.tipo)}</p>
-    <p><strong>Localização:</strong> ${esc([d.bairro,d.cidade,d.estado].filter(Boolean).join(", ")||"Não informada")}</p>
-    <p><strong>Área:</strong> ${esc(d.area||"—")} m²</p>
-    <p><strong>Valor:</strong> ${esc(money(d.valor))}</p>
-    <p><strong>Aluguel:</strong> ${esc(money(d.aluguel))}/mês</p>
-    <p><strong>Quartos:</strong> ${esc(d.quartos||"0")} |
-    <strong>Banheiros:</strong> ${esc(d.banheiros||"0")}</p>
-    <p><strong>Finalidade:</strong> ${esc(d.finalidade)}</p>
+
+ if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
+  toast("Formato de imagem não permitido.");
+  e.target.value="";
+  return;
+ }
+
+ const reader=new FileReader();
+ reader.onload=()=>{
+  currentPhoto=reader.result;
+  updatePreview();
+ };
+ reader.readAsDataURL(file);
+});
+
+function renderStats(){
+ $("total").textContent=properties.length;
+ $("available").textContent=properties.filter(x=>x.status==="Disponível").length;
+ $("rented").textContent=properties.filter(x=>x.status==="Alugado").length;
+ $("totalValue").textContent=money(properties.reduce(
+  (sum,x)=>sum+Number(x.value||0),0
+ ));
+}
+
+function visibleProperties(){
+ const q=$("search").value.toLowerCase().trim();
+ return properties.filter(r=>{
+  const text=[r.name,r.address,r.city,r.state,r.owner,r.tenant,r.registration].join(" ").toLowerCase();
+  return (activeFilter==="Todos"||r.status===activeFilter)&&text.includes(q);
+ });
+}
+
+function renderList(){
+ const list=visibleProperties();
+
+ $("propertyList").innerHTML=list.length?list.map(r=>`
+  <article class="property">
+   <div class="propertyImage">
+    ${r.photo?`<img src="${esc(r.photo)}" alt="Foto do imóvel">`:"🏠"}
+   </div>
+   <div class="propertyBody">
+    <span class="badge ${r.status==="Alugado"?"green":r.status==="Em negociação"?"orange":""}">
+     ${esc(r.status)}
+    </span>
+    <h3>${esc(r.name)}</h3>
+    <p>📍 ${esc([r.address,r.city,r.state].filter(Boolean).join(", ")||"Endereço não informado")}</p>
+    <p><b>Tipo:</b> ${esc(r.type)} | <b>Área:</b> ${esc(r.area||"—")} m²</p>
+    <div class="price">${money(r.value)}</div>
+    <p><b>Aluguel:</b> ${money(r.rent)} / mês</p>
     <div class="actions">
-     <button class="btn secondary" data-action="edit" data-id="${esc(x.id)}">Editar</button>
-     <button class="btn" data-action="details" data-id="${esc(x.id)}">Detalhes</button>
-     <button class="btn danger" data-action="delete" data-id="${esc(x.id)}">Excluir</button>
+     <button class="btn sm" data-action="edit" data-id="${esc(r.id)}">Editar</button>
+     <button class="btn sm alt" data-action="print" data-id="${esc(r.id)}">Imprimir</button>
+     <button class="btn sm red" data-action="delete" data-id="${esc(r.id)}">Excluir</button>
     </div>
    </div>
-  </article>`;
- }).join("");
+  </article>
+ `).join(""):`
+  <div class="empty">
+   <h3>Nenhum imóvel encontrado</h3>
+   <p>Cadastre seu primeiro imóvel para começar.</p>
+   <button class="btn" onclick="newProperty()">+ Cadastrar imóvel</button>
+  </div>
+ `;
 }
-$("form").onsubmit=e=>{
- e.preventDefault();
- const data={};
- FIELDS.forEach(f=>data[f]=$(f).value.trim());
- if(!data.titulo){alert("Informe a identificação do imóvel.");return;}
- const old=items.find(x=>x.id===editing);
- const record={
-  id:old?.id||makeId(),
-  createdAt:old?.createdAt||new Date().toISOString(),
-  updatedAt:new Date().toISOString(),
-  data,photo:currentPhoto
+
+$("propertyList").addEventListener("click",e=>{
+ const b=e.target.closest("[data-action]");
+ if(!b)return;
+ const id=b.dataset.id;
+ if(b.dataset.action==="edit")editProperty(id);
+ if(b.dataset.action==="delete")removeProperty(id);
+ if(b.dataset.action==="print")printOne(id);
+});
+
+$("filters").addEventListener("click",e=>{
+ const b=e.target.closest("[data-filter]");
+ if(!b)return;
+ activeFilter=b.dataset.filter;
+ document.querySelectorAll(".filter").forEach(x=>
+  x.classList.toggle("active",x===b)
+ );
+ renderList();
+});
+
+$("search").addEventListener("input",renderList);
+
+function updatePreview(){
+ const d=getData();
+ $("preview").innerHTML=`
+  ${currentPhoto?`<img src="${esc(currentPhoto)}" alt="Foto do imóvel"
+   style="width:100%;max-height:230px;object-fit:cover;border-radius:12px">`:""}
+  <h3>${esc(d.name||"Novo imóvel")}</h3>
+  <p><b>Tipo:</b> ${esc(d.type)}</p>
+  <p><b>Situação:</b> ${esc(d.status)}</p>
+  <p><b>Endereço:</b> ${esc(d.address||"—")}</p>
+  <p><b>Cidade:</b> ${esc(d.city||"—")}</p>
+  <p><b>Área:</b> ${esc(d.area||"—")} m²</p>
+  <p><b>Valor:</b> ${money(d.value)}</p>
+  <p><b>Aluguel:</b> ${money(d.rent)}</p>
+  <p><b>Inquilino:</b> ${esc(d.tenant||"—")}</p>
+ `;
+}
+
+FIELDS.forEach(k=>$(k).addEventListener("input",updatePreview));
+
+function addTransaction(){
+ if(!currentId){
+  toast("Salve o imóvel primeiro.");
+  return;
+ }
+
+ const r=properties.find(x=>x.id===currentId);
+ if(!r)return;
+
+ const value=Number($("txValue").value);
+
+ if(!Number.isFinite(value)||value<=0){
+  toast("Informe um valor maior que zero.");
+  return;
+ }
+
+ const transaction={
+  id:uid(),
+  type:$("txType").value,
+  value,
+  date:$("txDate").value||localDate(),
+  category:$("txCategory").value,
+  description:$("txDescription").value.trim()
  };
- const previous=items;
- items=old?items.map(x=>x.id===editing?record:x):[record,...items];
- if(!save()){items=previous;return;}
- $("modal").close();
- editing=null;
- render();
-};
-$("records").onclick=e=>{
- const btn=e.target.closest("button[data-action]");
- if(!btn)return;
- const item=items.find(x=>x.id===btn.dataset.id);
- if(!item)return;
- if(btn.dataset.action==="edit")openForm(item.id);
- if(btn.dataset.action==="details"){
-  const d=item.data;
-  const lines=[
-   "IMÓVEL: "+d.titulo,
-   "Tipo: "+d.tipo,
-   "Finalidade: "+d.finalidade,
-   "Endereço: "+[d.endereco,d.bairro,d.cidade,d.estado,d.cep].filter(Boolean).join(", "),
-   "Área construída: "+(d.area||"—")+" m²",
-   "Área do terreno: "+(d.terreno||"—")+" m²",
-   "Quartos: "+(d.quartos||"0"),
-   "Banheiros: "+(d.banheiros||"0"),
-   "Vagas: "+(d.vagas||"0"),
-   "Valor: "+money(d.valor),
-   "Aluguel: "+money(d.aluguel),
-   "Condomínio: "+money(d.condominio),
-   "IPTU anual: "+money(d.iptu),
-   "Situação: "+d.situacao,
-   "Responsável: "+d.responsavel,
-   "Referência: "+d.referencia,
-   "Descrição: "+d.descricao,
-   "Observações: "+d.observacoes
-  ];
-  alert(lines.join("\n"));
+
+ const previous=JSON.stringify(properties);
+ if(!Array.isArray(r.transactions))r.transactions=[];
+ r.transactions.unshift(transaction);
+
+ if(!persist()){
+  properties=JSON.parse(previous);
+  return;
  }
- if(btn.dataset.action==="delete"){
-  if(!confirm("Excluir este imóvel?"))return;
-  const previous=items;
-  items=items.filter(x=>x.id!==item.id);
-  if(!save())items=previous;
-  render();
+
+ $("txValue").value="";
+ $("txDescription").value="";
+ renderTransactions();
+ toast("Lançamento registrado.");
+}
+
+function removeTransaction(id){
+ const r=properties.find(x=>x.id===currentId);
+ if(!r||!confirm("Excluir este lançamento?"))return;
+
+ const previous=JSON.stringify(properties);
+ r.transactions=(r.transactions||[]).filter(x=>x.id!==id);
+
+ if(!persist()){
+  properties=JSON.parse(previous);
+  return;
  }
-};
-$("filters").onclick=e=>{
- const btn=e.target.closest("[data-filter]");
- if(!btn)return;
- activeFilter=btn.dataset.filter;
- document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b===btn));
- render();
-};
+
+ renderTransactions();
+}
+
+function renderTransactions(){
+ const r=properties.find(x=>x.id===currentId);
+ const tx=r?.transactions||[];
+
+ const income=tx.filter(x=>x.type==="Receita")
+  .reduce((s,x)=>s+Number(x.value||0),0);
+ const expenses=tx.filter(x=>x.type==="Despesa")
+  .reduce((s,x)=>s+Number(x.value||0),0);
+
+ $("income").textContent=money(income);
+ $("expenses").textContent=money(expenses);
+ $("balance").textContent=money(income-expenses);
+
+ $("transactions").innerHTML=tx.length?tx.map(x=>`
+  <div class="transaction">
+   <strong style="color:${x.type==="Receita"?"#059669":"#dc2626"}">
+    ${esc(x.type)} — ${money(x.value)}
+   </strong>
+   <p>${esc(x.category)} | ${esc(x.date)}</p>
+   <p>${esc(x.description)}</p>
+   <button class="btn red sm" data-tx="${esc(x.id)}">Excluir</button>
+  </div>
+ `).join(""):"<p class='mini'>Nenhuma movimentação registrada.</p>";
+}
+
+$("transactions").addEventListener("click",e=>{
+ const b=e.target.closest("[data-tx]");
+ if(b)removeTransaction(b.dataset.tx);
+});
+
+function render(){
+ renderStats();
+ renderList();
+}
+
 function download(name,content,type){
  const url=URL.createObjectURL(new Blob([content],{type}));
  const a=document.createElement("a");
  a.href=url;a.download=name;
- document.body.appendChild(a);a.click();a.remove();
- setTimeout(()=>URL.revokeObjectURL(url),1000);
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
-function csvCell(v){return '"'+String(v??"").replace(/"/g,'""')+'"';}
-$("csvBtn").onclick=()=>{
- if(!items.length)return alert("Não existem imóveis para exportar.");
- const headers=["ID","Criado em","Atualizado em",...FIELDS];
- const rows=items.map(x=>[x.id,x.createdAt,x.updatedAt,...FIELDS.map(f=>x.data[f]||"")]);
- const csv="\uFEFF"+[headers,...rows].map(r=>r.map(csvCell).join(";")).join("\r\n");
+
+function exportCSV(){
+ const rows=[
+  ["Nome","Tipo","Situação","Endereço","Cidade","Estado",
+   "Área","Valor","Aluguel","Proprietário","Inquilino"],
+  ...properties.map(r=>[
+   r.name,r.type,r.status,r.address,r.city,r.state,
+   r.area,r.value,r.rent,r.owner,r.tenant
+  ])
+ ];
+
+ const csv="\uFEFF"+rows.map(row=>row.map(v=>
+  '"'+String(v??"").replace(/"/g,'""')+'"'
+ ).join(";")).join("\r\n");
+
  download("meus-imoveis.csv",csv,"text/csv;charset=utf-8");
-};
-$("backupBtn").onclick=()=>{
+ toast("CSV exportado.");
+}
+
+function exportBackup(){
  download("backup-meu-imovel.json",
-  JSON.stringify({app:"meu-imovel",version:1,items},null,2),
+  JSON.stringify({version:3,properties},null,2),
   "application/json");
-};
-$("importBtn").onclick=()=>$("importFile").click();
-$("importFile").onchange=async e=>{
+ toast("Backup exportado.");
+}
+
+$("backupFile").addEventListener("change",async e=>{
  const file=e.target.files[0];
  if(!file)return;
+
  try{
-  const obj=JSON.parse(await file.text());
-  if(obj.app!=="meu-imovel"||!Array.isArray(obj.items))throw Error("Backup incompatível.");
-  if(!obj.items.every(x=>
-   x&&typeof x.id==="string"&&
-   x.data&&typeof x.data==="object"&&
-   FIELDS.every(f=>x.data[f]===undefined||typeof x.data[f]==="string")&&
-   (x.photo===undefined||typeof x.photo==="string")
-  ))throw Error("Estrutura inválida.");
-  if(!confirm("Substituir os imóveis atuais pelos dados do backup?"))return;
-  const previous=items;
-  items=obj.items;
-  if(!save()){items=previous;return;}
+  if(file.size>40*1024*1024)throw Error("Arquivo muito grande.");
+
+  const data=JSON.parse(await file.text());
+
+  if(data.version!==3||!Array.isArray(data.properties)||
+   !data.properties.every(r=>
+    typeof r.id==="string"&&
+    typeof r.name==="string"&&
+    (!r.transactions||Array.isArray(r.transactions))
+   ))throw Error("Backup incompatível.");
+
+  if(!confirm("Substituir todos os imóveis atuais pelo backup?"))return;
+
+  const previous=properties;
+  properties=data.properties;
+
+  if(!persist()){properties=previous;return;}
+
   render();
-  alert("Backup importado.");
- }catch(err){alert("Erro ao importar: "+err.message);}
- finally{e.target.value="";}
-};
-$("newBtn").onclick=()=>openForm();
-$("cancelBtn").onclick=()=>$("modal").close();
-$("search").oninput=render;
+  toast("Backup importado com sucesso.");
+ }catch(err){
+  toast("Erro: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+});
+
+function propertyHTML(r){
+ const tx=r.transactions||[];
+ const income=tx.filter(x=>x.type==="Receita").reduce((s,x)=>s+Number(x.value||0),0);
+ const expenses=tx.filter(x=>x.type==="Despesa").reduce((s,x)=>s+Number(x.value||0),0);
+
+ return `
+  <h1>MEU IMÓVEL — FICHA DO IMÓVEL</h1>
+  <h2>${esc(r.name)}</h2>
+  <p><b>Tipo:</b> ${esc(r.type)}</p>
+  <p><b>Situação:</b> ${esc(r.status)}</p>
+  <p><b>Endereço:</b> ${esc(r.address)}</p>
+  <p><b>Cidade:</b> ${esc(r.city)} — ${esc(r.state)}</p>
+  <p><b>CEP:</b> ${esc(r.postal)}</p>
+  <p><b>Área:</b> ${esc(r.area)} m²</p>
+  <p><b>Quartos:</b> ${esc(r.bedrooms)} |
+   <b>Banheiros:</b> ${esc(r.bathrooms)} |
+   <b>Vagas:</b> ${esc(r.parking)}</p>
+  <p><b>Valor estimado:</b> ${money(r.value)}</p>
+  <p><b>Aluguel mensal:</b> ${money(r.rent)}</p>
+  <p><b>Proprietário:</b> ${esc(r.owner)}</p>
+  <p><b>Inquilino:</b> ${esc(r.tenant)}</p>
+  <p><b>Contrato:</b> ${esc(r.contractStart)} até ${esc(r.contractEnd)}</p>
+  <p><b>Observações:</b> ${esc(r.notes)}</p>
+  <h2>Resumo financeiro</h2>
+  <p>Receitas: ${money(income)} |
+   Despesas: ${money(expenses)} |
+   Saldo: ${money(income-expenses)}</p>
+  <table>
+   <thead><tr><th>Data</th><th>Tipo</th><th>Categoria</th><th>Valor</th></tr></thead>
+   <tbody>${tx.map(x=>`
+    <tr><td>${esc(x.date)}</td><td>${esc(x.type)}</td>
+    <td>${esc(x.category)}</td><td>${money(x.value)}</td></tr>
+   `).join("")}</tbody>
+  </table>
+ `;
+}
+
+function printOne(id){
+ const r=properties.find(x=>x.id===id);
+ if(!r)return;
+ $("printArea").innerHTML=propertyHTML(r);
+ window.print();
+}
+
+function printProperty(){
+ const d=getData();
+ const r=properties.find(x=>x.id===currentId);
+ $("printArea").innerHTML=propertyHTML({
+  ...d,transactions:r?.transactions||[]
+ });
+ window.print();
+}
+
+function printReport(){
+ const list=visibleProperties();
+ $("printArea").innerHTML=`
+  <h1>MEU IMÓVEL — RELATÓRIO</h1>
+  <p>Gerado em ${new Date().toLocaleString("pt-BR")}</p>
+  <table>
+   <thead><tr>
+    <th>Imóvel</th><th>Tipo</th><th>Situação</th>
+    <th>Cidade</th><th>Valor</th><th>Aluguel</th>
+   </tr></thead>
+   <tbody>${list.map(r=>`
+    <tr><td>${esc(r.name)}</td><td>${esc(r.type)}</td>
+    <td>${esc(r.status)}</td><td>${esc(r.city)}</td>
+    <td>${money(r.value)}</td><td>${money(r.rent)}</td></tr>
+   `).join("")}</tbody>
+  </table>
+ `;
+ window.print();
+}
+
 render();
 </script>
 </body>
