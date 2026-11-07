@@ -6,763 +6,586 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2563eb">
 <title>MEU REQUERIMENTO | BUSINESS PRO</title>
-
 <style>
-:root{
- --blue:#2563eb;
- --blue2:#1d4ed8;
- --navy:#142747;
- --bg:#f3f7ff;
- --line:#dce5f3;
- --muted:#64748b;
- --white:#fff;
- --green:#15803d;
- --red:#dc2626;
-}
+:root{--blue:#2563eb;--navy:#142e60;--bg:#f3f7ff;--ink:#142747;--muted:#64748b;--line:#d8e3f3;--green:#059669;--red:#dc2626}
 *{box-sizing:border-box}
-body{
- margin:0;
- background:var(--bg);
- color:var(--navy);
- font-family:Inter,Arial,sans-serif;
-}
-button,input,select,textarea{font:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-header{
- background:white;
- border-bottom:1px solid var(--line);
- padding:18px 5%;
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:15px;
-}
-.brand{font-size:22px;font-weight:900}
-.brand span{color:var(--blue)}
-.back{
- text-decoration:none;
- color:var(--blue);
- font-weight:800;
-}
-main{
- max-width:1250px;
- margin:auto;
- padding:25px 18px;
-}
-.hero{
- border-radius:24px;
- padding:36px;
- color:white;
- background:linear-gradient(125deg,#14366d,#2563eb);
- box-shadow:0 15px 35px #2563eb25;
-}
-.hero small{
- letter-spacing:2px;
- font-weight:900;
-}
-.hero h1{
- font-size:clamp(28px,4vw,43px);
- margin:12px 0;
-}
-.hero p{
- line-height:1.7;
- opacity:.94;
- max-width:720px;
-}
-.toolbar{
- display:flex;
- flex-wrap:wrap;
- gap:12px;
- margin:25px 0;
-}
-.btn{
- border:0;
- border-radius:12px;
- padding:13px 19px;
- background:var(--blue);
- color:white;
- font-weight:800;
-}
-.btn:hover{filter:brightness(.94)}
-.secondary{
- background:white;
- color:var(--navy);
- border:1px solid var(--line);
-}
-.danger{
- background:#fff1f2;
- color:var(--red);
-}
-.search{
- flex:1;
- min-width:200px;
- border:1px solid var(--line);
- border-radius:12px;
- padding:13px 15px;
- background:white;
-}
-.stats{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:14px;
- margin-bottom:25px;
-}
-.stat,.panel,.record{
- background:white;
- border:1px solid var(--line);
- border-radius:19px;
- padding:22px;
- box-shadow:0 10px 25px #1e3a8a08;
-}
-.stat small{color:var(--muted)}
-.stat strong{
- display:block;
- font-size:30px;
- margin-top:9px;
-}
-.panel h2{margin-top:0}
-.records{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:15px;
-}
-.record h3{
- margin:15px 0 10px;
- overflow-wrap:anywhere;
-}
-.record p{
- color:var(--muted);
- line-height:1.6;
- overflow-wrap:anywhere;
-}
-.tag{
- display:inline-block;
- background:#eaf1ff;
- color:#1d4ed8;
- border-radius:25px;
- padding:7px 12px;
- font-size:12px;
- font-weight:900;
-}
-.actions{
- display:flex;
- flex-wrap:wrap;
- gap:8px;
- margin-top:20px;
-}
-.empty{
- grid-column:1/-1;
- text-align:center;
- padding:55px 15px;
- color:var(--muted);
-}
-dialog{
- border:0;
- border-radius:23px;
- padding:0;
- width:min(800px,96vw);
- max-height:92vh;
- overflow:auto;
- box-shadow:0 25px 100px #0f172a60;
-}
-dialog::backdrop{background:#071326aa}
-.modalhead{
- background:#f4f8ff;
- border-bottom:1px solid var(--line);
- padding:24px 28px;
-}
-.modalhead h2{margin:0}
-form{padding:25px 28px}
-.fields{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:16px;
-}
-.field{
- display:flex;
- flex-direction:column;
- gap:7px;
-}
+a{text-decoration:none;color:inherit}
+header{background:white;border-bottom:1px solid var(--line);padding:16px 4%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:900;font-size:21px}.brand span{color:var(--blue)}
+main{max-width:1480px;margin:auto;padding:22px 16px}
+.hero{background:linear-gradient(110deg,#142e60,#2563eb);color:white;border-radius:25px;padding:40px;margin-bottom:22px}
+.hero small{font-weight:900;letter-spacing:2px}
+.hero h1{font-size:clamp(30px,5vw,49px);margin:14px 0}
+.hero p{line-height:1.7;max-width:900px;margin:0;color:#e4eeff}
+.btn{border:0;border-radius:11px;padding:12px 16px;background:var(--blue);color:white;font-weight:800;display:inline-flex;justify-content:center;align-items:center;gap:6px}
+.btn.alt{background:#eaf0ff;color:#1d4ed8}
+.btn.light{background:white;color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:#fee2e2;color:#b91c1c}
+.btn.small{padding:9px 11px;font-size:12px}
+.btn:hover{filter:brightness(.96)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.toolbar input{flex:1;min-width:220px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:22px}
+.stat,.panel{background:white;border:1px solid var(--line);border-radius:19px;box-shadow:0 8px 24px #142e6008}
+.stat{padding:24px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:32px;margin-top:12px}
+.panel{padding:26px;margin-bottom:20px}
+.panel h2{margin:0 0 20px;font-size:24px}
+.actions{display:flex;flex-wrap:wrap;gap:9px}
+.list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.item{border:1px solid var(--line);border-radius:16px;padding:19px;background:#fbfcff;min-width:0}
+.item h3{font-size:19px;margin:12px 0;overflow-wrap:anywhere}
+.item p{font-size:13px;color:var(--muted);line-height:1.7;overflow-wrap:anywhere}
+.tag{display:inline-block;background:#eaf0ff;color:#1d4ed8;padding:7px 11px;border-radius:20px;font-size:11px;font-weight:800}
+.tag.good{background:#dcfce7;color:#166534}.tag.warn{background:#fef3c7;color:#92400e}.tag.bad{background:#fee2e2;color:#991b1b}
+.empty{text-align:center;padding:70px 15px;color:var(--muted)}
+.empty h3{font-size:20px}
+.editor{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
 .full{grid-column:1/-1}
-label{
- font-size:13px;
- font-weight:800;
-}
-input,select,textarea{
- width:100%;
- border:1px solid #cbd8eb;
- border-radius:11px;
- padding:13px;
- background:white;
- color:var(--navy);
-}
-textarea{
- min-height:115px;
- resize:vertical;
-}
-.modalactions{
- display:flex;
- flex-wrap:wrap;
- justify-content:flex-end;
- gap:10px;
- margin-top:25px;
-}
-.notice{
- font-size:13px;
- color:var(--muted);
- line-height:1.7;
- margin:25px 0;
-}
-.preview{
- background:white;
- color:#111;
- padding:40px;
- max-width:800px;
- margin:auto;
- font-family:Georgia,"Times New Roman",serif;
- line-height:1.8;
-}
-.preview h2{text-align:center}
-.preview .date{text-align:right}
-.preview .signature{
- text-align:center;
- margin-top:70px;
-}
-.preview p{white-space:pre-wrap}
-@media(max-width:700px){
- header{padding:17px}
- main{padding:18px 12px}
- .hero{padding:25px}
- .stats{grid-template-columns:repeat(2,1fr)}
- .records,.fields{grid-template-columns:1fr}
- .full{grid-column:auto}
- .stat{padding:16px}
-}
+label{font-size:12px;font-weight:800}
+input,select,textarea{width:100%;border:1px solid #cbd6e6;background:#fbfcff;color:var(--ink);border-radius:11px;padding:13px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);background:white}
+textarea{resize:vertical;min-height:100px}
+.paper{background:white;border-top:6px solid var(--blue);padding:38px;min-height:650px;box-shadow:0 5px 20px #0000000c;overflow-wrap:anywhere}
+.paper h2{text-align:center;font-size:21px;margin:10px 0 35px}
+.paper p{font-size:14px;line-height:1.85;white-space:pre-wrap}
+.paper .signature{text-align:center;margin-top:65px}
+.paper .signature span{display:inline-block;border-top:1px solid #333;padding:10px 30px}
+.hidden{display:none!important}
+.hint{font-size:12px;color:var(--muted);line-height:1.7}
+#toast{display:none;position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#142747;color:white;padding:14px 20px;border-radius:12px;z-index:30;max-width:90vw}
+#printArea{display:none}
+@media(max-width:1000px){.editor{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){main{padding:12px 10px}.hero{padding:27px 20px;border-radius:18px}.panel{padding:18px}.stat{padding:17px}.stat strong{font-size:25px}.list,.fields{grid-template-columns:1fr}.full{grid-column:auto}.toolbar>*{width:100%}.paper{padding:22px;min-height:450px}.brand{font-size:16px}header .btn{font-size:11px;padding:10px}}
+@page{size:A4;margin:18mm}
 @media print{
- header,.hero,.toolbar,.stats,.panel,.notice,
- dialog,.no-print{display:none!important}
- body{background:white}
- main{padding:0}
- .preview{
-  display:block!important;
-  max-width:none;
-  padding:10mm;
- }
+ body>*:not(#printArea){display:none!important}
+ #printArea{display:block!important}
+ #printArea .paper{border:0;box-shadow:none;padding:0;min-height:auto}
+ #printArea .paper h2{font-size:18pt}
+ #printArea .paper p{font-size:11pt}
 }
 </style>
 </head>
-
 <body>
 
 <header>
- <div class="brand">◆ BUSINESS <span>PRO</span></div>
- <a class="back" href="../">← Voltar ao portal</a>
+ <div class="brand">📝 MEU <span>REQUERIMENTO</span></div>
+ <a href="../" class="btn alt">← Business Pro</a>
 </header>
 
 <main>
-
 <section class="hero">
  <small>DOCUMENTOS PROFISSIONAIS</small>
  <h1>📝 MEU REQUERIMENTO</h1>
- <p>
-  Crie requerimentos formais, organize solicitações,
-  acompanhe protocolos e prepare documentos para
-  impressão ou envio.
- </p>
+ <p>Crie requerimentos formais, utilize modelos, acompanhe solicitações e prepare documentos profissionais para impressão, PDF ou compartilhamento.</p>
 </section>
 
-<div class="toolbar">
- <button class="btn" id="newBtn">+ Novo requerimento</button>
- <input class="search" id="search"
- placeholder="Pesquisar requerimentos...">
- <button class="btn secondary" id="exportBtn">Exportar CSV</button>
- <button class="btn secondary" id="backupBtn">Backup JSON</button>
- <button class="btn secondary" id="importBtn">Importar backup</button>
- <input type="file" id="importFile" accept=".json,application/json" hidden>
-</div>
+<section id="home">
+ <div class="toolbar">
+  <button class="btn" onclick="newDocument()">+ Novo requerimento</button>
+  <input id="search" placeholder="🔎 Pesquisar requerimentos...">
+  <button class="btn light" onclick="exportCSV()">Exportar CSV</button>
+  <button class="btn light" onclick="exportBackup()">Backup JSON</button>
+  <button class="btn light" onclick="document.getElementById('backupFile').click()">Importar backup</button>
+  <input id="backupFile" type="file" accept=".json,application/json" hidden>
+ </div>
 
-<section class="stats">
- <div class="stat">
-  <small>Total de requerimentos</small>
-  <strong id="total">0</strong>
+ <div class="stats">
+  <div class="stat"><small>Total de requerimentos</small><strong id="statTotal">0</strong></div>
+  <div class="stat"><small>Em análise</small><strong id="statAnalysis">0</strong></div>
+  <div class="stat"><small>Atendidos</small><strong id="statDone">0</strong></div>
+  <div class="stat"><small>Rascunhos</small><strong id="statDraft">0</strong></div>
  </div>
- <div class="stat">
-  <small>Em análise</small>
-  <strong id="analysis">0</strong>
+
+ <section class="panel">
+  <h2>Meus requerimentos</h2>
+  <div id="documentList" class="list"></div>
+ </section>
+</section>
+
+<section id="editorSection" class="hidden">
+ <div class="actions" style="margin-bottom:18px">
+  <button class="btn alt" onclick="goHome()">← Voltar</button>
+  <button class="btn" onclick="saveDocument()">💾 Salvar</button>
+  <button class="btn alt" onclick="printDocument()">Imprimir / Salvar PDF</button>
+  <button class="btn light" onclick="copyDocument()">Copiar texto</button>
  </div>
- <div class="stat">
-  <small>Atendidos</small>
-  <strong id="approved">0</strong>
- </div>
- <div class="stat">
-  <small>Rascunhos</small>
-  <strong id="drafts">0</strong>
+
+ <div class="editor">
+  <section class="panel">
+   <h2>Editar requerimento</h2>
+   <div class="fields">
+    <div class="field full">
+     <label>Modelo de requerimento</label>
+     <select id="template">
+      <option value="custom">Personalizado</option>
+      <option value="document">Solicitação de documento</option>
+      <option value="information">Pedido de informações</option>
+      <option value="review">Pedido de revisão</option>
+      <option value="authorization">Solicitação de autorização</option>
+      <option value="deadline">Pedido de prorrogação de prazo</option>
+     </select>
+    </div>
+    <div class="field full">
+     <label>Título *</label>
+     <input id="title" placeholder="Ex.: Requerimento de emissão de documento">
+    </div>
+    <div class="field">
+     <label>Nome do requerente *</label>
+     <input id="person" placeholder="Nome completo">
+    </div>
+    <div class="field">
+     <label>CPF / CNPJ ou identificação</label>
+     <input id="identity" placeholder="Documento de identificação">
+    </div>
+    <div class="field">
+     <label>E-mail</label>
+     <input id="email" type="email">
+    </div>
+    <div class="field">
+     <label>Telefone</label>
+     <input id="phone" type="tel">
+    </div>
+    <div class="field full">
+     <label>Destinatário / órgão</label>
+     <input id="recipient" placeholder="Ex.: À Secretaria Municipal">
+    </div>
+    <div class="field">
+     <label>Cidade</label>
+     <input id="city" placeholder="Cidade - UF">
+    </div>
+    <div class="field">
+     <label>Data</label>
+     <input id="date" type="date">
+    </div>
+    <div class="field">
+     <label>Número de protocolo (se houver)</label>
+     <input id="protocol" placeholder="Número informado pelo órgão">
+    </div>
+    <div class="field">
+     <label>Prazo</label>
+     <input id="due" type="date">
+    </div>
+    <div class="field">
+     <label>Situação</label>
+     <select id="status">
+      <option>Rascunho</option>
+      <option>Enviado</option>
+      <option>Em análise</option>
+      <option>Atendido</option>
+      <option>Indeferido</option>
+      <option>Arquivado</option>
+     </select>
+    </div>
+    <div class="field">
+     <label>Prioridade</label>
+     <select id="priority">
+      <option>Normal</option>
+      <option>Alta</option>
+      <option>Urgente</option>
+     </select>
+    </div>
+    <div class="field full">
+     <label>Pedido principal *</label>
+     <textarea id="request" rows="6" placeholder="Descreva claramente o que está solicitando..."></textarea>
+    </div>
+    <div class="field full">
+     <label>Justificativa</label>
+     <textarea id="reason" rows="5" placeholder="Explique os motivos do pedido..."></textarea>
+    </div>
+    <div class="field full">
+     <label>Documentos anexos (descrição)</label>
+     <textarea id="attachments" placeholder="Liste os documentos que acompanharão o requerimento"></textarea>
+    </div>
+    <div class="field full">
+     <label>Observações internas</label>
+     <textarea id="notes" placeholder="Notas para seu acompanhamento (não aparecem no documento)"></textarea>
+    </div>
+   </div>
+   <p class="hint">A pré-visualização é atualizada enquanto você digita. O número de protocolo oficial deve ser informado pelo órgão responsável.</p>
+  </section>
+
+  <section class="panel">
+   <div class="actions" style="justify-content:space-between;align-items:center;margin-bottom:16px">
+    <h2 style="margin:0">Pré-visualização A4</h2>
+    <button class="btn small" onclick="printDocument()">Gerar PDF / Imprimir</button>
+   </div>
+   <div id="preview" class="paper"></div>
+  </section>
  </div>
 </section>
 
-<section class="panel">
- <h2>Meus requerimentos</h2>
- <div class="records" id="records"></div>
-</section>
-
-<p class="notice">
- Os documentos são armazenados localmente neste navegador.
- Faça backups regularmente. Os dados não são sincronizados
- entre dispositivos. Evite armazenar informações sensíveis
- em computadores compartilhados.
-</p>
-
-<section class="preview" id="printArea" hidden></section>
-
+<p class="hint">Os registros ficam salvos apenas neste navegador. Faça backups para evitar perdas. O aplicativo prepara documentos, mas não protocola solicitações automaticamente em órgãos ou instituições.</p>
 </main>
 
-<dialog id="modal">
- <div class="modalhead">
-  <h2 id="modalTitle">Novo requerimento</h2>
- </div>
-
- <form id="form">
-  <div class="fields">
-
-   <div class="field full">
-    <label for="titulo">Assunto do requerimento *</label>
-    <input id="titulo" required
-     placeholder="Ex.: Solicitação de declaração">
-   </div>
-
-   <div class="field">
-    <label for="nome">Nome do requerente *</label>
-    <input id="nome" required>
-   </div>
-
-   <div class="field">
-    <label for="documento">CPF ou documento de referência</label>
-    <input id="documento">
-   </div>
-
-   <div class="field">
-    <label for="email">E-mail</label>
-    <input id="email" type="email">
-   </div>
-
-   <div class="field">
-    <label for="telefone">Telefone</label>
-    <input id="telefone" type="tel">
-   </div>
-
-   <div class="field full">
-    <label for="destinatario">Órgão, empresa ou destinatário *</label>
-    <input id="destinatario" required>
-   </div>
-
-   <div class="field">
-    <label for="cidade">Cidade</label>
-    <input id="cidade">
-   </div>
-
-   <div class="field">
-    <label for="data">Data do requerimento</label>
-    <input id="data" type="date">
-   </div>
-
-   <div class="field">
-    <label for="protocolo">Número de protocolo</label>
-    <input id="protocolo">
-   </div>
-
-   <div class="field">
-    <label for="prazo">Prazo de resposta</label>
-    <input id="prazo" type="date">
-   </div>
-
-   <div class="field">
-    <label for="situacao">Situação</label>
-    <select id="situacao">
-     <option>Rascunho</option>
-     <option>Enviado</option>
-     <option>Em análise</option>
-     <option>Atendido</option>
-     <option>Indeferido</option>
-     <option>Arquivado</option>
-    </select>
-   </div>
-
-   <div class="field">
-    <label for="prioridade">Prioridade</label>
-    <select id="prioridade">
-     <option>Normal</option>
-     <option>Alta</option>
-     <option>Urgente</option>
-    </select>
-   </div>
-
-   <div class="field full">
-    <label for="pedido">Descrição do pedido *</label>
-    <textarea id="pedido" required
-     placeholder="Descreva claramente o que está solicitando."></textarea>
-   </div>
-
-   <div class="field full">
-    <label for="justificativa">Justificativa</label>
-    <textarea id="justificativa"
-     placeholder="Explique os motivos do requerimento."></textarea>
-   </div>
-
-   <div class="field full">
-    <label for="anexos">Documentos anexos</label>
-    <textarea id="anexos"
-     placeholder="Liste os documentos que acompanharão o pedido."></textarea>
-   </div>
-
-   <div class="field full">
-    <label for="observacoes">Observações internas</label>
-    <textarea id="observacoes"></textarea>
-   </div>
-
-  </div>
-
-  <div class="modalactions">
-   <button type="button" class="btn secondary"
-    id="cancelBtn">Cancelar</button>
-   <button type="submit" class="btn">Salvar requerimento</button>
-  </div>
- </form>
-</dialog>
+<div id="printArea"></div>
+<div id="toast" role="status"></div>
 
 <script>
 "use strict";
 
 const $=id=>document.getElementById(id);
+const KEY="businesspro_meu_requerimento_v3";
+const FIELDS=["template","title","person","identity","email","phone","recipient","city","date","protocol","due","status","priority","request","reason","attachments","notes"];
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
 
-const KEY="businesspro_meu_requerimento_v2";
-
-const FIELDS=[
- "titulo","nome","documento","email","telefone",
- "destinatario","cidade","data","protocolo","prazo",
- "situacao","prioridade","pedido","justificativa",
- "anexos","observacoes"
-];
-
-let items=[];
-let editing=null;
-
-try{
- const saved=JSON.parse(localStorage.getItem(KEY)||"[]");
- items=Array.isArray(saved)?saved:[];
-}catch(e){
- alert("Não foi possível ler os dados armazenados.");
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
 }
+function htmlText(v){return esc(v||"—").replace(/\n/g,"<br>")}
+function today(){
+ const d=new Date();
+ return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
+}
+function dateBR(v){
+ if(!v)return "—";
+ const [y,m,d]=v.split("-");
+ return `${d}/${m}/${y}`;
+}
+function toast(msg){
+ $("toast").textContent=msg;
+ $("toast").style.display="block";
+ clearTimeout(toast.timer);
+ toast.timer=setTimeout(()=>$("toast").style.display="none",3000);
+}
+
+let documents=[];
+try{
+ const data=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(data))documents=data;
+}catch(e){}
+
+let currentId=null;
 
 function persist(){
  try{
-  localStorage.setItem(KEY,JSON.stringify(items));
+  localStorage.setItem(KEY,JSON.stringify(documents));
   return true;
  }catch(e){
-  alert("Não foi possível salvar os dados neste navegador.");
+  toast("Erro ao salvar. Verifique o armazenamento do navegador.");
   return false;
  }
 }
 
-function esc(v){
- return String(v??"").replace(/[&<>"']/g,c=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",
-  '"':"&quot;","'":"&#39;"
- }[c]));
+function download(filename,content,type){
+ const url=URL.createObjectURL(new Blob([content],{type}));
+ const a=document.createElement("a");
+ a.href=url;a.download=filename;
+ document.body.appendChild(a);
+ a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
 
-function dateBR(v){
- if(!v)return "Não informado";
- const p=v.split("-");
- return p.length===3?p.reverse().join("/"):v;
+function goHome(){
+ $("editorSection").classList.add("hidden");
+ $("home").classList.remove("hidden");
+ render();
+ window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function openForm(id=null){
- editing=id;
- const item=items.find(x=>x.id===id);
- $("modalTitle").textContent=item?
-  "Editar requerimento":"Novo requerimento";
+function newDocument(){
+ currentId=null;
+ FIELDS.forEach(k=>$(k).value="");
+ $("template").value="custom";
+ $("date").value=today();
+ $("status").value="Rascunho";
+ $("priority").value="Normal";
+ $("home").classList.add("hidden");
+ $("editorSection").classList.remove("hidden");
+ updatePreview();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
 
- FIELDS.forEach(f=>{
-  $(f).value=item?.data?.[f]??"";
- });
+function editDocument(id){
+ const d=documents.find(x=>x.id===id);
+ if(!d)return;
 
- if(!item){
-  $("data").value=new Date().toLocaleDateString("en-CA");
-  $("situacao").value="Rascunho";
-  $("prioridade").value="Normal";
+ currentId=id;
+ FIELDS.forEach(k=>$(k).value=d[k]??"");
+ $("home").classList.add("hidden");
+ $("editorSection").classList.remove("hidden");
+ updatePreview();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function getData(){
+ return Object.fromEntries(FIELDS.map(k=>[k,$(k).value.trim()]));
+}
+
+function saveDocument(){
+ const data=getData();
+ if(!data.title||!data.person||!data.request){
+  toast("Preencha título, requerente e pedido principal.");
+  return;
  }
 
- $("modal").showModal();
+ const previous=JSON.stringify(documents);
+ const now=new Date().toISOString();
+
+ if(currentId){
+  const d=documents.find(x=>x.id===currentId);
+  if(!d)return;
+  Object.assign(d,data,{updatedAt:now});
+ }else{
+  currentId=uid();
+  documents.unshift({id:currentId,...data,createdAt:now,updatedAt:now});
+ }
+
+ if(!persist()){
+  documents=JSON.parse(previous);
+  return;
+ }
+
+ toast("Requerimento salvo com sucesso.");
+ render();
+}
+
+function deleteDocument(id){
+ const d=documents.find(x=>x.id===id);
+ if(!d||!confirm("Excluir o requerimento '"+d.title+"'?"))return;
+
+ const old=documents;
+ documents=documents.filter(x=>x.id!==id);
+
+ if(!persist()){
+  documents=old;
+  return;
+ }
+
+ render();
+ toast("Requerimento excluído.");
+}
+
+const templates={
+ document:{
+  title:"Requerimento de emissão de documento",
+  request:"Venho requerer a emissão do documento indicado, conforme os procedimentos aplicáveis.",
+  reason:"O documento é necessário para fins de regularização e comprovação das informações pertinentes."
+ },
+ information:{
+  title:"Requerimento de informações",
+  request:"Solicito informações referentes ao assunto descrito, incluindo orientações sobre os procedimentos e documentos necessários.",
+  reason:"As informações são necessárias para esclarecimento e acompanhamento da solicitação."
+ },
+ review:{
+  title:"Requerimento de revisão",
+  request:"Solicito a revisão da decisão ou do registro relacionado ao assunto informado.",
+  reason:"Apresento este pedido para que os fatos e documentos pertinentes sejam reavaliados."
+ },
+ authorization:{
+  title:"Requerimento de autorização",
+  request:"Solicito autorização para a realização da atividade descrita, observadas as normas e condições aplicáveis.",
+  reason:"O pedido busca obter a autorização necessária antes da realização da atividade."
+ },
+ deadline:{
+  title:"Requerimento de prorrogação de prazo",
+  request:"Solicito a prorrogação do prazo referente ao procedimento indicado.",
+  reason:"A prorrogação é solicitada em razão das circunstâncias expostas e da necessidade de tempo adicional."
+ }
+};
+
+$("template").addEventListener("change",()=>{
+ const model=templates[$("template").value];
+ if(!model)return;
+ if(($("request").value||$("reason").value)&&
+  !confirm("Aplicar o modelo e substituir o pedido e a justificativa atuais?"))return;
+ $("title").value=model.title;
+ $("request").value=model.request;
+ $("reason").value=model.reason;
+ updatePreview();
+});
+
+function documentHTML(d){
+ const title=d.title||"REQUERIMENTO";
+ return `
+  <h2>${esc(title.toUpperCase())}</h2>
+  <p><b>À / Ao:</b> ${htmlText(d.recipient)}</p>
+  ${d.protocol?`<p><b>Protocolo:</b> ${esc(d.protocol)}</p>`:""}
+  <p><b>Requerente:</b> ${htmlText(d.person)}</p>
+  ${d.identity?`<p><b>Identificação:</b> ${esc(d.identity)}</p>`:""}
+  ${d.email?`<p><b>E-mail:</b> ${esc(d.email)}</p>`:""}
+  ${d.phone?`<p><b>Telefone:</b> ${esc(d.phone)}</p>`:""}
+  <p style="margin-top:30px"><b>DO PEDIDO</b></p>
+  <p>${htmlText(d.request)}</p>
+  ${d.reason?`<p><b>DA JUSTIFICATIVA</b></p><p>${htmlText(d.reason)}</p>`:""}
+  ${d.attachments?`<p><b>DOCUMENTOS ANEXOS</b></p><p>${htmlText(d.attachments)}</p>`:""}
+  <p style="margin-top:35px">Nestes termos, pede deferimento.</p>
+  <p style="text-align:right;margin-top:30px">${esc(d.city||"Local não informado")}, ${dateBR(d.date)}.</p>
+  <div class="signature"><span>${esc(d.person||"Assinatura do requerente")}</span></div>
+ `;
+}
+
+function updatePreview(){
+ $("preview").innerHTML=documentHTML(getData());
+}
+
+FIELDS.forEach(id=>{
+ $(id).addEventListener("input",updatePreview);
+ $(id).addEventListener("change",updatePreview);
+});
+
+function printDocument(){
+ const data=getData();
+ if(!data.title||!data.person||!data.request){
+  toast("Preencha título, requerente e pedido antes de imprimir.");
+  return;
+ }
+ $("printArea").innerHTML='<div class="paper">'+documentHTML(data)+"</div>";
+ window.print();
+}
+
+async function copyDocument(){
+ const d=getData();
+ const text=[
+  d.title.toUpperCase(),
+  "À / Ao: "+d.recipient,
+  "Requerente: "+d.person,
+  d.identity?"Identificação: "+d.identity:"",
+  d.protocol?"Protocolo: "+d.protocol:"",
+  "",
+  "DO PEDIDO",
+  d.request,
+  "",
+  d.reason?"DA JUSTIFICATIVA\n"+d.reason:"",
+  d.attachments?"DOCUMENTOS ANEXOS\n"+d.attachments:"",
+  "",
+  "Nestes termos, pede deferimento.",
+  d.city+", "+dateBR(d.date),
+  d.person
+ ].filter(Boolean).join("\n");
+
+ try{
+  await navigator.clipboard.writeText(text);
+  toast("Texto copiado.");
+ }catch(e){
+  const t=document.createElement("textarea");
+  t.value=text;document.body.appendChild(t);
+  t.select();
+  const ok=document.execCommand("copy");
+  t.remove();
+  toast(ok?"Texto copiado.":"Não foi possível copiar.");
+ }
 }
 
 function render(){
- const term=$("search").value.toLowerCase().trim();
+ $("statTotal").textContent=documents.length;
+ $("statAnalysis").textContent=documents.filter(d=>d.status==="Em análise").length;
+ $("statDone").textContent=documents.filter(d=>d.status==="Atendido").length;
+ $("statDraft").textContent=documents.filter(d=>d.status==="Rascunho").length;
 
- $("total").textContent=items.length;
- $("analysis").textContent=items.filter(x=>
-  x.data.situacao==="Em análise").length;
- $("approved").textContent=items.filter(x=>
-  x.data.situacao==="Atendido").length;
- $("drafts").textContent=items.filter(x=>
-  x.data.situacao==="Rascunho").length;
-
- const filtered=items.filter(x=>
-  JSON.stringify(x.data).toLowerCase().includes(term)
+ const q=$("search").value.trim().toLowerCase();
+ const list=documents.filter(d=>
+  [d.title,d.person,d.recipient,d.protocol,d.status].join(" ").toLowerCase().includes(q)
  );
 
- if(!filtered.length){
-  $("records").innerHTML=`
-   <div class="empty">
-    <h3>Nenhum requerimento encontrado</h3>
-    <p>Crie seu primeiro requerimento para começar.</p>
-   </div>`;
-  return;
- }
+ $("documentList").innerHTML=list.length?list.map(d=>{
+  const cls=d.status==="Atendido"?"good":
+   d.status==="Indeferido"?"bad":
+   d.status==="Em análise"?"warn":"";
 
- $("records").innerHTML=filtered.map(x=>`
-  <article class="record">
-   <span class="tag">${esc(x.data.situacao)}</span>
-   <h3>${esc(x.data.titulo)}</h3>
-   <p><strong>Requerente:</strong> ${esc(x.data.nome)}</p>
-   <p><strong>Destinatário:</strong> ${esc(x.data.destinatario)}</p>
-   <p><strong>Data:</strong> ${esc(dateBR(x.data.data))}</p>
-   <p><strong>Protocolo:</strong> ${esc(x.data.protocolo||"Não informado")}</p>
-   <p><strong>Prioridade:</strong> ${esc(x.data.prioridade)}</p>
-   <div class="actions">
-    <button class="btn secondary" data-action="edit"
-     data-id="${esc(x.id)}">Editar</button>
-    <button class="btn" data-action="print"
-     data-id="${esc(x.id)}">Imprimir / PDF</button>
-    <button class="btn secondary" data-action="copy"
-     data-id="${esc(x.id)}">Copiar texto</button>
-    <button class="btn danger" data-action="delete"
-     data-id="${esc(x.id)}">Excluir</button>
-   </div>
-  </article>
- `).join("");
-}
-
-$("form").onsubmit=e=>{
- e.preventDefault();
-
- const data={};
- FIELDS.forEach(f=>data[f]=$(f).value.trim());
-
- if(!data.titulo||!data.nome||!data.destinatario||!data.pedido){
-  alert("Preencha os campos obrigatórios.");
-  return;
- }
-
- const old=items.find(x=>x.id===editing);
-
- const record={
-  id:old?.id||crypto.randomUUID(),
-  createdAt:old?.createdAt||new Date().toISOString(),
-  updatedAt:new Date().toISOString(),
-  data
- };
-
- const previous=items;
-
- items=old?
-  items.map(x=>x.id===editing?record:x):
-  [record,...items];
-
- if(!persist()){
-  items=previous;
-  return;
- }
-
- $("modal").close();
- editing=null;
- render();
-};
-
-function textDocument(d){
- return [
-  "REQUERIMENTO",
-  "",
-  "À "+d.destinatario,
-  "",
-  "Assunto: "+d.titulo,
-  "",
-  "Eu, "+d.nome+
-   (d.documento?", documento "+d.documento:"")+
-   ", venho apresentar o seguinte requerimento:",
-  "",
-  d.pedido,
-  "",
-  d.justificativa?"Justificativa:\n"+d.justificativa:"",
-  "",
-  d.anexos?"Documentos anexos:\n"+d.anexos:"",
-  "",
-  (d.cidade?d.cidade+", ":"")+dateBR(d.data),
-  "",
-  "________________________________",
-  d.nome,
-  d.email?"E-mail: "+d.email:"",
-  d.telefone?"Telefone: "+d.telefone:""
- ].filter((v,i,a)=>v!==undefined).join("\n");
-}
-
-function printDocument(item){
- const d=item.data;
- const area=$("printArea");
-
- area.innerHTML=`
-  <h2>REQUERIMENTO</h2>
-  <p><strong>À ${esc(d.destinatario)}</strong></p>
-  <p><strong>Assunto:</strong> ${esc(d.titulo)}</p>
-  <p>
-   Eu, <strong>${esc(d.nome)}</strong>,
-   ${d.documento?"documento "+esc(d.documento)+",":""}
-   venho apresentar o seguinte requerimento:
-  </p>
-  <p>${esc(d.pedido)}</p>
-  ${d.justificativa?`
-   <p><strong>Justificativa:</strong></p>
-   <p>${esc(d.justificativa)}</p>`:""}
-  ${d.anexos?`
-   <p><strong>Documentos anexos:</strong></p>
-   <p>${esc(d.anexos)}</p>`:""}
-  <p class="date">
-   ${esc(d.cidade?d.cidade+", ":"")}
-   ${esc(dateBR(d.data))}
-  </p>
-  <div class="signature">
-   ________________________________<br>
-   ${esc(d.nome)}
+  return `
+   <article class="item">
+    <div class="actions" style="justify-content:space-between;align-items:center">
+     <span class="tag ${cls}">${esc(d.status)}</span>
+     <small>${dateBR(d.date)}</small>
+    </div>
+    <h3>${esc(d.title)}</h3>
+    <p><b>Requerente:</b> ${esc(d.person)}</p>
+    <p><b>Destinatário:</b> ${esc(d.recipient||"—")}</p>
+    <p><b>Protocolo:</b> ${esc(d.protocol||"Não informado")}</p>
+    <div class="actions">
+     <button class="btn small" data-action="edit" data-id="${esc(d.id)}">Abrir / Editar</button>
+     <button class="btn small alt" data-action="print" data-id="${esc(d.id)}">PDF / Imprimir</button>
+     <button class="btn small danger" data-action="delete" data-id="${esc(d.id)}">Excluir</button>
+    </div>
+   </article>
+  `;
+ }).join(""):`
+  <div class="empty" style="grid-column:1/-1">
+   <h3>Nenhum requerimento encontrado</h3>
+   <p>Crie seu primeiro requerimento para começar.</p>
+   <button class="btn" onclick="newDocument()">+ Criar requerimento</button>
   </div>
  `;
-
- area.hidden=false;
- window.print();
- area.hidden=true;
 }
 
-$("records").onclick=async e=>{
- const btn=e.target.closest("button[data-action]");
+$("documentList").addEventListener("click",e=>{
+ const btn=e.target.closest("[data-action]");
  if(!btn)return;
+ const id=btn.dataset.id;
 
- const item=items.find(x=>x.id===btn.dataset.id);
- if(!item)return;
-
- const action=btn.dataset.action;
-
- if(action==="edit")openForm(item.id);
-
- if(action==="print")printDocument(item);
-
- if(action==="copy"){
-  const content=textDocument(item.data);
-  try{
-   await navigator.clipboard.writeText(content);
-   alert("Requerimento copiado.");
-  }catch(e){
-   const ta=document.createElement("textarea");
-   ta.value=content;
-   document.body.appendChild(ta);
-   ta.select();
-   const ok=document.execCommand("copy");
-   ta.remove();
-   alert(ok?"Requerimento copiado.":"Não foi possível copiar.");
+ if(btn.dataset.action==="edit")editDocument(id);
+ if(btn.dataset.action==="delete")deleteDocument(id);
+ if(btn.dataset.action==="print"){
+  const d=documents.find(x=>x.id===id);
+  if(d){
+   $("printArea").innerHTML='<div class="paper">'+documentHTML(d)+"</div>";
+   window.print();
   }
  }
+});
 
- if(action==="delete"){
-  if(!confirm("Excluir este requerimento?"))return;
-  const old=items;
-  items=items.filter(x=>x.id!==item.id);
-  if(!persist())items=old;
-  render();
- }
-};
+$("search").addEventListener("input",render);
 
-function download(name,content,type){
- const blob=new Blob([content],{type});
- const url=URL.createObjectURL(blob);
- const a=document.createElement("a");
- a.href=url;
- a.download=name;
- document.body.appendChild(a);
- a.click();
- a.remove();
- setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
+function exportCSV(){
+ const cols=["Título","Requerente","Identificação","E-mail","Telefone","Destinatário","Cidade","Data","Protocolo","Prazo","Situação","Prioridade","Pedido","Justificativa","Anexos","Observações"];
 
-function csvCell(v){
- return '"'+String(v??"").replace(/"/g,'""')+'"';
-}
+ const rows=[cols,...documents.map(d=>[
+  d.title,d.person,d.identity,d.email,d.phone,d.recipient,d.city,
+  dateBR(d.date),d.protocol,dateBR(d.due),d.status,d.priority,
+  d.request,d.reason,d.attachments,d.notes
+ ])];
 
-$("exportBtn").onclick=()=>{
- if(!items.length)return alert("Não há registros.");
-
- const headers=["ID","Criado em","Atualizado em",...FIELDS];
- const rows=items.map(x=>[
-  x.id,x.createdAt,x.updatedAt,
-  ...FIELDS.map(f=>x.data[f]||"")
- ]);
-
- const csv="\uFEFF"+[headers,...rows]
-  .map(row=>row.map(csvCell).join(";"))
-  .join("\r\n");
+ const csv="\uFEFF"+rows.map(r=>r.map(v=>
+  '"'+String(v??"").replace(/"/g,'""')+'"'
+ ).join(";")).join("\r\n");
 
  download("meus-requerimentos.csv",csv,"text/csv;charset=utf-8");
-};
+ toast("CSV exportado.");
+}
 
-$("backupBtn").onclick=()=>{
- download(
-  "backup-meu-requerimento.json",
-  JSON.stringify({app:"meu-requerimento",version:2,items},null,2),
-  "application/json"
- );
-};
+function exportBackup(){
+ download("backup-meu-requerimento.json",
+  JSON.stringify({version:3,documents},null,2),"application/json");
+ toast("Backup exportado.");
+}
 
-$("importBtn").onclick=()=>$("importFile").click();
-
-$("importFile").onchange=async e=>{
+$("backupFile").addEventListener("change",async e=>{
  const file=e.target.files[0];
  if(!file)return;
 
  try{
-  const parsed=JSON.parse(await file.text());
+  if(file.size>15*1024*1024)throw Error("Arquivo muito grande.");
 
-  if(parsed.app!=="meu-requerimento"||
-     !Array.isArray(parsed.items)){
-   throw Error("Arquivo incompatível.");
-  }
+  const data=JSON.parse(await file.text());
+  if(data.version!==3||!Array.isArray(data.documents)||
+   !data.documents.every(d=>
+    typeof d.id==="string"&&typeof d.title==="string"&&
+    typeof d.person==="string"&&typeof d.request==="string"
+   ))throw Error("Backup incompatível.");
 
-  const valid=parsed.items.every(x=>
-   x&&typeof x.id==="string"&&
-   x.data&&typeof x.data==="object"&&
-   FIELDS.every(f=>
-    x.data[f]===undefined||typeof x.data[f]==="string")
-  );
+  if(!confirm("Substituir todos os requerimentos atuais pelos importados?"))return;
 
-  if(!valid)throw Error("Estrutura de dados inválida.");
+  const old=documents;
+  documents=data.documents;
 
-  if(!confirm("Importar backup e substituir os registros atuais?"))return;
+  if(!persist()){documents=old;return;}
 
-  const old=items;
-  items=parsed.items;
-
-  if(!persist()){
-   items=old;
-   return;
-  }
-
-  render();
-  alert("Backup importado com sucesso.");
+  goHome();
+  toast("Backup importado com sucesso.");
  }catch(err){
-  alert("Não foi possível importar: "+err.message);
+  toast("Erro: "+err.message);
  }finally{
   e.target.value="";
  }
-};
-
-$("newBtn").onclick=()=>openForm();
-$("cancelBtn").onclick=()=>$("modal").close();
-$("search").oninput=render;
+});
 
 render();
 </script>
