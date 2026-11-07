@@ -89,6 +89,14 @@
       "ready": true
     },
     {
+      "slug": "meu-migrante",
+      "name": "MEU MIGRANTE",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-negocio",
       "name": "MEU NEGÓCIO",
       "category": "Gestão",
