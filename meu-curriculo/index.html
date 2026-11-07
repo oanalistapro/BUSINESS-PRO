@@ -4,306 +4,1045 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Meu Currículo | Business Pro</title>
+<meta name="theme-color" content="#2563eb">
+<meta name="description" content="Crie currículos profissionais gratuitamente com modelos personalizáveis, visualização em tempo real e exportação em PDF.">
+<title>MEU CURRÍCULO | BUSINESS PRO</title>
 <style>
-:root{--blue:#2563eb;--dark:#14233f;--line:#dce5f1;--bg:#f3f6fb}
+:root{
+ --primary:#2563eb;--primary-dark:#1745a7;
+ --ink:#122443;--muted:#61728d;--bg:#f3f6fc;
+ --border:#dce5f2;--white:#fff;--radius:18px;
+ --shadow:0 12px 35px rgba(20,45,90,.07);
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--dark);font-family:Arial,Helvetica,sans-serif}
-button,input,textarea,select{font:inherit}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-header{background:#fff;border-bottom:1px solid var(--line);padding:17px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-size:22px;font-weight:900;color:var(--blue)}
-.logo small{display:block;font-size:11px;color:#64748b;letter-spacing:2px}
-.back{color:var(--dark);text-decoration:none;font-weight:700}
-.hero{padding:35px 5%;background:linear-gradient(120deg,#112954,#2563eb);color:white}
-.hero h1{font-size:clamp(27px,4vw,42px);margin:0 0 10px}
-.hero p{line-height:1.6;max-width:750px}
-.container{max-width:1450px;margin:25px auto;padding:0 20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
-.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 12px 30px #20355b0b}
-h2{margin:0 0 18px;font-size:22px}
-h3{margin:25px 0 14px;font-size:17px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field{margin-bottom:13px;min-width:0}
-label{display:block;font-weight:700;font-size:13px;margin-bottom:7px}
-input,textarea,select{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:12px;background:#fff;color:#14233f;outline:none}
-input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2563eb16}
-textarea{min-height:100px;resize:vertical}
-.btn{background:var(--blue);border:0;color:white;padding:12px 17px;border-radius:11px;font-weight:800}
-.btn.secondary{background:#eaf1ff;color:#1d4ed8}
-.btn.danger{background:#fee2e2;color:#991b1b}
-.actions{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}
-.entry{padding:16px;border:1px solid var(--line);border-radius:13px;margin:12px 0;background:#fafcff}
-.entryhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.entryhead h4{margin:0}
-.muted{color:#64748b;font-size:13px;line-height:1.5}
-.previewbar{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
-.resume{background:white;color:#1e293b;min-height:680px;padding:38px;border:1px solid #e2e8f0;box-shadow:0 8px 28px #0000000c;overflow-wrap:anywhere}
-.resume h1{margin:0;font-size:29px;color:#163e83}
-.resume .jobtitle{margin:7px 0;color:#475569}
-.resume .contact{font-size:12px;line-height:1.7;color:#475569}
-.resume h3{font-size:14px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid #2563eb;padding-bottom:7px;margin:24px 0 10px;color:#163e83}
-.resume p{font-size:13px;line-height:1.6;white-space:pre-line;margin:7px 0}
-.resume .item{margin:0 0 14px}
-.resume .item b{font-size:13px}
-.resume .item small{display:block;color:#64748b;margin-top:4px}
-.resume.modern{border-top:9px solid #2563eb}
-.resume.classic{font-family:Georgia,serif}
-.resume.classic h1,.resume.classic h3{color:#1f2937}
-.resume.classic h3{border-color:#475569}
-.resume.minimal h1,.resume.minimal h3{color:#111827}
-.resume.minimal h3{border-color:#d1d5db}
-footer{text-align:center;color:#64748b;font-size:12px;padding:25px}
-@media(max-width:950px){.container{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.panel{padding:17px}.resume{padding:25px}}
+button:disabled{opacity:.45;cursor:not-allowed}
+a{color:var(--primary)}
+.top{
+ background:white;border-bottom:1px solid var(--border);
+ padding:17px max(20px,calc((100vw - 1500px)/2));
+ display:flex;align-items:center;justify-content:space-between;gap:12px
+}
+.logo{font-size:23px;font-weight:900;color:var(--primary)}
+.logo small{display:block;font-size:11px;letter-spacing:2px;color:var(--muted);margin-top:4px}
+.back{font-weight:800;text-decoration:none;color:var(--ink)}
+.hero{background:linear-gradient(110deg,#152d59,#2563eb);color:white;padding:34px 24px}
+.hero-inner{max-width:1500px;margin:auto}
+.hero h1{font-size:clamp(27px,3.5vw,43px);margin:0 0 12px}
+.hero p{max-width:850px;line-height:1.7;margin:0;color:#e7efff}
+.container{max-width:1500px;margin:auto;padding:24px 18px}
+.toolbar{
+ background:white;border:1px solid var(--border);border-radius:18px;
+ padding:15px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px
+}
+.btn{
+ border:0;border-radius:11px;padding:12px 16px;
+ background:var(--primary);color:white;font-weight:800;
+ display:inline-flex;align-items:center;justify-content:center;gap:7px
+}
+.btn:hover{filter:brightness(.95)}
+.btn.secondary{background:#eef3ff;color:#1745a7}
+.btn.outline{background:white;border:1px solid var(--border);color:var(--ink)}
+.btn.danger{background:#fff0f0;color:#b91c1c}
+.btn.small{padding:8px 11px;font-size:12px}
+.status{font-size:12px;color:#15803d;font-weight:800;margin-left:auto}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.panel{background:white;border:1px solid var(--border);border-radius:20px;padding:24px;box-shadow:var(--shadow);min-width:0}
+.panel h2{margin:0 0 9px;font-size:23px}
+.hint{font-size:13px;line-height:1.6;color:var(--muted)}
+.section-title{font-size:17px;margin:27px 0 15px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field.full{grid-column:1/-1}
+label{font-size:12px;font-weight:800}
+input,select,textarea{
+ width:100%;border:1px solid #cbd6e6;border-radius:11px;
+ padding:12px 13px;background:white;color:var(--ink);outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px #2563eb19}
+textarea{min-height:95px;resize:vertical;line-height:1.5}
+.options{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0}
+.option{border:1px solid var(--border);background:#f8faff;padding:10px 14px;border-radius:12px;font-weight:800}
+.option.active{border-color:var(--primary);background:#eaf0ff;color:var(--primary)}
+.dynamic{display:flex;flex-direction:column;gap:12px}
+.entry{border:1px solid var(--border);border-radius:14px;padding:16px;background:#fbfcff}
+.entryhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.entryhead strong{font-size:14px}
+.entryactions{display:flex;gap:5px}
+.preview-panel{position:sticky;top:12px}
+.preview-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:15px}
+.paper-wrap{background:#e8edf6;padding:12px;border-radius:12px;overflow:auto}
+.paper{
+ background:white;width:100%;min-height:600px;
+ box-shadow:0 8px 22px #172e501a;
+ color:#1b2c46;font-family:Arial,Helvetica,sans-serif;
+ padding:8%;overflow-wrap:anywhere
+}
+.resume-header{border-bottom:3px solid var(--accent,#2563eb);padding-bottom:18px;margin-bottom:20px;display:flex;gap:17px;align-items:center}
+.resume-header h1{font-size:clamp(21px,2.5vw,32px);margin:0;color:var(--accent,#2563eb);line-height:1.15}
+.resume-role{font-size:15px;margin-top:7px;font-weight:700}
+.resume-contact{font-size:11px;color:#475569;line-height:1.9;margin-top:10px;overflow-wrap:anywhere}
+.resume-photo{width:90px;height:105px;object-fit:cover;border-radius:9px;flex-shrink:0}
+.resume-section{margin:0 0 19px;break-inside:avoid}
+.resume-section h2{font-size:13px;color:var(--accent,#2563eb);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #d9e2ed;padding-bottom:7px;margin:0 0 10px}
+.resume-section p{font-size:12px;line-height:1.65;margin:5px 0;white-space:pre-wrap}
+.resume-item{margin:0 0 12px;break-inside:avoid}
+.resume-item strong{font-size:12px}
+.resume-item .sub{font-size:11px;color:#64748b;margin-top:3px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:11px;background:#edf3ff;border-radius:5px;padding:5px 8px}
+.paper.modern{border-top:7px solid var(--accent,#2563eb)}
+.paper.classic{font-family:Georgia,serif}
+.paper.classic .resume-header{border-bottom:1px solid #555;text-align:center;display:block}
+.paper.classic .resume-header h1{color:#111}
+.paper.classic .resume-photo{margin:0 auto 12px}
+.paper.classic .resume-section h2{color:#111;border-color:#777}
+.paper.minimal .resume-header{border-bottom:1px solid #d5dbe5}
+.paper.minimal .resume-header h1{color:#111}
+.paper.minimal .resume-section h2{color:#111;letter-spacing:0}
+.paper.minimal .chip{background:#f1f3f6}
+.colorrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.colorrow input{width:48px;height:40px;padding:4px}
+.photo-preview{width:80px;height:90px;object-fit:cover;border-radius:10px;border:1px solid var(--border)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#172b4e;color:white;padding:12px 20px;border-radius:12px;z-index:30;display:none;box-shadow:0 10px 30px #0003}
+.mobile-preview{display:none}
+.notice{margin-top:18px;font-size:12px;color:var(--muted);line-height:1.7}
+@media(max-width:950px){
+ .workspace{grid-template-columns:1fr}
+ .preview-panel{position:static}
+ .mobile-preview{display:inline-flex}
+}
+@media(max-width:550px){
+ .top{padding:15px}
+ .logo{font-size:19px}
+ .back{font-size:12px}
+ .hero{padding:27px 18px}
+ .container{padding:14px 10px}
+ .panel{padding:17px}
+ .fields{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+ .toolbar .btn{flex:1}
+ .status{width:100%;text-align:center}
+ .paper{padding:7%}
+ .resume-photo{width:65px;height:80px}
+ .resume-header h1{font-size:23px}
+ .resume-contact{font-size:10px}
+}
+@page{size:A4;margin:13mm}
 @media print{
- @page{size:A4;margin:12mm}
- body{background:white}
- header,.hero,.editor,.previewbar,footer{display:none!important}
- .container{display:block;margin:0;padding:0;max-width:none}
- .panel{border:0;box-shadow:none;padding:0}
- .resume{border:0;box-shadow:none;min-height:0;padding:0}
- .resume .item{break-inside:avoid}
+ html,body{background:white!important;margin:0!important;padding:0!important}
+ .top,.hero,.toolbar,.editor-panel,.preview-head,.notice,.toast{display:none!important}
+ .container,.workspace,.preview-panel,.panel,.paper-wrap{display:block!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;background:white!important}
+ .preview-panel{width:100%!important}
+ .paper{width:100%!important;min-height:0!important;padding:0!important;box-shadow:none!important;overflow:visible!important}
+ .resume-header h1{font-size:29px!important}
+ .resume-section h2{font-size:13px!important}
+ .resume-section p{font-size:11px!important}
+ .resume-item{break-inside:avoid}
 }
 </style>
 </head>
 <body>
-<header>
+
+<header class="top">
  <div class="logo">MEU CURRÍCULO<small>BUSINESS PRO</small></div>
  <a class="back" href="../">← Voltar ao Business Pro</a>
 </header>
 
 <section class="hero">
- <h1>Seu próximo passo começa com um bom currículo.</h1>
- <p>Organize suas experiências, apresente suas habilidades e prepare um currículo profissional para novas oportunidades.</p>
+ <div class="hero-inner">
+  <h1>Seu próximo passo começa com um bom currículo.</h1>
+  <p>Crie, personalize e atualize seu currículo profissional. Escolha um modelo, organize suas experiências e prepare seu documento para impressão ou PDF.</p>
+ </div>
 </section>
 
 <main class="container">
-<section class="panel editor">
-<h2>Editar currículo</h2>
-<p class="muted">Preencha apenas as informações que deseja apresentar. O currículo é atualizado automaticamente.</p>
-
-<h3>Dados pessoais</h3>
-<div class="grid">
- <div class="field"><label>Nome completo</label><input id="name" placeholder="Seu nome completo"></div>
- <div class="field"><label>Cargo ou área profissional</label><input id="role" placeholder="Ex.: Assistente administrativo"></div>
- <div class="field"><label>E-mail</label><input id="email" type="email" placeholder="seuemail@exemplo.com"></div>
- <div class="field"><label>Telefone</label><input id="phone" type="tel" placeholder="(00) 00000-0000"></div>
- <div class="field"><label>Cidade e estado</label><input id="city" placeholder="Ex.: Curitiba, PR"></div>
- <div class="field"><label>LinkedIn ou portfólio</label><input id="link" placeholder="https://..."></div>
-</div>
-
-<h3>Objetivo profissional</h3>
-<div class="field"><textarea id="objective" placeholder="Descreva o tipo de oportunidade que procura e o que deseja contribuir."></textarea></div>
-
-<h3>Resumo profissional</h3>
-<div class="field"><textarea id="summary" placeholder="Apresente sua trajetória, principais competências e resultados."></textarea></div>
-
-<h3>Experiências profissionais</h3>
-<div id="experiences"></div>
-<button class="btn secondary" type="button" onclick="addEntry('experiences')">+ Adicionar experiência</button>
-
-<h3>Formação acadêmica</h3>
-<div id="education"></div>
-<button class="btn secondary" type="button" onclick="addEntry('education')">+ Adicionar formação</button>
-
-<h3>Cursos e certificações</h3>
-<div id="courses"></div>
-<button class="btn secondary" type="button" onclick="addEntry('courses')">+ Adicionar curso</button>
-
-<h3>Habilidades</h3>
-<div class="field"><textarea id="skills" placeholder="Ex.: Excel, atendimento ao cliente, organização, comunicação..."></textarea></div>
-
-<h3>Idiomas</h3>
-<div class="field"><input id="languages" placeholder="Ex.: Português fluente, Inglês intermediário"></div>
-
-<h3>Modelo de currículo</h3>
-<div class="field">
- <select id="template">
-  <option value="modern">Moderno — Azul profissional</option>
-  <option value="classic">Clássico — Tradicional</option>
-  <option value="minimal">Minimalista — Discreto</option>
- </select>
-</div>
-
-<div class="actions">
- <button class="btn" onclick="saveData()">Salvar rascunho</button>
- <button class="btn secondary" onclick="loadData()">Recuperar rascunho</button>
- <button class="btn danger" onclick="clearData()">Limpar tudo</button>
-</div>
-<p id="status" class="muted" role="status"></p>
-</section>
-
-<section class="panel">
-<div class="previewbar">
- <div>
-  <h2 style="margin-bottom:4px">Pré-visualização</h2>
-  <span class="muted">Formato preparado para impressão A4</span>
+ <div class="toolbar">
+  <button class="btn" id="printBtn">📄 Gerar PDF / Imprimir</button>
+  <button class="btn secondary" id="downloadBtn">⬇ Backup JSON</button>
+  <button class="btn outline" id="importBtn">⬆ Importar</button>
+  <button class="btn outline" id="copyBtn">📋 Copiar texto</button>
+  <button class="btn danger" id="clearBtn">Limpar</button>
+  <input type="file" id="importFile" accept=".json,application/json" hidden>
+  <span class="status" id="saveStatus">● Salvamento automático ativo</span>
  </div>
- <button class="btn" onclick="window.print()">Gerar PDF / Imprimir</button>
-</div>
-<div id="resume" class="resume modern"></div>
-</section>
+
+ <div class="workspace">
+
+  <section class="panel editor-panel">
+   <h2>Editar currículo</h2>
+   <p class="hint">Preencha apenas o que deseja apresentar. As alterações aparecem automaticamente na pré-visualização.</p>
+
+   <h3 class="section-title">🎨 Aparência profissional</h3>
+   <div class="options" id="templateOptions">
+    <button class="option active" data-template="modern">Moderno</button>
+    <button class="option" data-template="classic">Clássico</button>
+    <button class="option" data-template="minimal">Minimalista</button>
+   </div>
+
+   <div class="fields">
+    <div class="field">
+     <label for="accent">Cor principal</label>
+     <div class="colorrow">
+      <input type="color" id="accent" value="#2563eb">
+      <button class="btn small secondary" id="defaultColor">Azul padrão</button>
+     </div>
+    </div>
+    <div class="field">
+     <label for="fontScale">Tamanho do texto</label>
+     <select id="fontScale">
+      <option value="0.92">Compacto</option>
+      <option value="1" selected>Normal</option>
+      <option value="1.08">Ampliado</option>
+     </select>
+    </div>
+   </div>
+
+   <h3 class="section-title">👤 Dados pessoais</h3>
+   <div class="fields">
+    <div class="field">
+     <label for="name">Nome completo</label>
+     <input id="name" placeholder="Seu nome completo">
+    </div>
+    <div class="field">
+     <label for="role">Cargo ou área profissional</label>
+     <input id="role" placeholder="Ex.: Assistente administrativo">
+    </div>
+    <div class="field">
+     <label for="email">E-mail</label>
+     <input id="email" type="email" placeholder="seuemail@exemplo.com">
+    </div>
+    <div class="field">
+     <label for="phone">Telefone</label>
+     <input id="phone" placeholder="(00) 00000-0000">
+    </div>
+    <div class="field">
+     <label for="location">Cidade e estado</label>
+     <input id="location" placeholder="Ex.: Curitiba, PR">
+    </div>
+    <div class="field">
+     <label for="website">LinkedIn ou portfólio</label>
+     <input id="website" placeholder="linkedin.com/in/seuperfil">
+    </div>
+    <div class="field full">
+     <label for="photoInput">Foto profissional (opcional)</label>
+     <input type="file" id="photoInput" accept="image/png,image/jpeg,image/webp">
+     <div style="display:flex;gap:12px;align-items:center">
+      <img id="photoPreview" class="photo-preview" alt="Foto do currículo" hidden>
+      <button class="btn small danger" id="removePhoto" type="button">Remover foto</button>
+     </div>
+     <span class="hint">A foto é opcional e pode não ser recomendada para alguns processos seletivos.</span>
+    </div>
+   </div>
+
+   <h3 class="section-title">🎯 Objetivo profissional</h3>
+   <div class="field">
+    <textarea id="objective" placeholder="Descreva o tipo de oportunidade que procura e o que deseja contribuir."></textarea>
+   </div>
+
+   <h3 class="section-title">📝 Resumo profissional</h3>
+   <div class="field">
+    <textarea id="summary" placeholder="Resuma suas principais experiências, resultados e competências."></textarea>
+   </div>
+
+   <h3 class="section-title">💼 Experiência profissional</h3>
+   <div id="experiences" class="dynamic"></div>
+   <button class="btn secondary" data-add="experiences" style="margin-top:12px">+ Adicionar experiência</button>
+
+   <h3 class="section-title">🎓 Formação acadêmica</h3>
+   <div id="education" class="dynamic"></div>
+   <button class="btn secondary" data-add="education" style="margin-top:12px">+ Adicionar formação</button>
+
+   <h3 class="section-title">⭐ Habilidades e competências</h3>
+   <div class="field">
+    <label for="skills">Uma habilidade por linha</label>
+    <textarea id="skills" placeholder="Atendimento ao cliente&#10;Microsoft Excel&#10;Organização&#10;Trabalho em equipe"></textarea>
+   </div>
+
+   <h3 class="section-title">🌐 Idiomas</h3>
+   <div id="languages" class="dynamic"></div>
+   <button class="btn secondary" data-add="languages" style="margin-top:12px">+ Adicionar idioma</button>
+
+   <h3 class="section-title">📚 Cursos e certificações</h3>
+   <div id="courses" class="dynamic"></div>
+   <button class="btn secondary" data-add="courses" style="margin-top:12px">+ Adicionar curso</button>
+
+   <h3 class="section-title">🚀 Projetos e realizações</h3>
+   <div id="projects" class="dynamic"></div>
+   <button class="btn secondary" data-add="projects" style="margin-top:12px">+ Adicionar projeto</button>
+
+   <h3 class="section-title">🏅 Informações adicionais</h3>
+   <div class="field">
+    <textarea id="additional" placeholder="Trabalho voluntário, prêmios, disponibilidade, habilitação ou outras informações relevantes."></textarea>
+   </div>
+
+   <h3 class="section-title">↕ Organizar seções do currículo</h3>
+   <p class="hint">Use as setas para alterar a ordem das seções na versão final.</p>
+   <div id="sectionOrder" class="dynamic"></div>
+
+   <div style="margin-top:25px;display:flex;gap:10px;flex-wrap:wrap">
+    <button class="btn" id="printBottom">📄 Gerar PDF / Imprimir</button>
+    <button class="btn secondary mobile-preview" id="viewPreview">Ver pré-visualização</button>
+   </div>
+  </section>
+
+  <section class="panel preview-panel" id="previewPanel">
+   <div class="preview-head">
+    <div>
+     <h2>Pré-visualização</h2>
+     <span class="hint">Documento preparado para impressão A4</span>
+    </div>
+    <button class="btn" id="printPreview">Gerar PDF / Imprimir</button>
+   </div>
+   <div class="paper-wrap">
+    <article class="paper modern" id="paper">
+     <div id="resumeContent"></div>
+    </article>
+   </div>
+   <p class="hint" style="margin-top:15px">Para salvar como PDF, clique em “Gerar PDF / Imprimir” e escolha “Salvar como PDF” no navegador. O conteúdo será dividido em páginas A4 conforme necessário.</p>
+  </section>
+
+ </div>
+
+ <p class="notice">
+  Privacidade: o currículo é salvo localmente neste navegador, sem envio para servidores. Faça um backup JSON para transferir seus dados ou protegê-los contra perda. O arquivo de backup pode conter dados pessoais e foto; guarde-o com segurança. Não há garantia de aprovação em processos seletivos nem de compatibilidade com todos os sistemas de recrutamento.
+ </p>
 </main>
 
-<footer>MEU CURRÍCULO · BUSINESS PRO · Seus dados permanecem no navegador, salvo quando você os exporta ou compartilha.</footer>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
-const fields=[
-"name","role","email","phone","city","link",
-"objective","summary","skills","languages","template"
+"use strict";
+
+const $=id=>document.getElementById(id);
+const STORAGE_KEY="businesspro_meu_curriculo_v3";
+
+const SCHEMAS={
+ experiences:[
+  ["title","Cargo","text","Ex.: Analista administrativo"],
+  ["company","Empresa","text","Nome da empresa"],
+  ["start","Início","month",""],
+  ["end","Fim","month",""],
+  ["current","Trabalho atualmente","checkbox",""],
+  ["description","Atividades e resultados","textarea","Descreva suas responsabilidades e conquistas."]
+ ],
+ education:[
+  ["title","Curso ou formação","text","Ex.: Administração"],
+  ["institution","Instituição","text","Nome da instituição"],
+  ["start","Início","month",""],
+  ["end","Conclusão","month",""],
+  ["status","Situação","select","Concluído|Em andamento|Interrompido"]
+ ],
+ languages:[
+  ["name","Idioma","text","Ex.: Português"],
+  ["level","Nível","select","Básico|Intermediário|Avançado|Fluente|Nativo"]
+ ],
+ courses:[
+  ["title","Curso ou certificação","text","Ex.: Excel avançado"],
+  ["institution","Instituição","text","Ex.: Escola de cursos"],
+  ["year","Ano","text","Ex.: 2026"],
+  ["details","Detalhes","textarea","Carga horária, conteúdo ou certificação."]
+ ],
+ projects:[
+  ["title","Projeto","text","Nome do projeto"],
+  ["role","Função ou participação","text","Ex.: Desenvolvedor"],
+  ["link","Link","text","https://..."],
+  ["description","Descrição e resultados","textarea","Explique o que foi realizado."]
+ ]
+};
+
+const SECTION_NAMES={
+ objective:"Objetivo profissional",
+ summary:"Resumo profissional",
+ experiences:"Experiência profissional",
+ education:"Formação acadêmica",
+ skills:"Habilidades e competências",
+ languages:"Idiomas",
+ courses:"Cursos e certificações",
+ projects:"Projetos e realizações",
+ additional:"Informações adicionais"
+};
+
+const DEFAULT_ORDER=Object.keys(SECTION_NAMES);
+
+const FIELDS=[
+ "name","role","email","phone","location","website",
+ "objective","summary","skills","additional"
 ];
-const collections=["experiences","education","courses"];
+
+function initialState(){
+ return {
+  version:3,
+  template:"modern",
+  accent:"#2563eb",
+  fontScale:"1",
+  photo:"",
+  sections:[...DEFAULT_ORDER],
+  personal:Object.fromEntries(FIELDS.map(x=>[x,""])),
+  experiences:[],
+  education:[],
+  languages:[],
+  courses:[],
+  projects:[]
+ };
+}
+
+let state=initialState();
+
+function uid(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
+}
 
 function escapeHTML(value){
- return String(value??"").replace(/[&<>"']/g,function(c){
-  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
- });
-}
-function val(id){return document.getElementById(id).value.trim()}
-function showStatus(message){document.getElementById("status").textContent=message}
-
-function addEntry(type,data={}){
- const container=document.getElementById(type);
- const entry=document.createElement("div");
- entry.className="entry";
- const isExperience=type==="experiences";
- const isEducation=type==="education";
- const labels=isExperience
-  ?["Empresa","Cargo","Período","Atividades e resultados"]
-  :isEducation
-  ?["Instituição","Curso ou formação","Período","Informações adicionais"]
-  :["Instituição","Nome do curso","Ano ou período","Informações adicionais"];
-
- entry.innerHTML=`
- <div class="entryhead">
-  <h4>${isExperience?"Experiência":isEducation?"Formação":"Curso"}</h4>
-  <button type="button" class="btn danger remove">Remover</button>
- </div>
- <div class="grid">
-  <div class="field"><label>${labels[0]}</label><input class="entry-a"></div>
-  <div class="field"><label>${labels[1]}</label><input class="entry-b"></div>
-  <div class="field"><label>${labels[2]}</label><input class="entry-c"></div>
- </div>
- <div class="field"><label>${labels[3]}</label><textarea class="entry-d"></textarea></div>`;
- ["a","b","c","d"].forEach(k=>{
-  entry.querySelector(".entry-"+k).value=data[k]||"";
- });
- entry.querySelector(".remove").onclick=()=>{
-  entry.remove();
-  render();
- };
- entry.querySelectorAll("input,textarea").forEach(el=>{
-  el.addEventListener("input",render);
- });
- container.appendChild(entry);
- render();
+ return String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",
+  '"':"&quot;","'":"&#39;"
+ }[c]));
 }
 
-function getEntries(type){
- return [...document.querySelectorAll("#"+type+" .entry")].map(el=>{
-  const result={};
-  ["a","b","c","d"].forEach(k=>{
-   result[k]=el.querySelector(".entry-"+k).value.trim();
+function cleanText(value){
+ return String(value??"").trim();
+}
+
+function notify(message){
+ const el=$("toast");
+ el.textContent=message;
+ el.style.display="block";
+ clearTimeout(notify.timer);
+ notify.timer=setTimeout(()=>el.style.display="none",2500);
+}
+
+function persist(){
+ try{
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  $("saveStatus").textContent="✓ Alterações salvas neste dispositivo";
+  return true;
+ }catch(e){
+  $("saveStatus").textContent="⚠ Falha ao salvar";
+  notify("Armazenamento indisponível ou cheio. Exporte um backup.");
+  return false;
+ }
+}
+
+function update(){
+ persist();
+ renderPreview();
+}
+
+function validateState(raw){
+ if(!raw||typeof raw!=="object"||Array.isArray(raw))throw Error("Formato inválido");
+ if(raw.version!==3)throw Error("Versão de backup incompatível");
+ if(!raw.personal||typeof raw.personal!=="object")throw Error("Dados pessoais inválidos");
+
+ const fresh=initialState();
+
+ for(const key of FIELDS){
+  fresh.personal[key]=String(raw.personal[key]??"").slice(0,20000);
+ }
+
+ for(const key of Object.keys(SCHEMAS)){
+  if(!Array.isArray(raw[key]))throw Error("Lista inválida: "+key);
+  if(raw[key].length>300)throw Error("Quantidade de itens excessiva");
+
+  fresh[key]=raw[key].map(item=>{
+   if(!item||typeof item!=="object")throw Error("Item inválido");
+   const obj={id:uid()};
+   for(const [field,,type] of SCHEMAS[key]){
+    obj[field]=type==="checkbox"
+     ?Boolean(item[field])
+     :String(item[field]??"").slice(0,20000);
+   }
+   return obj;
   });
-  return result;
- }).filter(x=>Object.values(x).some(Boolean));
+ }
+
+ if(Array.isArray(raw.sections)){
+  const unique=[...new Set(raw.sections)];
+  fresh.sections=[
+   ...unique.filter(x=>DEFAULT_ORDER.includes(x)),
+   ...DEFAULT_ORDER.filter(x=>!unique.includes(x))
+  ];
+ }
+
+ if(["modern","classic","minimal"].includes(raw.template))
+  fresh.template=raw.template;
+
+ if(/^#[0-9a-fA-F]{6}$/.test(raw.accent||""))
+  fresh.accent=raw.accent;
+
+ if(["0.92","1","1.08"].includes(String(raw.fontScale)))
+  fresh.fontScale=String(raw.fontScale);
+
+ if(typeof raw.photo==="string"&&
+    /^data:image\/(png|jpeg|webp);base64,/.test(raw.photo)&&
+    raw.photo.length<1500000){
+  fresh.photo=raw.photo;
+ }
+
+ return fresh;
+}
+
+try{
+ const saved=localStorage.getItem(STORAGE_KEY);
+ if(saved)state=validateState(JSON.parse(saved));
+}catch(e){
+ notify("Não foi possível recuperar o currículo anterior.");
+}
+
+function fillPersonal(){
+ for(const key of FIELDS){
+  $(key).value=state.personal[key]||"";
+ }
+
+ $("accent").value=state.accent;
+ $("fontScale").value=state.fontScale;
+ updateTemplateButtons();
+ updatePhotoPreview();
+}
+
+function updateTemplateButtons(){
+ document.querySelectorAll("[data-template]").forEach(btn=>{
+  btn.classList.toggle("active",btn.dataset.template===state.template);
+ });
+}
+
+function updatePhotoPreview(){
+ const img=$("photoPreview");
+ img.hidden=!state.photo;
+ if(state.photo)img.src=state.photo;
+ else img.removeAttribute("src");
+}
+
+function fieldHTML(group,item,definition){
+ const [key,label,type,placeholder]=definition;
+ const value=item[key]??"";
+ const attr=`data-group="${group}" data-id="${item.id}" data-field="${key}"`;
+
+ if(type==="checkbox"){
+  return `<div class="field full">
+   <label style="display:flex;gap:10px;align-items:center">
+    <input type="checkbox" ${attr} ${value?"checked":""} style="width:auto">
+    ${escapeHTML(label)}
+   </label>
+  </div>`;
+ }
+
+ if(type==="textarea"){
+  return `<div class="field full">
+   <label>${escapeHTML(label)}</label>
+   <textarea ${attr} placeholder="${escapeHTML(placeholder)}">${escapeHTML(value)}</textarea>
+  </div>`;
+ }
+
+ if(type==="select"){
+  return `<div class="field">
+   <label>${escapeHTML(label)}</label>
+   <select ${attr}>
+    ${placeholder.split("|").map(v=>
+     `<option ${value===v?"selected":""}>${escapeHTML(v)}</option>`
+    ).join("")}
+   </select>
+  </div>`;
+ }
+
+ return `<div class="field">
+  <label>${escapeHTML(label)}</label>
+  <input type="${type}" ${attr} value="${escapeHTML(value)}"
+   placeholder="${escapeHTML(placeholder)}">
+ </div>`;
+}
+
+function renderGroup(group){
+ const container=$(group);
+ container.innerHTML=state[group].map((item,index)=>`
+  <div class="entry">
+   <div class="entryhead">
+    <strong>${escapeHTML(SECTION_NAMES[group])} ${index+1}</strong>
+    <div class="entryactions">
+     <button class="btn small outline" data-move="${group}" data-id="${item.id}" data-direction="-1" title="Subir">↑</button>
+     <button class="btn small outline" data-move="${group}" data-id="${item.id}" data-direction="1" title="Descer">↓</button>
+     <button class="btn small danger" data-remove="${group}" data-id="${item.id}" title="Excluir">✕</button>
+    </div>
+   </div>
+   <div class="fields">
+    ${SCHEMAS[group].map(def=>fieldHTML(group,item,def)).join("")}
+   </div>
+  </div>
+ `).join("");
+}
+
+function renderGroups(){
+ Object.keys(SCHEMAS).forEach(renderGroup);
+}
+
+function renderSectionOrder(){
+ $("sectionOrder").innerHTML=state.sections.map((key,index)=>`
+  <div class="entry" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px">
+   <strong style="font-size:13px">${index+1}. ${escapeHTML(SECTION_NAMES[key])}</strong>
+   <div class="entryactions">
+    <button class="btn small outline" data-section="${key}" data-direction="-1">↑</button>
+    <button class="btn small outline" data-section="${key}" data-direction="1">↓</button>
+   </div>
+  </div>
+ `).join("");
+}
+
+function monthBR(value){
+ if(!value)return "";
+ const [year,month]=value.split("-");
+ return month&&year?month+"/"+year:value;
+}
+
+function period(start,end,current){
+ const a=monthBR(start);
+ const b=current?"Atual":monthBR(end);
+ return [a,b].filter(Boolean).join(" — ");
 }
 
 function section(title,content){
- return content?`<section><h3>${title}</h3>${content}</section>`:"";
+ if(!content)return "";
+ return `<section class="resume-section">
+  <h2>${escapeHTML(title)}</h2>
+  ${content}
+ </section>`;
 }
 
-function renderItems(type){
- const items=getEntries(type);
- return items.map(x=>{
-  let heading="";
-  if(type==="experiences") heading=[x.b,x.a].filter(Boolean).join(" · ");
-  else heading=[x.b,x.a].filter(Boolean).join(" — ");
-  return `<div class="item">
-   <b>${escapeHTML(heading)}</b>
-   ${x.c?`<small>${escapeHTML(x.c)}</small>`:""}
-   ${x.d?`<p>${escapeHTML(x.d)}</p>`:""}
-  </div>`;
- }).join("");
+function paragraph(value){
+ if(!cleanText(value))return "";
+ return `<p>${escapeHTML(value)}</p>`;
 }
 
-function render(){
- const name=escapeHTML(val("name")||"Seu nome");
- const role=escapeHTML(val("role"));
- const contacts=[
-  val("email"),val("phone"),val("city"),val("link")
- ].filter(Boolean).map(escapeHTML).join("  •  ");
+function itemBlock(title,subtitle,description,extra=""){
+ if(![title,subtitle,description,extra].some(x=>cleanText(x)))return "";
 
- const summary=val("summary");
- const objective=val("objective");
- const skills=val("skills");
- const languages=val("languages");
+ return `<div class="resume-item">
+  ${title?`<strong>${escapeHTML(title)}</strong>`:""}
+  ${subtitle?`<div class="sub">${escapeHTML(subtitle)}</div>`:""}
+  ${extra?`<div class="sub">${escapeHTML(extra)}</div>`:""}
+  ${description?paragraph(description):""}
+ </div>`;
+}
 
- const resume=document.getElementById("resume");
- resume.className="resume "+document.getElementById("template").value;
+function buildSection(key){
+ const p=state.personal;
 
- resume.innerHTML=`
- <h1>${name}</h1>
- ${role?`<p class="jobtitle">${role}</p>`:""}
- ${contacts?`<div class="contact">${contacts}</div>`:""}
- ${section("Objetivo profissional",objective?`<p>${escapeHTML(objective)}</p>`:"")}
- ${section("Resumo profissional",summary?`<p>${escapeHTML(summary)}</p>`:"")}
- ${section("Experiência profissional",renderItems("experiences"))}
- ${section("Formação acadêmica",renderItems("education"))}
- ${section("Cursos e certificações",renderItems("courses"))}
- ${section("Habilidades",skills?`<p>${escapeHTML(skills)}</p>`:"")}
- ${section("Idiomas",languages?`<p>${escapeHTML(languages)}</p>`:"")}
+ switch(key){
+  case "objective":
+   return section(SECTION_NAMES[key],paragraph(p.objective));
+
+  case "summary":
+   return section(SECTION_NAMES[key],paragraph(p.summary));
+
+  case "skills":{
+   const list=p.skills.split(/\n|,/).map(cleanText).filter(Boolean);
+   return section(SECTION_NAMES[key],
+    list.length?`<div class="chips">${list.map(v=>
+     `<span class="chip">${escapeHTML(v)}</span>`
+    ).join("")}</div>`:"");
+  }
+
+  case "additional":
+   return section(SECTION_NAMES[key],paragraph(p.additional));
+
+  case "experiences":
+   return section(SECTION_NAMES[key],state.experiences.map(x=>
+    itemBlock(x.title,
+     [x.company,period(x.start,x.end,x.current)].filter(Boolean).join(" | "),
+     x.description)
+   ).join(""));
+
+  case "education":
+   return section(SECTION_NAMES[key],state.education.map(x=>
+    itemBlock(x.title,x.institution,
+     [period(x.start,x.end,false),x.status].filter(Boolean).join(" | "))
+   ).join(""));
+
+  case "languages":
+   return section(SECTION_NAMES[key],state.languages.map(x=>
+    itemBlock(x.name,x.level,"")
+   ).join(""));
+
+  case "courses":
+   return section(SECTION_NAMES[key],state.courses.map(x=>
+    itemBlock(x.title,
+     [x.institution,x.year].filter(Boolean).join(" | "),
+     x.details)
+   ).join(""));
+
+  case "projects":
+   return section(SECTION_NAMES[key],state.projects.map(x=>
+    itemBlock(x.title,x.role,x.description,x.link)
+   ).join(""));
+ }
+
+ return "";
+}
+
+function renderPreview(){
+ const p=state.personal;
+ const paper=$("paper");
+
+ paper.className="paper "+state.template;
+ paper.style.setProperty("--accent",state.accent);
+ paper.style.fontSize=(12*Number(state.fontScale))+"px";
+
+ const contact=[
+  p.email,p.phone,p.location,p.website
+ ].filter(x=>cleanText(x)).map(escapeHTML).join(" • ");
+
+ const header=`
+  <header class="resume-header">
+   ${state.photo?`<img class="resume-photo" src="${state.photo}" alt="Foto profissional">`:""}
+   <div style="min-width:0;flex:1">
+    <h1>${escapeHTML(p.name||"Seu nome")}</h1>
+    ${p.role?`<div class="resume-role">${escapeHTML(p.role)}</div>`:""}
+    ${contact?`<div class="resume-contact">${contact}</div>`:""}
+   </div>
+  </header>
  `;
+
+ $("resumeContent").innerHTML=header+
+  state.sections.map(buildSection).join("");
+
+ const scale=Number(state.fontScale);
+ paper.querySelectorAll(".resume-section p,.resume-item strong").forEach(el=>{
+  el.style.fontSize=(12*scale)+"px";
+ });
+ paper.querySelectorAll(".resume-item .sub,.chip,.resume-contact").forEach(el=>{
+  el.style.fontSize=(11*scale)+"px";
+ });
 }
 
-function collectData(){
- const data={};
- fields.forEach(id=>data[id]=document.getElementById(id).value);
- collections.forEach(id=>data[id]=getEntries(id));
- return data;
-}
-
-function saveData(){
- try{
-  localStorage.setItem("businesspro_curriculo_v1",JSON.stringify(collectData()));
-  showStatus("Rascunho salvo neste navegador.");
- }catch(e){
-  showStatus("Não foi possível salvar. Verifique o armazenamento do navegador.");
- }
-}
-
-function loadData(){
- try{
-  const raw=localStorage.getItem("businesspro_curriculo_v1");
-  if(!raw){showStatus("Nenhum rascunho salvo neste navegador.");return}
-  const data=JSON.parse(raw);
-  fields.forEach(id=>{
-   document.getElementById(id).value=data[id]||"";
-  });
-  collections.forEach(id=>{
-   document.getElementById(id).innerHTML="";
-   (data[id]||[]).forEach(item=>addEntry(id,item));
-  });
-  render();
-  showStatus("Rascunho recuperado com sucesso.");
- }catch(e){
-  showStatus("Não foi possível recuperar o rascunho.");
- }
-}
-
-function clearData(){
- if(!confirm("Deseja limpar o formulário? O rascunho salvo também será excluído."))return;
- fields.forEach(id=>document.getElementById(id).value=id==="template"?"modern":"");
- collections.forEach(id=>document.getElementById(id).innerHTML="");
- try{localStorage.removeItem("businesspro_curriculo_v1")}catch(e){}
- render();
- showStatus("Formulário limpo.");
-}
-
-fields.forEach(id=>{
- document.getElementById(id).addEventListener("input",render);
- document.getElementById(id).addEventListener("change",render);
+FIELDS.forEach(key=>{
+ $(key).addEventListener("input",e=>{
+  state.personal[key]=e.target.value;
+  update();
+ });
 });
-render();
+
+$("accent").addEventListener("input",e=>{
+ state.accent=e.target.value;
+ update();
+});
+
+$("fontScale").addEventListener("change",e=>{
+ state.fontScale=e.target.value;
+ update();
+});
+
+$("defaultColor").onclick=()=>{
+ state.accent="#2563eb";
+ $("accent").value=state.accent;
+ update();
+};
+
+$("templateOptions").onclick=e=>{
+ const btn=e.target.closest("[data-template]");
+ if(!btn)return;
+ state.template=btn.dataset.template;
+ updateTemplateButtons();
+ update();
+};
+
+document.addEventListener("click",e=>{
+ const add=e.target.closest("[data-add]");
+ if(add){
+  const group=add.dataset.add;
+  if(!SCHEMAS[group])return;
+
+  const item={id:uid()};
+  SCHEMAS[group].forEach(([key,,type,options])=>{
+   item[key]=type==="checkbox"?false:
+    type==="select"?options.split("|")[0]:"";
+  });
+
+  state[group].push(item);
+  renderGroup(group);
+  update();
+  return;
+ }
+
+ const remove=e.target.closest("[data-remove]");
+ if(remove){
+  const group=remove.dataset.remove;
+  if(!SCHEMAS[group])return;
+  if(!confirm("Excluir este item?"))return;
+
+  state[group]=state[group].filter(x=>x.id!==remove.dataset.id);
+  renderGroup(group);
+  update();
+  return;
+ }
+
+ const move=e.target.closest("[data-move]");
+ if(move){
+  const group=move.dataset.move;
+  if(!SCHEMAS[group])return;
+  const index=state[group].findIndex(x=>x.id===move.dataset.id);
+  const next=index+Number(move.dataset.direction);
+
+  if(index<0||next<0||next>=state[group].length)return;
+
+  [state[group][index],state[group][next]]=
+   [state[group][next],state[group][index]];
+
+  renderGroup(group);
+  update();
+  return;
+ }
+
+ const order=e.target.closest("[data-section]");
+ if(order){
+  const index=state.sections.indexOf(order.dataset.section);
+  const next=index+Number(order.dataset.direction);
+
+  if(index<0||next<0||next>=state.sections.length)return;
+
+  [state.sections[index],state.sections[next]]=
+   [state.sections[next],state.sections[index]];
+
+  renderSectionOrder();
+  update();
+ }
+});
+
+document.addEventListener("input",e=>{
+ const el=e.target.closest("[data-group][data-field]");
+ if(!el)return;
+
+ const group=el.dataset.group;
+ const item=state[group]?.find(x=>x.id===el.dataset.id);
+ if(!item)return;
+
+ item[el.dataset.field]=el.type==="checkbox"?el.checked:el.value;
+ update();
+});
+
+document.addEventListener("change",e=>{
+ const el=e.target.closest("[data-group][data-field]");
+ if(!el)return;
+
+ const item=state[el.dataset.group]?.find(x=>x.id===el.dataset.id);
+ if(!item)return;
+
+ item[el.dataset.field]=el.type==="checkbox"?el.checked:el.value;
+ update();
+});
+
+function resizePhoto(file){
+ return new Promise((resolve,reject)=>{
+  if(!["image/png","image/jpeg","image/webp"].includes(file.type)){
+   reject(Error("Escolha uma imagem PNG, JPG ou WebP."));
+   return;
+  }
+  if(file.size>8*1024*1024){
+   reject(Error("A imagem deve ter no máximo 8 MB."));
+   return;
+  }
+
+  const url=URL.createObjectURL(file);
+  const img=new Image();
+
+  img.onload=()=>{
+   const canvas=document.createElement("canvas");
+   const max=420;
+   const ratio=Math.min(1,max/Math.max(img.width,img.height));
+
+   canvas.width=Math.max(1,Math.round(img.width*ratio));
+   canvas.height=Math.max(1,Math.round(img.height*ratio));
+
+   canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);
+   URL.revokeObjectURL(url);
+
+   resolve(canvas.toDataURL("image/jpeg",.78));
+  };
+
+  img.onerror=()=>{
+   URL.revokeObjectURL(url);
+   reject(Error("Não foi possível abrir a imagem."));
+  };
+
+  img.src=url;
+ });
+}
+
+$("photoInput").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  const photo=await resizePhoto(file);
+  const previous=state.photo;
+  state.photo=photo;
+
+  if(!persist()){
+   state.photo=previous;
+   return;
+  }
+
+  updatePhotoPreview();
+  renderPreview();
+  notify("Foto adicionada.");
+ }catch(err){
+  notify(err.message);
+ }
+ e.target.value="";
+};
+
+$("removePhoto").onclick=()=>{
+ state.photo="";
+ updatePhotoPreview();
+ update();
+};
+
+function printResume(){
+ renderPreview();
+ window.print();
+}
+
+$("printBtn").onclick=printResume;
+$("printBottom").onclick=printResume;
+$("printPreview").onclick=printResume;
+
+$("viewPreview").onclick=()=>{
+ $("previewPanel").scrollIntoView({behavior:"smooth",block:"start"});
+};
+
+function download(name,content,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+
+ a.href=url;
+ a.download=name;
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+
+$("downloadBtn").onclick=()=>{
+ download(
+  "backup-meu-curriculo.json",
+  JSON.stringify(state,null,2),
+  "application/json"
+ );
+ notify("Backup exportado.");
+};
+
+$("importBtn").onclick=()=>$("importFile").click();
+
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  if(file.size>3*1024*1024)throw Error("Arquivo muito grande.");
+
+  const parsed=JSON.parse(await file.text());
+  const imported=validateState(parsed);
+
+  if(!confirm("Substituir o currículo atual pelo backup importado?"))return;
+
+  const previous=state;
+  state=imported;
+
+  if(!persist()){
+   state=previous;
+   return;
+  }
+
+  fillPersonal();
+  renderGroups();
+  renderSectionOrder();
+  renderPreview();
+  notify("Currículo importado com sucesso.");
+ }catch(err){
+  notify("Erro ao importar: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+function resumePlainText(){
+ const p=state.personal;
+ const lines=[
+  p.name||"Seu nome",
+  p.role,
+  [p.email,p.phone,p.location,p.website].filter(Boolean).join(" | "),
+  ""
+ ];
+
+ function push(title,content){
+  if(!content)return;
+  lines.push(title.toUpperCase(),content,"");
+ }
+
+ state.sections.forEach(key=>{
+  let content="";
+
+  if(["objective","summary","skills","additional"].includes(key)){
+   content=p[key]||"";
+  }else{
+   content=state[key].map(item=>{
+    return SCHEMAS[key].map(([field])=>{
+     if(field==="current")return item.current?"Atual":"";
+     return item[field]||"";
+    }).filter(Boolean).join(" | ");
+   }).filter(Boolean).join("\n\n");
+  }
+
+  push(SECTION_NAMES[key],content);
+ });
+
+ return lines.filter(x=>x!==undefined).join("\n").trim();
+}
+
+$("copyBtn").onclick=async()=>{
+ const text=resumePlainText();
+
+ try{
+  await navigator.clipboard.writeText(text);
+  notify("Texto do currículo copiado.");
+ }catch(e){
+  const ta=document.createElement("textarea");
+  ta.value=text;
+  document.body.appendChild(ta);
+  ta.select();
+  const ok=document.execCommand("copy");
+  ta.remove();
+  notify(ok?"Texto copiado.":"Não foi possível copiar.");
+ }
+};
+
+$("clearBtn").onclick=()=>{
+ if(!confirm("Apagar todos os dados deste currículo neste navegador?"))return;
+
+ const previous=state;
+ state=initialState();
+
+ if(!persist()){
+  state=previous;
+  return;
+ }
+
+ fillPersonal();
+ renderGroups();
+ renderSectionOrder();
+ renderPreview();
+ notify("Currículo limpo.");
+};
+
+fillPersonal();
+renderGroups();
+renderSectionOrder();
+renderPreview();
 </script>
 </body>
 </html>
