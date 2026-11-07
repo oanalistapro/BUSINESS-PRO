@@ -3,167 +3,750 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2563eb">
 <title>MEU PROTOCOLO | BUSINESS PRO</title>
 <style>
+:root{
+ --blue:#2563eb;--navy:#142f60;--ink:#142747;
+ --muted:#64748b;--bg:#f3f7ff;--line:#d8e3f3;
+ --green:#059669;--red:#dc2626;--orange:#d97706;
+}
 *{box-sizing:border-box}
-body{margin:0;background:#f3f7ff;color:#142b4b;font:15px Arial,sans-serif}
-header{background:white;padding:20px 5%;display:flex;justify-content:space-between;border-bottom:1px solid #dce5f3}
-a{color:#2563eb;text-decoration:none}
-main{max-width:1150px;margin:auto;padding:24px 16px}
-.hero{background:linear-gradient(115deg,#102b5b,#2563eb);color:white;border-radius:22px;padding:32px}
-.hero h1{margin:0 0 10px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
-.card{background:white;border:1px solid #dce5f3;border-radius:18px;padding:22px}
-.card strong{display:block;font-size:29px;margin-top:8px}
-.layout{display:grid;grid-template-columns:350px 1fr;gap:18px}
-label{display:block;margin:14px 0 6px;font-weight:bold;font-size:13px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #cbd8e9;border-radius:10px;font:inherit}
-textarea{min-height:90px}
-button{background:#2563eb;color:white;border:0;border-radius:10px;padding:12px 15px;font-weight:bold;cursor:pointer;margin:4px 4px 4px 0}
-.alt{background:#eaf0ff;color:#174fc6}
-.danger{background:#ffeded;color:#b42318}
-.item{border:1px solid #dce5f3;border-radius:14px;padding:17px;margin:12px 0}
-.item h3{margin:0 0 8px}
-small{color:#64748b}
-@media(max-width:750px){.layout,.grid{grid-template-columns:1fr}}
-@media print{header,.hero,.grid,.layout,.no-print{display:none!important}#comprovante{display:block!important;padding:25px}body{background:white}}
-#comprovante{display:none}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+header{
+ background:#fff;border-bottom:1px solid var(--line);
+ padding:16px 4%;display:flex;align-items:center;
+ justify-content:space-between;gap:12px
+}
+.brand{font-size:22px;font-weight:900}
+.brand span{color:var(--blue)}
+main{max-width:1500px;margin:auto;padding:24px 18px}
+.hero{
+ background:linear-gradient(110deg,#152f60,#2563eb);
+ border-radius:25px;color:#fff;padding:38px;margin-bottom:22px
+}
+.hero h1{font-size:clamp(29px,4vw,43px);margin:0 0 12px}
+.hero p{margin:0;color:#e5efff;line-height:1.7}
+.btn{
+ border:0;border-radius:11px;background:var(--blue);
+ color:#fff;padding:12px 16px;font-weight:800;
+ display:inline-flex;align-items:center;justify-content:center;gap:6px
+}
+.btn.alt{background:#eaf0ff;color:#1d4ed8}
+.btn.light{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn.danger{background:#fee2e2;color:#b91c1c}
+.btn.small{font-size:12px;padding:9px 11px}
+.btn:hover{filter:brightness(.96)}
+.stats{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:15px;margin-bottom:22px
+}
+.stat,.panel{
+ background:#fff;border:1px solid var(--line);
+ border-radius:19px;box-shadow:0 8px 25px #18365d08
+}
+.stat{padding:24px}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:31px;margin-top:12px}
+.red{color:var(--red)}.green{color:var(--green)}
+.layout{display:grid;grid-template-columns:minmax(300px,.85fr) minmax(0,1.55fr);gap:20px;align-items:start}
+.panel{padding:26px;margin-bottom:20px;min-width:0}
+.panel h2{font-size:23px;margin:0 0 20px}
+.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.panelhead h2{margin:0}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.full{grid-column:1/-1}
+label{font-size:12px;font-weight:800}
+input,select,textarea{
+ width:100%;border:1px solid #cbd6e6;border-radius:11px;
+ background:#fbfcff;padding:13px;color:var(--ink);outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);background:#fff}
+textarea{resize:vertical;min-height:95px}
+.actions{display:flex;flex-wrap:wrap;gap:9px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}
+.toolbar>*{flex:1;min-width:135px}
+.tag{display:inline-block;border-radius:20px;padding:6px 10px;background:#eaf0ff;color:#1d4ed8;font-size:11px;font-weight:800}
+.tag.good{background:#dcfce7;color:#166534}
+.tag.warn{background:#fef3c7;color:#92400e}
+.tag.bad{background:#fee2e2;color:#991b1b}
+.item{border:1px solid var(--line);border-radius:15px;padding:18px;margin:13px 0;background:#fbfcff}
+.item h3{margin:10px 0;font-size:19px;overflow-wrap:anywhere}
+.item p{font-size:13px;color:var(--muted);line-height:1.7;overflow-wrap:anywhere}
+.item strong{overflow-wrap:anywhere}
+.timeline{border-left:3px solid #bfceea;margin:16px 0 16px 8px;padding-left:18px}
+.event{position:relative;padding:0 0 18px;font-size:13px}
+.event:before{
+ content:"";position:absolute;width:10px;height:10px;
+ border-radius:50%;background:var(--blue);left:-24px;top:3px
+}
+.event small{color:var(--muted)}
+.hint{color:var(--muted);font-size:12px;line-height:1.7}
+.empty{text-align:center;padding:35px;color:var(--muted)}
+details{margin-top:12px}
+summary{cursor:pointer;font-weight:800;color:#1d4ed8;padding:8px 0}
+#printArea{display:none}
+#toast{
+ display:none;position:fixed;bottom:18px;left:50%;
+ transform:translateX(-50%);background:#142747;color:#fff;
+ border-radius:12px;padding:14px 20px;z-index:20;max-width:90vw
+}
+@media(max-width:1000px){
+ .layout{grid-template-columns:1fr}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ header{padding:14px}
+ .brand{font-size:17px}
+ header .btn{font-size:11px;padding:10px}
+ main{padding:12px 10px}
+ .hero{padding:27px 20px;border-radius:18px}
+ .panel{padding:18px}
+ .stat{padding:17px}
+ .stat strong{font-size:25px}
+ .stat small{font-size:11px}
+ .fields{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .toolbar>*{min-width:100%}
+}
+@page{size:A4;margin:16mm}
+@media print{
+ body>*:not(#printArea){display:none!important}
+ #printArea{display:block!important;font:11pt Arial;color:#111}
+ #printArea h1{font-size:20pt}
+ #printArea p{line-height:1.6;overflow-wrap:anywhere}
+ #printArea .event{border-bottom:1px solid #ddd;padding:10px 0}
+}
 </style>
 </head>
 <body>
-<header><b>◆ BUSINESS PRO</b><a href="../">Voltar ao portal</a></header>
+
+<header>
+ <div class="brand">📋 MEU <span>PROTOCOLO</span></div>
+ <a href="../" class="btn alt">← Business Pro</a>
+</header>
+
 <main>
-<div class="hero">
-<h1>📋 MEU PROTOCOLO</h1>
-<p>Registre atendimentos, documentos, solicitações e acompanhe prazos.</p>
+<section class="hero">
+ <h1>📋 MEU PROTOCOLO</h1>
+ <p>Registre solicitações, documentos e atendimentos. Gere protocolos, acompanhe responsáveis, prazos, movimentações e resultados com organização profissional.</p>
+</section>
+
+<div class="stats">
+ <div class="stat"><small>Total de protocolos</small><strong id="statTotal">0</strong></div>
+ <div class="stat"><small>Pendentes / Em andamento</small><strong id="statPending">0</strong></div>
+ <div class="stat"><small>Finalizados</small><strong class="green" id="statDone">0</strong></div>
+ <div class="stat"><small>Em atraso</small><strong class="red" id="statLate">0</strong></div>
 </div>
-<div class="grid">
-<div class="card">Total<strong id="total">0</strong></div>
-<div class="card">Pendentes<strong id="pendentes">0</strong></div>
-<div class="card">Finalizados<strong id="finalizados">0</strong></div>
-</div>
+
 <div class="layout">
-<section class="card">
-<h2 id="titulo">Novo protocolo</h2>
-<form id="form">
-<input type="hidden" id="editId">
-<label>Assunto</label>
-<input id="assunto" required placeholder="Ex.: Solicitação de documento">
-<label>Solicitante</label>
-<input id="solicitante" required>
-<label>Contato</label>
-<input id="contato">
-<label>Setor</label>
-<input id="setor" placeholder="Ex.: Administrativo">
-<label>Responsável</label>
-<input id="responsavel">
-<label>Prazo</label>
-<input id="prazo" type="date">
-<label>Prioridade</label>
-<select id="prioridade"><option>Normal</option><option>Alta</option><option>Urgente</option></select>
-<label>Situação</label>
-<select id="situacao"><option>Pendente</option><option>Em análise</option><option>Finalizado</option><option>Cancelado</option></select>
-<label>Descrição</label>
-<textarea id="descricao"></textarea>
-<label>Observações</label>
-<textarea id="observacoes"></textarea>
-<button type="submit">Salvar protocolo</button>
-<button type="button" class="alt" onclick="limpar()">Limpar</button>
-</form>
-</section>
-<section class="card">
-<h2>Protocolos registrados</h2>
-<input id="busca" placeholder="Pesquisar número, nome ou assunto..." oninput="render()">
-<div style="margin:14px 0">
-<button class="alt" onclick="backup()">Backup JSON</button>
-<button class="alt" onclick="exportar()">Exportar CSV</button>
-<button class="alt" onclick="document.getElementById('importar').click()">Importar</button>
-<input type="file" id="importar" accept=".json" hidden onchange="restaurar(event)">
+ <section class="panel">
+  <h2 id="formTitle">Novo protocolo</h2>
+  <form id="protocolForm">
+   <div class="fields">
+    <div class="field full">
+     <label>Assunto *</label>
+     <input id="subject" required maxlength="200" placeholder="Ex.: Solicitação de documento">
+    </div>
+    <div class="field full">
+     <label>Solicitante *</label>
+     <input id="requester" required placeholder="Nome da pessoa ou empresa">
+    </div>
+    <div class="field full">
+     <label>Contato</label>
+     <input id="contact" placeholder="Telefone ou e-mail">
+    </div>
+    <div class="field">
+     <label>Tipo de protocolo</label>
+     <select id="type">
+      <option>Solicitação</option>
+      <option>Atendimento</option>
+      <option>Documento</option>
+      <option>Requerimento</option>
+      <option>Reclamação</option>
+      <option>Processo interno</option>
+      <option>Outro</option>
+     </select>
+    </div>
+    <div class="field">
+     <label>Prioridade</label>
+     <select id="priority">
+      <option>Normal</option>
+      <option>Alta</option>
+      <option>Urgente</option>
+     </select>
+    </div>
+    <div class="field">
+     <label>Setor</label>
+     <input id="sector" placeholder="Ex.: Administrativo">
+    </div>
+    <div class="field">
+     <label>Responsável</label>
+     <input id="responsible" placeholder="Nome do responsável">
+    </div>
+    <div class="field">
+     <label>Data de abertura</label>
+     <input id="opened" type="date" required>
+    </div>
+    <div class="field">
+     <label>Prazo de resposta</label>
+     <input id="due" type="date">
+    </div>
+    <div class="field full">
+     <label>Situação</label>
+     <select id="status">
+      <option>Pendente</option>
+      <option>Em andamento</option>
+      <option>Aguardando documentos</option>
+      <option>Finalizado</option>
+      <option>Cancelado</option>
+     </select>
+    </div>
+    <div class="field full">
+     <label>Descrição da solicitação</label>
+     <textarea id="description" placeholder="Descreva a solicitação..."></textarea>
+    </div>
+    <div class="field full">
+     <label>Documentos / referências</label>
+     <textarea id="documents" placeholder="Liste documentos, links ou referências"></textarea>
+    </div>
+    <div class="field full">
+     <label>Observações</label>
+     <textarea id="notes" placeholder="Informações complementares"></textarea>
+    </div>
+   </div>
+   <div class="actions" style="margin-top:18px">
+    <button class="btn" type="submit">💾 Salvar protocolo</button>
+    <button class="btn alt" type="button" onclick="resetForm()">Limpar</button>
+   </div>
+  </form>
+ </section>
+
+ <section class="panel">
+  <div class="panelhead">
+   <h2>Protocolos registrados</h2>
+   <span class="tag" id="resultCount">0 registros</span>
+  </div>
+
+  <input id="search" placeholder="🔎 Pesquisar número, nome, assunto ou responsável..." aria-label="Pesquisar protocolos">
+
+  <div class="toolbar">
+   <select id="filterStatus" aria-label="Filtrar por situação">
+    <option value="">Todas as situações</option>
+    <option>Pendente</option>
+    <option>Em andamento</option>
+    <option>Aguardando documentos</option>
+    <option>Finalizado</option>
+    <option>Cancelado</option>
+   </select>
+   <select id="filterPriority" aria-label="Filtrar por prioridade">
+    <option value="">Todas as prioridades</option>
+    <option>Normal</option>
+    <option>Alta</option>
+    <option>Urgente</option>
+   </select>
+   <select id="sort" aria-label="Ordenar protocolos">
+    <option value="new">Mais recentes</option>
+    <option value="old">Mais antigos</option>
+    <option value="due">Prazo mais próximo</option>
+    <option value="subject">Assunto A–Z</option>
+   </select>
+  </div>
+
+  <div class="actions">
+   <button class="btn alt" onclick="exportCSV()">Exportar CSV</button>
+   <button class="btn alt" onclick="exportBackup()">Backup JSON</button>
+   <button class="btn alt" onclick="document.getElementById('backupFile').click()">Importar backup</button>
+   <button class="btn light" onclick="printList()">Imprimir lista</button>
+  </div>
+
+  <input type="file" id="backupFile" accept=".json,application/json" hidden>
+
+  <div id="protocolList"></div>
+ </section>
 </div>
-<div id="lista"></div>
-</section>
-</div>
-<p><small>Os registros ficam somente neste navegador. O comprovante é um registro interno, não uma autenticação oficial.</small></p>
+
+<p class="hint">Os protocolos criados aqui são registros internos do aplicativo. Não equivalem a números oficiais de órgãos públicos e não são enviados automaticamente a instituições. Os dados ficam neste navegador; exporte backups regularmente.</p>
 </main>
-<section id="comprovante"></section>
+
+<div id="printArea"></div>
+<div id="toast" role="status"></div>
+
 <script>
-const KEY="businesspro_protocolo_v1";
-let dados=JSON.parse(localStorage.getItem(KEY)||"[]");
+"use strict";
+
 const $=id=>document.getElementById(id);
-const salvar=()=>localStorage.setItem(KEY,JSON.stringify(dados));
-function limpar(){$("form").reset();$("editId").value="";$("titulo").textContent="Novo protocolo"}
-$("form").onsubmit=e=>{
-e.preventDefault();
-const anterior=dados.find(x=>x.id===$("editId").value);
-const id=anterior?.id||crypto.randomUUID();
-const numero=anterior?.numero||("PR-"+new Date().getFullYear()+"-"+Date.now().toString().slice(-9));
-const item={id,numero,data:anterior?.data||new Date().toLocaleString("pt-BR")};
-["assunto","solicitante","contato","setor","responsavel","prazo","prioridade","situacao","descricao","observacoes"].forEach(k=>item[k]=$(k).value);
-dados=dados.filter(x=>x.id!==id);
-dados.unshift(item);salvar();limpar();render();
-};
-function editar(id){
-const x=dados.find(v=>v.id===id);if(!x)return;
-$("editId").value=x.id;
-["assunto","solicitante","contato","setor","responsavel","prazo","prioridade","situacao","descricao","observacoes"].forEach(k=>$(k).value=x[k]||"");
-$("titulo").textContent="Editar "+x.numero;
-window.scrollTo({top:300,behavior:"smooth"});
+const KEY="businesspro_meu_protocolo_v3";
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
+
+function escapeHTML(value){
+ return String(value??"").replace(/[&<>"']/g,ch=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[ch]));
 }
-function excluir(id){
-if(confirm("Excluir este protocolo?")){dados=dados.filter(x=>x.id!==id);salvar();render()}
+
+function localToday(){
+ const d=new Date();
+ return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
 }
-function imprimir(id){
-const x=dados.find(v=>v.id===id);if(!x)return;
-const el=$("comprovante");el.replaceChildren();
-const titulo=document.createElement("h1");titulo.textContent="BUSINESS PRO — Comprovante de protocolo";el.append(titulo);
-["numero","data","assunto","solicitante","contato","setor","responsavel","prazo","prioridade","situacao","descricao","observacoes"].forEach(k=>{
-const p=document.createElement("p");const b=document.createElement("b");b.textContent=k.toUpperCase()+": ";
-p.append(b,document.createTextNode(x[k]||"Não informado"));el.append(p);
-});
-const aviso=document.createElement("p");aviso.textContent="Comprovante gerado localmente, sem validação oficial.";el.append(aviso);
-window.print();
+
+function dateBR(value){
+ if(!value)return "—";
+ const [y,m,d]=value.split("-");
+ return `${d}/${m}/${y}`;
 }
-function render(){
-$("total").textContent=dados.length;
-$("pendentes").textContent=dados.filter(x=>["Pendente","Em análise"].includes(x.situacao)).length;
-$("finalizados").textContent=dados.filter(x=>x.situacao==="Finalizado").length;
-const q=$("busca").value.toLowerCase();
-$("lista").replaceChildren();
-const itens=dados.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
-if(!itens.length){$("lista").textContent="Nenhum protocolo encontrado.";return}
-itens.forEach(x=>{
-const el=document.createElement("div");el.className="item";
-const h=document.createElement("h3");h.textContent=x.numero;el.append(h);
-const p=document.createElement("p");p.textContent=x.assunto+" — "+x.solicitante;el.append(p);
-const s=document.createElement("small");s.textContent=x.situacao+" | "+x.prioridade+" | "+x.data;el.append(s);
-const div=document.createElement("div");div.style.marginTop="12px";
-[["Editar",()=>editar(x.id)],["Comprovante",()=>imprimir(x.id)],["Excluir",()=>excluir(x.id)]].forEach(([nome,fn])=>{
-const b=document.createElement("button");b.textContent=nome;b.onclick=fn;
-if(nome==="Excluir")b.className="danger";else if(nome==="Comprovante")b.className="alt";
-div.append(b);
-});el.append(div);$("lista").append(el);
-});
+
+function dateTime(value){
+ return value?new Date(value).toLocaleString("pt-BR"):"—";
 }
-function baixar(nome,conteudo,tipo){
-const url=URL.createObjectURL(new Blob([conteudo],{type:tipo}));
-const a=document.createElement("a");a.href=url;a.download=nome;a.click();
-setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
-function backup(){baixar("protocolos.json",JSON.stringify(dados,null,2),"application/json")}
-function exportar(){
-const cols=["numero","data","assunto","solicitante","contato","setor","responsavel","prazo","prioridade","situacao","descricao","observacoes"];
-const csv=[cols,...dados.map(x=>cols.map(k=>String(x[k]||"")))].map(row=>row.map(v=>'"'+v.replaceAll('"','""')+'"').join(";")).join("\r\n");
-baixar("protocolos.csv","\uFEFF"+csv,"text/csv;charset=utf-8");
-}
-async function restaurar(e){
+
+let db={version:3,nextNumber:1,protocols:[]};
+
 try{
-const d=JSON.parse(await e.target.files[0].text());
-if(!Array.isArray(d))throw Error();
-if(confirm("Substituir os protocolos atuais pelo backup?")){dados=d;salvar();render()}
-}catch{alert("Backup inválido.")}
-e.target.value="";
+ const saved=JSON.parse(localStorage.getItem(KEY)||"null");
+ if(saved&&saved.version===3&&Array.isArray(saved.protocols))
+  db=saved;
+}catch(e){}
+
+let editingId=null;
+
+function toast(message){
+ $("toast").textContent=message;
+ $("toast").style.display="block";
+ clearTimeout(toast.timer);
+ toast.timer=setTimeout(()=>$("toast").style.display="none",3200);
 }
+
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(db));
+  return true;
+ }catch(e){
+  toast("Erro ao salvar. Verifique o armazenamento do navegador.");
+  return false;
+ }
+}
+
+function download(filename,content,type){
+ const url=URL.createObjectURL(new Blob([content],{type}));
+ const a=document.createElement("a");
+ a.href=url;a.download=filename;
+ document.body.appendChild(a);
+ a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+
+function isClosed(p){
+ return ["Finalizado","Cancelado"].includes(p.status);
+}
+
+function isLate(p){
+ return !isClosed(p)&&p.due&&p.due<localToday();
+}
+
+function protocolNumber(){
+ const year=new Date().getFullYear();
+ return "PRO-"+year+"-"+String(db.nextNumber++).padStart(6,"0");
+}
+
+function resetForm(){
+ editingId=null;
+ $("protocolForm").reset();
+ $("opened").value=localToday();
+ $("formTitle").textContent="Novo protocolo";
+}
+
+$("protocolForm").addEventListener("submit",e=>{
+ e.preventDefault();
+
+ const data={
+  subject:$("subject").value.trim(),
+  requester:$("requester").value.trim(),
+  contact:$("contact").value.trim(),
+  type:$("type").value,
+  priority:$("priority").value,
+  sector:$("sector").value.trim(),
+  responsible:$("responsible").value.trim(),
+  opened:$("opened").value,
+  due:$("due").value,
+  status:$("status").value,
+  description:$("description").value.trim(),
+  documents:$("documents").value.trim(),
+  notes:$("notes").value.trim()
+ };
+
+ if(!data.subject||!data.requester)return toast("Informe assunto e solicitante.");
+ if(data.due&&data.due<data.opened&&!confirm("O prazo é anterior à abertura. Deseja continuar?"))return;
+
+ const previous=JSON.stringify(db);
+ const now=new Date().toISOString();
+
+ if(editingId){
+  const p=db.protocols.find(x=>x.id===editingId);
+  if(!p)return;
+  const oldStatus=p.status;
+  Object.assign(p,data,{updatedAt:now});
+  if(oldStatus!==data.status){
+   p.history.push({id:uid(),date:now,text:"Situação alterada para: "+data.status});
+  }
+ }else{
+  const number=protocolNumber();
+  db.protocols.unshift({
+   id:uid(),number,...data,createdAt:now,updatedAt:now,
+   history:[{id:uid(),date:now,text:"Protocolo criado."}]
+  });
+ }
+
+ if(!save()){
+  db=JSON.parse(previous);
+  return;
+ }
+
+ resetForm();
+ render();
+ toast("Protocolo salvo com sucesso.");
+});
+
+function editProtocol(id){
+ const p=db.protocols.find(x=>x.id===id);
+ if(!p)return;
+
+ editingId=id;
+
+ const fields={
+  subject:p.subject,requester:p.requester,contact:p.contact,
+  type:p.type,priority:p.priority,sector:p.sector,
+  responsible:p.responsible,opened:p.opened,due:p.due,
+  status:p.status,description:p.description,
+  documents:p.documents,notes:p.notes
+ };
+
+ Object.entries(fields).forEach(([k,v])=>$(k).value=v??"");
+ $("formTitle").textContent="Editar "+p.number;
+ window.scrollTo({top:0,behavior:"smooth"});
+ $("subject").focus();
+}
+
+function deleteProtocol(id){
+ const p=db.protocols.find(x=>x.id===id);
+ if(!p||!confirm("Excluir definitivamente o protocolo "+p.number+"?"))return;
+
+ const previous=db.protocols.slice();
+ db.protocols=db.protocols.filter(x=>x.id!==id);
+
+ if(!save()){
+  db.protocols=previous;
+  return;
+ }
+
+ if(editingId===id)resetForm();
+ render();
+ toast("Protocolo excluído.");
+}
+
+function addMovement(id){
+ const p=db.protocols.find(x=>x.id===id);
+ if(!p)return;
+
+ const input=$("movement-"+id);
+ const message=input.value.trim();
+
+ if(!message)return toast("Digite a movimentação.");
+
+ const event={
+  id:uid(),
+  date:new Date().toISOString(),
+  text:message
+ };
+
+ p.history.push(event);
+ p.updatedAt=event.date;
+
+ if(!save()){
+  p.history.pop();
+  return;
+ }
+
+ render();
+ toast("Movimentação registrada.");
+}
+
+function updateStatus(id,status){
+ const p=db.protocols.find(x=>x.id===id);
+ if(!p||p.status===status)return;
+
+ const old=p.status;
+ const event={
+  id:uid(),
+  date:new Date().toISOString(),
+  text:"Situação alterada de "+old+" para "+status+"."
+ };
+
+ p.status=status;
+ p.updatedAt=event.date;
+ p.history.push(event);
+
+ if(!save()){
+  p.status=old;
+  p.history.pop();
+  return;
+ }
+
+ render();
+ toast("Situação atualizada.");
+}
+
+function filteredProtocols(){
+ const q=$("search").value.trim().toLowerCase();
+ const status=$("filterStatus").value;
+ const priority=$("filterPriority").value;
+ const sort=$("sort").value;
+
+ const list=db.protocols.filter(p=>{
+  const text=[p.number,p.subject,p.requester,p.responsible,p.sector,p.contact]
+   .join(" ").toLowerCase();
+
+  return text.includes(q)&&(!status||p.status===status)&&
+   (!priority||p.priority===priority);
+ });
+
+ list.sort((a,b)=>{
+  if(sort==="old")return a.createdAt.localeCompare(b.createdAt);
+  if(sort==="due")return (a.due||"9999").localeCompare(b.due||"9999");
+  if(sort==="subject")return a.subject.localeCompare(b.subject,"pt-BR");
+  return b.createdAt.localeCompare(a.createdAt);
+ });
+
+ return list;
+}
+
+function render(){
+ $("statTotal").textContent=db.protocols.length;
+ $("statPending").textContent=db.protocols.filter(p=>!isClosed(p)).length;
+ $("statDone").textContent=db.protocols.filter(p=>p.status==="Finalizado").length;
+ $("statLate").textContent=db.protocols.filter(isLate).length;
+
+ const list=filteredProtocols();
+ $("resultCount").textContent=list.length+" registro(s)";
+
+ $("protocolList").innerHTML=list.length?list.map(p=>{
+  const statusClass=p.status==="Finalizado"?"good":isLate(p)?"bad":"warn";
+  const history=Array.isArray(p.history)?p.history:[];
+
+  return `
+   <article class="item">
+    <div class="actions" style="justify-content:space-between;align-items:center">
+     <strong>${escapeHTML(p.number)}</strong>
+     <span class="tag ${statusClass}">${escapeHTML(p.status)}</span>
+    </div>
+
+    <h3>${escapeHTML(p.subject)}</h3>
+
+    <p><b>Solicitante:</b> ${escapeHTML(p.requester)}</p>
+    <p><b>Tipo:</b> ${escapeHTML(p.type)} ·
+       <b>Prioridade:</b> ${escapeHTML(p.priority)}</p>
+    <p><b>Setor:</b> ${escapeHTML(p.sector||"—")} ·
+       <b>Responsável:</b> ${escapeHTML(p.responsible||"—")}</p>
+    <p><b>Abertura:</b> ${dateBR(p.opened)} ·
+       <b>Prazo:</b> ${dateBR(p.due)}</p>
+    ${isLate(p)?'<p class="red"><b>⚠ Prazo vencido</b></p>':""}
+
+    <div class="actions">
+     <button class="btn small" data-action="print" data-id="${escapeHTML(p.id)}">Imprimir / PDF</button>
+     <button class="btn small alt" data-action="edit" data-id="${escapeHTML(p.id)}">Editar</button>
+     <button class="btn small danger" data-action="delete" data-id="${escapeHTML(p.id)}">Excluir</button>
+    </div>
+
+    <details>
+     <summary>Ver detalhes e movimentações (${history.length})</summary>
+
+     <p><b>Contato:</b> ${escapeHTML(p.contact||"—")}</p>
+     <p><b>Descrição:</b> ${escapeHTML(p.description||"—")}</p>
+     <p><b>Documentos / referências:</b> ${escapeHTML(p.documents||"—")}</p>
+     <p><b>Observações:</b> ${escapeHTML(p.notes||"—")}</p>
+
+     <label for="status-${escapeHTML(p.id)}">Alterar situação</label>
+     <select id="status-${escapeHTML(p.id)}" data-status="${escapeHTML(p.id)}">
+      ${["Pendente","Em andamento","Aguardando documentos","Finalizado","Cancelado"]
+       .map(s=>`<option ${s===p.status?"selected":""}>${s}</option>`).join("")}
+     </select>
+
+     <h4>Histórico de movimentações</h4>
+     <div class="timeline">
+      ${history.slice().reverse().map(h=>`
+       <div class="event">
+        <strong>${escapeHTML(h.text)}</strong>
+        <div><small>${dateTime(h.date)}</small></div>
+       </div>
+      `).join("")}
+     </div>
+
+     <label for="movement-${escapeHTML(p.id)}">Nova movimentação</label>
+     <textarea id="movement-${escapeHTML(p.id)}"
+       placeholder="Ex.: Documento recebido, encaminhado ao setor..."></textarea>
+
+     <button class="btn small" data-action="movement" data-id="${escapeHTML(p.id)}">
+      + Registrar movimentação
+     </button>
+    </details>
+   </article>
+  `;
+ }).join(""):'<p class="empty">Nenhum protocolo encontrado.</p>';
+}
+
+$("protocolList").addEventListener("click",e=>{
+ const btn=e.target.closest("[data-action]");
+ if(!btn)return;
+
+ const id=btn.dataset.id;
+ const action=btn.dataset.action;
+
+ if(action==="edit")editProtocol(id);
+ if(action==="delete")deleteProtocol(id);
+ if(action==="print")printProtocol(id);
+ if(action==="movement")addMovement(id);
+});
+
+$("protocolList").addEventListener("change",e=>{
+ const select=e.target.closest("[data-status]");
+ if(select)updateStatus(select.dataset.status,select.value);
+});
+
+["search","filterStatus","filterPriority","sort"].forEach(id=>{
+ $(id).addEventListener(id==="search"?"input":"change",render);
+});
+
+function exportCSV(){
+ const columns=[
+  "Número","Assunto","Solicitante","Contato","Tipo","Prioridade",
+  "Setor","Responsável","Abertura","Prazo","Situação",
+  "Descrição","Documentos","Observações","Última atualização"
+ ];
+
+ const rows=[columns,...filteredProtocols().map(p=>[
+  p.number,p.subject,p.requester,p.contact,p.type,p.priority,
+  p.sector,p.responsible,dateBR(p.opened),dateBR(p.due),
+  p.status,p.description,p.documents,p.notes,dateTime(p.updatedAt)
+ ])];
+
+ const csv="\uFEFF"+rows.map(row=>row.map(value=>
+  '"'+String(value??"").replace(/"/g,'""')+'"'
+ ).join(";")).join("\r\n");
+
+ download("meus-protocolos.csv",csv,"text/csv;charset=utf-8");
+ toast("CSV exportado.");
+}
+
+function exportBackup(){
+ download(
+  "backup-meu-protocolo.json",
+  JSON.stringify(db,null,2),
+  "application/json"
+ );
+ toast("Backup exportado.");
+}
+
+$("backupFile").addEventListener("change",async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  if(file.size>15*1024*1024)throw Error("Arquivo muito grande.");
+
+  const data=JSON.parse(await file.text());
+
+  if(data.version!==3||!Array.isArray(data.protocols)||
+   !Number.isInteger(data.nextNumber)||data.nextNumber<1||
+   !data.protocols.every(p=>
+    typeof p.id==="string"&&typeof p.number==="string"&&
+    typeof p.subject==="string"&&typeof p.requester==="string"&&
+    Array.isArray(p.history)
+   ))
+   throw Error("Backup incompatível.");
+
+  if(!confirm("Substituir todos os protocolos atuais pelos dados importados?"))return;
+
+  const old=db;
+  db=data;
+
+  if(!save()){db=old;return;}
+
+  resetForm();
+  render();
+  toast("Backup importado com sucesso.");
+ }catch(err){
+  toast("Erro: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+});
+
+function printable(value){
+ return escapeHTML(value||"—").replace(/\n/g,"<br>");
+}
+
+function printProtocol(id){
+ const p=db.protocols.find(x=>x.id===id);
+ if(!p)return;
+
+ $("printArea").innerHTML=`
+  <h1>REGISTRO INTERNO DE PROTOCOLO</h1>
+  <p><b>Número:</b> ${escapeHTML(p.number)}</p>
+  <p><b>Assunto:</b> ${printable(p.subject)}</p>
+  <p><b>Solicitante:</b> ${printable(p.requester)}</p>
+  <p><b>Contato:</b> ${printable(p.contact)}</p>
+  <p><b>Tipo:</b> ${printable(p.type)}</p>
+  <p><b>Prioridade:</b> ${printable(p.priority)}</p>
+  <p><b>Setor:</b> ${printable(p.sector)}</p>
+  <p><b>Responsável:</b> ${printable(p.responsible)}</p>
+  <p><b>Abertura:</b> ${dateBR(p.opened)}</p>
+  <p><b>Prazo:</b> ${dateBR(p.due)}</p>
+  <p><b>Situação:</b> ${printable(p.status)}</p>
+  <h3>Descrição</h3>
+  <p>${printable(p.description)}</p>
+  <h3>Documentos / referências</h3>
+  <p>${printable(p.documents)}</p>
+  <h3>Observações</h3>
+  <p>${printable(p.notes)}</p>
+  <h3>Histórico</h3>
+  ${(p.history||[]).map(h=>`
+   <div class="event">
+    <b>${dateTime(h.date)}</b> — ${printable(h.text)}
+   </div>
+  `).join("")}
+  <p style="margin-top:35px">________________________________________</p>
+  <p>Responsável / assinatura</p>
+  <p style="font-size:9pt">Documento de controle interno, sem validade como comprovante oficial de protocolo perante terceiros.</p>
+ `;
+
+ window.print();
+}
+
+function printList(){
+ const list=filteredProtocols();
+
+ $("printArea").innerHTML=`
+  <h1>RELATÓRIO DE PROTOCOLOS</h1>
+  <p>Emitido em ${new Date().toLocaleString("pt-BR")}</p>
+  <p>Total de registros filtrados: ${list.length}</p>
+  ${list.map(p=>`
+   <div style="border-bottom:1px solid #bbb;padding:12px 0">
+    <b>${escapeHTML(p.number)} — ${escapeHTML(p.subject)}</b>
+    <p>Solicitante: ${escapeHTML(p.requester)}</p>
+    <p>Situação: ${escapeHTML(p.status)} · Prazo: ${dateBR(p.due)}</p>
+   </div>
+  `).join("")}
+ `;
+
+ window.print();
+}
+
+resetForm();
 render();
 </script>
 </body>
