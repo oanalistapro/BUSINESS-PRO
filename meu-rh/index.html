@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MEU RH | BUSINESS PRO</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f7ff;color:#142b4b;font:15px Arial,sans-serif}
+header{background:white;padding:20px 5%;border-bottom:1px solid #dce5f3;display:flex;justify-content:space-between}
+a{color:#2563eb;text-decoration:none}
+main{max-width:1150px;margin:auto;padding:24px 16px}
+.hero{background:linear-gradient(115deg,#102b5b,#2563eb);color:white;padding:32px;border-radius:22px}
+.hero h1{margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
+.card{background:white;border:1px solid #dce5f3;border-radius:18px;padding:22px}
+.card strong{display:block;font-size:29px;margin-top:8px}
+.layout{display:grid;grid-template-columns:350px 1fr;gap:18px}
+label{display:block;font-weight:bold;font-size:13px;margin:14px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd8e9;border-radius:10px;font:inherit}
+textarea{min-height:85px}
+button{background:#2563eb;color:white;border:0;border-radius:10px;padding:12px 15px;font-weight:bold;cursor:pointer;margin:4px 4px 4px 0}
+.alt{background:#eaf0ff;color:#174fc6}
+.danger{background:#ffeded;color:#b42318}
+.item{border:1px solid #dce5f3;border-radius:14px;padding:17px;margin:12px 0}
+.item h3{margin:0 0 8px}
+small{color:#64748b}
+@media(max-width:750px){.grid,.layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><b>◆ BUSINESS PRO</b><a href="../">Voltar ao portal</a></header>
+<main>
+<div class="hero">
+<h1>👥 MEU RH</h1>
+<p>Organize colaboradores, departamentos, treinamentos e atividades.</p>
+</div>
+<div class="grid">
+<div class="card">Colaboradores<strong id="total">0</strong></div>
+<div class="card">Ativos<strong id="ativos">0</strong></div>
+<div class="card">Em férias<strong id="ferias">0</strong></div>
+</div>
+<div class="layout">
+<section class="card">
+<h2 id="titulo">Cadastrar colaborador</h2>
+<form id="form">
+<input type="hidden" id="editId">
+<label>Nome completo</label>
+<input id="nome" required>
+<label>Cargo</label>
+<input id="cargo" required>
+<label>Departamento</label>
+<input id="departamento">
+<label>Data de admissão</label>
+<input id="admissao" type="date">
+<label>Contato profissional</label>
+<input id="contato">
+<label>Salário de referência (R$)</label>
+<input id="salario" type="number" min="0" step="0.01">
+<label>Situação</label>
+<select id="situacao">
+<option>Ativo</option><option>Em férias</option>
+<option>Afastado</option><option>Desligado</option>
+</select>
+<label>Próximo treinamento</label>
+<input id="treinamento" type="date">
+<label>Atividades e responsabilidades</label>
+<textarea id="atividades"></textarea>
+<label>Observações</label>
+<textarea id="observacoes"></textarea>
+<button type="submit">Salvar colaborador</button>
+<button type="button" class="alt" onclick="limpar()">Limpar</button>
+</form>
+</section>
+<section class="card">
+<h2>Equipe cadastrada</h2>
+<input id="busca" placeholder="Pesquisar nome, cargo ou setor..." oninput="render()">
+<div style="margin:14px 0">
+<button class="alt" onclick="exportar()">Exportar CSV</button>
+<button class="alt" onclick="backup()">Backup JSON</button>
+<button class="alt" onclick="document.getElementById('importar').click()">Importar backup</button>
+<input id="importar" type="file" accept=".json" hidden onchange="restaurar(event)">
+</div>
+<div id="lista"></div>
+</section>
+</div>
+<p><small>Versão de organização local. Não substitui folha de pagamento, controle legal de jornada ou sistema trabalhista oficial. Evite inserir dados pessoais sensíveis.</small></p>
+</main>
+<script>
+const KEY="businesspro_rh_v1";
+let dados=JSON.parse(localStorage.getItem(KEY)||"[]");
+const $=id=>document.getElementById(id);
+const salvar=()=>localStorage.setItem(KEY,JSON.stringify(dados));
+const moeda=n=>Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+function limpar(){$("form").reset();$("editId").value="";$("titulo").textContent="Cadastrar colaborador"}
+$("form").onsubmit=e=>{
+e.preventDefault();
+const id=$("editId").value||crypto.randomUUID();
+const x={id};
+["nome","cargo","departamento","admissao","contato","salario","situacao","treinamento","atividades","observacoes"].forEach(k=>x[k]=$(k).value);
+dados=dados.filter(a=>a.id!==id);
+dados.unshift(x);salvar();limpar();render();
+};
+function editar(id){
+const x=dados.find(a=>a.id===id);if(!x)return;
+$("editId").value=x.id;
+["nome","cargo","departamento","admissao","contato","salario","situacao","treinamento","atividades","observacoes"].forEach(k=>$(k).value=x[k]||"");
+$("titulo").textContent="Editar colaborador";
+window.scrollTo({top:300,behavior:"smooth"});
+}
+function excluir(id){
+if(confirm("Excluir este cadastro?")){dados=dados.filter(x=>x.id!==id);salvar();render()}
+}
+function render(){
+$("total").textContent=dados.length;
+$("ativos").textContent=dados.filter(x=>x.situacao==="Ativo").length;
+$("ferias").textContent=dados.filter(x=>x.situacao==="Em férias").length;
+const q=$("busca").value.toLowerCase();
+$("lista").replaceChildren();
+const itens=dados.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
+if(!itens.length){$("lista").textContent="Nenhum colaborador encontrado.";return}
+itens.forEach(x=>{
+const el=document.createElement("div");el.className="item";
+const h=document.createElement("h3");h.textContent=x.nome;el.append(h);
+const p=document.createElement("p");p.textContent=x.cargo+" • "+(x.departamento||"Sem departamento");el.append(p);
+const s=document.createElement("small");
+s.textContent="Situação: "+x.situacao+" | Admissão: "+(x.admissao||"Não informada");el.append(s);
+const sal=document.createElement("p");sal.textContent="Salário de referência: "+moeda(x.salario);el.append(sal);
+const t=document.createElement("p");t.textContent="Treinamento: "+(x.treinamento||"Não agendado");el.append(t);
+const d=document.createElement("p");d.textContent=x.atividades||"";el.append(d);
+const div=document.createElement("div");
+const b1=document.createElement("button");b1.textContent="Editar";b1.onclick=()=>editar(x.id);
+const b2=document.createElement("button");b2.textContent="Excluir";b2.className="danger";b2.onclick=()=>excluir(x.id);
+div.append(b1,b2);el.append(div);$("lista").append(el);
+});
+}
+function baixar(nome,conteudo,tipo){
+const url=URL.createObjectURL(new Blob([conteudo],{type:tipo}));
+const a=document.createElement("a");a.href=url;a.download=nome;a.click();
+setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function backup(){baixar("rh-backup.json",JSON.stringify(dados,null,2),"application/json")}
+function exportar(){
+const cols=["nome","cargo","departamento","admissao","contato","salario","situacao","treinamento","atividades","observacoes"];
+const csv=[cols,...dados.map(x=>cols.map(k=>String(x[k]||"")))].map(row=>row.map(v=>'"'+v.replaceAll('"','""')+'"').join(";")).join("\r\n");
+baixar("rh.csv","\uFEFF"+csv,"text/csv;charset=utf-8");
+}
+async function restaurar(e){
+try{
+const v=JSON.parse(await e.target.files[0].text());
+if(!Array.isArray(v))throw Error();
+if(confirm("Substituir os cadastros atuais pelo backup?")){dados=v;salvar();render()}
+}catch{alert("Backup inválido.")}
+e.target.value="";
+}
+render();
+</script>
+</body>
+</html>
