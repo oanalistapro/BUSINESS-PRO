@@ -81,6 +81,14 @@
       "ready": true
     },
     {
+      "slug": "meu-prazo",
+      "name": "MEU PRAZO",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-protocolo",
       "name": "MEU PROTOCOLO",
       "category": "Gestão",
