@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MEU FINANCEIRO | BUSINESS PRO</title>
+<style>
+:root{--azul:#2563eb;--fundo:#f3f7ff;--texto:#142849}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font:15px Arial,sans-serif}
+header{background:white;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #dce5f3}
+a{color:var(--azul);text-decoration:none}
+main{max-width:1200px;margin:auto;padding:24px 16px}
+.hero{background:linear-gradient(120deg,#173b86,#2563eb);color:white;padding:30px;border-radius:20px}
+.hero h1{margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
+.card{background:white;padding:22px;border-radius:17px;border:1px solid #dce5f3;box-shadow:0 8px 24px #1837680a}
+.card small{color:#64748b}.card strong{display:block;font-size:26px;margin-top:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label{display:block;font-weight:bold;font-size:13px;margin:13px 0 7px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;background:#fbfdff}
+textarea{min-height:80px}
+button{background:var(--azul);color:white;border:0;padding:12px 17px;border-radius:10px;font-weight:bold;cursor:pointer}
+.secondary{background:#eaf1ff;color:var(--azul)}
+.danger{background:#fee2e2;color:#b91c1c}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:12px;border-bottom:1px solid #e2e8f0}
+.scroll{overflow:auto}
+.positivo{color:#15803d}.negativo{color:#dc2626}
+@media(max-width:800px){.grid,.two{grid-template-columns:1fr}}
+@media print{header,.hero,form,.actions,.no-print{display:none!important}body{background:white}.card{box-shadow:none}}
+</style>
+</head>
+<body>
+<header><b>◆ BUSINESS PRO</b><a href="../">← Voltar</a></header>
+<main>
+<section class="hero">
+<h1>MEU FINANCEIRO</h1>
+<p>Controle receitas, despesas, contas e resultados do seu negócio.</p>
+</section>
+
+<div class="grid">
+<div class="card"><small>Receitas</small><strong id="receitas">R$ 0,00</strong></div>
+<div class="card"><small>Despesas</small><strong id="despesas">R$ 0,00</strong></div>
+<div class="card"><small>Saldo realizado</small><strong id="saldo">R$ 0,00</strong></div>
+</div>
+
+<div class="two">
+<section class="card">
+<h2>Novo lançamento</h2>
+<form id="form">
+<label>Descrição</label>
+<input id="descricao" required placeholder="Ex.: Pagamento de cliente">
+<div class="two">
+<div><label>Tipo</label><select id="tipo"><option>Receita</option><option>Despesa</option></select></div>
+<div><label>Valor (R$)</label><input id="valor" type="number" min=".01" step=".01" required></div>
+</div>
+<div class="two">
+<div><label>Categoria</label><input id="categoria" placeholder="Ex.: Vendas"></div>
+<div><label>Data</label><input id="data" type="date" required></div>
+</div>
+<label>Situação</label>
+<select id="situacao"><option>Pago</option><option>Pendente</option></select>
+<label>Observações</label>
+<textarea id="observacoes"></textarea>
+<div class="actions"><button type="submit">Salvar lançamento</button></div>
+</form>
+</section>
+
+<section class="card">
+<h2>Relatório financeiro</h2>
+<label>Filtrar por mês</label><input id="mes" type="month">
+<label>Filtrar por tipo</label>
+<select id="filtro"><option value="">Todos</option><option>Receita</option><option>Despesa</option></select>
+<div class="actions">
+<button onclick="exportar()">Exportar CSV</button>
+<button class="secondary" onclick="window.print()">Imprimir relatório</button>
+<button class="danger" onclick="apagarTudo()">Apagar registros</button>
+</div>
+<p>Os lançamentos ficam salvos neste navegador. Exporte o CSV para guardar uma cópia.</p>
+<p id="resumo"></p>
+</section>
+</div>
+
+<section class="card">
+<h2>Movimentações</h2>
+<div class="scroll"><table>
+<thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Tipo</th><th>Situação</th><th>Valor</th><th class="no-print">Ação</th></tr></thead>
+<tbody id="lista"></tbody>
+</table></div>
+</section>
+</main>
+<script>
+const chave="bp_financeiro_v1";
+let registros=[];
+try{registros=JSON.parse(localStorage.getItem(chave)||"[]")}catch(e){}
+const $=id=>document.getElementById(id);
+const moeda=n=>Number(n).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const seguro=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function salvar(){localStorage.setItem(chave,JSON.stringify(registros))}
+$("data").value=new Date().toLocaleDateString("en-CA");
+$("form").onsubmit=e=>{
+e.preventDefault();
+registros.push({
+id:crypto.randomUUID(),
+descricao:$("descricao").value.trim(),
+tipo:$("tipo").value,
+valor:Number($("valor").value),
+categoria:$("categoria").value.trim(),
+data:$("data").value,
+situacao:$("situacao").value,
+observacoes:$("observacoes").value
+});
+salvar();$("form").reset();
+$("data").value=new Date().toLocaleDateString("en-CA");
+render();
+};
+function remover(id){
+if(!confirm("Excluir este lançamento?"))return;
+registros=registros.filter(x=>x.id!==id);salvar();render();
+}
+function filtrados(){
+return registros.filter(x=>
+(!$("mes").value||x.data.startsWith($("mes").value))&&
+(!$("filtro").value||x.tipo===$("filtro").value));
+}
+function render(){
+const todos=filtrados();
+const pagos=todos.filter(x=>x.situacao==="Pago");
+const r=pagos.filter(x=>x.tipo==="Receita").reduce((s,x)=>s+x.valor,0);
+const d=pagos.filter(x=>x.tipo==="Despesa").reduce((s,x)=>s+x.valor,0);
+$("receitas").textContent=moeda(r);
+$("despesas").textContent=moeda(d);
+$("saldo").textContent=moeda(r-d);
+$("saldo").className=r-d>=0?"positivo":"negativo";
+$("resumo").textContent=`${todos.length} lançamento(s), incluindo ${todos.filter(x=>x.situacao==="Pendente").length} pendente(s).`;
+$("lista").innerHTML=todos.slice().sort((a,b)=>b.data.localeCompare(a.data)).map(x=>`
+<tr>
+<td>${seguro(x.data)}</td><td>${seguro(x.descricao)}</td>
+<td>${seguro(x.categoria)}</td><td>${seguro(x.tipo)}</td>
+<td>${seguro(x.situacao)}</td>
+<td class="${x.tipo==="Receita"?"positivo":"negativo"}">${moeda(x.valor)}</td>
+<td class="no-print"><button class="danger" data-id="${seguro(x.id)}">Excluir</button></td>
+</tr>`).join("")||'<tr><td colspan="7">Nenhum lançamento encontrado.</td></tr>';
+}
+$("lista").onclick=e=>{
+const b=e.target.closest("[data-id]");
+if(b)remover(b.dataset.id);
+};
+$("mes").onchange=render;$("filtro").onchange=render;
+function exportar(){
+const linhas=[["Data","Descrição","Categoria","Tipo","Situação","Valor","Observações"],
+...filtrados().map(x=>[x.data,x.descricao,x.categoria,x.tipo,x.situacao,x.valor,x.observacoes])];
+const csv="\uFEFF"+linhas.map(l=>l.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(";")).join("\r\n");
+const a=document.createElement("a");
+const u=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+a.href=u;a.download="relatorio-financeiro.csv";a.click();
+setTimeout(()=>URL.revokeObjectURL(u),1000);
+}
+function apagarTudo(){
+if(!confirm("Apagar TODOS os lançamentos?"))return;
+registros=[];salvar();render();
+}
+render();
+</script>
+</body>
+</html>
