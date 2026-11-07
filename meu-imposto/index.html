@@ -1,0 +1,1115 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<meta name="description" content="MEU IMPOSTO - Controle impostos, tributos, pagamentos, vencimentos, despesas e comprovantes.">
+<title>MEU IMPOSTO | BUSINESS PRO</title>
+
+<style>
+:root{
+ --blue:#2563eb;
+ --navy:#142747;
+ --bg:#f3f7ff;
+ --line:#dce5f3;
+ --muted:#64748b;
+ --green:#15803d;
+ --red:#dc2626;
+ --orange:#d97706;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:var(--bg);
+ color:var(--navy);
+ font-family:Arial,Helvetica,sans-serif;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+header{
+ background:white;
+ border-bottom:1px solid var(--line);
+ padding:18px 5%;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+}
+.brand{font-size:22px;font-weight:900}
+.brand span{color:var(--blue)}
+.back{font-weight:800;text-decoration:none}
+main{max-width:1250px;margin:auto;padding:25px 18px}
+.hero{
+ background:linear-gradient(125deg,#14366d,#2563eb);
+ color:white;
+ border-radius:24px;
+ padding:36px;
+ box-shadow:0 15px 35px #2563eb25;
+}
+.hero small{letter-spacing:2px;font-weight:900}
+.hero h1{font-size:clamp(28px,4vw,43px);margin:12px 0}
+.hero p{line-height:1.7;max-width:790px;opacity:.94}
+.toolbar{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ margin:24px 0;
+}
+.btn{
+ border:0;
+ background:var(--blue);
+ color:white;
+ padding:12px 16px;
+ border-radius:12px;
+ font-weight:800;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ gap:7px;
+ text-decoration:none;
+}
+.btn:hover{filter:brightness(.96)}
+.secondary{
+ background:white;
+ color:var(--navy);
+ border:1px solid var(--line);
+}
+.danger{background:#fff1f2;color:var(--red)}
+.success{background:#dcfce7;color:var(--green)}
+.search{
+ flex:1;
+ min-width:190px;
+ background:white;
+ border:1px solid var(--line);
+ border-radius:12px;
+ padding:13px;
+}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:14px;
+ margin-bottom:24px;
+}
+.stat,.panel,.record{
+ background:white;
+ border:1px solid var(--line);
+ border-radius:19px;
+ padding:22px;
+ box-shadow:0 10px 25px #1e3a8a08;
+}
+.stat small{color:var(--muted)}
+.stat strong{
+ display:block;
+ font-size:clamp(20px,2.3vw,29px);
+ margin-top:9px;
+ overflow-wrap:anywhere;
+}
+.panel{margin-bottom:22px}
+.panel h2{margin-top:0}
+.filters{
+ display:flex;
+ flex-wrap:wrap;
+ gap:9px;
+ margin-bottom:20px;
+}
+.filter{
+ border:1px solid var(--line);
+ background:white;
+ border-radius:30px;
+ padding:9px 15px;
+ color:var(--navy);
+ font-weight:700;
+}
+.filter.active{
+ background:var(--blue);
+ color:white;
+ border-color:var(--blue);
+}
+.records{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:15px;
+}
+.record h3{margin:13px 0;overflow-wrap:anywhere}
+.record p{
+ color:var(--muted);
+ line-height:1.6;
+ overflow-wrap:anywhere;
+}
+.tag{
+ display:inline-block;
+ background:#eaf1ff;
+ color:#1d4ed8;
+ padding:7px 12px;
+ border-radius:30px;
+ font-size:12px;
+ font-weight:900;
+}
+.tag.green{background:#dcfce7;color:#166534}
+.tag.red{background:#fee2e2;color:#b91c1c}
+.tag.orange{background:#fef3c7;color:#92400e}
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:8px;
+ margin-top:17px;
+}
+.empty{
+ grid-column:1/-1;
+ text-align:center;
+ padding:45px;
+ color:var(--muted);
+}
+.links{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:12px;
+}
+.linkcard{
+ display:flex;
+ flex-direction:column;
+ gap:9px;
+ padding:19px;
+ background:#f8fbff;
+ border:1px solid var(--line);
+ border-radius:15px;
+ text-decoration:none;
+}
+.linkcard strong{color:var(--blue)}
+.linkcard small{color:var(--muted);line-height:1.5}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th,td{
+ padding:13px;
+ border-bottom:1px solid var(--line);
+ text-align:left;
+ font-size:14px;
+}
+th{background:#f4f8ff}
+dialog{
+ border:0;
+ border-radius:22px;
+ padding:0;
+ width:min(850px,96vw);
+ max-height:92vh;
+ overflow:auto;
+ box-shadow:0 25px 100px #0f172a60;
+}
+dialog::backdrop{background:#071326aa}
+.modalhead{
+ background:#f4f8ff;
+ padding:23px 27px;
+ border-bottom:1px solid var(--line);
+}
+.modalhead h2{margin:0}
+form{padding:25px 27px}
+.fields{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:16px;
+}
+.field{
+ display:flex;
+ flex-direction:column;
+ gap:7px;
+}
+.full{grid-column:1/-1}
+label{font-size:13px;font-weight:800}
+input,select,textarea{
+ width:100%;
+ border:1px solid #cbd8eb;
+ border-radius:11px;
+ padding:13px;
+ background:white;
+ color:var(--navy);
+}
+textarea{min-height:105px;resize:vertical}
+.modalactions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ justify-content:flex-end;
+ margin-top:24px;
+}
+.note{
+ font-size:13px;
+ color:var(--muted);
+ line-height:1.7;
+}
+.printarea{display:none}
+@media(max-width:800px){
+ .links{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ header{padding:16px}
+ main{padding:17px 12px}
+ .hero{padding:25px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .records,.fields,.links{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .stat{padding:17px}
+}
+@media print{
+ header,main>*:not(.printarea),dialog{display:none!important}
+ body{background:white}
+ main{padding:0}
+ .printarea{
+  display:block!important;
+  padding:12mm;
+  color:#111;
+  font:14px/1.7 Arial,sans-serif;
+ }
+ .printarea h1{font-size:23px}
+ .printarea p{
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="brand">◆ BUSINESS <span>PRO</span></div>
+ <a class="back" href="../">← Voltar ao portal</a>
+</header>
+
+<main>
+
+<section class="hero">
+ <small>ORGANIZAÇÃO FINANCEIRA E TRIBUTÁRIA</small>
+ <h1>🧮 MEU IMPOSTO</h1>
+ <p>
+  Organize seus impostos, tributos, taxas, declarações,
+  pagamentos, vencimentos e comprovantes.
+  Acompanhe obrigações pessoais e empresariais
+  em um único lugar.
+ </p>
+</section>
+
+<div class="toolbar">
+ <button class="btn" id="newBtn">+ Cadastrar imposto</button>
+ <input class="search" id="search" placeholder="Pesquisar imposto, tributo ou referência...">
+ <button class="btn secondary" id="csvBtn">Exportar CSV</button>
+ <button class="btn secondary" id="backupBtn">Backup JSON</button>
+ <button class="btn secondary" id="importBtn">Importar backup</button>
+ <input type="file" id="importFile" accept=".json,application/json" hidden>
+</div>
+
+<section class="stats">
+ <div class="stat">
+  <small>Total cadastrado</small>
+  <strong id="totalValue">R$ 0,00</strong>
+ </div>
+ <div class="stat">
+  <small>Total pago</small>
+  <strong id="paidValue">R$ 0,00</strong>
+ </div>
+ <div class="stat">
+  <small>Total pendente</small>
+  <strong id="pendingValue">R$ 0,00</strong>
+ </div>
+ <div class="stat">
+  <small>Registros vencidos</small>
+  <strong id="lateCount">0</strong>
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Portais oficiais de impostos e tributos</h2>
+ <div class="links">
+
+  <a class="linkcard" href="https://www.gov.br/receitafederal/pt-br" target="_blank" rel="noopener noreferrer">
+   <strong>🏛️ Receita Federal</strong>
+   <small>Serviços e orientações tributárias federais.</small>
+  </a>
+
+  <a class="linkcard" href="https://cav.receita.fazenda.gov.br/" target="_blank" rel="noopener noreferrer">
+   <strong>🔐 e-CAC</strong>
+   <small>Acesso aos serviços digitais da Receita Federal.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda" target="_blank" rel="noopener noreferrer">
+   <strong>📄 Meu Imposto de Renda</strong>
+   <small>Declaração, consultas e orientações sobre IRPF.</small>
+  </a>
+
+  <a class="linkcard" href="https://www8.receita.fazenda.gov.br/SimplesNacional/" target="_blank" rel="noopener noreferrer">
+   <strong>🏢 Simples Nacional</strong>
+   <small>Serviços relacionados ao regime tributário simplificado.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.gov.br/empresas-e-negocios/pt-br/empreendedor" target="_blank" rel="noopener noreferrer">
+   <strong>💼 Portal do Empreendedor</strong>
+   <small>Informações oficiais sobre MEI e empreendedorismo.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.sef.sc.gov.br/" target="_blank" rel="noopener noreferrer">
+   <strong>📊 Fazenda de Santa Catarina</strong>
+   <small>Serviços tributários estaduais de Santa Catarina.</small>
+  </a>
+
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Meus impostos e obrigações</h2>
+
+ <div class="filters" id="filters">
+  <button class="filter active" data-filter="Todos">Todos</button>
+  <button class="filter" data-filter="Pendente">Pendentes</button>
+  <button class="filter" data-filter="Pago">Pagos</button>
+  <button class="filter" data-filter="Em análise">Em análise</button>
+  <button class="filter" data-filter="Parcelado">Parcelados</button>
+  <button class="filter" data-filter="Vencidos">Vencidos</button>
+ </div>
+
+ <div class="records" id="records"></div>
+</section>
+
+<section class="panel">
+ <h2>Próximos vencimentos</h2>
+ <div class="tablewrap">
+  <table>
+   <thead>
+    <tr>
+     <th>Imposto</th>
+     <th>Valor</th>
+     <th>Vencimento</th>
+     <th>Situação</th>
+    </tr>
+   </thead>
+   <tbody id="deadlineTable"></tbody>
+  </table>
+ </div>
+</section>
+
+<p class="note">
+ Este aplicativo é um organizador financeiro e tributário pessoal.
+ Não calcula automaticamente impostos devidos, não emite guias oficiais,
+ não envia declarações e não realiza pagamentos.
+ Os valores devem ser informados pelo usuário com base em documentos oficiais.
+ Confirme alíquotas, vencimentos e obrigações com a Receita Federal,
+ o órgão competente ou um contador.
+ Os registros ficam apenas neste navegador.
+ Evite armazenar CPF, CNPJ, senhas ou dados bancários sensíveis.
+</p>
+
+<section class="printarea" id="printArea"></section>
+
+</main>
+
+<dialog id="modal">
+ <div class="modalhead">
+  <h2 id="modalTitle">Cadastrar imposto</h2>
+ </div>
+
+ <form id="form">
+  <div class="fields">
+
+   <div class="field full">
+    <label for="titulo">Nome do imposto ou obrigação *</label>
+    <input id="titulo" required placeholder="Ex.: IPTU 2026 - Parcela 1">
+   </div>
+
+   <div class="field">
+    <label for="tipo">Tipo de imposto ou tributo</label>
+    <select id="tipo">
+     <option>Imposto de Renda Pessoa Física</option>
+     <option>Imposto de Renda Pessoa Jurídica</option>
+     <option>IPTU</option>
+     <option>IPVA</option>
+     <option>ICMS</option>
+     <option>ISS</option>
+     <option>INSS</option>
+     <option>DAS - Simples Nacional</option>
+     <option>DAS - MEI</option>
+     <option>CSLL</option>
+     <option>PIS/Pasep</option>
+     <option>COFINS</option>
+     <option>ITBI</option>
+     <option>ITCMD</option>
+     <option>Taxa administrativa</option>
+     <option>Outro</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="categoria">Categoria</label>
+    <select id="categoria">
+     <option>Pessoa física</option>
+     <option>Microempresa - ME</option>
+     <option>MEI</option>
+     <option>Empresa de pequeno porte</option>
+     <option>Outra pessoa jurídica</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="orgao">Órgão responsável</label>
+    <input id="orgao" placeholder="Ex.: Receita Federal">
+   </div>
+
+   <div class="field">
+    <label for="referencia">Referência ou identificação</label>
+    <input id="referencia" placeholder="Ex.: Guia 01/2026">
+   </div>
+
+   <div class="field">
+    <label for="competencia">Competência</label>
+    <input id="competencia" type="month">
+   </div>
+
+   <div class="field">
+    <label for="exercicio">Ano de exercício</label>
+    <input id="exercicio" type="number" min="1900" max="2200" step="1">
+   </div>
+
+   <div class="field">
+    <label for="valor">Valor informado (R$) *</label>
+    <input id="valor" type="number" min="0" step="0.01" required>
+   </div>
+
+   <div class="field">
+    <label for="vencimento">Data de vencimento</label>
+    <input id="vencimento" type="date">
+   </div>
+
+   <div class="field">
+    <label for="pagamento">Data do pagamento</label>
+    <input id="pagamento" type="date">
+   </div>
+
+   <div class="field">
+    <label for="valorPago">Valor efetivamente pago (R$)</label>
+    <input id="valorPago" type="number" min="0" step="0.01">
+   </div>
+
+   <div class="field">
+    <label for="situacao">Situação</label>
+    <select id="situacao">
+     <option>Pendente</option>
+     <option>Pago</option>
+     <option>Em análise</option>
+     <option>Parcelado</option>
+     <option>Cancelado</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="forma">Forma de pagamento</label>
+    <select id="forma">
+     <option>Não informado</option>
+     <option>Pix</option>
+     <option>Boleto</option>
+     <option>Transferência bancária</option>
+     <option>Débito automático</option>
+     <option>Cartão</option>
+     <option>Outro</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="parcelas">Quantidade de parcelas</label>
+    <input id="parcelas" type="number" min="1" step="1" placeholder="Ex.: 1">
+   </div>
+
+   <div class="field">
+    <label for="prioridade">Prioridade</label>
+    <select id="prioridade">
+     <option>Normal</option>
+     <option>Alta</option>
+     <option>Urgente</option>
+     <option>Baixa</option>
+    </select>
+   </div>
+
+   <div class="field full">
+    <label for="link">Link oficial do serviço</label>
+    <input id="link" type="url" placeholder="https://...">
+   </div>
+
+   <div class="field full">
+    <label for="descricao">Descrição da obrigação</label>
+    <textarea id="descricao" placeholder="Descreva a origem, finalidade e informações relevantes."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="comprovante">Referência do comprovante</label>
+    <textarea id="comprovante" placeholder="Anote onde o comprovante está guardado. Não inclua dados bancários sensíveis."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="observacoes">Observações</label>
+    <textarea id="observacoes"></textarea>
+   </div>
+
+  </div>
+
+  <div class="modalactions">
+   <button type="button" class="btn secondary" id="cancelBtn">Cancelar</button>
+   <button type="submit" class="btn">Salvar imposto</button>
+  </div>
+ </form>
+</dialog>
+
+<script>
+"use strict";
+
+const $=id=>document.getElementById(id);
+const KEY="businesspro_meu_imposto_v1";
+
+const FIELDS=[
+ "titulo","tipo","categoria","orgao","referencia",
+ "competencia","exercicio","valor","vencimento",
+ "pagamento","valorPago","situacao","forma",
+ "parcelas","prioridade","link","descricao",
+ "comprovante","observacoes"
+];
+
+const LABELS={
+ titulo:"Imposto ou obrigação",
+ tipo:"Tipo",
+ categoria:"Categoria",
+ orgao:"Órgão responsável",
+ referencia:"Referência",
+ competencia:"Competência",
+ exercicio:"Exercício",
+ valor:"Valor informado",
+ vencimento:"Vencimento",
+ pagamento:"Data do pagamento",
+ valorPago:"Valor pago",
+ situacao:"Situação",
+ forma:"Forma de pagamento",
+ parcelas:"Parcelas",
+ prioridade:"Prioridade",
+ link:"Link oficial",
+ descricao:"Descrição",
+ comprovante:"Referência do comprovante",
+ observacoes:"Observações"
+};
+
+let records=[];
+let editing=null;
+let activeFilter="Todos";
+
+try{
+ const saved=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(saved))records=saved;
+}catch(e){
+ alert("Não foi possível carregar os registros.");
+}
+
+function esc(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ }[c]));
+}
+
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(records));
+  return true;
+ }catch(e){
+  alert("Não foi possível salvar. Verifique o armazenamento do navegador.");
+  return false;
+ }
+}
+
+function makeId(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
+}
+
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+
+  String(d.getMonth()+1).padStart(2,"0")+"-"+
+  String(d.getDate()).padStart(2,"0");
+}
+
+function dateBR(value){
+ if(!value)return "Não informado";
+ const p=value.split("-");
+ return p.length===3?p.reverse().join("/"):value;
+}
+
+function money(value){
+ return Number(value||0).toLocaleString("pt-BR",{
+  style:"currency",
+  currency:"BRL"
+ });
+}
+
+function amount(value){
+ const n=Number(value||0);
+ return Number.isFinite(n)?n:0;
+}
+
+function closed(record){
+ return ["Pago","Cancelado"].includes(record.data.situacao);
+}
+
+function late(record){
+ return !!record.data.vencimento&&
+  record.data.vencimento<today()&&!closed(record);
+}
+
+function openForm(id=null){
+ editing=id;
+
+ const record=records.find(x=>x.id===id);
+
+ $("modalTitle").textContent=record?
+  "Editar imposto":"Cadastrar imposto";
+
+ FIELDS.forEach(f=>{
+  $(f).value=record?.data?.[f]??"";
+ });
+
+ if(!record){
+  $("situacao").value="Pendente";
+  $("prioridade").value="Normal";
+  $("forma").value="Não informado";
+  $("exercicio").value=new Date().getFullYear();
+  $("parcelas").value="1";
+ }
+
+ $("modal").showModal();
+}
+
+function officialLink(value){
+ if(!value)return "";
+
+ try{
+  const url=new URL(value);
+  if(!["https:","http:"].includes(url.protocol))return "";
+
+  return `<a class="btn secondary"
+   href="${esc(url.href)}"
+   target="_blank" rel="noopener noreferrer">
+   Abrir serviço oficial</a>`;
+ }catch(e){
+  return "";
+ }
+}
+
+function render(){
+ const q=$("search").value.toLocaleLowerCase("pt-BR").trim();
+
+ const active=records.filter(x=>x.data.situacao!=="Cancelado");
+
+ const total=active.reduce(
+  (sum,x)=>sum+amount(x.data.valor),0
+ );
+
+ const paid=active.reduce(
+  (sum,x)=>sum+amount(x.data.valorPago),0
+ );
+
+ const pending=active.reduce(
+  (sum,x)=>sum+Math.max(
+   0,amount(x.data.valor)-amount(x.data.valorPago)
+  ),0
+ );
+
+ $("totalValue").textContent=money(total);
+ $("paidValue").textContent=money(paid);
+ $("pendingValue").textContent=money(pending);
+ $("lateCount").textContent=records.filter(late).length;
+
+ const filtered=records.filter(x=>{
+  const status=activeFilter==="Todos"||
+   (activeFilter==="Vencidos"?
+    late(x):x.data.situacao===activeFilter);
+
+  const search=JSON.stringify(x.data)
+   .toLocaleLowerCase("pt-BR").includes(q);
+
+  return status&&search;
+ });
+
+ if(!filtered.length){
+  $("records").innerHTML=`
+   <div class="empty">
+    <h3>Nenhum imposto encontrado</h3>
+    <p>Cadastre uma obrigação tributária para começar.</p>
+   </div>`;
+ }else{
+  $("records").innerHTML=filtered.map(x=>{
+   const d=x.data;
+
+   const cls=d.situacao==="Pago"?"green":
+    d.situacao==="Cancelado"?"red":
+    late(x)?"orange":"";
+
+   const tagText=late(x)?"Vencido":d.situacao;
+
+   return `<article class="record">
+    <span class="tag ${cls}">${esc(tagText)}</span>
+    <h3>${esc(d.titulo)}</h3>
+
+    <p><strong>Tipo:</strong> ${esc(d.tipo)}</p>
+    <p><strong>Categoria:</strong> ${esc(d.categoria)}</p>
+    <p><strong>Órgão:</strong> ${esc(d.orgao||"Não informado")}</p>
+    <p><strong>Referência:</strong> ${esc(d.referencia||"Não informada")}</p>
+    <p><strong>Competência:</strong> ${esc(d.competencia||"Não informada")}</p>
+    <p><strong>Exercício:</strong> ${esc(d.exercicio||"Não informado")}</p>
+    <p><strong>Valor informado:</strong> ${esc(money(d.valor))}</p>
+    <p><strong>Valor pago:</strong> ${esc(money(d.valorPago))}</p>
+    <p><strong>Vencimento:</strong> ${esc(dateBR(d.vencimento))}</p>
+    <p><strong>Pagamento:</strong> ${esc(dateBR(d.pagamento))}</p>
+    <p><strong>Forma:</strong> ${esc(d.forma)}</p>
+    <p><strong>Parcelas:</strong> ${esc(d.parcelas||"Não informado")}</p>
+    <p><strong>Descrição:</strong> ${esc(d.descricao||"Não informada")}</p>
+
+    <div class="actions">
+     <button class="btn secondary" data-action="edit"
+      data-id="${esc(x.id)}">Editar</button>
+
+     ${d.situacao!=="Pago"&&d.situacao!=="Cancelado"?
+      `<button class="btn success" data-action="pay"
+       data-id="${esc(x.id)}">Marcar como pago</button>`:""}
+
+     <button class="btn" data-action="print"
+      data-id="${esc(x.id)}">Relatório / PDF</button>
+
+     <button class="btn secondary" data-action="copy"
+      data-id="${esc(x.id)}">Copiar resumo</button>
+
+     ${officialLink(d.link)}
+
+     <button class="btn danger" data-action="delete"
+      data-id="${esc(x.id)}">Excluir</button>
+    </div>
+   </article>`;
+  }).join("");
+ }
+
+ renderDeadlines();
+}
+
+function renderDeadlines(){
+ const list=records
+  .filter(x=>x.data.vencimento&&!closed(x))
+  .sort((a,b)=>
+   a.data.vencimento.localeCompare(b.data.vencimento)
+  );
+
+ if(!list.length){
+  $("deadlineTable").innerHTML=`
+   <tr><td colspan="4">Nenhum vencimento pendente cadastrado.</td></tr>`;
+  return;
+ }
+
+ $("deadlineTable").innerHTML=list.map(x=>`
+  <tr>
+   <td>${esc(x.data.titulo)}</td>
+   <td>${esc(money(
+    Math.max(0,amount(x.data.valor)-amount(x.data.valorPago))
+   ))}</td>
+   <td>${esc(dateBR(x.data.vencimento))}</td>
+   <td>${late(x)?"Vencido":esc(x.data.situacao)}</td>
+  </tr>
+ `).join("");
+}
+
+$("form").onsubmit=e=>{
+ e.preventDefault();
+
+ const data={};
+ FIELDS.forEach(f=>data[f]=$(f).value.trim());
+
+ if(!data.titulo||data.valor===""){
+  alert("Informe o nome e o valor do imposto.");
+  return;
+ }
+
+ const value=Number(data.valor);
+ const paid=Number(data.valorPago||0);
+
+ if(!Number.isFinite(value)||value<0||
+    !Number.isFinite(paid)||paid<0){
+  alert("Informe valores monetários válidos.");
+  return;
+ }
+
+ if(data.situacao==="Pago"&&data.valorPago===""){
+  data.valorPago=data.valor;
+ }
+
+ if(data.situacao==="Pago"&&!data.pagamento){
+  data.pagamento=today();
+ }
+
+ const old=records.find(x=>x.id===editing);
+
+ const record={
+  id:old?.id||makeId(),
+  createdAt:old?.createdAt||new Date().toISOString(),
+  updatedAt:new Date().toISOString(),
+  data
+ };
+
+ const previous=records;
+
+ records=old?
+  records.map(x=>x.id===editing?record:x):
+  [record,...records];
+
+ if(!save()){
+  records=previous;
+  return;
+ }
+
+ $("modal").close();
+ editing=null;
+ render();
+};
+
+function reportText(record){
+ const d=record.data;
+ const dates=["vencimento","pagamento"];
+
+ return [
+  "BUSINESS PRO — MEU IMPOSTO",
+  "RELATÓRIO DE CONTROLE TRIBUTÁRIO",
+  "",
+  ...FIELDS.map(f=>{
+   let value=d[f]||"Não informado";
+
+   if(dates.includes(f))value=dateBR(d[f]);
+   if(["valor","valorPago"].includes(f))value=money(d[f]);
+
+   return LABELS[f]+": "+value;
+  }),
+  "",
+  "Documento de organização pessoal.",
+  "Não substitui guia, recibo ou comprovante oficial."
+ ].join("\n");
+}
+
+function printReport(record){
+ $("printArea").innerHTML=`
+  <h1>MEU IMPOSTO — RELATÓRIO</h1>
+  <hr>
+  <p>${esc(reportText(record))}</p>
+  <hr>
+  <p>Gerado em ${esc(new Date().toLocaleString("pt-BR"))}</p>
+ `;
+
+ window.print();
+}
+
+$("records").onclick=async e=>{
+ const btn=e.target.closest("button[data-action]");
+ if(!btn)return;
+
+ const record=records.find(x=>x.id===btn.dataset.id);
+ if(!record)return;
+
+ const action=btn.dataset.action;
+
+ if(action==="edit"){
+  openForm(record.id);
+ }
+
+ if(action==="print"){
+  printReport(record);
+ }
+
+ if(action==="pay"){
+  if(!confirm(
+   "Confirmar que este imposto foi pago integralmente?"
+  ))return;
+
+  const previous=JSON.stringify(records);
+
+  record.data.situacao="Pago";
+  record.data.pagamento=today();
+  record.data.valorPago=record.data.valor;
+  record.updatedAt=new Date().toISOString();
+
+  if(!save()){
+   records=JSON.parse(previous);
+  }
+
+  render();
+ }
+
+ if(action==="copy"){
+  const content=reportText(record);
+
+  try{
+   await navigator.clipboard.writeText(content);
+   alert("Resumo copiado.");
+  }catch(e){
+   const ta=document.createElement("textarea");
+   ta.value=content;
+   document.body.appendChild(ta);
+   ta.select();
+
+   const ok=document.execCommand("copy");
+   ta.remove();
+
+   alert(ok?"Resumo copiado.":"Não foi possível copiar.");
+  }
+ }
+
+ if(action==="delete"){
+  if(!confirm("Excluir este registro tributário?"))return;
+
+  const previous=records;
+
+  records=records.filter(x=>x.id!==record.id);
+
+  if(!save())records=previous;
+
+  render();
+ }
+};
+
+$("filters").onclick=e=>{
+ const btn=e.target.closest("[data-filter]");
+ if(!btn)return;
+
+ activeFilter=btn.dataset.filter;
+
+ document.querySelectorAll(".filter").forEach(b=>{
+  b.classList.toggle("active",b===btn);
+ });
+
+ render();
+};
+
+function download(name,content,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+
+ const a=document.createElement("a");
+ a.href=url;
+ a.download=name;
+
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function csvCell(value){
+ return '"'+String(value??"").replace(/"/g,'""')+'"';
+}
+
+$("csvBtn").onclick=()=>{
+ if(!records.length){
+  alert("Não existem registros para exportar.");
+  return;
+ }
+
+ const headers=[
+  "ID","Criado em","Atualizado em",
+  ...FIELDS.map(f=>LABELS[f])
+ ];
+
+ const rows=records.map(x=>[
+  x.id,
+  x.createdAt,
+  x.updatedAt,
+  ...FIELDS.map(f=>x.data[f]||"")
+ ]);
+
+ const csv="\uFEFF"+[headers,...rows]
+  .map(row=>row.map(csvCell).join(";"))
+  .join("\r\n");
+
+ download(
+  "meus-impostos.csv",
+  csv,
+  "text/csv;charset=utf-8"
+ );
+};
+
+$("backupBtn").onclick=()=>{
+ download(
+  "backup-meu-imposto.json",
+  JSON.stringify({
+   app:"meu-imposto",
+   version:1,
+   records
+  },null,2),
+  "application/json"
+ );
+};
+
+$("importBtn").onclick=()=>{
+ $("importFile").click();
+};
+
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  const obj=JSON.parse(await file.text());
+
+  if(obj.app!=="meu-imposto"||
+     !Array.isArray(obj.records)){
+   throw Error("Backup incompatível.");
+  }
+
+  const valid=obj.records.every(x=>
+   x&&
+   typeof x.id==="string"&&
+   x.data&&
+   typeof x.data==="object"&&
+   FIELDS.every(f=>
+    x.data[f]===undefined||
+    typeof x.data[f]==="string"
+   )
+  );
+
+  if(!valid){
+   throw Error("Estrutura dos registros inválida.");
+  }
+
+  if(!confirm(
+   "Substituir todos os impostos atuais pelos dados do backup?"
+  ))return;
+
+  const previous=records;
+  records=obj.records;
+
+  if(!save()){
+   records=previous;
+   return;
+  }
+
+  render();
+  alert("Backup importado com sucesso.");
+
+ }catch(err){
+  alert("Erro ao importar: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+$("newBtn").onclick=()=>openForm();
+$("cancelBtn").onclick=()=>$("modal").close();
+$("search").oninput=render;
+
+render();
+</script>
+
+</body>
+</html>
