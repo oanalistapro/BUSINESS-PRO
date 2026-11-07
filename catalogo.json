@@ -63,6 +63,14 @@
       "icon": "📑",
       "desc": "Organize e trabalhe com arquivos PDF.",
       "ready": true
+    },
+    {
+      "slug": "meu-trabalho",
+      "name": "MEU TRABALHO",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
     }
   ]
 }
