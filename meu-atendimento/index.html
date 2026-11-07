@@ -7,476 +7,741 @@
 <meta name="theme-color" content="#2563eb">
 <title>MEU ATENDIMENTO | BUSINESS PRO</title>
 <style>
-:root{--blue:#2563eb;--navy:#142747;--bg:#f3f7ff;--line:#dce5f3;--muted:#64748b}
+:root{
+ --blue:#2563eb;--dark:#153369;--ink:#102747;--muted:#64748b;
+ --bg:#f2f6ff;--line:#d8e3f4;--white:#fff;
+ --green:#059669;--orange:#d97706;--red:#dc2626
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,Arial,sans-serif}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-header{background:white;border-bottom:1px solid var(--line);padding:18px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{font-size:22px;font-weight:900}.brand span{color:var(--blue)}
-.back{color:var(--blue);font-weight:800;text-decoration:none}
-main{max-width:1250px;margin:auto;padding:25px 18px}
-.hero{background:linear-gradient(125deg,#14366d,#2563eb);color:white;border-radius:24px;padding:36px;box-shadow:0 15px 35px #2563eb25}
-.hero small{font-weight:900;letter-spacing:2px}
-.hero h1{font-size:clamp(28px,4vw,43px);margin:12px 0}
-.hero p{line-height:1.7;max-width:760px;opacity:.94}
-.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0}
-.btn{background:var(--blue);border:0;border-radius:12px;padding:13px 18px;color:white;font-weight:800}
-.btn:hover{filter:brightness(.95)}
-.secondary{background:white;color:var(--navy);border:1px solid var(--line)}
-.danger{background:#fff1f2;color:#dc2626}
-.search{flex:1;min-width:190px;padding:13px 15px;background:white;border:1px solid var(--line);border-radius:12px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:25px}
-.stat,.panel,.record{background:white;border:1px solid var(--line);border-radius:19px;padding:22px;box-shadow:0 10px 25px #1e3a8a08}
-.stat small{color:var(--muted)}
-.stat strong{display:block;font-size:30px;margin-top:9px}
-.panel h2{margin-top:0}
-.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
-.filter{border:1px solid var(--line);background:white;border-radius:30px;padding:9px 15px;color:var(--navy);font-weight:700}
-.filter.active{background:var(--blue);color:white;border-color:var(--blue)}
-.records{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-.record h3{margin:15px 0 10px;overflow-wrap:anywhere}
-.record p{color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
-.tag{display:inline-block;background:#eaf1ff;color:#1d4ed8;border-radius:25px;padding:7px 12px;font-size:12px;font-weight:900}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.empty{grid-column:1/-1;text-align:center;padding:55px 15px;color:var(--muted)}
-dialog{border:0;border-radius:23px;padding:0;width:min(820px,96vw);max-height:92vh;overflow:auto;box-shadow:0 25px 100px #0f172a60}
-dialog::backdrop{background:#071326aa}
-.modalhead{background:#f4f8ff;border-bottom:1px solid var(--line);padding:24px 28px}
-.modalhead h2{margin:0}
-form{padding:25px 28px}
-.fields{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.field{display:flex;flex-direction:column;gap:7px}
-.full{grid-column:1/-1}
-label{font-size:13px;font-weight:800}
-input,select,textarea{width:100%;border:1px solid #cbd8eb;border-radius:11px;padding:13px;background:white;color:var(--navy)}
-textarea{min-height:105px;resize:vertical}
-.modalactions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin-top:25px}
-.notice{font-size:13px;color:var(--muted);line-height:1.7;margin:25px 0}
-.printarea{display:none}
-@media(max-width:700px){
- header{padding:17px}
- main{padding:18px 12px}
- .hero{padding:25px}
- .stats{grid-template-columns:repeat(2,1fr)}
- .records,.fields{grid-template-columns:1fr}
- .full{grid-column:auto}
- .stat{padding:16px}
+a{text-decoration:none;color:inherit}
+header{
+ background:white;border-bottom:1px solid var(--line);
+ padding:17px 4%;display:flex;justify-content:space-between;align-items:center;gap:12px
 }
+.brand{font-size:21px;font-weight:900}
+.brand span{color:var(--blue)}
+main{max-width:1500px;margin:auto;padding:20px 16px}
+.hero{
+ background:linear-gradient(110deg,#17376d,#2563eb);
+ color:white;border-radius:26px;padding:42px;margin-bottom:25px
+}
+.hero small{font-weight:900;letter-spacing:2px}
+.hero h1{font-size:clamp(31px,5vw,53px);margin:18px 0}
+.hero p{font-size:17px;line-height:1.7;max-width:950px}
+.btn{
+ border:0;background:var(--blue);color:white;
+ border-radius:12px;padding:13px 17px;font-weight:800;
+ display:inline-flex;align-items:center;justify-content:center;gap:7px
+}
+.btn:hover{filter:brightness(.96)}
+.btn.alt{background:#eaf0ff;color:#1d4ed8}
+.btn.light{background:white;color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:#fee2e2;color:#b91c1c}
+.btn.small{padding:9px 12px;font-size:12px}
+.toolbar{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:25px}
+.toolbar input{flex:1;min-width:220px}
+input,select,textarea{
+ width:100%;padding:13px;border:1px solid #cbd8eb;
+ border-radius:11px;background:white;color:var(--ink);outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+textarea{resize:vertical;min-height:105px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:25px}
+.stat,.panel{
+ background:white;border:1px solid var(--line);
+ border-radius:20px;box-shadow:0 8px 25px #12376d08
+}
+.stat{padding:26px}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:34px;margin-top:12px}
+.panel{padding:27px;margin-bottom:22px}
+.panel h2{margin:0 0 20px;font-size:25px}
+.tabs{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px}
+.tab{
+ border:1px solid var(--line);background:white;
+ padding:11px 17px;border-radius:30px;font-weight:800;color:var(--ink)
+}
+.tab.active{background:var(--blue);color:white;border-color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.ticket{
+ border:1px solid var(--line);border-radius:17px;
+ padding:21px;background:#fbfcff;min-width:0
+}
+.ticket h3{font-size:19px;margin:15px 0;overflow-wrap:anywhere}
+.ticket p{font-size:13px;color:var(--muted);line-height:1.7;overflow-wrap:anywhere}
+.actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.badge{display:inline-block;border-radius:25px;padding:7px 12px;background:#eaf0ff;color:#1d4ed8;font-size:12px;font-weight:800}
+.badge.green{background:#dcfce7;color:#166534}
+.badge.orange{background:#fef3c7;color:#92400e}
+.badge.red{background:#fee2e2;color:#991b1b}
+.empty{text-align:center;padding:65px 15px;color:var(--muted)}
+.empty h3{font-size:22px}
+.editor{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:20px;align-items:start}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field label{font-size:12px;font-weight:800}
+.full{grid-column:1/-1}
+.timeline{display:flex;flex-direction:column;gap:13px}
+.event{border-left:4px solid var(--blue);padding:12px 15px;background:#f6f9ff;border-radius:0 12px 12px 0}
+.event small{color:var(--muted)}
+.event p{white-space:pre-wrap;overflow-wrap:anywhere}
+.hint{font-size:12px;color:var(--muted);line-height:1.7}
+#printArea{display:none}
+#toast{
+ display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+ background:var(--ink);color:white;padding:15px 22px;border-radius:12px;
+ z-index:20;max-width:90vw
+}
+.hidden{display:none!important}
+@media(max-width:950px){
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .editor{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+ main{padding:12px 10px}
+ .hero{padding:29px 21px;border-radius:18px}
+ .hero p{font-size:14px}
+ .panel{padding:18px}
+ .stat{padding:18px}
+ .stat strong{font-size:27px}
+ .grid,.fields{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .toolbar>*{width:100%}
+ header .brand{font-size:16px}
+ header .btn{font-size:11px;padding:10px}
+ .tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px}
+ .tab{white-space:nowrap}
+}
+@page{size:A4;margin:18mm}
 @media print{
- header,main>*:not(.printarea),dialog{display:none!important}
- body{background:white}
- main{padding:0}
- .printarea{display:block!important;background:white;color:#111;padding:15mm;font:14px/1.7 Arial,sans-serif}
- .printarea h1{font-size:24px}
- .printarea p{white-space:pre-wrap;overflow-wrap:anywhere}
+ body>*:not(#printArea){display:none!important}
+ #printArea{display:block!important;font-family:Arial;color:black}
+ #printArea h1{font-size:20pt;border-bottom:2px solid #222;padding-bottom:15px}
+ #printArea p{font-size:11pt;line-height:1.6;white-space:pre-wrap}
+ #printArea .event{break-inside:avoid}
 }
 </style>
 </head>
 <body>
-<header>
- <div class="brand">◆ BUSINESS <span>PRO</span></div>
- <a class="back" href="../">← Voltar ao portal</a>
-</header>
-<main>
- <section class="hero">
-  <small>GESTÃO DE RELACIONAMENTO</small>
-  <h1>🎧 MEU ATENDIMENTO</h1>
-  <p>Organize atendimentos, cadastre clientes, registre solicitações, acompanhe pendências e mantenha o histórico de cada contato.</p>
- </section>
 
+<header>
+ <div class="brand">🎧 MEU <span>ATENDIMENTO</span></div>
+ <a class="btn alt" href="../">← Business Pro</a>
+</header>
+
+<main>
+
+<section class="hero">
+ <small>GESTÃO DE RELACIONAMENTO</small>
+ <h1>🎧 MEU ATENDIMENTO</h1>
+ <p>Organize atendimentos, cadastre clientes, registre solicitações, acompanhe pendências e mantenha o histórico completo de cada contato.</p>
+</section>
+
+<section id="home">
  <div class="toolbar">
-  <button class="btn" id="newBtn">+ Novo atendimento</button>
-  <input class="search" id="search" placeholder="Pesquisar cliente, protocolo ou assunto...">
-  <button class="btn secondary" id="csvBtn">Exportar CSV</button>
-  <button class="btn secondary" id="backupBtn">Backup JSON</button>
-  <button class="btn secondary" id="importBtn">Importar backup</button>
-  <input type="file" id="importFile" accept=".json,application/json" hidden>
+  <button class="btn" onclick="newTicket()">+ Novo atendimento</button>
+  <input id="search" placeholder="🔎 Pesquisar cliente, protocolo ou assunto...">
+  <button class="btn light" onclick="exportCSV()">Exportar CSV</button>
+  <button class="btn light" onclick="exportBackup()">Backup JSON</button>
+  <button class="btn light" onclick="document.getElementById('backupFile').click()">Importar backup</button>
+  <input id="backupFile" type="file" accept=".json,application/json" hidden>
  </div>
 
- <section class="stats">
+ <div class="stats">
   <div class="stat"><small>Total de atendimentos</small><strong id="total">0</strong></div>
-  <div class="stat"><small>Em aberto</small><strong id="openCount">0</strong></div>
-  <div class="stat"><small>Em andamento</small><strong id="progressCount">0</strong></div>
-  <div class="stat"><small>Resolvidos</small><strong id="resolvedCount">0</strong></div>
- </section>
+  <div class="stat"><small>Em aberto</small><strong id="opened">0</strong></div>
+  <div class="stat"><small>Em andamento</small><strong id="progress">0</strong></div>
+  <div class="stat"><small>Resolvidos</small><strong id="resolved">0</strong></div>
+ </div>
 
  <section class="panel">
   <h2>Central de atendimentos</h2>
-  <div class="filters" id="filters">
-   <button class="filter active" data-status="Todos">Todos</button>
-   <button class="filter" data-status="Aberto">Abertos</button>
-   <button class="filter" data-status="Em andamento">Em andamento</button>
-   <button class="filter" data-status="Aguardando cliente">Aguardando cliente</button>
-   <button class="filter" data-status="Resolvido">Resolvidos</button>
-   <button class="filter" data-status="Cancelado">Cancelados</button>
+  <div class="tabs" id="tabs">
+   <button class="tab active" data-status="Todos">Todos</button>
+   <button class="tab" data-status="Aberto">Abertos</button>
+   <button class="tab" data-status="Em andamento">Em andamento</button>
+   <button class="tab" data-status="Aguardando cliente">Aguardando cliente</button>
+   <button class="tab" data-status="Resolvido">Resolvidos</button>
+   <button class="tab" data-status="Cancelado">Cancelados</button>
   </div>
-  <div class="records" id="records"></div>
+  <div id="ticketList" class="grid"></div>
  </section>
+</section>
 
- <p class="notice">Os registros são salvos somente neste navegador, sem sincronização com servidores. Exporte backups regularmente. Não utilize esta versão para armazenar dados sensíveis ou confidenciais de clientes.</p>
- <section class="printarea" id="printArea"></section>
+<section id="editorSection" class="hidden">
+ <div class="actions" style="margin-bottom:18px">
+  <button class="btn alt" onclick="goHome()">← Voltar</button>
+  <button class="btn" onclick="saveTicket()">💾 Salvar atendimento</button>
+  <button class="btn light" onclick="printTicket()">Imprimir / PDF</button>
+ </div>
+
+ <div class="editor">
+  <section class="panel">
+   <h2>Dados do atendimento</h2>
+
+   <div class="fields">
+    <div class="field">
+     <label>Protocolo</label>
+     <input id="protocol" readonly>
+    </div>
+    <div class="field">
+     <label>Data e hora</label>
+     <input id="date" type="datetime-local">
+    </div>
+    <div class="field full">
+     <label>Nome do cliente *</label>
+     <input id="client" placeholder="Nome completo ou empresa">
+    </div>
+    <div class="field">
+     <label>Telefone / WhatsApp</label>
+     <input id="phone" type="tel" placeholder="(00) 00000-0000">
+    </div>
+    <div class="field">
+     <label>E-mail</label>
+     <input id="email" type="email" placeholder="cliente@exemplo.com">
+    </div>
+    <div class="field">
+     <label>Canal de atendimento</label>
+     <select id="channel">
+      <option>WhatsApp</option>
+      <option>Telefone</option>
+      <option>E-mail</option>
+      <option>Presencial</option>
+      <option>Site</option>
+      <option>Redes sociais</option>
+      <option>Outro</option>
+     </select>
+    </div>
+    <div class="field">
+     <label>Categoria</label>
+     <select id="category">
+      <option>Informação</option>
+      <option>Suporte técnico</option>
+      <option>Reclamação</option>
+      <option>Solicitação</option>
+      <option>Financeiro</option>
+      <option>Comercial</option>
+      <option>Agendamento</option>
+      <option>Outro</option>
+     </select>
+    </div>
+    <div class="field full">
+     <label>Assunto *</label>
+     <input id="subject" placeholder="Ex.: Dúvida sobre serviço contratado">
+    </div>
+    <div class="field">
+     <label>Responsável</label>
+     <input id="agent" placeholder="Nome do atendente">
+    </div>
+    <div class="field">
+     <label>Prazo de retorno</label>
+     <input id="due" type="datetime-local">
+    </div>
+    <div class="field">
+     <label>Prioridade</label>
+     <select id="priority">
+      <option>Normal</option>
+      <option>Alta</option>
+      <option>Urgente</option>
+     </select>
+    </div>
+    <div class="field">
+     <label>Situação</label>
+     <select id="status">
+      <option>Aberto</option>
+      <option>Em andamento</option>
+      <option>Aguardando cliente</option>
+      <option>Resolvido</option>
+      <option>Cancelado</option>
+     </select>
+    </div>
+    <div class="field full">
+     <label>Descrição da solicitação *</label>
+     <textarea id="description" rows="6" placeholder="Descreva a necessidade do cliente..."></textarea>
+    </div>
+    <div class="field full">
+     <label>Solução / encaminhamento</label>
+     <textarea id="solution" rows="5" placeholder="Descreva as providências realizadas..."></textarea>
+    </div>
+    <div class="field full">
+     <label>Observações internas</label>
+     <textarea id="notes" placeholder="Anotações para acompanhamento..."></textarea>
+    </div>
+   </div>
+  </section>
+
+  <div>
+   <section class="panel">
+    <h2>Histórico de contatos</h2>
+    <p class="hint">Salve o atendimento para registrar interações. Cada contato ficará vinculado ao protocolo.</p>
+    <div class="field">
+     <label>Nova interação</label>
+     <textarea id="eventText" placeholder="Ex.: Cliente retornou e enviou os documentos solicitados."></textarea>
+    </div>
+    <div class="field" style="margin:12px 0">
+     <label>Tipo de interação</label>
+     <select id="eventType">
+      <option>Contato</option>
+      <option>Atualização</option>
+      <option>Retorno</option>
+      <option>Encaminhamento</option>
+      <option>Resolução</option>
+     </select>
+    </div>
+    <button class="btn" onclick="addEvent()">+ Registrar interação</button>
+    <div id="history" class="timeline" style="margin-top:22px"></div>
+   </section>
+
+   <section class="panel">
+    <h2>Ações rápidas</h2>
+    <div class="actions">
+     <button class="btn alt" onclick="sendWhatsApp()">Abrir WhatsApp</button>
+     <button class="btn light" onclick="sendEmail()">Preparar e-mail</button>
+     <button class="btn light" onclick="copySummary()">Copiar resumo</button>
+    </div>
+    <p class="hint">WhatsApp e e-mail abrem o aplicativo correspondente. O envio depende de sua confirmação.</p>
+   </section>
+  </div>
+ </div>
+</section>
+
+<p class="hint">Os atendimentos são armazenados neste navegador, sem sincronização automática. Faça backups periódicos. Não use este armazenamento local como único repositório de dados sensíveis de clientes.</p>
+
 </main>
 
-<dialog id="modal">
- <div class="modalhead"><h2 id="modalTitle">Novo atendimento</h2></div>
- <form id="form">
-  <div class="fields">
-   <div class="field full">
-    <label for="titulo">Assunto do atendimento *</label>
-    <input id="titulo" required placeholder="Ex.: Solicitação de segunda via">
-   </div>
-   <div class="field">
-    <label for="cliente">Nome do cliente *</label>
-    <input id="cliente" required>
-   </div>
-   <div class="field">
-    <label for="empresa">Empresa ou organização</label>
-    <input id="empresa">
-   </div>
-   <div class="field">
-    <label for="telefone">Telefone</label>
-    <input id="telefone" type="tel">
-   </div>
-   <div class="field">
-    <label for="email">E-mail</label>
-    <input id="email" type="email">
-   </div>
-   <div class="field">
-    <label for="protocolo">Número do protocolo</label>
-    <input id="protocolo" placeholder="Gerado automaticamente se ficar vazio">
-   </div>
-   <div class="field">
-    <label for="canal">Canal de atendimento</label>
-    <select id="canal">
-     <option>WhatsApp</option>
-     <option>Telefone</option>
-     <option>E-mail</option>
-     <option>Presencial</option>
-     <option>Site</option>
-     <option>Outro</option>
-    </select>
-   </div>
-   <div class="field">
-    <label for="data">Data do atendimento</label>
-    <input id="data" type="date">
-   </div>
-   <div class="field">
-    <label for="retorno">Data prevista de retorno</label>
-    <input id="retorno" type="date">
-   </div>
-   <div class="field">
-    <label for="responsavel">Atendente responsável</label>
-    <input id="responsavel">
-   </div>
-   <div class="field">
-    <label for="categoria">Categoria</label>
-    <select id="categoria">
-     <option>Informação</option>
-     <option>Solicitação</option>
-     <option>Reclamação</option>
-     <option>Suporte técnico</option>
-     <option>Financeiro</option>
-     <option>Comercial</option>
-     <option>Outros</option>
-    </select>
-   </div>
-   <div class="field">
-    <label for="prioridade">Prioridade</label>
-    <select id="prioridade">
-     <option>Normal</option>
-     <option>Alta</option>
-     <option>Urgente</option>
-     <option>Baixa</option>
-    </select>
-   </div>
-   <div class="field">
-    <label for="situacao">Situação</label>
-    <select id="situacao">
-     <option>Aberto</option>
-     <option>Em andamento</option>
-     <option>Aguardando cliente</option>
-     <option>Resolvido</option>
-     <option>Cancelado</option>
-    </select>
-   </div>
-   <div class="field full">
-    <label for="descricao">Descrição da solicitação *</label>
-    <textarea id="descricao" required placeholder="Descreva o motivo do atendimento."></textarea>
-   </div>
-   <div class="field full">
-    <label for="providencias">Providências realizadas</label>
-    <textarea id="providencias" placeholder="Registre o que já foi feito."></textarea>
-   </div>
-   <div class="field full">
-    <label for="solucao">Solução ou resposta ao cliente</label>
-    <textarea id="solucao" placeholder="Descreva a solução apresentada."></textarea>
-   </div>
-   <div class="field full">
-    <label for="historico">Histórico e observações</label>
-    <textarea id="historico" placeholder="Informações adicionais e acompanhamentos."></textarea>
-   </div>
-  </div>
-  <div class="modalactions">
-   <button type="button" class="btn secondary" id="cancelBtn">Cancelar</button>
-   <button type="submit" class="btn">Salvar atendimento</button>
-  </div>
- </form>
-</dialog>
+<div id="printArea"></div>
+<div id="toast" role="status"></div>
 
 <script>
 "use strict";
-const $=id=>document.getElementById(id);
-const KEY="businesspro_meu_atendimento_v1";
-const FIELDS=[
- "titulo","cliente","empresa","telefone","email","protocolo",
- "canal","data","retorno","responsavel","categoria",
- "prioridade","situacao","descricao","providencias",
- "solucao","historico"
-];
-const LABELS={
- titulo:"Assunto",cliente:"Cliente",empresa:"Empresa",
- telefone:"Telefone",email:"E-mail",protocolo:"Protocolo",
- canal:"Canal",data:"Data",retorno:"Previsão de retorno",
- responsavel:"Responsável",categoria:"Categoria",
- prioridade:"Prioridade",situacao:"Situação",
- descricao:"Solicitação",providencias:"Providências",
- solucao:"Solução",historico:"Histórico"
-};
-let items=[],editing=null,activeStatus="Todos";
-try{
- const stored=JSON.parse(localStorage.getItem(KEY)||"[]");
- if(Array.isArray(stored))items=stored;
-}catch(e){alert("Não foi possível carregar os atendimentos locais.");}
 
-function esc(v){
- return String(v??"").replace(/[&<>"']/g,c=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
- }[c]));
+const $=id=>document.getElementById(id);
+const KEY="businesspro_meu_atendimento_v3";
+const FIELDS=[
+ "protocol","date","client","phone","email","channel",
+ "category","subject","agent","due","priority","status",
+ "description","solution","notes"
+];
+
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+
+function localNow(){
+ const d=new Date();
+ return [
+  d.getFullYear(),
+  String(d.getMonth()+1).padStart(2,"0"),
+  String(d.getDate()).padStart(2,"0")
+ ].join("-")+"T"+[
+  String(d.getHours()).padStart(2,"0"),
+  String(d.getMinutes()).padStart(2,"0")
+ ].join(":");
 }
-function save(){
+
+function dateBR(v){
+ if(!v)return "—";
+ const d=new Date(v);
+ return Number.isNaN(d.getTime())?"—":d.toLocaleString("pt-BR");
+}
+
+function toast(msg){
+ $("toast").textContent=msg;
+ $("toast").style.display="block";
+ clearTimeout(toast.timer);
+ toast.timer=setTimeout(()=>$("toast").style.display="none",3000);
+}
+
+let tickets=[];
+try{
+ const saved=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(saved))tickets=saved;
+}catch(e){}
+
+let currentId=null;
+let filter="Todos";
+
+function persist(){
  try{
-  localStorage.setItem(KEY,JSON.stringify(items));
+  localStorage.setItem(KEY,JSON.stringify(tickets));
   return true;
  }catch(e){
-  alert("Não foi possível salvar. Verifique o espaço disponível no navegador.");
+  toast("Falha ao salvar. Verifique o armazenamento do navegador.");
   return false;
  }
 }
-function dateBR(v){
- if(!v)return "Não informado";
- const parts=v.split("-");
- return parts.length===3?parts.reverse().join("/"):v;
-}
-function makeId(){
- return crypto.randomUUID?crypto.randomUUID():
-  Date.now()+"-"+Math.random().toString(36).slice(2);
-}
-function protocol(){
- const now=new Date();
- return "ATD-"+now.getFullYear()+"-"+
-  String(now.getMonth()+1).padStart(2,"0")+
-  String(now.getDate()).padStart(2,"0")+"-"+
-  Math.random().toString(36).slice(2,8).toUpperCase();
-}
-function openForm(id=null){
- editing=id;
- const item=items.find(x=>x.id===id);
- $("modalTitle").textContent=item?"Editar atendimento":"Novo atendimento";
- FIELDS.forEach(f=>$(f).value=item?.data?.[f]??"");
- if(!item){
-  $("data").value=new Date().toLocaleDateString("en-CA");
-  $("situacao").value="Aberto";
-  $("prioridade").value="Normal";
-  $("protocolo").value=protocol();
- }
- $("modal").showModal();
-}
-function render(){
- const term=$("search").value.toLocaleLowerCase("pt-BR").trim();
- $("total").textContent=items.length;
- $("openCount").textContent=items.filter(x=>x.data.situacao==="Aberto").length;
- $("progressCount").textContent=items.filter(x=>x.data.situacao==="Em andamento").length;
- $("resolvedCount").textContent=items.filter(x=>x.data.situacao==="Resolvido").length;
 
- const filtered=items.filter(x=>{
-  const matchStatus=activeStatus==="Todos"||x.data.situacao===activeStatus;
-  const matchText=JSON.stringify(x.data).toLocaleLowerCase("pt-BR").includes(term);
-  return matchStatus&&matchText;
- });
- if(!filtered.length){
-  $("records").innerHTML='<div class="empty"><h3>Nenhum atendimento encontrado</h3><p>Cadastre um novo atendimento ou altere os filtros.</p></div>';
+function protocolNumber(){
+ const d=new Date();
+ const day=[d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("");
+ return "ATD-"+day+"-"+Math.random().toString(36).slice(2,8).toUpperCase();
+}
+
+function newTicket(){
+ currentId=null;
+ FIELDS.forEach(id=>$(id).value="");
+ $("protocol").value=protocolNumber();
+ $("date").value=localNow();
+ $("status").value="Aberto";
+ $("priority").value="Normal";
+ $("channel").value="WhatsApp";
+ $("category").value="Informação";
+ $("eventText").value="";
+ $("history").innerHTML='<p class="hint">Nenhuma interação registrada.</p>';
+ $("home").classList.add("hidden");
+ $("editorSection").classList.remove("hidden");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function getData(){
+ return Object.fromEntries(FIELDS.map(id=>[id,$(id).value.trim()]));
+}
+
+function saveTicket(){
+ const data=getData();
+ if(!data.client||!data.subject||!data.description){
+  toast("Preencha cliente, assunto e descrição.");
+  return false;
+ }
+
+ const previous=JSON.stringify(tickets);
+ const now=new Date().toISOString();
+
+ if(currentId){
+  const t=tickets.find(x=>x.id===currentId);
+  if(!t)return false;
+  Object.assign(t,data,{updatedAt:now});
+ }else{
+  currentId=uid();
+  tickets.unshift({
+   id:currentId,...data,history:[],
+   createdAt:now,updatedAt:now
+  });
+ }
+
+ if(!persist()){
+  tickets=JSON.parse(previous);
+  return false;
+ }
+
+ toast("Atendimento salvo com sucesso.");
+ renderHistory();
+ render();
+ return true;
+}
+
+function editTicket(id){
+ const t=tickets.find(x=>x.id===id);
+ if(!t)return;
+ currentId=id;
+ FIELDS.forEach(k=>$(k).value=t[k]??"");
+ $("eventText").value="";
+ $("home").classList.add("hidden");
+ $("editorSection").classList.remove("hidden");
+ renderHistory();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function goHome(){
+ $("editorSection").classList.add("hidden");
+ $("home").classList.remove("hidden");
+ render();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function deleteTicket(id){
+ const t=tickets.find(x=>x.id===id);
+ if(!t||!confirm("Excluir o atendimento "+t.protocol+" e todo o histórico?"))return;
+ const old=tickets;
+ tickets=tickets.filter(x=>x.id!==id);
+ if(!persist()){tickets=old;return;}
+ render();
+ toast("Atendimento excluído.");
+}
+
+function addEvent(){
+ const value=$("eventText").value.trim();
+ if(!value){toast("Descreva a interação.");return;}
+
+ if(!currentId){
+  if(!saveTicket())return;
+ }
+
+ const t=tickets.find(x=>x.id===currentId);
+ if(!t)return;
+
+ const event={
+  id:uid(),
+  type:$("eventType").value,
+  text:value,
+  date:new Date().toISOString()
+ };
+
+ t.history=t.history||[];
+ t.history.unshift(event);
+
+ if(!persist()){
+  t.history.shift();
   return;
  }
- $("records").innerHTML=filtered.map(x=>{
-  const d=x.data;
-  return `<article class="record">
-   <span class="tag">${esc(d.situacao||"Aberto")}</span>
-   <h3>${esc(d.titulo)}</h3>
-   <p><strong>Cliente:</strong> ${esc(d.cliente)}</p>
-   <p><strong>Protocolo:</strong> ${esc(d.protocolo)}</p>
-   <p><strong>Canal:</strong> ${esc(d.canal)}</p>
-   <p><strong>Responsável:</strong> ${esc(d.responsavel||"Não informado")}</p>
-   <p><strong>Prioridade:</strong> ${esc(d.prioridade)}</p>
-   <p><strong>Data:</strong> ${esc(dateBR(d.data))}</p>
-   <p><strong>Retorno:</strong> ${esc(dateBR(d.retorno))}</p>
-   <p><strong>Solicitação:</strong> ${esc(d.descricao)}</p>
-   <div class="actions">
-    <button class="btn secondary" data-action="edit" data-id="${esc(x.id)}">Editar</button>
-    <button class="btn" data-action="print" data-id="${esc(x.id)}">Imprimir / PDF</button>
-    <button class="btn secondary" data-action="copy" data-id="${esc(x.id)}">Copiar resumo</button>
-    <button class="btn danger" data-action="delete" data-id="${esc(x.id)}">Excluir</button>
-   </div>
-  </article>`;
- }).join("");
+
+ $("eventText").value="";
+ renderHistory();
+ toast("Interação registrada.");
 }
-$("form").addEventListener("submit",e=>{
- e.preventDefault();
- const data={};
- FIELDS.forEach(f=>data[f]=$(f).value.trim());
- if(!data.titulo||!data.cliente||!data.descricao){
-  alert("Preencha assunto, cliente e descrição.");return;
- }
- const old=items.find(x=>x.id===editing);
- const record={
-  id:old?.id||makeId(),
-  createdAt:old?.createdAt||new Date().toISOString(),
-  updatedAt:new Date().toISOString(),
-  data
- };
- const previous=items;
- items=old?items.map(x=>x.id===editing?record:x):[record,...items];
- if(!save()){items=previous;return;}
- $("modal").close();
- editing=null;
- render();
+
+function renderHistory(){
+ const t=tickets.find(x=>x.id===currentId);
+ const history=t?.history||[];
+
+ $("history").innerHTML=history.length?history.map(e=>`
+  <div class="event">
+   <b>${esc(e.type)}</b>
+   <br><small>${dateBR(e.date)}</small>
+   <p>${esc(e.text)}</p>
+   <button class="btn small danger" data-event-id="${esc(e.id)}">Excluir interação</button>
+  </div>
+ `).join(""):'<p class="hint">Nenhuma interação registrada.</p>';
+}
+
+$("history").addEventListener("click",e=>{
+ const b=e.target.closest("[data-event-id]");
+ if(!b||!confirm("Excluir esta interação?"))return;
+ const t=tickets.find(x=>x.id===currentId);
+ if(!t)return;
+ const old=[...(t.history||[])];
+ t.history=old.filter(x=>x.id!==b.dataset.eventId);
+ if(!persist()){t.history=old;return;}
+ renderHistory();
 });
-function summary(d){
- return [
-  "BUSINESS PRO - MEU ATENDIMENTO",
-  "Protocolo: "+d.protocolo,
-  "Assunto: "+d.titulo,
-  "Cliente: "+d.cliente,
-  "Empresa: "+d.empresa,
-  "Telefone: "+d.telefone,
-  "E-mail: "+d.email,
-  "Canal: "+d.canal,
-  "Data: "+dateBR(d.data),
-  "Retorno: "+dateBR(d.retorno),
-  "Responsável: "+d.responsavel,
-  "Categoria: "+d.categoria,
-  "Prioridade: "+d.prioridade,
-  "Situação: "+d.situacao,
-  "",
-  "SOLICITAÇÃO",
-  d.descricao,
-  "",
-  "PROVIDÊNCIAS",
-  d.providencias,
-  "",
-  "SOLUÇÃO",
-  d.solucao,
-  "",
-  "HISTÓRICO",
-  d.historico
- ].join("\n");
+
+function statusClass(status){
+ if(status==="Resolvido")return "green";
+ if(status==="Em andamento"||status==="Aguardando cliente")return "orange";
+ if(status==="Cancelado")return "red";
+ return "";
 }
-function printRecord(item){
- const d=item.data;
- $("printArea").innerHTML=`
-  <h1>BUSINESS PRO — RELATÓRIO DE ATENDIMENTO</h1>
-  <p><strong>Protocolo:</strong> ${esc(d.protocolo)}</p>
-  ${FIELDS.filter(f=>f!=="protocolo").map(f=>`
-   <p><strong>${esc(LABELS[f])}:</strong>
-   ${esc(["data","retorno"].includes(f)?dateBR(d[f]):d[f]||"—")}</p>
-  `).join("")}
-  <hr>
-  <p>Documento gerado em ${esc(new Date().toLocaleString("pt-BR"))}</p>`;
- window.print();
+
+function render(){
+ $("total").textContent=tickets.length;
+ $("opened").textContent=tickets.filter(t=>t.status==="Aberto").length;
+ $("progress").textContent=tickets.filter(t=>t.status==="Em andamento").length;
+ $("resolved").textContent=tickets.filter(t=>t.status==="Resolvido").length;
+
+ const q=$("search").value.trim().toLowerCase();
+
+ const list=tickets.filter(t=>{
+  const matchesStatus=filter==="Todos"||t.status===filter;
+  const matchesSearch=[
+   t.client,t.protocol,t.subject,t.phone,t.email,t.agent,t.category
+  ].join(" ").toLowerCase().includes(q);
+  return matchesStatus&&matchesSearch;
+ });
+
+ $("ticketList").innerHTML=list.length?list.map(t=>{
+  const overdue=t.due&&new Date(t.due)<new Date()&&
+   !["Resolvido","Cancelado"].includes(t.status);
+
+  return `
+   <article class="ticket">
+    <div class="actions" style="justify-content:space-between">
+     <span class="badge ${statusClass(t.status)}">${esc(t.status)}</span>
+     <small>${esc(t.protocol)}</small>
+    </div>
+    <h3>${esc(t.subject)}</h3>
+    <p><b>Cliente:</b> ${esc(t.client)}</p>
+    <p><b>Canal:</b> ${esc(t.channel||"—")}</p>
+    <p><b>Responsável:</b> ${esc(t.agent||"—")}</p>
+    <p><b>Aberto em:</b> ${dateBR(t.date)}</p>
+    ${t.due?`<p><b>Prazo:</b> ${dateBR(t.due)} ${overdue?'<span class="badge red">Atrasado</span>':""}</p>`:""}
+    <p><b>Interações:</b> ${(t.history||[]).length}</p>
+    <div class="actions">
+     <button class="btn small" data-action="edit" data-id="${esc(t.id)}">Abrir / Editar</button>
+     <button class="btn small alt" data-action="print" data-id="${esc(t.id)}">Imprimir</button>
+     <button class="btn small danger" data-action="delete" data-id="${esc(t.id)}">Excluir</button>
+    </div>
+   </article>
+  `;
+ }).join(""):`
+  <div class="empty" style="grid-column:1/-1">
+   <h3>Nenhum atendimento encontrado</h3>
+   <p>Crie um atendimento para começar a organizar seus clientes.</p>
+   <button class="btn" onclick="newTicket()">+ Novo atendimento</button>
+  </div>
+ `;
 }
-$("records").addEventListener("click",async e=>{
- const btn=e.target.closest("button[data-action]");
- if(!btn)return;
- const item=items.find(x=>x.id===btn.dataset.id);
- if(!item)return;
- const action=btn.dataset.action;
- if(action==="edit")openForm(item.id);
- if(action==="print")printRecord(item);
- if(action==="copy"){
-  try{
-   await navigator.clipboard.writeText(summary(item.data));
-   alert("Resumo copiado.");
-  }catch(e){
-   const ta=document.createElement("textarea");
-   ta.value=summary(item.data);
-   document.body.appendChild(ta);ta.select();
-   const ok=document.execCommand("copy");
-   ta.remove();
-   alert(ok?"Resumo copiado.":"Não foi possível copiar.");
-  }
- }
- if(action==="delete"){
-  if(!confirm("Excluir este atendimento?"))return;
-  const previous=items;
-  items=items.filter(x=>x.id!==item.id);
-  if(!save())items=previous;
-  render();
- }
-});
-$("filters").addEventListener("click",e=>{
+
+$("tabs").addEventListener("click",e=>{
  const btn=e.target.closest("[data-status]");
  if(!btn)return;
- activeStatus=btn.dataset.status;
- document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b===btn));
+ filter=btn.dataset.status;
+ document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b===btn));
  render();
 });
-function download(name,content,type){
- const blob=new Blob([content],{type});
- const url=URL.createObjectURL(blob);
- const a=document.createElement("a");
- a.href=url;a.download=name;
- document.body.appendChild(a);a.click();a.remove();
- setTimeout(()=>URL.revokeObjectURL(url),1000);
+
+$("ticketList").addEventListener("click",e=>{
+ const btn=e.target.closest("[data-action]");
+ if(!btn)return;
+ const id=btn.dataset.id;
+ if(btn.dataset.action==="edit")editTicket(id);
+ if(btn.dataset.action==="delete")deleteTicket(id);
+ if(btn.dataset.action==="print"){
+  const t=tickets.find(x=>x.id===id);
+  if(t)printData(t);
+ }
+});
+
+$("search").addEventListener("input",render);
+
+function printable(t){
+ const rows=[
+  ["Protocolo",t.protocol],["Cliente",t.client],
+  ["Telefone",t.phone],["E-mail",t.email],
+  ["Canal",t.channel],["Categoria",t.category],
+  ["Assunto",t.subject],["Responsável",t.agent],
+  ["Data",dateBR(t.date)],["Prazo",dateBR(t.due)],
+  ["Prioridade",t.priority],["Situação",t.status],
+  ["Descrição",t.description],["Solução",t.solution],
+  ["Observações",t.notes]
+ ];
+
+ return `
+  <h1>RELATÓRIO DE ATENDIMENTO</h1>
+  ${rows.map(([label,value])=>`
+   <p><b>${esc(label)}:</b> ${esc(value||"—")}</p>
+  `).join("")}
+  <h2>Histórico de contatos</h2>
+  ${(t.history||[]).map(e=>`
+   <div class="event">
+    <b>${esc(e.type)} — ${dateBR(e.date)}</b>
+    <p>${esc(e.text)}</p>
+   </div>
+  `).join("")||"<p>Nenhuma interação registrada.</p>"}
+ `;
 }
-function csvCell(v){return '"'+String(v??"").replace(/"/g,'""')+'"';}
-$("csvBtn").onclick=()=>{
- if(!items.length)return alert("Não existem atendimentos para exportar.");
- const headers=["ID","Criado em","Atualizado em",...FIELDS.map(f=>LABELS[f])];
- const rows=items.map(x=>[
-  x.id,x.createdAt,x.updatedAt,...FIELDS.map(f=>x.data[f]||"")
- ]);
- const csv="\uFEFF"+[headers,...rows].map(r=>r.map(csvCell).join(";")).join("\r\n");
+
+function printData(t){
+ $("printArea").innerHTML=printable(t);
+ window.print();
+}
+
+function printTicket(){
+ const d=getData();
+ if(!d.client||!d.subject){toast("Preencha cliente e assunto.");return;}
+ const t=tickets.find(x=>x.id===currentId);
+ printData({...d,history:t?.history||[]});
+}
+
+function summary(){
+ const d=getData();
+ return [
+  "ATENDIMENTO "+d.protocol,
+  "Cliente: "+d.client,
+  "Assunto: "+d.subject,
+  "Situação: "+d.status,
+  "Responsável: "+d.agent,
+  "Prazo: "+dateBR(d.due),
+  "Descrição: "+d.description,
+  "Solução: "+d.solution
+ ].join("\n");
+}
+
+async function copySummary(){
+ try{
+  await navigator.clipboard.writeText(summary());
+  toast("Resumo copiado.");
+ }catch(e){
+  const t=document.createElement("textarea");
+  t.value=summary();document.body.appendChild(t);t.select();
+  const ok=document.execCommand("copy");t.remove();
+  toast(ok?"Resumo copiado.":"Não foi possível copiar.");
+ }
+}
+
+function sendWhatsApp(){
+ const digits=$("phone").value.replace(/\D/g,"");
+ if(!digits){toast("Informe o telefone com DDI para abrir o WhatsApp.");return;}
+ window.open("https://wa.me/"+digits+"?text="+encodeURIComponent(summary()),"_blank","noopener");
+}
+
+function sendEmail(){
+ const email=$("email").value.trim();
+ if(!email){toast("Informe o e-mail do cliente.");return;}
+ location.href="mailto:"+encodeURIComponent(email)+
+  "?subject="+encodeURIComponent("Atendimento "+$("protocol").value)+
+  "&body="+encodeURIComponent(summary());
+}
+
+function download(filename,content,type){
+ const url=URL.createObjectURL(new Blob([content],{type}));
+ const a=document.createElement("a");
+ a.href=url;a.download=filename;
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+
+function exportCSV(){
+ const cols=[
+  "Protocolo","Data","Cliente","Telefone","E-mail","Canal",
+  "Categoria","Assunto","Responsável","Prazo","Prioridade",
+  "Situação","Descrição","Solução","Observações","Interações"
+ ];
+ const rows=[cols,...tickets.map(t=>[
+  t.protocol,dateBR(t.date),t.client,t.phone,t.email,t.channel,
+  t.category,t.subject,t.agent,dateBR(t.due),t.priority,
+  t.status,t.description,t.solution,t.notes,(t.history||[]).length
+ ])];
+ const csv="\uFEFF"+rows.map(row=>row.map(v=>
+  '"'+String(v??"").replace(/"/g,'""')+'"'
+ ).join(";")).join("\r\n");
+
  download("meus-atendimentos.csv",csv,"text/csv;charset=utf-8");
-};
-$("backupBtn").onclick=()=>{
+ toast("CSV exportado.");
+}
+
+function exportBackup(){
  download("backup-meu-atendimento.json",
-  JSON.stringify({app:"meu-atendimento",version:1,items},null,2),
-  "application/json");
-};
-$("importBtn").onclick=()=>$("importFile").click();
-$("importFile").onchange=async e=>{
+  JSON.stringify({version:3,tickets},null,2),"application/json");
+ toast("Backup exportado.");
+}
+
+$("backupFile").addEventListener("change",async e=>{
  const file=e.target.files[0];
  if(!file)return;
+
  try{
-  const obj=JSON.parse(await file.text());
-  if(obj.app!=="meu-atendimento"||!Array.isArray(obj.items))throw Error("Backup incompatível.");
-  if(!obj.items.every(x=>
-   x&&typeof x.id==="string"&&
-   x.data&&typeof x.data==="object"&&
-   FIELDS.every(f=>x.data[f]===undefined||typeof x.data[f]==="string")
-  ))throw Error("Estrutura de registros inválida.");
-  if(!confirm("Substituir os atendimentos atuais pelos registros do backup?"))return;
-  const previous=items;
-  items=obj.items;
-  if(!save()){items=previous;return;}
+  if(file.size>15*1024*1024)throw Error("Arquivo muito grande.");
+
+  const data=JSON.parse(await file.text());
+
+  if(data.version!==3||!Array.isArray(data.tickets)||
+   !data.tickets.every(t=>
+    typeof t.id==="string"&&
+    typeof t.client==="string"&&
+    typeof t.subject==="string"&&
+    Array.isArray(t.history)
+   ))throw Error("Backup incompatível.");
+
+  if(!confirm("Substituir os atendimentos atuais pelo backup?"))return;
+
+  const old=tickets;
+  tickets=data.tickets;
+
+  if(!persist()){tickets=old;return;}
+
   render();
-  alert("Backup importado.");
- }catch(err){alert("Erro ao importar: "+err.message);}
- finally{e.target.value="";}
-};
-$("newBtn").onclick=()=>openForm();
-$("cancelBtn").onclick=()=>$("modal").close();
-$("search").oninput=render;
+  toast("Backup importado com sucesso.");
+ }catch(err){
+  toast("Erro: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+});
+
 render();
 </script>
 </body>
