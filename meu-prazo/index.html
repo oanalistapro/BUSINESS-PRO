@@ -1,0 +1,508 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<title>MEU PRAZO | BUSINESS PRO</title>
+<style>
+:root{
+ --blue:#2563eb;
+ --navy:#142747;
+ --bg:#f3f7ff;
+ --line:#dce5f3;
+ --muted:#64748b;
+ --green:#15803d;
+ --red:#dc2626;
+ --orange:#d97706;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{
+ background:white;border-bottom:1px solid var(--line);
+ padding:18px 5%;display:flex;justify-content:space-between;
+ align-items:center;gap:12px
+}
+.brand{font-size:22px;font-weight:900}
+.brand span{color:var(--blue)}
+.back{color:var(--blue);font-weight:800;text-decoration:none}
+main{max-width:1250px;margin:auto;padding:25px 18px}
+.hero{
+ background:linear-gradient(125deg,#14366d,#2563eb);
+ color:white;border-radius:24px;padding:36px;
+ box-shadow:0 15px 35px #2563eb25
+}
+.hero small{letter-spacing:2px;font-weight:900}
+.hero h1{font-size:clamp(28px,4vw,43px);margin:12px 0}
+.hero p{line-height:1.7;opacity:.94;max-width:750px}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0}
+.btn{
+ background:var(--blue);border:0;border-radius:12px;
+ padding:13px 18px;color:white;font-weight:800
+}
+.btn:hover{filter:brightness(.95)}
+.secondary{background:white;color:var(--navy);border:1px solid var(--line)}
+.danger{background:#fff1f2;color:var(--red)}
+.search{
+ flex:1;min-width:190px;padding:13px 15px;
+ background:white;border:1px solid var(--line);border-radius:12px
+}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:25px}
+.stat,.panel,.record{
+ background:white;border:1px solid var(--line);
+ border-radius:19px;padding:22px;
+ box-shadow:0 10px 25px #1e3a8a08
+}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:30px;margin-top:9px}
+.panel h2{margin-top:0}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
+.filter{
+ border:1px solid var(--line);background:white;
+ border-radius:30px;padding:9px 15px;
+ color:var(--navy);font-weight:700
+}
+.filter.active{background:var(--blue);color:white;border-color:var(--blue)}
+.records{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.record h3{margin:15px 0 10px;overflow-wrap:anywhere}
+.record p{color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
+.tag{
+ display:inline-block;background:#eaf1ff;color:#1d4ed8;
+ border-radius:25px;padding:7px 12px;font-size:12px;font-weight:900
+}
+.tag.late{background:#fee2e2;color:#b91c1c}
+.tag.today{background:#fef3c7;color:#92400e}
+.tag.done{background:#dcfce7;color:#166534}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.empty{grid-column:1/-1;text-align:center;padding:55px 15px;color:var(--muted)}
+dialog{
+ border:0;border-radius:23px;padding:0;width:min(820px,96vw);
+ max-height:92vh;overflow:auto;box-shadow:0 25px 100px #0f172a60
+}
+dialog::backdrop{background:#071326aa}
+.modalhead{background:#f4f8ff;border-bottom:1px solid var(--line);padding:24px 28px}
+.modalhead h2{margin:0}
+form{padding:25px 28px}
+.fields{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.full{grid-column:1/-1}
+label{font-size:13px;font-weight:800}
+input,select,textarea{
+ width:100%;border:1px solid #cbd8eb;
+ border-radius:11px;padding:13px;background:white;color:var(--navy)
+}
+textarea{min-height:105px;resize:vertical}
+.modalactions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin-top:25px}
+.notice{font-size:13px;color:var(--muted);line-height:1.7;margin:25px 0}
+.calendar{
+ display:grid;grid-template-columns:repeat(7,minmax(0,1fr));
+ gap:7px;margin-top:15px
+}
+.day{
+ border:1px solid var(--line);border-radius:10px;
+ min-height:65px;padding:8px;background:#fff;
+ font-size:13px;overflow:hidden
+}
+.day.other{opacity:.4}
+.day.has{background:#eaf1ff;border-color:#93b4f9}
+.day.todayDay{outline:2px solid var(--blue)}
+.day b{display:block}
+.day small{font-size:10px;color:var(--blue);font-weight:800}
+.calendarHead{text-align:center;font-size:12px;font-weight:900;color:var(--muted)}
+.monthnav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.monthnav h2{margin:0;text-transform:capitalize}
+@media(max-width:700px){
+ header{padding:17px}main{padding:18px 12px}.hero{padding:25px}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .records,.fields{grid-template-columns:1fr}
+ .full{grid-column:auto}.stat{padding:16px}
+ .day{padding:4px;min-height:52px;font-size:11px}
+}
+@media print{
+ header,.hero,.toolbar,.filters,.actions,dialog,.notice,.monthnav button{display:none!important}
+ body{background:white}main{padding:0}
+ .stat,.panel,.record{box-shadow:none;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="brand">◆ BUSINESS <span>PRO</span></div>
+ <a class="back" href="../">← Voltar ao portal</a>
+</header>
+
+<main>
+<section class="hero">
+ <small>GESTÃO DE TEMPO E COMPROMISSOS</small>
+ <h1>📅 MEU PRAZO</h1>
+ <p>Organize tarefas, vencimentos, reuniões e compromissos. Acompanhe prioridades, visualize seu calendário e identifique prazos atrasados automaticamente.</p>
+</section>
+
+<div class="toolbar">
+ <button class="btn" id="newBtn">+ Novo prazo</button>
+ <input class="search" id="search" placeholder="Pesquisar compromissos...">
+ <button class="btn secondary" id="csvBtn">Exportar CSV</button>
+ <button class="btn secondary" id="backupBtn">Backup JSON</button>
+ <button class="btn secondary" id="importBtn">Importar backup</button>
+ <button class="btn secondary" onclick="window.print()">Imprimir</button>
+ <input type="file" id="importFile" accept=".json,application/json" hidden>
+</div>
+
+<section class="stats">
+ <div class="stat"><small>Total de prazos</small><strong id="total">0</strong></div>
+ <div class="stat"><small>Vencidos</small><strong id="lateCount">0</strong></div>
+ <div class="stat"><small>Vencem hoje</small><strong id="todayCount">0</strong></div>
+ <div class="stat"><small>Concluídos</small><strong id="doneCount">0</strong></div>
+</section>
+
+<section class="panel" style="margin-bottom:22px">
+ <div class="monthnav">
+  <button class="btn secondary" id="prevMonth">←</button>
+  <h2 id="monthTitle"></h2>
+  <button class="btn secondary" id="nextMonth">→</button>
+ </div>
+ <div class="calendar" id="calendar"></div>
+</section>
+
+<section class="panel">
+ <h2>Meus prazos e compromissos</h2>
+ <div class="filters" id="filters">
+  <button class="filter active" data-filter="Todos">Todos</button>
+  <button class="filter" data-filter="Pendentes">Pendentes</button>
+  <button class="filter" data-filter="Vencidos">Vencidos</button>
+  <button class="filter" data-filter="Hoje">Hoje</button>
+  <button class="filter" data-filter="Concluídos">Concluídos</button>
+ </div>
+ <div class="records" id="records"></div>
+</section>
+
+<p class="notice">
+ Os registros são armazenados neste navegador, sem sincronização entre dispositivos.
+ O calendário mostra os prazos cadastrados, mas não envia notificações automáticas.
+ Faça backups regularmente. Para prazos legais ou contratuais, confirme as datas em fontes oficiais.
+</p>
+</main>
+
+<dialog id="modal">
+ <div class="modalhead"><h2 id="modalTitle">Novo prazo</h2></div>
+ <form id="form">
+  <div class="fields">
+   <div class="field full">
+    <label for="titulo">Título do compromisso *</label>
+    <input id="titulo" required placeholder="Ex.: Entregar relatório financeiro">
+   </div>
+   <div class="field">
+    <label for="categoria">Categoria</label>
+    <select id="categoria">
+     <option>Trabalho</option>
+     <option>Financeiro</option>
+     <option>Documentos</option>
+     <option>Reunião</option>
+     <option>Estudos</option>
+     <option>Pessoal</option>
+     <option>Outro</option>
+    </select>
+   </div>
+   <div class="field">
+    <label for="responsavel">Responsável</label>
+    <input id="responsavel">
+   </div>
+   <div class="field">
+    <label for="inicio">Data de início</label>
+    <input id="inicio" type="date">
+   </div>
+   <div class="field">
+    <label for="vencimento">Data de vencimento *</label>
+    <input id="vencimento" type="date" required>
+   </div>
+   <div class="field">
+    <label for="hora">Horário</label>
+    <input id="hora" type="time">
+   </div>
+   <div class="field">
+    <label for="prioridade">Prioridade</label>
+    <select id="prioridade">
+     <option>Normal</option>
+     <option>Baixa</option>
+     <option>Alta</option>
+     <option>Urgente</option>
+    </select>
+   </div>
+   <div class="field">
+    <label for="situacao">Situação</label>
+    <select id="situacao">
+     <option>Pendente</option>
+     <option>Em andamento</option>
+     <option>Concluído</option>
+     <option>Cancelado</option>
+    </select>
+   </div>
+   <div class="field">
+    <label for="referencia">Referência ou protocolo</label>
+    <input id="referencia">
+   </div>
+   <div class="field full">
+    <label for="descricao">Descrição</label>
+    <textarea id="descricao" placeholder="Detalhes do compromisso, tarefas e orientações."></textarea>
+   </div>
+   <div class="field full">
+    <label for="observacoes">Observações</label>
+    <textarea id="observacoes"></textarea>
+   </div>
+  </div>
+  <div class="modalactions">
+   <button type="button" class="btn secondary" id="cancelBtn">Cancelar</button>
+   <button type="submit" class="btn">Salvar prazo</button>
+  </div>
+ </form>
+</dialog>
+
+<script>
+"use strict";
+
+const $=id=>document.getElementById(id);
+const KEY="businesspro_meu_prazo_v1";
+const FIELDS=[
+ "titulo","categoria","responsavel","inicio","vencimento",
+ "hora","prioridade","situacao","referencia","descricao","observacoes"
+];
+
+let items=[],editing=null,filter="Todos";
+let calendarDate=new Date();
+calendarDate.setDate(1);
+
+try{
+ const saved=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(saved))items=saved;
+}catch(e){alert("Não foi possível carregar os prazos locais.");}
+
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(items));
+  return true;
+ }catch(e){
+  alert("Não foi possível salvar os dados.");
+  return false;
+ }
+}
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+function localDate(){
+ const d=new Date();
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+function dateBR(v){
+ if(!v)return "Não informado";
+ const p=v.split("-");
+ return p.length===3?p.reverse().join("/"):v;
+}
+function makeId(){
+ return crypto.randomUUID?crypto.randomUUID():
+  Date.now()+"-"+Math.random().toString(36).slice(2);
+}
+function finished(x){
+ return ["Concluído","Cancelado"].includes(x.data.situacao);
+}
+function deadlineStatus(x){
+ const v=x.data.vencimento;
+ if(!v)return "Sem data";
+ if(finished(x))return x.data.situacao;
+ if(v<localDate())return "Vencido";
+ if(v===localDate())return "Vence hoje";
+ return "No prazo";
+}
+function openForm(id=null){
+ editing=id;
+ const item=items.find(x=>x.id===id);
+ $("modalTitle").textContent=item?"Editar prazo":"Novo prazo";
+ FIELDS.forEach(f=>$(f).value=item?.data?.[f]??"");
+ if(!item){
+  $("inicio").value=localDate();
+  $("situacao").value="Pendente";
+  $("prioridade").value="Normal";
+ }
+ $("modal").showModal();
+}
+function render(){
+ const q=$("search").value.toLocaleLowerCase("pt-BR").trim();
+
+ $("total").textContent=items.length;
+ $("lateCount").textContent=items.filter(x=>deadlineStatus(x)==="Vencido").length;
+ $("todayCount").textContent=items.filter(x=>deadlineStatus(x)==="Vence hoje").length;
+ $("doneCount").textContent=items.filter(x=>x.data.situacao==="Concluído").length;
+
+ const list=items.filter(x=>{
+  const status=deadlineStatus(x);
+  const match={
+   "Todos":true,
+   "Pendentes":!finished(x),
+   "Vencidos":status==="Vencido",
+   "Hoje":status==="Vence hoje",
+   "Concluídos":x.data.situacao==="Concluído"
+  }[filter];
+  return match&&JSON.stringify(x.data).toLocaleLowerCase("pt-BR").includes(q);
+ }).sort((a,b)=>(a.data.vencimento||"9999").localeCompare(b.data.vencimento||"9999"));
+
+ if(!list.length){
+  $("records").innerHTML='<div class="empty"><h3>Nenhum prazo encontrado</h3><p>Cadastre um compromisso ou altere os filtros.</p></div>';
+ }else{
+  $("records").innerHTML=list.map(x=>{
+   const d=x.data,status=deadlineStatus(x);
+   const tagClass=status==="Vencido"?"late":status==="Vence hoje"?"today":status==="Concluído"?"done":"";
+   return `<article class="record">
+    <span class="tag ${tagClass}">${esc(status)}</span>
+    <h3>${esc(d.titulo)}</h3>
+    <p><strong>Categoria:</strong> ${esc(d.categoria)}</p>
+    <p><strong>Vencimento:</strong> ${esc(dateBR(d.vencimento))} ${esc(d.hora||"")}</p>
+    <p><strong>Responsável:</strong> ${esc(d.responsavel||"Não informado")}</p>
+    <p><strong>Prioridade:</strong> ${esc(d.prioridade)}</p>
+    <p><strong>Situação:</strong> ${esc(d.situacao)}</p>
+    <p><strong>Descrição:</strong> ${esc(d.descricao||"—")}</p>
+    <div class="actions">
+     <button class="btn secondary" data-action="edit" data-id="${esc(x.id)}">Editar</button>
+     ${d.situacao!=="Concluído"?`<button class="btn" data-action="done" data-id="${esc(x.id)}">Concluir</button>`:""}
+     <button class="btn danger" data-action="delete" data-id="${esc(x.id)}">Excluir</button>
+    </div>
+   </article>`;
+  }).join("");
+ }
+ renderCalendar();
+}
+function renderCalendar(){
+ const year=calendarDate.getFullYear(),month=calendarDate.getMonth();
+ $("monthTitle").textContent=calendarDate.toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
+ const first=new Date(year,month,1);
+ const offset=first.getDay();
+ const days=new Date(year,month+1,0).getDate();
+ let html=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"]
+  .map(d=>`<div class="calendarHead">${d}</div>`).join("");
+
+ for(let i=0;i<offset;i++)html+='<div class="day other"></div>';
+ for(let day=1;day<=days;day++){
+  const key=year+"-"+String(month+1).padStart(2,"0")+"-"+String(day).padStart(2,"0");
+  const due=items.filter(x=>x.data.vencimento===key);
+  const cls=(due.length?" has":"")+(key===localDate()?" todayDay":"");
+  html+=`<div class="day${cls}" title="${due.length} compromisso(s)">
+   <b>${day}</b>
+   ${due.length?`<small>${due.length} prazo(s)</small>`:""}
+  </div>`;
+ }
+ $("calendar").innerHTML=html;
+}
+$("form").onsubmit=e=>{
+ e.preventDefault();
+ const data={};
+ FIELDS.forEach(f=>data[f]=$(f).value.trim());
+ if(!data.titulo||!data.vencimento){
+  alert("Informe o título e a data de vencimento.");return;
+ }
+ if(data.inicio&&data.inicio>data.vencimento){
+  if(!confirm("A data de início é posterior ao vencimento. Deseja salvar mesmo assim?"))return;
+ }
+ const old=items.find(x=>x.id===editing);
+ const record={
+  id:old?.id||makeId(),
+  createdAt:old?.createdAt||new Date().toISOString(),
+  updatedAt:new Date().toISOString(),
+  data
+ };
+ const previous=items;
+ items=old?items.map(x=>x.id===editing?record:x):[record,...items];
+ if(!save()){items=previous;return;}
+ $("modal").close();
+ editing=null;
+ render();
+};
+$("records").onclick=e=>{
+ const btn=e.target.closest("button[data-action]");
+ if(!btn)return;
+ const item=items.find(x=>x.id===btn.dataset.id);
+ if(!item)return;
+ if(btn.dataset.action==="edit")openForm(item.id);
+ if(btn.dataset.action==="done"){
+  const previous=JSON.stringify(items);
+  item.data.situacao="Concluído";
+  item.updatedAt=new Date().toISOString();
+  if(!save())items=JSON.parse(previous);
+  render();
+ }
+ if(btn.dataset.action==="delete"){
+  if(!confirm("Excluir este prazo?"))return;
+  const previous=items;
+  items=items.filter(x=>x.id!==item.id);
+  if(!save())items=previous;
+  render();
+ }
+};
+$("filters").onclick=e=>{
+ const btn=e.target.closest("[data-filter]");
+ if(!btn)return;
+ filter=btn.dataset.filter;
+ document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b===btn));
+ render();
+};
+$("prevMonth").onclick=()=>{
+ calendarDate.setMonth(calendarDate.getMonth()-1);
+ renderCalendar();
+};
+$("nextMonth").onclick=()=>{
+ calendarDate.setMonth(calendarDate.getMonth()+1);
+ renderCalendar();
+};
+function download(name,content,type){
+ const url=URL.createObjectURL(new Blob([content],{type}));
+ const a=document.createElement("a");
+ a.href=url;a.download=name;
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function csvCell(v){
+ return '"'+String(v??"").replace(/"/g,'""')+'"';
+}
+$("csvBtn").onclick=()=>{
+ if(!items.length)return alert("Não existem prazos para exportar.");
+ const headers=["ID","Criado em","Atualizado em",...FIELDS];
+ const rows=items.map(x=>[x.id,x.createdAt,x.updatedAt,...FIELDS.map(f=>x.data[f]||"")]);
+ const csv="\uFEFF"+[headers,...rows].map(r=>r.map(csvCell).join(";")).join("\r\n");
+ download("meus-prazos.csv",csv,"text/csv;charset=utf-8");
+};
+$("backupBtn").onclick=()=>{
+ download("backup-meu-prazo.json",
+  JSON.stringify({app:"meu-prazo",version:1,items},null,2),
+  "application/json");
+};
+$("importBtn").onclick=()=>$("importFile").click();
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+ try{
+  const obj=JSON.parse(await file.text());
+  if(obj.app!=="meu-prazo"||!Array.isArray(obj.items))throw Error("Backup incompatível.");
+  if(!obj.items.every(x=>
+   x&&typeof x.id==="string"&&
+   x.data&&typeof x.data==="object"&&
+   FIELDS.every(f=>x.data[f]===undefined||typeof x.data[f]==="string")
+  ))throw Error("Estrutura de registros inválida.");
+  if(!confirm("Substituir os prazos atuais pelos registros do backup?"))return;
+  const previous=items;
+  items=obj.items;
+  if(!save()){items=previous;return;}
+  render();
+  alert("Backup importado.");
+ }catch(err){alert("Erro ao importar: "+err.message);}
+ finally{e.target.value="";}
+};
+$("newBtn").onclick=()=>openForm();
+$("cancelBtn").onclick=()=>$("modal").close();
+$("search").oninput=render;
+render();
+</script>
+</body>
+</html>
