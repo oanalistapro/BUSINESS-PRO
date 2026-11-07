@@ -7,55 +7,175 @@
 <meta name="theme-color" content="#2563eb">
 <title>MEU CONTRATO | BUSINESS PRO</title>
 <style>
-:root{--blue:#2563eb;--navy:#142849;--bg:#f3f7ff;--line:#dce5f3;--muted:#64748b}
+:root{
+ --blue:#2563eb;--navy:#173568;--ink:#142543;
+ --muted:#64748b;--bg:#f3f6fc;--line:#dce5f2;
+ --green:#059669;--red:#dc2626
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--navy)}
-header{background:white;border-bottom:1px solid var(--line);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.logo{font-weight:900;font-size:21px}.logo span{color:var(--blue)}
-a{color:var(--blue);text-decoration:none}
-main{max-width:1250px;margin:auto;padding:28px 18px}
-.hero{background:linear-gradient(120deg,#173a81,#2563eb);color:white;padding:30px;border-radius:22px;margin-bottom:25px}
-.hero h1{margin:0 0 10px;font-size:32px}
-.hero p{margin:0;color:#e0eaff;line-height:1.6}
-.layout{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:23px;margin-bottom:20px;box-shadow:0 8px 25px #18376809}
-h2{font-size:20px;margin:0 0 18px}
-h3{font-size:16px}
-label{display:block;font-size:13px;font-weight:bold;margin:13px 0 7px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #cdd9eb;border-radius:10px;background:#f9fbff;color:var(--navy);font:inherit}
-textarea{min-height:95px;resize:vertical;line-height:1.5}
-input:focus,textarea:focus,select:focus{outline:2px solid #b6ccff;border-color:var(--blue)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-button{border:0;border-radius:11px;padding:13px 17px;font-weight:bold;cursor:pointer;background:var(--blue);color:white}
-button.secondary{background:#eaf1ff;color:var(--blue)}
-button.danger{background:#fff0f0;color:#b91c1c}
-.actions{display:flex;flex-wrap:wrap;gap:9px;margin:15px 0}
-.clause{border:1px solid var(--line);padding:15px;border-radius:12px;margin:12px 0;background:#fbfdff}
-.clause .actions{justify-content:flex-end}
-.preview{background:white;padding:32px;min-height:650px;border:1px solid var(--line);border-radius:14px;line-height:1.75;color:#222;overflow-wrap:anywhere}
-.preview h2{text-align:center;text-transform:uppercase;font-size:20px;margin-bottom:30px}
-.preview h3{margin:23px 0 8px}
-.preview p{text-align:justify;white-space:pre-wrap}
-.signatures{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:70px;text-align:center}
-.signatures div{border-top:1px solid #333;padding-top:9px;font-size:13px;overflow-wrap:anywhere}
-.note{font-size:12px;color:var(--muted);line-height:1.6}
-#status{font-size:13px;color:#166534;min-height:20px}
-@media(max-width:850px){.layout{grid-template-columns:1fr}.two{grid-template-columns:1fr}.preview{padding:18px}.signatures{gap:12px}header{padding:15px}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.5}
+a{text-decoration:none;color:inherit}
+.top{
+ background:white;border-bottom:1px solid var(--line);
+ display:flex;align-items:center;justify-content:space-between;
+ padding:17px 4%;gap:12px
+}
+.brand{font-size:24px;font-weight:900}
+.brand span{color:var(--blue)}
+.btn{
+ border:0;background:var(--blue);color:white;
+ padding:12px 16px;border-radius:11px;font-weight:800;
+ display:inline-flex;align-items:center;justify-content:center;gap:7px
+}
+.btn.secondary{background:#eaf1ff;color:#1d4ed8}
+.btn.outline{background:white;color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:#fee2e2;color:#b91c1c}
+.btn.small{font-size:12px;padding:8px 11px}
+.btn:hover:not(:disabled){filter:brightness(.96)}
+main{max-width:1550px;margin:auto;padding:28px 18px}
+.hero{
+ background:linear-gradient(110deg,#193b7a,#2563eb);
+ color:white;border-radius:25px;padding:37px;margin-bottom:25px
+}
+.hero h1{font-size:clamp(30px,4vw,43px);margin:0 0 14px}
+.hero p{margin:0;color:#e6efff;line-height:1.7}
+.nav{
+ display:flex;gap:10px;overflow-x:auto;
+ margin-bottom:20px;padding-bottom:10px
+}
+.nav button{
+ white-space:nowrap;border:1px solid var(--line);
+ background:white;padding:14px 18px;border-radius:12px;
+ font-weight:800;color:#40516e
+}
+.nav button.active{background:var(--blue);color:white;border-color:var(--blue)}
+.view{display:none}
+.view.active{display:block}
+.layout{
+ display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+ gap:25px;align-items:start
+}
+.panel{
+ background:white;border:1px solid var(--line);
+ border-radius:22px;padding:28px;margin-bottom:20px;
+ box-shadow:0 7px 24px #17365a08
+}
+.panel h2{margin:0 0 20px;font-size:23px}
+.form-grid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:16px
+}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+label{font-size:13px;font-weight:800}
+input,select,textarea{
+ width:100%;border:1px solid #cbd6e6;
+ border-radius:11px;padding:13px;
+ background:#f9fbff;color:var(--ink);outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);background:white}
+textarea{min-height:100px;resize:vertical}
+.actions{display:flex;gap:9px;flex-wrap:wrap}
+.preview{
+ background:white;border:1px solid var(--line);
+ border-radius:15px;padding:40px;
+ min-height:650px;line-height:1.75;
+ color:#111;overflow-wrap:anywhere
+}
+.preview h1{text-align:center;font-size:22px;margin-bottom:35px}
+.preview h2{font-size:16px;margin:24px 0 10px}
+.preview p{text-align:justify;margin:12px 0}
+.preview .signatures{
+ display:grid;grid-template-columns:1fr 1fr;
+ gap:25px;margin-top:75px;text-align:center
+}
+.preview .signature{border-top:1px solid #333;padding-top:10px;font-size:13px}
+.clause{
+ border:1px solid var(--line);border-radius:14px;
+ padding:17px;background:#fbfcff;margin-bottom:12px
+}
+.clause-head{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:10px;margin-bottom:12px
+}
+.clause-head strong{font-size:14px}
+.clause textarea{min-height:100px}
+.hint{color:var(--muted);font-size:12px;line-height:1.7}
+.stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:20px}
+.stat{
+ background:white;border:1px solid var(--line);
+ border-radius:16px;padding:20px
+}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:29px;margin-top:12px}
+.panel-head{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;flex-wrap:wrap;margin-bottom:18px
+}
+.panel-head h2{margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.card{
+ border:1px solid var(--line);border-radius:16px;
+ padding:20px;background:#fbfcff
+}
+.card h3{font-size:17px;margin:0 0 12px;overflow-wrap:anywhere}
+.card p{font-size:13px;color:var(--muted);line-height:1.6}
+.tag{
+ display:inline-block;background:#eaf1ff;color:#1d4ed8;
+ padding:6px 10px;border-radius:20px;
+ font-size:11px;font-weight:800
+}
+.empty{text-align:center;padding:35px;color:var(--muted)}
+.search{max-width:350px}
+.notice{font-size:12px;color:var(--muted);line-height:1.8}
+.toast{
+ position:fixed;bottom:20px;left:50%;
+ transform:translateX(-50%);background:#172b4e;
+ color:white;padding:13px 18px;border-radius:12px;
+ display:none;z-index:50;max-width:90vw
+}
+#printArea{display:none}
+@media(max-width:1050px){
+ .layout{grid-template-columns:1fr}
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ .top{padding:13px}
+ .brand{font-size:19px}
+ .top .btn{font-size:11px;padding:10px}
+ main{padding:14px 10px}
+ .hero{padding:28px 20px;border-radius:17px}
+ .panel{padding:17px;border-radius:16px}
+ .form-grid,.cards,.stat-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+ .preview{padding:20px;min-height:400px;font-size:13px}
+ .preview .signatures{grid-template-columns:1fr;gap:60px}
+ .search{max-width:none}
+}
+@page{size:A4;margin:17mm}
 @media print{
+ body>*:not(#printArea){display:none!important}
  body{background:white}
- header,.hero,.editor,.preview-actions,.note,#status{display:none!important}
- main{padding:0;max-width:none}
- .layout{display:block}
- .panel{border:0;box-shadow:none;padding:0;margin:0}
- .preview{border:0;padding:0;min-height:0;font-size:11pt}
- @page{size:A4;margin:18mm}
+ #printArea{display:block!important;color:#111;font:12pt Arial;line-height:1.6}
+ #printArea h1{text-align:center;font-size:17pt}
+ #printArea h2{font-size:12pt;margin-top:22px}
+ #printArea p{text-align:justify}
+ #printArea .signatures{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:30px;margin-top:80px;text-align:center
+ }
+ #printArea .signature{border-top:1px solid #111;padding-top:10px}
 }
 </style>
 </head>
 <body>
-<header>
- <div class="logo">◆ BUSINESS <span>PRO</span></div>
- <a href="../">← Voltar ao portal</a>
+
+<header class="top">
+ <div class="brand">📑 MEU <span>CONTRATO</span></div>
+ <a class="btn secondary" href="../">← Business Pro</a>
 </header>
 
 <main>
@@ -64,308 +184,842 @@ button.danger{background:#fff0f0;color:#b91c1c}
  <p>Crie, personalize e organize contratos com cláusulas, valores, prazos e condições definidos por você.</p>
 </section>
 
-<div class="layout">
-<div class="editor">
+<nav class="nav" id="navigation">
+ <button class="active" data-view="editor">📝 Criar contrato</button>
+ <button data-view="contratos">📂 Meus contratos</button>
+ <button data-view="modelos">📋 Modelos</button>
+ <button data-view="config">⚙️ Backup</button>
+</nav>
 
-<section class="panel">
-<h2>1. Informações do contrato</h2>
-<label>Tipo de contrato</label>
-<select id="tipo">
-<option>Prestação de serviços</option>
-<option>Compra e venda</option>
-<option>Locação</option>
-<option>Parceria comercial</option>
-<option>Confidencialidade</option>
-<option>Contrato personalizado</option>
-</select>
-<label>Título personalizado</label>
-<input id="titulo" placeholder="Ex.: Contrato de prestação de serviços">
-<div class="two">
-<div><label>Número do contrato</label><input id="numero" placeholder="CTR-001"></div>
-<div><label>Data de emissão</label><input id="data" type="date"></div>
-</div>
-<label>Local de assinatura</label>
-<input id="local" placeholder="Cidade - UF">
+<section class="view active" id="view-editor">
+ <div class="layout">
+  <div>
+   <div class="panel">
+    <h2>1. Informações do contrato</h2>
+    <div class="form-grid">
+     <div class="field full">
+      <label>Tipo de contrato</label>
+      <select id="type">
+       <option>Prestação de serviços</option>
+       <option>Compra e venda</option>
+       <option>Locação</option>
+       <option>Parceria comercial</option>
+       <option>Confidencialidade</option>
+       <option>Contrato personalizado</option>
+      </select>
+     </div>
+     <div class="field full">
+      <label>Título personalizado</label>
+      <input id="title" placeholder="Ex.: Contrato de prestação de serviços">
+     </div>
+     <div class="field">
+      <label>Número do contrato</label>
+      <input id="number" placeholder="CTR-001">
+     </div>
+     <div class="field">
+      <label>Data de emissão</label>
+      <input id="date" type="date">
+     </div>
+     <div class="field full">
+      <label>Local de assinatura</label>
+      <input id="location" placeholder="Cidade - UF">
+     </div>
+     <div class="field">
+      <label>Data de início</label>
+      <input id="start" type="date">
+     </div>
+     <div class="field">
+      <label>Data de término</label>
+      <input id="end" type="date">
+     </div>
+     <div class="field">
+      <label>Status</label>
+      <select id="status">
+       <option>Rascunho</option>
+       <option>Aguardando assinatura</option>
+       <option>Assinado</option>
+       <option>Em andamento</option>
+       <option>Concluído</option>
+       <option>Cancelado</option>
+      </select>
+     </div>
+     <div class="field">
+      <label>Referência interna</label>
+      <input id="reference" placeholder="Opcional">
+     </div>
+    </div>
+   </div>
+
+   <div class="panel">
+    <h2>2. Contratante</h2>
+    <div class="form-grid">
+     <div class="field full">
+      <label>Nome completo ou razão social</label>
+      <input id="clientName" placeholder="Nome do cliente ou empresa">
+     </div>
+     <div class="field">
+      <label>CPF ou CNPJ</label>
+      <input id="clientDocument">
+     </div>
+     <div class="field">
+      <label>E-mail</label>
+      <input id="clientEmail" type="email">
+     </div>
+     <div class="field">
+      <label>Telefone</label>
+      <input id="clientPhone" type="tel">
+     </div>
+     <div class="field full">
+      <label>Endereço</label>
+      <input id="clientAddress">
+     </div>
+    </div>
+   </div>
+
+   <div class="panel">
+    <h2>3. Contratado</h2>
+    <div class="form-grid">
+     <div class="field full">
+      <label>Nome completo ou razão social</label>
+      <input id="providerName">
+     </div>
+     <div class="field">
+      <label>CPF ou CNPJ</label>
+      <input id="providerDocument">
+     </div>
+     <div class="field">
+      <label>E-mail</label>
+      <input id="providerEmail" type="email">
+     </div>
+     <div class="field">
+      <label>Telefone</label>
+      <input id="providerPhone" type="tel">
+     </div>
+     <div class="field full">
+      <label>Endereço</label>
+      <input id="providerAddress">
+     </div>
+    </div>
+   </div>
+
+   <div class="panel">
+    <h2>4. Objeto e valores</h2>
+    <div class="form-grid">
+     <div class="field full">
+      <label>Descrição do objeto do contrato</label>
+      <textarea id="object" placeholder="Descreva os serviços, produtos ou obrigações contratadas."></textarea>
+     </div>
+     <div class="field">
+      <label>Valor total (R$)</label>
+      <input id="value" type="number" min="0" step="0.01" value="0">
+     </div>
+     <div class="field">
+      <label>Número de parcelas</label>
+      <input id="installments" type="number" min="1" step="1" value="1">
+     </div>
+     <div class="field">
+      <label>Forma de pagamento</label>
+      <select id="payment">
+       <option>Pix</option><option>Transferência</option>
+       <option>Dinheiro</option><option>Cartão</option>
+       <option>Boleto</option><option>Outro</option>
+      </select>
+     </div>
+     <div class="field">
+      <label>Vencimento do primeiro pagamento</label>
+      <input id="paymentDate" type="date">
+     </div>
+     <div class="field full">
+      <label>Condições de pagamento</label>
+      <textarea id="paymentTerms" placeholder="Ex.: Pagamento em parcelas mensais."></textarea>
+     </div>
+    </div>
+    <p class="hint" id="installmentInfo"></p>
+   </div>
+
+   <div class="panel">
+    <div class="panel-head">
+     <h2>5. Cláusulas contratuais</h2>
+     <button class="btn secondary" onclick="addClause()">+ Cláusula</button>
+    </div>
+    <p class="hint">Edite, reorganize e acrescente cláusulas específicas. Revise o conteúdo antes de assinar.</p>
+    <div id="clauses"></div>
+    <div class="actions">
+     <button class="btn secondary" onclick="addClause()">+ Adicionar cláusula</button>
+     <button class="btn outline" onclick="loadDefaultClauses()">Restaurar cláusulas sugeridas</button>
+    </div>
+   </div>
+
+   <div class="panel">
+    <h2>6. Testemunhas</h2>
+    <div class="form-grid">
+     <div class="field">
+      <label>Testemunha 1</label>
+      <input id="witness1">
+     </div>
+     <div class="field">
+      <label>CPF da testemunha 1</label>
+      <input id="witnessDoc1">
+     </div>
+     <div class="field">
+      <label>Testemunha 2</label>
+      <input id="witness2">
+     </div>
+     <div class="field">
+      <label>CPF da testemunha 2</label>
+      <input id="witnessDoc2">
+     </div>
+    </div>
+   </div>
+
+   <div class="panel">
+    <h2>7. Salvar e exportar</h2>
+    <div class="actions">
+     <button class="btn" onclick="saveContract()">💾 Salvar contrato</button>
+     <button class="btn secondary" onclick="printContract()">🖨️ Imprimir / PDF</button>
+     <button class="btn outline" onclick="exportWord()">⬇ Word</button>
+     <button class="btn outline" onclick="copyContract()">📋 Copiar texto</button>
+     <button class="btn outline" onclick="newContract()">+ Novo</button>
+    </div>
+    <p class="hint" id="saveStatus">Preencha o contrato para começar.</p>
+   </div>
+  </div>
+
+  <div>
+   <div class="panel">
+    <h2>Prévia do documento</h2>
+    <div class="actions" style="margin-bottom:18px">
+     <button class="btn" onclick="renderPreview()">Atualizar</button>
+     <button class="btn" onclick="printContract()">Imprimir / Salvar PDF</button>
+     <button class="btn secondary" onclick="copyContract()">Copiar texto</button>
+    </div>
+    <article class="preview" id="preview"></article>
+   </div>
+  </div>
+ </div>
 </section>
 
-<section class="panel">
-<h2>2. Contratante</h2>
-<label>Nome completo ou razão social</label>
-<input id="contratante" placeholder="Nome do cliente ou empresa">
-<div class="two">
-<div><label>CPF ou CNPJ</label><input id="docContratante"></div>
-<div><label>E-mail</label><input id="emailContratante" type="email"></div>
-</div>
-<label>Endereço</label>
-<input id="endContratante" placeholder="Rua, número, cidade e estado">
+<section class="view" id="view-contratos">
+ <div class="stat-grid" id="stats"></div>
+ <div class="panel">
+  <div class="panel-head">
+   <h2>📂 Meus contratos</h2>
+   <button class="btn" onclick="newContract()">+ Novo contrato</button>
+   <input class="search" id="search" placeholder="Pesquisar contratos...">
+  </div>
+  <div class="form-grid" style="margin-bottom:20px">
+   <div class="field">
+    <label>Filtrar status</label>
+    <select id="statusFilter">
+     <option value="">Todos</option>
+     <option>Rascunho</option>
+     <option>Aguardando assinatura</option>
+     <option>Assinado</option>
+     <option>Em andamento</option>
+     <option>Concluído</option>
+     <option>Cancelado</option>
+    </select>
+   </div>
+   <div class="field">
+    <label>Ordenar</label>
+    <select id="sort">
+     <option value="new">Mais recentes</option>
+     <option value="old">Mais antigos</option>
+     <option value="title">Título A-Z</option>
+    </select>
+   </div>
+  </div>
+  <div class="cards" id="contractList"></div>
+ </div>
 </section>
 
-<section class="panel">
-<h2>3. Contratado</h2>
-<label>Nome completo ou razão social</label>
-<input id="contratado" placeholder="Nome do profissional ou empresa">
-<div class="two">
-<div><label>CPF ou CNPJ</label><input id="docContratado"></div>
-<div><label>E-mail</label><input id="emailContratado" type="email"></div>
-</div>
-<label>Endereço</label>
-<input id="endContratado" placeholder="Rua, número, cidade e estado">
+<section class="view" id="view-modelos">
+ <div class="panel">
+  <h2>📋 Modelos de contrato</h2>
+  <p class="hint">Os modelos são pontos de partida, não documentos jurídicos validados para todas as situações.</p>
+  <div class="cards" id="templateList"></div>
+ </div>
 </section>
 
-<section class="panel">
-<h2>4. Objeto e condições</h2>
-<label>Descrição do objeto</label>
-<textarea id="objeto" placeholder="Descreva detalhadamente o produto, serviço ou acordo."></textarea>
-<div class="two">
-<div><label>Valor total (R$)</label><input id="valor" type="number" min="0" step=".01"></div>
-<div><label>Forma de pagamento</label>
-<select id="pagamento">
-<option>PIX</option><option>Transferência bancária</option>
-<option>Boleto</option><option>Cartão</option>
-<option>Dinheiro</option><option>Personalizada</option>
-</select></div>
-</div>
-<label>Condições e parcelas</label>
-<textarea id="condicoes" placeholder="Ex.: 50% na assinatura e 50% na entrega."></textarea>
-<div class="two">
-<div><label>Início da vigência</label><input id="inicio" type="date"></div>
-<div><label>Fim da vigência</label><input id="fim" type="date"></div>
-</div>
-<label>Prazo de entrega ou execução</label>
-<input id="prazo" placeholder="Ex.: 30 dias corridos">
-<label>Multa por descumprimento (se aplicável)</label>
-<input id="multa" placeholder="Ex.: 2% do valor contratual">
-<label>Condições de rescisão</label>
-<textarea id="rescisao" placeholder="Defina como o contrato poderá ser encerrado."></textarea>
+<section class="view" id="view-config">
+ <div class="panel">
+  <h2>💾 Backup e segurança</h2>
+  <p class="hint">Os dados ficam neste navegador. Exporte backups regularmente para evitar perdas.</p>
+  <div class="actions">
+   <button class="btn" onclick="backup()">⬇ Baixar backup JSON</button>
+   <button class="btn secondary" onclick="document.getElementById('backupFile').click()">⬆ Importar backup</button>
+   <button class="btn danger" onclick="clearAll()">🗑️ Apagar todos os contratos</button>
+  </div>
+  <input type="file" id="backupFile" accept=".json,application/json" hidden>
+ </div>
 </section>
 
-<section class="panel">
-<h2>5. Cláusulas personalizadas</h2>
-<p class="note">Inclua todas as cláusulas necessárias ao seu acordo.</p>
-<div id="clausulas"></div>
-<button type="button" onclick="adicionarClausula()">+ Adicionar cláusula</button>
-</section>
-
-<section class="panel">
-<h2>6. Finalizar</h2>
-<div class="actions">
-<button onclick="atualizar()">Atualizar prévia</button>
-<button class="secondary" onclick="salvar()">Salvar rascunho</button>
-<button class="secondary" onclick="carregar()">Recuperar rascunho</button>
-<button class="secondary" onclick="exportar()">Exportar JSON</button>
-<button class="secondary" onclick="document.getElementById('importar').click()">Importar JSON</button>
-<input id="importar" type="file" accept=".json,application/json" hidden onchange="importarArquivo(event)">
-<button class="danger" onclick="limpar()">Novo contrato</button>
-</div>
-<div id="status" role="status"></div>
-<p class="note">O rascunho é armazenado apenas neste navegador. Para manter uma cópia independente, exporte o arquivo JSON. Este editor não oferece assinatura eletrônica certificada nem validação jurídica automática.</p>
-</section>
-</div>
-
-<div>
-<section class="panel">
-<div class="preview-actions">
-<h2>Prévia do documento</h2>
-<div class="actions">
-<button onclick="atualizar()">Atualizar</button>
-<button onclick="imprimir()">Imprimir / Salvar PDF</button>
-<button class="secondary" onclick="copiar()">Copiar texto</button>
-</div>
-</div>
-<article id="preview" class="preview"></article>
-</section>
-</div>
-</div>
+<p class="notice">Este aplicativo é uma ferramenta de elaboração e organização. Não substitui orientação jurídica. A validade e a adequação de cláusulas dependem do contrato e da legislação aplicável. A opção de assinatura gera espaços para assinatura manual, não assinatura eletrônica certificada. O PDF é produzido pela impressão do navegador e o Word é exportado em formato .doc compatível.</p>
 </main>
+
+<div id="printArea"></div>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
 "use strict";
-const ids=[
-"tipo","titulo","numero","data","local",
-"contratante","docContratante","emailContratante","endContratante",
-"contratado","docContratado","emailContratado","endContratado",
-"objeto","valor","pagamento","condicoes","inicio","fim",
-"prazo","multa","rescisao"
-];
+
 const $=id=>document.getElementById(id);
-const moeda=n=>new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(n||0);
-const dataBR=s=>s?new Date(s+"T12:00:00").toLocaleDateString("pt-BR"):"não informada";
-const texto=(id,fallback="não informado")=>$(id).value.trim()||fallback;
-const escapar=s=>String(s).replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-}[c]));
-let contador=0;
+const KEY="businesspro_meu_contrato_v3";
 
-function adicionarClausula(titulo="",conteudo=""){
- const id=++contador;
- const div=document.createElement("div");
- div.className="clause";
- div.dataset.id=id;
- div.innerHTML=`
- <label>Título da cláusula</label>
- <input class="ct" placeholder="Ex.: Obrigações das partes">
- <label>Conteúdo</label>
- <textarea class="cc" placeholder="Escreva o texto da cláusula."></textarea>
- <div class="actions">
- <button class="danger" type="button">Remover</button>
- </div>`;
- div.querySelector(".ct").value=titulo;
- div.querySelector(".cc").value=conteudo;
- div.querySelector("button").onclick=()=>{
-  div.remove();atualizar();
- };
- div.addEventListener("input",atualizar);
- $("clausulas").appendChild(div);
- atualizar();
+const fields=[
+ "type","title","number","date","location","start","end",
+ "status","reference","clientName","clientDocument","clientEmail",
+ "clientPhone","clientAddress","providerName","providerDocument",
+ "providerEmail","providerPhone","providerAddress","object",
+ "value","installments","payment","paymentDate","paymentTerms",
+ "witness1","witnessDoc1","witness2","witnessDoc2"
+];
+
+function uid(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
 }
 
-function dados(){
- const campos={};
- ids.forEach(id=>campos[id]=$(id).value);
- const clausulas=[...document.querySelectorAll(".clause")].map(c=>({
- titulo:c.querySelector(".ct").value,
- conteudo:c.querySelector(".cc").value
- }));
- return {campos,clausulas};
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
 }
 
-function atualizar(){
- const d=dados().campos;
- const nome=d.titulo.trim()||"CONTRATO DE "+d.tipo.toUpperCase();
- const clausulas=dados().clausulas;
- const valor=Number(d.valor)||0;
- let html=`<h2>${escapar(nome)}</h2>`;
- html+=`<p><strong>Contrato nº:</strong> ${escapar(texto("numero"))}<br>
- <strong>Data:</strong> ${escapar(dataBR(d.data))}</p>`;
-
- html+=`<h3>IDENTIFICAÇÃO DAS PARTES</h3>
- <p><strong>CONTRATANTE:</strong> ${escapar(texto("contratante"))},
- CPF/CNPJ: ${escapar(texto("docContratante"))},
- endereço: ${escapar(texto("endContratante"))},
- e-mail: ${escapar(texto("emailContratante"))}.</p>
- <p><strong>CONTRATADO:</strong> ${escapar(texto("contratado"))},
- CPF/CNPJ: ${escapar(texto("docContratado"))},
- endereço: ${escapar(texto("endContratado"))},
- e-mail: ${escapar(texto("emailContratado"))}.</p>`;
-
- const blocos=[
- ["OBJETO",d.objeto],
- ["VALOR E PAGAMENTO",
- `Valor total: ${moeda(valor)}.\nForma de pagamento: ${d.pagamento}.\nCondições: ${d.condicoes||"A definir entre as partes."}`],
- ["VIGÊNCIA E PRAZOS",
- `Início: ${dataBR(d.inicio)}.\nTérmino: ${dataBR(d.fim)}.\nPrazo de execução: ${d.prazo||"A definir."}`],
- ["MULTAS E PENALIDADES",d.multa],
- ["RESCISÃO",d.rescisao]
- ];
- let numero=1;
- for(const [titulo,conteudo] of blocos){
-  if(!conteudo.trim())continue;
-  html+=`<h3>CLÁUSULA ${numero++} — ${escapar(titulo)}</h3>
-  <p>${escapar(conteudo)}</p>`;
- }
- for(const c of clausulas){
-  if(!c.titulo.trim()&&!c.conteudo.trim())continue;
-  html+=`<h3>CLÁUSULA ${numero++} — ${escapar(c.titulo||"DISPOSIÇÕES ADICIONAIS")}</h3>
-  <p>${escapar(c.conteudo)}</p>`;
- }
- html+=`<p style="margin-top:40px">
- Local: ${escapar(texto("local"))}<br>
- Data: ${escapar(dataBR(d.data))}
- </p>
- <div class="signatures">
- <div>${escapar(texto("contratante","CONTRATANTE"))}<br>Contratante</div>
- <div>${escapar(texto("contratado","CONTRATADO"))}<br>Contratado</div>
- </div>`;
- $("preview").innerHTML=html;
+function textHTML(v){
+ return esc(v||"Não informado").replace(/\n/g,"<br>");
 }
 
-function aviso(m){
- $("status").textContent=m;
-}
-
-function salvar(){
- try{
- localStorage.setItem("businesspro_meu_contrato",JSON.stringify(dados()));
- aviso("Rascunho salvo neste navegador.");
- }catch(e){aviso("Não foi possível salvar. Exporte o JSON.");}
-}
-
-function aplicar(d){
- if(!d||typeof d!=="object"||!d.campos||typeof d.campos!=="object")
- throw Error("Arquivo inválido");
- ids.forEach(id=>{
-  if(typeof d.campos[id]==="string")$(id).value=d.campos[id];
+function money(v){
+ return Number(v||0).toLocaleString("pt-BR",{
+  style:"currency",currency:"BRL"
  });
- $("clausulas").replaceChildren();
- if(Array.isArray(d.clausulas)){
-  d.clausulas.slice(0,100).forEach(c=>
-   adicionarClausula(String(c.titulo||""),String(c.conteudo||"")));
- }
- atualizar();
 }
 
-function carregar(){
- try{
- const raw=localStorage.getItem("businesspro_meu_contrato");
- if(!raw)return aviso("Nenhum rascunho encontrado.");
- aplicar(JSON.parse(raw));
- aviso("Rascunho recuperado.");
- }catch(e){aviso("Erro ao recuperar rascunho.");}
+function dateBR(v){
+ if(!v)return "Não informada";
+ const [y,m,d]=v.split("-");
+ return d&&m&&y?`${d}/${m}/${y}`:"Não informada";
 }
 
-function baixar(nome,conteudo,tipo){
- const blob=new Blob([conteudo],{type:tipo});
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+
+  "-"+String(d.getDate()).padStart(2,"0");
+}
+
+function notify(msg){
+ const el=$("toast");
+ el.textContent=msg;el.style.display="block";
+ clearTimeout(notify.timer);
+ notify.timer=setTimeout(()=>el.style.display="none",3000);
+}
+
+function download(name,content,type){
+ const blob=new Blob([content],{type});
  const url=URL.createObjectURL(blob);
  const a=document.createElement("a");
- a.href=url;a.download=nome;
+ a.href=url;a.download=name;
  document.body.appendChild(a);a.click();a.remove();
- setTimeout(()=>URL.revokeObjectURL(url),1000);
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
 
-function exportar(){
- baixar("meu-contrato.json",JSON.stringify(dados(),null,2),"application/json");
- aviso("Arquivo exportado.");
-}
+let db={version:3,contracts:[]};
+let currentId=null;
+let clauses=[];
 
-async function importarArquivo(e){
- const f=e.target.files[0];
- if(!f)return;
+try{
+ const raw=JSON.parse(localStorage.getItem(KEY)||"null");
+ if(raw&&raw.version===3&&Array.isArray(raw.contracts))
+  db=raw;
+}catch(e){}
+
+function persist(){
  try{
-  if(f.size>2_000_000)throw Error("Arquivo muito grande");
-  const d=JSON.parse(await f.text());
-  if(!confirm("Substituir os dados atuais pelos do arquivo?"))return;
-  aplicar(d);aviso("Contrato importado.");
- }catch(err){aviso("Não foi possível importar o arquivo.");}
- e.target.value="";
+  localStorage.setItem(KEY,JSON.stringify(db));
+  return true;
+ }catch(e){
+  notify("Erro ao salvar. Verifique o espaço do navegador.");
+  return false;
+ }
 }
 
-function imprimir(){
- atualizar();
+function showView(view){
+ document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
+ $("view-"+view).classList.add("active");
+ document.querySelectorAll("[data-view]").forEach(x=>
+  x.classList.toggle("active",x.dataset.view===view)
+ );
+ if(view==="contratos")renderContracts();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+$("navigation").onclick=e=>{
+ const btn=e.target.closest("[data-view]");
+ if(btn)showView(btn.dataset.view);
+};
+
+function defaultClauses(type){
+ const common=[
+  {
+   title:"Objeto",
+   text:"O presente contrato tem por objeto as atividades, bens ou obrigações descritas neste instrumento, conforme as condições acordadas entre as partes."
+  },
+  {
+   title:"Obrigações das partes",
+   text:"As partes comprometem-se a cumprir as obrigações expressamente estabelecidas neste contrato, atuando com boa-fé e fornecendo as informações necessárias à sua execução."
+  },
+  {
+   title:"Pagamento",
+   text:"O pagamento será realizado conforme o valor, a forma e os prazos indicados neste contrato."
+  },
+  {
+   title:"Vigência",
+   text:"A vigência observará as datas de início e término informadas neste instrumento, sem prejuízo das disposições legais aplicáveis."
+  },
+  {
+   title:"Rescisão",
+   text:"As condições de rescisão, eventuais notificações e consequências financeiras deverão observar o que for acordado entre as partes e a legislação aplicável."
+  },
+  {
+   title:"Disposições gerais",
+   text:"Alterações neste contrato deverão ser formalizadas por acordo entre as partes. Eventuais controvérsias serão tratadas pelos meios legalmente cabíveis."
+  }
+ ];
+
+ if(type==="Confidencialidade"){
+  common[0].text="As partes comprometem-se a proteger as informações confidenciais identificadas neste contrato, observadas as exceções e os limites legais.";
+ }
+ if(type==="Locação"){
+  common[0].text="O objeto deste contrato é a locação do imóvel descrito no campo de objeto, nas condições acordadas pelas partes e observada a legislação aplicável.";
+ }
+ if(type==="Compra e venda"){
+  common[0].text="O objeto deste contrato é a compra e venda do bem descrito no campo de objeto, conforme características, preço e condições acordadas.";
+ }
+
+ return common.map(x=>({id:uid(),...x}));
+}
+
+function addClause(title="",text=""){
+ clauses.push({id:uid(),title,text});
+ renderClauses();
+ renderPreview();
+}
+
+function renderClauses(){
+ $("clauses").innerHTML=clauses.map((x,i)=>`
+  <div class="clause">
+   <div class="clause-head">
+    <strong>Cláusula ${i+1}</strong>
+    <div class="actions">
+     <button class="btn small outline" data-move="${esc(x.id)}" data-dir="-1" ${i===0?"disabled":""}>↑</button>
+     <button class="btn small outline" data-move="${esc(x.id)}" data-dir="1" ${i===clauses.length-1?"disabled":""}>↓</button>
+     <button class="btn small danger" data-remove="${esc(x.id)}">Excluir</button>
+    </div>
+   </div>
+   <div class="field">
+    <label>Título</label>
+    <input data-clause="${esc(x.id)}" data-key="title" value="${esc(x.title)}">
+   </div>
+   <div class="field" style="margin-top:12px">
+    <label>Conteúdo</label>
+    <textarea data-clause="${esc(x.id)}" data-key="text">${esc(x.text)}</textarea>
+   </div>
+  </div>
+ `).join("");
+}
+
+$("clauses").addEventListener("input",e=>{
+ const input=e.target.closest("[data-clause]");
+ if(!input)return;
+ const item=clauses.find(x=>x.id===input.dataset.clause);
+ if(!item)return;
+ item[input.dataset.key]=input.value;
+ renderPreview();
+});
+
+$("clauses").onclick=e=>{
+ const remove=e.target.closest("[data-remove]");
+ if(remove){
+  clauses=clauses.filter(x=>x.id!==remove.dataset.remove);
+  renderClauses();renderPreview();return;
+ }
+
+ const move=e.target.closest("[data-move]");
+ if(move){
+  const i=clauses.findIndex(x=>x.id===move.dataset.move);
+  const j=i+Number(move.dataset.dir);
+  if(i<0||j<0||j>=clauses.length)return;
+  [clauses[i],clauses[j]]=[clauses[j],clauses[i]];
+  renderClauses();renderPreview();
+ }
+};
+
+function loadDefaultClauses(){
+ if(clauses.length&&!confirm("Substituir as cláusulas atuais pelas sugestões?"))return;
+ clauses=defaultClauses($("type").value);
+ renderClauses();renderPreview();
+}
+
+function getData(){
+ const data={};
+ fields.forEach(id=>data[id]=$(id).value);
+ data.value=Math.max(0,Number(data.value)||0);
+ data.installments=Math.max(1,Math.floor(Number(data.installments)||1));
+ data.clauses=clauses.map(x=>({...x}));
+ return data;
+}
+
+function titleOf(d){
+ return d.title.trim()||"Contrato de "+d.type;
+}
+
+function renderPreview(){
+ const d=getData();
+ const perInstallment=d.value/d.installments;
+
+ $("installmentInfo").textContent=
+  d.installments+" parcela(s) — valor médio de "+money(perInstallment)+
+  ". Valores podem exigir ajuste de centavos na última parcela.";
+
+ $("preview").innerHTML=`
+  <h1>${esc(titleOf(d).toUpperCase())}</h1>
+  <p><strong>Contrato nº:</strong> ${esc(d.number||"Não informado")}</p>
+  <p><strong>Data:</strong> ${dateBR(d.date)}</p>
+
+  <h2>IDENTIFICAÇÃO DAS PARTES</h2>
+  <p><strong>CONTRATANTE:</strong> ${esc(d.clientName||"Não informado")}<br>
+  CPF/CNPJ: ${esc(d.clientDocument||"Não informado")}<br>
+  Endereço: ${esc(d.clientAddress||"Não informado")}<br>
+  E-mail: ${esc(d.clientEmail||"Não informado")}<br>
+  Telefone: ${esc(d.clientPhone||"Não informado")}</p>
+
+  <p><strong>CONTRATADO:</strong> ${esc(d.providerName||"Não informado")}<br>
+  CPF/CNPJ: ${esc(d.providerDocument||"Não informado")}<br>
+  Endereço: ${esc(d.providerAddress||"Não informado")}<br>
+  E-mail: ${esc(d.providerEmail||"Não informado")}<br>
+  Telefone: ${esc(d.providerPhone||"Não informado")}</p>
+
+  <h2>OBJETO DO CONTRATO</h2>
+  <p>${textHTML(d.object)}</p>
+
+  <h2>VALOR E CONDIÇÕES DE PAGAMENTO</h2>
+  <p>Valor total: <strong>${money(d.value)}</strong>.</p>
+  <p>Parcelas: ${d.installments}. Valor médio por parcela: ${money(perInstallment)}.</p>
+  <p>Forma de pagamento: ${esc(d.payment)}.</p>
+  <p>Primeiro vencimento: ${dateBR(d.paymentDate)}.</p>
+  <p>${textHTML(d.paymentTerms)}</p>
+
+  <h2>VIGÊNCIA</h2>
+  <p>Início: ${dateBR(d.start)}. Término: ${dateBR(d.end)}.</p>
+
+  <h2>CLÁUSULAS CONTRATUAIS</h2>
+  ${d.clauses.map((c,i)=>`
+   <h2>CLÁUSULA ${i+1} — ${esc(c.title||"Sem título")}</h2>
+   <p>${textHTML(c.text)}</p>
+  `).join("")}
+
+  <p style="margin-top:35px">${esc(d.location||"Local não informado")}, ${dateBR(d.date)}.</p>
+
+  <div class="signatures">
+   <div class="signature">${esc(d.clientName||"CONTRATANTE")}<br>CONTRATANTE</div>
+   <div class="signature">${esc(d.providerName||"CONTRATADO")}<br>CONTRATADO</div>
+  </div>
+
+  ${(d.witness1||d.witness2)?`
+   <h2 style="margin-top:50px">TESTEMUNHAS</h2>
+   <p>1. ${esc(d.witness1||"________________")} — CPF: ${esc(d.witnessDoc1||"________________")}</p>
+   <p>2. ${esc(d.witness2||"________________")} — CPF: ${esc(d.witnessDoc2||"________________")}</p>
+  `:""}
+ `;
+}
+
+fields.forEach(id=>{
+ $(id).addEventListener("input",renderPreview);
+ $(id).addEventListener("change",renderPreview);
+});
+
+function saveContract(){
+ const data=getData();
+
+ if(!data.clientName.trim()||!data.providerName.trim()){
+  notify("Informe contratante e contratado.");
+  return;
+ }
+
+ if(!data.object.trim()){
+  notify("Descreva o objeto do contrato.");
+  return;
+ }
+
+ if(data.start&&data.end&&data.end<data.start){
+  notify("A data de término é anterior ao início.");
+  return;
+ }
+
+ const now=new Date().toISOString();
+ const previous=JSON.stringify(db.contracts);
+
+ if(currentId){
+  const index=db.contracts.findIndex(x=>x.id===currentId);
+  if(index>=0)
+   db.contracts[index]={...db.contracts[index],...data,updatedAt:now};
+  else currentId=null;
+ }
+
+ if(!currentId){
+  currentId=uid();
+  db.contracts.push({
+   id:currentId,...data,createdAt:now,updatedAt:now
+  });
+ }
+
+ if(!persist()){
+  db.contracts=JSON.parse(previous);
+  return;
+ }
+
+ $("saveStatus").textContent="Contrato salvo em "+new Date().toLocaleString("pt-BR");
+ notify("Contrato salvo com sucesso.");
+ renderContracts();
+}
+
+function newContract(){
+ currentId=null;
+ fields.forEach(id=>{
+  const el=$(id);
+  if(el.tagName==="SELECT")el.selectedIndex=0;
+  else el.value="";
+ });
+ $("date").value=today();
+ $("value").value="0";
+ $("installments").value="1";
+ clauses=defaultClauses($("type").value);
+ renderClauses();renderPreview();
+ $("saveStatus").textContent="Novo contrato ainda não salvo.";
+ showView("editor");
+}
+
+function openContract(id){
+ const d=db.contracts.find(x=>x.id===id);
+ if(!d)return;
+
+ currentId=d.id;
+ fields.forEach(id=>{
+  if(d[id]!==undefined)$(id).value=d[id];
+ });
+ clauses=Array.isArray(d.clauses)?d.clauses.map(x=>({...x})):[];
+ renderClauses();renderPreview();
+ $("saveStatus").textContent="Contrato carregado.";
+ showView("editor");
+}
+
+function duplicateContract(id){
+ const d=db.contracts.find(x=>x.id===id);
+ if(!d)return;
+
+ const now=new Date().toISOString();
+ db.contracts.push({
+  ...d,id:uid(),title:titleOf(d)+" (cópia)",
+  status:"Rascunho",createdAt:now,updatedAt:now
+ });
+
+ if(persist()){
+  renderContracts();notify("Contrato duplicado.");
+ }
+}
+
+function deleteContract(id){
+ if(!confirm("Excluir este contrato?"))return;
+ const previous=db.contracts;
+ db.contracts=db.contracts.filter(x=>x.id!==id);
+ if(!persist()){
+  db.contracts=previous;
+  return;
+ }
+ if(currentId===id)currentId=null;
+ renderContracts();
+ notify("Contrato excluído.");
+}
+
+function renderContracts(){
+ const search=$("search").value.toLowerCase().trim();
+ const status=$("statusFilter").value;
+
+ let list=db.contracts.filter(x=>
+  (!status||x.status===status)&&
+  (x.title+" "+x.type+" "+x.number+" "+x.clientName+" "+x.providerName)
+   .toLowerCase().includes(search)
+ );
+
+ const sort=$("sort").value;
+ list.sort((a,b)=>{
+  if(sort==="title")return titleOf(a).localeCompare(titleOf(b),"pt-BR");
+  if(sort==="old")return a.createdAt.localeCompare(b.createdAt);
+  return b.updatedAt.localeCompare(a.updatedAt);
+ });
+
+ $("stats").innerHTML=`
+  <div class="stat"><small>Total de contratos</small><strong>${db.contracts.length}</strong></div>
+  <div class="stat"><small>Assinados</small><strong>${db.contracts.filter(x=>x.status==="Assinado").length}</strong></div>
+  <div class="stat"><small>Aguardando assinatura</small><strong>${db.contracts.filter(x=>x.status==="Aguardando assinatura").length}</strong></div>
+ `;
+
+ $("contractList").innerHTML=list.length?list.map(x=>`
+  <article class="card">
+   <span class="tag">${esc(x.status)}</span>
+   <h3 style="margin-top:13px">${esc(titleOf(x))}</h3>
+   <p><strong>Número:</strong> ${esc(x.number||"—")}</p>
+   <p><strong>Contratante:</strong> ${esc(x.clientName||"—")}</p>
+   <p><strong>Valor:</strong> ${money(x.value)}</p>
+   <p><strong>Atualizado:</strong> ${new Date(x.updatedAt).toLocaleDateString("pt-BR")}</p>
+   <div class="actions">
+    <button class="btn small" data-open="${esc(x.id)}">Abrir</button>
+    <button class="btn small secondary" data-duplicate="${esc(x.id)}">Duplicar</button>
+    <button class="btn small danger" data-delete="${esc(x.id)}">Excluir</button>
+   </div>
+  </article>
+ `).join(""):'<div class="empty">Nenhum contrato encontrado.</div>';
+}
+
+$("contractList").onclick=e=>{
+ const open=e.target.closest("[data-open]");
+ if(open)return openContract(open.dataset.open);
+ const duplicate=e.target.closest("[data-duplicate]");
+ if(duplicate)return duplicateContract(duplicate.dataset.duplicate);
+ const del=e.target.closest("[data-delete]");
+ if(del)return deleteContract(del.dataset.delete);
+};
+
+$("search").oninput=renderContracts;
+$("statusFilter").onchange=renderContracts;
+$("sort").onchange=renderContracts;
+
+function renderTemplates(){
+ const types=[
+  ["Prestação de serviços","Contratos para atividades e serviços."],
+  ["Compra e venda","Acordos de compra e venda de bens."],
+  ["Locação","Organização de condições de locação."],
+  ["Parceria comercial","Formalização de parcerias empresariais."],
+  ["Confidencialidade","Acordos sobre informações confidenciais."],
+  ["Contrato personalizado","Estrutura para um contrato criado por você."]
+ ];
+
+ $("templateList").innerHTML=types.map(([type,desc],i)=>`
+  <article class="card">
+   <h3>📑 ${esc(type)}</h3>
+   <p>${esc(desc)}</p>
+   <button class="btn" data-template="${i}">Usar modelo</button>
+  </article>
+ `).join("");
+}
+
+$("templateList").onclick=e=>{
+ const btn=e.target.closest("[data-template]");
+ if(!btn)return;
+ const types=[
+  "Prestação de serviços","Compra e venda","Locação",
+  "Parceria comercial","Confidencialidade","Contrato personalizado"
+ ];
+ newContract();
+ $("type").value=types[Number(btn.dataset.template)];
+ clauses=defaultClauses($("type").value);
+ renderClauses();renderPreview();
+};
+
+function printContract(){
+ renderPreview();
+ $("printArea").innerHTML=$("preview").innerHTML;
  window.print();
 }
 
-async function copiar(){
- atualizar();
+function documentHTML(){
+ renderPreview();
+ return `<!DOCTYPE html><html lang="pt-BR"><head>
+ <meta charset="UTF-8"><title>Contrato</title>
+ <style>
+ body{font-family:Arial,sans-serif;line-height:1.7;margin:45px}
+ h1{text-align:center;font-size:22px}
+ h2{font-size:16px;margin-top:24px}
+ p{text-align:justify}
+ .signatures{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:80px;text-align:center}
+ .signature{border-top:1px solid #111;padding-top:10px}
+ </style></head><body>${$("preview").innerHTML}</body></html>`;
+}
+
+function exportWord(){
+ const name=(getData().number||"contrato").replace(/[^a-zA-Z0-9_-]/g,"-");
+ download(name+".doc","\uFEFF"+documentHTML(),"application/msword");
+ notify("Arquivo Word compatível exportado.");
+}
+
+async function copyContract(){
  try{
   await navigator.clipboard.writeText($("preview").innerText);
-  aviso("Texto copiado.");
- }catch(e){aviso("Não foi possível copiar automaticamente.");}
+  notify("Texto copiado.");
+ }catch(e){
+  notify("Não foi possível copiar automaticamente.");
+ }
 }
 
-function limpar(){
- if(!confirm("Criar novo contrato? Os dados não salvos serão perdidos."))return;
- ids.forEach(id=>$(id).value="");
- $("tipo").selectedIndex=0;
- $("pagamento").selectedIndex=0;
- $("data").value=new Date().toLocaleDateString("en-CA");
- $("clausulas").replaceChildren();
- atualizar();aviso("Novo contrato iniciado.");
+function backup(){
+ download("backup-meu-contrato.json",
+  JSON.stringify(db,null,2),"application/json");
+ notify("Backup exportado.");
 }
 
-ids.forEach(id=>$(id).addEventListener("input",atualizar));
-$("data").value=new Date().toLocaleDateString("en-CA");
-adicionarClausula("Obrigações das partes","");
-atualizar();
+$("backupFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  if(file.size>15*1024*1024)throw Error("Arquivo muito grande.");
+  const raw=JSON.parse(await file.text());
+
+  if(raw.version!==3||!Array.isArray(raw.contracts))
+   throw Error("Backup incompatível.");
+
+  if(!confirm("Substituir todos os contratos atuais pelo backup?"))return;
+
+  const previous=db;
+  db=raw;
+
+  if(!persist()){
+   db=previous;
+   return;
+  }
+
+  currentId=null;
+  renderContracts();
+  notify("Backup importado.");
+ }catch(err){
+  notify("Erro ao importar: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+function clearAll(){
+ if(!confirm("Apagar todos os contratos?"))return;
+ if(!confirm("Confirme novamente. A exclusão não pode ser desfeita sem backup."))return;
+
+ const previous=db.contracts;
+ db.contracts=[];
+
+ if(!persist()){
+  db.contracts=previous;
+  return;
+ }
+
+ currentId=null;
+ renderContracts();
+ notify("Todos os contratos foram apagados.");
+}
+
+newContract();
+renderContracts();
+renderTemplates();
 </script>
 </body>
 </html>
