@@ -57,6 +57,14 @@
       "ready": true
     },
     {
+      "slug": "meu-edital",
+      "name": "MEU EDITAL",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-empreendedor",
       "name": "MEU EMPREENDEDOR",
       "category": "Gestão",
