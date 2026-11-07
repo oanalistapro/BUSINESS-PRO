@@ -1294,6 +1294,242 @@ $("exportar").onclick=()=>{
 renderFav();
 renderSearch();
 renderAll();
+
+<!-- CORREÇÃO DA IA GEMINI • MEU CONCURSO -->
+<script>
+(function () {
+  "use strict";
+
+  const IA_URL =
+    "https://little-wood-47e8meu-concurso-ia.junhodorval.workers.dev";
+
+  const $ = id => document.getElementById(id);
+
+  let enviando = false;
+
+  function mensagemErro(data, status) {
+    const titulo =
+      data?.erro ||
+      data?.error?.message ||
+      data?.error ||
+      "Falha na consulta ao Gemini";
+
+    const detalhes = Array.isArray(data?.detalhes)
+      ? data.detalhes.map(item => {
+          return [
+            "Modelo: " + (item.modelo || "não informado"),
+            "Código: " + (item.codigo || status),
+            "Motivo: " + (item.erro || "não informado")
+          ].join("\n");
+        }).join("\n\n")
+      : typeof data?.detalhes === "string"
+        ? data.detalhes
+        : data?.detalhes
+          ? JSON.stringify(data.detalhes, null, 2)
+          : "";
+
+    let orientacao = "";
+
+    if (status === 400) {
+      orientacao =
+        "O Gemini rejeitou a requisição. Verifique o modelo e os parâmetros no Worker.";
+    } else if (status === 401 || status === 403) {
+      orientacao =
+        "Verifique as permissões e restrições da chave GEMINI_API_KEY no Google AI Studio.";
+    } else if (status === 404) {
+      orientacao =
+        "O modelo solicitado pode não estar disponível para sua chave.";
+    } else if (status === 429) {
+      orientacao =
+        "A cota ou o limite de requisições do Gemini foi atingido. Verifique o plano gratuito.";
+    } else if (status >= 500) {
+      orientacao =
+        "O Worker ou o serviço Gemini apresentou uma falha. Consulte os detalhes acima.";
+    }
+
+    return [
+      "Erro HTTP: " + status,
+      String(titulo),
+      detalhes,
+      orientacao
+    ].filter(Boolean).join("\n\n");
+  }
+
+  async function perguntarIACorrigida() {
+    if (enviando) return;
+
+    const pergunta = $("pergunta")?.value.trim();
+
+    if (!pergunta) {
+      $("resposta").textContent =
+        "Digite sua pergunta antes de enviar.";
+      return;
+    }
+
+    enviando = true;
+
+    const botao = $("perguntar");
+    const status = $("aiStatus");
+    const resposta = $("resposta");
+    const fontes = $("fontesResposta");
+
+    botao.disabled = true;
+    botao.textContent = "⏳ Consultando...";
+    status.textContent = "Conectando ao Gemini";
+    resposta.textContent = "Aguarde a resposta da IA...";
+    fontes.replaceChildren();
+
+    const controller = new AbortController();
+    const timeout = setTimeout(
+      () => controller.abort(),
+      60000
+    );
+
+    try {
+      const uf = $("uf")?.value || "";
+      const estado = $("uf")?.selectedOptions?.[0]?.text || "";
+
+      const requisicao = await fetch(IA_URL, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-store",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          pergunta: pergunta,
+          cidade: $("cidade")?.value.trim() || "",
+          estado: uf ? estado : ""
+        }),
+        signal: controller.signal
+      });
+
+      const texto = await requisicao.text();
+
+      let data;
+
+      try {
+        data = JSON.parse(texto);
+      } catch {
+        throw new Error(
+          "O servidor não devolveu JSON válido.\n" +
+          "HTTP: " + requisicao.status + "\n" +
+          texto.slice(0, 400)
+        );
+      }
+
+      if (!requisicao.ok) {
+        throw new Error(
+          mensagemErro(data, requisicao.status)
+        );
+      }
+
+      if (!data.resposta ||
+          typeof data.resposta !== "string" ||
+          !data.resposta.trim()) {
+        throw new Error(
+          "O Worker respondeu, mas não enviou texto.\n\n" +
+          JSON.stringify(data, null, 2).slice(0, 1500)
+        );
+      }
+
+      resposta.textContent = data.resposta;
+
+      status.textContent =
+        "Gemini conectado • " +
+        (data.modelo || "modelo não informado");
+
+      if (data.aviso) {
+        const aviso = document.createElement("p");
+        aviso.className = "muted";
+        aviso.textContent = data.aviso;
+        fontes.appendChild(aviso);
+      }
+
+      if (Array.isArray(data.fontes)) {
+        data.fontes.forEach(fonte => {
+          try {
+            const url = new URL(fonte.url);
+
+            if (!["https:", "http:"].includes(url.protocol)) {
+              return;
+            }
+
+            const a = document.createElement("a");
+            a.className = "link";
+            a.href = url.href;
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            a.textContent = fonte.titulo || "Fonte";
+            fontes.appendChild(a);
+          } catch {}
+        });
+      }
+
+    } catch (erro) {
+      status.textContent = "Erro na IA";
+
+      if (erro.name === "AbortError") {
+        resposta.textContent =
+          "A consulta demorou mais de 60 segundos.\n" +
+          "Verifique o Worker e tente novamente.";
+      } else if (erro instanceof TypeError) {
+        resposta.textContent =
+          "Falha de comunicação com o Cloudflare.\n\n" +
+          "Verifique se o Worker está publicado e " +
+          "se permite requisições do domínio do seu site.\n\n" +
+          "Detalhe: " + erro.message;
+      } else {
+        resposta.textContent =
+          "Não foi possível consultar a IA.\n\n" +
+          erro.message;
+      }
+
+      console.error("MEU CONCURSO IA:", erro);
+
+    } finally {
+      clearTimeout(timeout);
+      enviando = false;
+      botao.disabled = false;
+      botao.textContent = "✨ Perguntar à IA";
+    }
+  }
+
+  // Substitui apenas o comportamento da IA.
+  // As demais ferramentas continuam intactas.
+  window.perguntarIA = perguntarIACorrigida;
+
+  const botao = $("perguntar");
+
+  if (botao) {
+    botao.onclick = perguntarIACorrigida;
+  }
+
+  // Teste da disponibilidade do Worker.
+  window.testarConexaoGemini = async function () {
+    try {
+      const response = await fetch(IA_URL, {
+        method: "GET",
+        cache: "no-store"
+      });
+
+      const data = await response.json();
+
+      console.log("STATUS DO WORKER:", data);
+
+      return data;
+    } catch (erro) {
+      console.error("WORKER INDISPONÍVEL:", erro);
+      return null;
+    }
+  };
+
+  console.log(
+    "MEU CONCURSO: correção da conexão Gemini carregada."
+  );
+})();
 </script>
+<!-- FIM DA CORREÇÃO -->
+
 </body>
 </html>
