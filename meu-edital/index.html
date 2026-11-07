@@ -3,353 +3,161 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2563eb">
-<meta name="description" content="MEU EDITAL - Organize editais, inscrições, documentos, prazos e etapas importantes.">
-<title>MEU EDITAL | BUSINESS PRO</title>
-
+<title>MEU EDITAL PRO | BUSINESS PRO</title>
 <style>
 :root{
- --blue:#2563eb;
- --navy:#142747;
- --bg:#f3f7ff;
- --line:#dce5f3;
- --muted:#64748b;
- --green:#15803d;
- --red:#dc2626;
- --orange:#d97706;
+ --blue:#2563eb;--navy:#17376e;--ink:#102747;
+ --muted:#60758f;--bg:#f2f6ff;--line:#d8e4f5;
+ --green:#059669;--red:#dc2626;--amber:#b45309
 }
 *{box-sizing:border-box}
-body{
- margin:0;
- background:var(--bg);
- color:var(--navy);
- font-family:Arial,Helvetica,sans-serif;
-}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-a{color:var(--blue)}
+a{text-decoration:none;color:inherit}
 header{
- background:white;
- border-bottom:1px solid var(--line);
- padding:18px 5%;
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:12px;
+ background:white;border-bottom:1px solid var(--line);
+ padding:16px 4%;display:flex;align-items:center;
+ justify-content:space-between;gap:12px
 }
-.brand{font-size:22px;font-weight:900}
-.brand span{color:var(--blue)}
-.back{font-weight:800;text-decoration:none}
-main{
- max-width:1250px;
- margin:auto;
- padding:25px 18px;
-}
+.logo{font-size:20px;font-weight:900}
+.logo span{color:var(--blue)}
+main{max-width:1550px;margin:auto;padding:24px 18px}
 .hero{
- background:linear-gradient(125deg,#14366d,#2563eb);
- color:white;
- border-radius:24px;
- padding:36px;
- box-shadow:0 15px 35px #2563eb25;
+ background:linear-gradient(115deg,#17376e,#2563eb);
+ color:white;padding:44px;border-radius:28px;margin-bottom:28px
 }
-.hero small{
- letter-spacing:2px;
- font-weight:900;
-}
-.hero h1{
- font-size:clamp(28px,4vw,43px);
- margin:12px 0;
-}
-.hero p{
- line-height:1.7;
- max-width:780px;
- opacity:.94;
-}
-.toolbar{
- display:flex;
- flex-wrap:wrap;
- gap:10px;
- margin:24px 0;
-}
+.hero small{font-weight:900;letter-spacing:2px}
+.hero h1{font-size:clamp(32px,5vw,54px);margin:20px 0}
+.hero p{font-size:18px;line-height:1.7;max-width:1000px}
 .btn{
- border:0;
- background:var(--blue);
- color:white;
- padding:12px 16px;
- border-radius:12px;
- font-weight:800;
- display:inline-flex;
- align-items:center;
- justify-content:center;
- gap:7px;
- text-decoration:none;
+ border:0;border-radius:12px;padding:13px 17px;
+ background:var(--blue);color:white;font-weight:800
 }
+.btn.light{background:white;color:var(--ink);border:1px solid var(--line)}
+.btn.alt{background:#e9f0ff;color:#1d4ed8}
+.btn.red{background:#fee2e2;color:#b91c1c}
+.btn.sm{padding:9px 12px;font-size:12px}
 .btn:hover{filter:brightness(.96)}
-.secondary{
- background:white;
- color:var(--navy);
- border:1px solid var(--line);
-}
-.danger{
- background:#fff1f2;
- color:var(--red);
-}
-.search{
- flex:1;
- min-width:190px;
- background:white;
- border:1px solid var(--line);
- border-radius:12px;
- padding:13px;
-}
-.stats{
- display:grid;
- grid-template-columns:repeat(4,minmax(0,1fr));
- gap:14px;
- margin-bottom:24px;
-}
-.stat,.panel,.record{
- background:white;
- border:1px solid var(--line);
- border-radius:19px;
- padding:22px;
- box-shadow:0 10px 25px #1e3a8a08;
-}
-.stat small{color:var(--muted)}
-.stat strong{
- display:block;
- font-size:29px;
- margin-top:9px;
-}
-.panel{margin-bottom:22px}
-.panel h2{margin-top:0}
-.filters{
- display:flex;
- flex-wrap:wrap;
- gap:9px;
- margin-bottom:20px;
-}
-.filter{
- border:1px solid var(--line);
- background:white;
- border-radius:30px;
- padding:9px 15px;
- color:var(--navy);
- font-weight:700;
-}
-.filter.active{
- background:var(--blue);
- border-color:var(--blue);
- color:white;
-}
-.records{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:15px;
-}
-.record h3{
- margin:13px 0;
- overflow-wrap:anywhere;
-}
-.record p{
- line-height:1.6;
- color:var(--muted);
- overflow-wrap:anywhere;
-}
-.tag{
- display:inline-block;
- padding:7px 12px;
- border-radius:30px;
- background:#eaf1ff;
- color:#1d4ed8;
- font-size:12px;
- font-weight:900;
-}
-.tag.green{
- background:#dcfce7;
- color:#166534;
-}
-.tag.red{
- background:#fee2e2;
- color:#b91c1c;
-}
-.tag.orange{
- background:#fef3c7;
- color:#92400e;
-}
-.actions{
- display:flex;
- flex-wrap:wrap;
- gap:8px;
- margin-top:17px;
-}
-.empty{
- grid-column:1/-1;
- text-align:center;
- padding:45px;
- color:var(--muted);
-}
-.progress{
- height:11px;
- background:#e6edf8;
- border-radius:20px;
- overflow:hidden;
- margin:13px 0;
-}
-.progressbar{
- height:100%;
- background:linear-gradient(90deg,#2563eb,#22c55e);
- border-radius:20px;
-}
-.checklist{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:10px;
- margin-top:10px;
-}
-.checkitem{
- display:flex;
- align-items:flex-start;
- gap:9px;
- background:#f8fbff;
- border:1px solid var(--line);
- padding:12px;
- border-radius:11px;
- font-size:13px;
- font-weight:700;
-}
-.checkitem input{
- width:auto;
- margin:2px 0;
- accent-color:var(--blue);
-}
-.links{
- display:grid;
- grid-template-columns:repeat(3,minmax(0,1fr));
- gap:12px;
-}
-.linkcard{
- display:flex;
- flex-direction:column;
- gap:9px;
- padding:19px;
- border:1px solid var(--line);
- border-radius:15px;
- text-decoration:none;
- background:#f8fbff;
-}
-.linkcard strong{color:var(--blue)}
-.linkcard small{
- color:var(--muted);
- line-height:1.5;
-}
-.tablewrap{overflow-x:auto}
-table{
- width:100%;
- border-collapse:collapse;
-}
-th,td{
- padding:13px;
- text-align:left;
- border-bottom:1px solid var(--line);
- font-size:14px;
-}
-th{background:#f4f8ff}
-dialog{
- border:0;
- border-radius:22px;
- padding:0;
- width:min(850px,96vw);
- max-height:92vh;
- overflow:auto;
- box-shadow:0 25px 100px #0f172a60;
-}
-dialog::backdrop{background:#071326aa}
-.modalhead{
- background:#f4f8ff;
- padding:23px 27px;
- border-bottom:1px solid var(--line);
-}
-.modalhead h2{margin:0}
-form{padding:25px 27px}
-.fields{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:16px;
-}
-.field{
- display:flex;
- flex-direction:column;
- gap:7px;
-}
-.full{grid-column:1/-1}
-label{
- font-size:13px;
- font-weight:800;
-}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:25px}
+.toolbar input{flex:1;min-width:220px}
 input,select,textarea{
- width:100%;
- border:1px solid #cbd8eb;
- border-radius:11px;
- padding:13px;
- background:white;
- color:var(--navy);
+ width:100%;padding:13px;border:1px solid #cbd8eb;
+ border-radius:12px;background:white;color:var(--ink);outline:none
 }
-textarea{
- min-height:105px;
- resize:vertical;
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+textarea{min-height:100px;resize:vertical}
+.stats{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:17px;margin-bottom:28px
 }
-.modalactions{
- display:flex;
- gap:10px;
- justify-content:flex-end;
- flex-wrap:wrap;
- margin-top:24px;
+.stat,.panel{
+ background:white;border:1px solid var(--line);
+ border-radius:21px;box-shadow:0 8px 28px #17376e0b
 }
-.note{
- color:var(--muted);
- font-size:13px;
- line-height:1.7;
+.stat{padding:26px}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:31px;margin-top:13px}
+.panel{padding:27px;margin-bottom:24px}
+.panel h2{margin:0 0 20px}
+.links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.linkCard{
+ display:block;background:#f8fbff;border:1px solid var(--line);
+ border-radius:17px;padding:20px
 }
-.printarea{display:none}
-@media(max-width:800px){
- .links{grid-template-columns:repeat(2,minmax(0,1fr))}
+.linkCard:hover{border-color:var(--blue)}
+.linkCard strong{display:block;color:var(--blue);margin-bottom:10px}
+.linkCard p{font-size:13px;line-height:1.6;color:var(--muted);margin:0}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field label{font-size:12px;font-weight:800}
+.full{grid-column:1/-1}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+.tabs{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:20px}
+.tab{
+ background:white;border:1px solid var(--line);
+ padding:10px 15px;border-radius:22px;font-weight:800
 }
-@media(max-width:650px){
- header{padding:16px}
- main{padding:17px 12px}
- .hero{padding:25px}
- .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
- .records,.fields,.links,.checklist{grid-template-columns:1fr}
- .full{grid-column:auto}
+.tab.active{background:var(--blue);color:white}
+.card{
+ background:#f9fbff;border:1px solid var(--line);
+ border-radius:17px;padding:21px;margin-bottom:14px;
+ overflow-wrap:anywhere
+}
+.card h3{margin:12px 0}
+.card p{
+ color:var(--muted);font-size:13px;
+ line-height:1.7;white-space:pre-wrap
+}
+.badge{
+ display:inline-block;padding:7px 12px;border-radius:20px;
+ background:#e9f0ff;color:#1d4ed8;font-size:12px;font-weight:800
+}
+.badge.green{background:#d1fae5;color:#047857}
+.badge.red{background:#fee2e2;color:#b91c1c}
+.badge.orange{background:#fef3c7;color:#92400e}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.checkitem{
+ display:flex;align-items:center;gap:10px;padding:12px;
+ border:1px solid var(--line);border-radius:12px;
+ margin-bottom:9px;background:#f8fbff
+}
+.checkitem input{width:18px;height:18px;flex-shrink:0}
+.checkitem span{overflow-wrap:anywhere}
+.timeline{
+ border-left:3px solid #bfdbfe;
+ margin:18px 0 0 10px;padding-left:18px
+}
+.timelineItem{padding:10px 0;border-bottom:1px solid var(--line)}
+.timelineItem small{color:var(--muted)}
+.note{color:var(--muted);font-size:13px;line-height:1.7}
+.empty{text-align:center;padding:45px;color:var(--muted)}
+.hidden{display:none!important}
+#toast{
+ display:none;position:fixed;bottom:20px;left:50%;
+ transform:translateX(-50%);background:var(--ink);
+ color:white;padding:14px 20px;border-radius:12px;
+ z-index:20;max-width:90vw;text-align:center
+}
+#printArea{display:none}
+@media(max-width:950px){
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .links{grid-template-columns:repeat(2,1fr)}
+ .grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+ main{padding:12px 9px}
+ .hero{padding:28px 20px}
+ .hero p{font-size:14px}
  .stat{padding:17px}
- .stat strong{font-size:25px}
+ .stat strong{font-size:24px}
+ .panel{padding:17px}
+ .fields,.links{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .toolbar>*{width:100%}
+ .logo{font-size:16px}
 }
+@page{size:A4;margin:15mm}
 @media print{
- header,main>*:not(.printarea),dialog{display:none!important}
- body{background:white}
- main{padding:0}
- .printarea{
-  display:block!important;
-  padding:12mm;
-  color:#111;
-  font:14px/1.7 Arial,sans-serif;
+ body>*:not(#printArea){display:none!important}
+ #printArea{display:block!important;color:black}
+ #printArea h1{font-size:22px}
+ #printArea table{width:100%;border-collapse:collapse}
+ #printArea th,#printArea td{
+  border:1px solid #aaa;padding:8px;text-align:left;
+  font-size:11px;overflow-wrap:anywhere
  }
- .printarea h1{font-size:23px}
- .printarea p{
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
- }
+ #printArea p{white-space:pre-wrap}
 }
 </style>
 </head>
-
 <body>
 
 <header>
- <div class="brand">◆ BUSINESS <span>PRO</span></div>
- <a class="back" href="../">← Voltar ao portal</a>
+ <div class="logo">📚 MEU <span>EDITAL PRO</span></div>
+ <a href="../" class="btn alt">← Business Pro</a>
 </header>
 
 <main>
@@ -358,891 +166,1068 @@ textarea{
  <small>EDITAIS, INSCRIÇÕES E DOCUMENTAÇÃO</small>
  <h1>📚 MEU EDITAL</h1>
  <p>
-  Organize editais de concursos, processos seletivos,
-  bolsas, licitações e oportunidades. Controle inscrições,
-  documentos, prazos, etapas e resultados em um único lugar.
+  Organize editais de concursos, processos seletivos, bolsas,
+  licitações e oportunidades. Controle inscrições, documentos,
+  prazos, etapas e resultados em um único lugar.
  </p>
 </section>
 
 <div class="toolbar">
- <button class="btn" id="newBtn">+ Cadastrar edital</button>
- <input class="search" id="search" placeholder="Pesquisar edital, instituição ou número...">
- <button class="btn secondary" id="csvBtn">Exportar CSV</button>
- <button class="btn secondary" id="backupBtn">Backup JSON</button>
- <button class="btn secondary" id="importBtn">Importar backup</button>
- <input type="file" id="importFile" accept=".json,application/json" hidden>
+ <button class="btn" onclick="openForm()">+ Cadastrar edital</button>
+ <input id="search" placeholder="🔎 Pesquisar edital, instituição ou número...">
+ <button class="btn light" onclick="exportCSV()">Exportar CSV</button>
+ <button class="btn light" onclick="exportBackup()">Backup JSON</button>
+ <button class="btn light" onclick="$('backupFile').click()">Importar backup</button>
+ <button class="btn light" onclick="printReport()">Imprimir relatório</button>
+ <input id="backupFile" type="file" accept=".json,application/json" hidden>
 </div>
 
-<section class="stats">
+<div class="stats">
  <div class="stat">
   <small>Editais cadastrados</small>
   <strong id="total">0</strong>
  </div>
  <div class="stat">
   <small>Inscrições abertas</small>
-  <strong id="opened">0</strong>
+  <strong id="openCount">0</strong>
  </div>
  <div class="stat">
   <small>Em acompanhamento</small>
-  <strong id="progressCount">0</strong>
+  <strong id="ongoing">0</strong>
  </div>
  <div class="stat">
   <small>Prazos informados vencidos</small>
-  <strong id="lateCount">0</strong>
+  <strong id="overdue">0</strong>
  </div>
-</section>
+</div>
 
 <section class="panel">
- <h2>Portais oficiais para consultar editais</h2>
-
+ <h2>Portais oficiais para consultar editais no Brasil</h2>
  <div class="links">
-  <a class="linkcard" href="https://www.gov.br/pt-br" target="_blank" rel="noopener noreferrer">
+  <a class="linkCard" href="https://www.gov.br/" target="_blank" rel="noopener noreferrer">
    <strong>🏛️ Gov.br</strong>
-   <small>Serviços públicos e informações oficiais.</small>
+   <p>Serviços públicos e informações oficiais.</p>
   </a>
-
-  <a class="linkcard" href="https://www.in.gov.br/" target="_blank" rel="noopener noreferrer">
+  <a class="linkCard" href="https://www.in.gov.br/" target="_blank" rel="noopener noreferrer">
    <strong>📰 Diário Oficial da União</strong>
-   <small>Publicações oficiais, atos e editais federais.</small>
+   <p>Publicações oficiais, atos e editais federais.</p>
   </a>
-
-  <a class="linkcard" href="https://www.gov.br/compras/pt-br" target="_blank" rel="noopener noreferrer">
+  <a class="linkCard" href="https://www.gov.br/compras/" target="_blank" rel="noopener noreferrer">
    <strong>📑 Compras Governamentais</strong>
-   <small>Informações oficiais sobre contratações públicas.</small>
+   <p>Informações oficiais sobre contratações públicas.</p>
   </a>
-
-  <a class="linkcard" href="https://www.gov.br/pncp/pt-br" target="_blank" rel="noopener noreferrer">
+  <a class="linkCard" href="https://pncp.gov.br/" target="_blank" rel="noopener noreferrer">
    <strong>📋 PNCP</strong>
-   <small>Portal Nacional de Contratações Públicas.</small>
+   <p>Portal Nacional de Contratações Públicas.</p>
   </a>
-
-  <a class="linkcard" href="https://www.gov.br/capes/pt-br" target="_blank" rel="noopener noreferrer">
+  <a class="linkCard" href="https://www.gov.br/capes/" target="_blank" rel="noopener noreferrer">
    <strong>🎓 CAPES</strong>
-   <small>Informações sobre programas e oportunidades acadêmicas.</small>
+   <p>Programas, bolsas e oportunidades acadêmicas.</p>
   </a>
-
-  <a class="linkcard" href="https://www.gov.br/cnpq/pt-br" target="_blank" rel="noopener noreferrer">
+  <a class="linkCard" href="https://www.gov.br/cnpq/" target="_blank" rel="noopener noreferrer">
    <strong>🔬 CNPq</strong>
-   <small>Informações sobre chamadas e oportunidades de pesquisa.</small>
+   <p>Chamadas e oportunidades de pesquisa.</p>
+  </a>
+  <a class="linkCard" href="https://www.gov.br/mec/" target="_blank" rel="noopener noreferrer">
+   <strong>📖 Ministério da Educação</strong>
+   <p>Programas e informações educacionais.</p>
+  </a>
+  <a class="linkCard" href="https://www.gov.br/gestao/" target="_blank" rel="noopener noreferrer">
+   <strong>💼 Ministério da Gestão</strong>
+   <p>Informações sobre gestão pública e seleções federais.</p>
+  </a>
+  <a class="linkCard" href="https://www.gov.br/pt-br/servicos" target="_blank" rel="noopener noreferrer">
+   <strong>🧾 Serviços federais</strong>
+   <p>Consulte serviços e procedimentos governamentais.</p>
   </a>
  </div>
 </section>
 
 <section class="panel">
- <h2>Meus editais</h2>
-
- <div class="filters" id="filters">
-  <button class="filter active" data-filter="Todos">Todos</button>
-  <button class="filter" data-filter="Planejado">Planejados</button>
-  <button class="filter" data-filter="Inscrição aberta">Inscrição aberta</button>
-  <button class="filter" data-filter="Inscrito">Inscritos</button>
-  <button class="filter" data-filter="Em análise">Em análise</button>
-  <button class="filter" data-filter="Aprovado">Aprovados</button>
-  <button class="filter" data-filter="Finalizado">Finalizados</button>
-  <button class="filter" data-filter="Vencidos">Prazos vencidos</button>
+ <h2>Oportunidades e portais internacionais</h2>
+ <div class="links">
+  <a class="linkCard" href="https://careers.un.org/" target="_blank" rel="noopener noreferrer">
+   <strong>🇺🇳 United Nations Careers</strong>
+   <p>Oportunidades profissionais nas Nações Unidas.</p>
+  </a>
+  <a class="linkCard" href="https://erasmus-plus.ec.europa.eu/" target="_blank" rel="noopener noreferrer">
+   <strong>🇪🇺 Erasmus+</strong>
+   <p>Programas europeus de educação e mobilidade.</p>
+  </a>
+  <a class="linkCard" href="https://euraxess.ec.europa.eu/" target="_blank" rel="noopener noreferrer">
+   <strong>🔬 EURAXESS</strong>
+   <p>Oportunidades de pesquisa e carreira acadêmica.</p>
+  </a>
+  <a class="linkCard" href="https://www.daad.de/en/" target="_blank" rel="noopener noreferrer">
+   <strong>🇩🇪 DAAD</strong>
+   <p>Informações sobre estudos e bolsas na Alemanha.</p>
+  </a>
+  <a class="linkCard" href="https://www.fulbrightprogram.org/" target="_blank" rel="noopener noreferrer">
+   <strong>🇺🇸 Fulbright</strong>
+   <p>Informações sobre intercâmbio educacional.</p>
+  </a>
+  <a class="linkCard" href="https://www.worldbank.org/en/about/careers" target="_blank" rel="noopener noreferrer">
+   <strong>🌍 World Bank Careers</strong>
+   <p>Oportunidades profissionais no Banco Mundial.</p>
+  </a>
  </div>
-
- <div class="records" id="records"></div>
+ <p class="note">
+  Estes links levam aos portais das instituições.
+  Consulte os editais específicos para confirmar elegibilidade,
+  documentos, inscrições e prazos.
+ </p>
 </section>
 
 <section class="panel">
- <h2>Próximos prazos cadastrados</h2>
- <div class="tablewrap">
-  <table>
-   <thead>
-    <tr>
-     <th>Edital</th>
-     <th>Instituição</th>
-     <th>Prazo</th>
-     <th>Tempo restante</th>
-    </tr>
-   </thead>
-   <tbody id="deadlineTable"></tbody>
-  </table>
+ <h2>Modelos de organização</h2>
+ <div class="grid">
+  <div class="card">
+   <h3>🎓 Concurso público</h3>
+   <p>Inscrição, cargo, banca, provas, documentos e resultado.</p>
+   <button class="btn alt" onclick="startTemplate('Concurso público')">Criar edital</button>
+  </div>
+  <div class="card">
+   <h3>📚 Bolsa de estudos</h3>
+   <p>Requisitos, histórico acadêmico, cartas e etapas.</p>
+   <button class="btn alt" onclick="startTemplate('Bolsa de estudos')">Criar edital</button>
+  </div>
+  <div class="card">
+   <h3>🏢 Licitação</h3>
+   <p>Documentos de habilitação, propostas, sessões e resultados.</p>
+   <button class="btn alt" onclick="startTemplate('Licitação')">Criar edital</button>
+  </div>
+  <div class="card">
+   <h3>💼 Processo seletivo</h3>
+   <p>Inscrição, currículo, entrevistas e acompanhamento.</p>
+   <button class="btn alt" onclick="startTemplate('Processo seletivo')">Criar edital</button>
+  </div>
  </div>
 </section>
 
-<p class="note">
- Este aplicativo funciona como organizador pessoal.
- Ele não publica editais, não realiza inscrições e não consulta
- automaticamente os portais oficiais.
- As datas, exigências e regras devem ser verificadas no edital original.
- Os dados ficam armazenados apenas neste navegador.
- Faça backups regularmente.
-</p>
+<section id="formPanel" class="panel hidden">
+ <h2 id="formHeading">Cadastrar novo edital</h2>
 
-<section class="printarea" id="printArea"></section>
+ <div class="fields">
+  <div class="field">
+   <label>Título do edital *</label>
+   <input id="fTitle" placeholder="Ex.: Concurso Prefeitura 2026">
+  </div>
+
+  <div class="field">
+   <label>Tipo de edital</label>
+   <select id="fType">
+    <option>Concurso público</option>
+    <option>Processo seletivo</option>
+    <option>Bolsa de estudos</option>
+    <option>Licitação</option>
+    <option>Chamada pública</option>
+    <option>Pesquisa científica</option>
+    <option>Intercâmbio</option>
+    <option>Estágio</option>
+    <option>Emprego</option>
+    <option>Outro</option>
+   </select>
+  </div>
+
+  <div class="field">
+   <label>Instituição organizadora</label>
+   <input id="fInstitution">
+  </div>
+
+  <div class="field">
+   <label>Número do edital</label>
+   <input id="fNumber" placeholder="Ex.: 001/2026">
+  </div>
+
+  <div class="field">
+   <label>País</label>
+   <input id="fCountry" value="Brasil">
+  </div>
+
+  <div class="field">
+   <label>Estado / região</label>
+   <input id="fRegion">
+  </div>
+
+  <div class="field">
+   <label>Cargo, curso ou oportunidade</label>
+   <input id="fOpportunity">
+  </div>
+
+  <div class="field">
+   <label>Vagas disponíveis</label>
+   <input id="fVacancies" type="number" min="0" step="1">
+  </div>
+
+  <div class="field">
+   <label>Data de publicação</label>
+   <input id="fPublished" type="date">
+  </div>
+
+  <div class="field">
+   <label>Início das inscrições</label>
+   <input id="fStart" type="date">
+  </div>
+
+  <div class="field">
+   <label>Fim das inscrições</label>
+   <input id="fDeadline" type="date">
+  </div>
+
+  <div class="field">
+   <label>Próxima etapa / prova</label>
+   <input id="fExam" type="date">
+  </div>
+
+  <div class="field">
+   <label>Data prevista do resultado</label>
+   <input id="fResult" type="date">
+  </div>
+
+  <div class="field">
+   <label>Situação</label>
+   <select id="fStatus">
+    <option>Planejado</option>
+    <option>Inscrições abertas</option>
+    <option>Inscrição realizada</option>
+    <option>Em acompanhamento</option>
+    <option>Aguardando resultado</option>
+    <option>Aprovado</option>
+    <option>Não aprovado</option>
+    <option>Encerrado</option>
+    <option>Cancelado</option>
+   </select>
+  </div>
+
+  <div class="field">
+   <label>Prioridade</label>
+   <select id="fPriority">
+    <option>Normal</option>
+    <option>Alta</option>
+    <option>Urgente</option>
+   </select>
+  </div>
+
+  <div class="field">
+   <label>Número da inscrição / protocolo</label>
+   <input id="fProtocol">
+  </div>
+
+  <div class="field full">
+   <label>Link oficial do edital</label>
+   <input id="fLink" type="url" placeholder="https://...">
+  </div>
+
+  <div class="field full">
+   <label>Requisitos e documentos exigidos</label>
+   <textarea id="fRequirements" placeholder="Anote as exigências do edital oficial."></textarea>
+  </div>
+
+  <div class="field full">
+   <label>Observações</label>
+   <textarea id="fNotes"></textarea>
+  </div>
+ </div>
+
+ <div class="actions">
+  <button class="btn" onclick="saveEdital()">Salvar edital</button>
+  <button class="btn light" onclick="closeForm()">Cancelar</button>
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Meus editais cadastrados</h2>
+
+ <div class="tabs" id="filters">
+  <button class="tab active" data-filter="Todos">Todos</button>
+  <button class="tab" data-filter="Inscrições abertas">Inscrições abertas</button>
+  <button class="tab" data-filter="Em acompanhamento">Em acompanhamento</button>
+  <button class="tab" data-filter="Aguardando resultado">Aguardando resultado</button>
+  <button class="tab" data-filter="Aprovado">Aprovados</button>
+  <button class="tab" data-filter="Vencidos">Prazos vencidos</button>
+ </div>
+
+ <div id="editaisList"></div>
+</section>
+
+<section class="panel">
+ <h2>Calendário de oportunidades</h2>
+ <div class="grid">
+  <div>
+   <h3>Encerramento de inscrições</h3>
+   <div id="deadlineList"></div>
+  </div>
+  <div>
+   <h3>Próximas provas e etapas</h3>
+   <div id="examList"></div>
+  </div>
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Privacidade e segurança</h2>
+ <p class="note">
+  Os editais e documentos de acompanhamento são organizados
+  somente neste navegador. Este aplicativo não realiza inscrições
+  oficiais, não verifica automaticamente atualizações de editais,
+  não envia propostas e não confirma resultados.
+  Faça backup JSON regularmente e consulte os canais oficiais.
+ </p>
+</section>
 
 </main>
 
-<dialog id="modal">
- <div class="modalhead">
-  <h2 id="modalTitle">Cadastrar edital</h2>
- </div>
-
- <form id="form">
-  <div class="fields">
-
-   <div class="field full">
-    <label for="titulo">Título do edital *</label>
-    <input id="titulo" required placeholder="Ex.: Processo seletivo 2026">
-   </div>
-
-   <div class="field">
-    <label for="numero">Número do edital</label>
-    <input id="numero" placeholder="Ex.: 001/2026">
-   </div>
-
-   <div class="field">
-    <label for="tipo">Tipo de edital</label>
-    <select id="tipo">
-     <option>Concurso público</option>
-     <option>Processo seletivo</option>
-     <option>Bolsa de estudo</option>
-     <option>Licitação</option>
-     <option>Chamamento público</option>
-     <option>Curso ou capacitação</option>
-     <option>Estágio</option>
-     <option>Emprego</option>
-     <option>Pesquisa</option>
-     <option>Outro</option>
-    </select>
-   </div>
-
-   <div class="field">
-    <label for="instituicao">Instituição responsável *</label>
-    <input id="instituicao" required>
-   </div>
-
-   <div class="field">
-    <label for="banca">Banca ou organizadora</label>
-    <input id="banca">
-   </div>
-
-   <div class="field">
-    <label for="local">Cidade, estado ou local</label>
-    <input id="local">
-   </div>
-
-   <div class="field">
-    <label for="publicacao">Data de publicação</label>
-    <input id="publicacao" type="date">
-   </div>
-
-   <div class="field">
-    <label for="inicio">Início das inscrições</label>
-    <input id="inicio" type="date">
-   </div>
-
-   <div class="field">
-    <label for="fim">Fim das inscrições</label>
-    <input id="fim" type="date">
-   </div>
-
-   <div class="field">
-    <label for="etapa">Data da próxima etapa</label>
-    <input id="etapa" type="date">
-   </div>
-
-   <div class="field">
-    <label for="resultado">Previsão de resultado</label>
-    <input id="resultado" type="date">
-   </div>
-
-   <div class="field">
-    <label for="prazo">Prazo principal para acompanhamento</label>
-    <input id="prazo" type="date">
-   </div>
-
-   <div class="field">
-    <label for="vagas">Quantidade de vagas</label>
-    <input id="vagas" type="number" min="0" step="1">
-   </div>
-
-   <div class="field">
-    <label for="taxa">Taxa de inscrição (R$)</label>
-    <input id="taxa" type="number" min="0" step="0.01">
-   </div>
-
-   <div class="field">
-    <label for="situacao">Situação</label>
-    <select id="situacao">
-     <option>Planejado</option>
-     <option>Inscrição aberta</option>
-     <option>Inscrito</option>
-     <option>Em análise</option>
-     <option>Aguardando resultado</option>
-     <option>Aprovado</option>
-     <option>Não aprovado</option>
-     <option>Finalizado</option>
-     <option>Cancelado</option>
-    </select>
-   </div>
-
-   <div class="field">
-    <label for="prioridade">Prioridade</label>
-    <select id="prioridade">
-     <option>Normal</option>
-     <option>Alta</option>
-     <option>Urgente</option>
-     <option>Baixa</option>
-    </select>
-   </div>
-
-   <div class="field full">
-    <label for="link">Link oficial do edital</label>
-    <input id="link" type="url" placeholder="https://...">
-   </div>
-
-   <div class="field full">
-    <label for="descricao">Descrição e objetivo *</label>
-    <textarea id="descricao" required placeholder="Descreva a oportunidade, objetivo e informações importantes."></textarea>
-   </div>
-
-   <div class="field full">
-    <label for="requisitos">Requisitos de participação</label>
-    <textarea id="requisitos" placeholder="Escolaridade, idade, experiência, critérios e exigências do edital."></textarea>
-   </div>
-
-   <div class="field full">
-    <label>Checklist de organização</label>
-    <p class="note">
-     Lista genérica para controle pessoal. Consulte os documentos
-     obrigatórios no edital oficial.
-    </p>
-    <div class="checklist" id="documentChecklist"></div>
-   </div>
-
-   <div class="field full">
-    <label for="documentos">Outros documentos necessários</label>
-    <textarea id="documentos" placeholder="Liste os documentos exigidos no edital."></textarea>
-   </div>
-
-   <div class="field full">
-    <label for="etapas">Etapas do processo</label>
-    <textarea id="etapas" placeholder="Ex.: inscrição, avaliação documental, prova, entrevista, resultado."></textarea>
-   </div>
-
-   <div class="field full">
-    <label for="observacoes">Observações</label>
-    <textarea id="observacoes"></textarea>
-   </div>
-
-  </div>
-
-  <div class="modalactions">
-   <button type="button" class="btn secondary" id="cancelBtn">Cancelar</button>
-   <button type="submit" class="btn">Salvar edital</button>
-  </div>
- </form>
-</dialog>
+<div id="printArea"></div>
+<div id="toast" role="status"></div>
 
 <script>
 "use strict";
 
 const $=id=>document.getElementById(id);
-const KEY="businesspro_meu_edital_v1";
+const KEY="businesspro_meu_edital_v3";
 
-const FIELDS=[
- "titulo","numero","tipo","instituicao","banca",
- "local","publicacao","inicio","fim","etapa",
- "resultado","prazo","vagas","taxa","situacao",
- "prioridade","link","descricao","requisitos",
- "documentos","etapas","observacoes"
-];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
+ "&":"&amp;",
+ "<":"&lt;",
+ ">":"&gt;",
+ '"':"&quot;",
+ "'":"&#39;"
+}[c]));
 
-const LABELS={
- titulo:"Título do edital",
- numero:"Número",
- tipo:"Tipo",
- instituicao:"Instituição",
- banca:"Banca ou organizadora",
- local:"Local",
- publicacao:"Publicação",
- inicio:"Início das inscrições",
- fim:"Fim das inscrições",
- etapa:"Próxima etapa",
- resultado:"Previsão de resultado",
- prazo:"Prazo principal",
- vagas:"Vagas",
- taxa:"Taxa de inscrição",
- situacao:"Situação",
- prioridade:"Prioridade",
- link:"Link oficial",
- descricao:"Descrição",
- requisitos:"Requisitos",
- documentos:"Documentos adicionais",
- etapas:"Etapas",
- observacoes:"Observações"
-};
+const uid=()=>crypto.randomUUID?
+ crypto.randomUUID():
+ Date.now()+"-"+Math.random().toString(36).slice(2);
 
-const DOCS=[
- "Edital oficial consultado",
- "Requisitos de participação conferidos",
- "Documento de identificação separado",
- "Comprovantes exigidos separados",
- "Formulário de inscrição preenchido",
- "Comprovante de inscrição salvo",
- "Pagamento ou isenção conferido, se aplicável",
- "Datas importantes anotadas",
- "Documentos enviados, se exigidos",
- "Resultado acompanhado"
-];
+function today(){
+ const d=new Date();
+ return [
+  d.getFullYear(),
+  String(d.getMonth()+1).padStart(2,"0"),
+  String(d.getDate()).padStart(2,"0")
+ ].join("-");
+}
 
-let records=[];
-let editing=null;
-let activeFilter="Todos";
+function fmt(s){
+ if(!s)return "—";
+ const p=s.split("-");
+ return p.length===3?p.reverse().join("/"):s;
+}
+
+function toast(s){
+ $("toast").textContent=s;
+ $("toast").style.display="block";
+ clearTimeout(toast.timer);
+ toast.timer=setTimeout(
+  ()=>$("toast").style.display="none",3000
+ );
+}
+
+let db={editais:[]};
 
 try{
- const stored=JSON.parse(localStorage.getItem(KEY)||"[]");
- if(Array.isArray(stored))records=stored;
-}catch(e){
- alert("Não foi possível carregar os editais locais.");
-}
+ const v=JSON.parse(localStorage.getItem(KEY)||"null");
+ if(v&&Array.isArray(v.editais))db=v;
+}catch(e){}
 
-function esc(value){
- return String(value??"").replace(/[&<>"']/g,c=>({
-  "&":"&amp;",
-  "<":"&lt;",
-  ">":"&gt;",
-  '"':"&quot;",
-  "'":"&#39;"
- }[c]));
-}
+let editing=null;
+let filter="Todos";
 
-function save(){
+const fields={
+ fTitle:"title",
+ fType:"type",
+ fInstitution:"institution",
+ fNumber:"number",
+ fCountry:"country",
+ fRegion:"region",
+ fOpportunity:"opportunity",
+ fVacancies:"vacancies",
+ fPublished:"published",
+ fStart:"start",
+ fDeadline:"deadline",
+ fExam:"exam",
+ fResult:"result",
+ fStatus:"status",
+ fPriority:"priority",
+ fProtocol:"protocol",
+ fLink:"link",
+ fRequirements:"requirements",
+ fNotes:"notes"
+};
+
+function persist(){
  try{
-  localStorage.setItem(KEY,JSON.stringify(records));
+  localStorage.setItem(KEY,JSON.stringify(db));
   return true;
  }catch(e){
-  alert("Não foi possível salvar os dados neste navegador.");
+  toast("Não foi possível salvar os dados.");
   return false;
  }
 }
 
-function makeId(){
- return typeof crypto!=="undefined"&&crypto.randomUUID
-  ?crypto.randomUUID()
-  :Date.now()+"-"+Math.random().toString(36).slice(2);
-}
+const templates={
+ "Concurso público":[
+  "Ler edital completo",
+  "Conferir requisitos do cargo",
+  "Separar documentos pessoais",
+  "Realizar inscrição oficial",
+  "Conferir pagamento ou isenção da taxa",
+  "Guardar comprovante de inscrição",
+  "Consultar local e horário da prova",
+  "Acompanhar gabarito e resultado"
+ ],
+ "Bolsa de estudos":[
+  "Conferir requisitos de elegibilidade",
+  "Separar documentos acadêmicos",
+  "Preparar currículo",
+  "Preparar carta de motivação, se exigida",
+  "Providenciar traduções, se exigidas",
+  "Enviar candidatura no portal oficial",
+  "Guardar protocolo",
+  "Acompanhar resultado"
+ ],
+ "Licitação":[
+  "Ler edital e anexos",
+  "Conferir habilitação jurídica",
+  "Conferir regularidade fiscal exigida",
+  "Conferir qualificação técnica",
+  "Preparar proposta comercial",
+  "Conferir prazos e sessão",
+  "Enviar documentos pelo canal oficial",
+  "Acompanhar julgamento e resultado"
+ ],
+ "Processo seletivo":[
+  "Ler edital",
+  "Conferir requisitos",
+  "Preparar currículo",
+  "Separar documentos exigidos",
+  "Realizar inscrição",
+  "Guardar comprovante",
+  "Acompanhar etapas",
+  "Consultar resultado"
+ ]
+};
 
-function today(){
- const d=new Date();
- return d.getFullYear()+"-"+
-  String(d.getMonth()+1).padStart(2,"0")+"-"+
-  String(d.getDate()).padStart(2,"0");
-}
-
-function dateBR(value){
- if(!value)return "Não informado";
- const p=value.split("-");
- return p.length===3?p.reverse().join("/"):value;
-}
-
-function money(value){
- return Number(value||0).toLocaleString("pt-BR",{
-  style:"currency",
-  currency:"BRL"
- });
-}
-
-function closed(record){
- return [
-  "Aprovado","Não aprovado","Finalizado","Cancelado"
- ].includes(record.data.situacao);
-}
-
-function late(record){
- return !!record.data.prazo&&
-  record.data.prazo<today()&&!closed(record);
-}
-
-function daysUntil(value){
- if(!value)return null;
-
- const target=new Date(value+"T12:00:00");
- const current=new Date(today()+"T12:00:00");
-
- return Math.round((target-current)/86400000);
-}
-
-function deadlineText(value){
- const days=daysUntil(value);
-
- if(days===null)return "Não informado";
- if(days<0)return "Vencido há "+Math.abs(days)+" dia(s)";
- if(days===0)return "Hoje";
- return days+" dia(s)";
-}
-
-function buildChecklist(selected=[]){
- $("documentChecklist").replaceChildren();
-
- DOCS.forEach((name,index)=>{
-  const label=document.createElement("label");
-  label.className="checkitem";
-
-  const input=document.createElement("input");
-  input.type="checkbox";
-  input.value=name;
-  input.id="doc"+index;
-  input.checked=selected.includes(name);
-
-  const span=document.createElement("span");
-  span.textContent=name;
-
-  label.appendChild(input);
-  label.appendChild(span);
-
-  $("documentChecklist").appendChild(label);
- });
-}
-
-function selectedDocs(){
- return [...$("documentChecklist").querySelectorAll("input:checked")]
-  .map(input=>input.value);
+function templateFor(type){
+ return templates[type]||[
+  "Ler edital oficial",
+  "Conferir requisitos",
+  "Separar documentos",
+  "Realizar inscrição",
+  "Guardar protocolo",
+  "Acompanhar etapas e resultado"
+ ];
 }
 
 function openForm(id=null){
  editing=id;
 
- const record=records.find(x=>x.id===id);
+ Object.keys(fields).forEach(k=>$(k).value="");
 
- $("modalTitle").textContent=record?
-  "Editar edital":"Cadastrar edital";
+ $("fType").value="Concurso público";
+ $("fCountry").value="Brasil";
+ $("fStatus").value="Planejado";
+ $("fPriority").value="Normal";
 
- FIELDS.forEach(f=>{
-  $(f).value=record?.data?.[f]??"";
- });
+ if(id){
+  const r=db.editais.find(x=>x.id===id);
+  if(!r)return;
 
- if(!record){
-  $("situacao").value="Planejado";
-  $("prioridade").value="Normal";
+  Object.entries(fields).forEach(
+   ([field,key])=>$(field).value=r[key]??""
+  );
  }
 
- buildChecklist(record?.checklist||[]);
- $("modal").showModal();
+ $("formHeading").textContent=id?
+  "Editar edital":"Cadastrar novo edital";
+
+ $("formPanel").classList.remove("hidden");
+ $("formPanel").scrollIntoView({behavior:"smooth"});
 }
 
-function officialLink(value){
- if(!value)return "";
-
- try{
-  const url=new URL(value);
-
-  if(!["https:","http:"].includes(url.protocol))return "";
-
-  return `<a class="btn secondary"
-   href="${esc(url.href)}"
-   target="_blank" rel="noopener noreferrer">
-   Abrir edital oficial</a>`;
- }catch(e){
-  return "";
- }
+function startTemplate(type){
+ openForm();
+ $("fType").value=type;
+ $("fTitle").value=type+" — ";
+ $("fTitle").focus();
 }
 
-function render(){
- const q=$("search").value.toLocaleLowerCase("pt-BR").trim();
-
- $("total").textContent=records.length;
-
- $("opened").textContent=records.filter(x=>
-  x.data.situacao==="Inscrição aberta"&&
-  (!x.data.inicio||x.data.inicio<=today())&&
-  (!x.data.fim||x.data.fim>=today())
- ).length;
-
- $("progressCount").textContent=records.filter(x=>
-  ["Inscrito","Em análise","Aguardando resultado"]
-   .includes(x.data.situacao)
- ).length;
-
- $("lateCount").textContent=records.filter(late).length;
-
- const filtered=records.filter(x=>{
-  const status=activeFilter==="Todos"||
-   (activeFilter==="Vencidos"?
-    late(x):x.data.situacao===activeFilter);
-
-  const search=JSON.stringify(x.data)
-   .toLocaleLowerCase("pt-BR").includes(q);
-
-  return status&&search;
- });
-
- if(!filtered.length){
-  $("records").innerHTML=`
-   <div class="empty">
-    <h3>Nenhum edital encontrado</h3>
-    <p>Cadastre um edital ou altere os filtros.</p>
-   </div>`;
- }else{
-  $("records").innerHTML=filtered.map(x=>{
-   const d=x.data;
-   const checked=Array.isArray(x.checklist)?x.checklist:[];
-   const completed=checked.filter(v=>DOCS.includes(v)).length;
-   const percent=Math.round(completed/DOCS.length*100);
-
-   const cls=["Aprovado","Finalizado"].includes(d.situacao)?"green":
-    ["Não aprovado","Cancelado"].includes(d.situacao)?"red":
-    late(x)?"orange":"";
-
-   return `<article class="record">
-    <span class="tag ${cls}">${esc(d.situacao)}</span>
-    <h3>${esc(d.titulo)}</h3>
-
-    <p><strong>Número:</strong> ${esc(d.numero||"Não informado")}</p>
-    <p><strong>Tipo:</strong> ${esc(d.tipo)}</p>
-    <p><strong>Instituição:</strong> ${esc(d.instituicao)}</p>
-    <p><strong>Banca:</strong> ${esc(d.banca||"Não informada")}</p>
-    <p><strong>Local:</strong> ${esc(d.local||"Não informado")}</p>
-    <p><strong>Inscrições:</strong>
-     ${esc(dateBR(d.inicio))} até ${esc(dateBR(d.fim))}</p>
-    <p><strong>Próxima etapa:</strong> ${esc(dateBR(d.etapa))}</p>
-    <p><strong>Prazo principal:</strong> ${esc(dateBR(d.prazo))}</p>
-    <p><strong>Tempo restante:</strong> ${esc(deadlineText(d.prazo))}</p>
-    <p><strong>Vagas:</strong> ${esc(d.vagas||"Não informadas")}</p>
-    <p><strong>Taxa:</strong> ${esc(money(d.taxa))}</p>
-    <p><strong>Descrição:</strong> ${esc(d.descricao)}</p>
-
-    <p><strong>Checklist:</strong> ${completed} de ${DOCS.length}</p>
-
-    <div class="progress">
-     <div class="progressbar" style="width:${percent}%"></div>
-    </div>
-
-    <p class="note">Checklist pessoal, não representa aprovação oficial.</p>
-
-    <div class="actions">
-     <button class="btn secondary" data-action="edit"
-      data-id="${esc(x.id)}">Editar</button>
-     <button class="btn" data-action="print"
-      data-id="${esc(x.id)}">Relatório / PDF</button>
-     <button class="btn secondary" data-action="copy"
-      data-id="${esc(x.id)}">Copiar resumo</button>
-     ${officialLink(d.link)}
-     <button class="btn danger" data-action="delete"
-      data-id="${esc(x.id)}">Excluir</button>
-    </div>
-   </article>`;
-  }).join("");
- }
-
- renderDeadlines();
+function closeForm(){
+ editing=null;
+ $("formPanel").classList.add("hidden");
 }
 
-function renderDeadlines(){
- const upcoming=records
-  .filter(x=>x.data.prazo&&!closed(x))
-  .sort((a,b)=>a.data.prazo.localeCompare(b.data.prazo));
-
- if(!upcoming.length){
-  $("deadlineTable").innerHTML=`
-   <tr><td colspan="4">Nenhum prazo de acompanhamento cadastrado.</td></tr>`;
+function saveEdital(){
+ if(!$("fTitle").value.trim()){
+  toast("Informe o título do edital.");
+  $("fTitle").focus();
   return;
  }
-
- $("deadlineTable").innerHTML=upcoming.map(x=>`
-  <tr>
-   <td>${esc(x.data.titulo)}</td>
-   <td>${esc(x.data.instituicao)}</td>
-   <td>${esc(dateBR(x.data.prazo))}</td>
-   <td>${esc(deadlineText(x.data.prazo))}</td>
-  </tr>
- `).join("");
-}
-
-$("form").onsubmit=e=>{
- e.preventDefault();
 
  const data={};
 
- FIELDS.forEach(f=>{
-  data[f]=$(f).value.trim();
- });
-
- if(!data.titulo||!data.instituicao||!data.descricao){
-  alert("Preencha o título, a instituição e a descrição.");
-  return;
- }
-
- if(data.inicio&&data.fim&&data.inicio>data.fim){
-  alert("O fim das inscrições deve ser igual ou posterior ao início.");
-  return;
- }
-
- const old=records.find(x=>x.id===editing);
-
- const record={
-  id:old?.id||makeId(),
-  createdAt:old?.createdAt||new Date().toISOString(),
-  updatedAt:new Date().toISOString(),
-  data,
-  checklist:selectedDocs()
- };
-
- const previous=records;
-
- records=old?
-  records.map(x=>x.id===editing?record:x):
-  [record,...records];
-
- if(!save()){
-  records=previous;
-  return;
- }
-
- $("modal").close();
- editing=null;
- render();
-};
-
-function reportText(record){
- const d=record.data;
-
- const dates=[
-  "publicacao","inicio","fim",
-  "etapa","resultado","prazo"
- ];
-
- const lines=[
-  "BUSINESS PRO — MEU EDITAL",
-  "RELATÓRIO DE ACOMPANHAMENTO",
-  "",
-  ...FIELDS.map(f=>{
-   let value=d[f]||"Não informado";
-
-   if(dates.includes(f)){
-    value=dateBR(d[f]);
-   }
-
-   if(f==="taxa"){
-    value=money(d[f]);
-   }
-
-   return LABELS[f]+": "+value;
-  }),
-  "",
-  "CHECKLIST DE ORGANIZAÇÃO",
-  ""
- ];
-
- DOCS.forEach(doc=>{
-  lines.push(
-   (record.checklist||[]).includes(doc)?
-    "[X] "+doc:"[ ] "+doc
-  );
- });
-
- lines.push(
-  "",
-  "Documento de organização pessoal.",
-  "Consulte o edital original para confirmar as informações."
+ Object.entries(fields).forEach(
+  ([field,key])=>data[key]=$(field).value.trim()
  );
 
- return lines.join("\n");
+ if(data.start&&data.deadline&&data.deadline<data.start){
+  toast("O fim das inscrições não pode ser anterior ao início.");
+  return;
+ }
+
+ const previous=JSON.stringify(db);
+
+ if(editing){
+  const r=db.editais.find(x=>x.id===editing);
+  if(!r)return;
+  Object.assign(r,data);
+ }else{
+  db.editais.unshift({
+   id:uid(),
+   createdAt:new Date().toISOString(),
+   checklist:templateFor(data.type).map(text=>({
+    id:uid(),text,done:false
+   })),
+   history:[],
+   ...data
+  });
+ }
+
+ if(!persist()){
+  db=JSON.parse(previous);
+  return;
+ }
+
+ closeForm();
+ render();
+ toast("Edital salvo com sucesso.");
 }
 
-function printReport(record){
+function finished(r){
+ return [
+  "Aprovado",
+  "Não aprovado",
+  "Encerrado",
+  "Cancelado"
+ ].includes(r.status);
+}
+
+function overdue(r){
+ return Boolean(
+  r.deadline&&
+  r.deadline<today()&&
+  !finished(r)&&
+  r.status!=="Inscrição realizada"&&
+  r.status!=="Aguardando resultado"
+ );
+}
+
+function renderStats(){
+ $("total").textContent=db.editais.length;
+
+ $("openCount").textContent=db.editais.filter(r=>
+  r.status==="Inscrições abertas"&&
+  (!r.start||r.start<=today())&&
+  (!r.deadline||r.deadline>=today())
+ ).length;
+
+ $("ongoing").textContent=db.editais.filter(r=>
+  !finished(r)
+ ).length;
+
+ $("overdue").textContent=db.editais.filter(overdue).length;
+}
+
+function filtered(){
+ const q=$("search").value.toLowerCase().trim();
+
+ return db.editais.filter(r=>{
+  const content=[
+   r.title,r.type,r.institution,r.number,
+   r.country,r.region,r.opportunity,r.protocol
+  ].join(" ").toLowerCase();
+
+  if(q&&!content.includes(q))return false;
+  if(filter==="Todos")return true;
+  if(filter==="Vencidos")return overdue(r);
+
+  return r.status===filter;
+ });
+}
+
+function renderEditais(){
+ const list=filtered();
+
+ $("editaisList").innerHTML=list.length?
+ list.map(r=>{
+  const checks=Array.isArray(r.checklist)?r.checklist:[];
+  const history=Array.isArray(r.history)?r.history:[];
+  const done=checks.filter(x=>x.done).length;
+
+  const badge=overdue(r)?"red":
+   finished(r)?"green":
+   r.priority==="Urgente"?"orange":"";
+
+  let safeLink="";
+
+  try{
+   const u=new URL(r.link);
+   if(["https:","http:"].includes(u.protocol)){
+    safeLink=`
+     <a class="btn alt sm"
+        href="${esc(u.href)}"
+        target="_blank"
+        rel="noopener noreferrer">
+      Abrir edital oficial
+     </a>
+    `;
+   }
+  }catch(e){}
+
+  return `
+   <article class="card">
+
+    <span class="badge ${badge}">
+     ${esc(r.status)}
+     ${overdue(r)?" · Inscrição vencida":""}
+    </span>
+
+    <h3>${esc(r.title)}</h3>
+
+    <p><b>Tipo:</b> ${esc(r.type)}</p>
+    <p><b>Instituição:</b> ${esc(r.institution||"—")}</p>
+    <p><b>Número:</b> ${esc(r.number||"—")}</p>
+    <p><b>País:</b> ${esc(r.country||"—")}</p>
+    <p><b>Região:</b> ${esc(r.region||"—")}</p>
+    <p><b>Oportunidade:</b> ${esc(r.opportunity||"—")}</p>
+    <p><b>Vagas:</b> ${esc(r.vacancies||"—")}</p>
+    <p><b>Publicação:</b> ${fmt(r.published)}</p>
+    <p><b>Início das inscrições:</b> ${fmt(r.start)}</p>
+    <p><b>Fim das inscrições:</b> ${fmt(r.deadline)}</p>
+    <p><b>Prova / etapa:</b> ${fmt(r.exam)}</p>
+    <p><b>Resultado previsto:</b> ${fmt(r.result)}</p>
+    <p><b>Protocolo:</b> ${esc(r.protocol||"—")}</p>
+
+    ${r.requirements?`
+     <p><b>Requisitos:</b> ${esc(r.requirements)}</p>
+    `:""}
+
+    ${r.notes?`
+     <p><b>Observações:</b> ${esc(r.notes)}</p>
+    `:""}
+
+    <div class="actions">
+     <button class="btn sm" data-action="edit" data-id="${esc(r.id)}">Editar</button>
+     <button class="btn alt sm" data-action="history" data-id="${esc(r.id)}">+ Histórico</button>
+     <button class="btn alt sm" data-action="addcheck" data-id="${esc(r.id)}">+ Documento</button>
+     <button class="btn light sm" data-action="print" data-id="${esc(r.id)}">Imprimir / PDF</button>
+     ${safeLink}
+     <button class="btn red sm" data-action="delete" data-id="${esc(r.id)}">Excluir</button>
+    </div>
+
+    <h3>Checklist (${done}/${checks.length})</h3>
+
+    ${checks.map(c=>`
+     <div class="checkitem">
+      <input
+       type="checkbox"
+       aria-label="Marcar documento"
+       data-action="check"
+       data-id="${esc(r.id)}"
+       data-check="${esc(c.id)}"
+       ${c.done?"checked":""}
+      >
+      <span style="flex:1;${c.done?
+       "text-decoration:line-through;color:#64748b":""}">
+       ${esc(c.text)}
+      </span>
+      <button class="btn red sm"
+       data-action="delcheck"
+       data-id="${esc(r.id)}"
+       data-check="${esc(c.id)}">×</button>
+     </div>
+    `).join("")}
+
+    ${history.length?`
+     <h3>Histórico de acompanhamento</h3>
+     <div class="timeline">
+      ${history.map(h=>`
+       <div class="timelineItem">
+        <small>${esc(new Date(h.date).toLocaleString("pt-BR"))}</small>
+        <p>${esc(h.text)}</p>
+        <button class="btn red sm"
+         data-action="delhistory"
+         data-id="${esc(r.id)}"
+         data-history="${esc(h.id)}">
+         Excluir movimentação
+        </button>
+       </div>
+      `).join("")}
+     </div>
+    `:""}
+
+   </article>
+  `;
+ }).join(""):
+ "<div class='empty'>Nenhum edital encontrado. Cadastre sua primeira oportunidade.</div>";
+}
+
+function mutate(id,fn){
+ const previous=JSON.stringify(db);
+ const r=db.editais.find(x=>x.id===id);
+ if(!r)return;
+
+ fn(r);
+
+ if(!persist()){
+  db=JSON.parse(previous);
+  return;
+ }
+
+ render();
+}
+
+function addHistory(id){
+ const text=prompt("Descreva a movimentação ou resultado:");
+ if(text===null||!text.trim())return;
+
+ mutate(id,r=>{
+  if(!Array.isArray(r.history))r.history=[];
+  r.history.unshift({
+   id:uid(),
+   date:new Date().toISOString(),
+   text:text.trim()
+  });
+ });
+}
+
+function addCheck(id){
+ const text=prompt("Nome do documento ou tarefa:");
+ if(text===null||!text.trim())return;
+
+ mutate(id,r=>{
+  if(!Array.isArray(r.checklist))r.checklist=[];
+  r.checklist.push({
+   id:uid(),
+   text:text.trim(),
+   done:false
+  });
+ });
+}
+
+function deleteEdital(id){
+ if(!confirm("Excluir permanentemente este edital?"))return;
+
+ const previous=JSON.stringify(db);
+
+ db.editais=db.editais.filter(x=>x.id!==id);
+
+ if(!persist()){
+  db=JSON.parse(previous);
+  return;
+ }
+
+ render();
+ toast("Edital excluído.");
+}
+
+$("editaisList").addEventListener("click",e=>{
+ const b=e.target.closest("[data-action]");
+ if(!b||b.dataset.action==="check")return;
+
+ const id=b.dataset.id;
+ const a=b.dataset.action;
+
+ if(a==="edit")openForm(id);
+ if(a==="delete")deleteEdital(id);
+ if(a==="history")addHistory(id);
+ if(a==="addcheck")addCheck(id);
+ if(a==="print")printEdital(id);
+
+ if(a==="delcheck"){
+  if(!confirm("Excluir este item do checklist?"))return;
+
+  mutate(id,r=>{
+   r.checklist=r.checklist.filter(
+    x=>x.id!==b.dataset.check
+   );
+  });
+ }
+
+ if(a==="delhistory"){
+  if(!confirm("Excluir esta movimentação?"))return;
+
+  mutate(id,r=>{
+   r.history=r.history.filter(
+    x=>x.id!==b.dataset.history
+   );
+  });
+ }
+});
+
+$("editaisList").addEventListener("change",e=>{
+ const b=e.target;
+ if(b.dataset.action!=="check")return;
+
+ mutate(b.dataset.id,r=>{
+  const c=(r.checklist||[]).find(
+   x=>x.id===b.dataset.check
+  );
+  if(c)c.done=b.checked;
+ });
+});
+
+$("filters").addEventListener("click",e=>{
+ const b=e.target.closest("[data-filter]");
+ if(!b)return;
+
+ filter=b.dataset.filter;
+
+ document.querySelectorAll(".tab").forEach(
+  x=>x.classList.toggle("active",x===b)
+ );
+
+ renderEditais();
+});
+
+$("search").addEventListener("input",renderEditais);
+
+function renderDates(){
+ const deadlines=db.editais.filter(r=>
+  r.deadline&&!finished(r)
+ ).sort((a,b)=>a.deadline.localeCompare(b.deadline));
+
+ const exams=db.editais.filter(r=>
+  r.exam&&!finished(r)
+ ).sort((a,b)=>a.exam.localeCompare(b.exam));
+
+ $("deadlineList").innerHTML=deadlines.length?
+ deadlines.map(r=>`
+  <div class="card">
+   <strong>${esc(r.title)}</strong>
+   <p>${fmt(r.deadline)}</p>
+   <span class="badge ${overdue(r)?"red":"orange"}">
+    ${overdue(r)?"Prazo vencido":"Data informada"}
+   </span>
+  </div>
+ `).join(""):
+ "<p class='note'>Nenhum prazo cadastrado.</p>";
+
+ $("examList").innerHTML=exams.length?
+ exams.map(r=>`
+  <div class="card">
+   <strong>${esc(r.title)}</strong>
+   <p>${fmt(r.exam)}</p>
+   <span class="badge ${r.exam<today()?"red":"green"}">
+    ${r.exam<today()?"Data passada":"Etapa prevista"}
+   </span>
+  </div>
+ `).join(""):
+ "<p class='note'>Nenhuma etapa cadastrada.</p>";
+}
+
+function render(){
+ renderStats();
+ renderEditais();
+ renderDates();
+}
+
+function download(name,content,type){
+ const url=URL.createObjectURL(
+  new Blob([content],{type})
+ );
+
+ const a=document.createElement("a");
+ a.href=url;
+ a.download=name;
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+
+function csv(rows){
+ return "\uFEFF"+rows.map(row=>
+  row.map(v=>
+   '"'+String(v??"").replace(/"/g,'""')+'"'
+  ).join(";")
+ ).join("\r\n");
+}
+
+function exportCSV(){
+ download("meu-edital.csv",csv([
+  [
+   "Título","Tipo","Instituição","Número",
+   "País","Região","Oportunidade","Vagas",
+   "Publicação","Início","Fim","Prova",
+   "Resultado","Situação","Prioridade",
+   "Protocolo","Requisitos","Observações"
+  ],
+  ...db.editais.map(r=>[
+   r.title,r.type,r.institution,r.number,
+   r.country,r.region,r.opportunity,r.vacancies,
+   r.published,r.start,r.deadline,r.exam,
+   r.result,r.status,r.priority,r.protocol,
+   r.requirements,r.notes
+  ])
+ ]),"text/csv;charset=utf-8");
+}
+
+function exportBackup(){
+ download(
+  "backup-meu-edital.json",
+  JSON.stringify({version:3,...db},null,2),
+  "application/json"
+ );
+
+ toast("Backup exportado.");
+}
+
+$("backupFile").addEventListener("change",async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  if(file.size>10*1024*1024){
+   throw Error("Arquivo muito grande.");
+  }
+
+  const data=JSON.parse(await file.text());
+
+  if(
+   data.version!==3||
+   !Array.isArray(data.editais)||
+   !data.editais.every(r=>
+    typeof r.id==="string"&&
+    typeof r.title==="string"&&
+    (!r.checklist||Array.isArray(r.checklist))&&
+    (!r.history||Array.isArray(r.history))
+   )
+  ){
+   throw Error("Backup incompatível.");
+  }
+
+  if(!confirm(
+   "Substituir todos os editais atuais pelo backup?"
+  ))return;
+
+  const previous=db;
+  db={editais:data.editais};
+
+  if(!persist()){
+   db=previous;
+   return;
+  }
+
+  closeForm();
+  render();
+  toast("Backup importado.");
+
+ }catch(err){
+  toast("Erro: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+});
+
+function printEdital(id){
+ const r=db.editais.find(x=>x.id===id);
+ if(!r)return;
+
+ const rows=[
+  ["Título",r.title],
+  ["Tipo",r.type],
+  ["Instituição",r.institution],
+  ["Número",r.number],
+  ["País",r.country],
+  ["Região",r.region],
+  ["Oportunidade",r.opportunity],
+  ["Vagas",r.vacancies],
+  ["Publicação",fmt(r.published)],
+  ["Início das inscrições",fmt(r.start)],
+  ["Fim das inscrições",fmt(r.deadline)],
+  ["Prova / etapa",fmt(r.exam)],
+  ["Resultado",fmt(r.result)],
+  ["Situação",r.status],
+  ["Prioridade",r.priority],
+  ["Protocolo",r.protocol],
+  ["Requisitos",r.requirements],
+  ["Observações",r.notes]
+ ];
+
  $("printArea").innerHTML=`
-  <h1>MEU EDITAL — RELATÓRIO</h1>
-  <hr>
-  <p>${esc(reportText(record))}</p>
-  <hr>
-  <p>Gerado em ${esc(new Date().toLocaleString("pt-BR"))}</p>
+  <h1>MEU EDITAL — FICHA DE ACOMPANHAMENTO</h1>
+  <p>Emitido em ${new Date().toLocaleString("pt-BR")}</p>
+
+  <table>
+   ${rows.map(([k,v])=>`
+    <tr>
+     <th>${esc(k)}</th>
+     <td>${esc(v||"—")}</td>
+    </tr>
+   `).join("")}
+  </table>
+
+  <h2>Checklist</h2>
+  <table>
+   ${(r.checklist||[]).map(c=>`
+    <tr>
+     <td>${c.done?"Concluído":"Pendente"}</td>
+     <td>${esc(c.text)}</td>
+    </tr>
+   `).join("")}
+  </table>
+
+  <h2>Histórico</h2>
+  <table>
+   ${(r.history||[]).map(h=>`
+    <tr>
+     <td>${esc(new Date(h.date).toLocaleString("pt-BR"))}</td>
+     <td>${esc(h.text)}</td>
+    </tr>
+   `).join("")}
+  </table>
+
+  <p>
+   Documento de organização pessoal.
+   Não substitui o edital oficial nem comprova inscrição.
+  </p>
  `;
 
  window.print();
 }
 
-$("records").onclick=async e=>{
- const btn=e.target.closest("button[data-action]");
- if(!btn)return;
+function printReport(){
+ $("printArea").innerHTML=`
+  <h1>MEU EDITAL — RELATÓRIO</h1>
+  <p>Emitido em ${new Date().toLocaleString("pt-BR")}</p>
+  <p>Total de editais: ${db.editais.length}</p>
 
- const record=records.find(x=>x.id===btn.dataset.id);
- if(!record)return;
+  <table>
+   <tr>
+    <th>Edital</th>
+    <th>Instituição</th>
+    <th>Tipo</th>
+    <th>Prazo</th>
+    <th>Status</th>
+   </tr>
 
- const action=btn.dataset.action;
+   ${db.editais.map(r=>`
+    <tr>
+     <td>${esc(r.title)}</td>
+     <td>${esc(r.institution)}</td>
+     <td>${esc(r.type)}</td>
+     <td>${fmt(r.deadline)}</td>
+     <td>${esc(r.status)}</td>
+    </tr>
+   `).join("")}
+  </table>
+ `;
 
- if(action==="edit"){
-  openForm(record.id);
- }
-
- if(action==="print"){
-  printReport(record);
- }
-
- if(action==="copy"){
-  const content=reportText(record);
-
-  try{
-   await navigator.clipboard.writeText(content);
-   alert("Resumo copiado.");
-  }catch(e){
-   const ta=document.createElement("textarea");
-   ta.value=content;
-   document.body.appendChild(ta);
-   ta.select();
-   const ok=document.execCommand("copy");
-   ta.remove();
-   alert(ok?"Resumo copiado.":"Não foi possível copiar.");
-  }
- }
-
- if(action==="delete"){
-  if(!confirm("Excluir este edital?"))return;
-
-  const previous=records;
-
-  records=records.filter(x=>x.id!==record.id);
-
-  if(!save())records=previous;
-
-  render();
- }
-};
-
-$("filters").onclick=e=>{
- const btn=e.target.closest("[data-filter]");
- if(!btn)return;
-
- activeFilter=btn.dataset.filter;
-
- document.querySelectorAll(".filter").forEach(b=>{
-  b.classList.toggle("active",b===btn);
- });
-
- render();
-};
-
-function download(name,content,type){
- const blob=new Blob([content],{type});
- const url=URL.createObjectURL(blob);
-
- const a=document.createElement("a");
- a.href=url;
- a.download=name;
-
- document.body.appendChild(a);
- a.click();
- a.remove();
-
- setTimeout(()=>URL.revokeObjectURL(url),1000);
+ window.print();
 }
-
-function csvCell(value){
- return '"'+String(value??"").replace(/"/g,'""')+'"';
-}
-
-$("csvBtn").onclick=()=>{
- if(!records.length){
-  alert("Não existem editais para exportar.");
-  return;
- }
-
- const headers=[
-  "ID","Criado em","Atualizado em",
-  ...FIELDS.map(f=>LABELS[f]),
-  "Checklist concluído"
- ];
-
- const rows=records.map(x=>[
-  x.id,
-  x.createdAt,
-  x.updatedAt,
-  ...FIELDS.map(f=>x.data[f]||""),
-  (x.checklist||[]).join(" | ")
- ]);
-
- const csv="\uFEFF"+[headers,...rows]
-  .map(row=>row.map(csvCell).join(";"))
-  .join("\r\n");
-
- download(
-  "meus-editais.csv",
-  csv,
-  "text/csv;charset=utf-8"
- );
-};
-
-$("backupBtn").onclick=()=>{
- download(
-  "backup-meu-edital.json",
-  JSON.stringify({
-   app:"meu-edital",
-   version:1,
-   records
-  },null,2),
-  "application/json"
- );
-};
-
-$("importBtn").onclick=()=>{
- $("importFile").click();
-};
-
-$("importFile").onchange=async e=>{
- const file=e.target.files[0];
- if(!file)return;
-
- try{
-  const obj=JSON.parse(await file.text());
-
-  if(obj.app!=="meu-edital"||
-     !Array.isArray(obj.records)){
-   throw Error("Backup incompatível.");
-  }
-
-  const valid=obj.records.every(x=>
-   x&&
-   typeof x.id==="string"&&
-   x.data&&
-   typeof x.data==="object"&&
-   FIELDS.every(f=>
-    x.data[f]===undefined||
-    typeof x.data[f]==="string"
-   )&&
-   (
-    x.checklist===undefined||
-    (
-     Array.isArray(x.checklist)&&
-     x.checklist.every(v=>typeof v==="string")
-    )
-   )
-  );
-
-  if(!valid){
-   throw Error("Estrutura dos registros inválida.");
-  }
-
-  if(!confirm(
-   "Substituir todos os editais atuais pelos dados do backup?"
-  ))return;
-
-  const previous=records;
-  records=obj.records;
-
-  if(!save()){
-   records=previous;
-   return;
-  }
-
-  render();
-  alert("Backup importado com sucesso.");
-
- }catch(err){
-  alert("Erro ao importar: "+err.message);
- }finally{
-  e.target.value="";
- }
-};
-
-$("newBtn").onclick=()=>openForm();
-$("cancelBtn").onclick=()=>$("modal").close();
-$("search").oninput=render;
 
 render();
 </script>
-
 </body>
 </html>
