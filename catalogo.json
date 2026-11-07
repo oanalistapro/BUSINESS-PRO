@@ -1,0 +1,29 @@
+
+{
+  "apps": [
+    {
+      "slug": "meu-curriculo",
+      "name": "MEU CURRÍCULO",
+      "category": "Carreira",
+      "icon": "📄",
+      "desc": "Crie currículos profissionais.",
+      "ready": true
+    },
+    {
+      "slug": "meu-orcamento",
+      "name": "MEU ORÇAMENTO",
+      "category": "Gestão",
+      "icon": "🧾",
+      "desc": "Prepare propostas e orçamentos.",
+      "ready": true
+    },
+    {
+      "slug": "meu-pdf",
+      "name": "MEU PDF",
+      "category": "Documentos",
+      "icon": "📑",
+      "desc": "Organize arquivos PDF.",
+      "ready": true
+    }
+  ]
+}
