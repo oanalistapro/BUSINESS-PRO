@@ -73,6 +73,14 @@
       "ready": true
     },
     {
+      "slug": "meu-protocolo",
+      "name": "MEU PROTOCOLO",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-trabalho",
       "name": "MEU TRABALHO",
       "category": "Gestão",
