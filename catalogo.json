@@ -9,6 +9,14 @@
       "ready": true
     },
     {
+      "slug": "meu-concurso",
+      "name": "MEU CONCURSO",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-contrato",
       "name": "MEU CONTRATO",
       "category": "Gestão",
