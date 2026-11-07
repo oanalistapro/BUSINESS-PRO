@@ -4,155 +4,1401 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
 <title>MEU TRABALHO | BUSINESS PRO</title>
 <style>
+:root{
+ --blue:#2563eb;
+ --navy:#173568;
+ --ink:#142543;
+ --muted:#64748b;
+ --bg:#f3f6fc;
+ --line:#dce5f2;
+ --green:#059669;
+ --red:#dc2626;
+ --amber:#d97706;
+}
 *{box-sizing:border-box}
-body{margin:0;background:#f3f7ff;color:#142849;font:15px Arial,sans-serif}
-header{background:white;padding:20px 5%;display:flex;justify-content:space-between}
-a{color:#2563eb;text-decoration:none}
-main{max-width:1100px;margin:auto;padding:25px 16px}
-.hero{background:linear-gradient(120deg,#173b86,#2563eb);color:white;padding:30px;border-radius:20px}
-.hero h1{margin:0}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.card{background:white;border:1px solid #dce5f3;padding:22px;border-radius:18px;margin-bottom:18px}
-.card strong{display:block;font-size:26px;margin-top:10px}
-label{display:block;font-weight:bold;font-size:13px;margin:13px 0 7px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit}
-textarea{min-height:85px}
-button{background:#2563eb;color:white;border:0;padding:12px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
-.secondary{background:#eaf1ff;color:#2563eb}
-.danger{background:#fee2e2;color:#b91c1c}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
-.tarefa{padding:18px;border:1px solid #dce5f3;border-radius:14px;margin:12px 0}
-.tarefa h3{margin:0 0 8px}
-.tarefa p{color:#64748b;white-space:pre-wrap}
-.badge{display:inline-block;background:#eaf1ff;color:#2563eb;border-radius:20px;padding:5px 10px;font-size:12px;font-weight:bold}
-@media(max-width:800px){.grid,.two{grid-template-columns:1fr}}
-@media print{header,.hero,form,.actions,.no-print{display:none!important}body{background:white}}
+body{
+ margin:0;
+ background:var(--bg);
+ color:var(--ink);
+ font-family:Arial,Helvetica,sans-serif;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+a{text-decoration:none;color:inherit}
+.top{
+ background:white;
+ border-bottom:1px solid var(--line);
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:16px 3%;
+ gap:12px;
+}
+.brand{font-size:24px;font-weight:900}
+.brand span{color:var(--blue)}
+.btn{
+ background:var(--blue);
+ color:white;
+ border:0;
+ border-radius:11px;
+ padding:12px 16px;
+ font-weight:800;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ gap:7px;
+}
+.btn.secondary{background:#eaf1ff;color:#1d4ed8}
+.btn.outline{
+ background:white;
+ color:var(--ink);
+ border:1px solid var(--line);
+}
+.btn.danger{background:#fee2e2;color:#b91c1c}
+.btn.small{font-size:12px;padding:8px 11px}
+.btn:hover:not(:disabled){filter:brightness(.96)}
+main{
+ max-width:1550px;
+ margin:auto;
+ padding:28px 18px;
+}
+.hero{
+ background:linear-gradient(110deg,#17366f,#2563eb);
+ color:white;
+ border-radius:25px;
+ padding:39px;
+ margin-bottom:25px;
+}
+.hero h1{
+ font-size:clamp(30px,4vw,44px);
+ margin:0 0 14px;
+}
+.hero p{
+ margin:0;
+ color:#e6efff;
+ line-height:1.7;
+}
+.nav{
+ display:flex;
+ gap:10px;
+ overflow-x:auto;
+ padding-bottom:12px;
+ margin-bottom:18px;
+}
+.nav button{
+ white-space:nowrap;
+ border:1px solid var(--line);
+ background:white;
+ color:#40516e;
+ padding:14px 18px;
+ border-radius:12px;
+ font-weight:900;
+}
+.nav button.active{
+ background:var(--blue);
+ color:white;
+ border-color:var(--blue);
+}
+.view{display:none}
+.view.active{display:block}
+.panel{
+ background:white;
+ border:1px solid var(--line);
+ border-radius:20px;
+ padding:25px;
+ margin-bottom:18px;
+ box-shadow:0 8px 25px #17365a09;
+}
+.panel h2{margin:0 0 18px;font-size:23px}
+.panel-head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ flex-wrap:wrap;
+ gap:12px;
+ margin-bottom:18px;
+}
+.panel-head h2{margin:0}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:16px;
+ margin-bottom:22px;
+}
+.stat{
+ background:white;
+ border:1px solid var(--line);
+ border-radius:19px;
+ padding:24px;
+ box-shadow:0 8px 25px #17365a08;
+}
+.stat small{color:var(--muted);font-size:13px}
+.stat strong{
+ display:block;
+ font-size:clamp(24px,3vw,33px);
+ margin-top:12px;
+}
+.green{color:var(--green)}
+.red{color:var(--red)}
+.amber{color:var(--amber)}
+.grid2{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:20px;
+}
+.form-grid{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:15px;
+}
+.field{
+ display:flex;
+ flex-direction:column;
+ gap:7px;
+}
+.field.full{grid-column:1/-1}
+label{font-size:12px;font-weight:800}
+input,select,textarea{
+ border:1px solid #cbd6e6;
+ border-radius:11px;
+ padding:12px;
+ background:#f9fbff;
+ color:var(--ink);
+ outline:none;
+ width:100%;
+}
+input:focus,select:focus,textarea:focus{
+ border-color:var(--blue);
+ background:white;
+}
+textarea{min-height:95px;resize:vertical}
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:9px;
+}
+.hint{
+ font-size:12px;
+ color:var(--muted);
+ line-height:1.7;
+}
+.table-wrap{overflow-x:auto}
+table{
+ width:100%;
+ min-width:850px;
+ border-collapse:collapse;
+}
+th,td{
+ padding:14px 12px;
+ text-align:left;
+ border-bottom:1px solid var(--line);
+ font-size:13px;
+ vertical-align:middle;
+}
+th{
+ background:#f5f8fd;
+ color:#425572;
+ font-size:12px;
+}
+.tag{
+ display:inline-block;
+ background:#eaf1ff;
+ color:#1d4ed8;
+ border-radius:20px;
+ padding:6px 10px;
+ font-size:11px;
+ font-weight:900;
+ white-space:nowrap;
+}
+.tag.done{background:#dcfce7;color:#166534}
+.tag.progress{background:#dbeafe;color:#1d4ed8}
+.tag.wait{background:#fef3c7;color:#92400e}
+.tag.late{background:#fee2e2;color:#991b1b}
+.tag.high{background:#fee2e2;color:#991b1b}
+.tag.medium{background:#fef3c7;color:#92400e}
+.tag.low{background:#dcfce7;color:#166534}
+.empty{
+ text-align:center;
+ padding:35px;
+ color:var(--muted);
+}
+.search{max-width:350px}
+.kanban{
+ display:grid;
+ grid-template-columns:repeat(4,minmax(250px,1fr));
+ gap:16px;
+ overflow-x:auto;
+ padding-bottom:10px;
+}
+.kanban-column{
+ background:#edf2fa;
+ border:1px solid var(--line);
+ border-radius:17px;
+ padding:14px;
+ min-height:250px;
+}
+.kanban-column h3{
+ margin:4px 4px 17px;
+ font-size:15px;
+}
+.task-card{
+ background:white;
+ border:1px solid var(--line);
+ border-radius:13px;
+ padding:15px;
+ margin-bottom:12px;
+ box-shadow:0 4px 15px #17365a08;
+}
+.task-card h4{
+ margin:0 0 10px;
+ font-size:15px;
+ overflow-wrap:anywhere;
+}
+.task-card p{
+ font-size:12px;
+ color:var(--muted);
+ line-height:1.6;
+}
+.task-card .actions{margin-top:12px}
+.progress-track{
+ height:10px;
+ background:#e8effa;
+ border-radius:20px;
+ overflow:hidden;
+}
+.progress-fill{
+ display:block;
+ height:100%;
+ background:var(--blue);
+ border-radius:20px;
+}
+.project-card{
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:20px;
+ background:#fbfcff;
+}
+.project-card h3{margin:0 0 10px}
+.project-card p{font-size:13px;color:var(--muted)}
+.project-grid{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:15px;
+}
+.notice{
+ font-size:12px;
+ color:var(--muted);
+ line-height:1.8;
+}
+.toast{
+ position:fixed;
+ bottom:20px;
+ left:50%;
+ transform:translateX(-50%);
+ background:#172b4e;
+ color:white;
+ padding:13px 18px;
+ border-radius:12px;
+ display:none;
+ z-index:50;
+ max-width:90vw;
+}
+#printArea{display:none}
+@media(max-width:1100px){
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:750px){
+ .grid2{grid-template-columns:1fr}
+ .kanban{grid-template-columns:repeat(4,270px)}
+}
+@media(max-width:600px){
+ .top{padding:13px}
+ .brand{font-size:19px}
+ .top .btn{font-size:11px;padding:10px}
+ main{padding:14px 10px}
+ .hero{padding:28px 20px;border-radius:17px}
+ .panel{padding:17px;border-radius:16px}
+ .stats,.form-grid,.project-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+ .search{max-width:none}
+ .stat{padding:19px}
+ .stat strong{font-size:27px}
+}
+@page{size:A4;margin:15mm}
+@media print{
+ body>*:not(#printArea){display:none!important}
+ #printArea{
+  display:block!important;
+  font:11pt Arial;
+  color:#111;
+ }
+ #printArea table{
+  width:100%;
+  min-width:0;
+  border-collapse:collapse;
+ }
+ #printArea th,#printArea td{
+  border:1px solid #999;
+  padding:7px;
+  font-size:9pt;
+ }
+}
 </style>
 </head>
 <body>
-<header><b>◆ BUSINESS PRO</b><a href="../">← Voltar</a></header>
+
+<header class="top">
+ <div class="brand">💼 MEU <span>TRABALHO</span></div>
+ <a class="btn secondary" href="../">← Business Pro</a>
+</header>
+
 <main>
+
 <section class="hero">
-<h1>MEU TRABALHO</h1>
-<p>Organize projetos, tarefas, responsáveis, prioridades e prazos.</p>
+ <h1>MEU TRABALHO</h1>
+ <p>Organize projetos, tarefas, responsáveis, prioridades, prazos e acompanhe a produtividade do seu trabalho em um só lugar.</p>
 </section>
 
-<div class="grid">
-<div class="card">Total de tarefas<strong id="total">0</strong></div>
-<div class="card">Em andamento<strong id="andamento">0</strong></div>
-<div class="card">Concluídas<strong id="concluidas">0</strong></div>
-</div>
+<nav class="nav" id="navigation">
+ <button class="active" data-view="painel">📊 Painel</button>
+ <button data-view="tarefas">✅ Tarefas</button>
+ <button data-view="kanban">🗂️ Kanban</button>
+ <button data-view="projetos">📁 Projetos</button>
+ <button data-view="relatorios">📈 Relatórios</button>
+ <button data-view="config">⚙️ Backup</button>
+</nav>
 
-<div class="two">
-<section class="card">
-<h2>Nova tarefa</h2>
-<form id="form">
-<label>Nome da tarefa</label><input id="nome" required>
-<label>Projeto</label><input id="projeto" placeholder="Ex.: Reforma do escritório">
-<label>Responsável</label><input id="responsavel">
-<div class="two">
-<div><label>Prioridade</label>
-<select id="prioridade"><option>Baixa</option><option selected>Média</option><option>Alta</option><option>Urgente</option></select></div>
-<div><label>Prazo</label><input id="prazo" type="date"></div>
-</div>
-<label>Descrição</label><textarea id="descricao"></textarea>
-<button type="submit">Adicionar tarefa</button>
-</form>
-</section>
-<section class="card">
-<h2>Organização</h2>
-<label>Pesquisar tarefas</label><input id="pesquisa" placeholder="Nome, projeto ou responsável">
-<label>Filtrar por situação</label>
-<select id="filtro"><option value="">Todas</option><option>Pendente</option><option>Em andamento</option><option>Concluída</option></select>
-<div class="actions">
-<button onclick="exportar()">Exportar CSV</button>
-<button class="secondary" onclick="window.print()">Imprimir</button>
-</div>
-<p>As tarefas são armazenadas neste navegador. Exporte o CSV para guardar uma cópia.</p>
-</section>
-</div>
+<section class="view active" id="view-painel">
 
-<section class="card">
-<h2>Minhas tarefas</h2>
-<div id="lista"></div>
+ <div class="stats">
+  <div class="stat">
+   <small>Total de tarefas</small>
+   <strong id="statTotal">0</strong>
+  </div>
+  <div class="stat">
+   <small>Em andamento</small>
+   <strong id="statProgress">0</strong>
+  </div>
+  <div class="stat">
+   <small>Concluídas</small>
+   <strong class="green" id="statDone">0</strong>
+  </div>
+  <div class="stat">
+   <small>Atrasadas</small>
+   <strong class="red" id="statLate">0</strong>
+  </div>
+ </div>
+
+ <div class="grid2">
+  <div class="panel">
+   <h2>Nova tarefa</h2>
+
+   <form id="taskForm">
+    <div class="form-grid">
+     <div class="field full">
+      <label>Nome da tarefa *</label>
+      <input id="taskName" required placeholder="Ex.: Preparar relatório mensal">
+     </div>
+
+     <div class="field">
+      <label>Projeto</label>
+      <select id="taskProject"></select>
+     </div>
+
+     <div class="field">
+      <label>Responsável</label>
+      <input id="responsible" placeholder="Nome do responsável">
+     </div>
+
+     <div class="field">
+      <label>Prioridade</label>
+      <select id="priority">
+       <option>Baixa</option>
+       <option selected>Média</option>
+       <option>Alta</option>
+       <option>Urgente</option>
+      </select>
+     </div>
+
+     <div class="field">
+      <label>Prazo</label>
+      <input id="dueDate" type="date">
+     </div>
+
+     <div class="field">
+      <label>Situação</label>
+      <select id="status">
+       <option>A fazer</option>
+       <option>Em andamento</option>
+       <option>Em revisão</option>
+       <option>Concluída</option>
+      </select>
+     </div>
+
+     <div class="field">
+      <label>Progresso (%)</label>
+      <input id="progress" type="number" min="0" max="100" value="0">
+     </div>
+
+     <div class="field full">
+      <label>Descrição</label>
+      <textarea id="description" placeholder="Detalhes da tarefa..."></textarea>
+     </div>
+
+     <div class="field full">
+      <label>Observações</label>
+      <textarea id="notes" placeholder="Informações adicionais..."></textarea>
+     </div>
+    </div>
+
+    <div class="actions" style="margin-top:18px">
+     <button class="btn" type="submit" id="saveTaskButton">💾 Salvar tarefa</button>
+     <button class="btn secondary" type="button" onclick="resetTaskForm()">Limpar</button>
+    </div>
+   </form>
+  </div>
+
+  <div class="panel">
+   <h2>Organização</h2>
+
+   <div class="field">
+    <label>Pesquisar tarefas</label>
+    <input id="searchTask" placeholder="Nome, projeto ou responsável">
+   </div>
+
+   <div class="field" style="margin-top:15px">
+    <label>Filtrar por situação</label>
+    <select id="filterStatus">
+     <option value="">Todas</option>
+     <option>A fazer</option>
+     <option>Em andamento</option>
+     <option>Em revisão</option>
+     <option>Concluída</option>
+    </select>
+   </div>
+
+   <div class="field" style="margin-top:15px">
+    <label>Filtrar prioridade</label>
+    <select id="filterPriority">
+     <option value="">Todas</option>
+     <option>Baixa</option>
+     <option>Média</option>
+     <option>Alta</option>
+     <option>Urgente</option>
+    </select>
+   </div>
+
+   <div class="actions" style="margin-top:18px">
+    <button class="btn" onclick="exportCSV()">Exportar CSV</button>
+    <button class="btn secondary" onclick="printReport()">Imprimir / PDF</button>
+    <button class="btn outline" onclick="showView('kanban')">Abrir Kanban</button>
+   </div>
+
+   <p class="hint">As tarefas são armazenadas neste navegador. Exporte um backup JSON para guardar uma cópia completa.</p>
+
+   <h2 style="margin-top:30px">Progresso geral</h2>
+   <div class="progress-track">
+    <span class="progress-fill" id="generalProgress" style="width:0%"></span>
+   </div>
+   <p class="hint" id="generalProgressText">0% de progresso médio</p>
+
+   <h2 style="margin-top:30px">Próximos prazos</h2>
+   <div id="upcomingTasks"></div>
+  </div>
+ </div>
+
 </section>
+
+<section class="view" id="view-tarefas">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>✅ Todas as tarefas</h2>
+   <div class="actions">
+    <button class="btn" onclick="newTask()">+ Nova tarefa</button>
+    <button class="btn secondary" onclick="exportCSV()">⬇ CSV</button>
+   </div>
+  </div>
+
+  <div class="form-grid" style="margin-bottom:20px">
+   <div class="field">
+    <label>Pesquisar</label>
+    <input id="taskListSearch" placeholder="Pesquisar tarefas...">
+   </div>
+   <div class="field">
+    <label>Ordenar</label>
+    <select id="taskSort">
+     <option value="due">Prazo mais próximo</option>
+     <option value="new">Mais recentes</option>
+     <option value="priority">Maior prioridade</option>
+     <option value="name">Nome A-Z</option>
+    </select>
+   </div>
+  </div>
+
+  <div class="table-wrap">
+   <table>
+    <thead>
+     <tr>
+      <th>Tarefa</th>
+      <th>Projeto</th>
+      <th>Responsável</th>
+      <th>Prioridade</th>
+      <th>Prazo</th>
+      <th>Situação</th>
+      <th>Progresso</th>
+      <th>Ações</th>
+     </tr>
+    </thead>
+    <tbody id="taskList"></tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<section class="view" id="view-kanban">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>🗂️ Quadro Kanban</h2>
+   <button class="btn" onclick="newTask()">+ Nova tarefa</button>
+  </div>
+
+  <p class="hint">Use os botões de cada cartão para avançar ou voltar a tarefa entre as etapas.</p>
+
+  <div class="kanban" id="kanbanBoard"></div>
+ </div>
+</section>
+
+<section class="view" id="view-projetos">
+ <div class="grid2">
+  <div class="panel">
+   <h2 id="projectFormTitle">Novo projeto</h2>
+
+   <form id="projectForm">
+    <div class="form-grid">
+     <div class="field full">
+      <label>Nome do projeto *</label>
+      <input id="projectName" required>
+     </div>
+
+     <div class="field">
+      <label>Responsável</label>
+      <input id="projectResponsible">
+     </div>
+
+     <div class="field">
+      <label>Prazo</label>
+      <input id="projectDue" type="date">
+     </div>
+
+     <div class="field full">
+      <label>Descrição</label>
+      <textarea id="projectDescription"></textarea>
+     </div>
+    </div>
+
+    <div class="actions" style="margin-top:18px">
+     <button class="btn" type="submit">💾 Salvar projeto</button>
+     <button class="btn secondary" type="button" onclick="resetProjectForm()">Limpar</button>
+    </div>
+   </form>
+  </div>
+
+  <div class="panel">
+   <h2>Resumo dos projetos</h2>
+   <p id="projectSummary"></p>
+   <p class="hint">Cada projeto pode ter várias tarefas. O progresso é calculado pela média do progresso das tarefas vinculadas.</p>
+  </div>
+ </div>
+
+ <div class="panel">
+  <h2>Projetos cadastrados</h2>
+  <div class="project-grid" id="projectList"></div>
+ </div>
+</section>
+
+<section class="view" id="view-relatorios">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>📈 Relatório de produtividade</h2>
+   <div class="actions">
+    <button class="btn" onclick="exportCSV()">⬇ Exportar CSV</button>
+    <button class="btn secondary" onclick="printReport()">🖨️ Imprimir / PDF</button>
+   </div>
+  </div>
+
+  <div class="stats">
+   <div class="stat"><small>Projetos</small><strong id="reportProjects">0</strong></div>
+   <div class="stat"><small>Tarefas</small><strong id="reportTasks">0</strong></div>
+   <div class="stat"><small>Concluídas</small><strong id="reportDone">0</strong></div>
+   <div class="stat"><small>Taxa de conclusão</small><strong id="reportRate">0%</strong></div>
+  </div>
+
+  <div class="table-wrap">
+   <table>
+    <thead>
+     <tr>
+      <th>Tarefa</th>
+      <th>Projeto</th>
+      <th>Responsável</th>
+      <th>Prazo</th>
+      <th>Situação</th>
+      <th>Progresso</th>
+     </tr>
+    </thead>
+    <tbody id="reportList"></tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<section class="view" id="view-config">
+ <div class="panel">
+  <h2>⚙️ Backup e segurança</h2>
+  <p class="hint">Os dados são armazenados localmente. Não existe sincronização automática entre computadores e celulares nesta versão.</p>
+
+  <div class="actions">
+   <button class="btn" onclick="exportBackup()">⬇ Backup JSON</button>
+   <button class="btn secondary" onclick="document.getElementById('backupFile').click()">⬆ Importar backup</button>
+   <button class="btn danger" onclick="clearAll()">🗑️ Apagar todos os dados</button>
+  </div>
+
+  <input type="file" id="backupFile" accept=".json,application/json" hidden>
+ </div>
+</section>
+
+<p class="notice">MEU TRABALHO é uma ferramenta de organização e acompanhamento de tarefas. Os dados são mantidos no navegador usado e devem ser copiados regularmente por backup.</p>
+
 </main>
+
+<div id="printArea"></div>
+<div class="toast" id="toast" role="status"></div>
+
 <script>
+"use strict";
+
 const $=id=>document.getElementById(id);
-const chave="bp_trabalho_v1";
-let tarefas=[];
-try{tarefas=JSON.parse(localStorage.getItem(chave)||"[]")}catch(e){}
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-function salvar(){localStorage.setItem(chave,JSON.stringify(tarefas))}
-$("form").onsubmit=e=>{
-e.preventDefault();
-tarefas.push({
-id:crypto.randomUUID(),
-nome:$("nome").value.trim(),
-projeto:$("projeto").value.trim(),
-responsavel:$("responsavel").value.trim(),
-prioridade:$("prioridade").value,
-prazo:$("prazo").value,
-descricao:$("descricao").value,
-status:"Pendente"
+const KEY="businesspro_meu_trabalho_v3";
+
+function uid(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
+}
+
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ }[c]));
+}
+
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+
+  "-"+String(d.getDate()).padStart(2,"0");
+}
+
+function dateBR(v){
+ if(!v)return "—";
+ const [y,m,d]=v.split("-");
+ return `${d}/${m}/${y}`;
+}
+
+function notify(msg){
+ const el=$("toast");
+ el.textContent=msg;
+ el.style.display="block";
+ clearTimeout(notify.timer);
+ notify.timer=setTimeout(()=>el.style.display="none",3000);
+}
+
+function download(name,content,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download=name;
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+
+let db={version:3,projects:[],tasks:[]};
+let editingTaskId=null;
+let editingProjectId=null;
+
+try{
+ const raw=JSON.parse(localStorage.getItem(KEY)||"null");
+ if(raw&&raw.version===3&&Array.isArray(raw.projects)&&Array.isArray(raw.tasks))
+  db=raw;
+}catch(e){}
+
+function persist(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(db));
+  return true;
+ }catch(e){
+  notify("Erro ao salvar. Verifique o armazenamento.");
+  return false;
+ }
+}
+
+function showView(view){
+ document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
+ $("view-"+view).classList.add("active");
+
+ document.querySelectorAll("[data-view]").forEach(x=>
+  x.classList.toggle("active",x.dataset.view===view)
+ );
+
+ renderAll();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+$("navigation").onclick=e=>{
+ const btn=e.target.closest("[data-view]");
+ if(btn)showView(btn.dataset.view);
+};
+
+function projectName(id){
+ const p=db.projects.find(x=>x.id===id);
+ return p?p.name:"Sem projeto";
+}
+
+function isLate(task){
+ return task.status!=="Concluída"&&
+  task.dueDate&&task.dueDate<today();
+}
+
+function priorityWeight(p){
+ return {"Urgente":4,"Alta":3,"Média":2,"Baixa":1}[p]||0;
+}
+
+function statusTag(t){
+ if(t.status==="Concluída")
+  return '<span class="tag done">Concluída</span>';
+
+ if(isLate(t))
+  return '<span class="tag late">Atrasada</span>';
+
+ if(t.status==="Em andamento")
+  return '<span class="tag progress">Em andamento</span>';
+
+ if(t.status==="Em revisão")
+  return '<span class="tag wait">Em revisão</span>';
+
+ return '<span class="tag">A fazer</span>';
+}
+
+function priorityTag(p){
+ const cls=p==="Urgente"||p==="Alta"?"high":p==="Média"?"medium":"low";
+ return `<span class="tag ${cls}">${esc(p)}</span>`;
+}
+
+function resetTaskForm(){
+ editingTaskId=null;
+ $("taskForm").reset();
+ $("priority").value="Média";
+ $("status").value="A fazer";
+ $("progress").value="0";
+ $("saveTaskButton").textContent="💾 Salvar tarefa";
+}
+
+function newTask(){
+ resetTaskForm();
+ showView("painel");
+ $("taskName").focus();
+}
+
+$("taskForm").onsubmit=e=>{
+ e.preventDefault();
+
+ const name=$("taskName").value.trim();
+
+ if(!name){
+  notify("Informe o nome da tarefa.");
+  return;
+ }
+
+ const status=$("status").value;
+ const progress=status==="Concluída"
+  ?100
+  :Math.min(100,Math.max(0,Number($("progress").value)||0));
+
+ const data={
+  name,
+  projectId:$("taskProject").value,
+  responsible:$("responsible").value.trim(),
+  priority:$("priority").value,
+  dueDate:$("dueDate").value,
+  status,
+  progress,
+  description:$("description").value.trim(),
+  notes:$("notes").value.trim()
+ };
+
+ const now=new Date().toISOString();
+ const previous=JSON.stringify(db.tasks);
+
+ if(editingTaskId){
+  const index=db.tasks.findIndex(x=>x.id===editingTaskId);
+  if(index>=0)
+   db.tasks[index]={...db.tasks[index],...data,updatedAt:now};
+  else editingTaskId=null;
+ }
+
+ if(!editingTaskId){
+  db.tasks.push({
+   id:uid(),...data,createdAt:now,updatedAt:now
+  });
+ }
+
+ if(!persist()){
+  db.tasks=JSON.parse(previous);
+  return;
+ }
+
+ resetTaskForm();
+ renderAll();
+ notify("Tarefa salva com sucesso.");
+};
+
+function editTask(id){
+ const t=db.tasks.find(x=>x.id===id);
+ if(!t)return;
+
+ editingTaskId=id;
+
+ const mapping={
+  taskName:t.name,
+  taskProject:t.projectId,
+  responsible:t.responsible,
+  priority:t.priority,
+  dueDate:t.dueDate,
+  status:t.status,
+  progress:t.progress,
+  description:t.description,
+  notes:t.notes
+ };
+
+ Object.entries(mapping).forEach(([key,value])=>{
+  $(key).value=value??"";
+ });
+
+ $("saveTaskButton").textContent="Salvar alterações";
+ showView("painel");
+ $("taskName").focus();
+}
+
+function deleteTask(id){
+ if(!confirm("Excluir esta tarefa?"))return;
+
+ const previous=db.tasks;
+ db.tasks=db.tasks.filter(x=>x.id!==id);
+
+ if(!persist()){
+  db.tasks=previous;
+  return;
+ }
+
+ if(editingTaskId===id)resetTaskForm();
+ renderAll();
+ notify("Tarefa excluída.");
+}
+
+function moveTask(id,direction){
+ const t=db.tasks.find(x=>x.id===id);
+ if(!t)return;
+
+ const stages=["A fazer","Em andamento","Em revisão","Concluída"];
+ const index=stages.indexOf(t.status);
+ const next=index+direction;
+
+ if(next<0||next>=stages.length)return;
+
+ const old={status:t.status,progress:t.progress};
+ t.status=stages[next];
+
+ if(t.status==="Concluída")t.progress=100;
+ else if(old.status==="Concluída")t.progress=75;
+
+ if(!persist()){
+  t.status=old.status;
+  t.progress=old.progress;
+  return;
+ }
+
+ renderAll();
+ notify("Tarefa atualizada.");
+}
+
+function renderDashboard(){
+ const total=db.tasks.length;
+ const progress=db.tasks.filter(t=>t.status==="Em andamento").length;
+ const done=db.tasks.filter(t=>t.status==="Concluída").length;
+ const late=db.tasks.filter(isLate).length;
+
+ $("statTotal").textContent=total;
+ $("statProgress").textContent=progress;
+ $("statDone").textContent=done;
+ $("statLate").textContent=late;
+
+ const average=total
+  ?Math.round(db.tasks.reduce((s,t)=>s+t.progress,0)/total)
+  :0;
+
+ $("generalProgress").style.width=average+"%";
+ $("generalProgressText").textContent=average+"% de progresso médio";
+
+ const upcoming=db.tasks
+  .filter(t=>t.status!=="Concluída"&&t.dueDate)
+  .sort((a,b)=>a.dueDate.localeCompare(b.dueDate))
+  .slice(0,6);
+
+ $("upcomingTasks").innerHTML=upcoming.length
+  ?upcoming.map(t=>`
+   <div style="padding:12px 0;border-bottom:1px solid var(--line)">
+    <strong>${esc(t.name)}</strong>
+    <p class="hint">Prazo: ${dateBR(t.dueDate)} — ${esc(projectName(t.projectId))}</p>
+    ${statusTag(t)}
+   </div>
+  `).join("")
+  :'<p class="empty">Nenhum prazo pendente.</p>';
+}
+
+function renderProjectOptions(){
+ const selected=$("taskProject").value;
+
+ $("taskProject").innerHTML='<option value="">Sem projeto</option>'+
+  db.projects.map(p=>`
+   <option value="${esc(p.id)}">${esc(p.name)}</option>
+  `).join("");
+
+ if([...$("taskProject").options].some(x=>x.value===selected))
+  $("taskProject").value=selected;
+}
+
+function filteredTasks(){
+ const search=(
+  $("searchTask").value+" "+$("taskListSearch").value
+ ).trim().toLowerCase();
+
+ const status=$("filterStatus").value;
+ const priority=$("filterPriority").value;
+
+ const list=db.tasks.filter(t=>
+  (!status||t.status===status)&&
+  (!priority||t.priority===priority)&&
+  (t.name+" "+projectName(t.projectId)+" "+t.responsible+" "+t.description)
+   .toLowerCase().includes(search)
+ );
+
+ const sort=$("taskSort").value;
+
+ list.sort((a,b)=>{
+  if(sort==="new")return b.createdAt.localeCompare(a.createdAt);
+  if(sort==="priority")return priorityWeight(b.priority)-priorityWeight(a.priority);
+  if(sort==="name")return a.name.localeCompare(b.name,"pt-BR");
+  return (a.dueDate||"9999-12-31").localeCompare(b.dueDate||"9999-12-31");
+ });
+
+ return list;
+}
+
+function renderTasks(){
+ const list=filteredTasks();
+
+ $("taskList").innerHTML=list.length?list.map(t=>`
+  <tr>
+   <td>
+    <strong>${esc(t.name)}</strong>
+    <br><small>${esc(t.description||"")}</small>
+   </td>
+   <td>${esc(projectName(t.projectId))}</td>
+   <td>${esc(t.responsible||"—")}</td>
+   <td>${priorityTag(t.priority)}</td>
+   <td>${dateBR(t.dueDate)}</td>
+   <td>${statusTag(t)}</td>
+   <td>${t.progress}%</td>
+   <td>
+    <div class="actions">
+     <button class="btn small secondary" data-edit="${esc(t.id)}">Editar</button>
+     <button class="btn small danger" data-delete="${esc(t.id)}">Excluir</button>
+    </div>
+   </td>
+  </tr>
+ `).join("")
+ :'<tr><td colspan="8" class="empty">Nenhuma tarefa encontrada.</td></tr>';
+}
+
+$("taskList").onclick=e=>{
+ const edit=e.target.closest("[data-edit]");
+ if(edit)return editTask(edit.dataset.edit);
+
+ const del=e.target.closest("[data-delete]");
+ if(del)return deleteTask(del.dataset.delete);
+};
+
+function renderKanban(){
+ const stages=["A fazer","Em andamento","Em revisão","Concluída"];
+
+ $("kanbanBoard").innerHTML=stages.map((stage,index)=>{
+  const tasks=db.tasks.filter(t=>t.status===stage);
+
+  return `
+   <div class="kanban-column">
+    <h3>${esc(stage)} (${tasks.length})</h3>
+
+    ${tasks.length?tasks.map(t=>`
+     <article class="task-card">
+      <h4>${esc(t.name)}</h4>
+      <p>📁 ${esc(projectName(t.projectId))}</p>
+      <p>👤 ${esc(t.responsible||"Sem responsável")}</p>
+      <p>📅 ${dateBR(t.dueDate)}</p>
+      ${priorityTag(t.priority)}
+      <p>Progresso: ${t.progress}%</p>
+      <div class="progress-track">
+       <span class="progress-fill" style="width:${t.progress}%"></span>
+      </div>
+
+      <div class="actions">
+       ${index>0?`<button class="btn small outline" data-move="${esc(t.id)}" data-dir="-1">←</button>`:""}
+       ${index<3?`<button class="btn small" data-move="${esc(t.id)}" data-dir="1">Avançar →</button>`:""}
+       <button class="btn small secondary" data-edit="${esc(t.id)}">Editar</button>
+      </div>
+     </article>
+    `).join(""):'<p class="hint">Nenhuma tarefa nesta etapa.</p>'}
+   </div>
+  `;
+ }).join("");
+}
+
+$("kanbanBoard").onclick=e=>{
+ const move=e.target.closest("[data-move]");
+ if(move)return moveTask(move.dataset.move,Number(move.dataset.dir));
+
+ const edit=e.target.closest("[data-edit]");
+ if(edit)return editTask(edit.dataset.edit);
+};
+
+function resetProjectForm(){
+ editingProjectId=null;
+ $("projectForm").reset();
+ $("projectFormTitle").textContent="Novo projeto";
+}
+
+$("projectForm").onsubmit=e=>{
+ e.preventDefault();
+
+ const name=$("projectName").value.trim();
+
+ if(!name){
+  notify("Informe o nome do projeto.");
+  return;
+ }
+
+ const data={
+  name,
+  responsible:$("projectResponsible").value.trim(),
+  dueDate:$("projectDue").value,
+  description:$("projectDescription").value.trim()
+ };
+
+ const now=new Date().toISOString();
+ const previous=JSON.stringify(db.projects);
+
+ if(editingProjectId){
+  const index=db.projects.findIndex(p=>p.id===editingProjectId);
+  if(index>=0)
+   db.projects[index]={...db.projects[index],...data,updatedAt:now};
+  else editingProjectId=null;
+ }
+
+ if(!editingProjectId){
+  db.projects.push({
+   id:uid(),...data,createdAt:now,updatedAt:now
+  });
+ }
+
+ if(!persist()){
+  db.projects=JSON.parse(previous);
+  return;
+ }
+
+ resetProjectForm();
+ renderAll();
+ notify("Projeto salvo.");
+};
+
+function editProject(id){
+ const p=db.projects.find(x=>x.id===id);
+ if(!p)return;
+
+ editingProjectId=id;
+ $("projectName").value=p.name;
+ $("projectResponsible").value=p.responsible;
+ $("projectDue").value=p.dueDate;
+ $("projectDescription").value=p.description;
+
+ $("projectFormTitle").textContent="Editar projeto";
+ showView("projetos");
+ $("projectName").focus();
+}
+
+function deleteProject(id){
+ const related=db.tasks.filter(t=>t.projectId===id).length;
+
+ if(!confirm(
+  "Excluir este projeto? "+related+
+  " tarefa(s) vinculada(s) ficarão sem projeto."
+ ))return;
+
+ const previous=JSON.stringify(db);
+
+ db.projects=db.projects.filter(p=>p.id!==id);
+ db.tasks.forEach(t=>{
+  if(t.projectId===id)t.projectId="";
+ });
+
+ if(!persist()){
+  db=JSON.parse(previous);
+  return;
+ }
+
+ if(editingProjectId===id)resetProjectForm();
+ renderAll();
+ notify("Projeto excluído.");
+}
+
+function renderProjects(){
+ $("projectSummary").textContent=
+  db.projects.length+" projeto(s) cadastrado(s).";
+
+ $("projectList").innerHTML=db.projects.length
+  ?db.projects.map(p=>{
+   const tasks=db.tasks.filter(t=>t.projectId===p.id);
+   const progress=tasks.length
+    ?Math.round(tasks.reduce((s,t)=>s+t.progress,0)/tasks.length)
+    :0;
+
+   return `
+    <article class="project-card">
+     <h3>${esc(p.name)}</h3>
+     <p>${esc(p.description||"Sem descrição")}</p>
+     <p>👤 ${esc(p.responsible||"Sem responsável")}</p>
+     <p>📅 Prazo: ${dateBR(p.dueDate)}</p>
+     <p>📋 ${tasks.length} tarefa(s)</p>
+     <p>Progresso: ${progress}%</p>
+
+     <div class="progress-track">
+      <span class="progress-fill" style="width:${progress}%"></span>
+     </div>
+
+     <div class="actions" style="margin-top:15px">
+      <button class="btn small secondary" data-project-edit="${esc(p.id)}">Editar</button>
+      <button class="btn small danger" data-project-delete="${esc(p.id)}">Excluir</button>
+     </div>
+    </article>
+   `;
+  }).join("")
+  :'<p class="empty">Nenhum projeto cadastrado.</p>';
+}
+
+$("projectList").onclick=e=>{
+ const edit=e.target.closest("[data-project-edit]");
+ if(edit)return editProject(edit.dataset.projectEdit);
+
+ const del=e.target.closest("[data-project-delete]");
+ if(del)return deleteProject(del.dataset.projectDelete);
+};
+
+function renderReports(){
+ const total=db.tasks.length;
+ const done=db.tasks.filter(t=>t.status==="Concluída").length;
+ const rate=total?Math.round(done/total*100):0;
+
+ $("reportProjects").textContent=db.projects.length;
+ $("reportTasks").textContent=total;
+ $("reportDone").textContent=done;
+ $("reportRate").textContent=rate+"%";
+
+ $("reportList").innerHTML=total?db.tasks.map(t=>`
+  <tr>
+   <td>${esc(t.name)}</td>
+   <td>${esc(projectName(t.projectId))}</td>
+   <td>${esc(t.responsible||"—")}</td>
+   <td>${dateBR(t.dueDate)}</td>
+   <td>${esc(t.status)}</td>
+   <td>${t.progress}%</td>
+  </tr>
+ `).join("")
+ :'<tr><td colspan="6" class="empty">Nenhuma tarefa cadastrada.</td></tr>';
+}
+
+function exportCSV(){
+ const rows=[[
+  "Tarefa","Projeto","Responsável","Prioridade",
+  "Prazo","Situação","Progresso","Descrição","Observações"
+ ]];
+
+ filteredTasks().forEach(t=>rows.push([
+  t.name,
+  projectName(t.projectId),
+  t.responsible,
+  t.priority,
+  dateBR(t.dueDate),
+  t.status,
+  t.progress+"%",
+  t.description,
+  t.notes
+ ]));
+
+ const csv="\uFEFF"+rows.map(row=>row.map(v=>
+  '"'+String(v??"").replace(/"/g,'""')+'"'
+ ).join(";")).join("\r\n");
+
+ download("tarefas-meu-trabalho.csv",csv,"text/csv;charset=utf-8");
+ notify("CSV exportado.");
+}
+
+function printReport(){
+ const list=filteredTasks();
+
+ $("printArea").innerHTML=`
+  <h1>RELATÓRIO DE TRABALHO</h1>
+  <p>Emitido em ${new Date().toLocaleString("pt-BR")}</p>
+  <p><strong>Projetos:</strong> ${db.projects.length}<br>
+  <strong>Tarefas:</strong> ${list.length}</p>
+
+  <table>
+   <thead>
+    <tr>
+     <th>Tarefa</th>
+     <th>Projeto</th>
+     <th>Responsável</th>
+     <th>Prazo</th>
+     <th>Situação</th>
+     <th>Progresso</th>
+    </tr>
+   </thead>
+   <tbody>
+    ${list.map(t=>`
+     <tr>
+      <td>${esc(t.name)}</td>
+      <td>${esc(projectName(t.projectId))}</td>
+      <td>${esc(t.responsible||"—")}</td>
+      <td>${dateBR(t.dueDate)}</td>
+      <td>${esc(t.status)}</td>
+      <td>${t.progress}%</td>
+     </tr>
+    `).join("")}
+   </tbody>
+  </table>
+ `;
+
+ window.print();
+}
+
+function exportBackup(){
+ download(
+  "backup-meu-trabalho.json",
+  JSON.stringify(db,null,2),
+  "application/json"
+ );
+ notify("Backup exportado.");
+}
+
+$("backupFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  if(file.size>15*1024*1024)
+   throw Error("Arquivo muito grande.");
+
+  const raw=JSON.parse(await file.text());
+
+  if(
+   raw.version!==3||
+   !Array.isArray(raw.projects)||
+   !Array.isArray(raw.tasks)
+  )throw Error("Backup incompatível.");
+
+  if(!confirm("Substituir todos os dados atuais pelo backup?"))return;
+
+  const previous=db;
+  db=raw;
+
+  if(!persist()){
+   db=previous;
+   return;
+  }
+
+  resetTaskForm();
+  resetProjectForm();
+  renderAll();
+  notify("Backup importado.");
+ }catch(err){
+  notify("Erro: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+function clearAll(){
+ if(!confirm("Apagar todos os projetos e tarefas?"))return;
+ if(!confirm("Confirme novamente. A exclusão não pode ser desfeita sem backup."))return;
+
+ const previous=db;
+ db={version:3,projects:[],tasks:[]};
+
+ if(!persist()){
+  db=previous;
+  return;
+ }
+
+ resetTaskForm();
+ resetProjectForm();
+ renderAll();
+ notify("Todos os dados foram apagados.");
+}
+
+[
+ "searchTask",
+ "filterStatus",
+ "filterPriority",
+ "taskListSearch",
+ "taskSort"
+].forEach(id=>{
+ $(id).addEventListener("input",renderAll);
+ $(id).addEventListener("change",renderAll);
 });
-salvar();$("form").reset();render();
-};
-function mudar(id,status){
-const t=tarefas.find(x=>x.id===id);
-if(!t)return;
-t.status=status;salvar();render();
+
+$("status").addEventListener("change",()=>{
+ if($("status").value==="Concluída")
+  $("progress").value="100";
+});
+
+function renderAll(){
+ renderProjectOptions();
+ renderDashboard();
+ renderTasks();
+ renderKanban();
+ renderProjects();
+ renderReports();
 }
-function excluir(id){
-if(!confirm("Excluir tarefa?"))return;
-tarefas=tarefas.filter(x=>x.id!==id);salvar();render();
-}
-function render(){
-$("total").textContent=tarefas.length;
-$("andamento").textContent=tarefas.filter(x=>x.status==="Em andamento").length;
-$("concluidas").textContent=tarefas.filter(x=>x.status==="Concluída").length;
-const q=$("pesquisa").value.toLowerCase();
-const f=$("filtro").value;
-const lista=tarefas.filter(x=>
-(x.nome+" "+x.projeto+" "+x.responsavel).toLowerCase().includes(q)&&
-(!f||x.status===f));
-$("lista").innerHTML=lista.map(x=>`
-<div class="tarefa">
-<h3>${esc(x.nome)}</h3>
-<span class="badge">${esc(x.status)}</span>
-<span class="badge">${esc(x.prioridade)}</span>
-<p><b>Projeto:</b> ${esc(x.projeto||"Não informado")}<br>
-<b>Responsável:</b> ${esc(x.responsavel||"Não informado")}<br>
-<b>Prazo:</b> ${esc(x.prazo||"Não definido")}</p>
-<p>${esc(x.descricao)}</p>
-<div class="actions no-print">
-<button data-id="${esc(x.id)}" data-status="Em andamento">Iniciar</button>
-<button class="secondary" data-id="${esc(x.id)}" data-status="Concluída">Concluir</button>
-<button class="secondary" data-id="${esc(x.id)}" data-status="Pendente">Reabrir</button>
-<button class="danger" data-id="${esc(x.id)}" data-excluir="1">Excluir</button>
-</div>
-</div>`).join("")||"<p>Nenhuma tarefa encontrada.</p>";
-}
-$("lista").onclick=e=>{
-const b=e.target.closest("[data-id]");
-if(!b)return;
-if(b.dataset.excluir)excluir(b.dataset.id);
-else mudar(b.dataset.id,b.dataset.status);
-};
-$("pesquisa").oninput=render;
-$("filtro").onchange=render;
-function exportar(){
-const linhas=[["Tarefa","Projeto","Responsável","Prioridade","Prazo","Situação","Descrição"],
-...tarefas.map(x=>[x.nome,x.projeto,x.responsavel,x.prioridade,x.prazo,x.status,x.descricao])];
-const csv="\uFEFF"+linhas.map(l=>l.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(";")).join("\r\n");
-const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
-const a=document.createElement("a");a.href=url;a.download="meu-trabalho.csv";a.click();
-setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
-render();
+
+resetTaskForm();
+renderAll();
 </script>
 </body>
 </html>
