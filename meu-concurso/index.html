@@ -7,437 +7,1292 @@
 <meta name="theme-color" content="#102653">
 <title>MEU CONCURSO • BUSINESS PRO</title>
 <style>
-:root{--bg:#eef3fc;--panel:#fff;--ink:#102653;--muted:#657793;--line:#d8e3f5;--blue:#2563eb;--soft:#eaf1ff}
-body.dark{--bg:#0b1425;--panel:#14233b;--ink:#f5f8ff;--muted:#a9bad4;--line:#2c405e;--soft:#1b3357}
+:root{
+ --bg:#eef3fc;--panel:#fff;--ink:#102653;
+ --muted:#657793;--line:#d8e3f5;
+ --blue:#2563eb;--soft:#eaf1ff;
+}
+body.dark{
+ --bg:#0b1425;--panel:#14233b;
+ --ink:#f5f8ff;--muted:#a9bad4;
+ --line:#2c405e;--soft:#1b3357;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,Arial,sans-serif}
+body{
+ margin:0;background:var(--bg);color:var(--ink);
+ font:15px/1.5 system-ui,Arial,sans-serif;
+}
 button,input,select,textarea{font:inherit}
-button{cursor:pointer;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);padding:11px 15px;font-weight:700}
-button:hover,a.btn:hover{filter:brightness(.94)}
-button.primary,a.btn.primary{background:var(--blue);border-color:var(--blue);color:white}
-button:disabled{opacity:.45;cursor:not-allowed}
-input,select,textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px;background:var(--panel);color:var(--ink)}
-textarea{min-height:95px;resize:vertical}
-label{font-weight:700;font-size:13px}
+button{
+ cursor:pointer;border:1px solid var(--line);
+ border-radius:12px;background:var(--panel);
+ color:var(--ink);padding:11px 15px;font-weight:700;
+}
+button.primary{
+ background:var(--blue);border-color:var(--blue);color:white;
+}
+button:disabled{opacity:.5;cursor:not-allowed}
+input,select,textarea{
+ width:100%;padding:12px;
+ border:1px solid var(--line);border-radius:11px;
+ background:var(--panel);color:var(--ink);
+}
+textarea{min-height:105px;resize:vertical}
+label{display:block;font-weight:700;font-size:13px}
 label input,label select,label textarea{margin-top:6px}
 a{color:var(--blue)}
-a.btn{display:inline-block;text-decoration:none;padding:10px 13px;border:1px solid var(--line);border-radius:11px;font-weight:750}
 [hidden]{display:none!important}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 4%;background:var(--panel);border-bottom:1px solid var(--line)}
-.brand{font-size:21px;font-weight:900}.brand span{color:var(--blue)}
-.actions,.tabs,.flex{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
-.hero{background:linear-gradient(120deg,#102653,#2563eb);color:white;padding:45px 5%;border-radius:0 0 30px 30px}
+header{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;padding:14px 4%;background:var(--panel);
+ border-bottom:1px solid var(--line);
+}
+.brand{font-size:21px;font-weight:900}
+.brand span{color:var(--blue)}
+.flex,.tabs{
+ display:flex;flex-wrap:wrap;align-items:center;gap:9px;
+}
+.hero{
+ background:linear-gradient(120deg,#102653,#2563eb);
+ color:white;padding:45px 5%;
+ border-radius:0 0 30px 30px;
+}
 .hero h1{font-size:clamp(30px,5vw,54px);margin:7px 0}
-.hero p{max-width:760px;font-size:17px;color:#e4edff}
+.hero p{color:#e4edff;max-width:760px}
 main{max-width:1350px;margin:auto;padding:25px 16px 70px}
 .tabs{margin-bottom:20px}
 .tabs button.active{background:var(--blue);color:white}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:20px;box-shadow:0 8px 24px #0b28630a}
-.panel h2{margin:0 0 8px;font-size:23px}
+.panel{
+ background:var(--panel);border:1px solid var(--line);
+ border-radius:20px;padding:22px;margin-bottom:20px;
+}
+.panel h2{margin:0 0 10px}
 .muted{color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.grid{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:13px;
+}
 .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.field{min-width:0}
-.stat{padding:18px;border:1px solid var(--line);border-radius:15px}
-.stat strong{display:block;font-size:28px}
-.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
-.card{border:1px solid var(--line);border-radius:15px;padding:18px;min-width:0}
+.cards{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:14px;margin-top:18px;
+}
+.card{
+ border:1px solid var(--line);border-radius:15px;
+ padding:18px;min-width:0;
+}
 .card h3{margin:5px 0}
 .card p{color:var(--muted)}
-.tag{display:inline-block;background:var(--soft);color:var(--blue);padding:5px 9px;border-radius:20px;font-size:12px;font-weight:800}
-.card .flex{margin-top:15px}
-.results{margin-top:20px}
-.notice{padding:13px;border-radius:12px;background:var(--soft);color:var(--ink);margin:15px 0}
-.calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
-.day{min-height:75px;border:1px solid var(--line);border-radius:10px;padding:7px;font-size:12px;overflow-wrap:anywhere}
+.notice{
+ background:var(--soft);padding:15px;
+ border-radius:12px;margin:15px 0;
+ white-space:pre-wrap;overflow-wrap:anywhere;
+}
+.tag{
+ display:inline-block;background:var(--soft);
+ color:var(--blue);padding:5px 9px;
+ border-radius:20px;font-size:12px;font-weight:800;
+}
+.stat{
+ padding:18px;border:1px solid var(--line);
+ border-radius:15px;
+}
+.stat strong{display:block;font-size:28px}
+.calendar{
+ display:grid;grid-template-columns:repeat(7,minmax(0,1fr));
+ gap:6px;
+}
+.day{
+ min-height:75px;border:1px solid var(--line);
+ border-radius:10px;padding:7px;font-size:12px;
+ overflow-wrap:anywhere;
+}
 .day.today{outline:2px solid var(--blue)}
-.day b{display:block}
-.day small{display:block;color:var(--blue)}
+.day b,.day small{display:block}
+.day small{color:var(--blue)}
 .week{text-align:center;font-weight:800;color:var(--muted)}
-dialog{border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--ink);width:min(650px,95vw);max-height:90vh;overflow:auto;padding:24px}
+dialog{
+ border:1px solid var(--line);border-radius:18px;
+ background:var(--panel);color:var(--ink);
+ width:min(650px,95vw);max-height:90vh;
+ overflow:auto;padding:24px;
+}
 dialog::backdrop{background:#071329a8}
 dialog form{display:grid;gap:12px}
-pre{white-space:pre-wrap;word-break:break-word}
-@media(max-width:850px){.grid,.grid.three,.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:580px){header{padding:12px}.brand{font-size:16px}.hero{padding:30px 18px}.panel{padding:15px}.grid,.grid.two,.grid.three,.cards{grid-template-columns:1fr}.tabs button{flex:1}.day{min-height:53px;padding:4px;font-size:10px}.actions button{padding:9px}.card .flex>*{flex:1;text-align:center}}
+.answer{
+ white-space:pre-wrap;line-height:1.8;font-size:15px;
+}
+.link{
+ display:inline-block;padding:10px 13px;
+ border:1px solid var(--line);border-radius:10px;
+ text-decoration:none;margin:5px 5px 5px 0;
+}
+.ai-status{
+ display:inline-block;padding:7px 12px;
+ background:var(--soft);border-radius:30px;
+ font-size:12px;font-weight:800;
+}
+@media(max-width:850px){
+ .grid,.grid.three,.cards{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+ }
+}
+@media(max-width:580px){
+ header{padding:12px}
+ .brand{font-size:16px}
+ .hero{padding:30px 18px}
+ .panel{padding:15px}
+ .grid,.grid.two,.grid.three,.cards{grid-template-columns:1fr}
+ .tabs button{flex:1}
+ .day{min-height:53px;padding:4px;font-size:10px}
+ .card .flex>*{flex:1}
+}
 </style>
 </head>
 <body>
+
 <header>
  <div class="brand">🎓 MEU <span>CONCURSO</span></div>
- <div class="actions">
+ <div class="flex">
   <button id="theme">☾ Tema</button>
   <button onclick="location.href='../'">← Business Pro</button>
  </div>
 </header>
+
 <section class="hero">
- <div style="letter-spacing:3px;font-weight:800">BUSINESS PRO • EDUCAÇÃO E CARREIRA</div>
+ <div style="letter-spacing:3px;font-weight:800">
+  BUSINESS PRO • EDUCAÇÃO E CARREIRA
+ </div>
  <h1>Seu futuro começa aqui.</h1>
- <p>Encontre caminhos para cursos, qualificação profissional, faculdades e concursos. Organize sua preparação e acompanhe seu progresso.</p>
+ <p>
+  Encontre cursos, converse com uma inteligência artificial,
+  acompanhe concursos e organize seus estudos.
+ </p>
 </section>
+
 <main>
- <nav class="tabs" aria-label="Seções">
-  <button class="active" data-tab="cursos">🔎 Buscar cursos</button>
-  <button data-tab="assistente">🤖 Assistente</button>
-  <button data-tab="concursos">🏛 Concursos</button>
-  <button data-tab="estudos">📚 Estudos</button>
-  <button data-tab="simulados">📝 Simulados</button>
-  <button data-tab="agenda">📅 Agenda</button>
- </nav>
 
- <section id="cursos" class="section">
-  <div class="panel">
-   <h2>Encontre o curso ideal</h2>
-   <p class="muted">Escolha sua localização e profissão. Pesquise oportunidades gratuitas, técnicas, superiores e particulares em instituições confiáveis.</p>
-   <div class="grid">
-    <label class="field">País<select id="pais"><option value="Brasil">🇧🇷 Brasil</option></select></label>
-    <label class="field">Estado<select id="uf"><option value="">Todos os estados</option></select></label>
-    <label class="field">Cidade<input id="cidade" list="cidades" placeholder="Digite sua cidade"><datalist id="cidades"></datalist></label>
-    <label class="field">Modalidade<select id="modalidade"><option value="">Todas</option><option>Presencial</option><option>EAD</option><option>Híbrido</option></select></label>
-   </div>
-   <div class="grid two" style="margin-top:15px">
-    <label>Curso ou profissão<input id="buscaCurso" placeholder="Ex.: Assistente Administrativo"></label>
-    <label>Tipo de oportunidade<select id="tipoCurso"><option value="">Todas</option><option value="gratuito">Gratuitos / bolsas</option><option value="tecnico">Técnicos</option><option value="faculdade">Faculdade / graduação</option><option value="pago">Pagos / particulares</option></select></label>
-   </div>
-   <div class="flex" style="margin-top:17px">
-    <button class="primary" id="pesquisar">🔎 Pesquisar cursos</button>
-    <button id="atualizar">↻ Atualizar pesquisa</button>
-    <button id="salvarBusca">☆ Salvar pesquisa</button>
-   </div>
-   <div class="notice" id="searchNotice">A busca apresenta instituições e links para pesquisas atualizadas. As vagas e os preços devem ser confirmados no site de cada instituição.</div>
-   <div id="resultados" class="cards"></div>
-  </div>
-  <div class="panel">
-   <h2>Áreas profissionais</h2>
-   <div class="flex" id="areas"></div>
-  </div>
-  <div class="panel">
-   <h2>Minhas pesquisas salvas</h2>
-   <div id="favoritos" class="cards"></div>
-  </div>
- </section>
+<nav class="tabs">
+ <button class="active" data-tab="cursos">🔎 Cursos</button>
+ <button data-tab="assistente">🤖 IA</button>
+ <button data-tab="concursos">🏛 Concursos</button>
+ <button data-tab="estudos">📚 Estudos</button>
+ <button data-tab="simulados">📝 Simulados</button>
+ <button data-tab="agenda">📅 Agenda</button>
+</nav>
 
- <section id="assistente" class="section" hidden>
-  <div class="panel">
-   <h2>🤖 Assistente de cursos e carreira</h2>
-   <p class="muted">Receba orientação para escolher uma formação, entender diferenças entre cursos e preparar sua inscrição. Esta versão usa orientações locais, não uma IA conectada à internet.</p>
-   <label>O que você precisa?<textarea id="pergunta" placeholder="Ex.: Quero trabalhar como assistente administrativo. Por onde começo?"></textarea></label>
-   <div class="flex" style="margin-top:12px">
-    <button class="primary" id="perguntar">Receber orientação</button>
-    <button id="usarPesquisa">Pesquisar este assunto</button>
-   </div>
-   <div id="resposta" class="notice" style="margin-top:20px">Digite sua dúvida para começar.</div>
-  </div>
-  <div class="panel">
-   <h2>Como fazer sua inscrição com segurança</h2>
-   <p>1. Consulte o curso no site oficial da instituição.</p>
-   <p>2. Verifique requisitos, carga horária, modalidade, local, preço e certificado.</p>
-   <p>3. Confira o edital, calendário e documentos exigidos.</p>
-   <p>4. Cadastre-se diretamente no sistema oficial da instituição.</p>
-   <p>5. Guarde o comprovante e registre a data no calendário do MEU CONCURSO.</p>
-   <p class="muted">Nunca informe senha, código de verificação ou dados bancários ao assistente.</p>
-  </div>
- </section>
+<section id="cursos" class="section">
+ <div class="panel">
+  <h2>Buscar cursos e oportunidades</h2>
+  <p class="muted">
+   Pesquise em instituições e consulte a IA
+   para receber orientação personalizada.
+  </p>
 
- <section id="concursos" class="section" hidden>
-  <div class="panel">
-   <div class="flex" style="justify-content:space-between">
-    <h2>Meus concursos</h2><button class="primary" onclick="abrirForm('concurso')">+ Cadastrar concurso</button>
-   </div>
-   <div class="grid three" id="stats"></div>
-   <div id="listaConcursos" class="cards"></div>
-  </div>
- </section>
+  <div class="grid">
+   <label>País
+    <select id="pais">
+     <option value="Brasil">🇧🇷 Brasil</option>
+    </select>
+   </label>
 
- <section id="estudos" class="section" hidden>
-  <div class="panel">
-   <div class="flex" style="justify-content:space-between">
-    <h2>Histórico de estudos</h2><button class="primary" onclick="abrirForm('estudo')">+ Registrar estudo</button>
-   </div>
-   <div id="listaEstudos" class="cards"></div>
-  </div>
- </section>
+   <label>Estado
+    <select id="uf">
+     <option value="">Todos os estados</option>
+    </select>
+   </label>
 
- <section id="simulados" class="section" hidden>
-  <div class="panel">
-   <div class="flex" style="justify-content:space-between">
-    <h2>Resultados dos simulados</h2><button class="primary" onclick="abrirForm('simulado')">+ Registrar simulado</button>
-   </div>
-   <div id="listaSimulados" class="cards"></div>
-  </div>
- </section>
+   <label>Cidade
+    <input id="cidade" list="cidades"
+     placeholder="Digite sua cidade">
+    <datalist id="cidades"></datalist>
+   </label>
 
- <section id="agenda" class="section" hidden>
-  <div class="panel">
-   <div class="flex" style="justify-content:space-between">
-    <button id="prev">←</button><h2 id="mes"></h2><button id="next">→</button>
-   </div>
-   <div class="calendar" id="calendario"></div>
+   <label>Modalidade
+    <select id="modalidade">
+     <option value="">Todas</option>
+     <option>Presencial</option>
+     <option>EAD</option>
+     <option>Híbrido</option>
+    </select>
+   </label>
   </div>
-  <div class="panel">
-   <h2>Gerenciar meus dados</h2>
-   <div class="flex">
-    <button id="exportar">Exportar CSV</button>
-    <button id="backup">Backup JSON</button>
-    <button id="importar">Importar backup</button>
-   </div>
-   <input id="backupFile" type="file" accept=".json,application/json" hidden>
-   <p class="muted">Os registros são armazenados neste navegador. Faça backup regularmente. A versão não sincroniza entre dispositivos.</p>
+
+  <div class="grid two" style="margin-top:15px">
+   <label>Curso ou profissão
+    <input id="buscaCurso"
+     placeholder="Ex.: Assistente Administrativo">
+   </label>
+
+   <label>Tipo
+    <select id="tipoCurso">
+     <option value="">Todas</option>
+     <option value="gratuito">Gratuitos / bolsas</option>
+     <option value="tecnico">Técnicos</option>
+     <option value="faculdade">Faculdade</option>
+     <option value="pago">Pagos</option>
+    </select>
+   </label>
   </div>
- </section>
+
+  <div class="flex" style="margin-top:17px">
+   <button class="primary" id="pesquisar">
+    🔎 Buscar cursos
+   </button>
+   <button id="atualizar">↻ Atualizar</button>
+   <button id="pesquisarIA">🤖 Consultar IA</button>
+   <button id="salvarBusca">☆ Salvar pesquisa</button>
+  </div>
+
+  <div id="searchNotice" class="notice">
+   Consulte fontes oficiais antes de se inscrever.
+  </div>
+
+  <div id="resultados" class="cards"></div>
+ </div>
+
+ <div class="panel">
+  <h2>Áreas profissionais</h2>
+  <div class="flex" id="areas"></div>
+ </div>
+
+ <div class="panel">
+  <h2>Minhas pesquisas salvas</h2>
+  <div id="favoritos" class="cards"></div>
+ </div>
+</section>
+
+<section id="assistente" class="section" hidden>
+ <div class="panel">
+  <div class="flex" style="justify-content:space-between">
+   <h2>🤖 Assistente IA • MEU CONCURSO</h2>
+   <span id="aiStatus" class="ai-status">
+    Aguardando pergunta
+   </span>
+  </div>
+
+  <p class="muted">
+   Faça perguntas sobre cursos, carreiras, concursos,
+   editais, inscrições, estudos e profissões.
+  </p>
+
+  <label>
+   Sua pergunta
+   <textarea id="pergunta"
+    placeholder="Ex.: Quais cursos gratuitos de Assistente Administrativo existem na minha cidade?"></textarea>
+  </label>
+
+  <div class="flex" style="margin-top:12px">
+   <button class="primary" id="perguntar">
+    ✨ Perguntar à IA
+   </button>
+   <button id="usarPesquisa">🔎 Pesquisar cursos</button>
+   <button id="limparResposta">Limpar</button>
+  </div>
+
+  <div id="resposta" class="notice answer">
+   Digite sua pergunta para conversar com o Gemini.
+  </div>
+
+  <div id="fontesResposta"></div>
+ </div>
+
+ <div class="panel">
+  <h2>Como se inscrever com segurança</h2>
+  <p>1. Consulte o curso no site oficial.</p>
+  <p>2. Confira requisitos, valores e certificado.</p>
+  <p>3. Leia o edital e verifique os prazos.</p>
+  <p>4. Faça a inscrição na instituição responsável.</p>
+  <p>5. Guarde o comprovante e registre na agenda.</p>
+ </div>
+</section>
+
+<section id="concursos" class="section" hidden>
+ <div class="panel">
+  <div class="flex" style="justify-content:space-between">
+   <h2>Meus concursos</h2>
+   <button class="primary" onclick="abrirForm('concurso')">
+    + Cadastrar concurso
+   </button>
+  </div>
+
+  <div class="flex">
+   <button id="buscarConcursos">🔎 Buscar editais</button>
+  </div>
+
+  <div id="stats" class="grid three"
+   style="margin-top:15px"></div>
+  <div id="listaConcursos" class="cards"></div>
+ </div>
+</section>
+
+<section id="estudos" class="section" hidden>
+ <div class="panel">
+  <div class="flex" style="justify-content:space-between">
+   <h2>Histórico de estudos</h2>
+   <button class="primary" onclick="abrirForm('estudo')">
+    + Registrar estudo
+   </button>
+  </div>
+  <div id="listaEstudos" class="cards"></div>
+ </div>
+</section>
+
+<section id="simulados" class="section" hidden>
+ <div class="panel">
+  <div class="flex" style="justify-content:space-between">
+   <h2>Resultados dos simulados</h2>
+   <button class="primary" onclick="abrirForm('simulado')">
+    + Registrar simulado
+   </button>
+  </div>
+  <div id="listaSimulados" class="cards"></div>
+ </div>
+</section>
+
+<section id="agenda" class="section" hidden>
+ <div class="panel">
+  <div class="flex" style="justify-content:space-between">
+   <button id="prev">←</button>
+   <h2 id="mes"></h2>
+   <button id="next">→</button>
+  </div>
+  <div id="calendario" class="calendar"></div>
+ </div>
+
+ <div class="panel">
+  <h2>Gerenciar meus dados</h2>
+  <div class="flex">
+   <button id="exportar">Exportar CSV</button>
+   <button id="backup">Backup JSON</button>
+   <button id="importar">Importar backup</button>
+  </div>
+
+  <input id="backupFile" type="file"
+   accept=".json,application/json" hidden>
+
+  <p class="muted">
+   Seus dados ficam armazenados neste navegador.
+   Faça backup regularmente.
+  </p>
+ </div>
+</section>
+
 </main>
 
 <dialog id="dialog">
  <form id="form">
   <h2 id="formTitulo"></h2>
   <div id="formCampos"></div>
-  <div class="flex" style="margin-top:15px">
-   <button type="submit" class="primary">Salvar</button>
-   <button type="button" onclick="document.getElementById('dialog').close()">Cancelar</button>
+  <div class="flex">
+   <button class="primary" type="submit">Salvar</button>
+   <button type="button"
+    onclick="document.getElementById('dialog').close()">
+    Cancelar
+   </button>
   </div>
  </form>
 </dialog>
 
 <script>
 "use strict";
+
+/*
+  IA GEMINI JÁ CONECTADA AO ENDEREÇO
+  DO SEU CLOUDFLARE WORKER.
+
+  A CHAVE GEMINI NÃO FICA NO HTML.
+*/
+
+const IA_URL =
+ "https://little-wood-47e8meu-concurso-ia.junhodorval.workers.dev";
+
 const $=id=>document.getElementById(id);
 const KEY="businesspro_meu_concurso_v3";
-const AREAS=["Assistente Administrativo","Administração","Informática","Excel","Recursos Humanos","Contabilidade","Enfermagem","Direito","Pedagogia","Logística","Marketing","Programação","Inglês","Construção Civil","Eletricista","Mecânica","Gastronomia","Design","Segurança do Trabalho","Gestão Financeira","Atendimento ao Cliente","Empreendedorismo"];
-const UFS={AC:"Acre",AL:"Alagoas",AP:"Amapá",AM:"Amazonas",BA:"Bahia",CE:"Ceará",DF:"Distrito Federal",ES:"Espírito Santo",GO:"Goiás",MA:"Maranhão",MT:"Mato Grosso",MS:"Mato Grosso do Sul",MG:"Minas Gerais",PA:"Pará",PB:"Paraíba",PR:"Paraná",PE:"Pernambuco",PI:"Piauí",RJ:"Rio de Janeiro",RN:"Rio Grande do Norte",RS:"Rio Grande do Sul",RO:"Rondônia",RR:"Roraima",SC:"Santa Catarina",SP:"São Paulo",SE:"Sergipe",TO:"Tocantins"};
-let db={concursos:[],estudos:[],simulados:[],buscas:[]};
-try{const old=JSON.parse(localStorage.getItem(KEY));if(old&&typeof old==="object")for(const k of Object.keys(db))if(Array.isArray(old[k]))db[k]=old[k]}catch{}
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(db))}catch{alert("Armazenamento cheio ou indisponível. Exporte um backup.")}};
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const id=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random();
-const today=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-")};
-const dateBR=s=>s?new Date(s+"T12:00:00").toLocaleDateString("pt-BR"):"—";
-const norm=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+
+const AREAS=[
+ "Assistente Administrativo","Administração",
+ "Informática","Excel","Recursos Humanos",
+ "Contabilidade","Enfermagem","Direito",
+ "Pedagogia","Logística","Marketing",
+ "Programação","Inglês","Construção Civil",
+ "Eletricista","Mecânica","Gastronomia",
+ "Design","Segurança do Trabalho",
+ "Gestão Financeira","Atendimento ao Cliente",
+ "Empreendedorismo"
+];
+
+const UFS={
+ AC:"Acre",AL:"Alagoas",AP:"Amapá",AM:"Amazonas",
+ BA:"Bahia",CE:"Ceará",DF:"Distrito Federal",
+ ES:"Espírito Santo",GO:"Goiás",MA:"Maranhão",
+ MT:"Mato Grosso",MS:"Mato Grosso do Sul",
+ MG:"Minas Gerais",PA:"Pará",PB:"Paraíba",
+ PR:"Paraná",PE:"Pernambuco",PI:"Piauí",
+ RJ:"Rio de Janeiro",RN:"Rio Grande do Norte",
+ RS:"Rio Grande do Sul",RO:"Rondônia",
+ RR:"Roraima",SC:"Santa Catarina",
+ SP:"São Paulo",SE:"Sergipe",TO:"Tocantins"
+};
+
+let db={
+ concursos:[],
+ estudos:[],
+ simulados:[],
+ buscas:[]
+};
+
+try{
+ const old=JSON.parse(localStorage.getItem(KEY));
+ if(old&&typeof old==="object"){
+  for(const k of Object.keys(db)){
+   if(Array.isArray(old[k]))db[k]=old[k];
+  }
+ }
+}catch(e){}
+
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(db));
+ }catch(e){
+  alert("Erro ao salvar. Faça um backup.");
+ }
+}
+
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",
+ '"':"&quot;","'":"&#39;"
+}[c]));
+
+const id=()=>crypto.randomUUID
+ ?crypto.randomUUID()
+ :Date.now()+"-"+Math.random();
+
+const today=()=>{
+ const d=new Date();
+ return [
+  d.getFullYear(),
+  String(d.getMonth()+1).padStart(2,"0"),
+  String(d.getDate()).padStart(2,"0")
+ ].join("-");
+};
+
+const dateBR=s=>s
+ ?new Date(s+"T12:00:00").toLocaleDateString("pt-BR")
+ :"—";
 
 function theme(t){
  document.body.classList.toggle("dark",t==="dark");
- try{localStorage.setItem("businesspro_theme_v2",t)}catch{}
+ $("theme").textContent=t==="dark"?"☀ Claro":"☾ Escuro";
+ try{localStorage.setItem("businesspro_theme_v2",t)}catch(e){}
 }
-try{theme(new URLSearchParams(location.search).get("bp_theme")||localStorage.getItem("businesspro_theme_v2")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"))}catch{theme("light")}
-$("theme").onclick=()=>theme(document.body.classList.contains("dark")?"light":"dark");
 
-document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{
- document.querySelectorAll("[data-tab]").forEach(x=>x.classList.toggle("active",x===b));
- document.querySelectorAll(".section").forEach(s=>s.hidden=s.id!==b.dataset.tab);
- if(b.dataset.tab==="agenda")calendar();
+try{
+ theme(
+  new URLSearchParams(location.search).get("bp_theme")||
+  localStorage.getItem("businesspro_theme_v2")||
+  (matchMedia("(prefers-color-scheme:dark)").matches
+   ?"dark":"light")
+ );
+}catch(e){theme("light")}
+
+$("theme").onclick=()=>theme(
+ document.body.classList.contains("dark")?"light":"dark"
+);
+
+function openTab(name){
+ document.querySelectorAll("[data-tab]").forEach(b=>{
+  b.classList.toggle("active",b.dataset.tab===name);
+ });
+
+ document.querySelectorAll(".section").forEach(s=>{
+  s.hidden=s.id!==name;
+ });
+
+ if(name==="agenda")calendar();
+}
+
+document.querySelectorAll("[data-tab]").forEach(b=>{
+ b.onclick=()=>openTab(b.dataset.tab);
 });
 
-for(const [uf,nome] of Object.entries(UFS))$("uf").add(new Option(nome,uf));
-$("uf").value="SC";
+for(const [uf,nome] of Object.entries(UFS)){
+ $("uf").add(new Option(nome,uf));
+}
+
+$("uf").value="";
 
 $("uf").onchange=async()=>{
  $("cidade").value="";
  $("cidades").replaceChildren();
+
  const uf=$("uf").value;
  if(!uf)return;
+
  try{
-  const r=await fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados/"+encodeURIComponent(uf)+"/municipios");
-  if(!r.ok)throw Error("Falha na consulta");
+  const r=await fetch(
+   "https://servicodados.ibge.gov.br/api/v1/localidades/estados/"+
+   encodeURIComponent(uf)+"/municipios"
+  );
+
+  if(!r.ok)throw Error("Falha");
+
   const cities=await r.json();
   cities.sort((a,b)=>a.nome.localeCompare(b.nome,"pt-BR"));
-  for(const c of cities){const o=document.createElement("option");o.value=c.nome;$("cidades").append(o)}
- }catch{ $("searchNotice").textContent="Não foi possível carregar as cidades do IBGE. Você ainda pode digitar sua cidade manualmente." }
+
+  for(const c of cities){
+   const o=document.createElement("option");
+   o.value=c.nome;
+   $("cidades").append(o);
+  }
+ }catch(e){
+  $("searchNotice").textContent=
+   "Não foi possível carregar as cidades do IBGE.";
+ }
 };
-$("uf").onchange();
+
+/* PESQUISA DE CURSOS */
 
 const FONTES=[
- {nome:"Escola Virtual de Governo",site:"https://www.escolavirtual.gov.br/catalogo",dom:"escolavirtual.gov.br",tipo:"gratuito",desc:"Cursos online gratuitos com certificado; consulte o catálogo."},
- {nome:"Senac",site:"https://www.senac.br/",dom:"senac.br",tipo:"gratuito",desc:"Formação profissional, cursos pagos e programas de gratuidade por estado."},
- {nome:"SENAI",site:"https://www.senai.br/",dom:"senai.br",tipo:"tecnico",desc:"Cursos industriais, técnicos e de qualificação profissional."},
- {nome:"Institutos Federais",site:"https://www.gov.br/mec/pt-br",dom:"gov.br",tipo:"tecnico",desc:"Pesquise editais e cursos dos institutos federais da sua região."},
- {nome:"Sebrae",site:"https://sebrae.com.br/",dom:"sebrae.com.br",tipo:"gratuito",desc:"Capacitações em empreendedorismo, gestão e negócios."},
- {nome:"Fundação Bradesco • Escola Virtual",site:"https://www.ev.org.br/",dom:"ev.org.br",tipo:"gratuito",desc:"Cursos online em tecnologia, administração e outras áreas."},
- {nome:"Coursera",site:"https://www.coursera.org/",dom:"coursera.org",tipo:"pago",desc:"Cursos e programas de universidades; condições de acesso e certificados variam."},
- {nome:"edX",site:"https://www.edx.org/",dom:"edx.org",tipo:"pago",desc:"Cursos e programas de instituições internacionais; consulte custos e condições."},
- {nome:"e-MEC",site:"https://emec.mec.gov.br/",dom:"emec.mec.gov.br",tipo:"faculdade",desc:"Consulte informações oficiais sobre instituições e cursos superiores."}
+ {
+  nome:"Escola Virtual de Governo",
+  site:"https://www.escolavirtual.gov.br/catalogo",
+  dominio:"escolavirtual.gov.br",
+  tipo:"gratuito"
+ },
+ {
+  nome:"Fundação Bradesco",
+  site:"https://www.ev.org.br/",
+  dominio:"ev.org.br",
+  tipo:"gratuito"
+ },
+ {
+  nome:"Sebrae",
+  site:"https://sebrae.com.br/",
+  dominio:"sebrae.com.br",
+  tipo:"gratuito"
+ },
+ {
+  nome:"Senac",
+  site:"https://www.senac.br/",
+  dominio:"senac.br",
+  tipo:"gratuito"
+ },
+ {
+  nome:"SENAI",
+  site:"https://www.senai.br/",
+  dominio:"senai.br",
+  tipo:"tecnico"
+ },
+ {
+  nome:"Institutos Federais",
+  site:"https://www.gov.br/mec/pt-br",
+  dominio:"edu.br",
+  tipo:"tecnico"
+ },
+ {
+  nome:"e-MEC",
+  site:"https://emec.mec.gov.br/",
+  dominio:"emec.mec.gov.br",
+  tipo:"faculdade"
+ },
+ {
+  nome:"Coursera",
+  site:"https://www.coursera.org/",
+  dominio:"coursera.org",
+  tipo:"pago"
+ },
+ {
+  nome:"edX",
+  site:"https://www.edx.org/",
+  dominio:"edx.org",
+  tipo:"pago"
+ }
 ];
+
 function query(){
- const termo=$("buscaCurso").value.trim()||"cursos profissionalizantes";
- const local=[$("cidade").value.trim(),UFS[$("uf").value]||""].filter(Boolean).join(" ");
- return {termo,local,tipo:$("tipoCurso").value,modalidade:$("modalidade").value};
+ return {
+  termo:$("buscaCurso").value.trim()||
+   "cursos profissionalizantes",
+  cidade:$("cidade").value.trim(),
+  uf:$("uf").value,
+  local:[
+   $("cidade").value.trim(),
+   UFS[$("uf").value]||""
+  ].filter(Boolean).join(" "),
+  tipo:$("tipoCurso").value,
+  modalidade:$("modalidade").value
+ };
 }
-function searchURL(f,q){
- const words=[q.termo,q.local,q.modalidade,q.tipo==="gratuito"?"gratuito bolsa":q.tipo==="pago"?"curso pago":q.tipo==="tecnico"?"curso técnico":q.tipo==="faculdade"?"graduação faculdade":""].filter(Boolean).join(" ");
- return "https://www.google.com/search?"+new URLSearchParams({q:"site:"+f.dom+" "+words});
+
+function googleSearch(text){
+ return "https://www.google.com/search?"+
+  new URLSearchParams({q:text}).toString();
 }
+
+function link(text,url){
+ const a=document.createElement("a");
+ a.className="link";
+ a.textContent=text;
+ a.href=url;
+ a.target="_blank";
+ a.rel="noopener noreferrer";
+ return a;
+}
+
 function renderSearch(){
  const q=query();
  const box=$("resultados");
  box.replaceChildren();
- let fontes=FONTES.filter(f=>!q.tipo||f.tipo===q.tipo||f.nome==="Senac");
- if(!fontes.length)fontes=FONTES;
+
+ const fontes=FONTES.filter(f=>
+  !q.tipo||f.tipo===q.tipo||f.nome==="Senac"
+ );
+
  for(const f of fontes){
   const card=document.createElement("article");
   card.className="card";
-  const h=document.createElement("h3");h.textContent=f.nome;
-  const p=document.createElement("p");p.textContent=f.desc;
-  const tag=document.createElement("span");tag.className="tag";tag.textContent="Fonte institucional";
-  const links=document.createElement("div");links.className="flex";
-  const a=document.createElement("a");a.className="btn primary";a.href=searchURL(f,q);a.target="_blank";a.rel="noopener noreferrer";a.textContent="🔎 Buscar cursos";
-  const b=document.createElement("a");b.className="btn";b.href=f.site;b.target="_blank";b.rel="noopener noreferrer";b.textContent="Site da instituição";
-  links.append(a,b);card.append(tag,h,p,links);box.append(card);
+
+  const h=document.createElement("h3");
+  h.textContent=f.nome;
+
+  const tag=document.createElement("span");
+  tag.className="tag";
+  tag.textContent="Instituição";
+
+  const p=document.createElement("p");
+  p.textContent=
+   "Consulte cursos, editais e inscrições na instituição.";
+
+  const busca=googleSearch([
+   "site:"+f.dominio,
+   q.termo,
+   q.local,
+   q.modalidade,
+   "curso inscrições"
+  ].filter(Boolean).join(" "));
+
+  card.append(
+   tag,h,p,
+   link("🔎 Pesquisar",busca),
+   link("Site oficial",f.site)
+  );
+
+  box.append(card);
  }
- $("searchNotice").textContent="Pesquisa preparada para “"+q.termo+"”"+(q.local?" em "+q.local:"")+" • "+new Date().toLocaleString("pt-BR")+". Clique em Buscar cursos para consultar resultados atuais. A disponibilidade não foi verificada automaticamente.";
+
+ $("searchNotice").textContent=
+  "Pesquisa para “"+q.termo+"”"+
+  (q.local?" em "+q.local:"")+
+  ". Os links consultam fontes externas. "+
+  "A disponibilidade de vagas ainda precisa ser confirmada.";
 }
+
 $("pesquisar").onclick=renderSearch;
 $("atualizar").onclick=renderSearch;
-$("salvarBusca").onclick=()=>{
- const q=query();db.buscas.unshift({id:id(),...q});save();renderFav();alert("Pesquisa salva.");
+
+$("pesquisarIA").onclick=()=>{
+ const q=query();
+
+ $("pergunta").value=
+  "Pesquise cursos de "+q.termo+
+  (q.local?" em "+q.local:"")+
+  (q.modalidade?", modalidade "+q.modalidade:"")+
+  (q.tipo?", tipo "+q.tipo:"")+
+  ". Quero saber instituições, opções gratuitas, "+
+  "inscrições atuais, requisitos, certificados "+
+  "e links oficiais. Não invente vagas.";
+
+ openTab("assistente");
+ perguntarIA();
 };
-$("areas").replaceChildren();
+
+$("salvarBusca").onclick=()=>{
+ db.buscas.unshift({id:id(),...query()});
+ save();
+ renderFav();
+ alert("Pesquisa salva.");
+};
+
 for(const area of AREAS){
- const b=document.createElement("button");b.textContent=area;
- b.onclick=()=>{$("buscaCurso").value=area;renderSearch();$("cursos").scrollIntoView({behavior:"smooth"})};
+ const b=document.createElement("button");
+ b.textContent=area;
+ b.onclick=()=>{
+  $("buscaCurso").value=area;
+  renderSearch();
+  $("cursos").scrollIntoView({behavior:"smooth"});
+ };
  $("areas").append(b);
 }
+
 function renderFav(){
- const box=$("favoritos");box.replaceChildren();
- if(!db.buscas.length){box.textContent="Nenhuma pesquisa salva.";return}
+ const box=$("favoritos");
+ box.replaceChildren();
+
+ if(!db.buscas.length){
+  box.textContent="Nenhuma pesquisa salva.";
+  return;
+ }
+
  db.buscas.forEach(item=>{
-  const c=document.createElement("div");c.className="card";
-  c.innerHTML="<h3>"+esc(item.termo)+"</h3><p>"+esc(item.local)+"</p>";
-  const open=document.createElement("button");open.textContent="Pesquisar novamente";
+  const c=document.createElement("article");
+  c.className="card";
+
+  c.innerHTML=
+   "<h3>"+esc(item.termo)+"</h3>"+
+   "<p>"+esc(item.local)+"</p>";
+
+  const open=document.createElement("button");
+  open.textContent="Pesquisar novamente";
+
   open.onclick=()=>{
    $("buscaCurso").value=item.termo;
-   $("cidade").value=item.local||"";
+   $("uf").value=item.uf||"";
+   $("cidade").value=item.cidade||"";
    $("tipoCurso").value=item.tipo||"";
    $("modalidade").value=item.modalidade||"";
-   renderSearch();$("resultados").scrollIntoView({behavior:"smooth"});
+   renderSearch();
   };
-  const del=document.createElement("button");del.textContent="Excluir";del.onclick=()=>{db.buscas=db.buscas.filter(x=>x.id!==item.id);save();renderFav()};
-  c.append(open,del);box.append(c);
+
+  const del=document.createElement("button");
+  del.textContent="Excluir";
+
+  del.onclick=()=>{
+   db.buscas=db.buscas.filter(x=>x.id!==item.id);
+   save();
+   renderFav();
+  };
+
+  c.append(open,del);
+  box.append(c);
  });
 }
-renderFav();
-renderSearch();
 
-$("perguntar").onclick=()=>{
- const p=$("pergunta").value.trim();
- if(!p){$("resposta").textContent="Escreva sua pergunta.";return}
- const t=norm(p);
- let resposta="Para encontrar uma formação adequada, pesquise o nome da profissão, compare instituições, requisitos, modalidade, carga horária, custos e validade do certificado. Consulte sempre a fonte oficial antes de se inscrever.";
- if(t.includes("administr")||t.includes("escritorio"))resposta="Para trabalhar como Assistente Administrativo, procure cursos de rotinas administrativas, informática, Excel, atendimento, gestão de documentos e comunicação profissional. Pesquise na Escola Virtual de Governo, Senac, SENAI e instituições da sua cidade. Verifique se a vaga é gratuita, os requisitos e se há certificado.";
- else if(t.includes("gratuit")||t.includes("bolsa"))resposta="Para buscar cursos gratuitos, comece pela Escola Virtual de Governo, Fundação Bradesco, Sebrae e programas de gratuidade do Senac. Para cursos presenciais, filtre seu estado e cidade e confirme editais e vagas.";
- else if(t.includes("faculdade")||t.includes("gradua"))resposta="Para graduação, confira se a instituição e o curso constam no e-MEC. Compare modalidade, mensalidade, bolsas, duração e regras de ingresso. O cadastro deve ser feito na instituição escolhida.";
- else if(t.includes("inscri")||t.includes("matricul"))resposta="Abra o edital ou página oficial da instituição, confira prazo, documentação, requisitos e custos. Faça seu cadastro apenas no portal oficial, guarde o protocolo e registre a data no calendário.";
- else if(t.includes("concurso")||t.includes("edital"))resposta="Para concursos públicos, leia o edital completo: cargo, escolaridade, inscrições, taxa, conteúdo programático, data da prova e regras de títulos. Cadastre as datas na aba Concursos e registre estudos e simulados.";
- $("resposta").textContent=resposta+"\n\nEsta é uma orientação automática local, não uma consulta de IA em tempo real.";
- $("resposta").style.whiteSpace="pre-wrap";
+/* IA REAL - GEMINI */
+
+async function perguntarIA(){
+ const pergunta=$("pergunta").value.trim();
+
+ if(!pergunta){
+  $("resposta").textContent="Digite sua pergunta.";
+  return;
+ }
+
+ $("perguntar").disabled=true;
+ $("aiStatus").textContent="Consultando Gemini...";
+ $("resposta").textContent="Aguarde a resposta da IA...";
+ $("fontesResposta").replaceChildren();
+
+ try{
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),45000);
+
+  let response;
+
+  try{
+   response=await fetch(IA_URL,{
+    method:"POST",
+    headers:{
+     "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+     pergunta,
+     cidade:$("cidade").value.trim(),
+     estado:UFS[$("uf").value]||""
+    }),
+    signal:controller.signal
+   });
+  }finally{
+   clearTimeout(timer);
+  }
+
+  const data=await response.json();
+
+  if(!response.ok){
+   throw Error(data.erro||data.error||"Erro no servidor.");
+  }
+
+  if(!data.resposta){
+   throw Error("A IA não retornou resposta.");
+  }
+
+  $("resposta").textContent=data.resposta;
+
+  $("aiStatus").textContent=data.pesquisaAtiva
+   ?"Gemini • Pesquisa solicitada"
+   :"Gemini • Sem pesquisa web confirmada";
+
+  if(data.aviso){
+   const p=document.createElement("p");
+   p.className="muted";
+   p.textContent=data.aviso;
+   $("fontesResposta").append(p);
+  }
+
+  for(const fonte of data.fontes||[]){
+   try{
+    const url=new URL(fonte.url);
+    if(!["https:","http:"].includes(url.protocol))continue;
+
+    $("fontesResposta").append(
+     link(fonte.titulo||"Fonte",url.href)
+    );
+   }catch(e){}
+  }
+
+ }catch(error){
+  $("aiStatus").textContent="Falha de conexão";
+  $("resposta").textContent=
+   "Não foi possível consultar a IA.\n\n"+
+   error.message+
+   "\n\nVerifique o Worker, a chave Gemini "+
+   "e os limites gratuitos da API.";
+ }finally{
+  $("perguntar").disabled=false;
+ }
+}
+
+$("perguntar").onclick=perguntarIA;
+
+$("limparResposta").onclick=()=>{
+ $("pergunta").value="";
+ $("resposta").textContent="Digite sua pergunta.";
+ $("fontesResposta").replaceChildren();
 };
+
 $("usarPesquisa").onclick=()=>{
  $("buscaCurso").value=$("pergunta").value.trim();
- document.querySelector('[data-tab="cursos"]').click();
+ openTab("cursos");
  renderSearch();
 };
 
-const fields={
- concurso:[["nome","Nome do concurso","text"],["orgao","Órgão / instituição","text"],["cargo","Cargo","text"],["inscricao","Fim das inscrições","date"],["prova","Data da prova","date"],["status","Situação","select","Preparação|Inscrito|Realizado|Concluído"],["url","Link do edital","url"]],
- estudo:[["materia","Matéria estudada","text"],["data","Data","date"],["horas","Horas estudadas","number"],["obs","Observações","textarea"]],
- simulado:[["titulo","Nome do simulado","text"],["data","Data","date"],["total","Total de questões","number"],["acertos","Acertos","number"]]
+$("buscarConcursos").onclick=()=>{
+ $("pergunta").value=
+  "Pesquise concursos públicos com inscrições abertas "+
+  "no Brasil, especialmente em "+
+  (UFS[$("uf").value]||"todos os estados")+
+  ". Informe órgão, cargo, escolaridade, "+
+  "datas de inscrição, link do edital e fontes oficiais. "+
+  "Não invente informações.";
+
+ openTab("assistente");
+ perguntarIA();
 };
+
+/* CADASTROS */
+
+const fields={
+ concurso:[
+  ["nome","Nome do concurso","text"],
+  ["orgao","Órgão / instituição","text"],
+  ["cargo","Cargo","text"],
+  ["inscricao","Fim das inscrições","date"],
+  ["prova","Data da prova","date"],
+  ["status","Situação","select",
+   "Preparação|Inscrito|Realizado|Concluído"],
+  ["url","Link do edital","url"]
+ ],
+ estudo:[
+  ["materia","Matéria estudada","text"],
+  ["data","Data","date"],
+  ["horas","Horas estudadas","number"],
+  ["obs","Observações","textarea"]
+ ],
+ simulado:[
+  ["titulo","Nome do simulado","text"],
+  ["data","Data","date"],
+  ["total","Total de questões","number"],
+  ["acertos","Acertos","number"]
+ ]
+};
+
 let formType="",editId=null;
+
 function abrirForm(type,record=null){
- formType=type;editId=record?.id||null;
- $("formTitulo").textContent=(record?"Editar ":"Novo ")+({concurso:"concurso",estudo:"estudo",simulado:"simulado"}[type]);
- const box=$("formCampos");box.replaceChildren();
+ formType=type;
+ editId=record?.id||null;
+
+ $("formTitulo").textContent=
+  (record?"Editar ":"Novo ")+
+  ({concurso:"concurso",estudo:"estudo",
+    simulado:"simulado"}[type]);
+
+ const box=$("formCampos");
+ box.replaceChildren();
+
  for(const [key,label,typeField,options] of fields[type]){
-  const lab=document.createElement("label");lab.textContent=label;
+  const lab=document.createElement("label");
+  lab.textContent=label;
+
   let el;
-  if(typeField==="textarea")el=document.createElement("textarea");
-  else if(typeField==="select"){el=document.createElement("select");for(const op of options.split("|"))el.add(new Option(op,op))}
-  else{el=document.createElement("input");el.type=typeField;if(typeField==="number"){el.min="0";el.step=key==="horas"?"0.25":"1"}}
-  el.name=key;el.value=record?.[key]??(typeField==="date"&&key==="data"?today():"");
-  if(key==="nome"||key==="materia"||key==="titulo")el.required=true;
-  lab.append(el);box.append(lab);
+
+  if(typeField==="textarea"){
+   el=document.createElement("textarea");
+  }else if(typeField==="select"){
+   el=document.createElement("select");
+   for(const op of options.split("|")){
+    el.add(new Option(op,op));
+   }
+  }else{
+   el=document.createElement("input");
+   el.type=typeField;
+
+   if(typeField==="number"){
+    el.min="0";
+    el.step=key==="horas"?"0.25":"1";
+   }
+  }
+
+  el.name=key;
+  el.value=record?.[key]??(
+   typeField==="date"&&key==="data"?today():""
+  );
+
+  if(["nome","materia","titulo"].includes(key)){
+   el.required=true;
+  }
+
+  lab.append(el);
+  box.append(lab);
  }
+
  $("dialog").showModal();
 }
+
 $("form").onsubmit=e=>{
  e.preventDefault();
+
  const data=Object.fromEntries(new FormData(e.target));
- if(formType==="simulado"&&Number(data.acertos)>Number(data.total)){alert("Acertos não podem superar o total de questões.");return}
- const key={concurso:"concursos",estudo:"estudos",simulado:"simulados"}[formType];
- if(editId){const i=db[key].findIndex(x=>x.id===editId);if(i>=0)db[key][i]={...db[key][i],...data}}
- else db[key].push({id:id(),...data});
- save();$("dialog").close();renderAll();
+
+ if(
+  formType==="simulado"&&
+  Number(data.acertos)>Number(data.total)
+ ){
+  alert("Acertos não podem superar o total de questões.");
+  return;
+ }
+
+ const key={
+  concurso:"concursos",
+  estudo:"estudos",
+  simulado:"simulados"
+ }[formType];
+
+ if(editId){
+  const i=db[key].findIndex(x=>x.id===editId);
+  if(i>=0){
+   db[key][i]={...db[key][i],...data};
+  }
+ }else{
+  db[key].push({id:id(),...data});
+ }
+
+ save();
+ $("dialog").close();
+ renderAll();
 };
+
 function itemCard(item,key,title,description){
- const c=document.createElement("article");c.className="card";
- c.innerHTML="<h3>"+esc(title)+"</h3><p>"+esc(description)+"</p>";
- const actions=document.createElement("div");actions.className="flex";
- const edit=document.createElement("button");edit.textContent="Editar";edit.onclick=()=>abrirForm({concursos:"concurso",estudos:"estudo",simulados:"simulado"}[key],item);
- const del=document.createElement("button");del.textContent="Excluir";del.onclick=()=>{if(confirm("Excluir este registro?")){db[key]=db[key].filter(x=>x.id!==item.id);save();renderAll()}};
- actions.append(edit,del);c.append(actions);return c;
+ const c=document.createElement("article");
+ c.className="card";
+
+ c.innerHTML=
+  "<h3>"+esc(title)+"</h3>"+
+  "<p>"+esc(description)+"</p>";
+
+ const actions=document.createElement("div");
+ actions.className="flex";
+
+ const edit=document.createElement("button");
+ edit.textContent="Editar";
+
+ edit.onclick=()=>abrirForm({
+  concursos:"concurso",
+  estudos:"estudo",
+  simulados:"simulado"
+ }[key],item);
+
+ const del=document.createElement("button");
+ del.textContent="Excluir";
+
+ del.onclick=()=>{
+  if(confirm("Excluir este registro?")){
+   db[key]=db[key].filter(x=>x.id!==item.id);
+   save();
+   renderAll();
+  }
+ };
+
+ actions.append(edit,del);
+
+ if(key==="concursos"&&item.url){
+  try{
+   const u=new URL(item.url);
+   if(["https:","http:"].includes(u.protocol)){
+    actions.append(link("Abrir edital",u.href));
+   }
+  }catch(e){}
+ }
+
+ c.append(actions);
+ return c;
 }
+
 function fillList(target,items,key,formatter){
- const box=$(target);box.replaceChildren();
- if(!items.length){box.innerHTML='<p class="muted">Nenhum registro encontrado.</p>';return}
- for(const item of items){const [title,desc]=formatter(item);box.append(itemCard(item,key,title,desc))}
+ const box=$(target);
+ box.replaceChildren();
+
+ if(!items.length){
+  box.innerHTML=
+   '<p class="muted">Nenhum registro encontrado.</p>';
+  return;
+ }
+
+ for(const item of items){
+  const [title,desc]=formatter(item);
+  box.append(itemCard(item,key,title,desc));
+ }
 }
+
 function renderAll(){
- const hours=db.estudos.reduce((a,x)=>a+(Number(x.horas)||0),0);
+ const hours=db.estudos.reduce(
+  (a,x)=>a+(Number(x.horas)||0),0
+ );
+
  $("stats").innerHTML=[
   ["Concursos",db.concursos.length],
-  ["Em preparação",db.concursos.filter(x=>x.status==="Preparação").length],
-  ["Horas estudadas",hours.toLocaleString("pt-BR")+"h"]
- ].map(x=>'<div class="stat">'+esc(x[0])+'<strong>'+esc(x[1])+'</strong></div>').join("");
- fillList("listaConcursos",db.concursos,"concursos",x=>[x.nome,x.orgao+" • "+x.cargo+" • Prova: "+dateBR(x.prova)+" • "+x.status]);
- fillList("listaEstudos",db.estudos,"estudos",x=>[x.materia,dateBR(x.data)+" • "+x.horas+"h • "+(x.obs||"")]);
- fillList("listaSimulados",db.simulados,"simulados",x=>[x.titulo,dateBR(x.data)+" • "+x.acertos+"/"+x.total+" acertos • "+(Number(x.total)?Math.round(100*Number(x.acertos)/Number(x.total)):0)+"%"]);
+  ["Em preparação",db.concursos.filter(
+   x=>x.status==="Preparação"
+  ).length],
+  ["Horas estudadas",
+   hours.toLocaleString("pt-BR")+"h"]
+ ].map(x=>
+  '<div class="stat">'+esc(x[0])+
+  '<strong>'+esc(x[1])+'</strong></div>'
+ ).join("");
+
+ fillList(
+  "listaConcursos",
+  db.concursos,
+  "concursos",
+  x=>[
+   x.nome,
+   x.orgao+" • "+x.cargo+
+   " • Prova: "+dateBR(x.prova)+
+   " • "+x.status
+  ]
+ );
+
+ fillList(
+  "listaEstudos",
+  db.estudos,
+  "estudos",
+  x=>[
+   x.materia,
+   dateBR(x.data)+" • "+
+   x.horas+"h • "+(x.obs||"")
+  ]
+ );
+
+ fillList(
+  "listaSimulados",
+  db.simulados,
+  "simulados",
+  x=>[
+   x.titulo,
+   dateBR(x.data)+" • "+
+   x.acertos+"/"+x.total+
+   " acertos • "+
+   (Number(x.total)
+    ?Math.round(
+     100*Number(x.acertos)/Number(x.total)
+    ):0)+"%"
+  ]
+ );
+
  calendar();
 }
-let viewDate=new Date();viewDate.setDate(1);
-$("prev").onclick=()=>{viewDate.setMonth(viewDate.getMonth()-1);calendar()};
-$("next").onclick=()=>{viewDate.setMonth(viewDate.getMonth()+1);calendar()};
+
+/* AGENDA */
+
+let viewDate=new Date();
+viewDate.setDate(1);
+
+$("prev").onclick=()=>{
+ viewDate.setMonth(viewDate.getMonth()-1);
+ calendar();
+};
+
+$("next").onclick=()=>{
+ viewDate.setMonth(viewDate.getMonth()+1);
+ calendar();
+};
+
 function calendar(){
- const y=viewDate.getFullYear(),m=viewDate.getMonth();
- $("mes").textContent=viewDate.toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
- const box=$("calendario");box.replaceChildren();
- for(const day of ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"]){const el=document.createElement("div");el.className="week";el.textContent=day;box.append(el)}
- for(let i=0;i<new Date(y,m,1).getDay();i++)box.append(document.createElement("div"));
+ const y=viewDate.getFullYear();
+ const m=viewDate.getMonth();
+
+ $("mes").textContent=viewDate.toLocaleDateString(
+  "pt-BR",{month:"long",year:"numeric"}
+ );
+
+ const box=$("calendario");
+ box.replaceChildren();
+
+ for(const day of [
+  "Dom","Seg","Ter","Qua","Qui","Sex","Sáb"
+ ]){
+  const el=document.createElement("div");
+  el.className="week";
+  el.textContent=day;
+  box.append(el);
+ }
+
+ for(let i=0;i<new Date(y,m,1).getDay();i++){
+  box.append(document.createElement("div"));
+ }
+
  const total=new Date(y,m+1,0).getDate();
+
  for(let d=1;d<=total;d++){
-  const date=[y,String(m+1).padStart(2,"0"),String(d).padStart(2,"0")].join("-");
-  const cell=document.createElement("div");cell.className="day"+(date===today()?" today":"");
-  const num=document.createElement("b");num.textContent=d;cell.append(num);
+  const date=[
+   y,
+   String(m+1).padStart(2,"0"),
+   String(d).padStart(2,"0")
+  ].join("-");
+
+  const cell=document.createElement("div");
+  cell.className="day"+(
+   date===today()?" today":""
+  );
+
+  const num=document.createElement("b");
+  num.textContent=d;
+  cell.append(num);
+
   const events=[
-   ...db.concursos.filter(x=>x.prova===date).map(x=>"Prova: "+x.nome),
-   ...db.concursos.filter(x=>x.inscricao===date).map(x=>"Inscrição: "+x.nome),
-   ...db.estudos.filter(x=>x.data===date).map(x=>"Estudo: "+x.materia)
+   ...db.concursos.filter(
+    x=>x.prova===date
+   ).map(x=>"Prova: "+x.nome),
+
+   ...db.concursos.filter(
+    x=>x.inscricao===date
+   ).map(x=>"Inscrição: "+x.nome),
+
+   ...db.estudos.filter(
+    x=>x.data===date
+   ).map(x=>"Estudo: "+x.materia)
   ];
-  for(const ev of events){const small=document.createElement("small");small.textContent=ev;cell.append(small)}
+
+  for(const ev of events){
+   const small=document.createElement("small");
+   small.textContent=ev;
+   cell.append(small);
+  }
+
   box.append(cell);
  }
 }
+
+/* BACKUP */
+
 function download(content,name,mime){
- const blob=new Blob([content],{type:mime});const url=URL.createObjectURL(blob);
- const a=document.createElement("a");a.href=url;a.download=name;document.body.append(a);a.click();a.remove();
+ const blob=new Blob([content],{type:mime});
+ const url=URL.createObjectURL(blob);
+
+ const a=document.createElement("a");
+ a.href=url;
+ a.download=name;
+
+ document.body.append(a);
+ a.click();
+ a.remove();
+
  setTimeout(()=>URL.revokeObjectURL(url),30000);
 }
-$("backup").onclick=()=>download(JSON.stringify({app:"MEU CONCURSO",version:3,data:db},null,2),"meu-concurso-backup.json","application/json");
+
+$("backup").onclick=()=>download(
+ JSON.stringify({
+  app:"MEU CONCURSO",
+  version:3,
+  data:db
+ },null,2),
+ "meu-concurso-backup.json",
+ "application/json"
+);
+
 $("importar").onclick=()=>$("backupFile").click();
+
 $("backupFile").onchange=async e=>{
- const f=e.target.files[0];e.target.value="";if(!f)return;
+ const f=e.target.files[0];
+ e.target.value="";
+ if(!f)return;
+
  try{
-  const obj=JSON.parse(await f.text());const data=obj.data||obj;
-  if(!data||!["concursos","estudos","simulados","buscas"].every(k=>Array.isArray(data[k])))throw Error("Formato incompatível");
-  if(!confirm("Substituir os registros atuais pelo backup?"))return;
-  db=data;save();renderAll();renderFav();alert("Backup importado.");
- }catch(err){alert("Não foi possível importar: "+err.message)}
+  const obj=JSON.parse(await f.text());
+  const data=obj.data||obj;
+
+  if(
+   !data||
+   !["concursos","estudos","simulados","buscas"]
+    .every(k=>Array.isArray(data[k]))
+  ){
+   throw Error("Formato incompatível");
+  }
+
+  if(!confirm(
+   "Substituir os registros atuais pelo backup?"
+  ))return;
+
+  db=data;
+  save();
+  renderAll();
+  renderFav();
+  alert("Backup importado.");
+ }catch(err){
+  alert("Não foi possível importar: "+err.message);
+ }
 };
+
 $("exportar").onclick=()=>{
  const rows=[["Tipo","Título","Data","Detalhes"]];
- for(const x of db.concursos)rows.push(["Concurso",x.nome,x.prova,x.orgao+" / "+x.cargo]);
- for(const x of db.estudos)rows.push(["Estudo",x.materia,x.data,x.horas+"h"]);
- for(const x of db.simulados)rows.push(["Simulado",x.titulo,x.data,x.acertos+"/"+x.total]);
- const csv="\uFEFF"+rows.map(r=>r.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(";")).join("\r\n");
- download(csv,"meu-concurso.csv","text/csv;charset=utf-8");
+
+ for(const x of db.concursos){
+  rows.push([
+   "Concurso",x.nome,x.prova,
+   x.orgao+" / "+x.cargo
+  ]);
+ }
+
+ for(const x of db.estudos){
+  rows.push([
+   "Estudo",x.materia,x.data,x.horas+"h"
+  ]);
+ }
+
+ for(const x of db.simulados){
+  rows.push([
+   "Simulado",x.titulo,x.data,
+   x.acertos+"/"+x.total
+  ]);
+ }
+
+ const csv="\uFEFF"+rows.map(r=>
+  r.map(v=>
+   '"'+String(v??"").replace(/"/g,'""')+'"'
+  ).join(";")
+ ).join("\r\n");
+
+ download(
+  csv,
+  "meu-concurso.csv",
+  "text/csv;charset=utf-8"
+ );
 };
+
+renderFav();
+renderSearch();
 renderAll();
 </script>
 </body>
