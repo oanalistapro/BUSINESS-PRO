@@ -1,0 +1,930 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<meta name="description" content="MEU MIGRANTE - Organize processos migratórios, vistos, documentos, protocolos, prazos e reunião familiar.">
+<title>MEU MIGRANTE | BUSINESS PRO</title>
+<style>
+:root{
+ --blue:#2563eb;--navy:#142747;--bg:#f3f7ff;
+ --line:#dce5f3;--muted:#64748b;--green:#15803d;
+ --red:#dc2626;--orange:#d97706
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--navy);font-family:Arial,Helvetica,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+header{
+ background:white;border-bottom:1px solid var(--line);
+ padding:18px 5%;display:flex;align-items:center;
+ justify-content:space-between;gap:12px
+}
+.brand{font-size:22px;font-weight:900}
+.brand span{color:var(--blue)}
+.back{font-weight:800;text-decoration:none}
+main{max-width:1250px;margin:auto;padding:25px 18px}
+.hero{
+ background:linear-gradient(125deg,#14366d,#2563eb);
+ color:white;border-radius:24px;padding:36px;
+ box-shadow:0 15px 35px #2563eb25
+}
+.hero small{letter-spacing:2px;font-weight:900}
+.hero h1{font-size:clamp(28px,4vw,43px);margin:12px 0}
+.hero p{line-height:1.7;max-width:790px;opacity:.94}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.btn{
+ border:0;background:var(--blue);color:white;
+ padding:12px 16px;border-radius:12px;font-weight:800;
+ display:inline-flex;align-items:center;justify-content:center;
+ gap:7px;text-decoration:none
+}
+.btn:hover{filter:brightness(.96)}
+.secondary{background:white;color:var(--navy);border:1px solid var(--line)}
+.danger{background:#fff1f2;color:var(--red)}
+.search{
+ flex:1;min-width:190px;background:white;
+ border:1px solid var(--line);border-radius:12px;padding:13px
+}
+.stats{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:14px;margin-bottom:24px
+}
+.stat,.panel,.record{
+ background:white;border:1px solid var(--line);
+ border-radius:19px;padding:22px;
+ box-shadow:0 10px 25px #1e3a8a08
+}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:29px;margin-top:9px}
+.panel{margin-bottom:22px}
+.panel h2{margin-top:0}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
+.filter{
+ border:1px solid var(--line);background:white;
+ border-radius:30px;padding:9px 15px;
+ color:var(--navy);font-weight:700
+}
+.filter.active{background:var(--blue);border-color:var(--blue);color:white}
+.records{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.record h3{margin:13px 0;overflow-wrap:anywhere}
+.record p{line-height:1.6;color:var(--muted);overflow-wrap:anywhere}
+.tag{
+ display:inline-block;padding:7px 12px;border-radius:30px;
+ background:#eaf1ff;color:#1d4ed8;font-size:12px;font-weight:900
+}
+.tag.green{background:#dcfce7;color:#166534}
+.tag.red{background:#fee2e2;color:#b91c1c}
+.tag.orange{background:#fef3c7;color:#92400e}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.empty{grid-column:1/-1;text-align:center;padding:45px;color:var(--muted)}
+.links{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px
+}
+.linkcard{
+ display:flex;flex-direction:column;gap:9px;
+ padding:19px;border:1px solid var(--line);
+ border-radius:15px;text-decoration:none;background:#f8fbff
+}
+.linkcard strong{color:var(--blue)}
+.linkcard small{color:var(--muted);line-height:1.5}
+.progress{
+ height:11px;background:#e6edf8;border-radius:20px;
+ overflow:hidden;margin:13px 0
+}
+.progressbar{
+ height:100%;background:linear-gradient(90deg,#2563eb,#22c55e);
+ border-radius:20px
+}
+.checklist{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:10px;margin-top:10px
+}
+.checkitem{
+ display:flex;align-items:flex-start;gap:9px;
+ background:#f8fbff;border:1px solid var(--line);
+ padding:12px;border-radius:11px;font-size:13px;font-weight:700
+}
+.checkitem input{width:auto;margin:2px 0;accent-color:var(--blue)}
+dialog{
+ border:0;border-radius:22px;padding:0;
+ width:min(850px,96vw);max-height:92vh;overflow:auto;
+ box-shadow:0 25px 100px #0f172a60
+}
+dialog::backdrop{background:#071326aa}
+.modalhead{background:#f4f8ff;padding:23px 27px;border-bottom:1px solid var(--line)}
+.modalhead h2{margin:0}
+form{padding:25px 27px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.full{grid-column:1/-1}
+label{font-size:13px;font-weight:800}
+input,select,textarea{
+ width:100%;border:1px solid #cbd8eb;
+ border-radius:11px;padding:13px;background:white;color:var(--navy)
+}
+textarea{min-height:105px;resize:vertical}
+.modalactions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:24px}
+.note{color:var(--muted);font-size:13px;line-height:1.7}
+.printarea{display:none}
+@media(max-width:800px){
+ .links{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ header{padding:16px}
+ main{padding:17px 12px}
+ .hero{padding:25px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .records,.fields,.links,.checklist{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .stat{padding:17px}
+ .stat strong{font-size:25px}
+}
+@media print{
+ header,main>*:not(.printarea),dialog{display:none!important}
+ body{background:white}
+ main{padding:0}
+ .printarea{
+  display:block!important;padding:12mm;color:#111;
+  font:14px/1.7 Arial,sans-serif
+ }
+ .printarea h1{font-size:23px}
+ .printarea p{white-space:pre-wrap;overflow-wrap:anywhere}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="brand">◆ BUSINESS <span>PRO</span></div>
+ <a class="back" href="../">← Voltar ao portal</a>
+</header>
+
+<main>
+
+<section class="hero">
+ <small>DOCUMENTAÇÃO E ORGANIZAÇÃO MIGRATÓRIA</small>
+ <h1>🌎 MEU MIGRANTE</h1>
+ <p>
+  Organize processos migratórios, vistos, residência,
+  reunião familiar, protocolos, documentos e datas importantes.
+  Acompanhe suas solicitações e prepare listas de documentos
+  em um único lugar.
+ </p>
+</section>
+
+<div class="toolbar">
+ <button class="btn" id="newBtn">+ Novo processo</button>
+ <input class="search" id="search" placeholder="Pesquisar processo, país ou protocolo...">
+ <button class="btn secondary" id="csvBtn">Exportar CSV</button>
+ <button class="btn secondary" id="backupBtn">Backup JSON</button>
+ <button class="btn secondary" id="importBtn">Importar backup</button>
+ <input type="file" id="importFile" accept=".json,application/json" hidden>
+</div>
+
+<section class="stats">
+ <div class="stat">
+  <small>Processos cadastrados</small>
+  <strong id="total">0</strong>
+ </div>
+ <div class="stat">
+  <small>Em andamento</small>
+  <strong id="progressCount">0</strong>
+ </div>
+ <div class="stat">
+  <small>Aprovados</small>
+  <strong id="approvedCount">0</strong>
+ </div>
+ <div class="stat">
+  <small>Datas de acompanhamento vencidas</small>
+  <strong id="lateCount">0</strong>
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Portais oficiais de imigração</h2>
+ <div class="links">
+
+  <a class="linkcard" href="https://www.gov.br/mj/pt-br/assuntos/migracoes" target="_blank" rel="noopener noreferrer">
+   <strong>🇧🇷 Ministério da Justiça</strong>
+   <small>Informações oficiais sobre migração, residência e serviços migratórios no Brasil.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.gov.br/pf/pt-br/assuntos/imigracao" target="_blank" rel="noopener noreferrer">
+   <strong>🛂 Polícia Federal</strong>
+   <small>Serviços relacionados à imigração, registro migratório e residência.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.gov.br/mre/pt-br" target="_blank" rel="noopener noreferrer">
+   <strong>🌐 Itamaraty</strong>
+   <small>Informações consulares, vistos e representação brasileira no exterior.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.gov.br/pt-br" target="_blank" rel="noopener noreferrer">
+   <strong>🏛️ Gov.br</strong>
+   <small>Serviços e orientações oficiais do Governo Federal.</small>
+  </a>
+
+  <a class="linkcard" href="https://www.acnur.org/br/" target="_blank" rel="noopener noreferrer">
+   <strong>🤝 ACNUR Brasil</strong>
+   <small>Informações e apoio relacionados à proteção de pessoas refugiadas.</small>
+  </a>
+
+  <a class="linkcard" href="https://help.unhcr.org/brazil/" target="_blank" rel="noopener noreferrer">
+   <strong>📘 Help ACNUR</strong>
+   <small>Orientações para refugiados e solicitantes de reconhecimento da condição de refugiado no Brasil.</small>
+  </a>
+
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Meus processos migratórios</h2>
+
+ <div class="filters" id="filters">
+  <button class="filter active" data-filter="Todos">Todos</button>
+  <button class="filter" data-filter="Preparando documentos">Preparando documentos</button>
+  <button class="filter" data-filter="Solicitação enviada">Enviados</button>
+  <button class="filter" data-filter="Em análise">Em análise</button>
+  <button class="filter" data-filter="Aprovado">Aprovados</button>
+  <button class="filter" data-filter="Indeferido">Indeferidos</button>
+  <button class="filter" data-filter="Concluído">Concluídos</button>
+ </div>
+
+ <div class="records" id="records"></div>
+</section>
+
+<p class="note">
+ Este aplicativo não envia pedidos de visto, não realiza agendamentos
+ e não consulta automaticamente sistemas governamentais.
+ Os requisitos variam conforme nacionalidade, tipo de visto, país,
+ consulado e legislação vigente. Confirme tudo nos portais oficiais.
+ Os registros são armazenados apenas neste navegador.
+ Evite inserir dados sensíveis, como números completos de passaporte,
+ documentos de identidade ou informações confidenciais.
+</p>
+
+<section class="printarea" id="printArea"></section>
+
+</main>
+
+<dialog id="modal">
+ <div class="modalhead">
+  <h2 id="modalTitle">Novo processo migratório</h2>
+ </div>
+
+ <form id="form">
+  <div class="fields">
+
+   <div class="field full">
+    <label for="titulo">Identificação do processo *</label>
+    <input id="titulo" required placeholder="Ex.: Reunião familiar - Brasil">
+   </div>
+
+   <div class="field">
+    <label for="tipo">Tipo de solicitação</label>
+    <select id="tipo">
+     <option>Reunião familiar</option>
+     <option>Visto de visita</option>
+     <option>Visto de trabalho</option>
+     <option>Visto de estudo</option>
+     <option>Autorização de residência</option>
+     <option>Renovação de residência</option>
+     <option>Registro migratório</option>
+     <option>Naturalização</option>
+     <option>Refúgio</option>
+     <option>Regularização migratória</option>
+     <option>Outro</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="paisOrigem">País de origem</label>
+    <input id="paisOrigem" placeholder="Ex.: Haiti">
+   </div>
+
+   <div class="field">
+    <label for="paisDestino">País de destino</label>
+    <input id="paisDestino" placeholder="Ex.: Brasil">
+   </div>
+
+   <div class="field">
+    <label for="cidade">Cidade ou local de atendimento</label>
+    <input id="cidade">
+   </div>
+
+   <div class="field">
+    <label for="orgao">Consulado ou órgão responsável</label>
+    <input id="orgao">
+   </div>
+
+   <div class="field">
+    <label for="beneficiario">Nome do beneficiário</label>
+    <input id="beneficiario">
+   </div>
+
+   <div class="field">
+    <label for="vinculo">Vínculo familiar, se aplicável</label>
+    <select id="vinculo">
+     <option>Não se aplica</option>
+     <option>Cônjuge</option>
+     <option>Companheiro(a)</option>
+     <option>Filho(a)</option>
+     <option>Pai</option>
+     <option>Mãe</option>
+     <option>Irmão(ã)</option>
+     <option>Outro</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="protocolo">Número de protocolo</label>
+    <input id="protocolo">
+   </div>
+
+   <div class="field">
+    <label for="dataSolicitacao">Data da solicitação</label>
+    <input id="dataSolicitacao" type="date">
+   </div>
+
+   <div class="field">
+    <label for="agendamento">Data do agendamento</label>
+    <input id="agendamento" type="date">
+   </div>
+
+   <div class="field">
+    <label for="prazo">Próxima data de acompanhamento</label>
+    <input id="prazo" type="date">
+   </div>
+
+   <div class="field">
+    <label for="validade">Validade do documento ou visto</label>
+    <input id="validade" type="date">
+   </div>
+
+   <div class="field">
+    <label for="situacao">Situação do processo</label>
+    <select id="situacao">
+     <option>Preparando documentos</option>
+     <option>Solicitação enviada</option>
+     <option>Em análise</option>
+     <option>Aguardando documentos</option>
+     <option>Aguardando entrevista</option>
+     <option>Aprovado</option>
+     <option>Indeferido</option>
+     <option>Concluído</option>
+     <option>Cancelado</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="prioridade">Prioridade de acompanhamento</label>
+    <select id="prioridade">
+     <option>Normal</option>
+     <option>Alta</option>
+     <option>Urgente</option>
+     <option>Baixa</option>
+    </select>
+   </div>
+
+   <div class="field full">
+    <label for="link">Link oficial do processo ou serviço</label>
+    <input id="link" type="url" placeholder="https://...">
+   </div>
+
+   <div class="field full">
+    <label for="descricao">Descrição do processo *</label>
+    <textarea id="descricao" required placeholder="Descreva a finalidade da solicitação e as etapas já realizadas."></textarea>
+   </div>
+
+   <div class="field full">
+    <label>Controle de documentos</label>
+    <p class="note">Lista organizacional genérica. Não representa uma lista oficial de exigências.</p>
+    <div class="checklist" id="documentChecklist"></div>
+   </div>
+
+   <div class="field full">
+    <label for="outrosDocumentos">Outros documentos ou exigências</label>
+    <textarea id="outrosDocumentos" placeholder="Liste exigências confirmadas pelo órgão responsável."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="providencias">Providências realizadas</label>
+    <textarea id="providencias" placeholder="Registre os atendimentos, pagamentos e etapas concluídas."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="observacoes">Observações</label>
+    <textarea id="observacoes"></textarea>
+   </div>
+
+  </div>
+
+  <div class="modalactions">
+   <button type="button" class="btn secondary" id="cancelBtn">Cancelar</button>
+   <button type="submit" class="btn">Salvar processo</button>
+  </div>
+ </form>
+</dialog>
+
+<script>
+"use strict";
+
+const $=id=>document.getElementById(id);
+const KEY="businesspro_meu_migrante_v1";
+
+const FIELDS=[
+ "titulo","tipo","paisOrigem","paisDestino","cidade",
+ "orgao","beneficiario","vinculo","protocolo",
+ "dataSolicitacao","agendamento","prazo","validade",
+ "situacao","prioridade","link","descricao",
+ "outrosDocumentos","providencias","observacoes"
+];
+
+const LABELS={
+ titulo:"Processo",
+ tipo:"Tipo de solicitação",
+ paisOrigem:"País de origem",
+ paisDestino:"País de destino",
+ cidade:"Local de atendimento",
+ orgao:"Órgão responsável",
+ beneficiario:"Beneficiário",
+ vinculo:"Vínculo familiar",
+ protocolo:"Protocolo",
+ dataSolicitacao:"Data da solicitação",
+ agendamento:"Agendamento",
+ prazo:"Data de acompanhamento",
+ validade:"Validade do documento ou visto",
+ situacao:"Situação",
+ prioridade:"Prioridade",
+ link:"Link oficial",
+ descricao:"Descrição",
+ outrosDocumentos:"Outros documentos",
+ providencias:"Providências",
+ observacoes:"Observações"
+};
+
+const DOCS=[
+ "Documento de identificação",
+ "Passaporte, quando aplicável",
+ "Comprovante de residência",
+ "Certidão de nascimento",
+ "Certidão de casamento ou união, quando aplicável",
+ "Comprovação do vínculo familiar",
+ "Fotografia, quando exigida",
+ "Formulário oficial de solicitação",
+ "Comprovante de agendamento",
+ "Comprovante de pagamento, quando aplicável",
+ "Traduções ou legalizações, quando exigidas",
+ "Comprovante de protocolo"
+];
+
+let records=[];
+let editing=null;
+let activeFilter="Todos";
+
+try{
+ const saved=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(saved))records=saved;
+}catch(e){
+ alert("Não foi possível carregar os registros.");
+}
+
+function esc(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",
+  '"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(records));
+  return true;
+ }catch(e){
+  alert("Não foi possível salvar os dados no navegador.");
+  return false;
+ }
+}
+
+function makeId(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
+}
+
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+
+  String(d.getMonth()+1).padStart(2,"0")+"-"+
+  String(d.getDate()).padStart(2,"0");
+}
+
+function dateBR(value){
+ if(!value)return "Não informado";
+ const p=value.split("-");
+ return p.length===3?p.reverse().join("/"):value;
+}
+
+function closed(record){
+ return ["Aprovado","Concluído","Indeferido","Cancelado"]
+  .includes(record.data.situacao);
+}
+
+function late(record){
+ return !!record.data.prazo&&
+  record.data.prazo<today()&&!closed(record);
+}
+
+function buildChecklist(selected=[]){
+ $("documentChecklist").replaceChildren();
+
+ DOCS.forEach((name,index)=>{
+  const label=document.createElement("label");
+  label.className="checkitem";
+
+  const input=document.createElement("input");
+  input.type="checkbox";
+  input.value=name;
+  input.id="doc"+index;
+  input.checked=selected.includes(name);
+
+  const span=document.createElement("span");
+  span.textContent=name;
+
+  label.appendChild(input);
+  label.appendChild(span);
+  $("documentChecklist").appendChild(label);
+ });
+}
+
+function selectedDocs(){
+ return [...$("documentChecklist").querySelectorAll("input:checked")]
+  .map(input=>input.value);
+}
+
+function openForm(id=null){
+ editing=id;
+ const record=records.find(x=>x.id===id);
+
+ $("modalTitle").textContent=record?
+  "Editar processo migratório":"Novo processo migratório";
+
+ FIELDS.forEach(f=>{
+  $(f).value=record?.data?.[f]??"";
+ });
+
+ if(!record){
+  $("situacao").value="Preparando documentos";
+  $("prioridade").value="Normal";
+  $("paisDestino").value="Brasil";
+  $("vinculo").value="Não se aplica";
+ }
+
+ buildChecklist(record?.documents||[]);
+ $("modal").showModal();
+}
+
+function officialLink(value){
+ if(!value)return "";
+ try{
+  const url=new URL(value);
+  if(!["http:","https:"].includes(url.protocol))return "";
+  return `<a class="btn secondary" href="${esc(url.href)}"
+   target="_blank" rel="noopener noreferrer">
+   Abrir link oficial</a>`;
+ }catch(e){
+  return "";
+ }
+}
+
+function render(){
+ const q=$("search").value.toLocaleLowerCase("pt-BR").trim();
+
+ $("total").textContent=records.length;
+
+ $("progressCount").textContent=records.filter(x=>
+  ["Solicitação enviada","Em análise","Aguardando documentos",
+   "Aguardando entrevista"].includes(x.data.situacao)
+ ).length;
+
+ $("approvedCount").textContent=records.filter(x=>
+  x.data.situacao==="Aprovado"
+ ).length;
+
+ $("lateCount").textContent=records.filter(late).length;
+
+ const filtered=records.filter(x=>{
+  const status=activeFilter==="Todos"||
+   x.data.situacao===activeFilter;
+
+  const search=JSON.stringify(x.data)
+   .toLocaleLowerCase("pt-BR").includes(q);
+
+  return status&&search;
+ });
+
+ if(!filtered.length){
+  $("records").innerHTML=`
+   <div class="empty">
+    <h3>Nenhum processo encontrado</h3>
+    <p>Cadastre um processo migratório para começar.</p>
+   </div>`;
+  return;
+ }
+
+ $("records").innerHTML=filtered.map(x=>{
+  const d=x.data;
+  const selected=Array.isArray(x.documents)?x.documents:[];
+  const completed=selected.filter(v=>DOCS.includes(v)).length;
+  const percent=Math.round(completed/DOCS.length*100);
+
+  const cls=["Aprovado","Concluído"].includes(d.situacao)?"green":
+   ["Indeferido","Cancelado"].includes(d.situacao)?"red":
+   late(x)?"orange":"";
+
+  return `<article class="record">
+   <span class="tag ${cls}">${esc(d.situacao)}</span>
+   <h3>${esc(d.titulo)}</h3>
+
+   <p><strong>Tipo:</strong> ${esc(d.tipo)}</p>
+   <p><strong>Origem:</strong> ${esc(d.paisOrigem||"Não informada")}</p>
+   <p><strong>Destino:</strong> ${esc(d.paisDestino||"Não informado")}</p>
+   <p><strong>Beneficiário:</strong> ${esc(d.beneficiario||"Não informado")}</p>
+   <p><strong>Órgão:</strong> ${esc(d.orgao||"Não informado")}</p>
+   <p><strong>Protocolo:</strong> ${esc(d.protocolo||"Não informado")}</p>
+   <p><strong>Agendamento:</strong> ${esc(dateBR(d.agendamento))}</p>
+   <p><strong>Acompanhamento:</strong> ${esc(dateBR(d.prazo))}</p>
+   <p><strong>Validade:</strong> ${esc(dateBR(d.validade))}</p>
+
+   ${late(x)?'<span class="tag orange">Acompanhamento atrasado</span>':""}
+
+   <p><strong>Checklist pessoal:</strong> ${completed} de ${DOCS.length}</p>
+   <div class="progress">
+    <div class="progressbar" style="width:${percent}%"></div>
+   </div>
+   <p class="note">Progresso do checklist genérico, não da análise oficial.</p>
+
+   <p><strong>Descrição:</strong> ${esc(d.descricao)}</p>
+
+   <div class="actions">
+    <button class="btn secondary" data-action="edit"
+     data-id="${esc(x.id)}">Editar</button>
+    <button class="btn" data-action="print"
+     data-id="${esc(x.id)}">Relatório / PDF</button>
+    <button class="btn secondary" data-action="copy"
+     data-id="${esc(x.id)}">Copiar resumo</button>
+    ${officialLink(d.link)}
+    <button class="btn danger" data-action="delete"
+     data-id="${esc(x.id)}">Excluir</button>
+   </div>
+  </article>`;
+ }).join("");
+}
+
+$("form").onsubmit=e=>{
+ e.preventDefault();
+
+ const data={};
+ FIELDS.forEach(f=>data[f]=$(f).value.trim());
+
+ if(!data.titulo||!data.descricao){
+  alert("Preencha a identificação e a descrição do processo.");
+  return;
+ }
+
+ const old=records.find(x=>x.id===editing);
+
+ const record={
+  id:old?.id||makeId(),
+  createdAt:old?.createdAt||new Date().toISOString(),
+  updatedAt:new Date().toISOString(),
+  data,
+  documents:selectedDocs()
+ };
+
+ const previous=records;
+
+ records=old?
+  records.map(x=>x.id===editing?record:x):
+  [record,...records];
+
+ if(!save()){
+  records=previous;
+  return;
+ }
+
+ $("modal").close();
+ editing=null;
+ render();
+};
+
+function reportText(record){
+ const d=record.data;
+ const dates=["dataSolicitacao","agendamento","prazo","validade"];
+
+ const lines=[
+  "BUSINESS PRO — MEU MIGRANTE",
+  "RELATÓRIO DE ACOMPANHAMENTO MIGRATÓRIO",
+  "",
+  ...FIELDS.map(f=>
+   LABELS[f]+": "+
+   (dates.includes(f)?dateBR(d[f]):d[f]||"Não informado")
+  ),
+  "",
+  "CHECKLIST PESSOAL DE DOCUMENTOS",
+  ""
+ ];
+
+ DOCS.forEach(doc=>{
+  lines.push(
+   (record.documents||[]).includes(doc)?"[X] "+doc:"[ ] "+doc
+  );
+ });
+
+ lines.push(
+  "",
+  "Este relatório é de organização pessoal e não constitui documento oficial."
+ );
+
+ return lines.join("\n");
+}
+
+function printReport(record){
+ $("printArea").innerHTML=`
+  <h1>MEU MIGRANTE — RELATÓRIO</h1>
+  <hr>
+  <p>${esc(reportText(record))}</p>
+  <hr>
+  <p>Gerado em ${esc(new Date().toLocaleString("pt-BR"))}</p>
+ `;
+ window.print();
+}
+
+$("records").onclick=async e=>{
+ const btn=e.target.closest("button[data-action]");
+ if(!btn)return;
+
+ const record=records.find(x=>x.id===btn.dataset.id);
+ if(!record)return;
+
+ const action=btn.dataset.action;
+
+ if(action==="edit")openForm(record.id);
+
+ if(action==="print")printReport(record);
+
+ if(action==="copy"){
+  const content=reportText(record);
+  try{
+   await navigator.clipboard.writeText(content);
+   alert("Resumo copiado.");
+  }catch(e){
+   const ta=document.createElement("textarea");
+   ta.value=content;
+   document.body.appendChild(ta);
+   ta.select();
+   const ok=document.execCommand("copy");
+   ta.remove();
+   alert(ok?"Resumo copiado.":"Não foi possível copiar.");
+  }
+ }
+
+ if(action==="delete"){
+  if(!confirm("Excluir este processo migratório?"))return;
+
+  const previous=records;
+  records=records.filter(x=>x.id!==record.id);
+
+  if(!save())records=previous;
+  render();
+ }
+};
+
+$("filters").onclick=e=>{
+ const btn=e.target.closest("[data-filter]");
+ if(!btn)return;
+
+ activeFilter=btn.dataset.filter;
+
+ document.querySelectorAll(".filter").forEach(b=>
+  b.classList.toggle("active",b===btn)
+ );
+
+ render();
+};
+
+function download(name,content,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+
+ a.href=url;
+ a.download=name;
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function csvCell(value){
+ return '"'+String(value??"").replace(/"/g,'""')+'"';
+}
+
+$("csvBtn").onclick=()=>{
+ if(!records.length){
+  alert("Não existem processos para exportar.");
+  return;
+ }
+
+ const headers=[
+  "ID","Criado em","Atualizado em",
+  ...FIELDS.map(f=>LABELS[f]),
+  "Documentos marcados"
+ ];
+
+ const rows=records.map(x=>[
+  x.id,x.createdAt,x.updatedAt,
+  ...FIELDS.map(f=>x.data[f]||""),
+  (x.documents||[]).join(" | ")
+ ]);
+
+ const csv="\uFEFF"+[headers,...rows]
+  .map(row=>row.map(csvCell).join(";"))
+  .join("\r\n");
+
+ download("meus-processos-migratorios.csv",csv,"text/csv;charset=utf-8");
+};
+
+$("backupBtn").onclick=()=>{
+ download(
+  "backup-meu-migrante.json",
+  JSON.stringify({
+   app:"meu-migrante",
+   version:1,
+   records
+  },null,2),
+  "application/json"
+ );
+};
+
+$("importBtn").onclick=()=>$("importFile").click();
+
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  const obj=JSON.parse(await file.text());
+
+  if(obj.app!=="meu-migrante"||!Array.isArray(obj.records)){
+   throw Error("Backup incompatível.");
+  }
+
+  const valid=obj.records.every(x=>
+   x&&typeof x.id==="string"&&
+   x.data&&typeof x.data==="object"&&
+   FIELDS.every(f=>
+    x.data[f]===undefined||typeof x.data[f]==="string")&&
+   (x.documents===undefined||
+    (Array.isArray(x.documents)&&
+     x.documents.every(d=>typeof d==="string")))
+  );
+
+  if(!valid)throw Error("Estrutura de registros inválida.");
+
+  if(!confirm(
+   "Substituir todos os processos atuais pelos dados do backup?"
+  ))return;
+
+  const previous=records;
+  records=obj.records;
+
+  if(!save()){
+   records=previous;
+   return;
+  }
+
+  render();
+  alert("Backup importado com sucesso.");
+
+ }catch(err){
+  alert("Erro ao importar: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+$("newBtn").onclick=()=>openForm();
+$("cancelBtn").onclick=()=>$("modal").close();
+$("search").oninput=render;
+
+render();
+</script>
+
+</body>
+</html>
