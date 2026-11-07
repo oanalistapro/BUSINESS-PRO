@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MEU TRABALHO | BUSINESS PRO</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f7ff;color:#142849;font:15px Arial,sans-serif}
+header{background:white;padding:20px 5%;display:flex;justify-content:space-between}
+a{color:#2563eb;text-decoration:none}
+main{max-width:1100px;margin:auto;padding:25px 16px}
+.hero{background:linear-gradient(120deg,#173b86,#2563eb);color:white;padding:30px;border-radius:20px}
+.hero h1{margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:white;border:1px solid #dce5f3;padding:22px;border-radius:18px;margin-bottom:18px}
+.card strong{display:block;font-size:26px;margin-top:10px}
+label{display:block;font-weight:bold;font-size:13px;margin:13px 0 7px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit}
+textarea{min-height:85px}
+button{background:#2563eb;color:white;border:0;padding:12px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
+.secondary{background:#eaf1ff;color:#2563eb}
+.danger{background:#fee2e2;color:#b91c1c}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.tarefa{padding:18px;border:1px solid #dce5f3;border-radius:14px;margin:12px 0}
+.tarefa h3{margin:0 0 8px}
+.tarefa p{color:#64748b;white-space:pre-wrap}
+.badge{display:inline-block;background:#eaf1ff;color:#2563eb;border-radius:20px;padding:5px 10px;font-size:12px;font-weight:bold}
+@media(max-width:800px){.grid,.two{grid-template-columns:1fr}}
+@media print{header,.hero,form,.actions,.no-print{display:none!important}body{background:white}}
+</style>
+</head>
+<body>
+<header><b>◆ BUSINESS PRO</b><a href="../">← Voltar</a></header>
+<main>
+<section class="hero">
+<h1>MEU TRABALHO</h1>
+<p>Organize projetos, tarefas, responsáveis, prioridades e prazos.</p>
+</section>
+
+<div class="grid">
+<div class="card">Total de tarefas<strong id="total">0</strong></div>
+<div class="card">Em andamento<strong id="andamento">0</strong></div>
+<div class="card">Concluídas<strong id="concluidas">0</strong></div>
+</div>
+
+<div class="two">
+<section class="card">
+<h2>Nova tarefa</h2>
+<form id="form">
+<label>Nome da tarefa</label><input id="nome" required>
+<label>Projeto</label><input id="projeto" placeholder="Ex.: Reforma do escritório">
+<label>Responsável</label><input id="responsavel">
+<div class="two">
+<div><label>Prioridade</label>
+<select id="prioridade"><option>Baixa</option><option selected>Média</option><option>Alta</option><option>Urgente</option></select></div>
+<div><label>Prazo</label><input id="prazo" type="date"></div>
+</div>
+<label>Descrição</label><textarea id="descricao"></textarea>
+<button type="submit">Adicionar tarefa</button>
+</form>
+</section>
+<section class="card">
+<h2>Organização</h2>
+<label>Pesquisar tarefas</label><input id="pesquisa" placeholder="Nome, projeto ou responsável">
+<label>Filtrar por situação</label>
+<select id="filtro"><option value="">Todas</option><option>Pendente</option><option>Em andamento</option><option>Concluída</option></select>
+<div class="actions">
+<button onclick="exportar()">Exportar CSV</button>
+<button class="secondary" onclick="window.print()">Imprimir</button>
+</div>
+<p>As tarefas são armazenadas neste navegador. Exporte o CSV para guardar uma cópia.</p>
+</section>
+</div>
+
+<section class="card">
+<h2>Minhas tarefas</h2>
+<div id="lista"></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const chave="bp_trabalho_v1";
+let tarefas=[];
+try{tarefas=JSON.parse(localStorage.getItem(chave)||"[]")}catch(e){}
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function salvar(){localStorage.setItem(chave,JSON.stringify(tarefas))}
+$("form").onsubmit=e=>{
+e.preventDefault();
+tarefas.push({
+id:crypto.randomUUID(),
+nome:$("nome").value.trim(),
+projeto:$("projeto").value.trim(),
+responsavel:$("responsavel").value.trim(),
+prioridade:$("prioridade").value,
+prazo:$("prazo").value,
+descricao:$("descricao").value,
+status:"Pendente"
+});
+salvar();$("form").reset();render();
+};
+function mudar(id,status){
+const t=tarefas.find(x=>x.id===id);
+if(!t)return;
+t.status=status;salvar();render();
+}
+function excluir(id){
+if(!confirm("Excluir tarefa?"))return;
+tarefas=tarefas.filter(x=>x.id!==id);salvar();render();
+}
+function render(){
+$("total").textContent=tarefas.length;
+$("andamento").textContent=tarefas.filter(x=>x.status==="Em andamento").length;
+$("concluidas").textContent=tarefas.filter(x=>x.status==="Concluída").length;
+const q=$("pesquisa").value.toLowerCase();
+const f=$("filtro").value;
+const lista=tarefas.filter(x=>
+(x.nome+" "+x.projeto+" "+x.responsavel).toLowerCase().includes(q)&&
+(!f||x.status===f));
+$("lista").innerHTML=lista.map(x=>`
+<div class="tarefa">
+<h3>${esc(x.nome)}</h3>
+<span class="badge">${esc(x.status)}</span>
+<span class="badge">${esc(x.prioridade)}</span>
+<p><b>Projeto:</b> ${esc(x.projeto||"Não informado")}<br>
+<b>Responsável:</b> ${esc(x.responsavel||"Não informado")}<br>
+<b>Prazo:</b> ${esc(x.prazo||"Não definido")}</p>
+<p>${esc(x.descricao)}</p>
+<div class="actions no-print">
+<button data-id="${esc(x.id)}" data-status="Em andamento">Iniciar</button>
+<button class="secondary" data-id="${esc(x.id)}" data-status="Concluída">Concluir</button>
+<button class="secondary" data-id="${esc(x.id)}" data-status="Pendente">Reabrir</button>
+<button class="danger" data-id="${esc(x.id)}" data-excluir="1">Excluir</button>
+</div>
+</div>`).join("")||"<p>Nenhuma tarefa encontrada.</p>";
+}
+$("lista").onclick=e=>{
+const b=e.target.closest("[data-id]");
+if(!b)return;
+if(b.dataset.excluir)excluir(b.dataset.id);
+else mudar(b.dataset.id,b.dataset.status);
+};
+$("pesquisa").oninput=render;
+$("filtro").onchange=render;
+function exportar(){
+const linhas=[["Tarefa","Projeto","Responsável","Prioridade","Prazo","Situação","Descrição"],
+...tarefas.map(x=>[x.nome,x.projeto,x.responsavel,x.prioridade,x.prazo,x.status,x.descricao])];
+const csv="\uFEFF"+linhas.map(l=>l.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(";")).join("\r\n");
+const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+const a=document.createElement("a");a.href=url;a.download="meu-trabalho.csv";a.click();
+setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+render();
+</script>
+</body>
+</html>
