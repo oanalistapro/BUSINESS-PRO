@@ -1,0 +1,483 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<title>MEU ATENDIMENTO | BUSINESS PRO</title>
+<style>
+:root{--blue:#2563eb;--navy:#142747;--bg:#f3f7ff;--line:#dce5f3;--muted:#64748b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{background:white;border-bottom:1px solid var(--line);padding:18px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:22px;font-weight:900}.brand span{color:var(--blue)}
+.back{color:var(--blue);font-weight:800;text-decoration:none}
+main{max-width:1250px;margin:auto;padding:25px 18px}
+.hero{background:linear-gradient(125deg,#14366d,#2563eb);color:white;border-radius:24px;padding:36px;box-shadow:0 15px 35px #2563eb25}
+.hero small{font-weight:900;letter-spacing:2px}
+.hero h1{font-size:clamp(28px,4vw,43px);margin:12px 0}
+.hero p{line-height:1.7;max-width:760px;opacity:.94}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0}
+.btn{background:var(--blue);border:0;border-radius:12px;padding:13px 18px;color:white;font-weight:800}
+.btn:hover{filter:brightness(.95)}
+.secondary{background:white;color:var(--navy);border:1px solid var(--line)}
+.danger{background:#fff1f2;color:#dc2626}
+.search{flex:1;min-width:190px;padding:13px 15px;background:white;border:1px solid var(--line);border-radius:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:25px}
+.stat,.panel,.record{background:white;border:1px solid var(--line);border-radius:19px;padding:22px;box-shadow:0 10px 25px #1e3a8a08}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:30px;margin-top:9px}
+.panel h2{margin-top:0}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
+.filter{border:1px solid var(--line);background:white;border-radius:30px;padding:9px 15px;color:var(--navy);font-weight:700}
+.filter.active{background:var(--blue);color:white;border-color:var(--blue)}
+.records{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.record h3{margin:15px 0 10px;overflow-wrap:anywhere}
+.record p{color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
+.tag{display:inline-block;background:#eaf1ff;color:#1d4ed8;border-radius:25px;padding:7px 12px;font-size:12px;font-weight:900}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.empty{grid-column:1/-1;text-align:center;padding:55px 15px;color:var(--muted)}
+dialog{border:0;border-radius:23px;padding:0;width:min(820px,96vw);max-height:92vh;overflow:auto;box-shadow:0 25px 100px #0f172a60}
+dialog::backdrop{background:#071326aa}
+.modalhead{background:#f4f8ff;border-bottom:1px solid var(--line);padding:24px 28px}
+.modalhead h2{margin:0}
+form{padding:25px 28px}
+.fields{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.full{grid-column:1/-1}
+label{font-size:13px;font-weight:800}
+input,select,textarea{width:100%;border:1px solid #cbd8eb;border-radius:11px;padding:13px;background:white;color:var(--navy)}
+textarea{min-height:105px;resize:vertical}
+.modalactions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin-top:25px}
+.notice{font-size:13px;color:var(--muted);line-height:1.7;margin:25px 0}
+.printarea{display:none}
+@media(max-width:700px){
+ header{padding:17px}
+ main{padding:18px 12px}
+ .hero{padding:25px}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .records,.fields{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .stat{padding:16px}
+}
+@media print{
+ header,main>*:not(.printarea),dialog{display:none!important}
+ body{background:white}
+ main{padding:0}
+ .printarea{display:block!important;background:white;color:#111;padding:15mm;font:14px/1.7 Arial,sans-serif}
+ .printarea h1{font-size:24px}
+ .printarea p{white-space:pre-wrap;overflow-wrap:anywhere}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand">◆ BUSINESS <span>PRO</span></div>
+ <a class="back" href="../">← Voltar ao portal</a>
+</header>
+<main>
+ <section class="hero">
+  <small>GESTÃO DE RELACIONAMENTO</small>
+  <h1>🎧 MEU ATENDIMENTO</h1>
+  <p>Organize atendimentos, cadastre clientes, registre solicitações, acompanhe pendências e mantenha o histórico de cada contato.</p>
+ </section>
+
+ <div class="toolbar">
+  <button class="btn" id="newBtn">+ Novo atendimento</button>
+  <input class="search" id="search" placeholder="Pesquisar cliente, protocolo ou assunto...">
+  <button class="btn secondary" id="csvBtn">Exportar CSV</button>
+  <button class="btn secondary" id="backupBtn">Backup JSON</button>
+  <button class="btn secondary" id="importBtn">Importar backup</button>
+  <input type="file" id="importFile" accept=".json,application/json" hidden>
+ </div>
+
+ <section class="stats">
+  <div class="stat"><small>Total de atendimentos</small><strong id="total">0</strong></div>
+  <div class="stat"><small>Em aberto</small><strong id="openCount">0</strong></div>
+  <div class="stat"><small>Em andamento</small><strong id="progressCount">0</strong></div>
+  <div class="stat"><small>Resolvidos</small><strong id="resolvedCount">0</strong></div>
+ </section>
+
+ <section class="panel">
+  <h2>Central de atendimentos</h2>
+  <div class="filters" id="filters">
+   <button class="filter active" data-status="Todos">Todos</button>
+   <button class="filter" data-status="Aberto">Abertos</button>
+   <button class="filter" data-status="Em andamento">Em andamento</button>
+   <button class="filter" data-status="Aguardando cliente">Aguardando cliente</button>
+   <button class="filter" data-status="Resolvido">Resolvidos</button>
+   <button class="filter" data-status="Cancelado">Cancelados</button>
+  </div>
+  <div class="records" id="records"></div>
+ </section>
+
+ <p class="notice">Os registros são salvos somente neste navegador, sem sincronização com servidores. Exporte backups regularmente. Não utilize esta versão para armazenar dados sensíveis ou confidenciais de clientes.</p>
+ <section class="printarea" id="printArea"></section>
+</main>
+
+<dialog id="modal">
+ <div class="modalhead"><h2 id="modalTitle">Novo atendimento</h2></div>
+ <form id="form">
+  <div class="fields">
+   <div class="field full">
+    <label for="titulo">Assunto do atendimento *</label>
+    <input id="titulo" required placeholder="Ex.: Solicitação de segunda via">
+   </div>
+   <div class="field">
+    <label for="cliente">Nome do cliente *</label>
+    <input id="cliente" required>
+   </div>
+   <div class="field">
+    <label for="empresa">Empresa ou organização</label>
+    <input id="empresa">
+   </div>
+   <div class="field">
+    <label for="telefone">Telefone</label>
+    <input id="telefone" type="tel">
+   </div>
+   <div class="field">
+    <label for="email">E-mail</label>
+    <input id="email" type="email">
+   </div>
+   <div class="field">
+    <label for="protocolo">Número do protocolo</label>
+    <input id="protocolo" placeholder="Gerado automaticamente se ficar vazio">
+   </div>
+   <div class="field">
+    <label for="canal">Canal de atendimento</label>
+    <select id="canal">
+     <option>WhatsApp</option>
+     <option>Telefone</option>
+     <option>E-mail</option>
+     <option>Presencial</option>
+     <option>Site</option>
+     <option>Outro</option>
+    </select>
+   </div>
+   <div class="field">
+    <label for="data">Data do atendimento</label>
+    <input id="data" type="date">
+   </div>
+   <div class="field">
+    <label for="retorno">Data prevista de retorno</label>
+    <input id="retorno" type="date">
+   </div>
+   <div class="field">
+    <label for="responsavel">Atendente responsável</label>
+    <input id="responsavel">
+   </div>
+   <div class="field">
+    <label for="categoria">Categoria</label>
+    <select id="categoria">
+     <option>Informação</option>
+     <option>Solicitação</option>
+     <option>Reclamação</option>
+     <option>Suporte técnico</option>
+     <option>Financeiro</option>
+     <option>Comercial</option>
+     <option>Outros</option>
+    </select>
+   </div>
+   <div class="field">
+    <label for="prioridade">Prioridade</label>
+    <select id="prioridade">
+     <option>Normal</option>
+     <option>Alta</option>
+     <option>Urgente</option>
+     <option>Baixa</option>
+    </select>
+   </div>
+   <div class="field">
+    <label for="situacao">Situação</label>
+    <select id="situacao">
+     <option>Aberto</option>
+     <option>Em andamento</option>
+     <option>Aguardando cliente</option>
+     <option>Resolvido</option>
+     <option>Cancelado</option>
+    </select>
+   </div>
+   <div class="field full">
+    <label for="descricao">Descrição da solicitação *</label>
+    <textarea id="descricao" required placeholder="Descreva o motivo do atendimento."></textarea>
+   </div>
+   <div class="field full">
+    <label for="providencias">Providências realizadas</label>
+    <textarea id="providencias" placeholder="Registre o que já foi feito."></textarea>
+   </div>
+   <div class="field full">
+    <label for="solucao">Solução ou resposta ao cliente</label>
+    <textarea id="solucao" placeholder="Descreva a solução apresentada."></textarea>
+   </div>
+   <div class="field full">
+    <label for="historico">Histórico e observações</label>
+    <textarea id="historico" placeholder="Informações adicionais e acompanhamentos."></textarea>
+   </div>
+  </div>
+  <div class="modalactions">
+   <button type="button" class="btn secondary" id="cancelBtn">Cancelar</button>
+   <button type="submit" class="btn">Salvar atendimento</button>
+  </div>
+ </form>
+</dialog>
+
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const KEY="businesspro_meu_atendimento_v1";
+const FIELDS=[
+ "titulo","cliente","empresa","telefone","email","protocolo",
+ "canal","data","retorno","responsavel","categoria",
+ "prioridade","situacao","descricao","providencias",
+ "solucao","historico"
+];
+const LABELS={
+ titulo:"Assunto",cliente:"Cliente",empresa:"Empresa",
+ telefone:"Telefone",email:"E-mail",protocolo:"Protocolo",
+ canal:"Canal",data:"Data",retorno:"Previsão de retorno",
+ responsavel:"Responsável",categoria:"Categoria",
+ prioridade:"Prioridade",situacao:"Situação",
+ descricao:"Solicitação",providencias:"Providências",
+ solucao:"Solução",historico:"Histórico"
+};
+let items=[],editing=null,activeStatus="Todos";
+try{
+ const stored=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(stored))items=stored;
+}catch(e){alert("Não foi possível carregar os atendimentos locais.");}
+
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(items));
+  return true;
+ }catch(e){
+  alert("Não foi possível salvar. Verifique o espaço disponível no navegador.");
+  return false;
+ }
+}
+function dateBR(v){
+ if(!v)return "Não informado";
+ const parts=v.split("-");
+ return parts.length===3?parts.reverse().join("/"):v;
+}
+function makeId(){
+ return crypto.randomUUID?crypto.randomUUID():
+  Date.now()+"-"+Math.random().toString(36).slice(2);
+}
+function protocol(){
+ const now=new Date();
+ return "ATD-"+now.getFullYear()+"-"+
+  String(now.getMonth()+1).padStart(2,"0")+
+  String(now.getDate()).padStart(2,"0")+"-"+
+  Math.random().toString(36).slice(2,8).toUpperCase();
+}
+function openForm(id=null){
+ editing=id;
+ const item=items.find(x=>x.id===id);
+ $("modalTitle").textContent=item?"Editar atendimento":"Novo atendimento";
+ FIELDS.forEach(f=>$(f).value=item?.data?.[f]??"");
+ if(!item){
+  $("data").value=new Date().toLocaleDateString("en-CA");
+  $("situacao").value="Aberto";
+  $("prioridade").value="Normal";
+  $("protocolo").value=protocol();
+ }
+ $("modal").showModal();
+}
+function render(){
+ const term=$("search").value.toLocaleLowerCase("pt-BR").trim();
+ $("total").textContent=items.length;
+ $("openCount").textContent=items.filter(x=>x.data.situacao==="Aberto").length;
+ $("progressCount").textContent=items.filter(x=>x.data.situacao==="Em andamento").length;
+ $("resolvedCount").textContent=items.filter(x=>x.data.situacao==="Resolvido").length;
+
+ const filtered=items.filter(x=>{
+  const matchStatus=activeStatus==="Todos"||x.data.situacao===activeStatus;
+  const matchText=JSON.stringify(x.data).toLocaleLowerCase("pt-BR").includes(term);
+  return matchStatus&&matchText;
+ });
+ if(!filtered.length){
+  $("records").innerHTML='<div class="empty"><h3>Nenhum atendimento encontrado</h3><p>Cadastre um novo atendimento ou altere os filtros.</p></div>';
+  return;
+ }
+ $("records").innerHTML=filtered.map(x=>{
+  const d=x.data;
+  return `<article class="record">
+   <span class="tag">${esc(d.situacao||"Aberto")}</span>
+   <h3>${esc(d.titulo)}</h3>
+   <p><strong>Cliente:</strong> ${esc(d.cliente)}</p>
+   <p><strong>Protocolo:</strong> ${esc(d.protocolo)}</p>
+   <p><strong>Canal:</strong> ${esc(d.canal)}</p>
+   <p><strong>Responsável:</strong> ${esc(d.responsavel||"Não informado")}</p>
+   <p><strong>Prioridade:</strong> ${esc(d.prioridade)}</p>
+   <p><strong>Data:</strong> ${esc(dateBR(d.data))}</p>
+   <p><strong>Retorno:</strong> ${esc(dateBR(d.retorno))}</p>
+   <p><strong>Solicitação:</strong> ${esc(d.descricao)}</p>
+   <div class="actions">
+    <button class="btn secondary" data-action="edit" data-id="${esc(x.id)}">Editar</button>
+    <button class="btn" data-action="print" data-id="${esc(x.id)}">Imprimir / PDF</button>
+    <button class="btn secondary" data-action="copy" data-id="${esc(x.id)}">Copiar resumo</button>
+    <button class="btn danger" data-action="delete" data-id="${esc(x.id)}">Excluir</button>
+   </div>
+  </article>`;
+ }).join("");
+}
+$("form").addEventListener("submit",e=>{
+ e.preventDefault();
+ const data={};
+ FIELDS.forEach(f=>data[f]=$(f).value.trim());
+ if(!data.titulo||!data.cliente||!data.descricao){
+  alert("Preencha assunto, cliente e descrição.");return;
+ }
+ const old=items.find(x=>x.id===editing);
+ const record={
+  id:old?.id||makeId(),
+  createdAt:old?.createdAt||new Date().toISOString(),
+  updatedAt:new Date().toISOString(),
+  data
+ };
+ const previous=items;
+ items=old?items.map(x=>x.id===editing?record:x):[record,...items];
+ if(!save()){items=previous;return;}
+ $("modal").close();
+ editing=null;
+ render();
+});
+function summary(d){
+ return [
+  "BUSINESS PRO - MEU ATENDIMENTO",
+  "Protocolo: "+d.protocolo,
+  "Assunto: "+d.titulo,
+  "Cliente: "+d.cliente,
+  "Empresa: "+d.empresa,
+  "Telefone: "+d.telefone,
+  "E-mail: "+d.email,
+  "Canal: "+d.canal,
+  "Data: "+dateBR(d.data),
+  "Retorno: "+dateBR(d.retorno),
+  "Responsável: "+d.responsavel,
+  "Categoria: "+d.categoria,
+  "Prioridade: "+d.prioridade,
+  "Situação: "+d.situacao,
+  "",
+  "SOLICITAÇÃO",
+  d.descricao,
+  "",
+  "PROVIDÊNCIAS",
+  d.providencias,
+  "",
+  "SOLUÇÃO",
+  d.solucao,
+  "",
+  "HISTÓRICO",
+  d.historico
+ ].join("\n");
+}
+function printRecord(item){
+ const d=item.data;
+ $("printArea").innerHTML=`
+  <h1>BUSINESS PRO — RELATÓRIO DE ATENDIMENTO</h1>
+  <p><strong>Protocolo:</strong> ${esc(d.protocolo)}</p>
+  ${FIELDS.filter(f=>f!=="protocolo").map(f=>`
+   <p><strong>${esc(LABELS[f])}:</strong>
+   ${esc(["data","retorno"].includes(f)?dateBR(d[f]):d[f]||"—")}</p>
+  `).join("")}
+  <hr>
+  <p>Documento gerado em ${esc(new Date().toLocaleString("pt-BR"))}</p>`;
+ window.print();
+}
+$("records").addEventListener("click",async e=>{
+ const btn=e.target.closest("button[data-action]");
+ if(!btn)return;
+ const item=items.find(x=>x.id===btn.dataset.id);
+ if(!item)return;
+ const action=btn.dataset.action;
+ if(action==="edit")openForm(item.id);
+ if(action==="print")printRecord(item);
+ if(action==="copy"){
+  try{
+   await navigator.clipboard.writeText(summary(item.data));
+   alert("Resumo copiado.");
+  }catch(e){
+   const ta=document.createElement("textarea");
+   ta.value=summary(item.data);
+   document.body.appendChild(ta);ta.select();
+   const ok=document.execCommand("copy");
+   ta.remove();
+   alert(ok?"Resumo copiado.":"Não foi possível copiar.");
+  }
+ }
+ if(action==="delete"){
+  if(!confirm("Excluir este atendimento?"))return;
+  const previous=items;
+  items=items.filter(x=>x.id!==item.id);
+  if(!save())items=previous;
+  render();
+ }
+});
+$("filters").addEventListener("click",e=>{
+ const btn=e.target.closest("[data-status]");
+ if(!btn)return;
+ activeStatus=btn.dataset.status;
+ document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b===btn));
+ render();
+});
+function download(name,content,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;a.download=name;
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function csvCell(v){return '"'+String(v??"").replace(/"/g,'""')+'"';}
+$("csvBtn").onclick=()=>{
+ if(!items.length)return alert("Não existem atendimentos para exportar.");
+ const headers=["ID","Criado em","Atualizado em",...FIELDS.map(f=>LABELS[f])];
+ const rows=items.map(x=>[
+  x.id,x.createdAt,x.updatedAt,...FIELDS.map(f=>x.data[f]||"")
+ ]);
+ const csv="\uFEFF"+[headers,...rows].map(r=>r.map(csvCell).join(";")).join("\r\n");
+ download("meus-atendimentos.csv",csv,"text/csv;charset=utf-8");
+};
+$("backupBtn").onclick=()=>{
+ download("backup-meu-atendimento.json",
+  JSON.stringify({app:"meu-atendimento",version:1,items},null,2),
+  "application/json");
+};
+$("importBtn").onclick=()=>$("importFile").click();
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+ try{
+  const obj=JSON.parse(await file.text());
+  if(obj.app!=="meu-atendimento"||!Array.isArray(obj.items))throw Error("Backup incompatível.");
+  if(!obj.items.every(x=>
+   x&&typeof x.id==="string"&&
+   x.data&&typeof x.data==="object"&&
+   FIELDS.every(f=>x.data[f]===undefined||typeof x.data[f]==="string")
+  ))throw Error("Estrutura de registros inválida.");
+  if(!confirm("Substituir os atendimentos atuais pelos registros do backup?"))return;
+  const previous=items;
+  items=obj.items;
+  if(!save()){items=previous;return;}
+  render();
+  alert("Backup importado.");
+ }catch(err){alert("Erro ao importar: "+err.message);}
+ finally{e.target.value="";}
+};
+$("newBtn").onclick=()=>openForm();
+$("cancelBtn").onclick=()=>$("modal").close();
+$("search").oninput=render;
+render();
+</script>
+</body>
+</html>
