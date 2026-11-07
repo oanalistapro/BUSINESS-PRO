@@ -4,166 +4,1104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2563eb">
 <title>MEU EMPREENDEDOR | BUSINESS PRO</title>
 <style>
+:root{
+ --blue:#2563eb;--dark:#142d59;--ink:#142746;
+ --muted:#64748b;--bg:#f3f6fc;--line:#dbe4f2;
+ --green:#059669;--red:#dc2626;--orange:#d97706;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f7ff;color:#142b4b}
-header{background:white;border-bottom:1px solid #dce5f3;padding:18px 5%;display:flex;justify-content:space-between;align-items:center}
-a{color:#2563eb;text-decoration:none}
-main{max-width:1150px;margin:auto;padding:24px 16px}
-.hero{background:linear-gradient(120deg,#102b5b,#2868ee);color:white;padding:32px;border-radius:22px}
-.hero h1{margin:0 0 12px;font-size:32px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
-.card{background:white;border:1px solid #dae4f2;border-radius:18px;padding:22px;box-shadow:0 8px 25px #183b6810}
-.card strong{display:block;font-size:27px;margin-top:10px}
-.layout{display:grid;grid-template-columns:340px 1fr;gap:18px}
-label{display:block;font-weight:bold;font-size:13px;margin:14px 0 6px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #ccd9e9;border-radius:10px;font:inherit}
-textarea{min-height:90px}
-button{background:#2563eb;color:white;border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:pointer;margin:4px 4px 4px 0}
-button.alt{background:#e9f0ff;color:#174fc6}
-button.danger{background:#ffeded;color:#b42318}
-.item{border:1px solid #e1e9f5;border-radius:14px;padding:16px;margin:12px 0}
-.item h3{margin:0 0 8px}
-small,.muted{color:#64748b}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
-@media(max-width:750px){.grid{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.hero h1{font-size:25px}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+a{text-decoration:none;color:inherit}
+header{
+ background:#fff;border-bottom:1px solid var(--line);
+ padding:16px 3%;display:flex;align-items:center;
+ justify-content:space-between;gap:12px
+}
+.logo{font-size:22px;font-weight:900}
+.logo span{color:var(--blue)}
+main{max-width:1500px;margin:auto;padding:24px 18px}
+.hero{
+ background:linear-gradient(110deg,#173568,#2563eb);
+ border-radius:25px;color:#fff;padding:39px;margin-bottom:23px
+}
+.hero h1{font-size:clamp(29px,4vw,43px);margin:0 0 13px}
+.hero p{margin:0;line-height:1.7;color:#e5efff}
+.btn{
+ border:0;border-radius:11px;background:var(--blue);
+ color:#fff;padding:12px 16px;font-weight:800;
+ display:inline-flex;align-items:center;justify-content:center;gap:6px
+}
+.btn.alt{background:#e9f0ff;color:#1d4ed8}
+.btn.light{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:#fee2e2;color:#b91c1c}
+.btn.small{padding:8px 10px;font-size:12px}
+.btn:hover:not(:disabled){filter:brightness(.96)}
+.tabs{
+ display:flex;gap:9px;overflow-x:auto;
+ margin-bottom:20px;padding-bottom:8px
+}
+.tab{
+ white-space:nowrap;background:#fff;border:1px solid var(--line);
+ color:#40516e;border-radius:12px;padding:13px 17px;font-weight:800
+}
+.tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.view{display:none}
+.view.active{display:block}
+.stats{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:15px;margin-bottom:20px
+}
+.stat,.panel{
+ background:#fff;border:1px solid var(--line);
+ border-radius:19px;box-shadow:0 8px 26px #17365a08
+}
+.stat{padding:23px}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:29px;margin-top:13px;overflow-wrap:anywhere}
+.green{color:var(--green)}.red{color:var(--red)}
+.grid2{display:grid;grid-template-columns:1fr 1.3fr;gap:20px}
+.panel{padding:25px;margin-bottom:19px;min-width:0}
+.panel h2{font-size:23px;margin:0 0 20px}
+.panelhead{
+ display:flex;align-items:center;justify-content:space-between;
+ flex-wrap:wrap;gap:12px;margin-bottom:18px
+}
+.panelhead h2{margin:0}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.full{grid-column:1/-1}
+label{font-size:12px;font-weight:800}
+input,select,textarea{
+ width:100%;border:1px solid #cbd6e6;border-radius:11px;
+ background:#f9fbff;color:var(--ink);padding:12px;outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);background:#fff}
+textarea{min-height:92px;resize:vertical}
+.actions{display:flex;flex-wrap:wrap;gap:9px}
+.hint{font-size:12px;color:var(--muted);line-height:1.7}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.card{
+ background:#fbfcff;border:1px solid var(--line);
+ border-radius:15px;padding:18px;min-width:0
+}
+.card h3{margin:0 0 10px;overflow-wrap:anywhere}
+.card p{font-size:13px;color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
+.tag{
+ display:inline-block;background:#eaf1ff;color:#1d4ed8;
+ border-radius:20px;padding:6px 10px;font-size:11px;font-weight:800
+}
+.tag.good{background:#dcfce7;color:#166534}
+.tag.warn{background:#fef3c7;color:#92400e}
+.tag.bad{background:#fee2e2;color:#991b1b}
+.bar{height:10px;background:#e7eef8;border-radius:20px;overflow:hidden}
+.fill{height:100%;background:var(--blue);border-radius:20px}
+.tablewrap{overflow-x:auto}
+table{width:100%;min-width:740px;border-collapse:collapse}
+th,td{padding:13px 11px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+th{background:#f5f8fd;color:#425572;font-size:12px}
+.empty{text-align:center;color:var(--muted);padding:30px}
+.notice{color:var(--muted);font-size:12px;line-height:1.7}
+.toast{
+ display:none;position:fixed;bottom:18px;left:50%;
+ transform:translateX(-50%);background:#142746;color:#fff;
+ border-radius:12px;padding:13px 18px;z-index:30;max-width:90vw
+}
+#printArea{display:none}
+@media(max-width:1100px){
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .grid2{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+ header{padding:13px}.logo{font-size:17px}
+ header .btn{padding:10px;font-size:11px}
+ main{padding:13px 10px}
+ .hero{padding:28px 20px;border-radius:18px}
+ .panel{padding:17px;border-radius:16px}
+ .fields,.cards{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .stats{gap:9px}
+ .stat{padding:15px}
+ .stat strong{font-size:23px}
+ .stat small{font-size:11px}
+}
+@page{size:A4;margin:15mm}
+@media print{
+ body>*:not(#printArea){display:none!important}
+ #printArea{display:block!important;color:#111;font:11pt Arial}
+ #printArea table{min-width:0;width:100%;border-collapse:collapse}
+ #printArea td,#printArea th{border:1px solid #999;padding:7px;font-size:9pt}
+}
 </style>
 </head>
 <body>
+
 <header>
-<b>◆ BUSINESS <span style="color:#2563eb">PRO</span></b>
-<a href="../">Voltar ao portal</a>
+ <div class="logo">🚀 MEU <span>EMPREENDEDOR</span></div>
+ <a class="btn alt" href="../">← Business Pro</a>
 </header>
+
 <main>
+
 <section class="hero">
-<h1>🚀 MEU EMPREENDEDOR</h1>
-<p>Organize suas ideias, projetos, metas e contatos em um só lugar.</p>
+ <h1>🚀 MEU EMPREENDEDOR</h1>
+ <p>Transforme ideias em negócios. Planeje projetos, organize contatos, acompanhe metas, investimentos e resultados em um único aplicativo.</p>
 </section>
-<section class="grid">
-<div class="card">Projetos cadastrados<strong id="total">0</strong></div>
-<div class="card">Em andamento<strong id="andamento">0</strong></div>
-<div class="card">Concluídos<strong id="concluidos">0</strong></div>
+
+<nav class="tabs" id="tabs">
+ <button class="tab active" data-view="painel">📊 Painel</button>
+ <button class="tab" data-view="projetos">💡 Projetos</button>
+ <button class="tab" data-view="metas">🎯 Metas</button>
+ <button class="tab" data-view="tarefas">✅ Tarefas</button>
+ <button class="tab" data-view="contatos">🤝 Contatos</button>
+ <button class="tab" data-view="relatorios">📈 Relatórios</button>
+ <button class="tab" data-view="backup">⚙️ Backup</button>
+</nav>
+
+<section id="view-painel" class="view active">
+
+ <div class="stats">
+  <div class="stat"><small>Projetos cadastrados</small><strong id="sProjects">0</strong></div>
+  <div class="stat"><small>Em andamento</small><strong id="sActive">0</strong></div>
+  <div class="stat"><small>Concluídos</small><strong class="green" id="sDone">0</strong></div>
+  <div class="stat"><small>Investimento previsto</small><strong id="sInvestment">R$ 0,00</strong></div>
+ </div>
+
+ <div class="stats">
+  <div class="stat"><small>Receita prevista</small><strong class="green" id="sRevenue">R$ 0,00</strong></div>
+  <div class="stat"><small>Metas cadastradas</small><strong id="sGoals">0</strong></div>
+  <div class="stat"><small>Tarefas pendentes</small><strong id="sTasks">0</strong></div>
+  <div class="stat"><small>Contatos</small><strong id="sContacts">0</strong></div>
+ </div>
+
+ <div class="grid2">
+  <div class="panel">
+   <h2>Visão geral</h2>
+   <p class="hint">Acompanhe o progresso das suas iniciativas.</p>
+   <div id="dashboardProjects"></div>
+  </div>
+
+  <div class="panel">
+   <h2>Próximas atividades</h2>
+   <div id="dashboardTasks"></div>
+   <div class="actions" style="margin-top:18px">
+    <button class="btn" onclick="showView('projetos')">+ Criar projeto</button>
+    <button class="btn alt" onclick="showView('tarefas')">Gerenciar tarefas</button>
+   </div>
+  </div>
+ </div>
 </section>
-<div class="layout">
-<section class="card">
-<h2 id="formTitle">Novo projeto</h2>
-<form id="form">
-<input type="hidden" id="editId">
-<label>Nome do projeto ou negócio</label>
-<input id="nome" required placeholder="Ex.: Loja de roupas">
-<label>Categoria</label>
-<select id="categoria">
-<option>Comércio</option><option>Serviços</option>
-<option>Indústria</option><option>Digital</option><option>Outro</option>
-</select>
-<label>Investimento previsto (R$)</label>
-<input id="investimento" type="number" min="0" step="0.01" value="0">
-<label>Receita prevista (R$)</label>
-<input id="receita" type="number" min="0" step="0.01" value="0">
-<label>Prazo</label>
-<input id="prazo" type="date">
-<label>Status</label>
-<select id="situacao">
-<option>Planejamento</option><option>Em andamento</option>
-<option>Concluído</option><option>Pausado</option>
-</select>
-<label>Descrição e plano de ação</label>
-<textarea id="descricao" placeholder="Objetivos, tarefas, estratégias..."></textarea>
-<label>Parceiros e contatos</label>
-<textarea id="contatos" placeholder="Fornecedores, parceiros, telefones..."></textarea>
-<div class="actions">
-<button type="submit">Salvar projeto</button>
-<button type="button" class="alt" onclick="limpar()">Limpar</button>
-</div>
-</form>
+
+<section id="view-projetos" class="view">
+ <div class="grid2">
+  <div class="panel">
+   <h2 id="projectTitle">Novo projeto ou negócio</h2>
+
+   <form id="projectForm">
+    <div class="fields">
+     <div class="field full">
+      <label>Nome do projeto ou negócio *</label>
+      <input id="pName" required placeholder="Ex.: Loja de roupas">
+     </div>
+     <div class="field">
+      <label>Categoria</label>
+      <select id="pCategory">
+       <option>Comércio</option>
+       <option>Serviços</option>
+       <option>Tecnologia</option>
+       <option>Indústria</option>
+       <option>Educação</option>
+       <option>Alimentação</option>
+       <option>Saúde</option>
+       <option>Construção</option>
+       <option>Agropecuária</option>
+       <option>Outro</option>
+      </select>
+     </div>
+     <div class="field">
+      <label>Situação</label>
+      <select id="pStatus">
+       <option>Ideia</option>
+       <option>Planejamento</option>
+       <option>Em andamento</option>
+       <option>Concluído</option>
+       <option>Pausado</option>
+      </select>
+     </div>
+     <div class="field">
+      <label>Investimento previsto (R$)</label>
+      <input id="pInvestment" type="number" min="0" step="0.01" value="0">
+     </div>
+     <div class="field">
+      <label>Receita prevista (R$)</label>
+      <input id="pRevenue" type="number" min="0" step="0.01" value="0">
+     </div>
+     <div class="field">
+      <label>Prazo</label>
+      <input id="pDue" type="date">
+     </div>
+     <div class="field">
+      <label>Progresso (%)</label>
+      <input id="pProgress" type="number" min="0" max="100" value="0">
+     </div>
+     <div class="field full">
+      <label>Descrição da ideia</label>
+      <textarea id="pDescription" placeholder="Descreva seu negócio..."></textarea>
+     </div>
+     <div class="field full">
+      <label>Público-alvo</label>
+      <textarea id="pAudience" placeholder="Quem são seus clientes?"></textarea>
+     </div>
+     <div class="field full">
+      <label>Estratégia e diferenciais</label>
+      <textarea id="pStrategy" placeholder="Como pretende alcançar seus objetivos?"></textarea>
+     </div>
+    </div>
+
+    <div class="actions" style="margin-top:18px">
+     <button class="btn" type="submit">💾 Salvar projeto</button>
+     <button class="btn alt" type="button" onclick="resetProject()">Limpar</button>
+    </div>
+   </form>
+  </div>
+
+  <div class="panel">
+   <div class="panelhead">
+    <h2>Meus projetos</h2>
+    <button class="btn alt" onclick="exportCSV('projects')">Exportar CSV</button>
+   </div>
+   <input id="projectSearch" placeholder="Pesquisar projeto..." aria-label="Pesquisar projetos">
+   <div id="projectList" class="cards" style="margin-top:17px"></div>
+  </div>
+ </div>
 </section>
-<section class="card">
-<h2>Meus projetos</h2>
-<input id="busca" placeholder="Pesquisar projeto..." oninput="render()">
-<div class="actions">
-<button class="alt" onclick="exportarCSV()">Exportar CSV</button>
-<button class="alt" onclick="backup()">Backup JSON</button>
-<button class="alt" onclick="document.getElementById('importar').click()">Importar backup</button>
-<input id="importar" type="file" accept=".json" hidden onchange="restaurar(event)">
-</div>
-<div id="lista"></div>
+
+<section id="view-metas" class="view">
+ <div class="grid2">
+  <div class="panel">
+   <h2 id="goalTitle">Nova meta</h2>
+   <form id="goalForm">
+    <div class="fields">
+     <div class="field full">
+      <label>Nome da meta *</label>
+      <input id="gName" required placeholder="Ex.: Conquistar 100 clientes">
+     </div>
+     <div class="field">
+      <label>Projeto</label>
+      <select id="gProject"></select>
+     </div>
+     <div class="field">
+      <label>Prazo</label>
+      <input id="gDue" type="date">
+     </div>
+     <div class="field">
+      <label>Valor-alvo</label>
+      <input id="gTarget" type="number" min="0.01" step="0.01" value="100" required>
+     </div>
+     <div class="field">
+      <label>Valor alcançado</label>
+      <input id="gCurrent" type="number" min="0" step="0.01" value="0" required>
+     </div>
+     <div class="field full">
+      <label>Unidade</label>
+      <input id="gUnit" placeholder="Ex.: clientes, vendas, reais">
+     </div>
+    </div>
+    <div class="actions" style="margin-top:18px">
+     <button class="btn" type="submit">Salvar meta</button>
+     <button class="btn alt" type="button" onclick="resetGoal()">Limpar</button>
+    </div>
+   </form>
+  </div>
+
+  <div class="panel">
+   <h2>Minhas metas</h2>
+   <div id="goalList" class="cards"></div>
+  </div>
+ </div>
 </section>
-</div>
-<p class="muted">Os dados ficam armazenados neste navegador. Faça backups regularmente.</p>
+
+<section id="view-tarefas" class="view">
+ <div class="grid2">
+  <div class="panel">
+   <h2 id="taskTitle">Nova tarefa</h2>
+   <form id="taskForm">
+    <div class="fields">
+     <div class="field full">
+      <label>Tarefa *</label>
+      <input id="tName" required placeholder="Ex.: Criar identidade visual">
+     </div>
+     <div class="field">
+      <label>Projeto</label>
+      <select id="tProject"></select>
+     </div>
+     <div class="field">
+      <label>Responsável</label>
+      <input id="tResponsible">
+     </div>
+     <div class="field">
+      <label>Prazo</label>
+      <input id="tDue" type="date">
+     </div>
+     <div class="field">
+      <label>Prioridade</label>
+      <select id="tPriority">
+       <option>Baixa</option>
+       <option selected>Média</option>
+       <option>Alta</option>
+       <option>Urgente</option>
+      </select>
+     </div>
+     <div class="field full">
+      <label>Situação</label>
+      <select id="tStatus">
+       <option>Pendente</option>
+       <option>Em andamento</option>
+       <option>Concluída</option>
+      </select>
+     </div>
+     <div class="field full">
+      <label>Descrição</label>
+      <textarea id="tDescription"></textarea>
+     </div>
+    </div>
+    <div class="actions" style="margin-top:18px">
+     <button class="btn" type="submit">Salvar tarefa</button>
+     <button class="btn alt" type="button" onclick="resetTask()">Limpar</button>
+    </div>
+   </form>
+  </div>
+
+  <div class="panel">
+   <div class="panelhead">
+    <h2>Minhas tarefas</h2>
+    <button class="btn alt" onclick="exportCSV('tasks')">Exportar CSV</button>
+   </div>
+   <input id="taskSearch" placeholder="Pesquisar tarefas..." aria-label="Pesquisar tarefas">
+   <div id="taskList" style="margin-top:17px"></div>
+  </div>
+ </div>
+</section>
+
+<section id="view-contatos" class="view">
+ <div class="grid2">
+  <div class="panel">
+   <h2 id="contactTitle">Novo contato</h2>
+   <form id="contactForm">
+    <div class="fields">
+     <div class="field full">
+      <label>Nome ou empresa *</label>
+      <input id="cName" required>
+     </div>
+     <div class="field">
+      <label>Tipo</label>
+      <select id="cType">
+       <option>Cliente</option>
+       <option>Fornecedor</option>
+       <option>Parceiro</option>
+       <option>Investidor</option>
+       <option>Outro</option>
+      </select>
+     </div>
+     <div class="field">
+      <label>Telefone</label>
+      <input id="cPhone" type="tel">
+     </div>
+     <div class="field">
+      <label>E-mail</label>
+      <input id="cEmail" type="email">
+     </div>
+     <div class="field">
+      <label>Projeto relacionado</label>
+      <select id="cProject"></select>
+     </div>
+     <div class="field full">
+      <label>Observações</label>
+      <textarea id="cNotes"></textarea>
+     </div>
+    </div>
+    <div class="actions" style="margin-top:18px">
+     <button class="btn" type="submit">Salvar contato</button>
+     <button class="btn alt" type="button" onclick="resetContact()">Limpar</button>
+    </div>
+   </form>
+  </div>
+
+  <div class="panel">
+   <div class="panelhead">
+    <h2>Minha rede de contatos</h2>
+    <button class="btn alt" onclick="exportCSV('contacts')">Exportar CSV</button>
+   </div>
+   <input id="contactSearch" placeholder="Pesquisar contatos..." aria-label="Pesquisar contatos">
+   <div id="contactList" class="cards" style="margin-top:17px"></div>
+  </div>
+ </div>
+</section>
+
+<section id="view-relatorios" class="view">
+ <div class="panel">
+  <div class="panelhead">
+   <h2>📈 Relatórios do empreendedor</h2>
+   <div class="actions">
+    <button class="btn" onclick="printReport()">Imprimir / Salvar PDF</button>
+    <button class="btn alt" onclick="exportCSV('projects')">Exportar projetos</button>
+   </div>
+  </div>
+
+  <div class="stats">
+   <div class="stat"><small>Investimento total previsto</small><strong id="rInvestment">R$ 0,00</strong></div>
+   <div class="stat"><small>Receita total prevista</small><strong id="rRevenue">R$ 0,00</strong></div>
+   <div class="stat"><small>Diferença prevista</small><strong id="rDifference">R$ 0,00</strong></div>
+   <div class="stat"><small>Taxa de conclusão</small><strong id="rRate">0%</strong></div>
+  </div>
+
+  <p class="hint">Os valores são projeções informadas por você, não representam lucro efetivo nem substituem controle contábil.</p>
+
+  <div class="tablewrap">
+   <table>
+    <thead>
+     <tr>
+      <th>Projeto</th><th>Categoria</th><th>Investimento</th>
+      <th>Receita prevista</th><th>Situação</th><th>Progresso</th>
+     </tr>
+    </thead>
+    <tbody id="reportTable"></tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<section id="view-backup" class="view">
+ <div class="panel">
+  <h2>⚙️ Dados e backup</h2>
+  <p class="hint">Os dados são salvos somente neste navegador. Para transferir para outro dispositivo, exporte o backup JSON e importe no outro aparelho.</p>
+  <div class="actions">
+   <button class="btn" onclick="exportBackup()">⬇ Backup JSON</button>
+   <button class="btn alt" onclick="document.getElementById('backupFile').click()">⬆ Importar backup</button>
+   <button class="btn danger" onclick="clearAll()">Apagar todos os dados</button>
+  </div>
+  <input type="file" id="backupFile" accept=".json,application/json" hidden>
+ </div>
+</section>
+
+<p class="notice">BUSINESS PRO — MEU EMPREENDEDOR. Aplicativo local para planejamento e organização de negócios. Faça backups periódicos para evitar perdas.</p>
+
 </main>
+
+<div id="printArea"></div>
+<div class="toast" id="toast" role="status"></div>
+
 <script>
-const KEY="businesspro_empreendedor_v1";
-let dados=JSON.parse(localStorage.getItem(KEY)||"[]");
+"use strict";
+
 const $=id=>document.getElementById(id);
-const salvar=()=>localStorage.setItem(KEY,JSON.stringify(dados));
-const moeda=n=>Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-function limpar(){$("form").reset();$("editId").value="";$("formTitle").textContent="Novo projeto"}
-$("form").onsubmit=e=>{
-e.preventDefault();
-const id=$("editId").value||String(Date.now());
-const item={id,nome:$("nome").value,categoria:$("categoria").value,
-investimento:Number($("investimento").value),receita:Number($("receita").value),
-prazo:$("prazo").value,situacao:$("situacao").value,
-descricao:$("descricao").value,contatos:$("contatos").value};
-dados=dados.filter(x=>x.id!==id);
-dados.unshift(item);salvar();limpar();render();
-};
-function editar(id){
-const x=dados.find(a=>a.id===id);if(!x)return;
-$("editId").value=x.id;
-["nome","categoria","investimento","receita","prazo","situacao","descricao","contatos"].forEach(k=>$(k).value=x[k]??"");
-$("formTitle").textContent="Editar projeto";
-window.scrollTo({top:280,behavior:"smooth"});
+const KEY="businesspro_meu_empreendedor_v3";
+const money=n=>Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const number=n=>Number(n||0).toLocaleString("pt-BR");
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
+
+function esc(s){
+ return String(s??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
 }
-function excluir(id){
-if(confirm("Excluir este projeto?")){
-dados=dados.filter(x=>x.id!==id);salvar();render();
-}}
-function render(){
-$("total").textContent=dados.length;
-$("andamento").textContent=dados.filter(x=>x.situacao==="Em andamento").length;
-$("concluidos").textContent=dados.filter(x=>x.situacao==="Concluído").length;
-const q=$("busca").value.toLowerCase();
-const lista=dados.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
-$("lista").replaceChildren();
-if(!lista.length){$("lista").textContent="Nenhum projeto encontrado.";return}
-lista.forEach(x=>{
-const el=document.createElement("div");el.className="item";
-const h=document.createElement("h3");h.textContent=x.nome;el.append(h);
-const p=document.createElement("p");
-p.textContent=x.categoria+" • "+x.situacao+" • Prazo: "+(x.prazo||"Não definido");el.append(p);
-const valores=document.createElement("p");
-valores.textContent="Investimento: "+moeda(x.investimento)+" | Receita prevista: "+moeda(x.receita);el.append(valores);
-const d=document.createElement("p");d.textContent=x.descricao;el.append(d);
-const c=document.createElement("small");c.textContent="Contatos: "+(x.contatos||"Não informados");el.append(c);
-const actions=document.createElement("div");actions.className="actions";
-const b1=document.createElement("button");b1.textContent="Editar";b1.onclick=()=>editar(x.id);
-const b2=document.createElement("button");b2.textContent="Excluir";b2.className="danger";b2.onclick=()=>excluir(x.id);
-actions.append(b1,b2);el.append(actions);$("lista").append(el);
-});
+
+function dateBR(s){
+ if(!s)return "—";
+ const [y,m,d]=s.split("-");
+ return `${d}/${m}/${y}`;
 }
-function baixar(nome,conteudo,tipo){
-const a=document.createElement("a"),url=URL.createObjectURL(new Blob([conteudo],{type:tipo}));
-a.href=url;a.download=nome;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+
+function today(){
+ const d=new Date();
+ return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
 }
-function backup(){baixar("empreendedor-backup.json",JSON.stringify(dados,null,2),"application/json")}
-function exportarCSV(){
-const cols=["nome","categoria","investimento","receita","prazo","situacao","descricao","contatos"];
-const csv=[cols,...dados.map(x=>cols.map(k=>String(x[k]??"").replaceAll('"','""')))]
-.map(row=>row.map(v=>'"'+v+'"').join(";")).join("\r\n");
-baixar("empreendedor.csv","\uFEFF"+csv,"text/csv;charset=utf-8");
-}
-async function restaurar(e){
+
+let db={version:3,projects:[],goals:[],tasks:[],contacts:[]};
 try{
-const v=JSON.parse(await e.target.files[0].text());
-if(!Array.isArray(v))throw Error();
-if(confirm("Substituir os dados atuais pelos dados do backup?")){
-dados=v;salvar();render();
+ const saved=JSON.parse(localStorage.getItem(KEY)||"null");
+ if(saved&&saved.version===3&&["projects","goals","tasks","contacts"].every(k=>Array.isArray(saved[k])))
+  db=saved;
+}catch(e){}
+
+let editing={projects:null,goals:null,tasks:null,contacts:null};
+
+function notify(message){
+ const el=$("toast");
+ el.textContent=message;
+ el.style.display="block";
+ clearTimeout(notify.timer);
+ notify.timer=setTimeout(()=>el.style.display="none",3000);
 }
-}catch{alert("Arquivo de backup inválido.")}
-e.target.value="";
+
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(db));
+  return true;
+ }catch(e){
+  notify("Não foi possível salvar no navegador.");
+  return false;
+ }
 }
+
+function download(filename,text,type){
+ const url=URL.createObjectURL(new Blob([text],{type}));
+ const a=document.createElement("a");
+ a.href=url;a.download=filename;
+ document.body.appendChild(a);
+ a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+
+function showView(name){
+ document.querySelectorAll(".view").forEach(el=>el.classList.remove("active"));
+ $("view-"+name).classList.add("active");
+ document.querySelectorAll(".tab").forEach(el=>el.classList.toggle("active",el.dataset.view===name));
+ render();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+$("tabs").addEventListener("click",e=>{
+ const tab=e.target.closest("[data-view]");
+ if(tab)showView(tab.dataset.view);
+});
+
+function projectName(id){
+ return db.projects.find(p=>p.id===id)?.name||"Sem projeto";
+}
+
+function projectOptions(){
+ ["gProject","tProject","cProject"].forEach(id=>{
+  const old=$(id).value;
+  $(id).innerHTML='<option value="">Sem projeto</option>'+
+   db.projects.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join("");
+  if([...$(id).options].some(o=>o.value===old))$(id).value=old;
+ });
+}
+
+function storeRecord(collection,data,id){
+ const previous=JSON.stringify(db[collection]);
+ const now=new Date().toISOString();
+
+ if(id){
+  const index=db[collection].findIndex(x=>x.id===id);
+  if(index<0)return false;
+  db[collection][index]={...db[collection][index],...data,updatedAt:now};
+ }else{
+  db[collection].push({id:uid(),...data,createdAt:now,updatedAt:now});
+ }
+
+ if(!save()){
+  db[collection]=JSON.parse(previous);
+  return false;
+ }
+
+ return true;
+}
+
+function removeRecord(collection,id){
+ if(!confirm("Excluir este registro?"))return;
+
+ const previous=JSON.stringify(db);
+ db[collection]=db[collection].filter(x=>x.id!==id);
+
+ if(collection==="projects"){
+  ["goals","tasks","contacts"].forEach(k=>
+   db[k].forEach(x=>{if(x.projectId===id)x.projectId="";})
+  );
+ }
+
+ if(!save()){
+  db=JSON.parse(previous);
+  return;
+ }
+
+ resetAllForms();
+ render();
+ notify("Registro excluído.");
+}
+
+function resetProject(){
+ editing.projects=null;
+ $("projectForm").reset();
+ $("pInvestment").value=0;
+ $("pRevenue").value=0;
+ $("pProgress").value=0;
+ $("projectTitle").textContent="Novo projeto ou negócio";
+}
+
+$("projectForm").onsubmit=e=>{
+ e.preventDefault();
+
+ const data={
+  name:$("pName").value.trim(),
+  category:$("pCategory").value,
+  status:$("pStatus").value,
+  investment:Number($("pInvestment").value)||0,
+  revenue:Number($("pRevenue").value)||0,
+  due:$("pDue").value,
+  progress:$("pStatus").value==="Concluído"?100:Math.max(0,Math.min(100,Number($("pProgress").value)||0)),
+  description:$("pDescription").value.trim(),
+  audience:$("pAudience").value.trim(),
+  strategy:$("pStrategy").value.trim()
+ };
+
+ if(!data.name)return notify("Informe o nome do projeto.");
+
+ if(storeRecord("projects",data,editing.projects)){
+  resetProject();render();notify("Projeto salvo.");
+ }
+};
+
+function editProject(id){
+ const p=db.projects.find(x=>x.id===id);
+ if(!p)return;
+
+ editing.projects=id;
+ const fields={
+  pName:p.name,pCategory:p.category,pStatus:p.status,
+  pInvestment:p.investment,pRevenue:p.revenue,
+  pDue:p.due,pProgress:p.progress,pDescription:p.description,
+  pAudience:p.audience,pStrategy:p.strategy
+ };
+ Object.entries(fields).forEach(([k,v])=>$(k).value=v??"");
+ $("projectTitle").textContent="Editar projeto";
+ showView("projetos");
+ $("pName").focus();
+}
+
+function renderProjects(){
+ const q=$("projectSearch").value.toLowerCase();
+
+ const list=db.projects.filter(p=>
+  (p.name+" "+p.category+" "+p.description).toLowerCase().includes(q)
+ );
+
+ $("projectList").innerHTML=list.length?list.map(p=>`
+  <article class="card">
+   <h3>${esc(p.name)}</h3>
+   <p>${esc(p.category)} · ${esc(p.status)}</p>
+   <p>Investimento: ${money(p.investment)}</p>
+   <p>Receita prevista: ${money(p.revenue)}</p>
+   <p>Prazo: ${dateBR(p.due)}</p>
+   <p>${esc(p.description||"Sem descrição")}</p>
+   <p>Progresso: ${p.progress}%</p>
+   <div class="bar"><div class="fill" style="width:${p.progress}%"></div></div>
+   <div class="actions" style="margin-top:15px">
+    <button class="btn small alt" data-edit="projects" data-id="${esc(p.id)}">Editar</button>
+    <button class="btn small danger" data-delete="projects" data-id="${esc(p.id)}">Excluir</button>
+   </div>
+  </article>
+ `).join(""):'<p class="empty">Nenhum projeto encontrado.</p>';
+}
+
+function resetGoal(){
+ editing.goals=null;
+ $("goalForm").reset();
+ $("gTarget").value=100;
+ $("gCurrent").value=0;
+ $("goalTitle").textContent="Nova meta";
+}
+
+$("goalForm").onsubmit=e=>{
+ e.preventDefault();
+
+ const data={
+  name:$("gName").value.trim(),
+  projectId:$("gProject").value,
+  due:$("gDue").value,
+  target:Number($("gTarget").value),
+  current:Number($("gCurrent").value),
+  unit:$("gUnit").value.trim()
+ };
+
+ if(!data.name||!Number.isFinite(data.target)||data.target<=0||
+  !Number.isFinite(data.current)||data.current<0)
+  return notify("Confira os dados da meta.");
+
+ if(storeRecord("goals",data,editing.goals)){
+  resetGoal();render();notify("Meta salva.");
+ }
+};
+
+function editGoal(id){
+ const g=db.goals.find(x=>x.id===id);
+ if(!g)return;
+ editing.goals=id;
+ $("gName").value=g.name;
+ $("gProject").value=g.projectId;
+ $("gDue").value=g.due;
+ $("gTarget").value=g.target;
+ $("gCurrent").value=g.current;
+ $("gUnit").value=g.unit;
+ $("goalTitle").textContent="Editar meta";
+ showView("metas");
+}
+
+function renderGoals(){
+ $("goalList").innerHTML=db.goals.length?db.goals.map(g=>{
+  const percent=Math.min(100,Math.round(g.current/g.target*100));
+  return `
+   <article class="card">
+    <h3>${esc(g.name)}</h3>
+    <p>${esc(projectName(g.projectId))}</p>
+    <p>${number(g.current)} / ${number(g.target)} ${esc(g.unit)}</p>
+    <p>Prazo: ${dateBR(g.due)}</p>
+    <div class="bar"><div class="fill" style="width:${percent}%"></div></div>
+    <p>${percent}% alcançado</p>
+    <div class="actions">
+     <button class="btn small alt" data-edit="goals" data-id="${esc(g.id)}">Editar</button>
+     <button class="btn small danger" data-delete="goals" data-id="${esc(g.id)}">Excluir</button>
+    </div>
+   </article>`;
+ }).join(""):'<p class="empty">Nenhuma meta cadastrada.</p>';
+}
+
+function resetTask(){
+ editing.tasks=null;
+ $("taskForm").reset();
+ $("taskTitle").textContent="Nova tarefa";
+}
+
+$("taskForm").onsubmit=e=>{
+ e.preventDefault();
+
+ const data={
+  name:$("tName").value.trim(),
+  projectId:$("tProject").value,
+  responsible:$("tResponsible").value.trim(),
+  due:$("tDue").value,
+  priority:$("tPriority").value,
+  status:$("tStatus").value,
+  description:$("tDescription").value.trim()
+ };
+
+ if(!data.name)return notify("Informe o nome da tarefa.");
+
+ if(storeRecord("tasks",data,editing.tasks)){
+  resetTask();render();notify("Tarefa salva.");
+ }
+};
+
+function editTask(id){
+ const t=db.tasks.find(x=>x.id===id);
+ if(!t)return;
+ editing.tasks=id;
+ $("tName").value=t.name;
+ $("tProject").value=t.projectId;
+ $("tResponsible").value=t.responsible;
+ $("tDue").value=t.due;
+ $("tPriority").value=t.priority;
+ $("tStatus").value=t.status;
+ $("tDescription").value=t.description;
+ $("taskTitle").textContent="Editar tarefa";
+ showView("tarefas");
+}
+
+function completeTask(id){
+ const t=db.tasks.find(x=>x.id===id);
+ if(!t)return;
+ const old=t.status;
+ t.status=t.status==="Concluída"?"Pendente":"Concluída";
+ if(!save()){t.status=old;return;}
+ render();notify("Situação atualizada.");
+}
+
+function renderTasks(){
+ const q=$("taskSearch").value.toLowerCase();
+
+ const list=db.tasks.filter(t=>
+  (t.name+" "+projectName(t.projectId)+" "+t.responsible).toLowerCase().includes(q)
+ ).sort((a,b)=>(a.due||"9999").localeCompare(b.due||"9999"));
+
+ $("taskList").innerHTML=list.length?list.map(t=>`
+  <article class="card" style="margin-bottom:12px">
+   <h3>${esc(t.name)}</h3>
+   <p>Projeto: ${esc(projectName(t.projectId))}</p>
+   <p>Responsável: ${esc(t.responsible||"—")}</p>
+   <p>Prazo: ${dateBR(t.due)}</p>
+   <p>Prioridade: ${esc(t.priority)}</p>
+   <span class="tag ${t.status==="Concluída"?"good":t.due&&t.due<today()?"bad":"warn"}">
+    ${esc(t.status)}
+   </span>
+   <div class="actions" style="margin-top:14px">
+    <button class="btn small" data-complete="${esc(t.id)}">${t.status==="Concluída"?"Reabrir":"Concluir"}</button>
+    <button class="btn small alt" data-edit="tasks" data-id="${esc(t.id)}">Editar</button>
+    <button class="btn small danger" data-delete="tasks" data-id="${esc(t.id)}">Excluir</button>
+   </div>
+  </article>
+ `).join(""):'<p class="empty">Nenhuma tarefa encontrada.</p>';
+}
+
+function resetContact(){
+ editing.contacts=null;
+ $("contactForm").reset();
+ $("contactTitle").textContent="Novo contato";
+}
+
+$("contactForm").onsubmit=e=>{
+ e.preventDefault();
+
+ const data={
+  name:$("cName").value.trim(),
+  type:$("cType").value,
+  phone:$("cPhone").value.trim(),
+  email:$("cEmail").value.trim(),
+  projectId:$("cProject").value,
+  notes:$("cNotes").value.trim()
+ };
+
+ if(!data.name)return notify("Informe o nome do contato.");
+
+ if(storeRecord("contacts",data,editing.contacts)){
+  resetContact();render();notify("Contato salvo.");
+ }
+};
+
+function editContact(id){
+ const c=db.contacts.find(x=>x.id===id);
+ if(!c)return;
+ editing.contacts=id;
+ $("cName").value=c.name;
+ $("cType").value=c.type;
+ $("cPhone").value=c.phone;
+ $("cEmail").value=c.email;
+ $("cProject").value=c.projectId;
+ $("cNotes").value=c.notes;
+ $("contactTitle").textContent="Editar contato";
+ showView("contatos");
+}
+
+function renderContacts(){
+ const q=$("contactSearch").value.toLowerCase();
+
+ const list=db.contacts.filter(c=>
+  (c.name+" "+c.type+" "+c.phone+" "+c.email).toLowerCase().includes(q)
+ );
+
+ $("contactList").innerHTML=list.length?list.map(c=>`
+  <article class="card">
+   <h3>${esc(c.name)}</h3>
+   <p><span class="tag">${esc(c.type)}</span></p>
+   <p>📞 ${esc(c.phone||"—")}</p>
+   <p>✉️ ${esc(c.email||"—")}</p>
+   <p>Projeto: ${esc(projectName(c.projectId))}</p>
+   <p>${esc(c.notes||"")}</p>
+   <div class="actions">
+    <button class="btn small alt" data-edit="contacts" data-id="${esc(c.id)}">Editar</button>
+    <button class="btn small danger" data-delete="contacts" data-id="${esc(c.id)}">Excluir</button>
+   </div>
+  </article>
+ `).join(""):'<p class="empty">Nenhum contato encontrado.</p>';
+}
+
+document.addEventListener("click",e=>{
+ const complete=e.target.closest("[data-complete]");
+ if(complete)return completeTask(complete.dataset.complete);
+
+ const edit=e.target.closest("[data-edit][data-id]");
+ if(edit){
+  const functions={
+   projects:editProject,goals:editGoal,
+   tasks:editTask,contacts:editContact
+  };
+  return functions[edit.dataset.edit]?.(edit.dataset.id);
+ }
+
+ const del=e.target.closest("[data-delete][data-id]");
+ if(del)removeRecord(del.dataset.delete,del.dataset.id);
+});
+
+function renderDashboard(){
+ const investment=db.projects.reduce((s,p)=>s+p.investment,0);
+ const revenue=db.projects.reduce((s,p)=>s+p.revenue,0);
+ const done=db.projects.filter(p=>p.status==="Concluído").length;
+
+ $("sProjects").textContent=db.projects.length;
+ $("sActive").textContent=db.projects.filter(p=>p.status==="Em andamento").length;
+ $("sDone").textContent=done;
+ $("sInvestment").textContent=money(investment);
+ $("sRevenue").textContent=money(revenue);
+ $("sGoals").textContent=db.goals.length;
+ $("sTasks").textContent=db.tasks.filter(t=>t.status!=="Concluída").length;
+ $("sContacts").textContent=db.contacts.length;
+
+ $("rInvestment").textContent=money(investment);
+ $("rRevenue").textContent=money(revenue);
+ $("rDifference").textContent=money(revenue-investment);
+ $("rRate").textContent=db.projects.length?
+  Math.round(done/db.projects.length*100)+"%":"0%";
+
+ $("dashboardProjects").innerHTML=db.projects.length?
+  db.projects.slice(0,6).map(p=>`
+   <div style="margin-bottom:22px">
+    <strong>${esc(p.name)}</strong>
+    <p class="hint">${esc(p.status)} · ${p.progress}%</p>
+    <div class="bar"><div class="fill" style="width:${p.progress}%"></div></div>
+   </div>
+  `).join("")
+  :'<p class="empty">Cadastre seu primeiro projeto.</p>';
+
+ const upcoming=db.tasks.filter(t=>t.status!=="Concluída")
+  .sort((a,b)=>(a.due||"9999").localeCompare(b.due||"9999"))
+  .slice(0,6);
+
+ $("dashboardTasks").innerHTML=upcoming.length?upcoming.map(t=>`
+  <div style="border-bottom:1px solid var(--line);padding:12px 0">
+   <strong>${esc(t.name)}</strong>
+   <p class="hint">${esc(projectName(t.projectId))} · Prazo: ${dateBR(t.due)}</p>
+  </div>
+ `).join(""):'<p class="empty">Nenhuma tarefa pendente.</p>';
+}
+
+function renderReports(){
+ $("reportTable").innerHTML=db.projects.length?db.projects.map(p=>`
+  <tr>
+   <td>${esc(p.name)}</td>
+   <td>${esc(p.category)}</td>
+   <td>${money(p.investment)}</td>
+   <td>${money(p.revenue)}</td>
+   <td>${esc(p.status)}</td>
+   <td>${p.progress}%</td>
+  </tr>
+ `).join(""):'<tr><td colspan="6" class="empty">Sem projetos.</td></tr>';
+}
+
+function render(){
+ projectOptions();
+ renderDashboard();
+ renderProjects();
+ renderGoals();
+ renderTasks();
+ renderContacts();
+ renderReports();
+}
+
+function exportCSV(collection){
+ const headers={
+  projects:["Nome","Categoria","Situação","Investimento","Receita prevista","Prazo","Progresso","Descrição","Público-alvo","Estratégia"],
+  goals:["Meta","Projeto","Prazo","Alvo","Alcançado","Unidade"],
+  tasks:["Tarefa","Projeto","Responsável","Prazo","Prioridade","Situação","Descrição"],
+  contacts:["Nome","Tipo","Telefone","E-mail","Projeto","Observações"]
+ };
+
+ const mappers={
+  projects:p=>[p.name,p.category,p.status,p.investment,p.revenue,dateBR(p.due),p.progress,p.description,p.audience,p.strategy],
+  goals:g=>[g.name,projectName(g.projectId),dateBR(g.due),g.target,g.current,g.unit],
+  tasks:t=>[t.name,projectName(t.projectId),t.responsible,dateBR(t.due),t.priority,t.status,t.description],
+  contacts:c=>[c.name,c.type,c.phone,c.email,projectName(c.projectId),c.notes]
+ };
+
+ const rows=[headers[collection],...db[collection].map(mappers[collection])];
+ const csv="\uFEFF"+rows.map(row=>row.map(value=>
+  '"'+String(value??"").replace(/"/g,'""')+'"'
+ ).join(";")).join("\r\n");
+
+ download("meu-empreendedor-"+collection+".csv",csv,"text/csv;charset=utf-8");
+ notify("CSV exportado.");
+}
+
+function printReport(){
+ $("printArea").innerHTML=`
+  <h1>MEU EMPREENDEDOR — RELATÓRIO</h1>
+  <p>Data: ${new Date().toLocaleString("pt-BR")}</p>
+  <p>Projetos: ${db.projects.length} · Metas: ${db.goals.length} ·
+   Tarefas: ${db.tasks.length} · Contatos: ${db.contacts.length}</p>
+  <table>
+   <thead>
+    <tr><th>Projeto</th><th>Categoria</th><th>Investimento</th><th>Receita prevista</th><th>Situação</th></tr>
+   </thead>
+   <tbody>
+    ${db.projects.map(p=>`
+     <tr>
+      <td>${esc(p.name)}</td>
+      <td>${esc(p.category)}</td>
+      <td>${money(p.investment)}</td>
+      <td>${money(p.revenue)}</td>
+      <td>${esc(p.status)}</td>
+     </tr>
+    `).join("")}
+   </tbody>
+  </table>
+ `;
+ window.print();
+}
+
+function exportBackup(){
+ download(
+  "backup-meu-empreendedor.json",
+  JSON.stringify(db,null,2),
+  "application/json"
+ );
+ notify("Backup exportado.");
+}
+
+$("backupFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  if(file.size>15*1024*1024)throw Error("Arquivo muito grande.");
+
+  const imported=JSON.parse(await file.text());
+
+  if(
+   imported.version!==3||
+   !["projects","goals","tasks","contacts"].every(k=>Array.isArray(imported[k]))
+  )throw Error("Formato incompatível.");
+
+  if(!confirm("Substituir todos os dados atuais pelo backup?"))return;
+
+  const previous=db;
+  db=imported;
+
+  if(!save()){db=previous;return;}
+
+  resetAllForms();
+  render();
+  notify("Backup importado.");
+ }catch(err){
+  notify("Erro: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+function resetAllForms(){
+ resetProject();
+ resetGoal();
+ resetTask();
+ resetContact();
+}
+
+function clearAll(){
+ if(!confirm("Apagar todos os projetos, metas, tarefas e contatos?"))return;
+ if(!confirm("Confirme a exclusão definitiva. Faça backup antes."))return;
+
+ const previous=db;
+ db={version:3,projects:[],goals:[],tasks:[],contacts:[]};
+
+ if(!save()){db=previous;return;}
+
+ resetAllForms();
+ render();
+ notify("Dados apagados.");
+}
+
+["projectSearch","taskSearch","contactSearch"].forEach(id=>{
+ $(id).addEventListener("input",render);
+});
+
+$("pStatus").addEventListener("change",()=>{
+ if($("pStatus").value==="Concluído")$("pProgress").value=100;
+});
+
+resetAllForms();
 render();
 </script>
 </body>
