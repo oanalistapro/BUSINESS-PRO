@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MEU EMPREENDEDOR | BUSINESS PRO</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f7ff;color:#142b4b}
+header{background:white;border-bottom:1px solid #dce5f3;padding:18px 5%;display:flex;justify-content:space-between;align-items:center}
+a{color:#2563eb;text-decoration:none}
+main{max-width:1150px;margin:auto;padding:24px 16px}
+.hero{background:linear-gradient(120deg,#102b5b,#2868ee);color:white;padding:32px;border-radius:22px}
+.hero h1{margin:0 0 12px;font-size:32px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
+.card{background:white;border:1px solid #dae4f2;border-radius:18px;padding:22px;box-shadow:0 8px 25px #183b6810}
+.card strong{display:block;font-size:27px;margin-top:10px}
+.layout{display:grid;grid-template-columns:340px 1fr;gap:18px}
+label{display:block;font-weight:bold;font-size:13px;margin:14px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #ccd9e9;border-radius:10px;font:inherit}
+textarea{min-height:90px}
+button{background:#2563eb;color:white;border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:pointer;margin:4px 4px 4px 0}
+button.alt{background:#e9f0ff;color:#174fc6}
+button.danger{background:#ffeded;color:#b42318}
+.item{border:1px solid #e1e9f5;border-radius:14px;padding:16px;margin:12px 0}
+.item h3{margin:0 0 8px}
+small,.muted{color:#64748b}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+@media(max-width:750px){.grid{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.hero h1{font-size:25px}}
+</style>
+</head>
+<body>
+<header>
+<b>◆ BUSINESS <span style="color:#2563eb">PRO</span></b>
+<a href="../">Voltar ao portal</a>
+</header>
+<main>
+<section class="hero">
+<h1>🚀 MEU EMPREENDEDOR</h1>
+<p>Organize suas ideias, projetos, metas e contatos em um só lugar.</p>
+</section>
+<section class="grid">
+<div class="card">Projetos cadastrados<strong id="total">0</strong></div>
+<div class="card">Em andamento<strong id="andamento">0</strong></div>
+<div class="card">Concluídos<strong id="concluidos">0</strong></div>
+</section>
+<div class="layout">
+<section class="card">
+<h2 id="formTitle">Novo projeto</h2>
+<form id="form">
+<input type="hidden" id="editId">
+<label>Nome do projeto ou negócio</label>
+<input id="nome" required placeholder="Ex.: Loja de roupas">
+<label>Categoria</label>
+<select id="categoria">
+<option>Comércio</option><option>Serviços</option>
+<option>Indústria</option><option>Digital</option><option>Outro</option>
+</select>
+<label>Investimento previsto (R$)</label>
+<input id="investimento" type="number" min="0" step="0.01" value="0">
+<label>Receita prevista (R$)</label>
+<input id="receita" type="number" min="0" step="0.01" value="0">
+<label>Prazo</label>
+<input id="prazo" type="date">
+<label>Status</label>
+<select id="situacao">
+<option>Planejamento</option><option>Em andamento</option>
+<option>Concluído</option><option>Pausado</option>
+</select>
+<label>Descrição e plano de ação</label>
+<textarea id="descricao" placeholder="Objetivos, tarefas, estratégias..."></textarea>
+<label>Parceiros e contatos</label>
+<textarea id="contatos" placeholder="Fornecedores, parceiros, telefones..."></textarea>
+<div class="actions">
+<button type="submit">Salvar projeto</button>
+<button type="button" class="alt" onclick="limpar()">Limpar</button>
+</div>
+</form>
+</section>
+<section class="card">
+<h2>Meus projetos</h2>
+<input id="busca" placeholder="Pesquisar projeto..." oninput="render()">
+<div class="actions">
+<button class="alt" onclick="exportarCSV()">Exportar CSV</button>
+<button class="alt" onclick="backup()">Backup JSON</button>
+<button class="alt" onclick="document.getElementById('importar').click()">Importar backup</button>
+<input id="importar" type="file" accept=".json" hidden onchange="restaurar(event)">
+</div>
+<div id="lista"></div>
+</section>
+</div>
+<p class="muted">Os dados ficam armazenados neste navegador. Faça backups regularmente.</p>
+</main>
+<script>
+const KEY="businesspro_empreendedor_v1";
+let dados=JSON.parse(localStorage.getItem(KEY)||"[]");
+const $=id=>document.getElementById(id);
+const salvar=()=>localStorage.setItem(KEY,JSON.stringify(dados));
+const moeda=n=>Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+function limpar(){$("form").reset();$("editId").value="";$("formTitle").textContent="Novo projeto"}
+$("form").onsubmit=e=>{
+e.preventDefault();
+const id=$("editId").value||String(Date.now());
+const item={id,nome:$("nome").value,categoria:$("categoria").value,
+investimento:Number($("investimento").value),receita:Number($("receita").value),
+prazo:$("prazo").value,situacao:$("situacao").value,
+descricao:$("descricao").value,contatos:$("contatos").value};
+dados=dados.filter(x=>x.id!==id);
+dados.unshift(item);salvar();limpar();render();
+};
+function editar(id){
+const x=dados.find(a=>a.id===id);if(!x)return;
+$("editId").value=x.id;
+["nome","categoria","investimento","receita","prazo","situacao","descricao","contatos"].forEach(k=>$(k).value=x[k]??"");
+$("formTitle").textContent="Editar projeto";
+window.scrollTo({top:280,behavior:"smooth"});
+}
+function excluir(id){
+if(confirm("Excluir este projeto?")){
+dados=dados.filter(x=>x.id!==id);salvar();render();
+}}
+function render(){
+$("total").textContent=dados.length;
+$("andamento").textContent=dados.filter(x=>x.situacao==="Em andamento").length;
+$("concluidos").textContent=dados.filter(x=>x.situacao==="Concluído").length;
+const q=$("busca").value.toLowerCase();
+const lista=dados.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
+$("lista").replaceChildren();
+if(!lista.length){$("lista").textContent="Nenhum projeto encontrado.";return}
+lista.forEach(x=>{
+const el=document.createElement("div");el.className="item";
+const h=document.createElement("h3");h.textContent=x.nome;el.append(h);
+const p=document.createElement("p");
+p.textContent=x.categoria+" • "+x.situacao+" • Prazo: "+(x.prazo||"Não definido");el.append(p);
+const valores=document.createElement("p");
+valores.textContent="Investimento: "+moeda(x.investimento)+" | Receita prevista: "+moeda(x.receita);el.append(valores);
+const d=document.createElement("p");d.textContent=x.descricao;el.append(d);
+const c=document.createElement("small");c.textContent="Contatos: "+(x.contatos||"Não informados");el.append(c);
+const actions=document.createElement("div");actions.className="actions";
+const b1=document.createElement("button");b1.textContent="Editar";b1.onclick=()=>editar(x.id);
+const b2=document.createElement("button");b2.textContent="Excluir";b2.className="danger";b2.onclick=()=>excluir(x.id);
+actions.append(b1,b2);el.append(actions);$("lista").append(el);
+});
+}
+function baixar(nome,conteudo,tipo){
+const a=document.createElement("a"),url=URL.createObjectURL(new Blob([conteudo],{type:tipo}));
+a.href=url;a.download=nome;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function backup(){baixar("empreendedor-backup.json",JSON.stringify(dados,null,2),"application/json")}
+function exportarCSV(){
+const cols=["nome","categoria","investimento","receita","prazo","situacao","descricao","contatos"];
+const csv=[cols,...dados.map(x=>cols.map(k=>String(x[k]??"").replaceAll('"','""')))]
+.map(row=>row.map(v=>'"'+v+'"').join(";")).join("\r\n");
+baixar("empreendedor.csv","\uFEFF"+csv,"text/csv;charset=utf-8");
+}
+async function restaurar(e){
+try{
+const v=JSON.parse(await e.target.files[0].text());
+if(!Array.isArray(v))throw Error();
+if(confirm("Substituir os dados atuais pelos dados do backup?")){
+dados=v;salvar();render();
+}
+}catch{alert("Arquivo de backup inválido.")}
+e.target.value="";
+}
+render();
+</script>
+</body>
+</html>
