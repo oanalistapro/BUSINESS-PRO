@@ -5,485 +5,1130 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2563eb">
-<title>MEU NEGÓCIO | Business Pro</title>
+<meta name="description" content="MEU NEGÓCIO BUSINESS PRO - Gestão empresarial de clientes, fornecedores, produtos, vendas, financeiro e tarefas.">
+<title>MEU NEGÓCIO | BUSINESS PRO</title>
 <style>
-:root{--blue:#2563eb;--dark:#142744;--muted:#64748b;--line:#dfe7f2;--bg:#f3f7fd;--green:#059669;--red:#dc2626}
+:root{
+ --blue:#2563eb;--navy:#152e5c;--ink:#142543;--muted:#64748b;
+ --bg:#f3f6fc;--border:#dce5f2;--green:#059669;--red:#dc2626;
+ --white:#fff;--shadow:0 8px 28px #17365a0a
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--dark);font-family:Inter,system-ui,Arial,sans-serif}
+body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-a{color:inherit;text-decoration:none}
-header{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
-.top{max-width:1250px;margin:auto;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-weight:900;font-size:21px}
-.logo span{color:var(--blue)}
-.btn{border:0;border-radius:11px;padding:11px 16px;background:var(--blue);color:white;font-weight:750}
+button:disabled{opacity:.5;cursor:not-allowed}
+a{text-decoration:none;color:inherit}
+.top{
+ background:white;border-bottom:1px solid var(--border);
+ padding:15px 3%;display:flex;align-items:center;justify-content:space-between;gap:12px
+}
+.brand{font-size:24px;font-weight:900}
+.brand span{color:var(--blue)}
+.top-actions{display:flex;gap:9px;flex-wrap:wrap}
+.btn{
+ border:0;background:var(--blue);color:white;padding:12px 16px;
+ border-radius:11px;font-weight:800;display:inline-flex;
+ align-items:center;justify-content:center;gap:7px
+}
 .btn.secondary{background:#eaf1ff;color:#1d4ed8}
+.btn.outline{background:white;color:var(--ink);border:1px solid var(--border)}
 .btn.danger{background:#fee2e2;color:#b91c1c}
-.btn.green{background:#059669}
-.wrap{max-width:1250px;margin:auto;padding:24px 16px 70px}
-.hero{background:linear-gradient(115deg,#10274d,#2563eb);color:white;padding:35px;border-radius:22px;margin-bottom:22px}
-.hero h1{font-size:clamp(27px,4vw,42px);margin:0 0 12px}
-.hero p{color:#dbeafe;line-height:1.7;margin:0}
-.tabs{display:flex;gap:9px;overflow-x:auto;padding:4px 0 18px}
-.tab{white-space:nowrap;border:1px solid var(--line);background:white;border-radius:12px;padding:12px 17px;font-weight:750;color:#475569}
-.tab.active{background:var(--blue);color:white;border-color:var(--blue)}
-.page{display:none}
-.page.active{display:block}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.card,.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 26px #14284908}
-.card small{color:var(--muted)}
-.card strong{display:block;font-size:clamp(20px,2.5vw,29px);margin:12px 0}
-.panel{margin-top:18px}
-.panel h2{margin:0 0 18px;font-size:21px}
-.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
-label{display:block;font-size:13px;font-weight:750;margin-bottom:7px;color:#475569}
-input,select,textarea{width:100%;border:1px solid var(--line);background:#f8fbff;border-radius:10px;padding:12px;color:var(--dark);outline:none}
+.btn.small{font-size:12px;padding:8px 11px}
+.btn:hover:not(:disabled){filter:brightness(.96)}
+main{max-width:1600px;margin:auto;padding:25px 18px}
+.hero{
+ background:linear-gradient(110deg,#132c57,#2563eb);
+ color:white;padding:38px;border-radius:25px;margin-bottom:25px
+}
+.hero h1{font-size:clamp(28px,4vw,48px);margin:0 0 14px}
+.hero p{color:#e6efff;line-height:1.7;margin:0}
+.nav{
+ display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;
+ scrollbar-width:thin;margin-bottom:15px
+}
+.nav button{
+ white-space:nowrap;background:white;border:1px solid var(--border);
+ border-radius:13px;padding:15px 18px;color:#40516e;font-weight:900
+}
+.nav button.active{background:var(--blue);color:white;border-color:var(--blue)}
+.view{display:none}
+.view.active{display:block}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:18px 0}
+.stat,.panel{
+ background:white;border:1px solid var(--border);
+ border-radius:20px;padding:24px;box-shadow:var(--shadow)
+}
+.stat small{color:var(--muted);font-size:14px}
+.stat strong{display:block;font-size:clamp(22px,2.6vw,34px);margin:18px 0;color:var(--navy);overflow-wrap:anywhere}
+.stat.green strong{color:var(--green)}
+.stat.red strong{color:var(--red)}
+.stat p{color:var(--muted);font-size:12px;margin:0}
+.panel{margin-bottom:18px}
+.panel h2{margin:0 0 12px;font-size:23px}
+.hint{color:var(--muted);font-size:13px;line-height:1.7}
+.panel-head{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:12px;flex-wrap:wrap;margin-bottom:18px
+}
+.panel-head h2{margin:0}
+.search{max-width:330px}
+input,select,textarea{
+ width:100%;border:1px solid #cbd6e6;border-radius:11px;
+ padding:12px;background:white;color:var(--ink);outline:none
+}
 input:focus,select:focus,textarea:focus{border-color:var(--blue)}
-textarea{min-height:90px;resize:vertical}
-.field{margin-bottom:14px}
-.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}
-.tablewrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:620px}
-th,td{text-align:left;padding:13px;border-bottom:1px solid var(--line);font-size:13px}
-th{color:var(--muted);background:#f8fbff}
-.muted{color:var(--muted)}
-.empty{padding:22px;color:var(--muted);text-align:center}
-.sectiontitle{font-size:25px;margin:10px 0 18px}
-.good{color:var(--green)}
-.bad{color:var(--red)}
-.pill{display:inline-block;background:#eaf1ff;color:#1d4ed8;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:800}
-footer{text-align:center;color:var(--muted);font-size:12px;margin-top:35px}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.grid,.formgrid{grid-template-columns:1fr}.hero{padding:25px}.card,.panel{padding:16px}}
-@media print{header,.tabs,.actions,.btn,form{display:none!important}.page{display:none!important}#relatorios{display:block!important}body{background:white}.panel{box-shadow:none}}
+textarea{min-height:100px;resize:vertical}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:680px}
+th,td{padding:14px 11px;border-bottom:1px solid var(--border);text-align:left;font-size:13px;vertical-align:middle}
+th{background:#f7f9fd;color:#425574}
+td{overflow-wrap:anywhere}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap}
+.tag{display:inline-block;background:#eaf1ff;color:#1d4ed8;padding:6px 9px;border-radius:20px;font-size:11px;font-weight:800}
+.tag.green{background:#dcfce7;color:#166534}
+.tag.red{background:#fee2e2;color:#b91c1c}
+.tag.orange{background:#ffedd5;color:#9a3412}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.quick{
+ border:1px solid var(--border);background:#fbfcff;border-radius:15px;
+ padding:19px;cursor:pointer;text-align:left;color:var(--ink)
+}
+.quick strong{display:block;margin-bottom:9px;font-size:17px}
+.quick p{font-size:13px;color:var(--muted);line-height:1.6}
+.empty{text-align:center;padding:35px;color:var(--muted);font-size:13px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+label{font-size:12px;font-weight:800}
+dialog{
+ border:1px solid var(--border);border-radius:20px;
+ padding:0;width:min(680px,calc(100% - 24px));max-height:90vh;
+ box-shadow:0 20px 70px #0004;color:var(--ink)
+}
+dialog::backdrop{background:#07172d99}
+.modal-head{
+ padding:21px 24px;border-bottom:1px solid var(--border);
+ display:flex;justify-content:space-between;align-items:center;gap:10px
+}
+.modal-head h2{margin:0;font-size:21px}
+.modal-body{padding:23px;overflow-y:auto;max-height:65vh}
+.modal-actions{
+ padding:17px 23px;border-top:1px solid var(--border);
+ display:flex;justify-content:flex-end;gap:10px
+}
+.bar-row{display:grid;grid-template-columns:95px 1fr 100px;gap:12px;align-items:center;margin:15px 0;font-size:13px}
+.bar-bg{height:16px;border-radius:30px;background:#eaf0fb;overflow:hidden}
+.bar-fill{height:100%;background:var(--blue);border-radius:30px}
+.sale-item{
+ border:1px solid var(--border);padding:15px;border-radius:13px;
+ margin:12px 0;background:#fbfcff
+}
+.sale-total{
+ font-size:26px;color:var(--green);font-weight:900;
+ text-align:right;margin:18px 0
+}
+.notice{color:var(--muted);font-size:12px;line-height:1.8;margin:20px 0}
+.toast{
+ position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+ background:#172b4e;color:white;padding:13px 18px;border-radius:12px;
+ display:none;z-index:30;max-width:90vw
+}
+@media(max-width:950px){
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ .top{padding:13px}
+ .brand{font-size:19px}
+ .top-actions .btn{font-size:11px;padding:10px}
+ main{padding:13px 10px}
+ .hero{padding:27px 20px;border-radius:17px}
+ .stats{gap:10px}
+ .stat,.panel{padding:17px;border-radius:16px}
+ .stat strong{font-size:23px}
+ .grid2,.grid3,.form-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+ .panel-head .btn,.panel-head .search{width:100%;max-width:none}
+ .bar-row{grid-template-columns:65px 1fr 75px;font-size:11px}
+ .modal-body{padding:16px}
+}
+@media print{
+ .top,.hero,.nav,.btn,.search,dialog,.notice{display:none!important}
+ body{background:white}
+ main{padding:0}
+ .view{display:none!important}
+ .view.active{display:block!important}
+ .panel,.stat{box-shadow:none}
+}
 </style>
 </head>
 <body>
-<header>
-<div class="top">
-<a class="logo" href="../">◆ MEU <span>NEGÓCIO</span></a>
-<div>
-<a class="btn secondary" href="../">← Business Pro</a>
-<button class="btn" onclick="openTab('configuracoes')">Minha empresa</button>
-</div>
-</div>
+
+<header class="top">
+ <div class="brand">◆ MEU <span>NEGÓCIO</span></div>
+ <div class="top-actions">
+  <a class="btn secondary" href="../">← Business Pro</a>
+  <button class="btn" onclick="showView('empresa')">Minha empresa</button>
+ </div>
 </header>
 
-<main class="wrap">
+<main>
 <section class="hero">
-<h1>Seu negócio sob controle.</h1>
-<p>Gerencie clientes, fornecedores, produtos, serviços, receitas, despesas e tarefas em um único espaço.</p>
+ <h1>Seu negócio sob controle.</h1>
+ <p>Gerencie clientes, fornecedores, produtos, serviços, estoque, vendas, receitas, despesas e tarefas em um único espaço.</p>
 </section>
 
-<nav class="tabs" id="tabs">
-<button class="tab active" data-tab="inicio">📊 Painel</button>
-<button class="tab" data-tab="clientes">👥 Clientes</button>
-<button class="tab" data-tab="fornecedores">🚚 Fornecedores</button>
-<button class="tab" data-tab="produtos">📦 Produtos</button>
-<button class="tab" data-tab="servicos">🛠️ Serviços</button>
-<button class="tab" data-tab="financeiro">💰 Financeiro</button>
-<button class="tab" data-tab="tarefas">📅 Tarefas</button>
-<button class="tab" data-tab="relatorios">📈 Relatórios</button>
-<button class="tab" data-tab="configuracoes">⚙️ Configurações</button>
+<nav class="nav" id="navigation">
+ <button class="active" data-view="painel">📊 Painel</button>
+ <button data-view="clientes">👥 Clientes</button>
+ <button data-view="fornecedores">🚚 Fornecedores</button>
+ <button data-view="produtos">📦 Produtos</button>
+ <button data-view="servicos">🛠️ Serviços</button>
+ <button data-view="vendas">🛒 Vendas</button>
+ <button data-view="financeiro">💰 Financeiro</button>
+ <button data-view="tarefas">📅 Tarefas</button>
+ <button data-view="relatorios">📈 Relatórios</button>
+ <button data-view="empresa">⚙️ Configurações</button>
 </nav>
 
-<section class="page active" id="inicio">
-<div class="grid">
-<div class="card"><small>Receitas</small><strong class="good" id="totalReceitas">R$ 0,00</strong><small>Entradas registradas</small></div>
-<div class="card"><small>Despesas</small><strong class="bad" id="totalDespesas">R$ 0,00</strong><small>Saídas registradas</small></div>
-<div class="card"><small>Saldo</small><strong id="saldo">R$ 0,00</strong><small>Receitas menos despesas</small></div>
-<div class="card"><small>Clientes</small><strong id="totalClientes">0</strong><small>Clientes cadastrados</small></div>
-</div>
-<div class="panel">
-<h2>Visão geral</h2>
-<div class="grid">
-<div class="card"><small>Fornecedores</small><strong id="countFornecedores">0</strong></div>
-<div class="card"><small>Produtos</small><strong id="countProdutos">0</strong></div>
-<div class="card"><small>Serviços</small><strong id="countServicos">0</strong></div>
-<div class="card"><small>Tarefas pendentes</small><strong id="countTarefas">0</strong></div>
-</div>
-</div>
-<div class="panel">
-<h2>Acesso rápido</h2>
-<div class="actions">
-<button class="btn" onclick="openTab('financeiro')">Registrar movimentação</button>
-<button class="btn secondary" onclick="openTab('clientes')">Cadastrar cliente</button>
-<button class="btn secondary" onclick="openTab('produtos')">Cadastrar produto</button>
-<button class="btn secondary" onclick="openTab('relatorios')">Ver relatórios</button>
-</div>
-</div>
+<section class="view active" id="view-painel">
+ <div class="stats" id="dashboardStats"></div>
+ <div class="panel">
+  <h2>Visão geral</h2>
+  <div class="stats" id="overviewStats"></div>
+ </div>
+ <div class="panel">
+  <h2>Acesso rápido</h2>
+  <div class="grid3">
+   <button class="quick" onclick="openForm('clientes')"><strong>👤 Novo cliente</strong><p>Cadastre e organize seus clientes.</p></button>
+   <button class="quick" onclick="openSale()"><strong>🛒 Nova venda</strong><p>Registre produtos, serviços e pagamentos.</p></button>
+   <button class="quick" onclick="openForm('financeiro')"><strong>💰 Lançamento financeiro</strong><p>Registre uma receita ou despesa.</p></button>
+   <button class="quick" onclick="openForm('produtos')"><strong>📦 Novo produto</strong><p>Controle preços e quantidades em estoque.</p></button>
+   <button class="quick" onclick="openForm('tarefas')"><strong>📅 Nova tarefa</strong><p>Organize atividades e prazos.</p></button>
+   <button class="quick" onclick="showView('relatorios')"><strong>📈 Relatórios</strong><p>Consulte indicadores do negócio.</p></button>
+  </div>
+ </div>
+ <div class="grid2">
+  <div class="panel">
+   <h2>Últimas movimentações</h2>
+   <div id="recentTransactions"></div>
+  </div>
+  <div class="panel">
+   <h2>Alertas importantes</h2>
+   <div id="alerts"></div>
+  </div>
+ </div>
 </section>
 
-<section class="page" id="clientes">
-<h2 class="sectiontitle">Clientes</h2>
-<div class="panel">
-<h2>Novo cliente</h2>
-<form id="formClientes">
-<div class="formgrid">
-<div><label>Nome / Razão social *</label><input name="nome" required></div>
-<div><label>CPF / CNPJ</label><input name="documento"></div>
-<div><label>E-mail</label><input type="email" name="email"></div>
-<div><label>Telefone</label><input name="telefone"></div>
-<div><label>Endereço</label><input name="endereco"></div>
-<div><label>Cidade / Estado</label><input name="cidade"></div>
-</div>
-<div class="field"><label>Observações</label><textarea name="observacoes"></textarea></div>
-<button class="btn">Salvar cliente</button>
-</form>
-</div>
-<div class="panel"><h2>Clientes cadastrados</h2><div class="tablewrap" id="listaClientes"></div></div>
+<section class="view" id="view-clientes">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>👥 Clientes</h2>
+   <button class="btn" onclick="openForm('clientes')">+ Novo cliente</button>
+   <input class="search" placeholder="Pesquisar clientes..." data-search="clientes">
+  </div>
+  <div class="table-wrap" id="table-clientes"></div>
+ </div>
 </section>
 
-<section class="page" id="fornecedores">
-<h2 class="sectiontitle">Fornecedores</h2>
-<div class="panel">
-<h2>Novo fornecedor</h2>
-<form id="formFornecedores">
-<div class="formgrid">
-<div><label>Nome / Empresa *</label><input name="nome" required></div>
-<div><label>CNPJ / CPF</label><input name="documento"></div>
-<div><label>Telefone</label><input name="telefone"></div>
-<div><label>E-mail</label><input type="email" name="email"></div>
-<div><label>Categoria</label><input name="categoria"></div>
-<div><label>Cidade</label><input name="cidade"></div>
-</div>
-<div class="field"><label>Observações</label><textarea name="observacoes"></textarea></div>
-<button class="btn">Salvar fornecedor</button>
-</form>
-</div>
-<div class="panel"><h2>Fornecedores cadastrados</h2><div class="tablewrap" id="listaFornecedores"></div></div>
+<section class="view" id="view-fornecedores">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>🚚 Fornecedores</h2>
+   <button class="btn" onclick="openForm('fornecedores')">+ Novo fornecedor</button>
+   <input class="search" placeholder="Pesquisar fornecedores..." data-search="fornecedores">
+  </div>
+  <div class="table-wrap" id="table-fornecedores"></div>
+ </div>
 </section>
 
-<section class="page" id="produtos">
-<h2 class="sectiontitle">Produtos e estoque</h2>
-<div class="panel">
-<h2>Cadastrar produto</h2>
-<form id="formProdutos">
-<div class="formgrid">
-<div><label>Nome do produto *</label><input name="nome" required></div>
-<div><label>Código / SKU</label><input name="codigo"></div>
-<div><label>Categoria</label><input name="categoria"></div>
-<div><label>Quantidade em estoque</label><input type="number" name="quantidade" min="0" step="1" value="0"></div>
-<div><label>Custo unitário (R$)</label><input type="number" name="custo" min="0" step=".01" value="0"></div>
-<div><label>Preço de venda (R$)</label><input type="number" name="preco" min="0" step=".01" value="0"></div>
-<div><label>Estoque mínimo</label><input type="number" name="minimo" min="0" step="1" value="0"></div>
-<div><label>Unidade</label><select name="unidade"><option>Unidade</option><option>Kg</option><option>Metro</option><option>Litro</option><option>Caixa</option><option>Pacote</option></select></div>
-</div>
-<button class="btn">Salvar produto</button>
-</form>
-</div>
-<div class="panel"><h2>Estoque cadastrado</h2><div class="tablewrap" id="listaProdutos"></div></div>
+<section class="view" id="view-produtos">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>📦 Produtos e estoque</h2>
+   <button class="btn" onclick="openForm('produtos')">+ Novo produto</button>
+   <input class="search" placeholder="Pesquisar produtos..." data-search="produtos">
+  </div>
+  <div class="table-wrap" id="table-produtos"></div>
+ </div>
 </section>
 
-<section class="page" id="servicos">
-<h2 class="sectiontitle">Serviços</h2>
-<div class="panel">
-<h2>Cadastrar serviço</h2>
-<form id="formServicos">
-<div class="formgrid">
-<div><label>Nome do serviço *</label><input name="nome" required></div>
-<div><label>Categoria</label><input name="categoria"></div>
-<div><label>Preço (R$)</label><input type="number" name="preco" min="0" step=".01" value="0"></div>
-<div><label>Duração estimada</label><input name="duracao" placeholder="Ex.: 2 horas"></div>
-</div>
-<div class="field"><label>Descrição</label><textarea name="descricao"></textarea></div>
-<button class="btn">Salvar serviço</button>
-</form>
-</div>
-<div class="panel"><h2>Serviços cadastrados</h2><div class="tablewrap" id="listaServicos"></div></div>
+<section class="view" id="view-servicos">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>🛠️ Serviços</h2>
+   <button class="btn" onclick="openForm('servicos')">+ Novo serviço</button>
+   <input class="search" placeholder="Pesquisar serviços..." data-search="servicos">
+  </div>
+  <div class="table-wrap" id="table-servicos"></div>
+ </div>
 </section>
 
-<section class="page" id="financeiro">
-<h2 class="sectiontitle">Controle financeiro</h2>
-<div class="panel">
-<h2>Nova movimentação</h2>
-<form id="formFinanceiro">
-<div class="formgrid">
-<div><label>Tipo *</label><select name="tipo"><option value="receita">Receita</option><option value="despesa">Despesa</option></select></div>
-<div><label>Descrição *</label><input name="descricao" required></div>
-<div><label>Valor (R$) *</label><input name="valor" type="number" min=".01" step=".01" required></div>
-<div><label>Data *</label><input name="data" type="date" required></div>
-<div><label>Categoria</label><input name="categoria" placeholder="Ex.: Vendas, aluguel, materiais"></div>
-<div><label>Forma de pagamento</label><select name="pagamento"><option>Pix</option><option>Dinheiro</option><option>Cartão</option><option>Transferência</option><option>Boleto</option><option>Outro</option></select></div>
-</div>
-<div class="field"><label>Observações</label><textarea name="observacoes"></textarea></div>
-<button class="btn green">Registrar movimentação</button>
-</form>
-</div>
-<div class="panel"><h2>Histórico financeiro</h2><div class="tablewrap" id="listaFinanceiro"></div></div>
+<section class="view" id="view-vendas">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>🛒 Vendas</h2>
+   <button class="btn" onclick="openSale()">+ Nova venda</button>
+   <input class="search" placeholder="Pesquisar vendas..." data-search="vendas">
+  </div>
+  <div class="table-wrap" id="table-vendas"></div>
+ </div>
 </section>
 
-<section class="page" id="tarefas">
-<h2 class="sectiontitle">Tarefas e compromissos</h2>
-<div class="panel">
-<h2>Nova tarefa</h2>
-<form id="formTarefas">
-<div class="formgrid">
-<div><label>Título *</label><input name="titulo" required></div>
-<div><label>Prazo</label><input name="prazo" type="date"></div>
-<div><label>Prioridade</label><select name="prioridade"><option>Normal</option><option>Alta</option><option>Baixa</option></select></div>
-<div><label>Responsável</label><input name="responsavel"></div>
-</div>
-<div class="field"><label>Descrição</label><textarea name="descricao"></textarea></div>
-<button class="btn">Salvar tarefa</button>
-</form>
-</div>
-<div class="panel"><h2>Lista de tarefas</h2><div class="tablewrap" id="listaTarefas"></div></div>
+<section class="view" id="view-financeiro">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>💰 Financeiro</h2>
+   <button class="btn" onclick="openForm('financeiro')">+ Novo lançamento</button>
+   <input class="search" placeholder="Pesquisar movimentações..." data-search="financeiro">
+  </div>
+  <div class="stats" id="financeStats"></div>
+  <div class="table-wrap" id="table-financeiro"></div>
+ </div>
 </section>
 
-<section class="page" id="relatorios">
-<h2 class="sectiontitle">Relatórios</h2>
-<div class="grid">
-<div class="card"><small>Total de receitas</small><strong id="rReceitas"></strong></div>
-<div class="card"><small>Total de despesas</small><strong id="rDespesas"></strong></div>
-<div class="card"><small>Saldo</small><strong id="rSaldo"></strong></div>
-<div class="card"><small>Valor de estoque a custo</small><strong id="rEstoque"></strong></div>
-</div>
-<div class="panel">
-<h2>Resumo financeiro por categoria</h2>
-<div class="tablewrap" id="relatorioCategorias"></div>
-</div>
-<div class="panel">
-<h2>Relatório de estoque</h2>
-<div class="tablewrap" id="relatorioEstoque"></div>
-</div>
-<div class="actions">
-<button class="btn" onclick="window.print()">Imprimir relatório / Salvar PDF</button>
-<button class="btn secondary" onclick="exportCSV()">Exportar financeiro CSV</button>
-</div>
+<section class="view" id="view-tarefas">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>📅 Tarefas</h2>
+   <button class="btn" onclick="openForm('tarefas')">+ Nova tarefa</button>
+   <input class="search" placeholder="Pesquisar tarefas..." data-search="tarefas">
+  </div>
+  <div class="table-wrap" id="table-tarefas"></div>
+ </div>
 </section>
 
-<section class="page" id="configuracoes">
-<h2 class="sectiontitle">Configurações da empresa</h2>
-<div class="panel">
-<form id="formEmpresa">
-<div class="formgrid">
-<div><label>Nome fantasia</label><input name="nome"></div>
-<div><label>Razão social</label><input name="razao"></div>
-<div><label>CNPJ / CPF</label><input name="documento"></div>
-<div><label>Telefone</label><input name="telefone"></div>
-<div><label>E-mail</label><input name="email" type="email"></div>
-<div><label>Endereço</label><input name="endereco"></div>
-<div><label>Cidade</label><input name="cidade"></div>
-<div><label>Estado</label><input name="estado"></div>
-</div>
-<div class="field"><label>Descrição da empresa</label><textarea name="descricao"></textarea></div>
-<button class="btn">Salvar empresa</button>
-</form>
-</div>
-<div class="panel">
-<h2>Seus dados e backups</h2>
-<p class="muted">Os registros são guardados neste navegador. Faça backups regularmente. Limpar os dados do navegador pode apagar seus registros.</p>
-<div class="actions">
-<button class="btn" onclick="backup()">Baixar backup JSON</button>
-<button class="btn secondary" onclick="document.getElementById('importFile').click()">Restaurar backup</button>
-<button class="btn danger" onclick="clearAll()">Apagar todos os dados</button>
-</div>
-<input id="importFile" type="file" accept=".json,application/json" hidden>
-</div>
+<section class="view" id="view-relatorios">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>📈 Relatórios</h2>
+   <button class="btn secondary" onclick="window.print()">🖨️ Imprimir</button>
+   <button class="btn outline" onclick="exportCSV()">⬇ Exportar CSV</button>
+  </div>
+  <div class="fields" style="display:flex;gap:10px;flex-wrap:wrap">
+   <div class="field">
+    <label for="reportMonth">Mês</label>
+    <input type="month" id="reportMonth">
+   </div>
+   <button class="btn secondary" onclick="renderReports()">Atualizar relatório</button>
+  </div>
+  <div class="stats" id="reportStats"></div>
+  <div class="grid2">
+   <div class="panel">
+    <h2>Receitas e despesas por mês</h2>
+    <div id="monthlyChart"></div>
+   </div>
+   <div class="panel">
+    <h2>Despesas por categoria</h2>
+    <div id="categoryChart"></div>
+   </div>
+  </div>
+ </div>
 </section>
 
-<footer>MEU NEGÓCIO · BUSINESS PRO — Gestão local de informações empresariais.</footer>
+<section class="view" id="view-empresa">
+ <div class="panel">
+  <h2>🏢 Minha empresa</h2>
+  <p class="hint">Personalize os dados do seu negócio.</p>
+  <form id="companyForm" class="form-grid">
+   <div class="field"><label>Nome da empresa</label><input name="name"></div>
+   <div class="field"><label>Nome fantasia</label><input name="fantasy"></div>
+   <div class="field"><label>CNPJ / CPF</label><input name="document"></div>
+   <div class="field"><label>Telefone</label><input name="phone"></div>
+   <div class="field"><label>E-mail</label><input name="email" type="email"></div>
+   <div class="field"><label>Site</label><input name="website"></div>
+   <div class="field full"><label>Endereço</label><input name="address"></div>
+   <div class="field full"><label>Descrição da empresa</label><textarea name="description"></textarea></div>
+   <div class="field full"><button class="btn" type="submit">💾 Salvar empresa</button></div>
+  </form>
+ </div>
+ <div class="panel">
+  <h2>💾 Backup e segurança</h2>
+  <p class="hint">Exporte seus dados antes de trocar de aparelho ou limpar o navegador.</p>
+  <div class="actions" style="display:flex;gap:10px;flex-wrap:wrap">
+   <button class="btn" onclick="backup()">⬇ Baixar backup JSON</button>
+   <button class="btn secondary" onclick="document.getElementById('backupFile').click()">⬆ Importar backup</button>
+   <button class="btn danger" onclick="clearAll()">🗑️ Apagar todos os dados</button>
+   <input type="file" id="backupFile" accept=".json,application/json" hidden>
+  </div>
+ </div>
+</section>
+
+<p class="notice">
+ Os dados são armazenados localmente neste navegador. Não há sincronização automática, login de funcionários, emissão de nota fiscal, confirmação bancária ou armazenamento em nuvem. Faça backups regularmente. Os relatórios financeiros são gerenciais e não substituem contabilidade ou obrigações fiscais.
+</p>
 </main>
+
+<dialog id="recordDialog">
+ <div class="modal-head">
+  <h2 id="modalTitle">Novo registro</h2>
+  <button class="btn outline small" onclick="closeModal()">✕</button>
+ </div>
+ <form id="recordForm">
+  <div class="modal-body">
+   <div class="form-grid" id="modalFields"></div>
+  </div>
+  <div class="modal-actions">
+   <button class="btn outline" type="button" onclick="closeModal()">Cancelar</button>
+   <button class="btn" type="submit">💾 Salvar</button>
+  </div>
+ </form>
+</dialog>
+
+<dialog id="saleDialog">
+ <div class="modal-head">
+  <h2>🛒 Registrar venda</h2>
+  <button class="btn outline small" onclick="document.getElementById('saleDialog').close()">✕</button>
+ </div>
+ <div class="modal-body">
+  <div class="form-grid">
+   <div class="field">
+    <label>Cliente</label>
+    <select id="saleClient"></select>
+   </div>
+   <div class="field">
+    <label>Data</label>
+    <input type="date" id="saleDate">
+   </div>
+   <div class="field">
+    <label>Forma de pagamento</label>
+    <select id="salePayment">
+     <option>Pix</option><option>Dinheiro</option>
+     <option>Cartão de crédito</option><option>Cartão de débito</option>
+     <option>Boleto</option><option>Transferência</option>
+     <option>Outro</option>
+    </select>
+   </div>
+   <div class="field">
+    <label>Status do pagamento</label>
+    <select id="saleStatus">
+     <option>Pago</option><option>Pendente</option>
+    </select>
+   </div>
+  </div>
+  <h3>Itens da venda</h3>
+  <div id="saleItems"></div>
+  <button class="btn secondary" onclick="addSaleItem()">+ Adicionar item</button>
+  <div class="field" style="margin-top:15px">
+   <label>Desconto (R$)</label>
+   <input type="number" min="0" step="0.01" id="saleDiscount" value="0">
+  </div>
+  <div class="sale-total" id="saleTotal">Total: R$ 0,00</div>
+ </div>
+ <div class="modal-actions">
+  <button class="btn outline" onclick="document.getElementById('saleDialog').close()">Cancelar</button>
+  <button class="btn" onclick="saveSale()">Finalizar venda</button>
+ </div>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
 
 <script>
 "use strict";
-const KEY="businesspro_meu_negocio_v1";
-const names=["clientes","fornecedores","produtos","servicos","financeiro","tarefas"];
-const empty=()=>({
- empresa:{},clientes:[],fornecedores:[],produtos:[],
- servicos:[],financeiro:[],tarefas:[]
-});
-let db;
-try{
- const saved=JSON.parse(localStorage.getItem(KEY)||"null");
- db=saved&&typeof saved==="object"&&!Array.isArray(saved)
-  ?{...empty(),...saved}:empty();
- names.forEach(k=>{if(!Array.isArray(db[k]))db[k]=[]});
-}catch(e){db=empty();alert("Não foi possível ler os dados salvos. Faça um backup antes de continuar.");}
+
 const $=id=>document.getElementById(id);
-const money=n=>new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(Number(n)||0);
-const safe=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
-function save(){
- try{localStorage.setItem(KEY,JSON.stringify(db))}
- catch(e){alert("Não foi possível salvar. Verifique o espaço disponível no navegador.");return false}
- return true;
+const KEY="businesspro_meu_negocio_v3";
+
+const TYPES=["clientes","fornecedores","produtos","servicos","vendas","financeiro","tarefas"];
+
+function uid(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
 }
-function openTab(id){
- document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
- document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));
+
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+
+  "-"+String(d.getDate()).padStart(2,"0");
+}
+
+function money(n){
+ return Number(n||0).toLocaleString("pt-BR",{
+  style:"currency",currency:"BRL"
+ });
+}
+
+function num(v){
+ const n=Number(v);
+ return Number.isFinite(n)?Math.max(0,n):0;
+}
+
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",
+  '"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+function notify(msg){
+ const el=$("toast");
+ el.textContent=msg;el.style.display="block";
+ clearTimeout(notify.timer);
+ notify.timer=setTimeout(()=>el.style.display="none",3000);
+}
+
+function fresh(){
+ return {
+  version:3,
+  company:{name:"",fantasy:"",document:"",phone:"",email:"",website:"",address:"",description:""},
+  clientes:[],fornecedores:[],produtos:[],servicos:[],
+  vendas:[],financeiro:[],tarefas:[]
+ };
+}
+
+let db=fresh();
+let currentType=null;
+let editingId=null;
+let saleItems=[];
+
+try{
+ const raw=JSON.parse(localStorage.getItem(KEY)||"null");
+ if(raw&&raw.version===3){
+  db=fresh();
+  db.company={...db.company,...raw.company};
+  TYPES.forEach(t=>{
+   db[t]=Array.isArray(raw[t])?raw[t]:[];
+  });
+ }
+}catch(e){
+ notify("Erro ao recuperar dados anteriores.");
+}
+
+function persist(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(db));
+  return true;
+ }catch(e){
+  notify("Não foi possível salvar. Faça backup ou libere espaço.");
+  return false;
+ }
+}
+
+const schemas={
+ clientes:[
+  ["name","Nome do cliente","text",true],
+  ["document","CPF / CNPJ","text"],
+  ["phone","Telefone","tel"],
+  ["email","E-mail","email"],
+  ["address","Endereço","text"],
+  ["notes","Observações","textarea"]
+ ],
+ fornecedores:[
+  ["name","Fornecedor","text",true],
+  ["document","CNPJ / CPF","text"],
+  ["phone","Telefone","tel"],
+  ["email","E-mail","email"],
+  ["category","Categoria","text"],
+  ["notes","Observações","textarea"]
+ ],
+ produtos:[
+  ["name","Produto","text",true],
+  ["sku","Código / SKU","text"],
+  ["category","Categoria","text"],
+  ["cost","Custo unitário (R$)","number"],
+  ["price","Preço de venda (R$)","number"],
+  ["stock","Quantidade em estoque","number"],
+  ["minimum","Estoque mínimo","number"],
+  ["notes","Observações","textarea"]
+ ],
+ servicos:[
+  ["name","Serviço","text",true],
+  ["category","Categoria","text"],
+  ["cost","Custo estimado (R$)","number"],
+  ["price","Preço de venda (R$)","number"],
+  ["duration","Prazo estimado","text"],
+  ["notes","Descrição","textarea"]
+ ],
+ financeiro:[
+  ["description","Descrição","text",true],
+  ["type","Tipo","select",true,["Receita","Despesa"]],
+  ["category","Categoria","text"],
+  ["value","Valor (R$)","number",true],
+  ["date","Data","date",true],
+  ["status","Situação","select",true,["Pago","Pendente"]],
+  ["payment","Forma de pagamento","select",false,["Pix","Dinheiro","Cartão","Boleto","Transferência","Outro"]],
+  ["notes","Observações","textarea"]
+ ],
+ tarefas:[
+  ["title","Título","text",true],
+  ["responsible","Responsável","text"],
+  ["priority","Prioridade","select",false,["Normal","Alta","Urgente"]],
+  ["due","Prazo","date"],
+  ["status","Status","select",false,["Pendente","Em andamento","Concluída","Cancelada"]],
+  ["description","Descrição","textarea"]
+ ]
+};
+
+function showView(view){
+ document.querySelectorAll(".view").forEach(el=>el.classList.remove("active"));
+ $("view-"+view).classList.add("active");
+ document.querySelectorAll("[data-view]").forEach(btn=>
+  btn.classList.toggle("active",btn.dataset.view===view)
+ );
+ renderAll();
  window.scrollTo({top:0,behavior:"smooth"});
 }
-document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>openTab(b.dataset.tab));
-function formData(form){
- return Object.fromEntries(new FormData(form).entries());
-}
-names.forEach(k=>{
- $("form"+k[0].toUpperCase()+k.slice(1)).addEventListener("submit",e=>{
-  e.preventDefault();
-  const data=formData(e.target);
-  if(k==="financeiro"&&!(Number(data.valor)>0)){alert("Informe um valor maior que zero.");return}
-  data.id=uid();
-  data.createdAt=new Date().toISOString();
-  if(k==="tarefas")data.concluida=false;
-  db[k].push(data);
-  if(!save()){db[k].pop();return}
-  e.target.reset();
-  if(k==="financeiro")e.target.elements.data.value=new Date().toLocaleDateString("en-CA");
-  render();
-  alert("Registro salvo com sucesso.");
- });
-});
-function removeItem(k,id){
- if(!confirm("Excluir este registro?"))return;
- const old=db[k];
- db[k]=old.filter(x=>String(x.id)!==String(id));
- if(!save()){db[k]=old;return}
- render();
-}
-function toggleTask(id){
- const item=db.tarefas.find(x=>String(x.id)===String(id));
- if(!item)return;
- item.concluida=!item.concluida;
- if(!save())item.concluida=!item.concluida;
- render();
-}
-function table(k,cols){
- const data=db[k];
- if(!data.length)return '<div class="empty">Nenhum registro cadastrado.</div>';
- return `<table><thead><tr>${cols.map(c=>`<th>${safe(c[0])}</th>`).join("")}<th>Ações</th></tr></thead><tbody>`+
- data.map(x=>`<tr>${cols.map(c=>`<td>${safe(c[2]?c[2](x[c[1]],x):x[c[1]])}</td>`).join("")}
- <td><button class="btn danger" data-remove="${safe(k)}" data-id="${safe(x.id)}">Excluir</button></td></tr>`).join("")+
- "</tbody></table>";
-}
-document.addEventListener("click",e=>{
- const b=e.target.closest("[data-remove]");
- if(b)removeItem(b.dataset.remove,b.dataset.id);
- const t=e.target.closest("[data-task]");
- if(t)toggleTask(t.dataset.task);
-});
-function render(){
- const rec=db.financeiro.filter(x=>x.tipo==="receita").reduce((s,x)=>s+Number(x.valor||0),0);
- const des=db.financeiro.filter(x=>x.tipo==="despesa").reduce((s,x)=>s+Number(x.valor||0),0);
- const saldo=rec-des;
- $("totalReceitas").textContent=money(rec);
- $("totalDespesas").textContent=money(des);
- $("saldo").textContent=money(saldo);
- $("saldo").className=saldo<0?"bad":"good";
- $("totalClientes").textContent=db.clientes.length;
- $("countFornecedores").textContent=db.fornecedores.length;
- $("countProdutos").textContent=db.produtos.length;
- $("countServicos").textContent=db.servicos.length;
- $("countTarefas").textContent=db.tarefas.filter(x=>!x.concluida).length;
- $("rReceitas").textContent=money(rec);
- $("rDespesas").textContent=money(des);
- $("rSaldo").textContent=money(saldo);
- $("rEstoque").textContent=money(db.produtos.reduce((s,x)=>s+Number(x.quantidade||0)*Number(x.custo||0),0));
 
- $("listaClientes").innerHTML=table("clientes",[
- ["Nome","nome"],["Documento","documento"],["Telefone","telefone"],["E-mail","email"],["Cidade","cidade"]
- ]);
- $("listaFornecedores").innerHTML=table("fornecedores",[
- ["Fornecedor","nome"],["Documento","documento"],["Telefone","telefone"],["Categoria","categoria"]
- ]);
- $("listaProdutos").innerHTML=table("produtos",[
- ["Produto","nome"],["SKU","codigo"],["Estoque","quantidade"],
- ["Mínimo","minimo"],["Custo","custo",money],["Venda","preco",money],
- ["Situação","quantidade",(_,x)=>Number(x.quantidade)<=Number(x.minimo)?"Estoque baixo":"Normal"]
- ]);
- $("listaServicos").innerHTML=table("servicos",[
- ["Serviço","nome"],["Categoria","categoria"],["Preço","preco",money],["Duração","duracao"]
- ]);
- $("listaFinanceiro").innerHTML=table("financeiro",[
- ["Data","data"],["Tipo","tipo"],["Descrição","descricao"],["Categoria","categoria"],
- ["Pagamento","pagamento"],["Valor","valor",money]
- ]);
- const tarefas=db.tarefas;
- $("listaTarefas").innerHTML=tarefas.length?
- `<table><thead><tr><th>Tarefa</th><th>Prazo</th><th>Prioridade</th><th>Responsável</th><th>Status</th><th>Ações</th></tr></thead><tbody>`+
- tarefas.map(x=>`<tr><td>${safe(x.titulo)}</td><td>${safe(x.prazo)}</td>
- <td>${safe(x.prioridade)}</td><td>${safe(x.responsavel)}</td>
- <td>${x.concluida?"Concluída":"Pendente"}</td>
- <td><button class="btn secondary" data-task="${safe(x.id)}">${x.concluida?"Reabrir":"Concluir"}</button>
- <button class="btn danger" data-remove="tarefas" data-id="${safe(x.id)}">Excluir</button></td></tr>`).join("")+
- "</tbody></table>":'<div class="empty">Nenhuma tarefa cadastrada.</div>';
+$("navigation").onclick=e=>{
+ const btn=e.target.closest("[data-view]");
+ if(btn)showView(btn.dataset.view);
+};
 
- const categorias={};
- db.financeiro.forEach(x=>{
-  const k=(x.tipo==="receita"?"Receita":"Despesa")+" · "+(x.categoria||"Sem categoria");
-  categorias[k]=(categorias[k]||0)+Number(x.valor||0);
- });
- $("relatorioCategorias").innerHTML=Object.keys(categorias).length?
- `<table><tr><th>Categoria</th><th>Total</th></tr>`+
- Object.entries(categorias).map(([k,v])=>`<tr><td>${safe(k)}</td><td>${money(v)}</td></tr>`).join("")+"</table>":
- '<div class="empty">Sem movimentações financeiras.</div>';
- $("relatorioEstoque").innerHTML=db.produtos.length?
- `<table><tr><th>Produto</th><th>Quantidade</th><th>Valor a custo</th></tr>`+
- db.produtos.map(x=>`<tr><td>${safe(x.nome)}</td><td>${safe(x.quantidade)}</td><td>${money(Number(x.quantidade)*Number(x.custo))}</td></tr>`).join("")+"</table>":
- '<div class="empty">Sem produtos cadastrados.</div>';
+function fieldHTML(def,value=""){
+ const [key,label,type,required,options]=def;
+ const req=required?"required":"";
+ const name=esc(key);
+ const val=esc(value);
+
+ if(type==="textarea"){
+  return `<div class="field full"><label>${esc(label)}</label>
+   <textarea name="${name}">${val}</textarea></div>`;
+ }
+
+ if(type==="select"){
+  return `<div class="field"><label>${esc(label)}</label>
+   <select name="${name}" ${req}>
+    ${options.map(o=>`<option ${o===value?"selected":""}>${esc(o)}</option>`).join("")}
+   </select></div>`;
+ }
+
+ const numeric=type==="number"?'min="0" step="0.01"':"";
+
+ return `<div class="field"><label>${esc(label)}</label>
+  <input name="${name}" type="${type}" value="${val}" ${numeric} ${req}></div>`;
 }
-$("formEmpresa").addEventListener("submit",e=>{
+
+function openForm(type,id=null){
+ if(!schemas[type])return;
+
+ currentType=type;
+ editingId=id;
+ const record=id?db[type].find(x=>x.id===id):null;
+
+ $("modalTitle").textContent=(id?"Editar ":"Novo ")+({
+  clientes:"cliente",fornecedores:"fornecedor",produtos:"produto",
+  servicos:"serviço",financeiro:"lançamento",tarefas:"tarefa"
+ }[type]);
+
+ $("modalFields").innerHTML=schemas[type].map(def=>
+  fieldHTML(def,record?.[def[0]]??(def[0]==="date"?today():""))
+ ).join("");
+
+ $("recordDialog").showModal();
+}
+
+function closeModal(){
+ $("recordDialog").close();
+}
+
+$("recordForm").onsubmit=e=>{
  e.preventDefault();
- const old=db.empresa;
- db.empresa=formData(e.target);
- if(!save()){db.empresa=old;return}
- alert("Dados da empresa salvos.");
+ const data=Object.fromEntries(new FormData(e.target).entries());
+
+ for(const [key,,type] of schemas[currentType]){
+  if(type==="number")data[key]=num(data[key]);
+ }
+
+ const previous=JSON.stringify(db[currentType]);
+
+ if(editingId){
+  const index=db[currentType].findIndex(x=>x.id===editingId);
+  if(index<0)return;
+  db[currentType][index]={...db[currentType][index],...data};
+ }else{
+  db[currentType].push({id:uid(),...data,createdAt:new Date().toISOString()});
+ }
+
+ if(!persist()){
+  db[currentType]=JSON.parse(previous);
+  return;
+ }
+
+ closeModal();
+ renderAll();
+ notify("Registro salvo com sucesso.");
+};
+
+function removeRecord(type,id){
+ if(!confirm("Excluir este registro?"))return;
+
+ if(type==="produtos"&&db.vendas.some(s=>
+  s.items.some(x=>x.type==="produtos"&&x.ref===id))){
+  if(!confirm("Este produto possui vendas no histórico. Deseja excluir apenas o cadastro?"))return;
+ }
+
+ const previous=db[type];
+ db[type]=db[type].filter(x=>x.id!==id);
+
+ if(!persist())db[type]=previous;
+ renderAll();
+}
+
+function statusTag(status){
+ const green=["Pago","Concluída","Aprovado"];
+ const red=["Cancelada","Urgente"];
+ const cls=green.includes(status)?"green":red.includes(status)?"red":"";
+ return `<span class="tag ${cls}">${esc(status||"—")}</span>`;
+}
+
+const columns={
+ clientes:[
+  ["name","Nome"],["phone","Telefone"],["email","E-mail"],["document","Documento"]
+ ],
+ fornecedores:[
+  ["name","Fornecedor"],["category","Categoria"],["phone","Telefone"],["email","E-mail"]
+ ],
+ produtos:[
+  ["name","Produto"],["sku","Código"],["price","Preço"],["stock","Estoque"]
+ ],
+ servicos:[
+  ["name","Serviço"],["category","Categoria"],["price","Preço"],["duration","Prazo"]
+ ],
+ financeiro:[
+  ["date","Data"],["description","Descrição"],["type","Tipo"],["value","Valor"],["status","Situação"]
+ ],
+ tarefas:[
+  ["title","Tarefa"],["responsible","Responsável"],["due","Prazo"],["priority","Prioridade"],["status","Status"]
+ ],
+ vendas:[
+  ["date","Data"],["clientName","Cliente"],["total","Total"],["payment","Pagamento"],["status","Situação"]
+ ]
+};
+
+function renderTable(type){
+ const target=$("table-"+type);
+ const search=document.querySelector(`[data-search="${type}"]`)?.value.toLowerCase().trim()||"";
+ const records=db[type].filter(x=>JSON.stringify(x).toLowerCase().includes(search));
+
+ if(!records.length){
+  target.innerHTML='<div class="empty">Nenhum registro encontrado.</div>';
+  return;
+ }
+
+ target.innerHTML=`<table>
+  <thead><tr>
+   ${columns[type].map(c=>`<th>${esc(c[1])}</th>`).join("")}
+   <th>Ações</th>
+  </tr></thead>
+  <tbody>
+   ${records.map(x=>`<tr>
+    ${columns[type].map(([key])=>{
+     let value=x[key]??"—";
+     if(["price","cost","value","total"].includes(key))value=money(value);
+     if(["status","priority"].includes(key))return `<td>${statusTag(value)}</td>`;
+     if(key==="stock"&&num(value)<=num(x.minimum))
+      return `<td><span class="tag orange">${esc(value)}</span></td>`;
+     return `<td>${esc(value)}</td>`;
+    }).join("")}
+    <td><div class="row-actions">
+     ${type!=="vendas"?`<button class="btn small secondary" data-edit="${type}" data-id="${esc(x.id)}">Editar</button>`:""}
+     <button class="btn small danger" data-delete="${type}" data-id="${esc(x.id)}">Excluir</button>
+    </div></td>
+   </tr>`).join("")}
+  </tbody>
+ </table>`;
+}
+
+document.addEventListener("click",e=>{
+ const edit=e.target.closest("[data-edit]");
+ if(edit){
+  openForm(edit.dataset.edit,edit.dataset.id);
+  return;
+ }
+ const del=e.target.closest("[data-delete]");
+ if(del)removeRecord(del.dataset.delete,del.dataset.id);
 });
-function loadEmpresa(){
- Object.entries(db.empresa||{}).forEach(([k,v])=>{
-  const el=$("formEmpresa").elements.namedItem(k);
-  if(el)el.value=v;
+
+document.querySelectorAll("[data-search]").forEach(el=>{
+ el.addEventListener("input",()=>renderTable(el.dataset.search));
+});
+
+function transactionTotals(list=db.financeiro){
+ const paid=list.filter(x=>x.status==="Pago");
+ const revenue=paid.filter(x=>x.type==="Receita").reduce((s,x)=>s+num(x.value),0);
+ const expense=paid.filter(x=>x.type==="Despesa").reduce((s,x)=>s+num(x.value),0);
+ return {revenue,expense,balance:revenue-expense};
+}
+
+function stat(label,value,description="",cls=""){
+ return `<div class="stat ${cls}">
+  <small>${esc(label)}</small>
+  <strong>${esc(value)}</strong>
+  <p>${esc(description)}</p>
+ </div>`;
+}
+
+function renderDashboard(){
+ const t=transactionTotals();
+ const pending=db.tarefas.filter(x=>!["Concluída","Cancelada"].includes(x.status));
+ const low=db.produtos.filter(x=>num(x.stock)<=num(x.minimum));
+
+ $("dashboardStats").innerHTML=
+  stat("Receitas",money(t.revenue),"Entradas pagas","green")+
+  stat("Despesas",money(t.expense),"Saídas pagas","red")+
+  stat("Saldo",money(t.balance),"Receitas menos despesas",t.balance>=0?"green":"red")+
+  stat("Clientes",db.clientes.length,"Clientes cadastrados");
+
+ $("overviewStats").innerHTML=
+  stat("Fornecedores",db.fornecedores.length)+
+  stat("Produtos",db.produtos.length)+
+  stat("Serviços",db.servicos.length)+
+  stat("Tarefas pendentes",pending.length);
+
+ $("financeStats").innerHTML=
+  stat("Receitas recebidas",money(t.revenue),"Pagamentos registrados","green")+
+  stat("Despesas pagas",money(t.expense),"Pagamentos registrados","red")+
+  stat("Saldo",money(t.balance),"Movimentações pagas")+
+  stat("Lançamentos pendentes",db.financeiro.filter(x=>x.status==="Pendente").length);
+
+ const recent=[...db.financeiro].sort((a,b)=>
+  String(b.date).localeCompare(String(a.date))).slice(0,5);
+
+ $("recentTransactions").innerHTML=recent.length?recent.map(x=>`
+  <div style="padding:12px;border-bottom:1px solid var(--border)">
+   <strong>${esc(x.description)}</strong>
+   <div class="hint">${esc(x.date)} • ${esc(x.type)} • ${esc(x.status)}</div>
+   <strong style="color:${x.type==="Receita"?"var(--green)":"var(--red)"}">${money(x.value)}</strong>
+  </div>
+ `).join(""):'<div class="empty">Nenhuma movimentação registrada.</div>';
+
+ const overdue=pending.filter(x=>x.due&&x.due<today());
+ const messages=[];
+
+ if(low.length)messages.push("📦 "+low.length+" produto(s) com estoque baixo.");
+ if(overdue.length)messages.push("📅 "+overdue.length+" tarefa(s) atrasada(s).");
+ if(db.financeiro.some(x=>x.status==="Pendente"))
+  messages.push("💰 Existem lançamentos financeiros pendentes.");
+
+ $("alerts").innerHTML=messages.length
+  ?messages.map(m=>`<p class="hint">${esc(m)}</p>`).join("")
+  :'<div class="empty">Nenhum alerta importante.</div>';
+}
+
+function openSale(){
+ if(!db.produtos.length&&!db.servicos.length){
+  notify("Cadastre um produto ou serviço primeiro.");
+  return;
+ }
+
+ $("saleClient").innerHTML=
+  '<option value="">Cliente não informado</option>'+
+  db.clientes.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join("");
+
+ $("saleDate").value=today();
+ $("saleDiscount").value="0";
+ $("saleStatus").value="Pago";
+ saleItems=[];
+ addSaleItem();
+ $("saleDialog").showModal();
+}
+
+function addSaleItem(){
+ saleItems.push({id:uid(),ref:"",quantity:1});
+ renderSaleItems();
+}
+
+function saleOptions(){
+ return [
+  ...db.produtos.map(x=>({type:"produtos",...x})),
+  ...db.servicos.map(x=>({type:"servicos",...x}))
+ ];
+}
+
+function renderSaleItems(){
+ const options=saleOptions();
+
+ $("saleItems").innerHTML=saleItems.map((item,i)=>`
+  <div class="sale-item">
+   <div class="form-grid">
+    <div class="field">
+     <label>Produto ou serviço</label>
+     <select data-sale-id="${item.id}" data-sale-field="ref">
+      <option value="">Selecione...</option>
+      ${options.map(x=>`<option value="${esc(x.type+":"+x.id)}"
+       ${item.ref===x.type+":"+x.id?"selected":""}>
+       ${esc(x.name)} — ${money(x.price)}
+      </option>`).join("")}
+     </select>
+    </div>
+    <div class="field">
+     <label>Quantidade</label>
+     <input type="number" min="0.001" step="0.001"
+      data-sale-id="${item.id}" data-sale-field="quantity"
+      value="${esc(item.quantity)}">
+    </div>
+   </div>
+   <div style="margin-top:10px">
+    <button class="btn small danger" data-remove-sale="${item.id}">Remover</button>
+   </div>
+  </div>
+ `).join("");
+
+ updateSaleTotal();
+}
+
+function getSaleTotal(){
+ const options=saleOptions();
+ const subtotal=saleItems.reduce((s,x)=>{
+  const product=options.find(p=>p.type+":"+p.id===x.ref);
+  return s+(product?num(product.price)*num(x.quantity):0);
+ },0);
+ const discount=Math.min(subtotal,num($("saleDiscount").value));
+ return {subtotal,discount,total:subtotal-discount};
+}
+
+function updateSaleTotal(){
+ $("saleTotal").textContent="Total: "+money(getSaleTotal().total);
+}
+
+$("saleItems").addEventListener("input",e=>{
+ const el=e.target.closest("[data-sale-id]");
+ if(!el)return;
+ const item=saleItems.find(x=>x.id===el.dataset.saleId);
+ if(!item)return;
+ item[el.dataset.saleField]=el.value;
+ updateSaleTotal();
+});
+
+$("saleItems").addEventListener("change",e=>{
+ const el=e.target.closest("[data-sale-id]");
+ if(!el)return;
+ const item=saleItems.find(x=>x.id===el.dataset.saleId);
+ if(!item)return;
+ item[el.dataset.saleField]=el.value;
+ updateSaleTotal();
+});
+
+$("saleItems").onclick=e=>{
+ const btn=e.target.closest("[data-remove-sale]");
+ if(!btn)return;
+ saleItems=saleItems.filter(x=>x.id!==btn.dataset.removeSale);
+ if(!saleItems.length)addSaleItem();
+ else renderSaleItems();
+};
+
+$("saleDiscount").oninput=updateSaleTotal;
+
+function saveSale(){
+ const options=saleOptions();
+ const items=[];
+
+ for(const item of saleItems){
+  const product=options.find(x=>x.type+":"+x.id===item.ref);
+  if(!product||num(item.quantity)<=0){
+   notify("Selecione os itens e informe quantidades válidas.");
+   return;
+  }
+  if(product.type==="produtos"&&num(item.quantity)>num(product.stock)){
+   notify("Estoque insuficiente para "+product.name);
+   return;
+  }
+  items.push({
+   type:product.type,ref:product.id,name:product.name,
+   quantity:num(item.quantity),price:num(product.price),
+   cost:num(product.cost)
+  });
+ }
+
+ const total=getSaleTotal();
+ const client=db.clientes.find(x=>x.id===$("saleClient").value);
+ const sale={
+  id:uid(),date:$("saleDate").value||today(),
+  clientId:client?.id||"",clientName:client?.name||"Não informado",
+  payment:$("salePayment").value,status:$("saleStatus").value,
+  items,subtotal:total.subtotal,discount:total.discount,total:total.total
+ };
+
+ const previous=JSON.stringify(db);
+
+ items.forEach(x=>{
+  if(x.type==="produtos"){
+   const product=db.produtos.find(p=>p.id===x.ref);
+   if(product)product.stock=num(product.stock)-x.quantity;
+  }
+ });
+
+ db.vendas.push(sale);
+
+ if(sale.status==="Pago"){
+  db.financeiro.push({
+   id:uid(),description:"Venda "+sale.id.slice(0,8),
+   type:"Receita",category:"Vendas",value:sale.total,
+   date:sale.date,status:"Pago",payment:sale.payment,
+   saleId:sale.id,notes:"Lançamento automático de venda"
+  });
+ }
+
+ if(!persist()){
+  db=JSON.parse(previous);
+  return;
+ }
+
+ $("saleDialog").close();
+ renderAll();
+ notify("Venda registrada com sucesso.");
+}
+
+function renderReports(){
+ const month=$("reportMonth").value;
+ const list=db.financeiro.filter(x=>
+  x.status==="Pago"&&(!month||String(x.date).startsWith(month))
+ );
+ const t=transactionTotals(list);
+ const sales=db.vendas.filter(x=>!month||String(x.date).startsWith(month));
+
+ $("reportStats").innerHTML=
+  stat("Receitas",money(t.revenue),"No período","green")+
+  stat("Despesas",money(t.expense),"No período","red")+
+  stat("Resultado",money(t.balance),"Receitas menos despesas")+
+  stat("Vendas",sales.length,"Vendas registradas");
+
+ const months=[];
+ const base=month?new Date(month+"-01T12:00:00"):new Date();
+
+ for(let i=5;i>=0;i--){
+  const d=new Date(base.getFullYear(),base.getMonth()-i,1);
+  const key=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");
+  const monthly=db.financeiro.filter(x=>x.status==="Pago"&&String(x.date).startsWith(key));
+  const totals=transactionTotals(monthly);
+  months.push({
+   label:String(d.getMonth()+1).padStart(2,"0")+"/"+d.getFullYear(),
+   revenue:totals.revenue,expense:totals.expense
+  });
+ }
+
+ const max=Math.max(1,...months.flatMap(x=>[x.revenue,x.expense]));
+ $("monthlyChart").innerHTML=months.map(x=>`
+  <div style="margin-bottom:20px">
+   <strong style="font-size:12px">${esc(x.label)}</strong>
+   <div class="bar-row">
+    <span>Receitas</span>
+    <div class="bar-bg"><div class="bar-fill" style="width:${x.revenue/max*100}%;background:#059669"></div></div>
+    <span>${money(x.revenue)}</span>
+   </div>
+   <div class="bar-row">
+    <span>Despesas</span>
+    <div class="bar-bg"><div class="bar-fill" style="width:${x.expense/max*100}%;background:#dc2626"></div></div>
+    <span>${money(x.expense)}</span>
+   </div>
+  </div>
+ `).join("");
+
+ const categories={};
+ list.filter(x=>x.type==="Despesa").forEach(x=>{
+  const key=x.category||"Sem categoria";
+  categories[key]=(categories[key]||0)+num(x.value);
+ });
+
+ const entries=Object.entries(categories).sort((a,b)=>b[1]-a[1]);
+ const catMax=Math.max(1,...entries.map(x=>x[1]));
+
+ $("categoryChart").innerHTML=entries.length?entries.map(([name,value])=>`
+  <div class="bar-row">
+   <span>${esc(name)}</span>
+   <div class="bar-bg"><div class="bar-fill" style="width:${value/catMax*100}%"></div></div>
+   <span>${money(value)}</span>
+  </div>
+ `).join(""):'<div class="empty">Nenhuma despesa no período.</div>';
+}
+
+function renderCompany(){
+ const form=$("companyForm");
+ Object.entries(db.company).forEach(([key,value])=>{
+  if(form.elements[key])form.elements[key].value=value||"";
  });
 }
-function download(content,name,type){
+
+$("companyForm").onsubmit=e=>{
+ e.preventDefault();
+ const previous={...db.company};
+ db.company=Object.fromEntries(new FormData(e.target).entries());
+ if(!persist())db.company=previous;
+ notify("Dados da empresa salvos.");
+};
+
+function download(name,content,type){
  const blob=new Blob([content],{type});
  const url=URL.createObjectURL(blob);
  const a=document.createElement("a");
- a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+ a.href=url;a.download=name;
+ document.body.appendChild(a);a.click();a.remove();
  setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
+
 function backup(){
- download(JSON.stringify({version:1,exportedAt:new Date().toISOString(),data:db},null,2),
- "meu-negocio-backup-"+new Date().toISOString().slice(0,10)+".json","application/json");
+ download("backup-meu-negocio.json",JSON.stringify(db,null,2),"application/json");
+ notify("Backup exportado.");
 }
-$("importFile").addEventListener("change",async e=>{
+
+$("backupFile").onchange=async e=>{
  const file=e.target.files[0];
  if(!file)return;
+
  try{
+  if(file.size>15*1024*1024)throw Error("Arquivo muito grande.");
   const raw=JSON.parse(await file.text());
-  const incoming=raw.data||raw;
-  if(!incoming||typeof incoming!=="object"||Array.isArray(incoming)||
-   !names.every(k=>Array.isArray(incoming[k]))||
-   !incoming.empresa||typeof incoming.empresa!=="object"||Array.isArray(incoming.empresa))
-   throw Error("Estrutura de backup inválida");
-  if(!confirm("Restaurar este backup? Os dados atuais serão substituídos."))return;
+  if(raw.version!==3||!raw.company||
+     !TYPES.every(t=>Array.isArray(raw[t])))
+   throw Error("Backup incompatível.");
+
+  if(!confirm("Substituir todos os dados atuais pelos dados do backup?"))return;
+
   const previous=db;
-  db={...empty(),...incoming};
-  if(!save()){db=previous;return}
-  loadEmpresa();render();alert("Backup restaurado.");
- }catch(err){alert("Não foi possível restaurar: "+err.message)}
- e.target.value="";
-});
+  db=raw;
+  if(!persist()){
+   db=previous;
+   return;
+  }
+
+  renderAll();
+  notify("Backup importado.");
+ }catch(err){
+  notify("Erro ao importar: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+function csvCell(v){
+ return '"'+String(v??"").replace(/"/g,'""')+'"';
+}
+
+function exportCSV(){
+ const rows=[["Data","Descrição","Tipo","Categoria","Valor","Status","Pagamento"]];
+ db.financeiro.forEach(x=>rows.push([
+  x.date,x.description,x.type,x.category,x.value,x.status,x.payment
+ ]));
+ download("relatorio-financeiro.csv",
+  "\uFEFF"+rows.map(r=>r.map(csvCell).join(";")).join("\r\n"),
+  "text/csv;charset=utf-8");
+}
+
 function clearAll(){
  if(!confirm("ATENÇÃO: apagar todos os dados deste aplicativo?"))return;
- if(prompt('Digite APAGAR para confirmar:')!=="APAGAR")return;
- const old=db;db=empty();
- if(!save()){db=old;return}
- $("formEmpresa").reset();
- render();
+ if(!confirm("Confirme novamente. Esta ação não pode ser desfeita sem backup."))return;
+ const previous=db;
+ db=fresh();
+ if(!persist()){
+  db=previous;
+  return;
+ }
+ renderAll();
+ notify("Dados apagados.");
 }
-function exportCSV(){
- const cols=["data","tipo","descricao","categoria","pagamento","valor","observacoes"];
- const quote=v=>'"'+String(v??"").replace(/"/g,'""')+'"';
- const rows=[cols,...db.financeiro.map(x=>cols.map(c=>x[c]))];
- const csv="\uFEFF"+rows.map(r=>r.map(quote).join(";")).join("\r\n");
- download(csv,"meu-negocio-financeiro.csv","text/csv;charset=utf-8");
+
+function renderAll(){
+ TYPES.forEach(renderTable);
+ renderDashboard();
+ renderReports();
+ renderCompany();
 }
-$("formFinanceiro").elements.data.value=new Date().toLocaleDateString("en-CA");
-loadEmpresa();
-render();
+
+$("reportMonth").value=today().slice(0,7);
+renderAll();
 </script>
 </body>
 </html>
