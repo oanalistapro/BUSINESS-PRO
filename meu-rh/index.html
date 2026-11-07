@@ -3,158 +3,937 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2563eb">
 <title>MEU RH | BUSINESS PRO</title>
 <style>
+:root{
+ --blue:#2563eb;--dark:#142e5c;--text:#142747;
+ --muted:#64748b;--bg:#f3f7ff;--border:#d8e3f3;
+ --green:#059669;--red:#dc2626;--amber:#d97706;
+}
 *{box-sizing:border-box}
-body{margin:0;background:#f3f7ff;color:#142b4b;font:15px Arial,sans-serif}
-header{background:white;padding:20px 5%;border-bottom:1px solid #dce5f3;display:flex;justify-content:space-between}
-a{color:#2563eb;text-decoration:none}
-main{max-width:1150px;margin:auto;padding:24px 16px}
-.hero{background:linear-gradient(115deg,#102b5b,#2563eb);color:white;padding:32px;border-radius:22px}
-.hero h1{margin:0 0 10px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
-.card{background:white;border:1px solid #dce5f3;border-radius:18px;padding:22px}
-.card strong{display:block;font-size:29px;margin-top:8px}
-.layout{display:grid;grid-template-columns:350px 1fr;gap:18px}
-label{display:block;font-weight:bold;font-size:13px;margin:14px 0 6px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #cbd8e9;border-radius:10px;font:inherit}
-textarea{min-height:85px}
-button{background:#2563eb;color:white;border:0;border-radius:10px;padding:12px 15px;font-weight:bold;cursor:pointer;margin:4px 4px 4px 0}
-.alt{background:#eaf0ff;color:#174fc6}
-.danger{background:#ffeded;color:#b42318}
-.item{border:1px solid #dce5f3;border-radius:14px;padding:17px;margin:12px 0}
-.item h3{margin:0 0 8px}
-small{color:#64748b}
-@media(max-width:750px){.grid,.layout{grid-template-columns:1fr}}
+body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--text)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+header{
+ background:#fff;border-bottom:1px solid var(--border);
+ padding:17px 4%;display:flex;justify-content:space-between;
+ align-items:center;gap:12px
+}
+.brand{font-size:22px;font-weight:900}
+.brand span{color:var(--blue)}
+main{max-width:1500px;margin:auto;padding:24px 18px}
+.hero{
+ background:linear-gradient(110deg,#152f60,#2563eb);
+ color:white;border-radius:25px;padding:38px;margin-bottom:22px
+}
+.hero h1{font-size:clamp(30px,4vw,44px);margin:0 0 12px}
+.hero p{margin:0;color:#e4eeff;line-height:1.7}
+.btn{
+ border:0;border-radius:11px;background:var(--blue);
+ color:#fff;padding:12px 16px;font-weight:800;
+ display:inline-flex;justify-content:center;align-items:center;gap:7px
+}
+.btn.alt{background:#eaf0ff;color:#1d4ed8}
+.btn.light{background:white;color:var(--text);border:1px solid var(--border)}
+.btn.danger{background:#fee2e2;color:#b91c1c}
+.btn.small{font-size:12px;padding:9px 11px}
+.btn:hover{filter:brightness(.96)}
+.stats{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:15px;margin-bottom:22px
+}
+.stat,.panel{
+ background:#fff;border:1px solid var(--border);
+ border-radius:19px;box-shadow:0 8px 25px #18365d08
+}
+.stat{padding:24px}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:31px;margin-top:12px}
+.layout{
+ display:grid;grid-template-columns:minmax(300px,.85fr) minmax(0,1.55fr);
+ gap:20px;align-items:start
+}
+.panel{padding:26px;margin-bottom:20px;min-width:0}
+.panel h2{font-size:23px;margin:0 0 20px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.full{grid-column:1/-1}
+label{font-size:12px;font-weight:800}
+input,select,textarea{
+ width:100%;border:1px solid #cbd6e6;border-radius:11px;
+ background:#fbfcff;padding:13px;color:var(--text);outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);background:white}
+textarea{resize:vertical;min-height:90px}
+.actions{display:flex;flex-wrap:wrap;gap:9px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}
+.toolbar>*{flex:1;min-width:130px}
+.tag{
+ display:inline-block;border-radius:20px;padding:6px 10px;
+ background:#eaf0ff;color:#1d4ed8;font-size:11px;font-weight:800
+}
+.tag.good{background:#dcfce7;color:#166534}
+.tag.warn{background:#fef3c7;color:#92400e}
+.tag.bad{background:#fee2e2;color:#991b1b}
+.item{
+ border:1px solid var(--border);border-radius:15px;
+ padding:18px;margin:13px 0;background:#fbfcff
+}
+.item h3{margin:10px 0;font-size:19px;overflow-wrap:anywhere}
+.item p{font-size:13px;color:var(--muted);line-height:1.7;overflow-wrap:anywhere}
+.item strong{overflow-wrap:anywhere}
+.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.panelhead h2{margin:0}
+.empty{text-align:center;padding:35px;color:var(--muted)}
+.hint{color:var(--muted);font-size:12px;line-height:1.7}
+.tabs{display:flex;gap:9px;overflow-x:auto;padding-bottom:12px;margin-bottom:10px}
+.tabs button{white-space:nowrap}
+details{margin-top:12px}
+summary{cursor:pointer;font-weight:800;color:#1d4ed8;padding:8px 0}
+.timeline{border-left:3px solid #bfceea;margin:16px 0 16px 8px;padding-left:18px}
+.event{position:relative;padding:0 0 18px;font-size:13px}
+.event:before{
+ content:"";position:absolute;width:10px;height:10px;
+ border-radius:50%;background:var(--blue);left:-24px;top:3px
+}
+.event small{color:var(--muted)}
+#toast{
+ display:none;position:fixed;bottom:18px;left:50%;
+ transform:translateX(-50%);background:#142747;color:#fff;
+ border-radius:12px;padding:14px 20px;z-index:20;max-width:90vw
+}
+#printArea{display:none}
+@media(max-width:1000px){
+ .layout{grid-template-columns:1fr}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ header{padding:14px}
+ .brand{font-size:17px}
+ header .btn{font-size:11px;padding:10px}
+ main{padding:12px 10px}
+ .hero{padding:27px 20px;border-radius:18px}
+ .panel{padding:18px}
+ .stat{padding:17px}
+ .stat strong{font-size:25px}
+ .stat small{font-size:11px}
+ .fields{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .toolbar>*{min-width:100%}
+}
+@page{size:A4;margin:16mm}
+@media print{
+ body>*:not(#printArea){display:none!important}
+ #printArea{display:block!important;color:#111;font:11pt Arial}
+ #printArea h1{font-size:20pt}
+ #printArea p{line-height:1.6;overflow-wrap:anywhere}
+ #printArea .event{border-bottom:1px solid #ddd;padding:10px 0}
+}
 </style>
 </head>
 <body>
-<header><b>◆ BUSINESS PRO</b><a href="../">Voltar ao portal</a></header>
+
+<header>
+ <div class="brand">👥 MEU <span>RH</span></div>
+ <a href="../" class="btn alt">← Business Pro</a>
+</header>
+
 <main>
-<div class="hero">
-<h1>👥 MEU RH</h1>
-<p>Organize colaboradores, departamentos, treinamentos e atividades.</p>
-</div>
-<div class="grid">
-<div class="card">Colaboradores<strong id="total">0</strong></div>
-<div class="card">Ativos<strong id="ativos">0</strong></div>
-<div class="card">Em férias<strong id="ferias">0</strong></div>
-</div>
-<div class="layout">
-<section class="card">
-<h2 id="titulo">Cadastrar colaborador</h2>
-<form id="form">
-<input type="hidden" id="editId">
-<label>Nome completo</label>
-<input id="nome" required>
-<label>Cargo</label>
-<input id="cargo" required>
-<label>Departamento</label>
-<input id="departamento">
-<label>Data de admissão</label>
-<input id="admissao" type="date">
-<label>Contato profissional</label>
-<input id="contato">
-<label>Salário de referência (R$)</label>
-<input id="salario" type="number" min="0" step="0.01">
-<label>Situação</label>
-<select id="situacao">
-<option>Ativo</option><option>Em férias</option>
-<option>Afastado</option><option>Desligado</option>
-</select>
-<label>Próximo treinamento</label>
-<input id="treinamento" type="date">
-<label>Atividades e responsabilidades</label>
-<textarea id="atividades"></textarea>
-<label>Observações</label>
-<textarea id="observacoes"></textarea>
-<button type="submit">Salvar colaborador</button>
-<button type="button" class="alt" onclick="limpar()">Limpar</button>
-</form>
+<section class="hero">
+ <h1>👥 MEU RH</h1>
+ <p>Gerencie colaboradores, cargos, departamentos, férias, treinamentos e atividades em um ambiente profissional, organizado e adaptado ao computador e celular.</p>
 </section>
-<section class="card">
-<h2>Equipe cadastrada</h2>
-<input id="busca" placeholder="Pesquisar nome, cargo ou setor..." oninput="render()">
-<div style="margin:14px 0">
-<button class="alt" onclick="exportar()">Exportar CSV</button>
-<button class="alt" onclick="backup()">Backup JSON</button>
-<button class="alt" onclick="document.getElementById('importar').click()">Importar backup</button>
-<input id="importar" type="file" accept=".json" hidden onchange="restaurar(event)">
+
+<div class="stats">
+ <div class="stat"><small>Colaboradores</small><strong id="statTotal">0</strong></div>
+ <div class="stat"><small>Ativos</small><strong id="statActive">0</strong></div>
+ <div class="stat"><small>Em férias</small><strong id="statVacation">0</strong></div>
+ <div class="stat"><small>Treinamentos pendentes</small><strong id="statTraining">0</strong></div>
 </div>
-<div id="lista"></div>
+
+<div class="tabs">
+ <button class="btn" data-tab="employees">👥 Colaboradores</button>
+ <button class="btn alt" data-tab="training">🎓 Treinamentos</button>
+ <button class="btn alt" data-tab="activities">📋 Atividades</button>
+ <button class="btn alt" data-tab="reports">📊 Relatórios</button>
+</div>
+
+<section id="employeesTab">
+ <div class="layout">
+  <section class="panel">
+   <h2 id="employeeTitle">Cadastrar colaborador</h2>
+   <form id="employeeForm">
+    <div class="fields">
+     <div class="field full">
+      <label>Nome completo *</label>
+      <input id="name" required maxlength="150" placeholder="Nome do colaborador">
+     </div>
+     <div class="field">
+      <label>Cargo *</label>
+      <input id="role" required placeholder="Ex.: Assistente administrativo">
+     </div>
+     <div class="field">
+      <label>Departamento *</label>
+      <input id="department" required placeholder="Ex.: Financeiro">
+     </div>
+     <div class="field">
+      <label>Data de admissão</label>
+      <input id="admission" type="date">
+     </div>
+     <div class="field">
+      <label>Tipo de vínculo</label>
+      <select id="contract">
+       <option>CLT</option>
+       <option>Estágio</option>
+       <option>Aprendiz</option>
+       <option>Temporário</option>
+       <option>Prestador de serviços</option>
+       <option>Outro</option>
+      </select>
+     </div>
+     <div class="field">
+      <label>E-mail profissional</label>
+      <input id="email" type="email" placeholder="colaborador@empresa.com">
+     </div>
+     <div class="field">
+      <label>Telefone</label>
+      <input id="phone" type="tel" placeholder="(00) 00000-0000">
+     </div>
+     <div class="field">
+      <label>Salário mensal (R$)</label>
+      <input id="salary" type="number" min="0" step="0.01" placeholder="0,00">
+     </div>
+     <div class="field">
+      <label>Situação</label>
+      <select id="status">
+       <option>Ativo</option>
+       <option>Em férias</option>
+       <option>Afastado</option>
+       <option>Desligado</option>
+      </select>
+     </div>
+     <div class="field">
+      <label>Início das férias</label>
+      <input id="vacationStart" type="date">
+     </div>
+     <div class="field">
+      <label>Fim das férias</label>
+      <input id="vacationEnd" type="date">
+     </div>
+     <div class="field full">
+      <label>Observações</label>
+      <textarea id="notes" placeholder="Informações administrativas relevantes"></textarea>
+     </div>
+    </div>
+    <div class="actions" style="margin-top:18px">
+     <button class="btn" type="submit">💾 Salvar colaborador</button>
+     <button class="btn alt" type="button" onclick="resetEmployee()">Limpar</button>
+    </div>
+   </form>
+  </section>
+
+  <section class="panel">
+   <div class="panelhead">
+    <h2>Equipe cadastrada</h2>
+    <span class="tag" id="employeeCount">0 colaboradores</span>
+   </div>
+
+   <input id="employeeSearch" placeholder="🔎 Pesquisar nome, cargo, setor ou e-mail...">
+
+   <div class="toolbar">
+    <select id="employeeStatusFilter">
+     <option value="">Todas as situações</option>
+     <option>Ativo</option>
+     <option>Em férias</option>
+     <option>Afastado</option>
+     <option>Desligado</option>
+    </select>
+    <select id="employeeSort">
+     <option value="name">Nome A–Z</option>
+     <option value="recent">Mais recentes</option>
+     <option value="admission">Data de admissão</option>
+    </select>
+   </div>
+
+   <div class="actions">
+    <button class="btn alt" onclick="exportCSV()">Exportar CSV</button>
+    <button class="btn alt" onclick="exportBackup()">Backup JSON</button>
+    <button class="btn alt" onclick="document.getElementById('backupFile').click()">Importar backup</button>
+    <button class="btn light" onclick="printEmployees()">Imprimir</button>
+   </div>
+
+   <input id="backupFile" type="file" accept=".json,application/json" hidden>
+   <div id="employeeList"></div>
+  </section>
+ </div>
 </section>
-</div>
-<p><small>Versão de organização local. Não substitui folha de pagamento, controle legal de jornada ou sistema trabalhista oficial. Evite inserir dados pessoais sensíveis.</small></p>
+
+<section id="trainingTab" hidden>
+ <div class="layout">
+  <section class="panel">
+   <h2>Novo treinamento</h2>
+   <form id="trainingForm">
+    <div class="fields">
+     <div class="field full">
+      <label>Treinamento *</label>
+      <input id="trainingName" required placeholder="Ex.: Segurança do trabalho">
+     </div>
+     <div class="field full">
+      <label>Colaborador *</label>
+      <select id="trainingEmployee" required></select>
+     </div>
+     <div class="field">
+      <label>Data prevista</label>
+      <input id="trainingDate" type="date">
+     </div>
+     <div class="field">
+      <label>Prazo de conclusão</label>
+      <input id="trainingDue" type="date">
+     </div>
+     <div class="field full">
+      <label>Situação</label>
+      <select id="trainingStatus">
+       <option>Pendente</option>
+       <option>Em andamento</option>
+       <option>Concluído</option>
+       <option>Cancelado</option>
+      </select>
+     </div>
+     <div class="field full">
+      <label>Observações</label>
+      <textarea id="trainingNotes"></textarea>
+     </div>
+    </div>
+    <button class="btn" style="margin-top:15px" type="submit">Salvar treinamento</button>
+   </form>
+  </section>
+  <section class="panel">
+   <h2>Treinamentos registrados</h2>
+   <div id="trainingList"></div>
+  </section>
+ </div>
+</section>
+
+<section id="activitiesTab" hidden>
+ <div class="layout">
+  <section class="panel">
+   <h2>Nova atividade</h2>
+   <form id="activityForm">
+    <div class="fields">
+     <div class="field full">
+      <label>Atividade *</label>
+      <input id="activityName" required placeholder="Ex.: Organizar documentos">
+     </div>
+     <div class="field full">
+      <label>Responsável *</label>
+      <select id="activityEmployee" required></select>
+     </div>
+     <div class="field">
+      <label>Prazo</label>
+      <input id="activityDue" type="date">
+     </div>
+     <div class="field">
+      <label>Prioridade</label>
+      <select id="activityPriority">
+       <option>Normal</option>
+       <option>Alta</option>
+       <option>Urgente</option>
+      </select>
+     </div>
+     <div class="field full">
+      <label>Situação</label>
+      <select id="activityStatus">
+       <option>Pendente</option>
+       <option>Em andamento</option>
+       <option>Concluída</option>
+      </select>
+     </div>
+     <div class="field full">
+      <label>Descrição</label>
+      <textarea id="activityNotes"></textarea>
+     </div>
+    </div>
+    <button class="btn" style="margin-top:15px" type="submit">Salvar atividade</button>
+   </form>
+  </section>
+  <section class="panel">
+   <h2>Atividades da equipe</h2>
+   <div id="activityList"></div>
+  </section>
+ </div>
+</section>
+
+<section id="reportsTab" hidden>
+ <div class="panel">
+  <h2>📊 Relatório de recursos humanos</h2>
+  <div id="reportContent"></div>
+  <div class="actions">
+   <button class="btn" onclick="printReport()">Imprimir relatório / PDF</button>
+   <button class="btn alt" onclick="exportCSV()">Exportar colaboradores</button>
+  </div>
+ </div>
+</section>
+
+<p class="hint">
+ Os dados são armazenados localmente neste navegador, sem sincronização automática.
+ Faça backups regularmente. Este aplicativo é uma ferramenta administrativa e não substitui
+ sistemas oficiais de folha de pagamento, eSocial ou orientação trabalhista.
+ Evite registrar dados pessoais sensíveis em dispositivos compartilhados.
+</p>
 </main>
+
+<div id="printArea"></div>
+<div id="toast" role="status"></div>
+
 <script>
-const KEY="businesspro_rh_v1";
-let dados=JSON.parse(localStorage.getItem(KEY)||"[]");
+"use strict";
+
 const $=id=>document.getElementById(id);
-const salvar=()=>localStorage.setItem(KEY,JSON.stringify(dados));
-const moeda=n=>Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-function limpar(){$("form").reset();$("editId").value="";$("titulo").textContent="Cadastrar colaborador"}
-$("form").onsubmit=e=>{
-e.preventDefault();
-const id=$("editId").value||crypto.randomUUID();
-const x={id};
-["nome","cargo","departamento","admissao","contato","salario","situacao","treinamento","atividades","observacoes"].forEach(k=>x[k]=$(k).value);
-dados=dados.filter(a=>a.id!==id);
-dados.unshift(x);salvar();limpar();render();
-};
-function editar(id){
-const x=dados.find(a=>a.id===id);if(!x)return;
-$("editId").value=x.id;
-["nome","cargo","departamento","admissao","contato","salario","situacao","treinamento","atividades","observacoes"].forEach(k=>$(k).value=x[k]||"");
-$("titulo").textContent="Editar colaborador";
-window.scrollTo({top:300,behavior:"smooth"});
+const KEY="businesspro_meu_rh_v3";
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
+const money=n=>Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+
+function escapeHTML(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
 }
-function excluir(id){
-if(confirm("Excluir este cadastro?")){dados=dados.filter(x=>x.id!==id);salvar();render()}
+
+function dateBR(v){
+ if(!v)return "—";
+ const [y,m,d]=v.split("-");
+ return `${d}/${m}/${y}`;
 }
-function render(){
-$("total").textContent=dados.length;
-$("ativos").textContent=dados.filter(x=>x.situacao==="Ativo").length;
-$("ferias").textContent=dados.filter(x=>x.situacao==="Em férias").length;
-const q=$("busca").value.toLowerCase();
-$("lista").replaceChildren();
-const itens=dados.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
-if(!itens.length){$("lista").textContent="Nenhum colaborador encontrado.";return}
-itens.forEach(x=>{
-const el=document.createElement("div");el.className="item";
-const h=document.createElement("h3");h.textContent=x.nome;el.append(h);
-const p=document.createElement("p");p.textContent=x.cargo+" • "+(x.departamento||"Sem departamento");el.append(p);
-const s=document.createElement("small");
-s.textContent="Situação: "+x.situacao+" | Admissão: "+(x.admissao||"Não informada");el.append(s);
-const sal=document.createElement("p");sal.textContent="Salário de referência: "+moeda(x.salario);el.append(sal);
-const t=document.createElement("p");t.textContent="Treinamento: "+(x.treinamento||"Não agendado");el.append(t);
-const d=document.createElement("p");d.textContent=x.atividades||"";el.append(d);
-const div=document.createElement("div");
-const b1=document.createElement("button");b1.textContent="Editar";b1.onclick=()=>editar(x.id);
-const b2=document.createElement("button");b2.textContent="Excluir";b2.className="danger";b2.onclick=()=>excluir(x.id);
-div.append(b1,b2);el.append(div);$("lista").append(el);
-});
+
+function today(){
+ const d=new Date();
+ return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
 }
-function baixar(nome,conteudo,tipo){
-const url=URL.createObjectURL(new Blob([conteudo],{type:tipo}));
-const a=document.createElement("a");a.href=url;a.download=nome;a.click();
-setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
-function backup(){baixar("rh-backup.json",JSON.stringify(dados,null,2),"application/json")}
-function exportar(){
-const cols=["nome","cargo","departamento","admissao","contato","salario","situacao","treinamento","atividades","observacoes"];
-const csv=[cols,...dados.map(x=>cols.map(k=>String(x[k]||"")))].map(row=>row.map(v=>'"'+v.replaceAll('"','""')+'"').join(";")).join("\r\n");
-baixar("rh.csv","\uFEFF"+csv,"text/csv;charset=utf-8");
-}
-async function restaurar(e){
+
+let db={version:3,employees:[],trainings:[],activities:[]};
+
 try{
-const v=JSON.parse(await e.target.files[0].text());
-if(!Array.isArray(v))throw Error();
-if(confirm("Substituir os cadastros atuais pelo backup?")){dados=v;salvar();render()}
-}catch{alert("Backup inválido.")}
-e.target.value="";
+ const saved=JSON.parse(localStorage.getItem(KEY)||"null");
+ if(saved&&saved.version===3&&Array.isArray(saved.employees)&&
+    Array.isArray(saved.trainings)&&Array.isArray(saved.activities))db=saved;
+}catch(e){}
+
+let editingEmployee=null;
+
+function toast(msg){
+ $("toast").textContent=msg;
+ $("toast").style.display="block";
+ clearTimeout(toast.timer);
+ toast.timer=setTimeout(()=>$("toast").style.display="none",3000);
 }
+
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(db));
+  return true;
+ }catch(e){
+  toast("Não foi possível salvar os dados.");
+  return false;
+ }
+}
+
+function download(filename,content,type){
+ const url=URL.createObjectURL(new Blob([content],{type}));
+ const a=document.createElement("a");
+ a.href=url;a.download=filename;
+ document.body.appendChild(a);
+ a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+
+function employeeName(id){
+ return db.employees.find(e=>e.id===id)?.name||"Colaborador não encontrado";
+}
+
+function resetEmployee(){
+ editingEmployee=null;
+ $("employeeForm").reset();
+ $("employeeTitle").textContent="Cadastrar colaborador";
+}
+
+$("employeeForm").addEventListener("submit",e=>{
+ e.preventDefault();
+
+ const data={
+  name:$("name").value.trim(),
+  role:$("role").value.trim(),
+  department:$("department").value.trim(),
+  admission:$("admission").value,
+  contract:$("contract").value,
+  email:$("email").value.trim(),
+  phone:$("phone").value.trim(),
+  salary:Number($("salary").value||0),
+  status:$("status").value,
+  vacationStart:$("vacationStart").value,
+  vacationEnd:$("vacationEnd").value,
+  notes:$("notes").value.trim()
+ };
+
+ if(!data.name||!data.role||!data.department)return toast("Preencha os campos obrigatórios.");
+
+ if(data.vacationStart&&data.vacationEnd&&data.vacationEnd<data.vacationStart)
+  return toast("A data final das férias não pode ser anterior ao início.");
+
+ const backup=JSON.stringify(db);
+
+ if(editingEmployee){
+  const employee=db.employees.find(x=>x.id===editingEmployee);
+  if(!employee)return;
+  Object.assign(employee,data,{updatedAt:new Date().toISOString()});
+ }else{
+  db.employees.push({
+   id:uid(),...data,
+   createdAt:new Date().toISOString(),
+   updatedAt:new Date().toISOString()
+  });
+ }
+
+ if(!save()){
+  db=JSON.parse(backup);
+  return;
+ }
+
+ resetEmployee();
+ render();
+ toast("Colaborador salvo com sucesso.");
+});
+
+function editEmployee(id){
+ const e=db.employees.find(x=>x.id===id);
+ if(!e)return;
+
+ editingEmployee=id;
+ [
+  "name","role","department","admission","contract",
+  "email","phone","salary","status","vacationStart","vacationEnd","notes"
+ ].forEach(k=>$(k).value=e[k]??"");
+
+ $("employeeTitle").textContent="Editar colaborador";
+ switchTab("employees");
+ window.scrollTo({top:0,behavior:"smooth"});
+ $("name").focus();
+}
+
+function deleteEmployee(id){
+ const e=db.employees.find(x=>x.id===id);
+ if(!e||!confirm("Excluir "+e.name+"? Treinamentos e atividades vinculados também serão excluídos."))return;
+
+ const backup=JSON.stringify(db);
+ db.employees=db.employees.filter(x=>x.id!==id);
+ db.trainings=db.trainings.filter(x=>x.employeeId!==id);
+ db.activities=db.activities.filter(x=>x.employeeId!==id);
+
+ if(!save()){
+  db=JSON.parse(backup);
+  return;
+ }
+
+ if(editingEmployee===id)resetEmployee();
+ render();
+ toast("Colaborador excluído.");
+}
+
+function filteredEmployees(){
+ const q=$("employeeSearch").value.trim().toLowerCase();
+ const status=$("employeeStatusFilter").value;
+ const sort=$("employeeSort").value;
+
+ const list=db.employees.filter(e=>
+  [e.name,e.role,e.department,e.email].join(" ").toLowerCase().includes(q)&&
+  (!status||e.status===status)
+ );
+
+ list.sort((a,b)=>{
+  if(sort==="recent")return b.createdAt.localeCompare(a.createdAt);
+  if(sort==="admission")return (b.admission||"").localeCompare(a.admission||"");
+  return a.name.localeCompare(b.name,"pt-BR");
+ });
+
+ return list;
+}
+
+function renderEmployees(){
+ const list=filteredEmployees();
+ $("employeeCount").textContent=list.length+" colaborador(es)";
+
+ $("employeeList").innerHTML=list.length?list.map(e=>{
+  const cls=e.status==="Ativo"?"good":e.status==="Em férias"?"warn":"bad";
+
+  return `
+   <article class="item">
+    <div class="actions" style="justify-content:space-between;align-items:center">
+     <strong>${escapeHTML(e.name)}</strong>
+     <span class="tag ${cls}">${escapeHTML(e.status)}</span>
+    </div>
+    <h3>${escapeHTML(e.role)}</h3>
+    <p><b>Departamento:</b> ${escapeHTML(e.department)}</p>
+    <p><b>Vínculo:</b> ${escapeHTML(e.contract)}</p>
+    <p><b>Admissão:</b> ${dateBR(e.admission)}</p>
+    <div class="actions">
+     <button class="btn small" data-action="printEmployee" data-id="${escapeHTML(e.id)}">Ficha / PDF</button>
+     <button class="btn small alt" data-action="editEmployee" data-id="${escapeHTML(e.id)}">Editar</button>
+     <button class="btn small danger" data-action="deleteEmployee" data-id="${escapeHTML(e.id)}">Excluir</button>
+    </div>
+    <details>
+     <summary>Ver informações</summary>
+     <p><b>E-mail:</b> ${escapeHTML(e.email||"—")}</p>
+     <p><b>Telefone:</b> ${escapeHTML(e.phone||"—")}</p>
+     <p><b>Salário:</b> ${money(e.salary)}</p>
+     <p><b>Férias:</b> ${dateBR(e.vacationStart)} até ${dateBR(e.vacationEnd)}</p>
+     <p><b>Observações:</b> ${escapeHTML(e.notes||"—")}</p>
+    </details>
+   </article>
+  `;
+ }).join(""):'<p class="empty">Nenhum colaborador encontrado.</p>';
+}
+
+function renderSelectors(){
+ const options='<option value="">Selecione um colaborador</option>'+
+ db.employees.map(e=>`<option value="${escapeHTML(e.id)}">${escapeHTML(e.name)}</option>`).join("");
+
+ ["trainingEmployee","activityEmployee"].forEach(id=>{
+  const old=$(id).value;
+  $(id).innerHTML=options;
+  $(id).value=old;
+ });
+}
+
+$("trainingForm").addEventListener("submit",e=>{
+ e.preventDefault();
+
+ const employeeId=$("trainingEmployee").value;
+ if(!db.employees.some(x=>x.id===employeeId))return toast("Selecione um colaborador.");
+
+ const record={
+  id:uid(),
+  name:$("trainingName").value.trim(),
+  employeeId,
+  date:$("trainingDate").value,
+  due:$("trainingDue").value,
+  status:$("trainingStatus").value,
+  notes:$("trainingNotes").value.trim()
+ };
+
+ if(!record.name)return;
+
+ db.trainings.push(record);
+ if(!save()){
+  db.trainings.pop();
+  return;
+ }
+
+ $("trainingForm").reset();
+ render();
+ toast("Treinamento cadastrado.");
+});
+
+$("activityForm").addEventListener("submit",e=>{
+ e.preventDefault();
+
+ const employeeId=$("activityEmployee").value;
+ if(!db.employees.some(x=>x.id===employeeId))return toast("Selecione um colaborador.");
+
+ const record={
+  id:uid(),
+  name:$("activityName").value.trim(),
+  employeeId,
+  due:$("activityDue").value,
+  priority:$("activityPriority").value,
+  status:$("activityStatus").value,
+  notes:$("activityNotes").value.trim()
+ };
+
+ if(!record.name)return;
+
+ db.activities.push(record);
+ if(!save()){
+  db.activities.pop();
+  return;
+ }
+
+ $("activityForm").reset();
+ render();
+ toast("Atividade cadastrada.");
+});
+
+function deleteRecord(type,id){
+ const collection=type==="training"?"trainings":"activities";
+ if(!confirm("Excluir este registro?"))return;
+
+ const old=db[collection];
+ db[collection]=old.filter(x=>x.id!==id);
+
+ if(!save()){
+  db[collection]=old;
+  return;
+ }
+
+ render();
+ toast("Registro excluído.");
+}
+
+function updateRecord(type,id,value){
+ const collection=type==="training"?"trainings":"activities";
+ const record=db[collection].find(x=>x.id===id);
+ if(!record)return;
+
+ const old=record.status;
+ record.status=value;
+
+ if(!save()){
+  record.status=old;
+  return;
+ }
+
+ render();
+ toast("Situação atualizada.");
+}
+
+function renderTrainings(){
+ $("trainingList").innerHTML=db.trainings.length?db.trainings.map(t=>`
+  <article class="item">
+   <h3>${escapeHTML(t.name)}</h3>
+   <p><b>Colaborador:</b> ${escapeHTML(employeeName(t.employeeId))}</p>
+   <p><b>Data:</b> ${dateBR(t.date)} · <b>Prazo:</b> ${dateBR(t.due)}</p>
+   <p>${escapeHTML(t.notes||"")}</p>
+   <label>Situação</label>
+   <select data-type="training" data-id="${escapeHTML(t.id)}">
+    ${["Pendente","Em andamento","Concluído","Cancelado"].map(s=>
+     `<option ${s===t.status?"selected":""}>${s}</option>`).join("")}
+   </select>
+   <div class="actions" style="margin-top:12px">
+    <button class="btn small danger" data-delete="training" data-id="${escapeHTML(t.id)}">Excluir</button>
+   </div>
+  </article>
+ `).join(""):'<p class="empty">Nenhum treinamento cadastrado.</p>';
+}
+
+function renderActivities(){
+ $("activityList").innerHTML=db.activities.length?db.activities.map(a=>`
+  <article class="item">
+   <h3>${escapeHTML(a.name)}</h3>
+   <p><b>Responsável:</b> ${escapeHTML(employeeName(a.employeeId))}</p>
+   <p><b>Prazo:</b> ${dateBR(a.due)} · <b>Prioridade:</b> ${escapeHTML(a.priority)}</p>
+   <p>${escapeHTML(a.notes||"")}</p>
+   <label>Situação</label>
+   <select data-type="activity" data-id="${escapeHTML(a.id)}">
+    ${["Pendente","Em andamento","Concluída"].map(s=>
+     `<option ${s===a.status?"selected":""}>${s}</option>`).join("")}
+   </select>
+   <div class="actions" style="margin-top:12px">
+    <button class="btn small danger" data-delete="activity" data-id="${escapeHTML(a.id)}">Excluir</button>
+   </div>
+  </article>
+ `).join(""):'<p class="empty">Nenhuma atividade cadastrada.</p>';
+}
+
+function renderReports(){
+ const departments={};
+ db.employees.forEach(e=>{
+  departments[e.department]=(departments[e.department]||0)+1;
+ });
+
+ const payroll=db.employees
+  .filter(e=>e.status!=="Desligado")
+  .reduce((sum,e)=>sum+Number(e.salary||0),0);
+
+ $("reportContent").innerHTML=`
+  <div class="stats" style="margin-top:10px">
+   <div class="stat"><small>Colaboradores</small><strong>${db.employees.length}</strong></div>
+   <div class="stat"><small>Departamentos</small><strong>${Object.keys(departments).length}</strong></div>
+   <div class="stat"><small>Treinamentos</small><strong>${db.trainings.length}</strong></div>
+   <div class="stat"><small>Atividades</small><strong>${db.activities.length}</strong></div>
+  </div>
+  <h3>Distribuição por departamento</h3>
+  ${Object.entries(departments).map(([name,count])=>
+   `<p>${escapeHTML(name)}: <b>${count}</b></p>`).join("")||"<p>Nenhum departamento.</p>"}
+  <h3>Salários-base cadastrados (estimativa mensal)</h3>
+  <p><strong>${money(payroll)}</strong></p>
+  <p class="hint">Soma dos salários informados, sem encargos, benefícios, adicionais ou cálculos de folha.</p>
+ `;
+}
+
+function render(){
+ $("statTotal").textContent=db.employees.length;
+ $("statActive").textContent=db.employees.filter(e=>e.status==="Ativo").length;
+ $("statVacation").textContent=db.employees.filter(e=>e.status==="Em férias").length;
+ $("statTraining").textContent=db.trainings.filter(t=>t.status==="Pendente").length;
+
+ renderEmployees();
+ renderSelectors();
+ renderTrainings();
+ renderActivities();
+ renderReports();
+}
+
+function switchTab(name){
+ ["employees","training","activities","reports"].forEach(tab=>{
+  $(tab+"Tab").hidden=tab!==name;
+  const btn=document.querySelector(`[data-tab="${tab}"]`);
+  btn.className="btn"+(tab===name?"":" alt");
+ });
+}
+
+document.querySelectorAll("[data-tab]").forEach(btn=>{
+ btn.addEventListener("click",()=>switchTab(btn.dataset.tab));
+});
+
+$("employeeList").addEventListener("click",e=>{
+ const btn=e.target.closest("[data-action]");
+ if(!btn)return;
+ const id=btn.dataset.id;
+ if(btn.dataset.action==="editEmployee")editEmployee(id);
+ if(btn.dataset.action==="deleteEmployee")deleteEmployee(id);
+ if(btn.dataset.action==="printEmployee")printEmployee(id);
+});
+
+["trainingList","activityList"].forEach(id=>{
+ $(id).addEventListener("click",e=>{
+  const btn=e.target.closest("[data-delete]");
+  if(btn)deleteRecord(btn.dataset.delete,btn.dataset.id);
+ });
+
+ $(id).addEventListener("change",e=>{
+  const select=e.target.closest("[data-type]");
+  if(select)updateRecord(select.dataset.type,select.dataset.id,select.value);
+ });
+});
+
+["employeeSearch","employeeStatusFilter","employeeSort"].forEach(id=>{
+ $(id).addEventListener(id==="employeeSearch"?"input":"change",renderEmployees);
+});
+
+function exportCSV(){
+ const columns=[
+  "Nome","Cargo","Departamento","Admissão","Vínculo","E-mail",
+  "Telefone","Salário","Situação","Início férias","Fim férias","Observações"
+ ];
+
+ const rows=[columns,...filteredEmployees().map(e=>[
+  e.name,e.role,e.department,dateBR(e.admission),e.contract,e.email,
+  e.phone,e.salary,e.status,dateBR(e.vacationStart),dateBR(e.vacationEnd),e.notes
+ ])];
+
+ const csv="\uFEFF"+rows.map(row=>row.map(v=>
+  '"'+String(v??"").replace(/"/g,'""')+'"'
+ ).join(";")).join("\r\n");
+
+ download("meu-rh-colaboradores.csv",csv,"text/csv;charset=utf-8");
+ toast("CSV exportado.");
+}
+
+function exportBackup(){
+ download("backup-meu-rh.json",JSON.stringify(db,null,2),"application/json");
+ toast("Backup exportado.");
+}
+
+$("backupFile").addEventListener("change",async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  if(file.size>15*1024*1024)throw Error("Arquivo muito grande.");
+
+  const data=JSON.parse(await file.text());
+
+  if(data.version!==3||!Array.isArray(data.employees)||
+   !Array.isArray(data.trainings)||!Array.isArray(data.activities)||
+   !data.employees.every(x=>typeof x.id==="string"&&typeof x.name==="string")||
+   !data.trainings.every(x=>typeof x.id==="string"&&typeof x.employeeId==="string")||
+   !data.activities.every(x=>typeof x.id==="string"&&typeof x.employeeId==="string"))
+   throw Error("Backup incompatível.");
+
+  if(!confirm("Substituir todos os dados atuais pelo backup importado?"))return;
+
+  const old=db;
+  db=data;
+
+  if(!save()){db=old;return;}
+
+  resetEmployee();
+  render();
+  toast("Backup importado.");
+ }catch(err){
+  toast("Erro: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+});
+
+function printEmployee(id){
+ const e=db.employees.find(x=>x.id===id);
+ if(!e)return;
+
+ $("printArea").innerHTML=`
+  <h1>FICHA DE COLABORADOR</h1>
+  <p><b>Nome:</b> ${escapeHTML(e.name)}</p>
+  <p><b>Cargo:</b> ${escapeHTML(e.role)}</p>
+  <p><b>Departamento:</b> ${escapeHTML(e.department)}</p>
+  <p><b>Admissão:</b> ${dateBR(e.admission)}</p>
+  <p><b>Vínculo:</b> ${escapeHTML(e.contract)}</p>
+  <p><b>E-mail:</b> ${escapeHTML(e.email||"—")}</p>
+  <p><b>Telefone:</b> ${escapeHTML(e.phone||"—")}</p>
+  <p><b>Salário-base informado:</b> ${money(e.salary)}</p>
+  <p><b>Situação:</b> ${escapeHTML(e.status)}</p>
+  <p><b>Férias:</b> ${dateBR(e.vacationStart)} até ${dateBR(e.vacationEnd)}</p>
+  <p><b>Observações:</b> ${escapeHTML(e.notes||"—")}</p>
+  <p style="margin-top:40px">________________________________________</p>
+  <p>Responsável pelo RH</p>
+ `;
+ window.print();
+}
+
+function printEmployees(){
+ const list=filteredEmployees();
+ $("printArea").innerHTML=`
+  <h1>RELATÓRIO DE COLABORADORES</h1>
+  <p>Emitido em ${new Date().toLocaleString("pt-BR")}</p>
+  <p>Total: ${list.length}</p>
+  ${list.map(e=>`
+   <div style="border-bottom:1px solid #ccc;padding:10px 0">
+    <b>${escapeHTML(e.name)}</b>
+    <p>${escapeHTML(e.role)} — ${escapeHTML(e.department)}</p>
+    <p>Situação: ${escapeHTML(e.status)} · Admissão: ${dateBR(e.admission)}</p>
+   </div>
+  `).join("")}
+ `;
+ window.print();
+}
+
+function printReport(){
+ const active=db.employees.filter(e=>e.status==="Ativo").length;
+ const vacation=db.employees.filter(e=>e.status==="Em férias").length;
+ const departments={};
+
+ db.employees.forEach(e=>{
+  departments[e.department]=(departments[e.department]||0)+1;
+ });
+
+ $("printArea").innerHTML=`
+  <h1>RELATÓRIO GERAL DE RH</h1>
+  <p>Emitido em ${new Date().toLocaleString("pt-BR")}</p>
+  <p><b>Colaboradores:</b> ${db.employees.length}</p>
+  <p><b>Ativos:</b> ${active}</p>
+  <p><b>Em férias:</b> ${vacation}</p>
+  <p><b>Treinamentos:</b> ${db.trainings.length}</p>
+  <p><b>Atividades:</b> ${db.activities.length}</p>
+  <h2>Departamentos</h2>
+  ${Object.entries(departments).map(([name,count])=>
+   `<p>${escapeHTML(name)}: ${count}</p>`).join("")}
+ `;
+ window.print();
+}
+
 render();
+switchTab("employees");
 </script>
 </body>
 </html>
