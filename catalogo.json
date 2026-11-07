@@ -1,4 +1,3 @@
-
 {
   "apps": [
     {
@@ -7,6 +6,22 @@
       "category": "Carreira",
       "icon": "📄",
       "desc": "Crie currículos profissionais.",
+      "ready": true
+    },
+    {
+      "slug": "meu-documento",
+      "name": "MEU DOCUMENTO",
+      "category": "Documentos",
+      "icon": "📁",
+      "desc": "Crie e organize documentos.",
+      "ready": true
+    },
+    {
+      "slug": "meu-negocio",
+      "name": "MEU NEGÓCIO",
+      "category": "Gestão",
+      "icon": "🏢",
+      "desc": "Organize informações da empresa.",
       "ready": true
     },
     {
@@ -22,7 +37,7 @@
       "name": "MEU PDF",
       "category": "Documentos",
       "icon": "📑",
-      "desc": "Organize arquivos PDF.",
+      "desc": "Organize e trabalhe com arquivos PDF.",
       "ready": true
     }
   ]
