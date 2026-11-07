@@ -1,0 +1,762 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<title>MEU DIREITO | BUSINESS PRO</title>
+<style>
+:root{
+ --blue:#2563eb;--navy:#142747;--bg:#f3f7ff;
+ --line:#dce5f3;--muted:#64748b;--green:#15803d;
+ --red:#dc2626;--orange:#d97706
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{
+ background:#fff;border-bottom:1px solid var(--line);
+ padding:18px 5%;display:flex;justify-content:space-between;
+ align-items:center;gap:12px
+}
+.brand{font-size:22px;font-weight:900}
+.brand span{color:var(--blue)}
+.back{color:var(--blue);font-weight:800;text-decoration:none}
+main{max-width:1250px;margin:auto;padding:25px 18px}
+.hero{
+ background:linear-gradient(125deg,#14366d,#2563eb);
+ color:#fff;border-radius:24px;padding:36px;
+ box-shadow:0 15px 35px #2563eb25
+}
+.hero small{letter-spacing:2px;font-weight:900}
+.hero h1{font-size:clamp(28px,4vw,43px);margin:12px 0}
+.hero p{line-height:1.7;opacity:.94;max-width:760px}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0}
+.btn{
+ background:var(--blue);border:0;border-radius:12px;
+ padding:13px 18px;color:white;font-weight:800
+}
+.btn:hover{filter:brightness(.95)}
+.secondary{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.danger{background:#fff1f2;color:var(--red)}
+.search{
+ flex:1;min-width:190px;padding:13px 15px;
+ background:#fff;border:1px solid var(--line);border-radius:12px
+}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:25px}
+.stat,.panel,.record{
+ background:#fff;border:1px solid var(--line);
+ border-radius:19px;padding:22px;
+ box-shadow:0 10px 25px #1e3a8a08
+}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:30px;margin-top:9px}
+.panel h2{margin-top:0}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
+.filter{
+ border:1px solid var(--line);background:#fff;
+ border-radius:30px;padding:9px 15px;color:var(--navy);font-weight:700
+}
+.filter.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.records{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.record h3{margin:15px 0 10px;overflow-wrap:anywhere}
+.record p{color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
+.tag{
+ display:inline-block;background:#eaf1ff;color:#1d4ed8;
+ border-radius:25px;padding:7px 12px;font-size:12px;font-weight:900
+}
+.tag.late{background:#fee2e2;color:#b91c1c}
+.tag.today{background:#fef3c7;color:#92400e}
+.tag.done{background:#dcfce7;color:#166534}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.empty{grid-column:1/-1;text-align:center;padding:55px 15px;color:var(--muted)}
+dialog{
+ border:0;border-radius:23px;padding:0;width:min(850px,96vw);
+ max-height:92vh;overflow:auto;box-shadow:0 25px 100px #0f172a60
+}
+dialog::backdrop{background:#071326aa}
+.modalhead{background:#f4f8ff;border-bottom:1px solid var(--line);padding:24px 28px}
+.modalhead h2{margin:0}
+form{padding:25px 28px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.full{grid-column:1/-1}
+label{font-size:13px;font-weight:800}
+input,select,textarea{
+ width:100%;border:1px solid #cbd8eb;border-radius:11px;
+ padding:13px;background:#fff;color:var(--navy)
+}
+textarea{min-height:105px;resize:vertical}
+.modalactions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin-top:25px}
+.notice{font-size:13px;color:var(--muted);line-height:1.7;margin:25px 0}
+.quicklinks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:24px}
+.quicklink{
+ display:flex;flex-direction:column;gap:7px;
+ background:#fff;border:1px solid var(--line);
+ border-radius:16px;padding:18px;text-decoration:none;color:var(--navy)
+}
+.quicklink strong{color:var(--blue)}
+.quicklink small{color:var(--muted);line-height:1.5}
+.printarea{display:none}
+@media(max-width:750px){
+ header{padding:17px}main{padding:18px 12px}.hero{padding:25px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .records,.fields{grid-template-columns:1fr}
+ .quicklinks{grid-template-columns:1fr}
+ .full{grid-column:auto}.stat{padding:16px}
+}
+@media print{
+ header,main>*:not(.printarea),dialog{display:none!important}
+ body{background:white}main{padding:0}
+ .printarea{display:block!important;padding:15mm;color:#111;font:14px/1.7 Arial,sans-serif}
+ .printarea h1{font-size:24px}
+ .printarea p{white-space:pre-wrap;overflow-wrap:anywhere}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="brand">◆ BUSINESS <span>PRO</span></div>
+ <a class="back" href="../">← Voltar ao portal</a>
+</header>
+
+<main>
+
+<section class="hero">
+ <small>ORGANIZAÇÃO JURÍDICA E CIDADANIA</small>
+ <h1>⚖️ MEU DIREITO</h1>
+ <p>
+  Organize assuntos jurídicos, acompanhe processos,
+  registre protocolos, controle datas importantes
+  e encontre canais oficiais de informação e atendimento.
+ </p>
+</section>
+
+<div class="toolbar">
+ <button class="btn" id="newBtn">+ Novo registro jurídico</button>
+ <input class="search" id="search" placeholder="Pesquisar processo, assunto ou protocolo...">
+ <button class="btn secondary" id="csvBtn">Exportar CSV</button>
+ <button class="btn secondary" id="backupBtn">Backup JSON</button>
+ <button class="btn secondary" id="importBtn">Importar backup</button>
+ <input type="file" id="importFile" accept=".json,application/json" hidden>
+</div>
+
+<section class="stats">
+ <div class="stat"><small>Total de registros</small><strong id="total">0</strong></div>
+ <div class="stat"><small>Em andamento</small><strong id="progressCount">0</strong></div>
+ <div class="stat"><small>Prazos vencidos</small><strong id="lateCount">0</strong></div>
+ <div class="stat"><small>Concluídos</small><strong id="doneCount">0</strong></div>
+</section>
+
+<section class="panel" style="margin-bottom:22px">
+ <h2>Serviços e informações oficiais</h2>
+ <div class="quicklinks">
+  <a class="quicklink" href="https://www.gov.br/pt-br" target="_blank" rel="noopener noreferrer">
+   <strong>Portal Gov.br</strong>
+   <small>Serviços e informações do Governo Federal.</small>
+  </a>
+  <a class="quicklink" href="https://www.cnj.jus.br/" target="_blank" rel="noopener noreferrer">
+   <strong>Conselho Nacional de Justiça</strong>
+   <small>Informações institucionais sobre o Poder Judiciário.</small>
+  </a>
+  <a class="quicklink" href="https://www.defensoria.sc.def.br/" target="_blank" rel="noopener noreferrer">
+   <strong>Defensoria Pública de SC</strong>
+   <small>Informações sobre assistência jurídica gratuita em Santa Catarina.</small>
+  </a>
+  <a class="quicklink" href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" rel="noopener noreferrer">
+   <strong>Constituição Federal</strong>
+   <small>Consulte o texto constitucional brasileiro.</small>
+  </a>
+  <a class="quicklink" href="https://www.consumidor.gov.br/" target="_blank" rel="noopener noreferrer">
+   <strong>Consumidor.gov.br</strong>
+   <small>Plataforma pública para reclamações de consumo.</small>
+  </a>
+  <a class="quicklink" href="https://www.tjsc.jus.br/" target="_blank" rel="noopener noreferrer">
+   <strong>Tribunal de Justiça de SC</strong>
+   <small>Acesso ao portal oficial do tribunal estadual.</small>
+  </a>
+ </div>
+</section>
+
+<section class="panel">
+ <h2>Meus registros jurídicos</h2>
+ <div class="filters" id="filters">
+  <button class="filter active" data-filter="Todos">Todos</button>
+  <button class="filter" data-filter="Em andamento">Em andamento</button>
+  <button class="filter" data-filter="Aguardando resposta">Aguardando resposta</button>
+  <button class="filter" data-filter="Concluído">Concluídos</button>
+  <button class="filter" data-filter="Arquivado">Arquivados</button>
+  <button class="filter" data-filter="Vencidos">Prazos vencidos</button>
+ </div>
+ <div class="records" id="records"></div>
+</section>
+
+<p class="notice">
+ Este aplicativo é uma ferramenta de organização pessoal, não oferece
+ consultoria jurídica nem consulta automática a processos.
+ Os registros ficam apenas neste navegador e não são sincronizados.
+ Evite armazenar dados sigilosos ou documentos sensíveis.
+ Prazos processuais podem depender de intimações, dias úteis,
+ feriados e regras específicas: confirme sempre com um profissional habilitado
+ ou no sistema oficial do tribunal.
+</p>
+
+<section class="printarea" id="printArea"></section>
+
+</main>
+
+<dialog id="modal">
+ <div class="modalhead">
+  <h2 id="modalTitle">Novo registro jurídico</h2>
+ </div>
+ <form id="form">
+  <div class="fields">
+
+   <div class="field full">
+    <label for="titulo">Assunto ou título do registro *</label>
+    <input id="titulo" required placeholder="Ex.: Acompanhamento de solicitação administrativa">
+   </div>
+
+   <div class="field">
+    <label for="area">Área do direito</label>
+    <select id="area">
+     <option>Direito Civil</option>
+     <option>Direito do Consumidor</option>
+     <option>Direito Trabalhista</option>
+     <option>Direito Previdenciário</option>
+     <option>Direito de Família</option>
+     <option>Direito Imobiliário</option>
+     <option>Direito Administrativo</option>
+     <option>Direito Tributário</option>
+     <option>Direito Migratório</option>
+     <option>Direito Penal</option>
+     <option>Outro</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="tipo">Tipo de registro</label>
+    <select id="tipo">
+     <option>Orientação</option>
+     <option>Processo judicial</option>
+     <option>Processo administrativo</option>
+     <option>Reclamação</option>
+     <option>Requerimento</option>
+     <option>Consulta</option>
+     <option>Outro</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="numero">Número do processo ou protocolo</label>
+    <input id="numero">
+   </div>
+
+   <div class="field">
+    <label for="orgao">Órgão ou instituição</label>
+    <input id="orgao">
+   </div>
+
+   <div class="field">
+    <label for="responsavel">Responsável pelo acompanhamento</label>
+    <input id="responsavel">
+   </div>
+
+   <div class="field">
+    <label for="contato">Contato institucional</label>
+    <input id="contato">
+   </div>
+
+   <div class="field">
+    <label for="data">Data do registro</label>
+    <input id="data" type="date">
+   </div>
+
+   <div class="field">
+    <label for="prazo">Data de acompanhamento ou prazo informado</label>
+    <input id="prazo" type="date">
+   </div>
+
+   <div class="field">
+    <label for="prioridade">Prioridade</label>
+    <select id="prioridade">
+     <option>Normal</option>
+     <option>Alta</option>
+     <option>Urgente</option>
+     <option>Baixa</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="situacao">Situação</label>
+    <select id="situacao">
+     <option>Em andamento</option>
+     <option>Aguardando resposta</option>
+     <option>Concluído</option>
+     <option>Arquivado</option>
+     <option>Suspenso</option>
+    </select>
+   </div>
+
+   <div class="field full">
+    <label for="link">Link oficial de acompanhamento</label>
+    <input id="link" type="url" placeholder="https://...">
+   </div>
+
+   <div class="field full">
+    <label for="resumo">Resumo do assunto *</label>
+    <textarea id="resumo" required placeholder="Descreva o assunto e as informações relevantes."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="providencias">Providências e próximos passos</label>
+    <textarea id="providencias" placeholder="Registre as ações realizadas e o que precisa ser feito."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="documentos">Lista de documentos relacionados</label>
+    <textarea id="documentos" placeholder="Liste os documentos necessários ou já apresentados."></textarea>
+   </div>
+
+   <div class="field full">
+    <label for="observacoes">Observações</label>
+    <textarea id="observacoes"></textarea>
+   </div>
+
+  </div>
+  <div class="modalactions">
+   <button type="button" class="btn secondary" id="cancelBtn">Cancelar</button>
+   <button type="submit" class="btn">Salvar registro</button>
+  </div>
+ </form>
+</dialog>
+
+<script>
+"use strict";
+
+const $=id=>document.getElementById(id);
+const KEY="businesspro_meu_direito_v1";
+
+const FIELDS=[
+ "titulo","area","tipo","numero","orgao","responsavel",
+ "contato","data","prazo","prioridade","situacao",
+ "link","resumo","providencias","documentos","observacoes"
+];
+
+const LABELS={
+ titulo:"Assunto",area:"Área do direito",tipo:"Tipo de registro",
+ numero:"Processo ou protocolo",orgao:"Órgão ou instituição",
+ responsavel:"Responsável",contato:"Contato",
+ data:"Data do registro",prazo:"Data de acompanhamento",
+ prioridade:"Prioridade",situacao:"Situação",
+ link:"Link oficial",resumo:"Resumo",
+ providencias:"Providências",documentos:"Documentos",
+ observacoes:"Observações"
+};
+
+let items=[];
+let editing=null;
+let activeFilter="Todos";
+
+try{
+ const stored=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(stored))items=stored;
+}catch(e){
+ alert("Não foi possível carregar os registros locais.");
+}
+
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",
+  '"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+function save(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(items));
+  return true;
+ }catch(e){
+  alert("Não foi possível salvar. Verifique o armazenamento do navegador.");
+  return false;
+ }
+}
+
+function makeId(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
+}
+
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+
+  String(d.getMonth()+1).padStart(2,"0")+"-"+
+  String(d.getDate()).padStart(2,"0");
+}
+
+function dateBR(v){
+ if(!v)return "Não informado";
+ const p=v.split("-");
+ return p.length===3?p.reverse().join("/"):v;
+}
+
+function isClosed(x){
+ return ["Concluído","Arquivado"].includes(x.data.situacao);
+}
+
+function isLate(x){
+ return !!x.data.prazo&&
+  x.data.prazo<today()&&!isClosed(x);
+}
+
+function openForm(id=null){
+ editing=id;
+ const item=items.find(x=>x.id===id);
+
+ $("modalTitle").textContent=item?
+  "Editar registro jurídico":"Novo registro jurídico";
+
+ FIELDS.forEach(f=>{
+  $(f).value=item?.data?.[f]??"";
+ });
+
+ if(!item){
+  $("data").value=today();
+  $("situacao").value="Em andamento";
+  $("prioridade").value="Normal";
+ }
+
+ $("modal").showModal();
+}
+
+function officialLink(url){
+ if(!url)return "";
+ try{
+  const parsed=new URL(url);
+  if(!["https:","http:"].includes(parsed.protocol))return "";
+  return `<a class="btn secondary"
+   href="${esc(parsed.href)}"
+   target="_blank" rel="noopener noreferrer"
+   style="text-decoration:none;display:inline-block">
+   Abrir consulta oficial</a>`;
+ }catch(e){
+  return "";
+ }
+}
+
+function render(){
+ const q=$("search").value.toLocaleLowerCase("pt-BR").trim();
+
+ $("total").textContent=items.length;
+
+ $("progressCount").textContent=items.filter(x=>
+  x.data.situacao==="Em andamento").length;
+
+ $("lateCount").textContent=items.filter(isLate).length;
+
+ $("doneCount").textContent=items.filter(x=>
+  x.data.situacao==="Concluído").length;
+
+ const filtered=items.filter(x=>{
+  const statusMatch=activeFilter==="Todos"||
+   (activeFilter==="Vencidos"?isLate(x):
+    x.data.situacao===activeFilter);
+
+  const textMatch=JSON.stringify(x.data)
+   .toLocaleLowerCase("pt-BR").includes(q);
+
+  return statusMatch&&textMatch;
+ });
+
+ if(!filtered.length){
+  $("records").innerHTML=`
+   <div class="empty">
+    <h3>Nenhum registro encontrado</h3>
+    <p>Cadastre um assunto jurídico ou altere os filtros.</p>
+   </div>`;
+  return;
+ }
+
+ $("records").innerHTML=filtered.map(x=>{
+  const d=x.data;
+  const late=isLate(x);
+  const dueToday=d.prazo===today()&&!isClosed(x);
+
+  const tagClass=late?"late":
+   dueToday?"today":
+   d.situacao==="Concluído"?"done":"";
+
+  const tagText=late?"Prazo informado vencido":
+   dueToday?"Data de acompanhamento hoje":
+   d.situacao;
+
+  return `<article class="record">
+   <span class="tag ${tagClass}">${esc(tagText)}</span>
+   <h3>${esc(d.titulo)}</h3>
+
+   <p><strong>Área:</strong> ${esc(d.area)}</p>
+   <p><strong>Tipo:</strong> ${esc(d.tipo)}</p>
+   <p><strong>Processo/protocolo:</strong>
+    ${esc(d.numero||"Não informado")}</p>
+   <p><strong>Instituição:</strong>
+    ${esc(d.orgao||"Não informada")}</p>
+   <p><strong>Responsável:</strong>
+    ${esc(d.responsavel||"Não informado")}</p>
+   <p><strong>Data:</strong> ${esc(dateBR(d.data))}</p>
+   <p><strong>Acompanhamento:</strong> ${esc(dateBR(d.prazo))}</p>
+   <p><strong>Prioridade:</strong> ${esc(d.prioridade)}</p>
+   <p><strong>Resumo:</strong> ${esc(d.resumo)}</p>
+
+   <div class="actions">
+    <button class="btn secondary" data-action="edit"
+     data-id="${esc(x.id)}">Editar</button>
+    <button class="btn" data-action="print"
+     data-id="${esc(x.id)}">Imprimir / PDF</button>
+    <button class="btn secondary" data-action="copy"
+     data-id="${esc(x.id)}">Copiar resumo</button>
+    ${officialLink(d.link)}
+    <button class="btn danger" data-action="delete"
+     data-id="${esc(x.id)}">Excluir</button>
+   </div>
+  </article>`;
+ }).join("");
+}
+
+$("form").onsubmit=e=>{
+ e.preventDefault();
+
+ const data={};
+ FIELDS.forEach(f=>data[f]=$(f).value.trim());
+
+ if(!data.titulo||!data.resumo){
+  alert("Informe o assunto e o resumo.");
+  return;
+ }
+
+ const old=items.find(x=>x.id===editing);
+
+ const record={
+  id:old?.id||makeId(),
+  createdAt:old?.createdAt||new Date().toISOString(),
+  updatedAt:new Date().toISOString(),
+  data
+ };
+
+ const previous=items;
+
+ items=old?
+  items.map(x=>x.id===editing?record:x):
+  [record,...items];
+
+ if(!save()){
+  items=previous;
+  return;
+ }
+
+ $("modal").close();
+ editing=null;
+ render();
+};
+
+function textSummary(d){
+ return [
+  "BUSINESS PRO — MEU DIREITO",
+  "",
+  ...FIELDS.map(f=>
+   LABELS[f]+": "+
+   (["data","prazo"].includes(f)?
+    dateBR(d[f]):d[f]||"Não informado")
+  )
+ ].join("\n");
+}
+
+function printRecord(item){
+ const d=item.data;
+
+ $("printArea").innerHTML=`
+  <h1>RELATÓRIO DE ACOMPANHAMENTO JURÍDICO</h1>
+  <p><strong>BUSINESS PRO — MEU DIREITO</strong></p>
+  <hr>
+  ${FIELDS.map(f=>`
+   <p><strong>${esc(LABELS[f])}:</strong>
+   ${esc(["data","prazo"].includes(f)?
+    dateBR(d[f]):d[f]||"Não informado")}</p>
+  `).join("")}
+  <hr>
+  <p>Relatório gerado em
+   ${esc(new Date().toLocaleString("pt-BR"))}</p>
+  <p>Documento de organização pessoal, sem valor de certidão oficial.</p>
+ `;
+
+ window.print();
+}
+
+$("records").onclick=async e=>{
+ const btn=e.target.closest("button[data-action]");
+ if(!btn)return;
+
+ const item=items.find(x=>x.id===btn.dataset.id);
+ if(!item)return;
+
+ const action=btn.dataset.action;
+
+ if(action==="edit")openForm(item.id);
+
+ if(action==="print")printRecord(item);
+
+ if(action==="copy"){
+  const content=textSummary(item.data);
+  try{
+   await navigator.clipboard.writeText(content);
+   alert("Resumo copiado.");
+  }catch(e){
+   const ta=document.createElement("textarea");
+   ta.value=content;
+   document.body.appendChild(ta);
+   ta.select();
+   const ok=document.execCommand("copy");
+   ta.remove();
+   alert(ok?"Resumo copiado.":"Não foi possível copiar.");
+  }
+ }
+
+ if(action==="delete"){
+  if(!confirm("Excluir este registro jurídico?"))return;
+
+  const previous=items;
+  items=items.filter(x=>x.id!==item.id);
+
+  if(!save())items=previous;
+  render();
+ }
+};
+
+$("filters").onclick=e=>{
+ const btn=e.target.closest("[data-filter]");
+ if(!btn)return;
+
+ activeFilter=btn.dataset.filter;
+
+ document.querySelectorAll(".filter").forEach(b=>
+  b.classList.toggle("active",b===btn)
+ );
+
+ render();
+};
+
+function download(name,content,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download=name;
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function csvCell(v){
+ return '"'+String(v??"").replace(/"/g,'""')+'"';
+}
+
+$("csvBtn").onclick=()=>{
+ if(!items.length){
+  alert("Não existem registros para exportar.");
+  return;
+ }
+
+ const headers=[
+  "ID","Criado em","Atualizado em",
+  ...FIELDS.map(f=>LABELS[f])
+ ];
+
+ const rows=items.map(x=>[
+  x.id,x.createdAt,x.updatedAt,
+  ...FIELDS.map(f=>x.data[f]||"")
+ ]);
+
+ const csv="\uFEFF"+[headers,...rows]
+  .map(r=>r.map(csvCell).join(";"))
+  .join("\r\n");
+
+ download(
+  "meus-registros-juridicos.csv",
+  csv,
+  "text/csv;charset=utf-8"
+ );
+};
+
+$("backupBtn").onclick=()=>{
+ download(
+  "backup-meu-direito.json",
+  JSON.stringify({
+   app:"meu-direito",
+   version:1,
+   items
+  },null,2),
+  "application/json"
+ );
+};
+
+$("importBtn").onclick=()=>$("importFile").click();
+
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  const obj=JSON.parse(await file.text());
+
+  if(obj.app!=="meu-direito"||
+     !Array.isArray(obj.items)){
+   throw Error("Backup incompatível.");
+  }
+
+  const valid=obj.items.every(x=>
+   x&&typeof x.id==="string"&&
+   x.data&&typeof x.data==="object"&&
+   FIELDS.every(f=>
+    x.data[f]===undefined||
+    typeof x.data[f]==="string")
+  );
+
+  if(!valid){
+   throw Error("Estrutura dos registros inválida.");
+  }
+
+  if(!confirm(
+   "Substituir todos os registros atuais pelos dados do backup?"
+  ))return;
+
+  const previous=items;
+  items=obj.items;
+
+  if(!save()){
+   items=previous;
+   return;
+  }
+
+  render();
+  alert("Backup importado com sucesso.");
+
+ }catch(err){
+  alert("Erro ao importar: "+err.message);
+ }finally{
+  e.target.value="";
+ }
+};
+
+$("newBtn").onclick=()=>openForm();
+$("cancelBtn").onclick=()=>$("modal").close();
+$("search").oninput=render;
+
+render();
+</script>
+
+</body>
+</html>
