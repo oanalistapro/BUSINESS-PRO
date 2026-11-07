@@ -25,6 +25,14 @@
       "ready": true
     },
     {
+      "slug": "meu-estoque",
+      "name": "MEU ESTOQUE",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-financeiro",
       "name": "MEU FINANCEIRO",
       "category": "Gestão",
