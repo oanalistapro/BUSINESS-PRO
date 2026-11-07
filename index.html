@@ -4,820 +4,961 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#2563eb">
-<title>Business Pro | Ferramentas para seu negócio</title>
+<meta name="theme-color" content="#2059ed">
+<meta name="description" content="Business Pro: ferramentas profissionais para documentos, negócios, finanças, carreira e organização.">
+<title>BUSINESS PRO | Seu trabalho merece ferramentas à altura</title>
+
 <style>
 :root{
- --blue:#2563eb;--navy:#132849;--muted:#64748b;
- --bg:#f3f7fd;--line:#e0e8f3;--white:#fff;
- --shadow:0 16px 42px rgba(24,51,92,.09)
+ --blue:#245df2;
+ --blue2:#397bff;
+ --navy:#10264b;
+ --ink:#142947;
+ --muted:#64748b;
+ --bg:#f3f7fd;
+ --card:#fff;
+ --border:#dce6f4;
+ --shadow:0 18px 45px rgba(24,51,97,.09);
+ --radius:22px;
 }
 *{box-sizing:border-box}
-[hidden]{display:none!important}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,system-ui,Arial,sans-serif}
+body{
+ margin:0;
+ font-family:Inter,Arial,Helvetica,sans-serif;
+ background:var(--bg);
+ color:var(--ink);
+}
 button,input{font:inherit}
 button{cursor:pointer}
 a{text-decoration:none;color:inherit}
-.wrap{width:min(1200px,calc(100% - 32px));margin:auto}
-header{position:sticky;top:0;z-index:50;background:#fffffff2;backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
-.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.brand{font-weight:950;font-size:21px;letter-spacing:-.8px}
-.brand span{color:var(--blue)}
-.brand small{display:block;font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:3px}
-.links{display:flex;gap:22px;align-items:center}
-.links a{font-size:13px;font-weight:700}
-.btn{border:0;border-radius:12px;padding:12px 18px;background:var(--blue);color:#fff;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px}
-.btn.light{background:#edf3ff;color:#1d4ed8}
-.btn.outline{background:#fff;border:1px solid var(--line);color:var(--navy)}
-.btn:disabled{opacity:.55;cursor:wait}
-.hero{position:relative;overflow:hidden;background:linear-gradient(110deg,#0b1d3c 5%,#143d83 60%,#2563eb);color:white}
-.hero:before{content:"";position:absolute;width:470px;height:470px;border:1px solid #ffffff24;border-radius:50%;right:-90px;top:-160px;box-shadow:0 0 0 70px #ffffff08,0 0 0 140px #ffffff06}
-.hero-inner{position:relative;padding:85px 0 90px;max-width:1200px;margin:auto;width:calc(100% - 32px)}
-.eyebrow{color:#93c5fd;text-transform:uppercase;font-weight:900;letter-spacing:2px;font-size:12px}
-.hero h1{font-size:clamp(34px,5vw,65px);max-width:760px;line-height:1.09;letter-spacing:-2px;margin:17px 0}
-.hero p{max-width:650px;color:#d9e8ff;line-height:1.8;font-size:17px}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.hero .btn.light{background:white;color:#1d4ed8}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:-36px;position:relative;z-index:2}
-.stat{background:white;border:1px solid var(--line);padding:23px;border-radius:17px;box-shadow:var(--shadow)}
-.stat b{font-size:23px;display:block}
-.stat small{color:var(--muted);line-height:1.7}
-.section{padding:65px 0}
-.heading{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:26px}
-.heading h2{font-size:clamp(25px,3vw,35px);letter-spacing:-1px;margin:0 0 9px}
-.heading p{margin:0;color:var(--muted);line-height:1.7}
-.search{width:min(100%,340px);border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;outline:none}
-.search:focus{border-color:var(--blue)}
-.filters{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0 26px}
-.filter{border:1px solid var(--line);background:#fff;padding:10px 15px;border-radius:999px;color:#475569;font-weight:750}
-.filter.active{background:var(--blue);color:#fff;border-color:var(--blue)}
-.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.card{background:white;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 8px 26px #14284909;transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.card-cover{height:140px;display:flex;align-items:end;padding:19px;position:relative;overflow:hidden;background:linear-gradient(135deg,#dbeafe,#93c5fd)}
-.card-cover:after{content:"";position:absolute;width:170px;height:170px;border-radius:45px;transform:rotate(35deg);background:#ffffff37;right:-38px;top:-80px}
-.card-cover .symbol{font-size:43px;position:relative;z-index:1}
-.card[data-category="Gestão"] .card-cover{background:linear-gradient(135deg,#d1fae5,#6ee7b7)}
-.card[data-category="Documentos"] .card-cover{background:linear-gradient(135deg,#dbeafe,#a5b4fc)}
-.card[data-category="Carreira"] .card-cover{background:linear-gradient(135deg,#fef3c7,#fdba74)}
-.card-body{padding:22px}
-.tag{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);font-weight:900}
-.card h3{font-size:20px;margin:10px 0}
-.card p{font-size:14px;line-height:1.7;color:var(--muted);min-height:70px}
-.card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:17px}
-.status{font-size:11px;font-weight:800;border-radius:30px;padding:7px 10px;background:#eaf2ff;color:#1d4ed8}
-.status.soon{background:#f1f5f9;color:#64748b}
-.card .btn{font-size:12px;padding:10px 13px}
-.about{background:#fff}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
-.about h2{font-size:34px;letter-spacing:-1px}
-.about p{line-height:1.9;color:var(--muted)}
-.about-visual{border-radius:24px;min-height:300px;padding:35px;background:linear-gradient(140deg,#0f2853,#2563eb);color:white;display:flex;flex-direction:column;justify-content:center}
-.about-visual strong{font-size:40px}
-.about-visual p{color:#dbeafe}
-footer{background:#0d1c35;color:#dbeafe;padding:45px 0}
-.footer-grid{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
-footer p{color:#a9bad3;font-size:13px;line-height:1.8}
-footer a{color:#bfdbfe}
-.account{display:flex;align-items:center;gap:9px}
-.account img{width:34px;height:34px;border-radius:50%}
-.notice{padding:13px 15px;background:#eff6ff;color:#1e40af;border-radius:12px;font-size:13px;line-height:1.6}
-.dialog{border:0;border-radius:20px;width:min(94vw,570px);padding:27px;box-shadow:0 25px 90px #0005;color:var(--navy)}
-.dialog::backdrop{background:#0b152b99;backdrop-filter:blur(5px)}
-.dialog h2{margin:0 0 15px}
-.dialog p{line-height:1.8;color:#475569}
-.dialog-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.empty{padding:30px;text-align:center;color:var(--muted);grid-column:1/-1}
-@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr}}
-@media(max-width:600px){
- .links{display:none}
- .hero-inner{padding:65px 0 80px}
- .hero h1{letter-spacing:-1px}
- .stats{grid-template-columns:1fr;gap:9px}
- .stat{padding:15px}
- .cards{grid-template-columns:1fr}
- .section{padding:45px 0}
- .card p{min-height:0}
- .nav{min-height:67px}
- .brand{font-size:18px}
- .btn{padding:11px 13px;font-size:12px}
+button:focus-visible,a:focus-visible,input:focus-visible{
+ outline:3px solid #82b2ff;
+ outline-offset:3px;
+}
+.container{width:min(1380px,calc(100% - 40px));margin:auto}
+.topbar{
+ position:sticky;
+ top:0;
+ z-index:20;
+ background:rgba(255,255,255,.96);
+ border-bottom:1px solid var(--border);
+ backdrop-filter:blur(15px);
+}
+.nav{
+ min-height:82px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:18px;
+}
+.brand{
+ display:flex;
+ align-items:center;
+ gap:13px;
+}
+.brand-icon{
+ width:46px;height:46px;
+ display:grid;place-items:center;
+ background:linear-gradient(145deg,#1b4fcb,#4486ff);
+ color:#fff;
+ border-radius:14px;
+ font-size:25px;
+ box-shadow:0 8px 20px #245df233;
+}
+.brand-name{font-size:21px;font-weight:950;letter-spacing:-.7px}
+.brand-name span{color:var(--blue)}
+.brand-sub{
+ display:block;
+ margin-top:4px;
+ color:var(--muted);
+ font-size:10px;
+ font-weight:900;
+ letter-spacing:1.5px;
+}
+.navlinks{display:flex;align-items:center;gap:24px}
+.navlinks a{font-size:14px;font-weight:750}
+.navlinks a:hover{color:var(--blue)}
+.nav-actions{display:flex;align-items:center;gap:9px}
+.iconbtn{
+ width:42px;height:42px;
+ display:grid;place-items:center;
+ background:#edf3ff;
+ border:1px solid var(--border);
+ border-radius:13px;
+ color:var(--navy);
+ font-size:19px;
+}
+.btn{
+ border:0;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ gap:8px;
+ padding:14px 19px;
+ border-radius:13px;
+ background:var(--blue);
+ color:#fff;
+ font-weight:850;
+ transition:.2s;
+}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.btn-white{background:#fff;color:#1749c9}
+.btn-outline{
+ background:#ffffff17;
+ border:1px solid #ffffff55;
+ color:#fff;
+}
+.hero{
+ position:relative;
+ isolation:isolate;
+ overflow:hidden;
+ background:linear-gradient(115deg,#0c1e3c 0%,#173c83 53%,#2765ef 100%);
+ color:white;
+}
+.hero:before,.hero:after{
+ content:"";
+ position:absolute;
+ z-index:-1;
+ border:1px solid #ffffff1d;
+ border-radius:50%;
+}
+.hero:before{
+ width:670px;height:670px;
+ right:-260px;top:-360px;
+ box-shadow:0 0 0 85px #ffffff08,0 0 0 175px #ffffff06;
+}
+.hero:after{
+ width:320px;height:320px;
+ right:13%;bottom:-260px;
+ background:#ffffff05;
+}
+.hero-inner{
+ min-height:535px;
+ display:grid;
+ grid-template-columns:1.1fr .9fr;
+ align-items:center;
+ gap:40px;
+ padding:66px 0 98px;
+}
+.eyebrow{
+ font-size:12px;
+ font-weight:950;
+ letter-spacing:2.3px;
+ color:#9cc7ff;
+}
+.hero h1{
+ font-size:clamp(38px,5.2vw,72px);
+ line-height:1.07;
+ letter-spacing:-2.7px;
+ margin:23px 0;
+ max-width:770px;
+}
+.hero p{
+ color:#e0ecff;
+ font-size:17px;
+ line-height:1.85;
+ max-width:670px;
+}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-preview{
+ border:1px solid #ffffff40;
+ background:#ffffff13;
+ backdrop-filter:blur(18px);
+ border-radius:27px;
+ padding:22px;
+ box-shadow:0 24px 60px #071a4030;
+ transform:rotate(1deg);
+}
+.preview-top{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ margin-bottom:17px;
+ font-weight:850;
+}
+.preview-dots{display:flex;gap:6px}
+.preview-dots i{width:9px;height:9px;background:#ffffff80;border-radius:50%}
+.preview-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.preview-tile{
+ padding:20px 15px;
+ border-radius:17px;
+ background:#fff;
+ color:#172b4c;
+ min-height:118px;
+}
+.preview-tile span{font-size:29px}
+.preview-tile strong{display:block;margin-top:12px;font-size:13px}
+.preview-tile small{display:block;color:#64748b;margin-top:6px;font-size:11px}
+.benefits{
+ position:relative;
+ z-index:2;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:17px;
+ margin-top:-48px;
+}
+.benefit{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:19px;
+ box-shadow:var(--shadow);
+ padding:24px;
+ display:flex;
+ gap:15px;
+ align-items:center;
+}
+.benefit-icon{
+ width:51px;height:51px;
+ flex:none;
+ display:grid;place-items:center;
+ border-radius:15px;
+ background:#eaf1ff;
+ font-size:25px;
+}
+.benefit strong{display:block;font-size:16px;margin-bottom:5px}
+.benefit small{color:var(--muted);line-height:1.5}
+.section{padding:72px 0}
+.section-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:end;
+ flex-wrap:wrap;
+ gap:18px;
+ margin-bottom:26px;
+}
+.section-head h2{
+ font-size:clamp(27px,3.4vw,39px);
+ letter-spacing:-1.2px;
+ margin:0 0 10px;
+}
+.section-head p{margin:0;color:var(--muted)}
+.search{
+ width:min(100%,390px);
+ padding:16px 19px;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:15px;
+ color:var(--ink);
+}
+.filters{
+ display:flex;
+ flex-wrap:wrap;
+ gap:9px;
+ margin-bottom:26px;
+}
+.filter{
+ border:1px solid var(--border);
+ background:var(--card);
+ color:var(--ink);
+ border-radius:25px;
+ padding:11px 17px;
+ font-size:13px;
+ font-weight:850;
+}
+.filter.active{
+ background:var(--blue);
+ color:#fff;
+ border-color:var(--blue);
+}
+.catalog{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:22px;
+}
+.app{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:22px;
+ overflow:hidden;
+ box-shadow:var(--shadow);
+ transition:.22s;
+ display:flex;
+ flex-direction:column;
+ min-width:0;
+}
+.app:hover{
+ transform:translateY(-6px);
+ box-shadow:0 24px 50px #17376e20;
+ border-color:#a6c2ff;
+}
+.app-cover{
+ height:163px;
+ position:relative;
+ overflow:hidden;
+ background:linear-gradient(130deg,#17386c,#347bff);
+}
+.app-cover:before{
+ content:"";
+ position:absolute;
+ inset:0;
+ background:
+  radial-gradient(circle at 85% 15%,#ffffff35,transparent 42%),
+  linear-gradient(135deg,#ffffff18,transparent);
+}
+.app-cover .shape{
+ position:absolute;
+ width:180px;height:180px;
+ right:-30px;top:-70px;
+ border:23px solid #ffffff22;
+ border-radius:35px;
+ transform:rotate(30deg);
+}
+.app-cover .emoji{
+ position:absolute;
+ left:21px;bottom:20px;
+ width:67px;height:67px;
+ border-radius:19px;
+ background:#fff;
+ display:grid;place-items:center;
+ font-size:34px;
+ box-shadow:0 10px 30px #0a235340;
+}
+.app-cover .state{
+ position:absolute;
+ right:18px;bottom:30px;
+ background:#fff;
+ color:#1647bd;
+ font-size:10px;
+ font-weight:950;
+ padding:10px 12px;
+ border-radius:25px;
+}
+.app-body{
+ padding:24px;
+ display:flex;
+ flex-direction:column;
+ flex:1;
+}
+.app-category{
+ color:var(--blue);
+ font-size:10px;
+ font-weight:950;
+ letter-spacing:1.3px;
+ text-transform:uppercase;
+}
+.app h3{font-size:21px;letter-spacing:-.5px;margin:11px 0}
+.app p{
+ font-size:13px;
+ color:var(--muted);
+ line-height:1.75;
+ margin:0 0 24px;
+ flex:1;
+}
+.app-bottom{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+}
+.open{
+ display:inline-flex;
+ align-items:center;
+ gap:8px;
+ color:var(--blue);
+ font-size:13px;
+ font-weight:950;
+}
+.fav{
+ background:#edf3ff;
+ border:0;
+ border-radius:11px;
+ width:38px;height:38px;
+ font-size:20px;
+ color:#64748b;
+}
+.fav.active{color:#e0a000;background:#fff3cc}
+.empty{
+ padding:60px 20px;
+ text-align:center;
+ color:var(--muted);
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:20px;
+}
+.about{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:24px;
+}
+.about-panel{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:24px;
+ padding:35px;
+}
+.about-panel h2{font-size:30px;margin:0 0 15px}
+.about-panel p{color:var(--muted);line-height:1.8}
+.about-panel.dark{
+ background:linear-gradient(135deg,#122e60,#245df2);
+ color:#fff;
+}
+.about-panel.dark p{color:#d9e7ff}
+.footer{
+ background:#0c1e3b;
+ color:#fff;
+ padding:37px 0;
+}
+.footer-inner{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ flex-wrap:wrap;
+ gap:15px;
+}
+.footer small{color:#a8bddb}
+.dark-mode{
+ --bg:#0b1424;
+ --card:#142238;
+ --border:#2a3d5b;
+ --ink:#f2f6ff;
+ --muted:#a6b6cd;
+ --shadow:0 15px 40px #0003;
+}
+.dark-mode .topbar{background:#111e33ee}
+.dark-mode .iconbtn,.dark-mode .fav{background:#223757;color:#e6efff}
+.dark-mode .filter{color:var(--ink)}
+.dark-mode .search{color:var(--ink)}
+.dark-mode .preview-tile{background:#fff;color:#172b4c}
+.dark-mode .benefit-icon{background:#233d67}
+.dark-mode .app-cover .state{color:#1647bd}
+@media(max-width:1050px){
+ .hero-inner{grid-template-columns:1fr}
+ .hero-preview{display:none}
+ .catalog{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+ .container{width:calc(100% - 26px)}
+ .nav{min-height:72px}
+ .brand-name{font-size:17px}
+ .brand-sub{font-size:8px;letter-spacing:.8px}
+ .brand-icon{width:40px;height:40px}
+ .navlinks{display:none}
+ .hero-inner{min-height:0;padding:60px 0 95px}
+ .hero h1{letter-spacing:-1.4px}
+ .hero p{font-size:15px}
+ .benefits{grid-template-columns:1fr;margin-top:-45px;gap:10px}
+ .benefit{padding:17px}
+ .section{padding:50px 0}
+ .catalog{grid-template-columns:1fr;gap:16px}
+ .app-cover{height:145px}
+ .about{grid-template-columns:1fr}
+ .about-panel{padding:23px}
+ .search{width:100%}
+ .section-head{align-items:stretch}
+}
+@media(min-width:701px) and (max-width:850px){
+ .benefits{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{
+  scroll-behavior:auto!important;
+  transition:none!important;
+ }
 }
 </style>
 </head>
+
 <body>
 
-<header>
- <div class="wrap nav">
-  <a href="./" class="brand">◆ BUSINESS <span>PRO</span><small>SEU NEGÓCIO MAIS ORGANIZADO</small></a>
-  <nav class="links">
+<header class="topbar">
+ <div class="container nav">
+  <a class="brand" href="./" aria-label="Página inicial Business Pro">
+   <span class="brand-icon">◆</span>
+   <span>
+    <span class="brand-name">BUSINESS <span>PRO</span></span>
+    <span class="brand-sub">SEU NEGÓCIO MAIS ORGANIZADO</span>
+   </span>
+  </a>
+
+  <nav class="navlinks" aria-label="Navegação principal">
    <a href="#aplicativos">Aplicativos</a>
    <a href="#sobre">Sobre</a>
    <a href="#contato">Contato</a>
   </nav>
-  <div class="account">
-   <img id="avatar" alt="Foto da conta" hidden>
-   <button id="loginButton" class="btn" type="button">Entrar com Google</button>
-   <button id="logoutButton" class="btn outline" type="button" hidden>Sair</button>
+
+  <div class="nav-actions">
+   <button class="iconbtn" id="themeBtn" title="Alternar tema" aria-label="Alternar tema">☾</button>
+   <a class="btn" href="#aplicativos">Explorar</a>
   </div>
  </div>
 </header>
 
 <section class="hero">
- <div class="hero-inner">
-  <div class="eyebrow">Business Pro · Ferramentas para o dia a dia</div>
-  <h1>Seu trabalho merece ferramentas à altura.</h1>
-  <p>Crie documentos, prepare orçamentos, organize informações e cuide das tarefas do seu negócio em um só lugar. Ferramentas práticas para quem trabalha, empreende e quer crescer.</p>
-  <div class="hero-actions">
-   <a class="btn light" href="#aplicativos">Explorar aplicativos</a>
-   <a class="btn" style="background:#ffffff20;border:1px solid #ffffff55" href="#sobre">Conhecer o Business Pro</a>
+ <div class="container hero-inner">
+
+  <div>
+   <div class="eyebrow">◆ BUSINESS PRO · FERRAMENTAS PARA O DIA A DIA</div>
+   <h1>Seu trabalho merece ferramentas à altura.</h1>
+   <p>
+    Crie documentos, prepare orçamentos, organize suas finanças,
+    acompanhe projetos e gerencie informações importantes.
+    Tudo em um portal moderno, prático e preparado para celular e computador.
+   </p>
+
+   <div class="hero-buttons">
+    <a class="btn btn-white" href="#aplicativos">Explorar aplicativos →</a>
+    <a class="btn btn-outline" href="#sobre">Conhecer o Business Pro</a>
+   </div>
   </div>
+
+  <div class="hero-preview" aria-hidden="true">
+   <div class="preview-top">
+    <span>◆ Seu espaço de trabalho</span>
+    <span class="preview-dots"><i></i><i></i><i></i></span>
+   </div>
+
+   <div class="preview-grid">
+    <div class="preview-tile">
+     <span>📄</span>
+     <strong>Documentos</strong>
+     <small>Crie e organize</small>
+    </div>
+    <div class="preview-tile">
+     <span>💰</span>
+     <strong>Finanças</strong>
+     <small>Controle seus valores</small>
+    </div>
+    <div class="preview-tile">
+     <span>📊</span>
+     <strong>Gestão</strong>
+     <small>Organize seu negócio</small>
+    </div>
+    <div class="preview-tile">
+     <span>📅</span>
+     <strong>Planejamento</strong>
+     <small>Acompanhe seus prazos</small>
+    </div>
+   </div>
+  </div>
+
  </div>
 </section>
 
-<div class="wrap stats">
- <div class="stat"><b>Um só portal</b><small>Seus aplicativos organizados por categoria</small></div>
- <div class="stat"><b>Uso prático</b><small>Ferramentas independentes para tarefas reais</small></div>
- <div class="stat"><b>Novos recursos</b><small>Aplicativos adicionados conforme ficam prontos</small></div>
+<div class="container benefits">
+ <div class="benefit">
+  <span class="benefit-icon">🧩</span>
+  <div>
+   <strong>Um só portal</strong>
+   <small>Aplicativos organizados por categoria.</small>
+  </div>
+ </div>
+
+ <div class="benefit">
+  <span class="benefit-icon">📱</span>
+  <div>
+   <strong>Celular e computador</strong>
+   <small>Interface adaptável a diferentes telas.</small>
+  </div>
+ </div>
+
+ <div class="benefit">
+  <span class="benefit-icon">⚡</span>
+  <div>
+   <strong>Acesso rápido</strong>
+   <small>Pesquisa instantânea e favoritos.</small>
+  </div>
+ </div>
 </div>
 
-<main>
 <section class="section" id="aplicativos">
- <div class="wrap">
-  <div class="heading">
+ <div class="container">
+
+  <div class="section-head">
    <div>
     <h2>Explore seus aplicativos</h2>
-    <p>Escolha a ferramenta que você precisa e comece a trabalhar.</p>
+    <p>Encontre a ferramenta certa e comece a trabalhar.</p>
    </div>
-   <input id="search" class="search" placeholder="Pesquisar aplicativo..." aria-label="Pesquisar aplicativo">
+   <input class="search" id="search" type="search"
+    placeholder="🔎 Pesquisar aplicativo..."
+    aria-label="Pesquisar aplicativos">
   </div>
-  <div id="filters" class="filters"></div>
-  <div id="cards" class="cards"></div>
+
+  <div class="filters" id="filters"></div>
+
+  <div class="catalog" id="catalog"></div>
+
+  <div class="empty" id="empty" hidden>
+   Nenhum aplicativo encontrado para sua pesquisa.
+  </div>
+
  </div>
 </section>
 
-<section class="section about" id="sobre">
- <div class="wrap about-grid">
-  <div>
-   <div class="tag">Sobre a plataforma</div>
+<section class="section" id="sobre">
+ <div class="container about">
+  <div class="about-panel">
    <h2>Mais organização. Menos complicação.</h2>
-   <p>O Business Pro reúne ferramentas digitais para profissionais, pequenos negócios e empresas que precisam organizar suas atividades com mais eficiência.</p>
-   <p>Cada aplicativo tem seu próprio espaço e suas funcionalidades. Assim, você pode utilizar apenas o que precisa, sem depender de programas complicados.</p>
-   <p>O catálogo cresce à medida que novas ferramentas são desenvolvidas e disponibilizadas.</p>
+   <p>
+    O BUSINESS PRO reúne ferramentas independentes para
+    ajudar profissionais, estudantes, empreendedores e empresas
+    a organizar suas atividades em um único portal.
+   </p>
+   <p>
+    Cada aplicativo possui suas próprias funcionalidades.
+    Alguns armazenam informações localmente no navegador,
+    portanto é importante utilizar os recursos de backup disponíveis.
+   </p>
   </div>
-  <div class="about-visual">
-   <div class="eyebrow">BUSINESS PRO</div>
-   <strong>Ideias que viram resultados.</strong>
-   <p>Documentos, carreira, serviços e gestão reunidos em uma experiência simples.</p>
+
+  <div class="about-panel dark">
+   <h2>Seu espaço de produtividade.</h2>
+   <p>
+    Um visual consistente, navegação simples, recursos úteis
+    e acesso rápido às ferramentas mais utilizadas.
+   </p>
+   <a class="btn btn-white" href="#aplicativos">Começar agora →</a>
   </div>
  </div>
 </section>
-</main>
 
-<footer id="contato">
- <div class="wrap footer-grid">
+<footer class="footer" id="contato">
+ <div class="container footer-inner">
   <div>
-   <div class="brand">◆ BUSINESS <span>PRO</span></div>
-   <p>Ferramentas digitais para organizar seu trabalho.</p>
+   <strong>◆ BUSINESS PRO</strong>
+   <p><small>Ferramentas para organizar seu dia a dia.</small></p>
   </div>
-  <div>
-   <b>Informações</b>
-   <p><a href="#" data-legal="privacy">Privacidade</a></p>
-   <p><a href="#" data-legal="terms">Termos de uso</a></p>
-   <p><a href="#" data-legal="security">Segurança</a></p>
-  </div>
-  <div>
-   <b>Contato</b>
-   <p><a href="mailto:adm.oanalistapro@gmail.com">adm.oanalistapro@gmail.com</a></p>
-   <p>© <span id="year"></span> Business Pro</p>
-  </div>
+  <small>© <span id="year"></span> BUSINESS PRO</small>
  </div>
 </footer>
-
-<dialog id="dialog" class="dialog">
- <h2 id="dialogTitle"></h2>
- <div id="dialogContent"></div>
- <div class="dialog-actions">
-  <button id="closeDialog" class="btn outline">Fechar</button>
- </div>
-</dialog>
 
 <script>
 "use strict";
 
 /*
-  BUSINESS PRO — INDEX PRINCIPAL
-  Cada aplicativo pronto tem sua própria pasta.
-  Não existem simuladores antigos neste arquivo.
+  CATÁLOGO DE APLICATIVOS
+
+  Cada URL aponta para a pasta independente do aplicativo.
+  Este arquivo não modifica os dados internos dos módulos.
+
+  Adicione outros aplicativos neste array quando necessário.
 */
 
-let APPS=[
- {name:"MEU CURRÍCULO",category:"Carreira",icon:"📄",
-  desc:"Crie um currículo profissional com experiências, formação, habilidades e modelos para impressão.",
-  url:"./meu-curriculo/"},
- {name:"MEU ORÇAMENTO",category:"Gestão",icon:"🧾",
-  desc:"Prepare propostas comerciais completas, cadastre clientes, produtos, serviços e gere documentos para apresentar.",
-  url:"./meu-orcamento/"},
-  
-{
-  name:"MEU PDF",
+const APPS=[
+ {
+  name:"Meu Currículo",
+  icon:"👔",
   category:"Documentos",
-  icon:"📑",
-  desc:"Junte, divida, extraia, gire, numere e organize arquivos PDF. Converta imagens e adicione marcas-d'água.",
-  url:"./meu-pdf/"
-},
-
- {name:"MEU NEGÓCIO",category:"Gestão",icon:"🏢",
-  desc:"Organize informações e atividades da sua empresa.",
-  url:"./meu-negocio/"},
- {name:"MEU DOCUMENTO",category:"Documentos",icon:"📁",
-  desc:"Prepare e organize documentos importantes.",
-  url:"./meu-documento/"},
- {name:"MEU CONTRATO",category:"Documentos",icon:"✍️",
-  desc:"Crie contratos e organize cláusulas e informações comerciais.",
-  url:"./meu-contrato/"},
- {name:"MEU FINANCEIRO",category:"Gestão",icon:"💰",
-  desc:"Controle receitas, despesas e movimentações financeiras.",
-  url:"./meu-financeiro/"},
- {name:"MEU ESTOQUE",category:"Gestão",icon:"📦",
-  desc:"Organize produtos, quantidades e movimentações de estoque.",
-  url:"./meu-estoque/"},
- {name:"MEU TRABALHO",category:"Carreira",icon:"💼",
-  desc:"Organize atividades e informações profissionais.",
-  url:"./meu-trabalho/"},
- {name:"MEU EMPREENDEDOR",category:"Gestão",icon:"🚀",
-  desc:"Recursos de apoio para quem está começando ou administrando um negócio.",
-  url:"./meu-empreendedor/"},
- {name:"MEU PROTOCOLO",category:"Documentos",icon:"📋",
-  desc:"Organize registros e protocolos de atendimento.",
-  url:"./meu-protocolo/"},
- {name:"MEU RH",category:"Gestão",icon:"👥",
-  desc:"Organize processos e informações de recursos humanos.",
-  url:"./meu-rh/"},
- {name:"MEU REQUERIMENTO",category:"Documentos",icon:"📝",
-  desc:"Prepare requerimentos com informações estruturadas.",
-  url:"./meu-requerimento/"},
- {name:"MEU ATENDIMENTO",category:"Gestão",icon:"🎧",
-  desc:"Organize solicitações e atendimentos.",
-  url:"./meu-atendimento/"},
- {name:"MEU PRAZO",category:"Gestão",icon:"📅",
-  desc:"Acompanhe compromissos e prazos importantes.",
-  url:"./meu-prazo/"},
- {name:"MEU IMÓVEL",category:"Gestão",icon:"🏠",
-  desc:"Organize informações relacionadas a imóveis.",
-  url:"./meu-imovel/"},
- {name:"MEU CONCURSO",category:"Carreira",icon:"🎓",
-  desc:"Organize estudos e preparação para concursos.",
-  url:"./meu-concurso/"},
- {name:"MEU DIREITO",category:"Documentos",icon:"⚖️",
-  desc:"Acesse ferramentas de organização de informações e documentos.",
-  url:"./meu-direito/"},
- {name:"MEU CONSUMIDOR",category:"Documentos",icon:"🛒",
-  desc:"Organize informações e solicitações relacionadas ao consumo.",
-  url:"./meu-consumidor/"},
- {name:"MEU MIGRANTE",category:"Documentos",icon:"🌎",
-  desc:"Organize documentos e informações para processos migratórios.",
-  url:"./meu-migrante/"},
- {name:"MEU EDITAL",category:"Documentos",icon:"📚",
-  desc:"Organize editais, documentos e informações importantes.",
-  url:"./meu-edital/"},
- {name:"MEU IMPOSTO",category:"Gestão",icon:"🧮",
-  desc:"Organize informações para acompanhamento de obrigações fiscais.",
-  url:"./meu-imposto/"}
+  desc:"Crie currículos profissionais e prepare sua apresentação para oportunidades de trabalho.",
+  url:"./meu-curriculo/",
+  color:["#1b355a","#487ec6"]
+ },
+ {
+  name:"Meu PDF",
+  icon:"📄",
+  category:"Documentos",
+  desc:"Acesse ferramentas para organizar, converter e trabalhar com documentos PDF.",
+  url:"./meu-pdf/",
+  color:["#183f77","#357dce"]
+ },
+ {
+  name:"Meu Documento",
+  icon:"📁",
+  category:"Documentos",
+  desc:"Prepare declarações, autorizações, recibos e documentos personalizados.",
+  url:"./meu-documento/",
+  color:["#24486c","#5a8bc6"]
+ },
+ {
+  name:"Meu Contrato",
+  icon:"📝",
+  category:"Documentos",
+  desc:"Crie e organize contratos com cláusulas, prazos, valores e condições.",
+  url:"./meu-contrato/",
+  color:["#273b73","#657dd9"]
+ },
+ {
+  name:"Meu Requerimento",
+  icon:"📋",
+  category:"Documentos",
+  desc:"Prepare requerimentos formais e acompanhe suas solicitações.",
+  url:"./meu-requerimento/",
+  color:["#1b477c","#428dd8"]
+ },
+ {
+  name:"Meu Orçamento",
+  icon:"🧾",
+  category:"Negócios",
+  desc:"Elabore propostas comerciais com produtos, serviços, preços e condições.",
+  url:"./meu-orcamento/",
+  color:["#164a70","#3e9ac1"]
+ },
+ {
+  name:"Meu Negócio",
+  icon:"🏢",
+  category:"Negócios",
+  desc:"Gerencie clientes, fornecedores, produtos, serviços e atividades.",
+  url:"./meu-negocio/",
+  color:["#213b58","#647b9c"]
+ },
+ {
+  name:"Meu Empreendedor",
+  icon:"🚀",
+  category:"Negócios",
+  desc:"Organize ideias, projetos, metas, investimentos e oportunidades.",
+  url:"./meu-empreendedor/",
+  color:["#313b81","#7b66d4"]
+ },
+ {
+  name:"Meu Financeiro",
+  icon:"💰",
+  category:"Finanças",
+  desc:"Controle receitas, despesas, contas e resultados financeiros.",
+  url:"./meu-financeiro/",
+  color:["#075e63","#1da6a0"]
+ },
+ {
+  name:"Meu Estoque",
+  icon:"📦",
+  category:"Negócios",
+  desc:"Cadastre produtos e acompanhe entradas, saídas e quantidades.",
+  url:"./meu-estoque/",
+  color:["#744313","#d99134"]
+ },
+ {
+  name:"Meu Imposto",
+  icon:"🧮",
+  category:"Finanças",
+  desc:"Organize tributos, taxas, pagamentos, vencimentos e obrigações.",
+  url:"./meu-imposto/",
+  color:["#1c4b82","#498cd9"]
+ },
+ {
+  name:"Meu Trabalho",
+  icon:"💼",
+  category:"Produtividade",
+  desc:"Organize tarefas, projetos, responsáveis, prioridades e prazos.",
+  url:"./meu-trabalho/",
+  color:["#28437d","#647fda"]
+ },
+ {
+  name:"Meu Prazo",
+  icon:"📅",
+  category:"Produtividade",
+  desc:"Controle compromissos, vencimentos, tarefas e datas importantes.",
+  url:"./meu-prazo/",
+  color:["#214e80","#4d9bcc"]
+ },
+ {
+  name:"Meu Protocolo",
+  icon:"📨",
+  category:"Produtividade",
+  desc:"Registre solicitações, atendimentos, documentos e protocolos.",
+  url:"./meu-protocolo/",
+  color:["#31517d","#6c92c4"]
+ },
+ {
+  name:"Meu Atendimento",
+  icon:"🎧",
+  category:"Produtividade",
+  desc:"Acompanhe clientes, solicitações, pendências e histórico de contatos.",
+  url:"./meu-atendimento/",
+  color:["#22447e","#4f7de5"]
+ },
+ {
+  name:"Meu RH",
+  icon:"👥",
+  category:"Negócios",
+  desc:"Organize colaboradores, departamentos, treinamentos e atividades.",
+  url:"./meu-rh/",
+  color:["#513d85","#9b6ad4"]
+ },
+ {
+  name:"Meu Imóvel",
+  icon:"🏠",
+  category:"Patrimônio",
+  desc:"Gerencie imóveis, valores, contratos, aluguéis e informações.",
+  url:"./meu-imovel/",
+  color:["#255c70","#55a3b0"]
+ },
+ {
+  name:"Meu Concurso",
+  icon:"🎓",
+  category:"Educação",
+  desc:"Organize concursos, editais, estudos, inscrições e simulados.",
+  url:"./meu-concurso/",
+  color:["#414d90","#7b8ee4"]
+ },
+ {
+  name:"Meu Edital",
+  icon:"📚",
+  category:"Educação",
+  desc:"Acompanhe editais, inscrições, documentos, etapas e resultados.",
+  url:"./meu-edital/",
+  color:["#354e8c","#638ccf"]
+ },
+ {
+  name:"Meu Direito",
+  icon:"⚖️",
+  category:"Cidadania",
+  desc:"Organize assuntos jurídicos, processos, protocolos e prazos.",
+  url:"./meu-direito/",
+  color:["#34436e","#7589b5"]
+ },
+ {
+  name:"Meu Consumidor",
+  icon:"🛒",
+  category:"Cidadania",
+  desc:"Acompanhe compras, garantias, reclamações e protocolos.",
+  url:"./meu-consumidor/",
+  color:["#28557c","#4ca3c8"]
+ },
+ {
+  name:"Meu Migrante",
+  icon:"🌍",
+  category:"Cidadania",
+  desc:"Organize processos migratórios, vistos, documentos e solicitações.",
+  url:"./meu-migrante/",
+  color:["#176477","#41b1b6"]
+ }
 ];
 
-let PUBLISHED_APPS=new Set(["MEU CURRÍCULO","MEU ORÇAMENTO","MEU PDF"]);
 const $=id=>document.getElementById(id);
-let activeCategory="Todos";
 
-function escapeHTML(text){
- return String(text??"").replace(/[&<>"']/g,c=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",
-  '"':"&quot;","'":"&#39;"
- })[c]);
+const FAVORITES_KEY="businesspro_portal_favorites";
+const THEME_KEY="businesspro_portal_theme";
+
+function readFavorites(){
+ try{
+  const data=JSON.parse(localStorage.getItem(FAVORITES_KEY)||"[]");
+  return Array.isArray(data)?data:[];
+ }catch(e){return []}
 }
 
-function normalize(text){
- return String(text||"").normalize("NFD")
-  .replace(/[\u0300-\u036f]/g,"")
-  .toLowerCase();
+let favorites=readFavorites();
+let category="Todos";
+
+function escapeHTML(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ }[c]));
+}
+
+function categories(){
+ return ["Todos","⭐ Favoritos",...new Set(APPS.map(x=>x.category))];
 }
 
 function renderFilters(){
- const categories=["Todos",...new Set(APPS.map(x=>x.category))];
- $("filters").innerHTML=categories.map(cat=>
-  `<button class="filter ${cat===activeCategory?"active":""}"
-   data-category="${escapeHTML(cat)}">${escapeHTML(cat)}</button>`
- ).join("");
+ $("filters").innerHTML=categories().map(c=>`
+  <button class="filter ${category===c?"active":""}"
+   data-category="${escapeHTML(c)}">
+   ${escapeHTML(c)}
+  </button>
+ `).join("");
 }
 
-function renderCards(){
- const search=normalize($("search").value.trim());
- const filtered=APPS.filter(app=>
-  (activeCategory==="Todos"||app.category===activeCategory)&&
-  normalize(app.name+" "+app.desc+" "+app.category).includes(search)
- );
+function renderCatalog(){
+ const query=$("search").value.toLocaleLowerCase("pt-BR").trim();
 
- $("cards").innerHTML=filtered.map(app=>{
-  const ready=PUBLISHED_APPS.has(app.name) && Boolean(app.url);
+ const items=APPS.filter(app=>{
+  const matches=[
+   app.name,app.category,app.desc
+  ].join(" ").toLocaleLowerCase("pt-BR").includes(query);
+
+  const matchesCategory=
+   category==="Todos"||
+   (category==="⭐ Favoritos"&&favorites.includes(app.url))||
+   app.category===category;
+
+  return matches&&matchesCategory;
+ });
+
+ $("catalog").innerHTML=items.map(app=>{
+  const liked=favorites.includes(app.url);
+
   return `
-  <article class="card" data-category="${escapeHTML(app.category)}">
-   <div class="card-cover"><span class="symbol">${escapeHTML(app.icon)}</span></div>
-   <div class="card-body">
-    <span class="tag">${escapeHTML(app.category)}</span>
-    <h3>${escapeHTML(app.name)}</h3>
-    <p>${escapeHTML(app.desc)}</p>
-    <div class="card-bottom">
-     <span class="status ${ready?"":"soon"}">
-      ${ready?"Acessar aplicativo":"Em desenvolvimento"}
-     </span>
-     ${ready
-       ?`<a class="btn" href="${escapeHTML(app.url)}">Abrir →</a>`
-       :`<button class="btn light" data-preview="${escapeHTML(app.name)}">Detalhes</button>`}
+   <article class="app">
+    <div class="app-cover"
+     style="background:linear-gradient(130deg,${app.color[0]},${app.color[1]})">
+     <div class="shape"></div>
+     <span class="emoji" aria-hidden="true">${app.icon}</span>
+     <span class="state">ACESSAR APP</span>
     </div>
-   </div>
-  </article>`;
- }).join("")||'<div class="empty">Nenhum aplicativo encontrado.</div>';
+
+    <div class="app-body">
+     <span class="app-category">${escapeHTML(app.category)}</span>
+     <h3>${escapeHTML(app.name)}</h3>
+     <p>${escapeHTML(app.desc)}</p>
+
+     <div class="app-bottom">
+      <a class="open" href="${escapeHTML(app.url)}"
+       aria-label="Abrir ${escapeHTML(app.name)}">
+       Abrir aplicativo →
+      </a>
+
+      <button class="fav ${liked?"active":""}"
+       data-favorite="${escapeHTML(app.url)}"
+       aria-label="${liked?"Remover dos":"Adicionar aos"} favoritos"
+       title="Favorito">
+       ${liked?"★":"☆"}
+      </button>
+     </div>
+    </div>
+   </article>
+  `;
+ }).join("");
+
+ $("empty").hidden=items.length>0;
 }
 
 $("filters").addEventListener("click",event=>{
  const button=event.target.closest("[data-category]");
  if(!button)return;
- activeCategory=button.dataset.category;
+
+ category=button.dataset.category;
  renderFilters();
- renderCards();
+ renderCatalog();
 });
 
-$("search").addEventListener("input",renderCards);
+$("catalog").addEventListener("click",event=>{
+ const button=event.target.closest("[data-favorite]");
+ if(!button)return;
 
-function openDialog(title,html){
- $("dialogTitle").textContent=title;
- $("dialogContent").innerHTML=html;
- $("dialog").showModal();
+ const url=button.dataset.favorite;
+
+ favorites=favorites.includes(url)?
+  favorites.filter(x=>x!==url):
+  [...favorites,url];
+
+ try{
+  localStorage.setItem(FAVORITES_KEY,JSON.stringify(favorites));
+ }catch(e){}
+
+ renderCatalog();
+});
+
+$("search").addEventListener("input",renderCatalog);
+
+function setTheme(dark){
+ document.body.classList.toggle("dark-mode",dark);
+ $("themeBtn").textContent=dark?"☀":"☾";
+ $("themeBtn").title=dark?"Modo claro":"Modo escuro";
+
+ try{
+  localStorage.setItem(THEME_KEY,dark?"dark":"light");
+ }catch(e){}
 }
 
-$("closeDialog").onclick=()=>$("dialog").close();
-
-$("cards").addEventListener("click",event=>{
- const button=event.target.closest("[data-preview]");
- if(!button)return;
- const app=APPS.find(x=>x.name===button.dataset.preview);
- if(!app)return;
- openDialog(app.name,
-  `<p>${escapeHTML(app.desc)}</p>
-   <div class="notice">Este módulo ainda não foi publicado.
-   Quando estiver pronto, terá seu próprio aplicativo e será aberto diretamente pelo catálogo.</div>`);
+$("themeBtn").addEventListener("click",()=>{
+ setTheme(!document.body.classList.contains("dark-mode"));
 });
 
-const LEGAL={
- privacy:{
-  title:"Privacidade",
-  html:`<p>O Business Pro reúne aplicativos independentes. Cada ferramenta pode ter sua própria forma de armazenar informações.</p>
-  <p>O portal utiliza autenticação Google quando disponível. Nesse caso, o Firebase Authentication processa dados necessários à identificação da conta.</p>
-  <p>Os aplicativos Meu Currículo e Meu Orçamento, nas versões atuais, guardam os rascunhos no navegador do dispositivo. Eles não sincronizam esses documentos com o Firebase.</p>
-  <p>Não compartilhe documentos pessoais em dispositivos públicos. Você pode solicitar informações sobre o tratamento de dados pelo contato disponibilizado no rodapé.</p>
-  <p>Esta informação deve ser revisada conforme novos serviços forem ativados.</p>`
- },
- terms:{
-  title:"Termos de uso",
-  html:`<p>O Business Pro oferece ferramentas de apoio à organização profissional e empresarial.</p>
-  <p>Os dados inseridos nos documentos e orçamentos devem ser conferidos por quem utiliza o serviço. A plataforma não substitui orientação jurídica, contábil ou tributária especializada.</p>
-  <p>Aplicativos indicados como em desenvolvimento ainda não estão disponíveis para uso.</p>
-  <p>O uso deve respeitar a legislação aplicável e os direitos de terceiros.</p>`
- },
- security:{
-  title:"Segurança",
-  html:`<p>O acesso Google utiliza o Firebase Authentication. As permissões para recursos protegidos devem ser controladas pelas regras e serviços do Firebase.</p>
-  <p>Os documentos armazenados localmente dependem da proteção do navegador e do dispositivo. Utilize equipamentos confiáveis e mantenha cópias de segurança quando necessário.</p>
-  <p>Nunca compartilhe senhas, códigos de verificação ou credenciais de acesso.</p>`
- }
-};
-
-document.querySelectorAll("[data-legal]").forEach(link=>{
- link.addEventListener("click",event=>{
-  event.preventDefault();
-  const page=LEGAL[link.dataset.legal];
-  if(page)openDialog(page.title,page.html);
- });
-});
+try{
+ setTheme(localStorage.getItem(THEME_KEY)==="dark");
+}catch(e){
+ setTheme(false);
+}
 
 $("year").textContent=new Date().getFullYear();
 
 renderFilters();
-renderCards();
-// O GitHub Actions atualiza catalogo.json quando um módulo é publicado.
-// O portal mantém todos os cartões originais, sua ordem, imagens e textos.
-async function carregarCatalogo(){
- try {
-  const resposta = await fetch('./catalogo.json?v='+Date.now(), {cache:'no-store'});
-  if (!resposta.ok) throw new Error('Catálogo indisponível');
-  const dados = await resposta.json();
-  if (!Array.isArray(dados.apps)) throw new Error('Catálogo inválido');
-
-  const slugsValidos = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-  const slugDaUrl = url => String(url||'').replace(/^\.\//,'').replace(/\/$/,'');
-  const indice = new Map(APPS.map((app,i)=>[slugDaUrl(app.url),i]));
-  const publicados = new Set();
-
-  for (const item of dados.apps) {
-   if (!item || !slugsValidos.test(String(item.slug||''))) continue;
-   const slug = item.slug;
-   const pos = indice.get(slug);
-   const nome = typeof item.name === 'string' && item.name.trim()
-    ? item.name.trim() : slug.replace(/-/g,' ').toUpperCase();
-   const url = './'+slug+'/';
-
-   if (pos !== undefined) {
-    // Preserva a descrição e a foto já definidas no site.
-    APPS[pos].url = url;
-    if (item.ready === true) publicados.add(APPS[pos].name);
-   } else {
-    APPS.push({
-     name:nome,
-     category:typeof item.category==='string' ? item.category : 'Gestão',
-     icon:typeof item.icon==='string' ? item.icon : '📁',
-     desc:typeof item.desc==='string' ? item.desc : 'Ferramenta Business Pro.',
-     url
-    });
-    indice.set(slug,APPS.length-1);
-    if (item.ready === true) publicados.add(nome);
-   }
-  }
-
-  // O catálogo é a fonte de verdade para disponibilidade.
-  PUBLISHED_APPS = publicados;
-  renderFilters();
-  renderCards();
- } catch (erro) {
-  // Sem rede, o portal mantém os cartões e os 3 aplicativos já conhecidos.
-  console.warn('Catálogo não carregado; usando versão local:',erro);
- }
-}
-carregarCatalogo();
+renderCatalog();
 </script>
 
-<script type="module">
-import {initializeApp} from
- "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-
-import {
- getAuth,
- GoogleAuthProvider,
- signInWithPopup,
- signInWithRedirect,
- getRedirectResult,
- onAuthStateChanged,
- signOut
-} from
- "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-
-const firebaseConfig={
- apiKey:"AIzaSyBz2wOXC-uF5Te65zQZp7kzebRZdhD0X4A",
- authDomain:"business-pro-97342.firebaseapp.com",
- projectId:"business-pro-97342",
- storageBucket:"business-pro-97342.firebasestorage.app",
- messagingSenderId:"1071937432262",
- appId:"1:1071937432262:web:fe19a4626e8e6310d805c7",
- measurementId:"G-86BRQJT1JD"
-};
-
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const provider=new GoogleAuthProvider();
-
-const login=document.getElementById("loginButton");
-const logout=document.getElementById("logoutButton");
-const avatar=document.getElementById("avatar");
-
-function errorMessage(error){
- const code=error?.code||"";
- if(code==="auth/unauthorized-domain")
-  return "Autorize o domínio do Business Pro em Firebase Authentication → Settings → Authorized domains.";
- if(code==="auth/operation-not-allowed")
-  return "Ative o provedor Google em Firebase Authentication → Sign-in method.";
- if(code==="auth/popup-blocked")
-  return "O navegador bloqueou a janela de login. Tente novamente.";
- return "Não foi possível entrar: "+(code||"erro desconhecido");
-}
-
-login.onclick=async()=>{
- login.disabled=true;
- try{
-  await signInWithPopup(auth,provider);
- }catch(error){
-  if(error.code==="auth/popup-blocked"||
-     error.code==="auth/operation-not-supported-in-this-environment"){
-   try{
-    await signInWithRedirect(auth,provider);
-    return;
-   }catch(redirectError){
-    alert(errorMessage(redirectError));
-   }
-  }else if(error.code!=="auth/popup-closed-by-user"&&
-           error.code!=="auth/cancelled-popup-request"){
-   alert(errorMessage(error));
-  }
- }finally{
-  login.disabled=false;
- }
-};
-
-logout.onclick=async()=>{
- try{await signOut(auth)}
- catch(error){alert("Não foi possível sair: "+error.code)}
-};
-
-getRedirectResult(auth).catch(error=>{
- alert(errorMessage(error));
-});
-
-onAuthStateChanged(auth,user=>{
- if(user){
-  login.hidden=true;
-  logout.hidden=false;
-  avatar.hidden=!user.photoURL;
-  if(user.photoURL)avatar.src=user.photoURL;
-  avatar.title=user.displayName||user.email||"Conta Google";
-  logout.title=user.email||"Sair da conta";
- }else{
-  login.hidden=false;
-  logout.hidden=true;
-  avatar.hidden=true;
-  avatar.removeAttribute("src");
- }
-});
-</script>
-<!-- BUSINESS PRO | FOTOS PREMIUM DOS APLICATIVOS -->
-<style>
-/* Visual premium sem alterar os aplicativos existentes */
-
-#cards .card{
-  border-radius:22px!important;
-  overflow:hidden;
-  background:#fff;
-  border:1px solid #e2eaf5;
-  box-shadow:0 12px 30px rgba(15,35,75,.08);
-  transition:
-    transform .35s ease,
-    box-shadow .35s ease,
-    border-color .35s ease;
-}
-
-#cards .card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 24px 55px rgba(15,35,75,.18);
-  border-color:#a9c6ff;
-}
-
-#cards .card-cover{
-  height:190px!important;
-  padding:0!important;
-  background:#dce7f7;
-  position:relative;
-  overflow:hidden;
-  isolation:isolate;
-}
-
-#cards .card-cover::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:0;
-  background-image:var(--app-photo);
-  background-size:cover;
-  background-position:center;
-  transform:scale(1);
-  transition:transform .7s ease;
-}
-
-#cards .card:hover .card-cover::before{
-  transform:scale(1.09);
-}
-
-#cards .card-cover::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  width:auto;
-  height:auto;
-  border-radius:0;
-  transform:none;
-  right:0;
-  top:0;
-  background:linear-gradient(
-    180deg,
-    transparent 25%,
-    rgba(7,23,49,.72) 100%
-  );
-  z-index:1;
-}
-
-#cards .card-cover .symbol{
-  position:absolute;
-  bottom:15px;
-  left:17px;
-  z-index:2;
-  display:grid;
-  place-items:center;
-  width:56px;
-  height:56px;
-  font-size:28px;
-  background:rgba(255,255,255,.94);
-  border:1px solid rgba(255,255,255,.8);
-  border-radius:17px;
-  box-shadow:0 8px 25px rgba(0,0,0,.18);
-}
-
-#cards .card-body{
-  padding:23px;
-}
-
-#cards .card h3{
-  font-size:19px;
-  font-weight:900;
-  letter-spacing:-.4px;
-}
-
-#cards .card .btn{
-  border-radius:11px;
-  transition:transform .2s,filter .2s;
-}
-
-#cards .card .btn:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.08);
-}
-
-#cards .card-cover .photo-label{
-  position:absolute;
-  right:13px;
-  bottom:18px;
-  z-index:2;
-  background:rgba(255,255,255,.93);
-  color:#1e40af;
-  font-size:10px;
-  font-weight:900;
-  border-radius:30px;
-  padding:8px 11px;
-  max-width:55%;
-  text-align:center;
-}
-
-@media(max-width:600px){
-  #cards .card-cover{
-    height:170px!important;
-  }
-}
-
-@media(prefers-reduced-motion:reduce){
-  #cards .card,
-  #cards .card-cover::before{
-    transition:none!important;
-  }
-}
-</style>
-
-<script>
-/*
-  Fotografias individuais dos aplicativos.
-  As imagens são externas e precisam de internet.
-  Os links dos aplicativos não são modificados.
-*/
-
-(function(){
-
-const PHOTO_BASE =
-  "https://images.unsplash.com/";
-
-const PHOTO_OPTIONS =
-  "?auto=format&fit=crop&w=900&q=82";
-
-
-const PHOTOS = {
-  "MEU CURRÍCULO": "photo-1586281380349-632531db7ed4",
-  "MEU ORÇAMENTO": "photo-1454165804606-c3d57bc86b40",
-  "MEU PDF": "photo-1499951360447-b19be8fe80f5",
-  "MEU NEGÓCIO": "photo-1497366754035-f200968a6e72",
-  "MEU DOCUMENTO": "photo-1506784983877-45594efa4cbe",
-  "MEU CONTRATO": "photo-1450101499163-c8848c66ca85",
-  "MEU FINANCEIRO": "photo-1554224155-6726b3ff858f",
-  "MEU ESTOQUE": "photo-1586528116311-ad8dd3c8310d",
-  "MEU TRABALHO": "photo-1521737711867-e3b97375f902",
-  "MEU EMPREENDEDOR": "photo-1556761175-b413da4baf72",
-  "MEU PROTOCOLO": "photo-1484480974693-6ca0a78fb36b",
-  "MEU RH": "photo-1552664730-d307ca884978",
-  "MEU REQUERIMENTO": "photo-1434030216411-0b793f4b4173",
-  "MEU ATENDIMENTO": "photo-1551836022-d5d88e9218df",
-  "MEU PRAZO": "photo-1506784983877-45594efa4cbe",
-  "MEU IMÓVEL": "photo-1600585154340-be6161a56a0c",
-  "MEU CONCURSO": "photo-1434030216411-0b793f4b4173",
-  "MEU DIREITO": "photo-1589829545856-d10d557cf95f",
-  "MEU CONSUMIDOR": "photo-1556742049-0cfed4f6a45d",
-  "MEU MIGRANTE": "photo-1436491865332-7a61a109cc05",
-  "MEU EDITAL": "photo-1506784983877-45594efa4cbe",
-  "MEU IMPOSTO": "photo-1554224155-6726b3ff858f"
-};
-
-const FALLBACK = {
-  "Gestão":"photo-1497366754035-f200968a6e72",
-  "Documentos":"photo-1450101499163-c8848c66ca85",
-  "Carreira":"photo-1521737711867-e3b97375f902"
-};
-
-const cardsContainer =
-  document.getElementById("cards");
-
-if(!cardsContainer)return;
-
-function normalizeName(text){
- return String(text||"")
-  .normalize("NFD")
-  .replace(/[\u0300-\u036f]/g,"")
-  .toUpperCase()
-  .trim();
-}
-
-const photoLookup = new Map(
- Object.entries(PHOTOS).map(
-  ([name,id])=>[normalizeName(name),id]
- )
-);
-
-function updatePhotos(){
-
- const cards =
-  cardsContainer.querySelectorAll(".card");
-
- cards.forEach(card=>{
-
-  const title =
-   card.querySelector("h3")?.textContent||"";
-
-  const category =
-   card.dataset.category||"";
-
-  const cover =
-   card.querySelector(".card-cover");
-
-  if(!cover)return;
-
-  const id =
-   photoLookup.get(normalizeName(title))||
-   FALLBACK[category]||
-   "photo-1497366754035-f200968a6e72";
-
-  const url =
-   PHOTO_BASE+id+PHOTO_OPTIONS;
-
-  cover.style.setProperty(
-   "--app-photo",
-   'url("'+url+'")'
-  );
-
-  if(!cover.querySelector(".photo-label")){
-
-   const label=document.createElement("span");
-
-   label.className="photo-label";
-
-   const ready=Boolean(
-    card.querySelector('a[href]')
-   );
-
-   label.textContent=ready
-    ?"DISPONÍVEL"
-    :"EM PREPARAÇÃO";
-
-   cover.appendChild(label);
-  }
-
- });
-
-}
-
-let pending=false;
-
-const observer=new MutationObserver(()=>{
-
- if(pending)return;
-
- pending=true;
-
- requestAnimationFrame(()=>{
-  pending=false;
-  updatePhotos();
- });
-
-});
-
-observer.observe(cardsContainer,{
- childList:true
-});
-
-updatePhotos();
-
-})();
-</script>
-<!-- FIM DAS FOTOS PREMIUM -->
 </body>
 </html>
