@@ -81,6 +81,14 @@
       "ready": true
     },
     {
+      "slug": "meu-requerimento",
+      "name": "MEU REQUERIMENTO",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-rh",
       "name": "MEU RH",
       "category": "Gestão",
