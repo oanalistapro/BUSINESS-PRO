@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MEU ESTOQUE | BUSINESS PRO</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f7ff;color:#142849;font:15px Arial,sans-serif}
+header{background:white;padding:20px 5%;display:flex;justify-content:space-between}
+a{color:#2563eb;text-decoration:none}
+main{max-width:1200px;margin:auto;padding:25px 16px}
+.hero{background:linear-gradient(120deg,#173b86,#2563eb);color:white;padding:30px;border-radius:20px}
+.hero h1{margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:white;border:1px solid #dce5f3;padding:22px;border-radius:18px;margin-bottom:18px}
+.card strong{display:block;font-size:25px;margin-top:10px}
+label{display:block;font-weight:bold;font-size:13px;margin:13px 0 7px}
+input,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit}
+button{background:#2563eb;color:white;border:0;padding:12px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
+.danger{background:#fee2e2;color:#b91c1c}
+.secondary{background:#eaf1ff;color:#2563eb}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:12px;border-bottom:1px solid #e2e8f0}
+.scroll{overflow:auto}
+.alerta{color:#b45309;font-weight:bold}
+@media(max-width:800px){.grid,.two{grid-template-columns:1fr}}
+@media print{header,.hero,form,.actions,.no-print{display:none!important}body{background:white}}
+</style>
+</head>
+<body>
+<header><b>◆ BUSINESS PRO</b><a href="../">← Voltar</a></header>
+<main>
+<section class="hero"><h1>MEU ESTOQUE</h1><p>Cadastre produtos, registre entradas e saídas e acompanhe o estoque.</p></section>
+
+<div class="grid">
+<div class="card">Produtos cadastrados<strong id="total">0</strong></div>
+<div class="card">Produtos com estoque baixo<strong id="baixo">0</strong></div>
+<div class="card">Valor estimado do estoque<strong id="patrimonio">R$ 0,00</strong></div>
+</div>
+
+<div class="two">
+<section class="card">
+<h2>Cadastrar produto</h2>
+<form id="form">
+<label>Nome do produto</label><input id="nome" required>
+<div class="two">
+<div><label>Código / SKU</label><input id="sku" required></div>
+<div><label>Categoria</label><input id="categoria"></div>
+</div>
+<div class="two">
+<div><label>Quantidade inicial</label><input id="quantidade" type="number" min="0" step="1" required></div>
+<div><label>Estoque mínimo</label><input id="minimo" type="number" min="0" step="1" value="5"></div>
+</div>
+<div class="two">
+<div><label>Custo unitário (R$)</label><input id="custo" type="number" min="0" step=".01" value="0"></div>
+<div><label>Preço de venda (R$)</label><input id="preco" type="number" min="0" step=".01" value="0"></div>
+</div>
+<div class="actions"><button>Cadastrar produto</button></div>
+</form>
+</section>
+
+<section class="card">
+<h2>Movimentar estoque</h2>
+<form id="movimento">
+<label>Produto</label><select id="produto" required></select>
+<label>Operação</label><select id="operacao"><option>Entrada</option><option>Saída</option></select>
+<label>Quantidade</label><input id="qtdMov" type="number" min="1" step="1" required>
+<label>Motivo / referência</label><input id="motivo" placeholder="Compra, venda, ajuste...">
+<div class="actions"><button>Registrar movimentação</button></div>
+</form>
+<p id="mensagem" role="status"></p>
+</section>
+</div>
+
+<section class="card">
+<h2>Produtos</h2>
+<label>Pesquisar</label><input id="pesquisa" placeholder="Nome, código ou categoria">
+<div class="actions">
+<button onclick="exportar()">Exportar CSV</button>
+<button class="secondary" onclick="window.print()">Imprimir</button>
+</div>
+<div class="scroll"><table>
+<thead><tr><th>Produto</th><th>SKU</th><th>Categoria</th><th>Quantidade</th><th>Mínimo</th><th>Custo</th><th>Venda</th><th class="no-print">Ação</th></tr></thead>
+<tbody id="lista"></tbody>
+</table></div>
+</section>
+<section class="card">
+<h2>Histórico de movimentações</h2>
+<div class="scroll"><table>
+<thead><tr><th>Data</th><th>Produto</th><th>Operação</th><th>Quantidade</th><th>Motivo</th></tr></thead>
+<tbody id="historico"></tbody>
+</table></div>
+<p>Dados armazenados neste navegador. Exporte o CSV regularmente para manter uma cópia do cadastro.</p>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const chave="bp_estoque_v1";
+let dados={produtos:[],historico:[]};
+try{dados=JSON.parse(localStorage.getItem(chave))||dados}catch(e){}
+const moeda=n=>Number(n).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function salvar(){localStorage.setItem(chave,JSON.stringify(dados))}
+$("form").onsubmit=e=>{
+e.preventDefault();
+const sku=$("sku").value.trim();
+if(dados.produtos.some(x=>x.sku.toLowerCase()===sku.toLowerCase()))return alert("SKU já cadastrado.");
+dados.produtos.push({
+id:crypto.randomUUID(),
+nome:$("nome").value.trim(),sku,
+categoria:$("categoria").value.trim(),
+quantidade:Number($("quantidade").value),
+minimo:Number($("minimo").value),
+custo:Number($("custo").value),
+preco:Number($("preco").value)
+});
+salvar();$("form").reset();render();
+};
+$("movimento").onsubmit=e=>{
+e.preventDefault();
+const p=dados.produtos.find(x=>x.id===$("produto").value);
+if(!p)return;
+const q=Number($("qtdMov").value);
+const op=$("operacao").value;
+if(!Number.isInteger(q)||q<1)return alert("Quantidade inválida.");
+if(op==="Saída"&&q>p.quantidade)return alert("Estoque insuficiente.");
+p.quantidade+=op==="Entrada"?q:-q;
+dados.historico.unshift({
+data:new Date().toLocaleString("pt-BR"),
+nome:p.nome,operacao:op,quantidade:q,motivo:$("motivo").value
+});
+salvar();$("movimento").reset();render();
+$("mensagem").textContent="Movimentação registrada.";
+};
+function excluir(id){
+if(!confirm("Excluir este produto?"))return;
+dados.produtos=dados.produtos.filter(x=>x.id!==id);
+salvar();render();
+}
+function render(){
+$("total").textContent=dados.produtos.length;
+$("baixo").textContent=dados.produtos.filter(x=>x.quantidade<=x.minimo).length;
+$("patrimonio").textContent=moeda(dados.produtos.reduce((s,x)=>s+x.quantidade*x.custo,0));
+$("produto").innerHTML='<option value="">Selecione</option>'+dados.produtos.map(x=>`<option value="${esc(x.id)}">${esc(x.nome)} (${x.quantidade})</option>`).join("");
+const q=$("pesquisa").value.toLowerCase();
+const lista=dados.produtos.filter(x=>(x.nome+" "+x.sku+" "+x.categoria).toLowerCase().includes(q));
+$("lista").innerHTML=lista.map(x=>`<tr>
+<td>${esc(x.nome)}</td><td>${esc(x.sku)}</td><td>${esc(x.categoria)}</td>
+<td class="${x.quantidade<=x.minimo?"alerta":""}">${x.quantidade}</td>
+<td>${x.minimo}</td><td>${moeda(x.custo)}</td><td>${moeda(x.preco)}</td>
+<td class="no-print"><button class="danger" data-id="${esc(x.id)}">Excluir</button></td>
+</tr>`).join("")||'<tr><td colspan="8">Nenhum produto.</td></tr>';
+$("historico").innerHTML=dados.historico.slice(0,100).map(x=>`<tr>
+<td>${esc(x.data)}</td><td>${esc(x.nome)}</td><td>${esc(x.operacao)}</td>
+<td>${x.quantidade}</td><td>${esc(x.motivo)}</td></tr>`).join("");
+}
+$("lista").onclick=e=>{
+const b=e.target.closest("[data-id]");
+if(b)excluir(b.dataset.id);
+};
+$("pesquisa").oninput=render;
+function exportar(){
+const linhas=[["SKU","Produto","Categoria","Quantidade","Mínimo","Custo","Venda"],
+...dados.produtos.map(x=>[x.sku,x.nome,x.categoria,x.quantidade,x.minimo,x.custo,x.preco])];
+const csv="\uFEFF"+linhas.map(l=>l.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(";")).join("\r\n");
+const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+const a=document.createElement("a");a.href=url;a.download="estoque.csv";a.click();
+setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+render();
+</script>
+</body>
+</html>
