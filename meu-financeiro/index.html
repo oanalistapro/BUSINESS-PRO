@@ -4,166 +4,956 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<meta name="description" content="MEU FINANCEIRO BUSINESS PRO - Gestão financeira de receitas, despesas e contas.">
 <title>MEU FINANCEIRO | BUSINESS PRO</title>
 <style>
-:root{--azul:#2563eb;--fundo:#f3f7ff;--texto:#142849}
+:root{
+ --blue:#2563eb;--navy:#142e60;--ink:#142543;
+ --muted:#64748b;--bg:#f3f6fc;--line:#dce5f2;
+ --green:#059669;--red:#dc2626;--amber:#d97706
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--fundo);color:var(--texto);font:15px Arial,sans-serif}
-header{background:white;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #dce5f3}
-a{color:var(--azul);text-decoration:none}
-main{max-width:1200px;margin:auto;padding:24px 16px}
-.hero{background:linear-gradient(120deg,#173b86,#2563eb);color:white;padding:30px;border-radius:20px}
-.hero h1{margin:0 0 10px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
-.card{background:white;padding:22px;border-radius:17px;border:1px solid #dce5f3;box-shadow:0 8px 24px #1837680a}
-.card small{color:#64748b}.card strong{display:block;font-size:26px;margin-top:10px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-label{display:block;font-weight:bold;font-size:13px;margin:13px 0 7px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;background:#fbfdff}
-textarea{min-height:80px}
-button{background:var(--azul);color:white;border:0;padding:12px 17px;border-radius:10px;font-weight:bold;cursor:pointer}
-.secondary{background:#eaf1ff;color:var(--azul)}
-.danger{background:#fee2e2;color:#b91c1c}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
-table{width:100%;border-collapse:collapse}
-th,td{text-align:left;padding:12px;border-bottom:1px solid #e2e8f0}
-.scroll{overflow:auto}
-.positivo{color:#15803d}.negativo{color:#dc2626}
-@media(max-width:800px){.grid,.two{grid-template-columns:1fr}}
-@media print{header,.hero,form,.actions,.no-print{display:none!important}body{background:white}.card{box-shadow:none}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+a{text-decoration:none;color:inherit}
+.top{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;padding:16px 3%;background:white;
+ border-bottom:1px solid var(--line)
+}
+.brand{font-size:24px;font-weight:900}
+.brand span{color:var(--blue)}
+.btn{
+ border:0;border-radius:11px;padding:12px 16px;
+ background:var(--blue);color:white;font-weight:800;
+ display:inline-flex;align-items:center;justify-content:center;gap:7px
+}
+.btn.secondary{background:#eaf1ff;color:#1d4ed8}
+.btn.outline{background:white;color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:#fee2e2;color:#b91c1c}
+.btn.small{font-size:12px;padding:8px 11px}
+.btn:hover:not(:disabled){filter:brightness(.96)}
+main{max-width:1550px;margin:auto;padding:28px 18px}
+.hero{
+ background:linear-gradient(110deg,#17366f,#2563eb);
+ color:white;border-radius:25px;padding:39px;margin-bottom:25px
+}
+.hero h1{font-size:clamp(30px,4vw,44px);margin:0 0 14px}
+.hero p{margin:0;color:#e6efff;line-height:1.7}
+.nav{
+ display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;
+ margin-bottom:18px
+}
+.nav button{
+ border:1px solid var(--line);border-radius:12px;
+ padding:14px 18px;background:white;
+ color:#40516e;font-weight:900;white-space:nowrap
+}
+.nav button.active{background:var(--blue);color:white;border-color:var(--blue)}
+.view{display:none}
+.view.active{display:block}
+.panel{
+ background:white;border:1px solid var(--line);
+ border-radius:20px;padding:25px;margin-bottom:18px;
+ box-shadow:0 8px 25px #17365a09
+}
+.panel h2{margin:0 0 18px;font-size:23px}
+.panel-head{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;flex-wrap:wrap;margin-bottom:18px
+}
+.panel-head h2{margin:0}
+.stats{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:16px;margin-bottom:22px
+}
+.stat{
+ background:white;border:1px solid var(--line);
+ border-radius:19px;padding:24px;
+ box-shadow:0 8px 25px #17365a08
+}
+.stat small{color:var(--muted);font-size:13px}
+.stat strong{
+ display:block;font-size:clamp(22px,2.5vw,32px);
+ margin-top:12px;overflow-wrap:anywhere
+}
+.green{color:var(--green)}
+.red{color:var(--red)}
+.amber{color:var(--amber)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+label{font-size:12px;font-weight:800}
+input,select,textarea{
+ border:1px solid #cbd6e6;border-radius:11px;
+ padding:12px;background:#f9fbff;color:var(--ink);
+ outline:none;width:100%
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);background:white}
+textarea{min-height:90px;resize:vertical}
+.actions{display:flex;flex-wrap:wrap;gap:9px}
+.hint{font-size:12px;color:var(--muted);line-height:1.7}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:760px}
+th,td{padding:14px 12px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+th{background:#f5f8fd;font-size:12px;color:#425572}
+td{vertical-align:middle}
+.tag{
+ display:inline-block;padding:6px 10px;border-radius:20px;
+ background:#eaf1ff;color:#1d4ed8;
+ font-size:11px;font-weight:900;white-space:nowrap
+}
+.tag.paid{background:#dcfce7;color:#166534}
+.tag.pending{background:#fef3c7;color:#92400e}
+.tag.overdue{background:#fee2e2;color:#991b1b}
+.empty{text-align:center;padding:35px;color:var(--muted)}
+.search{max-width:340px}
+.chart{
+ display:flex;align-items:end;gap:10px;
+ height:240px;padding:25px 8px 5px;
+ border-bottom:1px solid var(--line)
+}
+.chart-col{flex:1;display:flex;align-items:center;justify-content:end;flex-direction:column;gap:6px;height:100%;min-width:0}
+.bar-pair{display:flex;align-items:end;gap:4px;height:185px;width:100%;justify-content:center}
+.bar{width:35%;min-height:2px;border-radius:5px 5px 0 0}
+.bar.income{background:#10b981}
+.bar.expense{background:#ef4444}
+.chart-label{font-size:10px;color:var(--muted);white-space:nowrap}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:17px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+.category-row{margin:14px 0}
+.category-top{display:flex;justify-content:space-between;gap:10px;font-size:12px;margin-bottom:7px}
+.progress{height:9px;border-radius:20px;background:#eaf0f8;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--blue)}
+.notice{font-size:12px;color:var(--muted);line-height:1.8}
+.toast{
+ position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+ background:#172b4e;color:white;padding:13px 18px;
+ border-radius:12px;display:none;z-index:50;max-width:90vw
+}
+#printArea{display:none}
+@media(max-width:1100px){
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:750px){
+ .grid2{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+ .top{padding:13px}
+ .brand{font-size:19px}
+ .top .btn{font-size:11px;padding:10px}
+ main{padding:14px 10px}
+ .hero{padding:28px 20px;border-radius:17px}
+ .panel{padding:17px;border-radius:16px}
+ .stats,.form-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+ .search{max-width:none}
+ .stat{padding:19px}
+ .stat strong{font-size:27px}
+}
+@page{size:A4;margin:15mm}
+@media print{
+ body>*:not(#printArea){display:none!important}
+ #printArea{display:block!important;color:#111;font:11pt Arial}
+ #printArea table{min-width:0;width:100%;border-collapse:collapse}
+ #printArea th,#printArea td{border:1px solid #999;padding:7px;font-size:9pt}
+ #printArea h1{font-size:20pt}
+}
 </style>
 </head>
 <body>
-<header><b>◆ BUSINESS PRO</b><a href="../">← Voltar</a></header>
+
+<header class="top">
+ <div class="brand">💰 MEU <span>FINANCEIRO</span></div>
+ <a class="btn secondary" href="../">← Business Pro</a>
+</header>
+
 <main>
 <section class="hero">
-<h1>MEU FINANCEIRO</h1>
-<p>Controle receitas, despesas, contas e resultados do seu negócio.</p>
+ <h1>MEU FINANCEIRO</h1>
+ <p>Controle receitas, despesas, contas a pagar e receber, acompanhe resultados e organize as finanças do seu negócio em um só lugar.</p>
 </section>
 
-<div class="grid">
-<div class="card"><small>Receitas</small><strong id="receitas">R$ 0,00</strong></div>
-<div class="card"><small>Despesas</small><strong id="despesas">R$ 0,00</strong></div>
-<div class="card"><small>Saldo realizado</small><strong id="saldo">R$ 0,00</strong></div>
-</div>
+<nav class="nav" id="navigation">
+ <button class="active" data-view="painel">📊 Painel</button>
+ <button data-view="lancamentos">💳 Lançamentos</button>
+ <button data-view="contas">📅 Contas</button>
+ <button data-view="relatorios">📈 Relatórios</button>
+ <button data-view="config">⚙️ Backup</button>
+</nav>
 
-<div class="two">
-<section class="card">
-<h2>Novo lançamento</h2>
-<form id="form">
-<label>Descrição</label>
-<input id="descricao" required placeholder="Ex.: Pagamento de cliente">
-<div class="two">
-<div><label>Tipo</label><select id="tipo"><option>Receita</option><option>Despesa</option></select></div>
-<div><label>Valor (R$)</label><input id="valor" type="number" min=".01" step=".01" required></div>
-</div>
-<div class="two">
-<div><label>Categoria</label><input id="categoria" placeholder="Ex.: Vendas"></div>
-<div><label>Data</label><input id="data" type="date" required></div>
-</div>
-<label>Situação</label>
-<select id="situacao"><option>Pago</option><option>Pendente</option></select>
-<label>Observações</label>
-<textarea id="observacoes"></textarea>
-<div class="actions"><button type="submit">Salvar lançamento</button></div>
-</form>
+<section class="view active" id="view-painel">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>Visão geral</h2>
+   <div class="actions">
+    <input type="month" id="dashboardMonth" aria-label="Mês do painel">
+    <button class="btn" onclick="newEntry()">+ Lançamento</button>
+   </div>
+  </div>
+  <p class="hint">Indicadores referentes ao mês selecionado. Saldo realizado considera somente lançamentos pagos ou recebidos.</p>
+ </div>
+
+ <div class="stats">
+  <div class="stat"><small>Receitas recebidas</small><strong class="green" id="statIncome">R$ 0,00</strong></div>
+  <div class="stat"><small>Despesas pagas</small><strong class="red" id="statExpense">R$ 0,00</strong></div>
+  <div class="stat"><small>Saldo realizado</small><strong id="statBalance">R$ 0,00</strong></div>
+  <div class="stat"><small>Valores pendentes</small><strong class="amber" id="statPending">R$ 0,00</strong></div>
+ </div>
+
+ <div class="grid2">
+  <div class="panel">
+   <h2>Receitas e despesas — últimos 6 meses</h2>
+   <div class="chart" id="chart"></div>
+   <div class="legend">
+    <span><i class="dot" style="background:#10b981"></i>Receitas</span>
+    <span><i class="dot" style="background:#ef4444"></i>Despesas</span>
+   </div>
+  </div>
+  <div class="panel">
+   <h2>Despesas por categoria</h2>
+   <div id="categoryChart"></div>
+  </div>
+ </div>
+
+ <div class="panel">
+  <div class="panel-head">
+   <h2>Últimos lançamentos</h2>
+   <button class="btn secondary" onclick="showView('lancamentos')">Ver todos</button>
+  </div>
+  <div class="table-wrap">
+   <table>
+    <thead><tr><th>Data</th><th>Descrição</th><th>Tipo</th><th>Valor</th><th>Situação</th></tr></thead>
+    <tbody id="recentList"></tbody>
+   </table>
+  </div>
+ </div>
 </section>
 
-<section class="card">
-<h2>Relatório financeiro</h2>
-<label>Filtrar por mês</label><input id="mes" type="month">
-<label>Filtrar por tipo</label>
-<select id="filtro"><option value="">Todos</option><option>Receita</option><option>Despesa</option></select>
-<div class="actions">
-<button onclick="exportar()">Exportar CSV</button>
-<button class="secondary" onclick="window.print()">Imprimir relatório</button>
-<button class="danger" onclick="apagarTudo()">Apagar registros</button>
-</div>
-<p>Os lançamentos ficam salvos neste navegador. Exporte o CSV para guardar uma cópia.</p>
-<p id="resumo"></p>
-</section>
-</div>
+<section class="view" id="view-lancamentos">
+ <div class="grid2">
+  <div class="panel">
+   <h2 id="formTitle">Novo lançamento</h2>
+   <form id="entryForm">
+    <div class="form-grid">
+     <div class="field full">
+      <label for="description">Descrição *</label>
+      <input id="description" required placeholder="Ex.: Pagamento de cliente">
+     </div>
+     <div class="field">
+      <label for="type">Tipo</label>
+      <select id="type">
+       <option value="Receita">Receita</option>
+       <option value="Despesa">Despesa</option>
+      </select>
+     </div>
+     <div class="field">
+      <label for="amount">Valor (R$) *</label>
+      <input id="amount" type="number" min="0.01" step="0.01" required>
+     </div>
+     <div class="field">
+      <label for="category">Categoria</label>
+      <input id="category" list="categories" placeholder="Ex.: Vendas">
+      <datalist id="categories">
+       <option value="Vendas"><option value="Serviços">
+       <option value="Salário"><option value="Aluguel">
+       <option value="Transporte"><option value="Alimentação">
+       <option value="Impostos"><option value="Marketing">
+       <option value="Equipamentos"><option value="Outros">
+      </datalist>
+     </div>
+     <div class="field">
+      <label for="date">Data de vencimento / referência *</label>
+      <input id="date" type="date" required>
+     </div>
+     <div class="field">
+      <label for="status">Situação</label>
+      <select id="status">
+       <option value="Pago">Pago / Recebido</option>
+       <option value="Pendente">Pendente</option>
+      </select>
+     </div>
+     <div class="field">
+      <label for="paymentMethod">Forma de pagamento</label>
+      <select id="paymentMethod">
+       <option>Pix</option><option>Dinheiro</option>
+       <option>Cartão</option><option>Transferência</option>
+       <option>Boleto</option><option>Outro</option>
+      </select>
+     </div>
+     <div class="field full">
+      <label for="person">Cliente / fornecedor</label>
+      <input id="person" placeholder="Opcional">
+     </div>
+     <div class="field full">
+      <label for="notes">Observações</label>
+      <textarea id="notes"></textarea>
+     </div>
+    </div>
+    <div class="actions" style="margin-top:18px">
+     <button class="btn" type="submit">💾 Salvar lançamento</button>
+     <button class="btn secondary" type="button" onclick="resetForm()">Limpar</button>
+    </div>
+   </form>
+  </div>
 
-<section class="card">
-<h2>Movimentações</h2>
-<div class="scroll"><table>
-<thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Tipo</th><th>Situação</th><th>Valor</th><th class="no-print">Ação</th></tr></thead>
-<tbody id="lista"></tbody>
-</table></div>
+  <div class="panel">
+   <h2>Consulta rápida</h2>
+   <div class="form-grid">
+    <div class="field full">
+     <label for="search">Pesquisar</label>
+     <input id="search" placeholder="Descrição, categoria ou pessoa...">
+    </div>
+    <div class="field">
+     <label for="filterMonth">Mês</label>
+     <input id="filterMonth" type="month">
+    </div>
+    <div class="field">
+     <label for="filterType">Tipo</label>
+     <select id="filterType">
+      <option value="">Todos</option>
+      <option>Receita</option><option>Despesa</option>
+     </select>
+    </div>
+    <div class="field">
+     <label for="filterStatus">Situação</label>
+     <select id="filterStatus">
+      <option value="">Todas</option>
+      <option value="Pago">Pago / Recebido</option>
+      <option value="Pendente">Pendente</option>
+     </select>
+    </div>
+    <div class="field">
+     <label for="sort">Ordenar</label>
+     <select id="sort">
+      <option value="new">Mais recentes</option>
+      <option value="old">Mais antigos</option>
+      <option value="amount">Maior valor</option>
+     </select>
+    </div>
+   </div>
+   <div class="actions" style="margin-top:18px">
+    <button class="btn secondary" onclick="exportCSV()">⬇ Exportar CSV</button>
+    <button class="btn outline" onclick="printReport()">🖨️ Imprimir</button>
+    <button class="btn outline" onclick="clearFilters()">Limpar filtros</button>
+   </div>
+   <p class="hint" id="filterSummary"></p>
+  </div>
+ </div>
+
+ <div class="panel">
+  <h2>Todos os lançamentos</h2>
+  <div class="table-wrap">
+   <table>
+    <thead>
+     <tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Tipo</th><th>Valor</th><th>Situação</th><th>Ações</th></tr>
+    </thead>
+    <tbody id="entryList"></tbody>
+   </table>
+  </div>
+ </div>
 </section>
+
+<section class="view" id="view-contas">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>📅 Contas a pagar e receber</h2>
+   <button class="btn" onclick="newEntry()">+ Nova conta</button>
+  </div>
+  <div class="stats">
+   <div class="stat"><small>A receber</small><strong class="green" id="toReceive">R$ 0,00</strong></div>
+   <div class="stat"><small>A pagar</small><strong class="red" id="toPay">R$ 0,00</strong></div>
+   <div class="stat"><small>Vencidas</small><strong class="amber" id="overdueCount">0</strong></div>
+   <div class="stat"><small>Pendentes</small><strong id="pendingCount">0</strong></div>
+  </div>
+  <div class="table-wrap">
+   <table>
+    <thead>
+     <tr><th>Vencimento</th><th>Descrição</th><th>Tipo</th><th>Valor</th><th>Status</th><th>Ações</th></tr>
+    </thead>
+    <tbody id="accountsList"></tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<section class="view" id="view-relatorios">
+ <div class="panel">
+  <div class="panel-head">
+   <h2>📈 Relatório financeiro</h2>
+   <div class="actions">
+    <button class="btn" onclick="exportCSV()">⬇ Exportar CSV</button>
+    <button class="btn secondary" onclick="printReport()">🖨️ Imprimir / PDF</button>
+   </div>
+  </div>
+  <p class="hint">O relatório utiliza os mesmos filtros da aba Lançamentos.</p>
+  <div class="stats">
+   <div class="stat"><small>Receitas realizadas</small><strong class="green" id="reportIncome">R$ 0,00</strong></div>
+   <div class="stat"><small>Despesas realizadas</small><strong class="red" id="reportExpense">R$ 0,00</strong></div>
+   <div class="stat"><small>Resultado realizado</small><strong id="reportBalance">R$ 0,00</strong></div>
+   <div class="stat"><small>Quantidade de registros</small><strong id="reportCount">0</strong></div>
+  </div>
+  <div class="table-wrap">
+   <table>
+    <thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Tipo</th><th>Valor</th><th>Situação</th></tr></thead>
+    <tbody id="reportList"></tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<section class="view" id="view-config">
+ <div class="panel">
+  <h2>⚙️ Backup e segurança</h2>
+  <p class="hint">Seus dados ficam armazenados neste navegador. Faça backups para evitar perdas e transferir seus registros entre dispositivos.</p>
+  <div class="actions">
+   <button class="btn" onclick="exportBackup()">⬇ Backup JSON</button>
+   <button class="btn secondary" onclick="document.getElementById('backupFile').click()">⬆ Importar backup</button>
+   <button class="btn danger" onclick="clearAll()">🗑️ Apagar registros</button>
+  </div>
+  <input type="file" id="backupFile" accept=".json,application/json" hidden>
+ </div>
+</section>
+
+<p class="notice">Os relatórios são gerenciais e não substituem contabilidade profissional, extratos bancários ou obrigações fiscais. Não existe integração bancária ou sincronização automática entre dispositivos nesta versão.</p>
 </main>
+
+<div id="printArea"></div>
+<div class="toast" id="toast" role="status"></div>
+
 <script>
-const chave="bp_financeiro_v1";
-let registros=[];
-try{registros=JSON.parse(localStorage.getItem(chave)||"[]")}catch(e){}
+"use strict";
+
 const $=id=>document.getElementById(id);
-const moeda=n=>Number(n).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-const seguro=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-function salvar(){localStorage.setItem(chave,JSON.stringify(registros))}
-$("data").value=new Date().toLocaleDateString("en-CA");
-$("form").onsubmit=e=>{
-e.preventDefault();
-registros.push({
-id:crypto.randomUUID(),
-descricao:$("descricao").value.trim(),
-tipo:$("tipo").value,
-valor:Number($("valor").value),
-categoria:$("categoria").value.trim(),
-data:$("data").value,
-situacao:$("situacao").value,
-observacoes:$("observacoes").value
+const KEY="businesspro_meu_financeiro_v3";
+
+function uid(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
+}
+
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+function money(v){
+ return Number(v||0).toLocaleString("pt-BR",{
+  style:"currency",currency:"BRL"
+ });
+}
+
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+
+  "-"+String(d.getDate()).padStart(2,"0");
+}
+
+function dateBR(v){
+ if(!v)return "—";
+ const [y,m,d]=v.split("-");
+ return `${d}/${m}/${y}`;
+}
+
+function notify(msg){
+ const el=$("toast");
+ el.textContent=msg;el.style.display="block";
+ clearTimeout(notify.timer);
+ notify.timer=setTimeout(()=>el.style.display="none",3000);
+}
+
+function download(name,content,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;a.download=name;
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+
+let db={version:3,entries:[]};
+let editingId=null;
+
+try{
+ const raw=JSON.parse(localStorage.getItem(KEY)||"null");
+ if(raw&&raw.version===3&&Array.isArray(raw.entries))
+  db=raw;
+}catch(e){}
+
+function persist(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(db));
+  return true;
+ }catch(e){
+  notify("Erro ao salvar. Armazenamento indisponível ou cheio.");
+  return false;
+ }
+}
+
+function showView(view){
+ document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
+ $("view-"+view).classList.add("active");
+ document.querySelectorAll("[data-view]").forEach(x=>
+  x.classList.toggle("active",x.dataset.view===view)
+ );
+ renderAll();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+$("navigation").onclick=e=>{
+ const btn=e.target.closest("[data-view]");
+ if(btn)showView(btn.dataset.view);
+};
+
+function resetForm(){
+ editingId=null;
+ $("entryForm").reset();
+ $("date").value=today();
+ $("formTitle").textContent="Novo lançamento";
+}
+
+function newEntry(){
+ resetForm();
+ showView("lancamentos");
+ $("description").focus();
+}
+
+$("entryForm").onsubmit=e=>{
+ e.preventDefault();
+
+ const description=$("description").value.trim();
+ const amount=Number($("amount").value);
+
+ if(!description||!Number.isFinite(amount)||amount<=0){
+  notify("Informe uma descrição e um valor válido.");
+  return;
+ }
+
+ const data={
+  description,
+  type:$("type").value,
+  amount:Math.round(amount*100)/100,
+  category:$("category").value.trim()||"Sem categoria",
+  date:$("date").value,
+  status:$("status").value,
+  paymentMethod:$("paymentMethod").value,
+  person:$("person").value.trim(),
+  notes:$("notes").value.trim()
+ };
+
+ const now=new Date().toISOString();
+ const previous=JSON.stringify(db.entries);
+
+ if(editingId){
+  const index=db.entries.findIndex(x=>x.id===editingId);
+  if(index>=0)
+   db.entries[index]={...db.entries[index],...data,updatedAt:now};
+  else editingId=null;
+ }
+
+ if(!editingId){
+  db.entries.push({
+   id:uid(),...data,createdAt:now,updatedAt:now
+  });
+ }
+
+ if(!persist()){
+  db.entries=JSON.parse(previous);
+  return;
+ }
+
+ resetForm();
+ renderAll();
+ notify("Lançamento salvo.");
+};
+
+function editEntry(id){
+ const x=db.entries.find(e=>e.id===id);
+ if(!x)return;
+
+ editingId=x.id;
+ ["description","type","amount","category","date","status",
+  "paymentMethod","person","notes"].forEach(key=>{
+  $(key).value=x[key]??"";
+ });
+
+ $("formTitle").textContent="Editar lançamento";
+ showView("lancamentos");
+ $("description").focus();
+}
+
+function deleteEntry(id){
+ if(!confirm("Excluir este lançamento?"))return;
+
+ const previous=db.entries;
+ db.entries=db.entries.filter(x=>x.id!==id);
+
+ if(!persist()){
+  db.entries=previous;
+  return;
+ }
+
+ if(editingId===id)resetForm();
+ renderAll();
+ notify("Lançamento excluído.");
+}
+
+function markPaid(id){
+ const x=db.entries.find(e=>e.id===id);
+ if(!x)return;
+
+ const old=x.status;
+ x.status="Pago";
+
+ if(!persist()){
+  x.status=old;
+  return;
+ }
+
+ renderAll();
+ notify("Conta marcada como paga / recebida.");
+}
+
+function filteredEntries(){
+ const search=$("search").value.toLowerCase().trim();
+ const month=$("filterMonth").value;
+ const type=$("filterType").value;
+ const status=$("filterStatus").value;
+
+ const result=db.entries.filter(x=>
+  (!month||x.date.startsWith(month))&&
+  (!type||x.type===type)&&
+  (!status||x.status===status)&&
+  (x.description+" "+x.category+" "+x.person+" "+x.notes)
+   .toLowerCase().includes(search)
+ );
+
+ const sort=$("sort").value;
+ result.sort((a,b)=>{
+  if(sort==="amount")return b.amount-a.amount;
+  if(sort==="old")return a.date.localeCompare(b.date);
+  return b.date.localeCompare(a.date);
+ });
+
+ return result;
+}
+
+function statusTag(x){
+ if(x.status==="Pago")
+  return '<span class="tag paid">Pago / Recebido</span>';
+
+ if(x.date<today())
+  return '<span class="tag overdue">Vencido</span>';
+
+ return '<span class="tag pending">Pendente</span>';
+}
+
+function renderEntries(){
+ const list=filteredEntries();
+
+ $("entryList").innerHTML=list.length?list.map(x=>`
+  <tr>
+   <td>${dateBR(x.date)}</td>
+   <td><strong>${esc(x.description)}</strong><br><small>${esc(x.person)}</small></td>
+   <td>${esc(x.category)}</td>
+   <td>${esc(x.type)}</td>
+   <td class="${x.type==="Receita"?"green":"red"}"><strong>${money(x.amount)}</strong></td>
+   <td>${statusTag(x)}</td>
+   <td>
+    <div class="actions">
+     <button class="btn small secondary" data-edit="${esc(x.id)}">Editar</button>
+     <button class="btn small danger" data-delete="${esc(x.id)}">Excluir</button>
+    </div>
+   </td>
+  </tr>
+ `).join(""):'<tr><td colspan="7" class="empty">Nenhum lançamento encontrado.</td></tr>';
+
+ $("filterSummary").textContent=
+  list.length+" lançamento(s) encontrado(s).";
+}
+
+$("entryList").onclick=e=>{
+ const edit=e.target.closest("[data-edit]");
+ if(edit)return editEntry(edit.dataset.edit);
+ const del=e.target.closest("[data-delete]");
+ if(del)return deleteEntry(del.dataset.delete);
+};
+
+function renderDashboard(){
+ const month=$("dashboardMonth").value;
+ const list=db.entries.filter(x=>x.date.startsWith(month));
+ const paid=list.filter(x=>x.status==="Pago");
+ const pending=list.filter(x=>x.status==="Pendente");
+
+ const income=paid.filter(x=>x.type==="Receita").reduce((s,x)=>s+x.amount,0);
+ const expense=paid.filter(x=>x.type==="Despesa").reduce((s,x)=>s+x.amount,0);
+ const pendingValue=pending.reduce((s,x)=>s+x.amount,0);
+ const balance=income-expense;
+
+ $("statIncome").textContent=money(income);
+ $("statExpense").textContent=money(expense);
+ $("statBalance").textContent=money(balance);
+ $("statBalance").className=balance>=0?"green":"red";
+ $("statPending").textContent=money(pendingValue);
+
+ const recent=[...db.entries].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6);
+
+ $("recentList").innerHTML=recent.length?recent.map(x=>`
+  <tr>
+   <td>${dateBR(x.date)}</td>
+   <td>${esc(x.description)}</td>
+   <td>${esc(x.type)}</td>
+   <td>${money(x.amount)}</td>
+   <td>${statusTag(x)}</td>
+  </tr>
+ `).join(""):'<tr><td colspan="5" class="empty">Nenhum lançamento cadastrado.</td></tr>';
+
+ renderChart();
+ renderCategoryChart(paid.filter(x=>x.type==="Despesa"));
+}
+
+function renderChart(){
+ const months=[];
+ const base=new Date(today()+"T12:00:00");
+
+ for(let i=5;i>=0;i--){
+  const d=new Date(base.getFullYear(),base.getMonth()-i,1);
+  const key=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");
+  const label=d.toLocaleDateString("pt-BR",{month:"short"});
+
+  const list=db.entries.filter(x=>x.date.startsWith(key)&&x.status==="Pago");
+
+  months.push({
+   label,
+   income:list.filter(x=>x.type==="Receita").reduce((s,x)=>s+x.amount,0),
+   expense:list.filter(x=>x.type==="Despesa").reduce((s,x)=>s+x.amount,0)
+  });
+ }
+
+ const max=Math.max(1,...months.flatMap(x=>[x.income,x.expense]));
+
+ $("chart").innerHTML=months.map(x=>`
+  <div class="chart-col">
+   <div class="bar-pair">
+    <div class="bar income" title="Receitas: ${money(x.income)}" style="height:${Math.max(1,x.income/max*100)}%"></div>
+    <div class="bar expense" title="Despesas: ${money(x.expense)}" style="height:${Math.max(1,x.expense/max*100)}%"></div>
+   </div>
+   <span class="chart-label">${esc(x.label)}</span>
+  </div>
+ `).join("");
+}
+
+function renderCategoryChart(expenses){
+ const sums={};
+ expenses.forEach(x=>{
+  sums[x.category]=(sums[x.category]||0)+x.amount;
+ });
+
+ const items=Object.entries(sums).sort((a,b)=>b[1]-a[1]);
+ const total=items.reduce((s,x)=>s+x[1],0);
+
+ $("categoryChart").innerHTML=items.length?items.map(([name,value])=>`
+  <div class="category-row">
+   <div class="category-top">
+    <strong>${esc(name)}</strong><span>${money(value)}</span>
+   </div>
+   <div class="progress"><span style="width:${total?value/total*100:0}%"></span></div>
+  </div>
+ `).join(""):'<p class="empty">Nenhuma despesa realizada no mês.</p>';
+}
+
+function renderAccounts(){
+ const pending=db.entries.filter(x=>x.status==="Pendente")
+  .sort((a,b)=>a.date.localeCompare(b.date));
+
+ const receive=pending.filter(x=>x.type==="Receita").reduce((s,x)=>s+x.amount,0);
+ const pay=pending.filter(x=>x.type==="Despesa").reduce((s,x)=>s+x.amount,0);
+ const overdue=pending.filter(x=>x.date<today());
+
+ $("toReceive").textContent=money(receive);
+ $("toPay").textContent=money(pay);
+ $("overdueCount").textContent=overdue.length;
+ $("pendingCount").textContent=pending.length;
+
+ $("accountsList").innerHTML=pending.length?pending.map(x=>`
+  <tr>
+   <td>${dateBR(x.date)}</td>
+   <td>${esc(x.description)}</td>
+   <td>${esc(x.type)}</td>
+   <td>${money(x.amount)}</td>
+   <td>${statusTag(x)}</td>
+   <td>
+    <div class="actions">
+     <button class="btn small" data-paid="${esc(x.id)}">Marcar pago</button>
+     <button class="btn small secondary" data-edit="${esc(x.id)}">Editar</button>
+    </div>
+   </td>
+  </tr>
+ `).join(""):'<tr><td colspan="6" class="empty">Nenhuma conta pendente.</td></tr>';
+}
+
+$("accountsList").onclick=e=>{
+ const paid=e.target.closest("[data-paid]");
+ if(paid)return markPaid(paid.dataset.paid);
+ const edit=e.target.closest("[data-edit]");
+ if(edit)return editEntry(edit.dataset.edit);
+};
+
+function renderReports(){
+ const list=filteredEntries();
+ const paid=list.filter(x=>x.status==="Pago");
+ const income=paid.filter(x=>x.type==="Receita").reduce((s,x)=>s+x.amount,0);
+ const expense=paid.filter(x=>x.type==="Despesa").reduce((s,x)=>s+x.amount,0);
+
+ $("reportIncome").textContent=money(income);
+ $("reportExpense").textContent=money(expense);
+ $("reportBalance").textContent=money(income-expense);
+ $("reportBalance").className=income>=expense?"green":"red";
+ $("reportCount").textContent=list.length;
+
+ $("reportList").innerHTML=list.length?list.map(x=>`
+  <tr>
+   <td>${dateBR(x.date)}</td>
+   <td>${esc(x.description)}</td>
+   <td>${esc(x.category)}</td>
+   <td>${esc(x.type)}</td>
+   <td>${money(x.amount)}</td>
+   <td>${esc(x.status)}</td>
+  </tr>
+ `).join(""):'<tr><td colspan="6" class="empty">Nenhum registro encontrado.</td></tr>';
+}
+
+function clearFilters(){
+ $("search").value="";
+ $("filterMonth").value="";
+ $("filterType").value="";
+ $("filterStatus").value="";
+ $("sort").value="new";
+ renderAll();
+}
+
+["search","filterMonth","filterType","filterStatus","sort"].forEach(id=>{
+ $(id).addEventListener("input",renderAll);
+ $(id).addEventListener("change",renderAll);
 });
-salvar();$("form").reset();
-$("data").value=new Date().toLocaleDateString("en-CA");
-render();
+$("dashboardMonth").onchange=renderDashboard;
+
+function exportCSV(){
+ const rows=[[
+  "Data","Descrição","Tipo","Valor","Categoria",
+  "Situação","Pagamento","Pessoa","Observações"
+ ]];
+
+ filteredEntries().forEach(x=>rows.push([
+  dateBR(x.date),x.description,x.type,
+  x.amount.toFixed(2).replace(".",","),
+  x.category,x.status,x.paymentMethod,x.person,x.notes
+ ]));
+
+ const csv="\uFEFF"+rows.map(row=>row.map(v=>
+  '"'+String(v??"").replace(/"/g,'""')+'"'
+ ).join(";")).join("\r\n");
+
+ download("relatorio-financeiro.csv",csv,"text/csv;charset=utf-8");
+ notify("CSV exportado.");
+}
+
+function printReport(){
+ const list=filteredEntries();
+ const paid=list.filter(x=>x.status==="Pago");
+ const income=paid.filter(x=>x.type==="Receita").reduce((s,x)=>s+x.amount,0);
+ const expense=paid.filter(x=>x.type==="Despesa").reduce((s,x)=>s+x.amount,0);
+
+ $("printArea").innerHTML=`
+  <h1>RELATÓRIO FINANCEIRO</h1>
+  <p>Emitido em ${new Date().toLocaleString("pt-BR")}</p>
+  <p><strong>Receitas realizadas:</strong> ${money(income)}<br>
+  <strong>Despesas realizadas:</strong> ${money(expense)}<br>
+  <strong>Saldo realizado:</strong> ${money(income-expense)}</p>
+  <table>
+   <thead><tr><th>Data</th><th>Descrição</th><th>Tipo</th><th>Valor</th><th>Situação</th></tr></thead>
+   <tbody>${list.map(x=>`
+    <tr>
+     <td>${dateBR(x.date)}</td>
+     <td>${esc(x.description)}</td>
+     <td>${esc(x.type)}</td>
+     <td>${money(x.amount)}</td>
+     <td>${esc(x.status)}</td>
+    </tr>
+   `).join("")}</tbody>
+  </table>
+ `;
+ window.print();
+}
+
+function exportBackup(){
+ download("backup-meu-financeiro.json",
+  JSON.stringify(db,null,2),"application/json");
+ notify("Backup exportado.");
+}
+
+$("backupFile").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+
+ try{
+  if(file.size>15*1024*1024)throw Error("Arquivo muito grande.");
+  const raw=JSON.parse(await file.text());
+
+  if(raw.version!==3||!Array.isArray(raw.entries))
+   throw Error("Backup incompatível.");
+
+  if(!confirm("Substituir todos os registros atuais pelo backup?"))return;
+
+  const previous=db;
+  db=raw;
+
+  if(!persist()){
+   db=previous;
+   return;
+  }
+
+  resetForm();renderAll();
+  notify("Backup importado.");
+ }catch(err){
+  notify("Erro: "+err.message);
+ }finally{
+  e.target.value="";
+ }
 };
-function remover(id){
-if(!confirm("Excluir este lançamento?"))return;
-registros=registros.filter(x=>x.id!==id);salvar();render();
+
+function clearAll(){
+ if(!confirm("Apagar todos os registros financeiros?"))return;
+ if(!confirm("Confirme novamente. Essa ação é irreversível sem backup."))return;
+
+ const previous=db.entries;
+ db.entries=[];
+
+ if(!persist()){
+  db.entries=previous;
+  return;
+ }
+
+ resetForm();renderAll();
+ notify("Registros apagados.");
 }
-function filtrados(){
-return registros.filter(x=>
-(!$("mes").value||x.data.startsWith($("mes").value))&&
-(!$("filtro").value||x.tipo===$("filtro").value));
+
+function renderAll(){
+ renderDashboard();
+ renderEntries();
+ renderAccounts();
+ renderReports();
 }
-function render(){
-const todos=filtrados();
-const pagos=todos.filter(x=>x.situacao==="Pago");
-const r=pagos.filter(x=>x.tipo==="Receita").reduce((s,x)=>s+x.valor,0);
-const d=pagos.filter(x=>x.tipo==="Despesa").reduce((s,x)=>s+x.valor,0);
-$("receitas").textContent=moeda(r);
-$("despesas").textContent=moeda(d);
-$("saldo").textContent=moeda(r-d);
-$("saldo").className=r-d>=0?"positivo":"negativo";
-$("resumo").textContent=`${todos.length} lançamento(s), incluindo ${todos.filter(x=>x.situacao==="Pendente").length} pendente(s).`;
-$("lista").innerHTML=todos.slice().sort((a,b)=>b.data.localeCompare(a.data)).map(x=>`
-<tr>
-<td>${seguro(x.data)}</td><td>${seguro(x.descricao)}</td>
-<td>${seguro(x.categoria)}</td><td>${seguro(x.tipo)}</td>
-<td>${seguro(x.situacao)}</td>
-<td class="${x.tipo==="Receita"?"positivo":"negativo"}">${moeda(x.valor)}</td>
-<td class="no-print"><button class="danger" data-id="${seguro(x.id)}">Excluir</button></td>
-</tr>`).join("")||'<tr><td colspan="7">Nenhum lançamento encontrado.</td></tr>';
-}
-$("lista").onclick=e=>{
-const b=e.target.closest("[data-id]");
-if(b)remover(b.dataset.id);
-};
-$("mes").onchange=render;$("filtro").onchange=render;
-function exportar(){
-const linhas=[["Data","Descrição","Categoria","Tipo","Situação","Valor","Observações"],
-...filtrados().map(x=>[x.data,x.descricao,x.categoria,x.tipo,x.situacao,x.valor,x.observacoes])];
-const csv="\uFEFF"+linhas.map(l=>l.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(";")).join("\r\n");
-const a=document.createElement("a");
-const u=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
-a.href=u;a.download="relatorio-financeiro.csv";a.click();
-setTimeout(()=>URL.revokeObjectURL(u),1000);
-}
-function apagarTudo(){
-if(!confirm("Apagar TODOS os lançamentos?"))return;
-registros=[];salvar();render();
-}
-render();
+
+resetForm();
+$("dashboardMonth").value=today().slice(0,7);
+renderAll();
 </script>
 </body>
 </html>
