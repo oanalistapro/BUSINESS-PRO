@@ -33,6 +33,14 @@
       "ready": true
     },
     {
+      "slug": "meu-direito",
+      "name": "MEU DIREITO",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-documento",
       "name": "MEU DOCUMENTO",
       "category": "Documentos",
