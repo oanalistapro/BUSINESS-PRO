@@ -17,6 +17,14 @@
       "ready": true
     },
     {
+      "slug": "meu-consumidor",
+      "name": "MEU CONSUMIDOR",
+      "category": "Gestão",
+      "icon": "🗂️",
+      "desc": "Ferramenta do Business Pro.",
+      "ready": true
+    },
+    {
       "slug": "meu-contrato",
       "name": "MEU CONTRATO",
       "category": "Gestão",
