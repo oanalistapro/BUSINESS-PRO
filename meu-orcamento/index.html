@@ -5,675 +5,1081 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2563eb">
-<title>Meu Orçamento | Business Pro</title>
+<meta name="description" content="MEU ORÇAMENTO BUSINESS PRO - Crie propostas comerciais profissionais com cálculos automáticos, clientes, histórico e PDF.">
+<title>MEU ORÇAMENTO | BUSINESS PRO</title>
 <style>
 :root{
- --blue:#2563eb;--navy:#132849;--bg:#f3f7fd;
- --line:#dce5f1;--muted:#64748b;--green:#059669
+ --blue:#2563eb;--dark:#152b52;--text:#14243e;--muted:#64748b;
+ --bg:#f3f6fc;--border:#dbe4f1;--white:#fff;--green:#15803d;
+ --red:#b91c1c;--shadow:0 10px 30px #17365a0b
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,Arial,sans-serif}
-button,input,textarea,select{font:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-a{text-decoration:none;color:inherit}
-header{background:white;border-bottom:1px solid var(--line);padding:17px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px}
-.logo{font-size:21px;font-weight:900;color:var(--blue)}
-.logo small{display:block;font-size:11px;letter-spacing:2px;color:var(--muted);margin-top:5px}
-.back{font-weight:750}
-.hero{padding:36px 5%;background:linear-gradient(110deg,#10244a,#2563eb);color:white}
-.hero h1{font-size:clamp(28px,4vw,43px);margin:0 0 12px}
-.hero p{max-width:760px;color:#dbeafe;line-height:1.7}
-.layout{max-width:1500px;margin:24px auto;padding:0 18px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:20px;align-items:start}
-.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:23px;box-shadow:0 12px 30px #1d355b0b}
-h2{margin:0 0 15px;font-size:22px}
-h3{margin:26px 0 14px;font-size:17px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field{margin-bottom:13px;min-width:0}
-label{display:block;font-weight:750;font-size:13px;margin-bottom:7px}
-input,select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:12px;background:#fff;color:var(--navy);outline:none}
-input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2563eb18}
-textarea{min-height:90px;resize:vertical}
-.btn{border:0;border-radius:11px;padding:12px 16px;background:var(--blue);color:white;font-weight:800}
-.btn.secondary{background:#eaf1ff;color:#1d4ed8}
-.btn.danger{background:#fee2e2;color:#991b1b}
-.btn.green{background:var(--green)}
-.actions{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0}
-.muted{font-size:13px;color:var(--muted);line-height:1.6}
-.item{border:1px solid var(--line);border-radius:13px;padding:15px;margin:12px 0;background:#fbfdff}
-.itemhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
-.itemgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
-.itemgrid .wide{grid-column:1/-1}
-.totals{background:#eff5ff;border:1px solid #d9e7ff;border-radius:15px;padding:18px;margin-top:22px}
-.totalrow{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #dbe7fa}
-.totalrow.final{border:0;font-size:22px;font-weight:900;color:#174fbb}
-.previewbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
-.paper{background:#fff;border:1px solid var(--line);padding:30px;min-height:550px;overflow-wrap:anywhere}
-.paper h1{font-size:28px;color:#1d4ed8;margin:0}
-.paper h3{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1d4ed8;border-bottom:2px solid #dbeafe;padding-bottom:8px}
-.paper p{font-size:12px;line-height:1.7;white-space:pre-line}
-.paper table{width:100%;border-collapse:collapse;font-size:12px;margin:15px 0}
-.paper th,.paper td{border-bottom:1px solid #e2e8f0;padding:9px 5px;text-align:left;vertical-align:top}
-.paper th{background:#f1f5f9}
-.paper .right{text-align:right}
-.paper .big{font-size:23px;font-weight:900;color:#1d4ed8}
+a{color:var(--blue)}
+.top{
+ background:white;padding:17px 3%;display:flex;align-items:center;
+ justify-content:space-between;gap:12px;border-bottom:1px solid var(--border)
+}
+.logo{font-size:24px;font-weight:900;color:var(--blue)}
+.logo small{display:block;color:var(--muted);font-size:11px;letter-spacing:2px;margin-top:4px}
+.back{text-decoration:none;font-weight:800;color:var(--text)}
+.hero{background:linear-gradient(110deg,#152b52,#2563eb);color:white;padding:42px 3%}
+.hero h1{font-size:clamp(28px,3.6vw,48px);margin:0 0 15px}
+.hero p{max-width:900px;line-height:1.7;margin:0;color:#e8efff}
+.container{max-width:1600px;margin:auto;padding:24px 18px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.btn{
+ border:0;border-radius:11px;background:var(--blue);color:white;
+ padding:12px 16px;font-weight:800;display:inline-flex;justify-content:center;
+ align-items:center;gap:7px;text-decoration:none
+}
+.btn:hover{filter:brightness(.96)}
+.btn.secondary{background:#eaf1ff;color:#1745a7}
+.btn.outline{background:white;color:var(--text);border:1px solid var(--border)}
+.btn.danger{background:#fff0f0;color:var(--red)}
+.btn.small{padding:8px 11px;font-size:12px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.status{color:var(--green);font-size:12px;font-weight:800;margin-left:auto}
+.workspace{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:22px;align-items:start}
+.panel{background:white;border:1px solid var(--border);border-radius:20px;padding:25px;box-shadow:var(--shadow);min-width:0}
+.panel h2{font-size:23px;margin:0 0 8px}
+.hint{color:var(--muted);font-size:13px;line-height:1.6}
+.section-title{font-size:17px;margin:28px 0 15px;border-bottom:1px solid var(--border);padding-bottom:10px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.full{grid-column:1/-1}
+label{font-size:12px;font-weight:800}
+input,select,textarea{
+ width:100%;padding:12px;border:1px solid #cbd6e6;
+ border-radius:11px;background:white;color:var(--text);outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2563eb18}
+textarea{resize:vertical;min-height:90px;line-height:1.5}
+.item{
+ background:#fbfcff;border:1px solid var(--border);
+ border-radius:14px;padding:15px;margin-bottom:12px
+}
+.item-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.item-actions{display:flex;gap:6px}
+.item-total{text-align:right;font-size:14px;font-weight:900;color:var(--blue);margin-top:12px}
+.summary{
+ background:#f3f7ff;border:1px solid var(--border);border-radius:14px;
+ padding:18px;margin-top:17px
+}
+.summary-line{display:flex;justify-content:space-between;gap:10px;margin:11px 0;font-size:14px}
+.summary-line.total{border-top:1px solid var(--border);padding-top:15px;font-size:23px;font-weight:900;color:var(--blue)}
+.preview-panel{position:sticky;top:12px}
+.preview-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}
+.paper-wrap{background:#e8edf6;padding:12px;border-radius:12px;overflow:auto}
+.paper{
+ background:white;width:100%;min-height:650px;padding:7%;
+ box-shadow:0 8px 24px #17365a18;overflow-wrap:anywhere;
+ font-size:12px;line-height:1.6;color:#1e293b
+}
+.paper.modern{border-top:7px solid var(--accent,#2563eb)}
 .paper.classic{font-family:Georgia,serif}
-.paper.classic h1,.paper.classic h3,.paper.classic .big{color:#1f2937}
-.paper.minimal h1,.paper.minimal h3,.paper.minimal .big{color:#111827}
-.saved{border:1px solid var(--line);border-radius:12px;padding:13px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.saved b{display:block;font-size:13px}
-.saved small{display:block;font-size:12px;color:var(--muted);margin-top:5px}
-.saved .actions{margin:0}
-.saved button{padding:9px;font-size:12px}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
-@media(max-width:1050px){.layout{grid-template-columns:1fr}}
-@media(max-width:650px){.grid,.itemgrid{grid-template-columns:1fr}.itemgrid .wide{grid-column:auto}.panel{padding:16px}.paper{padding:17px}.saved{display:block}}
+.paper.minimal{font-family:Arial,sans-serif}
+.paper h1{font-size:30px;color:var(--accent,#2563eb);margin:0 0 12px}
+.paper.classic h1,.paper.minimal h1{color:#1e293b}
+.paper .muted{color:#64748b}
+.paper .divider{border:0;border-top:1px solid #dbe4f1;margin:18px 0}
+.paper h3{font-size:13px;color:var(--accent,#2563eb);text-transform:uppercase;letter-spacing:1px;margin:17px 0 9px}
+.paper table{width:100%;border-collapse:collapse;table-layout:fixed}
+.paper th,.paper td{padding:8px 5px;text-align:left;border-bottom:1px solid #e2e8f0;font-size:11px;vertical-align:top;overflow-wrap:anywhere}
+.paper th{background:#f0f5fc}
+.paper .right{text-align:right}
+.paper .totalbox{background:#f1f6ff;padding:14px;border-radius:8px;margin-top:15px}
+.paper .totalbox strong{font-size:21px;color:var(--accent,#2563eb)}
+.paper .logo-img{max-width:115px;max-height:80px;object-fit:contain}
+.options{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
+.option{border:1px solid var(--border);background:#f8faff;padding:10px 15px;border-radius:11px;font-weight:800}
+.option.active{border-color:var(--blue);background:#eaf1ff;color:var(--blue)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:20px 0}
+.stat{background:white;border:1px solid var(--border);border-radius:15px;padding:18px}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:clamp(18px,2vw,26px);margin-top:9px;overflow-wrap:anywhere}
+.history{margin-top:23px}
+.history-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:15px}
+.history-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.history-card{border:1px solid var(--border);border-radius:14px;padding:17px;background:#fbfcff}
+.history-card h3{margin:10px 0}
+.history-card p{font-size:13px;color:var(--muted);line-height:1.5;overflow-wrap:anywhere}
+.tag{display:inline-block;background:#eaf1ff;color:#1d4ed8;padding:6px 10px;border-radius:30px;font-size:11px;font-weight:900}
+.tag.green{background:#dcfce7;color:#166534}
+.tag.red{background:#fee2e2;color:#b91c1c}
+.history-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.empty{text-align:center;color:var(--muted);padding:35px}
+.logo-preview{width:95px;height:75px;object-fit:contain;border:1px solid var(--border);border-radius:10px;padding:5px}
+.note{color:var(--muted);font-size:12px;line-height:1.7;margin-top:22px}
+.toast{
+ position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+ background:#172b4e;color:white;padding:12px 18px;border-radius:11px;
+ display:none;z-index:20;box-shadow:0 10px 30px #0003
+}
+@media(max-width:1050px){
+ .workspace{grid-template-columns:1fr}
+ .preview-panel{position:static}
+}
+@media(max-width:650px){
+ .top{padding:15px}.logo{font-size:19px}.back{font-size:12px}
+ .hero{padding:28px 17px}.container{padding:14px 10px}
+ .panel{padding:17px}.fields{grid-template-columns:1fr}
+ .full{grid-column:auto}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .history-list{grid-template-columns:1fr}
+ .toolbar .btn{flex:1}.status{width:100%;text-align:center}
+ .paper{padding:6%;font-size:11px}
+ .paper h1{font-size:23px}
+ .paper th,.paper td{font-size:9px;padding:6px 3px}
+}
+@page{size:A4;margin:13mm}
 @media print{
- @page{size:A4;margin:12mm}
- body{background:#fff}
- header,.hero,.editor,.previewbar,footer{display:none!important}
- .layout{display:block;margin:0;padding:0;max-width:none}
- .panel{border:0;box-shadow:none;padding:0}
- .paper{border:0;padding:0;min-height:0}
+ html,body{background:white!important;margin:0!important;padding:0!important}
+ .top,.hero,.toolbar,.stats,.editor-panel,.preview-head,.history,.note,.toast{display:none!important}
+ .container,.workspace,.preview-panel,.panel,.paper-wrap{
+  display:block!important;margin:0!important;padding:0!important;
+  background:white!important;border:0!important;box-shadow:none!important
+ }
+ .preview-panel{width:100%!important}
+ .paper{width:100%!important;min-height:0!important;padding:0!important;box-shadow:none!important;overflow:visible!important}
  .paper tr{break-inside:avoid}
+ .paper h3,.paper .totalbox{break-inside:avoid}
 }
 </style>
 </head>
 <body>
 
-<header>
+<header class="top">
  <div class="logo">MEU ORÇAMENTO<small>BUSINESS PRO</small></div>
- <a class="back" href="../">← Voltar ao Business Pro</a>
+ <a href="../" class="back">← Voltar ao Business Pro</a>
 </header>
 
 <section class="hero">
  <h1>Crie orçamentos profissionais para seus clientes.</h1>
- <p>Organize propostas comerciais, produtos, serviços, custos, prazos e condições de pagamento em um único aplicativo.</p>
+ <p>Organize propostas comerciais, produtos, serviços, preços, descontos, impostos, prazos e condições de pagamento em um único aplicativo, no computador ou celular.</p>
 </section>
 
-<main class="layout">
-<section class="panel editor">
-<h2>Nova proposta comercial</h2>
-<p class="muted">Preencha os dados da empresa e do cliente. Os cálculos são atualizados automaticamente.</p>
+<main class="container">
 
-<div class="grid">
- <div class="field"><label>Número do orçamento</label><input id="number" placeholder="Ex.: ORC-2026-001"></div>
- <div class="field"><label>Data de emissão</label><input id="date" type="date"></div>
- <div class="field"><label>Validade</label><input id="validity" type="date"></div>
- <div class="field"><label>Status</label><select id="proposalStatus"><option>Rascunho</option><option>Enviado</option><option>Aprovado</option><option>Recusado</option><option>Concluído</option></select></div>
+<div class="toolbar">
+ <button class="btn" id="newBtn">+ Novo orçamento</button>
+ <button class="btn secondary" id="saveBtn">💾 Salvar proposta</button>
+ <button class="btn" id="printBtn">📄 Gerar PDF / Imprimir</button>
+ <button class="btn outline" id="csvBtn">Exportar CSV</button>
+ <button class="btn outline" id="backupBtn">Backup JSON</button>
+ <button class="btn outline" id="importBtn">Importar backup</button>
+ <input type="file" id="importFile" accept=".json,application/json" hidden>
+ <span class="status" id="saveStatus">● Rascunho automático</span>
 </div>
 
-<h3>Dados da empresa</h3>
-<div class="grid">
- <div class="field"><label>Empresa ou profissional</label><input id="company"></div>
- <div class="field"><label>CNPJ / CPF</label><input id="companyDoc"></div>
- <div class="field"><label>Telefone</label><input id="companyPhone"></div>
- <div class="field"><label>E-mail</label><input id="companyEmail" type="email"></div>
- <div class="field"><label>Endereço</label><input id="companyAddress"></div>
- <div class="field"><label>Cidade / Estado</label><input id="companyCity"></div>
-</div>
+<div class="workspace">
 
-<h3>Dados do cliente</h3>
-<div class="grid">
- <div class="field"><label>Nome do cliente</label><input id="client"></div>
- <div class="field"><label>CPF / CNPJ</label><input id="clientDoc"></div>
- <div class="field"><label>Telefone</label><input id="clientPhone"></div>
- <div class="field"><label>E-mail</label><input id="clientEmail" type="email"></div>
- <div class="field"><label>Endereço do cliente ou obra</label><input id="clientAddress"></div>
- <div class="field"><label>Cidade / Estado</label><input id="clientCity"></div>
-</div>
+<section class="panel editor-panel">
+ <h2 id="editorTitle">Nova proposta comercial</h2>
+ <p class="hint">Preencha os dados da empresa e do cliente. Os cálculos e a pré-visualização são atualizados automaticamente.</p>
 
-<h3>Descrição da proposta</h3>
-<div class="field"><label>Título do projeto</label><input id="title" placeholder="Ex.: Reforma residencial"></div>
-<div class="field"><label>Escopo do trabalho</label><textarea id="scope" placeholder="Descreva os serviços, etapas e entregas."></textarea></div>
+ <h3 class="section-title">🎨 Modelo e identidade visual</h3>
+ <div class="options" id="templates">
+  <button class="option active" data-template="modern">Moderno</button>
+  <button class="option" data-template="classic">Clássico</button>
+  <button class="option" data-template="minimal">Minimalista</button>
+ </div>
+ <div class="fields">
+  <div class="field">
+   <label for="accent">Cor principal</label>
+   <input type="color" id="accent" value="#2563eb" style="height:45px">
+  </div>
+  <div class="field">
+   <label for="logoInput">Logo da empresa (opcional)</label>
+   <input type="file" id="logoInput" accept="image/png,image/jpeg,image/webp">
+   <div style="display:flex;align-items:center;gap:10px">
+    <img id="logoPreview" class="logo-preview" alt="Logo da empresa" hidden>
+    <button class="btn small danger" id="removeLogo" type="button">Remover logo</button>
+   </div>
+  </div>
+ </div>
 
-<h3>Produtos e serviços</h3>
-<p class="muted">Adicione quantos itens forem necessários, com quantidade, unidade, preço e desconto.</p>
-<div id="items"></div>
-<button class="btn secondary" onclick="addItem()">+ Adicionar item</button>
+ <h3 class="section-title">📋 Dados da proposta</h3>
+ <div class="fields">
+  <div class="field">
+   <label for="number">Número do orçamento</label>
+   <input id="number" placeholder="Ex.: ORC-2026-001">
+  </div>
+  <div class="field">
+   <label for="issue">Data de emissão</label>
+   <input id="issue" type="date">
+  </div>
+  <div class="field">
+   <label for="validity">Validade da proposta</label>
+   <input id="validity" type="date">
+  </div>
+  <div class="field">
+   <label for="status">Status</label>
+   <select id="status">
+    <option>Rascunho</option>
+    <option>Enviado</option>
+    <option>Em negociação</option>
+    <option>Aprovado</option>
+    <option>Recusado</option>
+    <option>Concluído</option>
+    <option>Cancelado</option>
+   </select>
+  </div>
+  <div class="field full">
+   <label for="title">Título ou descrição da proposta</label>
+   <input id="title" placeholder="Ex.: Reforma residencial">
+  </div>
+ </div>
 
-<h3>Ajustes financeiros</h3>
-<div class="grid">
- <div class="field"><label>Desconto geral (R$)</label><input id="discount" type="number" min="0" step="0.01" value="0"></div>
- <div class="field"><label>Impostos ou taxas (%)</label><input id="tax" type="number" min="0" step="0.01" value="0"></div>
- <div class="field"><label>Frete / deslocamento (R$)</label><input id="shipping" type="number" min="0" step="0.01" value="0"></div>
- <div class="field"><label>Custos adicionais (R$)</label><input id="extra" type="number" min="0" step="0.01" value="0"></div>
-</div>
-<p class="muted">As taxas são calculadas sobre o valor após os descontos. Informe as alíquotas aplicáveis ao seu caso.</p>
+ <h3 class="section-title">🏢 Dados da empresa</h3>
+ <div class="fields">
+  <div class="field">
+   <label for="company">Empresa ou profissional</label>
+   <input id="company" placeholder="Nome da empresa">
+  </div>
+  <div class="field">
+   <label for="companyDoc">CNPJ / CPF</label>
+   <input id="companyDoc" placeholder="Documento">
+  </div>
+  <div class="field">
+   <label for="companyPhone">Telefone</label>
+   <input id="companyPhone" placeholder="(00) 00000-0000">
+  </div>
+  <div class="field">
+   <label for="companyEmail">E-mail</label>
+   <input id="companyEmail" type="email">
+  </div>
+  <div class="field full">
+   <label for="companyAddress">Endereço</label>
+   <input id="companyAddress" placeholder="Rua, número, cidade e estado">
+  </div>
+ </div>
 
-<h3>Condições comerciais</h3>
-<div class="grid">
- <div class="field"><label>Forma de pagamento</label><select id="payment"><option>Pix</option><option>Transferência bancária</option><option>Dinheiro</option><option>Cartão de crédito</option><option>Boleto</option><option>Conforme contrato</option></select></div>
- <div class="field"><label>Prazo de entrega</label><input id="deadline" placeholder="Ex.: 15 dias úteis"></div>
- <div class="field"><label>Garantia</label><input id="warranty" placeholder="Ex.: 90 dias"></div>
- <div class="field"><label>Responsável</label><input id="responsible"></div>
-</div>
-<div class="field"><label>Condições de pagamento</label><textarea id="paymentTerms" placeholder="Ex.: 30% na aprovação e 70% na entrega."></textarea></div>
-<div class="field"><label>Observações</label><textarea id="notes" placeholder="Informações adicionais, exclusões e condições importantes."></textarea></div>
+ <h3 class="section-title">👤 Dados do cliente</h3>
+ <div class="fields">
+  <div class="field">
+   <label for="client">Nome do cliente *</label>
+   <input id="client" placeholder="Nome completo ou empresa">
+  </div>
+  <div class="field">
+   <label for="clientDoc">CPF / CNPJ</label>
+   <input id="clientDoc">
+  </div>
+  <div class="field">
+   <label for="clientPhone">Telefone</label>
+   <input id="clientPhone">
+  </div>
+  <div class="field">
+   <label for="clientEmail">E-mail</label>
+   <input id="clientEmail" type="email">
+  </div>
+  <div class="field full">
+   <label for="clientAddress">Endereço do cliente</label>
+   <input id="clientAddress">
+  </div>
+ </div>
 
-<h3>Modelo do documento</h3>
-<div class="field"><select id="template"><option value="modern">Moderno — Azul</option><option value="classic">Clássico</option><option value="minimal">Minimalista</option></select></div>
+ <h3 class="section-title">🛒 Produtos e serviços</h3>
+ <div id="items"></div>
+ <button class="btn secondary" id="addItem">+ Adicionar produto ou serviço</button>
 
-<div class="totals">
- <div class="totalrow"><span>Subtotal</span><b id="subtotalView">R$ 0,00</b></div>
- <div class="totalrow"><span>Descontos</span><b id="discountView">R$ 0,00</b></div>
- <div class="totalrow"><span>Taxas</span><b id="taxView">R$ 0,00</b></div>
- <div class="totalrow"><span>Frete e adicionais</span><b id="extrasView">R$ 0,00</b></div>
- <div class="totalrow final"><span>Total</span><span id="totalView">R$ 0,00</span></div>
-</div>
+ <h3 class="section-title">💰 Ajustes financeiros</h3>
+ <div class="fields">
+  <div class="field">
+   <label for="discountType">Tipo de desconto</label>
+   <select id="discountType">
+    <option value="percent">Percentual (%)</option>
+    <option value="fixed">Valor fixo (R$)</option>
+   </select>
+  </div>
+  <div class="field">
+   <label for="discount">Desconto</label>
+   <input id="discount" type="number" min="0" step="0.01" value="0">
+  </div>
+  <div class="field">
+   <label for="tax">Imposto adicional informado (%)</label>
+   <input id="tax" type="number" min="0" step="0.01" value="0">
+  </div>
+  <div class="field">
+   <label for="shipping">Frete / despesas adicionais (R$)</label>
+   <input id="shipping" type="number" min="0" step="0.01" value="0">
+  </div>
+ </div>
+ <p class="hint">O percentual de imposto é informado manualmente. O aplicativo não determina alíquotas nem substitui cálculos fiscais oficiais.</p>
 
-<div class="actions">
- <button class="btn green" onclick="saveProposal()">Salvar orçamento</button>
- <button class="btn" onclick="window.print()">Gerar PDF</button>
- <button class="btn secondary" onclick="newProposal()">Novo orçamento</button>
- <button class="btn secondary" onclick="exportBackup()">Exportar backup</button>
- <button class="btn secondary" onclick="document.getElementById('importFile').click()">Importar backup</button>
-</div>
+ <div class="summary">
+  <div class="summary-line"><span>Subtotal</span><strong id="subtotalText">R$ 0,00</strong></div>
+  <div class="summary-line"><span>Desconto aplicado</span><strong id="discountText">R$ 0,00</strong></div>
+  <div class="summary-line"><span>Imposto adicional</span><strong id="taxText">R$ 0,00</strong></div>
+  <div class="summary-line"><span>Frete e despesas</span><strong id="shippingText">R$ 0,00</strong></div>
+  <div class="summary-line total"><span>Total</span><strong id="totalText">R$ 0,00</strong></div>
+ </div>
 
-<input id="importFile" type="file" accept=".json,application/json" hidden>
-<p id="message" class="muted" role="status"></p>
+ <h3 class="section-title">📝 Condições comerciais</h3>
+ <div class="fields">
+  <div class="field">
+   <label for="payment">Forma de pagamento</label>
+   <select id="payment">
+    <option>Pix</option>
+    <option>Transferência bancária</option>
+    <option>Boleto</option>
+    <option>Dinheiro</option>
+    <option>Cartão de crédito</option>
+    <option>Cartão de débito</option>
+    <option>Parcelamento</option>
+    <option>A combinar</option>
+   </select>
+  </div>
+  <div class="field">
+   <label for="delivery">Prazo de entrega ou execução</label>
+   <input id="delivery" placeholder="Ex.: 15 dias úteis">
+  </div>
+  <div class="field full">
+   <label for="terms">Condições de pagamento</label>
+   <textarea id="terms" placeholder="Ex.: 50% na contratação e 50% na entrega."></textarea>
+  </div>
+  <div class="field full">
+   <label for="notes">Observações e condições adicionais</label>
+   <textarea id="notes" placeholder="Detalhes do serviço, garantia, materiais, exclusões e outras condições."></textarea>
+  </div>
+ </div>
 
-<h3>Orçamentos salvos</h3>
-<div id="savedList"></div>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:25px">
+  <button class="btn" id="saveBottom">💾 Salvar proposta</button>
+  <button class="btn secondary" id="printBottom">📄 Gerar PDF / Imprimir</button>
+ </div>
 </section>
 
-<section class="panel">
-<div class="previewbar">
- <div><h2 style="margin-bottom:4px">Pré-visualização</h2><span class="muted">Documento preparado para impressão A4</span></div>
- <button class="btn" onclick="window.print()">Imprimir / PDF</button>
-</div>
-<div id="paper" class="paper modern"></div>
+<section class="panel preview-panel">
+ <div class="preview-head">
+  <div>
+   <h2>Pré-visualização</h2>
+   <span class="hint">Documento preparado para impressão A4</span>
+  </div>
+  <button class="btn" id="printPreview">Gerar PDF / Imprimir</button>
+ </div>
+ <div class="paper-wrap">
+  <article class="paper modern" id="paper">
+   <div id="previewContent"></div>
+  </article>
+ </div>
+ <p class="hint" style="margin-top:15px">Para baixar em PDF, clique em “Gerar PDF / Imprimir” e selecione “Salvar como PDF” no navegador.</p>
 </section>
+
+</div>
+
+<section class="stats">
+ <div class="stat"><small>Propostas salvas</small><strong id="statCount">0</strong></div>
+ <div class="stat"><small>Valor das propostas</small><strong id="statTotal">R$ 0,00</strong></div>
+ <div class="stat"><small>Propostas aprovadas</small><strong id="statApproved">0</strong></div>
+ <div class="stat"><small>Valor aprovado</small><strong id="statApprovedValue">R$ 0,00</strong></div>
+</section>
+
+<section class="panel history">
+ <div class="history-head">
+  <div>
+   <h2>Histórico de orçamentos</h2>
+   <p class="hint">Abra, edite, duplique ou imprima propostas anteriores.</p>
+  </div>
+  <input id="search" placeholder="Pesquisar cliente ou orçamento..." style="max-width:320px">
+ </div>
+ <div class="history-list" id="historyList"></div>
+</section>
+
+<p class="note">
+ Os dados são salvos localmente neste navegador. Não há sincronização entre dispositivos, envio automático de propostas, emissão de nota fiscal ou confirmação de pagamento. Faça backups regularmente. Orçamentos comerciais não substituem documentos fiscais.
+</p>
+
 </main>
 
-<footer>MEU ORÇAMENTO · BUSINESS PRO · Os orçamentos ficam armazenados neste navegador.</footer>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
 "use strict";
 
-const KEY="business_pro_orcamentos_v1";
+const $=id=>document.getElementById(id);
+const KEY="businesspro_meu_orcamento_v3";
 
-const fields=[
-"number","date","validity","proposalStatus",
-"company","companyDoc","companyPhone","companyEmail",
-"companyAddress","companyCity","client","clientDoc",
-"clientPhone","clientEmail","clientAddress","clientCity",
-"title","scope","discount","tax","shipping","extra",
-"payment","deadline","warranty","responsible",
-"paymentTerms","notes","template"
+const FIELDS=[
+ "number","issue","validity","status","title",
+ "company","companyDoc","companyPhone","companyEmail","companyAddress",
+ "client","clientDoc","clientPhone","clientEmail","clientAddress",
+ "discountType","discount","tax","shipping",
+ "payment","delivery","terms","notes"
 ];
 
-let editingId=null;
-
-const $=id=>document.getElementById(id);
-const value=id=>$(id).value.trim();
-
-const money=n=>new Intl.NumberFormat("pt-BR",{
- style:"currency",currency:"BRL"
-}).format(Number(n)||0);
-
-const num=n=>Math.max(0,Number(n)||0);
-
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
- "&":"&amp;","<":"&lt;",">":"&gt;",
- '"':"&quot;","'":"&#39;"
-})[c]);
-
-const dateBR=s=>s?s.split("-").reverse().join("/"):"";
-
-const uid=()=>crypto.randomUUID
- ?crypto.randomUUID()
- :Date.now()+"-"+Math.random().toString(36).slice(2);
-
-function message(s){
- $("message").textContent=s;
+function uid(){
+ return typeof crypto!=="undefined"&&crypto.randomUUID
+  ?crypto.randomUUID()
+  :Date.now()+"-"+Math.random().toString(36).slice(2);
 }
 
-function addItem(data={}){
- const el=document.createElement("div");
- el.className="item";
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+
+  "-"+String(d.getDate()).padStart(2,"0");
+}
 
- el.innerHTML=`
- <div class="itemhead">
-  <strong>Item do orçamento</strong>
-  <button type="button" class="btn danger remove">Remover</button>
- </div>
- <div class="itemgrid">
-  <div class="field wide">
-   <label>Descrição</label>
-   <input class="description" placeholder="Produto ou serviço">
-  </div>
-  <div class="field">
-   <label>Tipo</label>
-   <select class="type">
-    <option>Serviço</option><option>Produto</option>
-    <option>Material</option><option>Outro</option>
-   </select>
-  </div>
-  <div class="field">
-   <label>Unidade</label>
-   <select class="unit">
-    <option>un</option><option>hora</option><option>dia</option>
-    <option>m²</option><option>m³</option><option>metro</option>
-    <option>kg</option><option>litro</option>
-    <option>pacote</option><option>projeto</option>
-   </select>
-  </div>
-  <div class="field">
-   <label>Quantidade</label>
-   <input class="qty" type="number" min="0" step="0.001" value="1">
-  </div>
-  <div class="field">
-   <label>Preço unitário (R$)</label>
-   <input class="price" type="number" min="0" step="0.01" value="0">
-  </div>
-  <div class="field">
-   <label>Desconto do item (%)</label>
-   <input class="itemDiscount" type="number" min="0" max="100" step="0.01" value="0">
-  </div>
- </div>`;
-
- for(const k of [
-  "description","type","unit","qty","price","itemDiscount"
- ]){
-  if(data[k]!==undefined)
-   el.querySelector("."+k).value=data[k];
- }
-
- el.querySelector(".remove").onclick=()=>{
-  el.remove();
-  render();
+function initial(){
+ return {
+  id:uid(),createdAt:new Date().toISOString(),
+  updatedAt:new Date().toISOString(),
+  template:"modern",accent:"#2563eb",logo:"",
+  data:{
+   number:"",issue:today(),validity:"",status:"Rascunho",
+   title:"",company:"",companyDoc:"",companyPhone:"",
+   companyEmail:"",companyAddress:"",client:"",clientDoc:"",
+   clientPhone:"",clientEmail:"",clientAddress:"",
+   discountType:"percent",discount:"0",tax:"0",shipping:"0",
+   payment:"Pix",delivery:"",terms:"",notes:""
+  },
+  items:[{id:uid(),description:"",type:"Serviço",quantity:"1",unit:"un",price:"0"}]
  };
-
- el.querySelectorAll("input,select").forEach(x=>{
-  x.addEventListener("input",render);
- });
-
- $("items").appendChild(el);
- render();
 }
 
-function getItems(){
- return [...document.querySelectorAll("#items .item")].map(el=>{
-  const x={};
-  [
-   "description","type","unit","qty","price","itemDiscount"
-  ].forEach(k=>{
-   x[k]=el.querySelector("."+k).value;
-  });
-  return x;
+let current=initial();
+let saved=[];
+let saveTimer;
+
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",
+  '"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+function money(v){
+ return Number(v||0).toLocaleString("pt-BR",{
+  style:"currency",currency:"BRL"
  });
 }
 
-function calculate(){
- const items=getItems().map(x=>{
-  const gross=num(x.qty)*num(x.price);
-  const discount=gross*Math.min(100,num(x.itemDiscount))/100;
+function num(v){
+ const n=Number(v);
+ return Number.isFinite(n)?Math.max(0,n):0;
+}
 
-  return {
-   ...x,
-   total:Math.max(0,gross-discount)
-  };
+function dateBR(v){
+ if(!v)return "—";
+ const a=v.split("-");
+ return a.length===3?a.reverse().join("/"):v;
+}
+
+function notify(message){
+ const el=$("toast");
+ el.textContent=message;
+ el.style.display="block";
+ clearTimeout(notify.timer);
+ notify.timer=setTimeout(()=>el.style.display="none",2500);
+}
+
+function safeRead(key,fallback){
+ try{
+  const parsed=JSON.parse(localStorage.getItem(key)||"null");
+  return parsed??fallback;
+ }catch(e){
+  return fallback;
+ }
+}
+
+function validateQuote(raw){
+ if(!raw||typeof raw!=="object"||!raw.data||!Array.isArray(raw.items))
+  throw Error("Orçamento inválido");
+
+ if(raw.items.length>500)throw Error("Muitos itens");
+
+ const base=initial();
+ const d={...base.data};
+
+ FIELDS.forEach(k=>{
+  d[k]=String(raw.data[k]??d[k]).slice(0,20000);
  });
 
- const subtotal=items.reduce((s,x)=>s+x.total,0);
- const discount=Math.min(subtotal,num(value("discount")));
- const base=Math.max(0,subtotal-discount);
- const tax=base*num(value("tax"))/100;
- const extras=num(value("shipping"))+num(value("extra"));
+ const items=raw.items.map(x=>({
+  id:uid(),
+  description:String(x.description??"").slice(0,10000),
+  type:String(x.type??"Serviço").slice(0,100),
+  quantity:String(x.quantity??"1"),
+  unit:String(x.unit??"un").slice(0,50),
+  price:String(x.price??"0")
+ }));
 
  return {
-  items,subtotal,discount,tax,extras,
-  total:base+tax+extras
+  id:typeof raw.id==="string"?raw.id:uid(),
+  createdAt:String(raw.createdAt||new Date().toISOString()),
+  updatedAt:String(raw.updatedAt||new Date().toISOString()),
+  template:["modern","classic","minimal"].includes(raw.template)?raw.template:"modern",
+  accent:/^#[0-9a-fA-F]{6}$/.test(raw.accent||"")?raw.accent:"#2563eb",
+  logo:typeof raw.logo==="string"&&
+   /^data:image\/(png|jpeg|webp);base64,/.test(raw.logo)&&raw.logo.length<1500000
+   ?raw.logo:"",
+  data:d,
+  items
  };
 }
 
-function block(title,text){
- return text
-  ?`<section><h3>${title}</h3><p>${esc(text)}</p></section>`
-  :"";
+try{
+ const raw=safeRead(KEY,{draft:null,records:[]});
+ if(raw.draft)current=validateQuote(raw.draft);
+ if(Array.isArray(raw.records))
+  saved=raw.records.slice(0,500).map(validateQuote);
+}catch(e){
+ notify("Não foi possível carregar todos os dados anteriores.");
 }
 
-function render(){
- const c=calculate();
+function persist(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify({version:3,draft:current,records:saved}));
+  $("saveStatus").textContent="✓ Rascunho salvo neste dispositivo";
+  return true;
+ }catch(e){
+  $("saveStatus").textContent="⚠ Erro ao salvar";
+  notify("Armazenamento cheio ou indisponível. Faça um backup.");
+  return false;
+ }
+}
 
- $("subtotalView").textContent=money(c.subtotal);
- $("discountView").textContent="- "+money(c.discount);
- $("taxView").textContent=money(c.tax);
- $("extrasView").textContent=money(c.extras);
- $("totalView").textContent=money(c.total);
+function scheduleSave(){
+ clearTimeout(saveTimer);
+ $("saveStatus").textContent="● Salvando...";
+ saveTimer=setTimeout(persist,350);
+}
 
- const company=[
-  value("company"),value("companyDoc"),
-  value("companyPhone"),value("companyEmail"),
-  value("companyAddress"),value("companyCity")
- ].filter(Boolean).join(" · ");
+function calc(quote=current){
+ const d=quote.data;
+ const subtotal=quote.items.reduce((s,x)=>s+num(x.quantity)*num(x.price),0);
+ const discount=Math.min(subtotal,d.discountType==="fixed"
+  ?num(d.discount):subtotal*num(d.discount)/100);
+ const taxable=Math.max(0,subtotal-discount);
+ const tax=taxable*num(d.tax)/100;
+ const shipping=num(d.shipping);
+ return {subtotal,discount,tax,shipping,total:taxable+tax+shipping};
+}
 
- const client=[
-  value("client"),value("clientDoc"),
-  value("clientPhone"),value("clientEmail"),
-  value("clientAddress"),value("clientCity")
- ].filter(Boolean).join(" · ");
+function fill(){
+ FIELDS.forEach(k=>$(k).value=current.data[k]??"");
+ $("accent").value=current.accent;
+ $("editorTitle").textContent="Proposta comercial — "+(current.data.number||"sem número");
+ document.querySelectorAll("[data-template]").forEach(b=>
+  b.classList.toggle("active",b.dataset.template===current.template)
+ );
+ const img=$("logoPreview");
+ img.hidden=!current.logo;
+ if(current.logo)img.src=current.logo;
+ else img.removeAttribute("src");
+ renderItems();
+ renderPreview();
+}
 
- $("paper").className="paper "+value("template");
+function renderItems(){
+ $("items").innerHTML=current.items.map((x,index)=>`
+  <div class="item">
+   <div class="item-head">
+    <strong>Item ${index+1}</strong>
+    <div class="item-actions">
+     <button class="btn small outline" data-move="${x.id}" data-direction="-1">↑</button>
+     <button class="btn small outline" data-move="${x.id}" data-direction="1">↓</button>
+     <button class="btn small danger" data-remove="${x.id}">Excluir</button>
+    </div>
+   </div>
+   <div class="fields">
+    <div class="field full">
+     <label>Descrição do produto ou serviço</label>
+     <textarea data-id="${x.id}" data-field="description" placeholder="Descreva o item">${esc(x.description)}</textarea>
+    </div>
+    <div class="field">
+     <label>Tipo</label>
+     <select data-id="${x.id}" data-field="type">
+      ${["Serviço","Produto","Material","Outro"].map(v=>
+       `<option ${x.type===v?"selected":""}>${v}</option>`).join("")}
+     </select>
+    </div>
+    <div class="field">
+     <label>Unidade</label>
+     <input data-id="${x.id}" data-field="unit" value="${esc(x.unit)}" placeholder="un, m², hora...">
+    </div>
+    <div class="field">
+     <label>Quantidade</label>
+     <input type="number" min="0" step="0.001" data-id="${x.id}" data-field="quantity" value="${esc(x.quantity)}">
+    </div>
+    <div class="field">
+     <label>Preço unitário (R$)</label>
+     <input type="number" min="0" step="0.01" data-id="${x.id}" data-field="price" value="${esc(x.price)}">
+    </div>
+   </div>
+   <div class="item-total" id="itemTotal-${x.id}">${money(num(x.quantity)*num(x.price))}</div>
+  </div>
+ `).join("");
+}
 
- $("paper").innerHTML=`
- <h1>ORÇAMENTO</h1>
- <p>
-  <b>Número:</b> ${esc(value("number")||"Não informado")}<br>
-  <b>Emissão:</b> ${dateBR(value("date"))||"—"}<br>
-  <b>Validade:</b> ${dateBR(value("validity"))||"—"}<br>
-  <b>Status:</b> ${esc(value("proposalStatus"))}
- </p>
+function previewLine(label,value){
+ return `<div style="margin:5px 0"><strong>${esc(label)}:</strong> ${esc(value||"—")}</div>`;
+}
 
- ${block("Empresa / profissional",company)}
- ${block("Cliente",client)}
- ${block("Proposta",value("title"))}
- ${block("Descrição do trabalho",value("scope"))}
+function renderPreview(){
+ const d=current.data;
+ const c=calc();
+ const paper=$("paper");
+ paper.className="paper "+current.template;
+ paper.style.setProperty("--accent",current.accent);
 
- <h3>Produtos e serviços</h3>
- <table>
-  <thead>
-   <tr>
-    <th>Descrição</th>
+ $("subtotalText").textContent=money(c.subtotal);
+ $("discountText").textContent="- "+money(c.discount);
+ $("taxText").textContent=money(c.tax);
+ $("shippingText").textContent=money(c.shipping);
+ $("totalText").textContent=money(c.total);
+
+ current.items.forEach(x=>{
+  const el=$("itemTotal-"+x.id);
+  if(el)el.textContent=money(num(x.quantity)*num(x.price));
+ });
+
+ $("previewContent").innerHTML=`
+  <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+   <div>
+    <h1>ORÇAMENTO</h1>
+    <div>${previewLine("Número",d.number||"Não informado")}</div>
+    <div>${previewLine("Emissão",dateBR(d.issue))}</div>
+    <div>${previewLine("Validade",dateBR(d.validity))}</div>
+    <div>${previewLine("Status",d.status)}</div>
+   </div>
+   ${current.logo?`<img class="logo-img" src="${current.logo}" alt="Logo">`:""}
+  </div>
+
+  ${d.title?`<h3>${esc(d.title)}</h3>`:""}
+  <hr class="divider">
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px">
+   <div>
+    <h3>Emitente</h3>
+    <strong>${esc(d.company||"Não informado")}</strong>
+    ${previewLine("CPF/CNPJ",d.companyDoc)}
+    ${previewLine("Telefone",d.companyPhone)}
+    ${previewLine("E-mail",d.companyEmail)}
+    ${previewLine("Endereço",d.companyAddress)}
+   </div>
+   <div>
+    <h3>Cliente</h3>
+    <strong>${esc(d.client||"Não informado")}</strong>
+    ${previewLine("CPF/CNPJ",d.clientDoc)}
+    ${previewLine("Telefone",d.clientPhone)}
+    ${previewLine("E-mail",d.clientEmail)}
+    ${previewLine("Endereço",d.clientAddress)}
+   </div>
+  </div>
+
+  <h3>Produtos e serviços</h3>
+  <table>
+   <thead><tr>
+    <th style="width:40%">Descrição</th>
     <th>Qtd.</th>
     <th>Un.</th>
-    <th class="right">Valor</th>
+    <th class="right">Unitário</th>
     <th class="right">Total</th>
-   </tr>
-  </thead>
-  <tbody>
-   ${c.items.map(x=>`
-   <tr>
-    <td>${esc(x.description||"Item sem descrição")}
-     <br><small>${esc(x.type)}
-     ${num(x.itemDiscount)>0
-      ?" · Desconto "+num(x.itemDiscount)+"%":""}
-     </small>
-    </td>
-    <td>${esc(x.qty)}</td>
-    <td>${esc(x.unit)}</td>
-    <td class="right">${money(x.price)}</td>
-    <td class="right">${money(x.total)}</td>
-   </tr>`).join("")}
-  </tbody>
- </table>
+   </tr></thead>
+   <tbody>
+    ${current.items.map(x=>`
+     <tr>
+      <td><strong>${esc(x.description||"Item sem descrição")}</strong><br>
+       <span class="muted">${esc(x.type)}</span></td>
+      <td>${esc(x.quantity)}</td>
+      <td>${esc(x.unit)}</td>
+      <td class="right">${esc(money(x.price))}</td>
+      <td class="right">${esc(money(num(x.quantity)*num(x.price)))}</td>
+     </tr>`).join("")}
+   </tbody>
+  </table>
 
- <p>
-  Subtotal: <b>${money(c.subtotal)}</b><br>
-  Descontos: <b>- ${money(c.discount)}</b><br>
-  Taxas: <b>${money(c.tax)}</b><br>
-  Frete e adicionais: <b>${money(c.extras)}</b>
- </p>
+  <div class="totalbox">
+   <div class="summary-line"><span>Subtotal</span><span>${money(c.subtotal)}</span></div>
+   <div class="summary-line"><span>Desconto</span><span>- ${money(c.discount)}</span></div>
+   <div class="summary-line"><span>Imposto adicional</span><span>${money(c.tax)}</span></div>
+   <div class="summary-line"><span>Frete e despesas</span><span>${money(c.shipping)}</span></div>
+   <div class="summary-line" style="border-top:1px solid #cbd5e1;padding-top:10px">
+    <strong>TOTAL</strong><strong>${money(c.total)}</strong>
+   </div>
+  </div>
 
- <p class="big">TOTAL: ${money(c.total)}</p>
+  <h3>Condições comerciais</h3>
+  ${previewLine("Forma de pagamento",d.payment)}
+  ${previewLine("Prazo de entrega",d.delivery)}
+  ${d.terms?`<p style="white-space:pre-wrap">${esc(d.terms)}</p>`:""}
+  ${d.notes?`<h3>Observações</h3><p style="white-space:pre-wrap">${esc(d.notes)}</p>`:""}
 
- ${block("Forma de pagamento",value("payment"))}
- ${block("Condições de pagamento",value("paymentTerms"))}
- ${block("Prazo de entrega",value("deadline"))}
- ${block("Garantia",value("warranty"))}
- ${block("Observações",value("notes"))}
- ${block("Responsável",value("responsible"))}
-
- <p style="margin-top:30px;color:#64748b">
-  Proposta sujeita à aprovação das partes.
-  Este documento não substitui nota fiscal ou contrato quando exigidos.
- </p>`;
+  <div style="margin-top:55px;text-align:center;break-inside:avoid">
+   <div style="border-top:1px solid #94a3b8;width:65%;margin:auto"></div>
+   <p>Responsável pela proposta</p>
+  </div>
+  <p class="muted" style="margin-top:25px;font-size:10px">
+   Documento comercial gerado pelo BUSINESS PRO. Não substitui nota fiscal.
+  </p>
+ `;
 }
 
-function collect(){
- const data={};
-
- fields.forEach(k=>{
-  data[k]=$(k).value;
+FIELDS.forEach(k=>{
+ $(k).addEventListener("input",e=>{
+  current.data[k]=e.target.value;
+  current.updatedAt=new Date().toISOString();
+  if(k==="number")$("editorTitle").textContent=
+   "Proposta comercial — "+(current.data.number||"sem número");
+  renderPreview();
+  scheduleSave();
  });
-
- data.items=getItems();
-
- return data;
-}
-
-function fill(data){
- fields.forEach(k=>{
-  if(data[k]!==undefined)
-   $(k).value=data[k];
+ $(""+k).addEventListener("change",e=>{
+  current.data[k]=e.target.value;
+  renderPreview();
+  scheduleSave();
  });
+});
 
- $("items").innerHTML="";
+$("items").addEventListener("input",e=>{
+ const el=e.target.closest("[data-id][data-field]");
+ if(!el)return;
+ const item=current.items.find(x=>x.id===el.dataset.id);
+ if(!item)return;
+ item[el.dataset.field]=el.value;
+ renderPreview();
+ scheduleSave();
+});
 
- (data.items||[]).forEach(addItem);
+$("items").addEventListener("change",e=>{
+ const el=e.target.closest("[data-id][data-field]");
+ if(!el)return;
+ const item=current.items.find(x=>x.id===el.dataset.id);
+ if(!item)return;
+ item[el.dataset.field]=el.value;
+ renderPreview();
+ scheduleSave();
+});
 
- render();
-}
-
-function readSaved(){
- try{
-  const x=JSON.parse(localStorage.getItem(KEY)||"[]");
-  return Array.isArray(x)?x:[];
- }catch(e){
-  return [];
- }
-}
-
-function writeSaved(data){
- localStorage.setItem(KEY,JSON.stringify(data));
-}
-
-function saveProposal(){
- const data=collect();
-
- if(!data.company.trim()||!data.client.trim()){
-  message("Informe a empresa e o nome do cliente.");
+$("items").addEventListener("click",e=>{
+ const remove=e.target.closest("[data-remove]");
+ if(remove){
+  if(current.items.length===1){
+   notify("Mantenha pelo menos um item.");
+   return;
+  }
+  current.items=current.items.filter(x=>x.id!==remove.dataset.remove);
+  renderItems();renderPreview();scheduleSave();
   return;
  }
 
- if(!data.items.length||
-    data.items.some(x=>!x.description.trim()||num(x.qty)<=0)){
-  message("Adicione pelo menos um item válido.");
-  return;
+ const move=e.target.closest("[data-move]");
+ if(move){
+  const index=current.items.findIndex(x=>x.id===move.dataset.move);
+  const next=index+Number(move.dataset.direction);
+  if(index<0||next<0||next>=current.items.length)return;
+  [current.items[index],current.items[next]]=
+   [current.items[next],current.items[index]];
+  renderItems();renderPreview();scheduleSave();
  }
+});
 
- try{
-  const list=readSaved();
-  const id=editingId||uid();
+$("addItem").onclick=()=>{
+ current.items.push({
+  id:uid(),description:"",type:"Serviço",
+  quantity:"1",unit:"un",price:"0"
+ });
+ renderItems();renderPreview();scheduleSave();
+};
 
-  const entry={
-   id,
-   updatedAt:new Date().toISOString(),
-   data
+$("templates").onclick=e=>{
+ const btn=e.target.closest("[data-template]");
+ if(!btn)return;
+ current.template=btn.dataset.template;
+ document.querySelectorAll("[data-template]").forEach(b=>
+  b.classList.toggle("active",b===btn)
+ );
+ renderPreview();scheduleSave();
+};
+
+$("accent").oninput=e=>{
+ current.accent=e.target.value;
+ renderPreview();scheduleSave();
+};
+
+function resizeLogo(file){
+ return new Promise((resolve,reject)=>{
+  if(!["image/png","image/jpeg","image/webp"].includes(file.type)){
+   reject(Error("Escolha PNG, JPG ou WebP."));
+   return;
+  }
+  if(file.size>8*1024*1024){
+   reject(Error("Imagem maior que 8 MB."));
+   return;
+  }
+
+  const url=URL.createObjectURL(file);
+  const img=new Image();
+
+  img.onload=()=>{
+   const scale=Math.min(1,450/Math.max(img.width,img.height));
+   const canvas=document.createElement("canvas");
+   canvas.width=Math.max(1,Math.round(img.width*scale));
+   canvas.height=Math.max(1,Math.round(img.height*scale));
+   canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);
+   URL.revokeObjectURL(url);
+   resolve(canvas.toDataURL("image/jpeg",.8));
   };
 
-  const index=list.findIndex(x=>x.id===id);
+  img.onerror=()=>{
+   URL.revokeObjectURL(url);
+   reject(Error("Não foi possível abrir a imagem."));
+  };
 
-  if(index>=0)
-   list[index]=entry;
-  else
-   list.unshift(entry);
-
-  writeSaved(list);
-  editingId=id;
-
-  showSaved();
-  message("Orçamento salvo neste navegador.");
- }catch(e){
-  message("Não foi possível salvar o orçamento.");
- }
+  img.src=url;
+ });
 }
 
-function showSaved(){
- const list=readSaved();
- const root=$("savedList");
+$("logoInput").onchange=async e=>{
+ const file=e.target.files[0];
+ if(!file)return;
+ try{
+  const previous=current.logo;
+  current.logo=await resizeLogo(file);
+  if(!persist()){
+   current.logo=previous;
+   return;
+  }
+  fill();
+  notify("Logo adicionada.");
+ }catch(err){
+  notify(err.message);
+ }
+ e.target.value="";
+};
 
- root.innerHTML="";
+$("removeLogo").onclick=()=>{
+ current.logo="";
+ fill();scheduleSave();
+};
+
+function saveQuote(){
+ clearTimeout(saveTimer);
+ if(!current.data.client.trim()){
+  notify("Informe o nome do cliente antes de salvar.");
+  $("client").focus();
+  return;
+ }
+
+ if(!current.data.number.trim()){
+  current.data.number="ORC-"+today().slice(0,4)+"-"+String(saved.length+1).padStart(3,"0");
+ }
+
+ current.updatedAt=new Date().toISOString();
+ const copy=JSON.parse(JSON.stringify(current));
+ const index=saved.findIndex(x=>x.id===current.id);
+ const previous=JSON.stringify(saved);
+
+ if(index>=0)saved[index]=copy;
+ else saved.unshift(copy);
+
+ if(!persist()){
+  saved=JSON.parse(previous);
+  return;
+ }
+
+ fill();renderHistory();
+ notify("Proposta salva com sucesso.");
+}
+
+$("saveBtn").onclick=saveQuote;
+$("saveBottom").onclick=saveQuote;
+
+$("newBtn").onclick=()=>{
+ if(!confirm("Criar novo orçamento? O rascunho atual será substituído. Salve a proposta antes, se necessário."))return;
+ current=initial();
+ fill();scheduleSave();
+ window.scrollTo({top:0,behavior:"smooth"});
+};
+
+function printQuote(){
+ renderPreview();
+ window.print();
+}
+$("printBtn").onclick=printQuote;
+$("printBottom").onclick=printQuote;
+$("printPreview").onclick=printQuote;
+
+function renderHistory(){
+ const q=$("search").value.toLocaleLowerCase("pt-BR").trim();
+ const list=saved.filter(x=>
+  JSON.stringify(x.data).toLocaleLowerCase("pt-BR").includes(q)
+ );
+
+ $("statCount").textContent=saved.length;
+ $("statTotal").textContent=money(saved.reduce((s,x)=>s+calc(x).total,0));
+ const approved=saved.filter(x=>x.data.status==="Aprovado");
+ $("statApproved").textContent=approved.length;
+ $("statApprovedValue").textContent=money(approved.reduce((s,x)=>s+calc(x).total,0));
 
  if(!list.length){
-  root.innerHTML='<p class="muted">Nenhum orçamento salvo.</p>';
+  $("historyList").innerHTML=`<div class="empty">Nenhuma proposta encontrada.</div>`;
   return;
  }
 
- list.forEach(x=>{
-  const row=document.createElement("div");
-  row.className="saved";
+ $("historyList").innerHTML=list.map(x=>{
+  const d=x.data;
+  const cls=d.status==="Aprovado"?"green":
+   ["Recusado","Cancelado"].includes(d.status)?"red":"";
 
-  const info=document.createElement("div");
-  const title=document.createElement("b");
-
-  title.textContent=
-   (x.data.number||"Sem número")+" — "+
-   (x.data.client||"Cliente");
-
-  const small=document.createElement("small");
-  small.textContent="Atualizado: "+
-   new Date(x.updatedAt).toLocaleString("pt-BR");
-
-  info.append(title,small);
-
-  const actions=document.createElement("div");
-  actions.className="actions";
-
-  const open=document.createElement("button");
-  open.className="btn secondary";
-  open.textContent="Abrir";
-
-  open.onclick=()=>{
-   editingId=x.id;
-   fill(x.data);
-   window.scrollTo({top:0,behavior:"smooth"});
-   message("Orçamento carregado.");
-  };
-
-  const duplicate=document.createElement("button");
-  duplicate.className="btn secondary";
-  duplicate.textContent="Duplicar";
-
-  duplicate.onclick=()=>{
-   editingId=null;
-   fill(x.data);
-   $("number").value="";
-   render();
-   message("Cópia preparada. Informe um novo número e salve.");
-  };
-
-  const remove=document.createElement("button");
-  remove.className="btn danger";
-  remove.textContent="Excluir";
-
-  remove.onclick=()=>{
-   if(!confirm("Excluir este orçamento?"))return;
-
-   writeSaved(readSaved().filter(z=>z.id!==x.id));
-
-   if(editingId===x.id)
-    editingId=null;
-
-   showSaved();
-   message("Orçamento excluído.");
-  };
-
-  actions.append(open,duplicate,remove);
-  row.append(info,actions);
-  root.appendChild(row);
- });
+  return `<article class="history-card">
+   <span class="tag ${cls}">${esc(d.status)}</span>
+   <h3>${esc(d.number||"Sem número")}</h3>
+   <p><strong>Cliente:</strong> ${esc(d.client)}</p>
+   <p><strong>Proposta:</strong> ${esc(d.title||"Não informada")}</p>
+   <p><strong>Emissão:</strong> ${esc(dateBR(d.issue))}</p>
+   <p><strong>Total:</strong> ${esc(money(calc(x).total))}</p>
+   <div class="history-actions">
+    <button class="btn small secondary" data-action="open" data-id="${esc(x.id)}">Abrir / Editar</button>
+    <button class="btn small outline" data-action="duplicate" data-id="${esc(x.id)}">Duplicar</button>
+    <button class="btn small outline" data-action="print" data-id="${esc(x.id)}">PDF</button>
+    <button class="btn small danger" data-action="delete" data-id="${esc(x.id)}">Excluir</button>
+   </div>
+  </article>`;
+ }).join("");
 }
 
-function newProposal(){
- if(!confirm(
-  "Criar um novo orçamento? Alterações não salvas serão perdidas."
- ))return;
+$("historyList").onclick=e=>{
+ const btn=e.target.closest("[data-action]");
+ if(!btn)return;
 
- editingId=null;
+ const quote=saved.find(x=>x.id===btn.dataset.id);
+ if(!quote)return;
 
- fields.forEach(k=>{
-  $(k).value="";
- });
+ const action=btn.dataset.action;
 
- $("date").value=new Date().toISOString().slice(0,10);
- $("proposalStatus").value="Rascunho";
- $("payment").value="Pix";
- $("template").value="modern";
+ if(action==="delete"){
+  if(!confirm("Excluir esta proposta do histórico?"))return;
+  const previous=saved;
+  saved=saved.filter(x=>x.id!==quote.id);
+  if(!persist())saved=previous;
+  renderHistory();
+  return;
+ }
 
- ["discount","tax","shipping","extra"].forEach(k=>{
-  $(k).value="0";
- });
+ if(action==="open"){
+  current=JSON.parse(JSON.stringify(quote));
+  fill();scheduleSave();
+  window.scrollTo({top:0,behavior:"smooth"});
+  notify("Proposta carregada.");
+ }
 
- $("items").innerHTML="";
- addItem();
- render();
+ if(action==="duplicate"){
+  current=JSON.parse(JSON.stringify(quote));
+  current.id=uid();
+  current.createdAt=new Date().toISOString();
+  current.updatedAt=current.createdAt;
+  current.data.number="";
+  current.data.status="Rascunho";
+  current.data.issue=today();
+  fill();scheduleSave();
+  window.scrollTo({top:0,behavior:"smooth"});
+  notify("Cópia criada. Salve como nova proposta.");
+ }
 
- message("Novo orçamento iniciado.");
- window.scrollTo({top:0,behavior:"smooth"});
-}
+ if(action==="print"){
+  const previous=current;
+  current=JSON.parse(JSON.stringify(quote));
+  renderPreview();
+  window.print();
+  current=previous;
+  renderPreview();
+ }
+};
 
-function exportBackup(){
- const data=JSON.stringify({
-  app:"Meu Orçamento Pro",
-  version:1,
-  proposals:readSaved()
- },null,2);
+$("search").oninput=renderHistory;
 
- const blob=new Blob([data],{
-  type:"application/json"
- });
-
+function download(name,content,type){
+ const blob=new Blob([content],{type});
  const url=URL.createObjectURL(blob);
  const a=document.createElement("a");
-
- a.href=url;
- a.download="backup-meu-orcamento.json";
-
- document.body.appendChild(a);
- a.click();
- a.remove();
-
- setTimeout(()=>URL.revokeObjectURL(url),1000);
+ a.href=url;a.download=name;
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
 
-$("importFile").addEventListener("change",async e=>{
+$("backupBtn").onclick=()=>{
+ download("backup-meu-orcamento.json",
+  JSON.stringify({app:"meu-orcamento",version:3,draft:current,records:saved},null,2),
+  "application/json");
+ notify("Backup exportado.");
+};
+
+function csvCell(v){
+ return '"'+String(v??"").replace(/"/g,'""')+'"';
+}
+
+$("csvBtn").onclick=()=>{
+ if(!saved.length){
+  notify("Salve pelo menos uma proposta.");
+  return;
+ }
+
+ const rows=[[
+  "Número","Cliente","Documento","Emissão","Validade","Status",
+  "Descrição","Subtotal","Desconto","Imposto","Frete","Total"
+ ]];
+
+ saved.forEach(x=>{
+  const c=calc(x),d=x.data;
+  rows.push([
+   d.number,d.client,d.clientDoc,d.issue,d.validity,d.status,
+   d.title,c.subtotal.toFixed(2),c.discount.toFixed(2),
+   c.tax.toFixed(2),c.shipping.toFixed(2),c.total.toFixed(2)
+  ]);
+ });
+
+ download("orcamentos.csv",
+  "\uFEFF"+rows.map(row=>row.map(csvCell).join(";")).join("\r\n"),
+  "text/csv;charset=utf-8");
+};
+
+$("importBtn").onclick=()=>$("importFile").click();
+
+$("importFile").onchange=async e=>{
  const file=e.target.files[0];
  if(!file)return;
 
  try{
-  if(file.size>5*1024*1024)
-   throw Error("Arquivo maior que 5 MB.");
+  if(file.size>12*1024*1024)throw Error("Arquivo muito grande.");
+  const raw=JSON.parse(await file.text());
 
-  const data=JSON.parse(await file.text());
+  if(raw.app!=="meu-orcamento"||raw.version!==3||
+     !Array.isArray(raw.records)){
+   throw Error("Backup incompatível.");
+  }
 
-  if(data.app!=="Meu Orçamento Pro"||
-     !Array.isArray(data.proposals))
-   throw Error("Backup inválido.");
+  if(raw.records.length>500)throw Error("Quantidade excessiva de propostas.");
 
-  if(!confirm(
-   "Importar backup? Orçamentos com o mesmo ID serão substituídos."
-  ))return;
+  const records=raw.records.map(validateQuote);
+  const draft=raw.draft?validateQuote(raw.draft):initial();
 
-  const map=new Map(
-   readSaved().map(x=>[x.id,x])
-  );
+  if(!confirm("Substituir todos os orçamentos e o rascunho atual pelos dados do backup?"))return;
 
-  data.proposals.forEach(x=>{
-   if(x&&typeof x.id==="string"&&x.data)
-    map.set(x.id,x);
-  });
+  const previousCurrent=current;
+  const previousSaved=saved;
+  current=draft;
+  saved=records;
 
-  writeSaved([...map.values()]);
-  showSaved();
-  message("Backup importado.");
+  if(!persist()){
+   current=previousCurrent;
+   saved=previousSaved;
+   return;
+  }
+
+  fill();renderHistory();
+  notify("Backup importado com sucesso.");
  }catch(err){
-  message("Erro: "+err.message);
+  notify("Erro ao importar: "+err.message);
+ }finally{
+  e.target.value="";
  }
+};
 
- e.target.value="";
-});
-
-fields.forEach(k=>{
- $(k).addEventListener("input",render);
- $(k).addEventListener("change",render);
-});
-
-$("date").value=new Date().toISOString().slice(0,10);
-
-addItem();
-showSaved();
-render();
+fill();
+renderHistory();
 </script>
 </body>
 </html>
