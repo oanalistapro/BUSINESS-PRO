@@ -1,25 +1,11 @@
 
-// =====================================================
-// BUSINESS PRO - IA PREMIUM
-// Firebase Google + Asaas Pix + Cloudflare Worker
-// R$ 20,00 / 30 dias / 20 perguntas por dia
-// =====================================================
-
-import { initializeApp } from
-  "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithRedirect,
-  getRedirectResult,
-  onAuthStateChanged,
-  signOut
-} from
-  "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+  getAuth, GoogleAuthProvider, signInWithPopup,
+  signInWithRedirect, getRedirectResult,
+  onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
-// FIREBASE BUSINESS PRO
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyBz2wOXC-uF5Te65zQZp7kzebRZdhD0X4A",
   authDomain: "business-pro-97342.firebaseapp.com",
@@ -30,669 +16,386 @@ const FIREBASE_CONFIG = {
   measurementId: "G-86BRQJT1JD"
 };
 
-// CLOUDFLARE WORKER
-const WORKER =
-  "https://little-wood-47e8meu-concurso-ia.junhodorval.workers.dev";
-
+const WORKER = "https://little-wood-47e8meu-concurso-ia.junhodorval.workers.dev";
 const $ = id => document.getElementById(id);
-
 const app = initializeApp(FIREBASE_CONFIG);
 const auth = getAuth(app);
-
 const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
-  prompt: "select_account"
-});
 
 let user = null;
-let premiumStatus = null;
+let status = null;
 let checking = false;
 let paying = false;
-let loginReady = false;
-let refreshVersion = 0;
-let paymentTimer = null;
-let lastError = "";
+let timer = null;
+let errorMessage = "";
 
-// =====================================================
-// FUNÇÕES AUXILIARES
-// =====================================================
-
-function element(id) {
-  return $(id);
-}
-
-function text(id, value) {
-  const el = element(id);
+function setText(id, value) {
+  const el = $(id);
   if (el) el.textContent = value;
 }
 
-function visible(id, show) {
-  const el = element(id);
-  if (el) el.hidden = !show;
-}
-
-function disabled(id, value) {
-  const el = element(id);
-  if (el) el.disabled = value;
+function show(id, value) {
+  const el = $(id);
+  if (el) el.hidden = !value;
 }
 
 function notify(message) {
-  const toast = element("toast");
-
+  const toast = $("toast");
   if (toast) {
     toast.textContent = message;
     toast.hidden = false;
-
     clearTimeout(notify.timer);
-
-    notify.timer = setTimeout(() => {
-      toast.hidden = true;
-    }, 4000);
+    notify.timer = setTimeout(() => toast.hidden = true, 5000);
   } else {
     alert(message);
   }
 }
 
-function formatDate(value) {
-  if (!value) return "não informada";
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return "não informada";
-  }
-
-  return date.toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric"
-  });
+function cpfDigits(value) {
+  return String(value || "").replace(/\D/g, "");
 }
 
-function clearPix() {
-  visible("pixDetails", false);
-  visible("pixQR", false);
+function validCpfCnpj(value) {
+  const v = cpfDigits(value);
+  if (![11, 14].includes(v.length) || /^(\d)\1+$/.test(v)) return false;
 
-  const copy = element("pixCopy");
-  const qr = element("pixQR");
-
-  if (copy) copy.value = "";
-
-  if (qr) {
-    qr.removeAttribute("src");
+  function check(length, weights) {
+    const sum = weights.reduce((a, w, i) => a + Number(v[i]) * w, 0);
+    const rest = sum % 11;
+    return Number(v[length]) === (rest < 2 ? 0 : 11 - rest);
   }
 
-  text("pixMessage", "");
-}
-
-function stopPaymentMonitoring() {
-  if (paymentTimer) {
-    clearInterval(paymentTimer);
-    paymentTimer = null;
+  if (v.length === 11) {
+    return check(9, [10,9,8,7,6,5,4,3,2]) &&
+           check(10, [11,10,9,8,7,6,5,4,3,2]);
   }
+
+  return check(12, [5,4,3,2,9,8,7,6,5,4,3,2]) &&
+         check(13, [6,5,4,3,2,9,8,7,6,5,4,3,2]);
 }
 
-// =====================================================
-// AUTENTICAÇÃO E API
-// =====================================================
+function addCpfField() {
+  if ($("bpCpfCnpj")) return;
+
+  const button = $("startPayment");
+  if (!button || !button.parentElement) return;
+
+  const box = document.createElement("div");
+  box.id = "bpCpfBox";
+  box.style.cssText = "margin:14px 0;padding:14px;border:1px solid #506080;border-radius:12px;";
+
+  const label = document.createElement("label");
+  label.htmlFor = "bpCpfCnpj";
+  label.textContent = "CPF ou CNPJ do pagador";
+  label.style.cssText = "display:block;margin-bottom:8px;font-weight:700;";
+
+  const input = document.createElement("input");
+  input.id = "bpCpfCnpj";
+  input.type = "text";
+  input.inputMode = "numeric";
+  input.autocomplete = "off";
+  input.placeholder = "Digite seu CPF ou CNPJ";
+  input.maxLength = 18;
+  input.style.cssText = "width:100%;box-sizing:border-box;padding:13px;border:1px solid #7b8da7;border-radius:9px;background:#fff;color:#111;font-size:16px;";
+
+  const info = document.createElement("small");
+  info.textContent = "Obrigatório para emitir a cobrança Pix pelo Asaas. Não informe documentos de terceiros sem autorização.";
+  info.style.cssText = "display:block;margin-top:8px;opacity:.8;line-height:1.5;";
+
+  box.append(label, input, info);
+  button.parentElement.insertBefore(box, button);
+}
 
 async function getToken() {
-  if (!auth.currentUser) return null;
-
-  return auth.currentUser.getIdToken();
+  return auth.currentUser ? auth.currentUser.getIdToken() : null;
 }
 
 async function api(path, options = {}) {
   const token = await getToken();
-
-  if (!token) {
-    throw new Error("Entre com sua conta Google.");
-  }
+  if (!token) throw Error("Entre com Google primeiro.");
 
   let response;
-
   try {
     response = await fetch(WORKER + path, {
       ...options,
       cache: "no-store",
       headers: {
-        "Authorization": "Bearer " + token,
+        Authorization: "Bearer " + token,
         "Content-Type": "application/json",
         ...(options.headers || {})
       }
     });
   } catch {
-    throw new Error(
-      "Não foi possível conectar ao Cloudflare. Verifique a internet."
-    );
+    throw Error("Falha de conexão com o servidor.");
   }
 
-  let result = {};
-
-  try {
-    result = await response.json();
-  } catch {
-    throw new Error(
-      "O servidor retornou uma resposta inválida."
-    );
-  }
-
+  const data = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(
-      result.error ||
-      "Erro no servidor (" + response.status + ")."
-    );
+    throw Error(data.error || "Erro HTTP " + response.status);
   }
-
-  return result;
+  return data;
 }
-
-// =====================================================
-// INTERFACE PREMIUM
-// =====================================================
 
 function render() {
   const logged = !!user;
-  const active = premiumStatus?.active === true;
-  const remaining = Math.max(
-    0,
-    Number(premiumStatus?.remainingToday || 0)
-  );
+  const active = status?.active === true;
+  const remaining = Number(status?.remainingToday || 0);
 
-  const accountButton = element("accountButton");
+  setText("accountButton", logged ? "👤 Minha conta" : "Entrar");
+  show("googleLogin", !logged);
+  show("googleLogout", logged);
+  show("startPayment", logged && !active);
+  show("bpCpfBox", logged && !active);
+  show("aiSubscribe", !active);
 
-  if (accountButton) {
-    accountButton.textContent = logged
-      ? "👤 Minha conta"
-      : "Entrar";
+  if ($("startPayment")) {
+    $("startPayment").disabled = checking || paying;
   }
 
-  visible("googleLogin", !logged);
-  visible("googleLogout", logged);
-
-  visible(
-    "startPayment",
-    logged && loginReady && !checking && !active
-  );
-
-  disabled("startPayment", paying || checking);
+  if ($("aiSend")) {
+    $("aiSend").disabled = !logged || !active || remaining <= 0 || checking;
+  }
 
   let message = "";
 
-  if (!loginReady) {
-    message = "Carregando autenticação...";
-  } else if (!logged) {
+  if (!logged) {
     message = "Entre com Google para contratar a IA Premium.";
   } else if (checking) {
-    message = "Verificando sua assinatura...";
-  } else if (lastError) {
-    message = "Erro ao verificar assinatura: " + lastError;
+    message = "Verificando assinatura...";
+  } else if (errorMessage) {
+    message = "Erro: " + errorMessage;
   } else if (active) {
-    message =
-      "👑 IA Premium ativa até " +
-      formatDate(premiumStatus.expiresAt) +
-      ". Perguntas restantes hoje: " +
-      remaining + " de 20.";
+    const expiry = status.expiresAt
+      ? new Date(status.expiresAt).toLocaleDateString("pt-BR")
+      : "não informada";
+
+    message = "👑 Premium ativo até " + expiry +
+      ". Perguntas restantes hoje: " + remaining + " de 20.";
   } else {
-    message =
-      "Sua conta está conectada. " +
-      "Você ainda não possui uma assinatura Premium ativa.";
+    message = "IA Premium: R$ 20 por 30 dias. Informe seu CPF/CNPJ para gerar o Pix.";
   }
 
-  text("premiumStatus", message);
-  text("aiPlanStatus", message);
+  setText("premiumStatus", message);
+  setText("aiPlanStatus", message);
 
-  visible(
-    "aiSubscribe",
-    !active && !checking
-  );
-
-  disabled(
-    "aiSend",
-    !logged ||
-    !active ||
-    remaining <= 0 ||
-    checking
-  );
-
-  if (active && remaining === 0) {
-    text(
-      "aiPlanStatus",
-      "Você atingiu o limite de 20 perguntas de hoje."
-    );
+  if (active && remaining <= 0) {
+    setText("aiPlanStatus", "Você atingiu o limite de 20 perguntas de hoje.");
   }
 
-  if (active) {
-    clearPix();
-    stopPaymentMonitoring();
-  }
+  if (active) stopMonitoring();
 }
 
-// =====================================================
-// CONSULTAR ASSINATURA
-// =====================================================
-
 async function refresh(options = {}) {
-  const silent = options.silent === true;
-  const version = ++refreshVersion;
-  const currentUid = auth.currentUser?.uid || null;
-
-  if (!silent) {
-    checking = true;
-    lastError = "";
-    render();
-  }
-
-  if (!currentUid) {
-    premiumStatus = null;
-    checking = false;
-    lastError = "";
-    render();
-    return null;
-  }
+  if (!options.silent) checking = true;
+  errorMessage = "";
+  render();
 
   try {
-    const result = await api("/premium/status");
-
-    if (
-      version !== refreshVersion ||
-      auth.currentUser?.uid !== currentUid
-    ) {
+    if (!auth.currentUser) {
+      status = null;
       return null;
     }
 
-    premiumStatus = result;
-    lastError = "";
+    const uid = auth.currentUser.uid;
+    const result = await api("/premium/status");
 
+    if (auth.currentUser?.uid !== uid) return null;
+    status = result;
     return result;
-
   } catch (error) {
-    if (
-      version === refreshVersion &&
-      auth.currentUser?.uid === currentUid
-    ) {
-      premiumStatus = null;
-      lastError = error.message;
-
-      if (!silent) {
-        console.warn(
-          "Business Pro Premium:",
-          error.message
-        );
-      }
-    }
-
+    errorMessage = error.message;
     return null;
-
   } finally {
-    if (version === refreshVersion) {
-      checking = false;
-      render();
-    }
+    checking = false;
+    render();
   }
 }
 
-// =====================================================
-// ABRIR E FECHAR JANELA
-// =====================================================
-
-function showPremium() {
-  visible("premiumDialog", true);
+function openPremium() {
+  addCpfField();
+  show("premiumDialog", true);
   refresh();
 }
 
-function hidePremium() {
-  visible("premiumDialog", false);
+function closePremium() {
+  show("premiumDialog", false);
 }
 
-function canAsk() {
-  return (
-    !!auth.currentUser &&
-    premiumStatus?.active === true &&
-    Number(premiumStatus.remainingToday) > 0 &&
-    !checking
-  );
+function stopMonitoring() {
+  if (timer) clearInterval(timer);
+  timer = null;
 }
 
-// Disponibiliza funções para o index.html
-window.BusinessPremium = {
-  canAsk,
-  getToken,
-  refresh,
-  showPremium,
-  getUser: () => auth.currentUser,
-  getStatus: () => premiumStatus
-};
+function startMonitoring() {
+  stopMonitoring();
+  let attempts = 0;
 
-// =====================================================
-// LOGIN GOOGLE
-// =====================================================
+  timer = setInterval(async () => {
+    attempts++;
+    const result = await refresh({ silent: true });
+
+    if (result?.active) {
+      stopMonitoring();
+      notify("Pagamento confirmado! IA Premium liberada.");
+      setText("pixMessage", "Pagamento confirmado. Assinatura ativa!");
+    } else if (attempts >= 40) {
+      stopMonitoring();
+      setText("pixMessage", "Pagamento ainda não confirmado. Atualize sua assinatura para consultar novamente.");
+    }
+  }, 15000);
+}
 
 async function loginGoogle() {
-  if (!loginReady) {
-    notify("Aguarde o Firebase carregar.");
-    return;
-  }
-
-  disabled("googleLogin", true);
-
   try {
     await signInWithPopup(auth, provider);
-
   } catch (error) {
-    const code = error.code || "";
-
-    if (
-      code === "auth/popup-blocked" ||
-      code === "auth/popup-closed-by-user"
-    ) {
-      if (code === "auth/popup-blocked") {
-        try {
-          await signInWithRedirect(auth, provider);
-          return;
-        } catch (redirectError) {
-          notify(
-            "Não foi possível abrir o login: " +
-            redirectError.message
-          );
-        }
+    if (error.code === "auth/popup-blocked") {
+      try {
+        await signInWithRedirect(auth, provider);
+      } catch (e) {
+        notify("Falha no login: " + e.message);
       }
-    } else if (code === "auth/unauthorized-domain") {
-      notify(
-        "Autorize o domínio oanalistapro.github.io no Firebase Authentication."
-      );
-    } else if (code === "auth/operation-not-allowed") {
-      notify(
-        "Ative o provedor Google no Firebase Authentication."
-      );
-    } else {
-      notify(
-        "Erro ao entrar com Google: " +
-        error.message
-      );
+    } else if (error.code !== "auth/popup-closed-by-user") {
+      notify("Erro no login Google: " + error.message);
     }
-  } finally {
-    disabled("googleLogin", false);
   }
 }
 
 async function logoutGoogle() {
-  stopPaymentMonitoring();
-
-  try {
-    await signOut(auth);
-
-    user = null;
-    premiumStatus = null;
-    lastError = "";
-
-    clearPix();
-    render();
-
-    notify("Você saiu da sua conta.");
-
-  } catch (error) {
-    notify("Não foi possível sair: " + error.message);
-  }
+  stopMonitoring();
+  await signOut(auth);
+  user = null;
+  status = null;
+  render();
 }
 
-// Completa eventual login por redirecionamento.
-getRedirectResult(auth).catch(error => {
-  console.warn(
-    "Firebase Redirect:",
-    error.code || error.message
-  );
-});
-
-// Acompanha o login automaticamente.
-onAuthStateChanged(auth, async currentUser => {
-  user = currentUser;
-  loginReady = true;
-  premiumStatus = null;
-  lastError = "";
-
-  stopPaymentMonitoring();
-  clearPix();
-
-  render();
-
-  if (user) {
-    await refresh();
-  }
-});
-
-// =====================================================
-// GERAR PAGAMENTO PIX REAL
-// =====================================================
-
 async function startPayment() {
+  if (paying) return;
+
   if (!auth.currentUser) {
     notify("Entre com Google primeiro.");
     return;
   }
 
-  if (paying) return;
+  addCpfField();
+  const cpfCnpj = cpfDigits($("bpCpfCnpj")?.value);
+
+  if (!validCpfCnpj(cpfCnpj)) {
+    notify("Informe um CPF ou CNPJ válido.");
+    $("bpCpfCnpj")?.focus();
+    return;
+  }
 
   paying = true;
-  disabled("startPayment", true);
-
-  text(
-    "pixMessage",
-    "Gerando sua cobrança Pix de R$ 20,00..."
-  );
+  render();
+  setText("pixMessage", "Solicitando Pix real de R$ 20...");
 
   try {
     const result = await api("/premium/checkout", {
       method: "POST",
       body: JSON.stringify({
-        plan: "ai-30d-brl20"
+        plan: "ai-30d-brl20",
+        cpfCnpj
       })
     });
 
-    const pix = String(
-      result.pixCopyPaste || ""
-    );
-
-    const qr = String(
-      result.qrCodeBase64 || ""
-    );
+    const pix = String(result.pixCopyPaste || "");
+    const qr = String(result.qrCodeBase64 || "");
 
     if (!pix && !qr) {
-      throw new Error(
-        "O Asaas não retornou um código Pix válido."
-      );
+      throw Error("O Asaas não retornou o código Pix.");
     }
 
-    visible("pixDetails", true);
+    show("pixDetails", true);
 
-    const pixInput = element("pixCopy");
+    if ($("pixCopy")) $("pixCopy").value = pix;
 
-    if (pixInput) {
-      pixInput.value = pix;
-    }
-
-    if (
-      qr &&
-      /^[A-Za-z0-9+/]+=*$/.test(qr)
-    ) {
-      const qrImage = element("pixQR");
-
-      if (qrImage) {
-        qrImage.src =
-          "data:image/png;base64," + qr;
-        qrImage.hidden = false;
+    if ($("pixQR")) {
+      if (/^[A-Za-z0-9+/]+=*$/.test(qr)) {
+        $("pixQR").src = "data:image/png;base64," + qr;
+        show("pixQR", true);
+      } else {
+        show("pixQR", false);
       }
-    } else {
-      visible("pixQR", false);
     }
 
-    text(
-      "pixMessage",
-      "Pix de R$ 20,00 gerado pelo Asaas. " +
-      "Confira os dados do recebedor antes de pagar. " +
-      "Após o pagamento, a liberação será automática quando o servidor confirmar."
+    setText("pixMessage",
+      result.message ||
+      "Pix gerado. Confira o recebedor antes de pagar. A liberação depende da confirmação do Asaas."
     );
 
-    startPaymentMonitoring();
-
+    startMonitoring();
   } catch (error) {
-    notify(
-      "Erro ao gerar Pix: " + error.message
-    );
-
-    text(
-      "pixMessage",
-      "Não foi possível gerar o Pix: " +
-      error.message
-    );
-
+    notify("Erro ao gerar Pix: " + error.message);
+    setText("pixMessage", error.message);
   } finally {
     paying = false;
-    disabled("startPayment", false);
     render();
   }
 }
 
-// =====================================================
-// MONITORAR CONFIRMAÇÃO DO PAGAMENTO
-// =====================================================
-
-function startPaymentMonitoring() {
-  stopPaymentMonitoring();
-
-  let attempts = 0;
-
-  // Consulta a situação a cada 15 segundos.
-  // O Worker continua sendo a fonte da verdade.
-  paymentTimer = setInterval(async () => {
-    if (!auth.currentUser) {
-      stopPaymentMonitoring();
-      return;
-    }
-
-    attempts++;
-
-    const result = await refresh({
-      silent: true
-    });
-
-    if (result?.active === true) {
-      stopPaymentMonitoring();
-
-      notify(
-        "👑 Pagamento confirmado! Sua IA Premium está ativa."
-      );
-
-      text(
-        "pixMessage",
-        "Pagamento confirmado. Premium liberado!"
-      );
-
-      return;
-    }
-
-    // Para após 10 minutos.
-    if (attempts >= 40) {
-      stopPaymentMonitoring();
-
-      text(
-        "pixMessage",
-        "Ainda não recebemos a confirmação. " +
-        "Você pode atualizar sua assinatura manualmente."
-      );
-    }
-  }, 15000);
-}
-
-// =====================================================
-// COPIAR PIX
-// =====================================================
-
 async function copyPix() {
-  const code = element("pixCopy")?.value || "";
-
-  if (!code) {
-    notify("Nenhum código Pix disponível.");
-    return;
-  }
+  const code = $("pixCopy")?.value;
+  if (!code) return notify("Nenhum Pix disponível.");
 
   try {
     await navigator.clipboard.writeText(code);
-    notify("Código Pix copiado!");
-
+    notify("Pix copiado!");
   } catch {
-    const input = element("pixCopy");
-
-    if (input) {
-      input.focus();
-      input.select();
-    }
-
-    notify(
-      "Selecione e copie o código Pix."
-    );
+    $("pixCopy")?.select();
+    notify("Selecione e copie o Pix.");
   }
 }
 
-// =====================================================
-// EVENTOS DOS BOTÕES
-// =====================================================
-
-function bindClick(id, callback) {
-  const el = element(id);
-
-  if (el) {
-    el.addEventListener("click", callback);
-  }
+function bind(id, fn) {
+  const el = $(id);
+  if (el) el.addEventListener("click", fn);
 }
 
-bindClick("accountButton", showPremium);
-bindClick("premiumButton", showPremium);
-bindClick("aboutPremium", showPremium);
-bindClick("premiumClose", hidePremium);
+bind("accountButton", openPremium);
+bind("premiumButton", openPremium);
+bind("aboutPremium", openPremium);
+bind("premiumClose", closePremium);
+bind("googleLogin", loginGoogle);
+bind("googleLogout", logoutGoogle);
+bind("startPayment", startPayment);
+bind("copyPix", copyPix);
+bind("refreshPremium", () => refresh());
+bind("aiSubscribe", openPremium);
 
-bindClick("googleLogin", loginGoogle);
-bindClick("googleLogout", logoutGoogle);
+window.addEventListener("bp:open-premium", openPremium);
+window.addEventListener("bp:close-premium", closePremium);
+window.addEventListener("bp:ai-open", () => refresh());
+window.addEventListener("bp:premium-refresh", () => refresh());
 
-bindClick("refreshPremium", () => refresh());
-
-bindClick("startPayment", startPayment);
-bindClick("copyPix", copyPix);
-
-bindClick("aiSubscribe", showPremium);
-
-window.addEventListener(
-  "bp:open-premium",
-  showPremium
-);
-
-window.addEventListener(
-  "bp:close-premium",
-  hidePremium
-);
-
-window.addEventListener(
-  "bp:ai-open",
-  () => refresh()
-);
-
-window.addEventListener(
-  "bp:premium-refresh",
-  () => refresh()
-);
-
-const dialog = element("premiumDialog");
-
-if (dialog) {
-  dialog.addEventListener("click", event => {
-    if (event.target === dialog) {
-      hidePremium();
-    }
+if ($("premiumDialog")) {
+  $("premiumDialog").addEventListener("click", event => {
+    if (event.target === $("premiumDialog")) closePremium();
   });
 }
 
-render();
+window.BusinessPremium = {
+  canAsk: () => !!auth.currentUser &&
+    status?.active === true &&
+    Number(status.remainingToday) > 0 &&
+    !checking,
+  getToken,
+  refresh,
+  showPremium: openPremium,
+  getUser: () => auth.currentUser,
+  getStatus: () => status
+};
 
-console.log(
-  "BUSINESS PRO PREMIUM: Firebase conectado."
-);
+getRedirectResult(auth).catch(console.warn);
+
+onAuthStateChanged(auth, async currentUser => {
+  user = currentUser;
+  status = null;
+  stopMonitoring();
+  addCpfField();
+  render();
+  if (user) await refresh();
+});
+
+addCpfField();
+render();
