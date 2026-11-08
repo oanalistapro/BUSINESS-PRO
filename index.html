@@ -5,653 +5,263 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#081326">
-<meta name="description" content="BUSINESS PRO: ferramentas profissionais para documentos, negócios, finanças e organização.">
+<meta name="description" content="Business Pro: ferramentas gratuitas e assistente IA Premium.">
 <title>BUSINESS PRO | Seu negócio mais organizado</title>
-
 <link rel="icon" href="./business-pro.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="./business-pro-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="./business-pro-192.png">
 <link rel="apple-touch-icon" href="./business-pro-180.png">
 <link rel="manifest" href="./manifest.webmanifest">
-
 <style>
 :root{
- --bg:#081326;
- --panel:#13223b;
- --panel2:#1b3153;
- --text:#f5f8ff;
- --muted:#a9bbd6;
- --line:#304563;
- --blue:#2865f5;
- --shadow:0 16px 45px #0003;
+ --bg:#081326;--panel:#13223b;--panel2:#1b3153;
+ --text:#f5f8ff;--muted:#a9bbd6;--line:#304563;
+ --blue:#2865f5;--shadow:0 16px 45px #0003;
  color-scheme:dark
 }
 body.light{
- --bg:#f1f5fc;
- --panel:#fff;
- --panel2:#eaf1ff;
- --text:#142744;
- --muted:#63738e;
- --line:#dbe4f3;
+ --bg:#f1f5fc;--panel:#fff;--panel2:#eaf1ff;
+ --text:#142744;--muted:#63738e;--line:#dbe4f3;
  --shadow:0 16px 45px #14274416;
  color-scheme:light
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
- margin:0;
- background:var(--bg);
- color:var(--text);
- font-family:Inter,system-ui,Arial,sans-serif
-}
+body{margin:0;background:var(--bg);color:var(--text);
+ font-family:Inter,system-ui,Arial,sans-serif}
 button,input,textarea{font:inherit}
 button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
 a{color:inherit;text-decoration:none}
-button:focus-visible,a:focus-visible,
-input:focus-visible,textarea:focus-visible{
- outline:3px solid #78a9ff;
- outline-offset:3px
-}
 [hidden]{display:none!important}
-.wrap{
- width:min(1400px,calc(100% - 36px));
- margin:auto
-}
-header{
- position:sticky;
- top:0;
- z-index:30;
- background:var(--panel);
- border-bottom:1px solid var(--line)
-}
-.navbar{
- min-height:76px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:15px
-}
+.wrap{width:min(1400px,calc(100% - 32px));margin:auto}
+header{position:sticky;top:0;z-index:30;background:var(--panel);
+ border-bottom:1px solid var(--line)}
+.navbar{min-height:76px;display:flex;align-items:center;
+ justify-content:space-between;gap:12px}
 .brand{display:flex;align-items:center;gap:12px}
-.mark{
- width:48px;
- height:48px;
- border-radius:15px;
- display:grid;
- place-items:center;
- background:linear-gradient(135deg,#1352e7,#43a1ff);
- color:white;
- font-size:28px;
- box-shadow:0 10px 24px #2865f555
-}
-.brand b{font-size:21px;letter-spacing:-.5px}
-.brand b span{color:#3479ff}
-.brand small{
- display:block;
- color:var(--muted);
- font-size:10px;
- letter-spacing:2px;
- font-weight:800;
- margin-top:3px
-}
-nav{display:flex;align-items:center;gap:13px}
+.mark{width:48px;height:48px;border-radius:15px;
+ display:grid;place-items:center;font-size:28px;color:white;
+ background:linear-gradient(135deg,#1352e7,#43a1ff)}
+.brand b{font-size:21px}
+.brand b span{color:#4388ff}
+.brand small{display:block;color:var(--muted);
+ font-size:10px;letter-spacing:1px}
+nav,.actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 nav a{font-size:13px;font-weight:750}
-.btn{
- background:var(--blue);
- border:1px solid transparent;
- color:white;
- border-radius:13px;
- padding:13px 19px;
- font-weight:800
-}
-.btn:hover{filter:brightness(1.12)}
-.btn.secondary{
- background:var(--panel2);
- color:var(--text);
- border-color:var(--line)
-}
-.hero{
- position:relative;
- overflow:hidden;
- min-height:560px;
- display:flex;
- align-items:center;
- background:
- linear-gradient(95deg,#071936ed,#123a83c7,#135ee8a0),
+.btn{background:var(--blue);border:1px solid transparent;
+ color:white;border-radius:13px;padding:12px 16px;
+ font-weight:800;display:inline-block;text-align:center}
+.btn.secondary{background:var(--panel2);color:var(--text);
+ border-color:var(--line)}
+.btn:hover{filter:brightness(1.1)}
+.hero{min-height:470px;display:flex;align-items:center;
+ color:white;background:
+ linear-gradient(95deg,#071936f2,#123a83d0,#135ee8a0),
  url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1800&q=85")
- center/cover;
- color:white
-}
-.hero:after{
- content:"";
- position:absolute;
- width:550px;
- height:550px;
- right:-180px;
- top:-240px;
- border:80px solid #ffffff10;
- border-radius:50%;
- pointer-events:none
-}
-.hero-content{
- position:relative;
- z-index:1;
- padding:75px 0
-}
-.eyebrow{
- font-size:12px;
- letter-spacing:2.4px;
- font-weight:900;
- color:#a9d2ff
-}
-.hero h1{
- max-width:850px;
- font-size:clamp(39px,6vw,79px);
- line-height:1.07;
- letter-spacing:-3px;
- margin:24px 0
-}
-.hero p{
- max-width:660px;
- line-height:1.8;
- font-size:18px;
- color:#e4efff
-}
-.hero-actions{
- display:flex;
- flex-wrap:wrap;
- gap:12px;
- margin-top:28px
-}
-.hero-actions .btn:first-child{
- background:white;
- color:#1752ce
-}
-.hero-actions .secondary{
- background:#ffffff1c;
- border-color:#ffffff60;
- color:white
-}
-.highlights{
- display:flex;
- flex-wrap:wrap;
- gap:10px;
- margin-top:30px
-}
-.highlights span{
- padding:9px 13px;
- border-radius:30px;
- border:1px solid #ffffff50;
- background:#ffffff18;
- font-size:12px
-}
-section.content{padding:70px 0}
-.section-title{
- display:flex;
- justify-content:space-between;
- align-items:end;
- flex-wrap:wrap;
- gap:20px;
- margin-bottom:25px
-}
-.section-title h2{
- font-size:clamp(28px,4vw,44px);
- letter-spacing:-1.7px;
- margin:0 0 9px
-}
+ center/cover}
+.hero-content{padding:65px 0}
+.eyebrow{color:#a9d2ff;font-size:12px;letter-spacing:2px;
+ font-weight:900}
+.hero h1{max-width:850px;font-size:clamp(36px,6vw,74px);
+ line-height:1.08;letter-spacing:-2px;margin:22px 0}
+.hero p{max-width:650px;line-height:1.8;font-size:17px;
+ color:#e4efff}
+.hero-actions,.highlights{display:flex;flex-wrap:wrap;
+ gap:10px;margin-top:25px}
+.highlights span{padding:9px 12px;border:1px solid #ffffff50;
+ border-radius:30px;background:#ffffff18;font-size:12px}
+.content{padding:55px 0}
+.section-title{display:flex;justify-content:space-between;
+ align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:22px}
+.section-title h2{font-size:clamp(27px,4vw,43px);
+ margin:6px 0}
+.category{color:#4388ff;font-size:11px;font-weight:900;
+ letter-spacing:1.5px;text-transform:uppercase}
 .muted{color:var(--muted);line-height:1.7}
-.search{
- background:var(--panel);
- color:var(--text);
- border:1px solid var(--line);
- padding:16px 18px;
- border-radius:15px;
- width:min(390px,100%);
- min-height:55px
-}
-.filters{
- display:flex;
- gap:10px;
- overflow-x:auto;
- padding:5px 0 22px;
- scrollbar-width:thin
-}
-.filter{
- white-space:nowrap;
- border:1px solid var(--line);
- background:var(--panel);
- color:var(--text);
- border-radius:30px;
- padding:12px 18px;
- font-weight:800
-}
-.filter.active{
- background:var(--blue);
- color:white;
- border-color:var(--blue)
-}
-.grid{
- display:grid;
- grid-template-columns:repeat(3,minmax(0,1fr));
- gap:22px
-}
-.card{
- background:var(--panel);
- border:1px solid var(--line);
- border-radius:25px;
- overflow:hidden;
- box-shadow:var(--shadow);
- transition:transform .2s,border-color .2s;
- display:flex;
- flex-direction:column
-}
-.card:hover{
- transform:translateY(-5px);
- border-color:var(--blue)
-}
-.card-image{
- height:180px;
- position:relative;
- background:#315e96 center/cover
-}
-.card-image:after{
- content:"";
- position:absolute;
- inset:0;
- background:linear-gradient(0deg,#091a3850,transparent)
-}
-.card-icon{
- position:absolute;
- z-index:1;
- bottom:15px;
- left:20px;
- width:66px;
- height:66px;
- background:white;
- border-radius:20px;
- display:grid;
- place-items:center;
- font-size:32px;
- box-shadow:0 8px 24px #0004
-}
-.card-label{
- position:absolute;
- z-index:1;
- bottom:22px;
- right:18px;
- background:white;
- color:#1643a8;
- border-radius:30px;
- padding:9px 12px;
- font-size:10px;
- font-weight:900
-}
-.card-body{
- padding:24px;
- display:flex;
- flex:1;
- flex-direction:column
-}
-.category{
- font-size:11px;
- font-weight:900;
- color:#4388ff;
- letter-spacing:1.6px;
- text-transform:uppercase
-}
-.card h3{
- font-size:23px;
- margin:12px 0 8px;
- letter-spacing:-.5px
-}
-.card p{
- font-size:14px;
- line-height:1.75;
- color:var(--muted);
- flex:1
-}
-.card-actions{
- display:flex;
- align-items:center;
- justify-content:space-between;
- flex-wrap:wrap;
- margin-top:16px;
- gap:10px
-}
-.open-app{
- border:0;
- background:transparent;
- color:#4388ff;
- padding:10px 0;
- font-weight:900
-}
-.favorite{
- width:45px;
- height:45px;
- border:1px solid var(--line);
- background:var(--panel2);
- color:#4388ff;
- border-radius:13px;
- font-size:24px
-}
+.search,input,textarea{background:var(--panel);color:var(--text);
+ border:1px solid var(--line);padding:13px;border-radius:12px}
+.search{width:min(380px,100%)}
+.filters{display:flex;gap:9px;overflow-x:auto;padding:8px 0 22px}
+.filter{white-space:nowrap;border:1px solid var(--line);
+ background:var(--panel);color:var(--text);border-radius:30px;
+ padding:11px 16px;font-weight:800}
+.filter.active{background:var(--blue);color:white}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);
+ border-radius:23px;overflow:hidden;box-shadow:var(--shadow);
+ display:flex;flex-direction:column}
+.card:hover{border-color:var(--blue)}
+.card-image{height:170px;background:#315e96 center/cover;
+ position:relative}
+.card-icon{position:absolute;bottom:15px;left:18px;
+ width:62px;height:62px;border-radius:18px;background:white;
+ display:grid;place-items:center;font-size:31px}
+.card-label{position:absolute;bottom:20px;right:15px;
+ background:white;color:#1643a8;border-radius:25px;
+ padding:8px 11px;font-size:10px;font-weight:900}
+.card-body{padding:22px;display:flex;flex:1;flex-direction:column}
+.card h3{font-size:22px;margin:12px 0 8px}
+.card p{color:var(--muted);font-size:14px;line-height:1.7;flex:1}
+.card-actions{display:flex;align-items:center;flex-wrap:wrap;
+ gap:12px;margin-top:14px}
+.open-app{border:0;background:transparent;color:#4388ff;
+ font-weight:900;padding:9px 0}
+.favorite{width:43px;height:43px;border:1px solid var(--line);
+ border-radius:12px;background:var(--panel2);color:#4388ff;
+ font-size:24px}
 .favorite.saved{color:#f3b824}
-.about{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:25px
-}
-.about-box{
- background:var(--panel);
- border:1px solid var(--line);
- border-radius:27px;
- padding:36px
-}
-.about-box h2{
- font-size:clamp(25px,3vw,36px)
-}
-.about-box.blue{
- background:linear-gradient(135deg,#133267,#2463ef);
- color:white
-}
-.about-box.blue p{color:#e4edff}
-footer{
- padding:32px 0;
- border-top:1px solid var(--line);
- background:var(--panel)
-}
-footer .wrap{
- display:flex;
- flex-wrap:wrap;
- justify-content:space-between;
- gap:20px
-}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.about-box{background:var(--panel);border:1px solid var(--line);
+ border-radius:25px;padding:30px}
+.about-box.blue{background:linear-gradient(135deg,#133267,#2463ef);
+ color:white}
+footer{background:var(--panel);border-top:1px solid var(--line);
+ padding:30px 0}
+footer .wrap{display:flex;justify-content:space-between;
+ gap:15px;flex-wrap:wrap}
 footer a{color:#4388ff}
-.empty{
- text-align:center;
- padding:45px;
- color:var(--muted)
-}
-.app-shell{
- position:fixed;
- inset:0;
- z-index:100;
- background:var(--bg);
- display:flex;
- flex-direction:column
-}
-.app-top{
- background:var(--panel);
- border-bottom:1px solid var(--line);
- padding:12px 18px;
- min-height:65px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:10px
-}
-.app-top strong{font-size:15px}
-.app-top .actions{display:flex;gap:8px}
-.app-top button{
- border:1px solid var(--line);
- border-radius:11px;
- padding:10px 13px;
- background:var(--panel2);
- color:var(--text);
- font-weight:800
-}
-.app-shell iframe{
- flex:1;
- width:100%;
- border:0;
- background:var(--bg)
-}
-.toast{
- position:fixed;
- bottom:20px;
- left:50%;
- transform:translateX(-50%);
- background:var(--panel2);
- color:var(--text);
- border:1px solid var(--line);
- border-radius:13px;
- padding:15px 20px;
- z-index:200;
- max-width:calc(100% - 30px);
- box-shadow:var(--shadow)
-}
-.app-loading{
- position:absolute;
- inset:65px 0 0;
- z-index:2;
- background:var(--bg);
- display:flex;
- flex-direction:column;
- align-items:center;
- justify-content:center;
- gap:14px;
- padding:20px;
- text-align:center
-}
-.ai-overlay{
- position:fixed;
- inset:0;
- z-index:300;
- background:#000a;
- display:grid;
- place-items:center;
- padding:15px
-}
-.ai-panel{
- width:min(700px,100%);
- max-height:95dvh;
- overflow:auto;
- background:var(--panel);
- color:var(--text);
- border:1px solid var(--line);
- border-radius:20px;
- padding:20px;
- box-shadow:var(--shadow)
-}
-.ai-head{
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:12px
-}
-.ai-answer{
- margin:18px 0;
- padding:16px;
- background:var(--panel2);
- border-radius:14px;
- min-height:110px;
- white-space:pre-wrap;
- overflow-wrap:anywhere;
- line-height:1.6
-}
-.ai-answer a{
- color:#70aaff;
- text-decoration:underline
-}
-.ai-form{
- display:grid;
- gap:10px
-}
-.ai-form textarea{
- resize:vertical;
- min-height:95px;
- padding:13px;
- border:1px solid var(--line);
- border-radius:12px;
- background:var(--bg);
- color:var(--text);
- font:inherit
-}
-.ai-form button:disabled{
- opacity:.55;
- cursor:wait
-}
-@media(max-width:1050px){
- .grid{grid-template-columns:repeat(2,1fr)}
-}
+.app-shell{position:fixed;inset:0;z-index:100;background:var(--bg);
+ display:flex;flex-direction:column}
+.app-top{min-height:65px;background:var(--panel);
+ border-bottom:1px solid var(--line);padding:10px;
+ display:flex;align-items:center;justify-content:space-between;gap:8px}
+.app-top .actions{gap:5px}
+.app-top button{border:1px solid var(--line);border-radius:10px;
+ padding:9px;background:var(--panel2);color:var(--text);
+ font-weight:800}
+.app-shell iframe{flex:1;width:100%;border:0;background:var(--bg)}
+.app-loading{position:absolute;inset:65px 0 0;z-index:2;
+ background:var(--bg);display:flex;flex-direction:column;
+ align-items:center;justify-content:center;gap:12px;text-align:center}
+.overlay{position:fixed;inset:0;z-index:300;background:#000b;
+ display:grid;place-items:center;padding:14px}
+.panel{width:min(650px,100%);max-height:95dvh;overflow:auto;
+ background:var(--panel);color:var(--text);
+ border:1px solid var(--line);border-radius:20px;padding:20px}
+.panel-head{display:flex;justify-content:space-between;
+ align-items:center;gap:10px}
+.ai-answer{margin:16px 0;padding:15px;background:var(--panel2);
+ border-radius:13px;min-height:100px;white-space:pre-wrap;
+ overflow-wrap:anywhere;line-height:1.6}
+.ai-answer a{color:#70aaff;text-decoration:underline}
+.ai-form{display:grid;gap:10px}
+.ai-form textarea{width:100%;min-height:90px;resize:vertical}
+.premium-price{font-size:35px;font-weight:900;margin:12px 0}
+.premium-box{padding:15px;background:var(--panel2);
+ border:1px solid var(--line);border-radius:13px;margin:14px 0}
+#pixCopy{width:100%;min-height:90px}
+#pixQR{display:block;max-width:230px;width:100%;margin:12px auto;
+ background:white;padding:10px;border-radius:10px}
+.toast{position:fixed;bottom:20px;left:50%;
+ transform:translateX(-50%);background:var(--panel2);
+ border:1px solid var(--line);border-radius:12px;
+ padding:14px;z-index:500;max-width:90%}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){
- .wrap{width:calc(100% - 28px)}
- .navbar{min-height:70px}
- .brand b{font-size:17px}
- .brand small{font-size:8px;letter-spacing:1px}
+ .grid,.about{grid-template-columns:1fr}
+ .navbar{min-height:65px}
+ .brand b{font-size:16px}
+ .brand small{font-size:8px}
  .mark{width:40px;height:40px}
  nav a{display:none}
- nav{gap:7px}
- nav .btn{padding:11px}
- .hero{min-height:520px}
- .hero-content{padding:60px 0}
- .hero h1{letter-spacing:-1.8px}
- .hero p{font-size:16px}
- section.content{padding:50px 0}
- .grid{grid-template-columns:1fr}
- .card-image{height:170px}
- .about{grid-template-columns:1fr}
- .about-box{padding:26px}
- .search{width:100%}
+ nav .btn{padding:9px;font-size:12px}
+ .hero{min-height:450px}
+ .hero h1{letter-spacing:-1px}
+ .card-image{height:165px}
  .section-title{align-items:stretch}
- .app-top{padding:9px}
+ .search{width:100%}
  .app-top strong{font-size:12px}
- .app-top button{font-size:12px;padding:9px}
-}
-@media(prefers-reduced-motion:reduce){
- *{
-  scroll-behavior:auto!important;
-  transition:none!important
- }
+ .app-top button{font-size:11px;padding:8px}
+ .panel{padding:15px}
 }
 </style>
 </head>
-
 <body>
-
 <header>
  <div class="wrap navbar">
   <a href="#inicio" class="brand">
    <div class="mark">◆</div>
-   <div>
-    <b>BUSINESS <span>PRO</span></b>
-    <small>SEU NEGÓCIO MAIS ORGANIZADO</small>
-   </div>
+   <div><b>BUSINESS <span>PRO</span></b>
+    <small>SEU NEGÓCIO MAIS ORGANIZADO</small></div>
   </a>
   <nav>
    <a href="#aplicativos">Aplicativos</a>
    <a href="#sobre">Sobre</a>
-   <button class="btn secondary" id="themeButton"
-    type="button" title="Alternar tema">☀</button>
-   <a class="btn" href="#aplicativos">Explorar</a>
+   <button class="btn secondary" id="themeButton">☀</button>
+   <button class="btn secondary" id="accountButton">Entrar</button>
+   <button class="btn" id="premiumButton">👑 IA Premium</button>
   </nav>
  </div>
 </header>
 
 <section class="hero" id="inicio">
  <div class="wrap hero-content">
-  <span class="eyebrow">
-   ◆ BUSINESS PRO · FERRAMENTAS PROFISSIONAIS
-  </span>
+  <span class="eyebrow">◆ BUSINESS PRO · FERRAMENTAS PROFISSIONAIS</span>
   <h1>Seu trabalho merece ferramentas à altura.</h1>
-  <p>
-   Crie documentos, prepare orçamentos,
-   organize suas finanças, acompanhe projetos
-   e gerencie informações importantes.
-   Tudo em um portal moderno, preparado
-   para celular e computador.
-  </p>
+  <p>Crie documentos, organize suas finanças, acompanhe projetos
+   e utilize ferramentas profissionais gratuitamente.
+   A inteligência artificial está disponível no plano Premium.</p>
   <div class="hero-actions">
-   <a class="btn" href="#aplicativos">
-    Explorar aplicativos →
-   </a>
-   <a class="btn secondary" href="#sobre">
-    Conhecer o Business Pro
-   </a>
+   <a class="btn" href="#aplicativos">Explorar aplicativos →</a>
+   <button class="btn secondary" onclick="window.dispatchEvent(new Event('bp:open-premium'))">
+    👑 Conhecer IA Premium
+   </button>
   </div>
   <div class="highlights">
-   <span>✦ Aplicativos organizados</span>
+   <span>✓ Ferramentas gratuitas</span>
    <span>📱 Celular e computador</span>
-   <span>⚡ Pesquisa rápida</span>
    <span>⭐ Favoritos</span>
-   <span>🤖 Assistente IA</span>
+   <span>🤖 IA Premium R$ 20 / 30 dias</span>
   </div>
  </div>
 </section>
 
 <main>
-
-<section class="content wrap" id="aplicativos">
- <div class="section-title">
-  <div>
-   <span class="category">SEU ESPAÇO PROFISSIONAL</span>
-   <h2>Explore seus aplicativos</h2>
-   <p class="muted">
-    Encontre a ferramenta certa e comece a trabalhar.
-   </p>
+ <section class="content wrap" id="aplicativos">
+  <div class="section-title">
+   <div>
+    <span class="category">SEU ESPAÇO PROFISSIONAL</span>
+    <h2>Explore seus aplicativos</h2>
+    <p class="muted">Todas as ferramentas são gratuitas.</p>
+   </div>
+   <input id="search" class="search" type="search"
+    placeholder="🔎 Pesquisar aplicativo...">
   </div>
-  <input
-   id="search"
-   class="search"
-   type="search"
-   placeholder="🔎 Pesquisar aplicativo..."
-   aria-label="Pesquisar aplicativo">
- </div>
+  <div id="filters" class="filters"></div>
+  <div id="grid" class="grid"></div>
+  <p id="empty" class="muted" hidden>Nenhum aplicativo encontrado.</p>
+ </section>
 
- <div class="filters" id="filters"></div>
- <div class="grid" id="grid"></div>
- <p id="empty" class="empty" hidden>
-  Nenhum aplicativo encontrado.
- </p>
-</section>
-
-<section class="content wrap" id="sobre">
- <div class="about">
-  <div class="about-box">
-   <span class="category">BUSINESS PRO</span>
-   <h2>Mais organização. Menos complicação.</h2>
-   <p class="muted">
-    Um portal para profissionais, estudantes,
-    empreendedores e empresas organizarem suas
-    atividades em um único lugar.
-   </p>
-   <p class="muted">
-    Cada aplicativo possui suas próprias
-    funcionalidades. Quando os dados forem
-    salvos no navegador, utilize os recursos
-    de backup disponíveis.
-   </p>
+ <section class="content wrap" id="sobre">
+  <div class="about">
+   <div class="about-box">
+    <span class="category">BUSINESS PRO</span>
+    <h2>Mais organização. Menos complicação.</h2>
+    <p class="muted">Ferramentas para estudantes,
+     profissionais, empreendedores e empresas.</p>
+    <p class="muted">Os dados salvos nos aplicativos podem
+     depender do navegador. Faça backup quando disponível.</p>
+   </div>
+   <div class="about-box blue">
+    <h2>👑 IA Premium</h2>
+    <p>R$ 20 por 30 dias. Até 20 perguntas por dia,
+     respeitando a disponibilidade do serviço.</p>
+    <button class="btn" id="aboutPremium"
+     style="background:white;color:#174cbd">Conhecer plano →</button>
+   </div>
   </div>
-  <div class="about-box blue">
-   <h2>Seu espaço de produtividade.</h2>
-   <p>
-    Visual consistente, navegação simples,
-    pesquisa instantânea e acesso rápido
-    às ferramentas favoritas.
-   </p>
-   <a class="btn"
-    style="background:white;color:#174cbd"
-    href="#aplicativos">
-    Começar agora →
-   </a>
-  </div>
- </div>
-</section>
-
+ </section>
 </main>
 
 <footer>
  <div class="wrap">
-  <div>
-   <strong>◆ BUSINESS PRO</strong>
-   <p class="muted">Seu negócio mais organizado.</p>
-  </div>
-  <div>
-   <strong>Contato</strong>
-   <p>
-    <a href="mailto:adm.oanalistapro@gmail.com">
-     adm.oanalistapro@gmail.com
-    </a>
-   </p>
-  </div>
+  <div><strong>◆ BUSINESS PRO</strong>
+   <p class="muted">Seu negócio mais organizado.</p></div>
+  <div><strong>Contato</strong>
+   <p><a href="mailto:adm.oanalistapro@gmail.com">
+    adm.oanalistapro@gmail.com</a></p></div>
  </div>
 </footer>
 
@@ -659,161 +269,130 @@ footer a{color:#4388ff}
  <div class="app-top">
   <strong id="appTitle">BUSINESS PRO</strong>
   <div class="actions">
-   <button id="appTheme" type="button"
-    title="Alternar tema">☀</button>
-   <button id="appAI" type="button"
-    title="Assistente IA" hidden>✦ IA</button>
-   <button id="appReload" type="button"
-    title="Recarregar">↻</button>
-   <button id="appClose" type="button">
-    ← Voltar
-   </button>
+   <button id="appTheme">☀</button>
+   <button id="appAI" hidden>✦ IA</button>
+   <button id="appReload">↻</button>
+   <button id="appClose">← Voltar</button>
   </div>
  </div>
-
  <div id="appLoading" class="app-loading" hidden>
   <p id="appLoadingText">Carregando...</p>
-  <button id="appTryAgain" class="btn"
-   type="button">Tentar novamente</button>
-  <button id="appLoadingBack"
-   class="btn secondary" type="button">Voltar</button>
+  <button class="btn" id="appTryAgain">Tentar novamente</button>
+  <button class="btn secondary" id="appLoadingBack">Voltar</button>
  </div>
+ <iframe id="appFrame" title="Aplicativo Business Pro"></iframe>
+</div>
 
- <iframe
-  id="appFrame"
-  title="Aplicativo Business Pro"
-  loading="eager">
- </iframe>
+<div id="aiDialog" class="overlay" hidden
+ role="dialog" aria-modal="true" aria-labelledby="aiTitle">
+ <div class="panel">
+  <div class="panel-head">
+   <strong id="aiTitle">Assistente IA</strong>
+   <button id="aiClose" class="btn secondary">✕ Fechar</button>
+  </div>
+  <p id="aiPlanStatus" class="muted">Verificando assinatura...</p>
+  <div id="aiAnswer" class="ai-answer" aria-live="polite">
+   Como posso ajudar?
+  </div>
+  <form id="aiForm" class="ai-form">
+   <textarea id="aiQuestion" maxlength="2500"
+    placeholder="Digite sua pergunta..." required></textarea>
+   <button id="aiSend" class="btn" disabled>Perguntar à IA</button>
+  </form>
+  <div class="actions" style="margin:14px 0">
+   <button id="aiSubscribe" class="btn">👑 Ativar IA Premium</button>
+  </div>
+  <small class="muted">A IA pode errar. Confirme informações
+   importantes em fontes oficiais. Não envie dados sensíveis.</small>
+ </div>
+</div>
+
+<div id="premiumDialog" class="overlay" hidden
+ role="dialog" aria-modal="true" aria-labelledby="premiumTitle">
+ <div class="panel">
+  <div class="panel-head">
+   <strong id="premiumTitle">👑 BUSINESS PRO · IA PREMIUM</strong>
+   <button id="premiumClose" class="btn secondary">✕ Fechar</button>
+  </div>
+  <div class="premium-price">R$ 20,00 <small>/ 30 dias</small></div>
+  <p>✓ Todas as ferramentas continuam gratuitas.</p>
+  <p>✓ Até 20 perguntas de IA por dia.</p>
+  <p>✓ Assistente especializado por aplicativo.</p>
+  <div class="premium-box">
+   <strong>Minha conta</strong>
+   <p id="premiumStatus" class="muted">Verificando...</p>
+   <div class="actions">
+    <button id="googleLogin" class="btn">Entrar com Google</button>
+    <button id="googleLogout" class="btn secondary" hidden>Sair</button>
+    <button id="refreshPremium" class="btn secondary">
+     ↻ Atualizar situação
+    </button>
+   </div>
+  </div>
+  <button id="startPayment" class="btn" hidden>
+   💠 Gerar Pix de R$ 20
+  </button>
+  <div id="pixDetails" class="premium-box" hidden>
+   <strong>Pagamento Pix</strong>
+   <p id="pixMessage" class="muted"></p>
+   <img id="pixQR" alt="QR Code Pix" hidden>
+   <textarea id="pixCopy" readonly></textarea>
+   <div class="actions">
+    <button id="copyPix" class="btn secondary">Copiar Pix</button>
+   </div>
+  </div>
+  <p><small class="muted">
+   O pagamento somente será liberado quando o servidor
+   de cobrança estiver configurado. Nunca envie Pix
+   para códigos que não sejam gerados pelo provedor oficial.
+  </small></p>
+ </div>
 </div>
 
 <div id="toast" class="toast" hidden role="status"></div>
 
-<div id="aiDialog" class="ai-overlay" hidden
- role="dialog" aria-modal="true"
- aria-labelledby="aiTitle">
- <div class="ai-panel">
-  <div class="ai-head">
-   <strong id="aiTitle">Assistente IA</strong>
-   <button id="aiClose" type="button"
-    class="btn secondary">✕ Fechar</button>
-  </div>
-
-  <div id="aiAnswer" class="ai-answer"
-   aria-live="polite">
-   Como posso ajudar?
-  </div>
-
-  <form id="aiForm" class="ai-form">
-   <textarea
-    id="aiQuestion"
-    rows="3"
-    maxlength="2500"
-    placeholder="Digite sua pergunta..."
-    required></textarea>
-
-   <button id="aiSend" class="btn"
-    type="submit">
-    Perguntar à IA
-   </button>
-  </form>
-
-  <small class="muted">
-   A IA pode errar. Confirme informações
-   importantes em fontes oficiais.
-   Não envie dados sensíveis.
-  </small>
- </div>
-</div>
-
 <script>
 "use strict";
-
-/*
- BUSINESS PRO
- INDEX PRINCIPAL
- IA: GROQ CLOUD VIA CLOUDFLARE WORKER
-*/
-
-const APPS = [
- ["meu-curriculo","MEU CURRÍCULO","Carreira","👔",
-  "Crie currículos profissionais."],
- ["meu-pdf","MEU PDF","Documentos","📑",
-  "Organize, converta e prepare arquivos PDF."],
- ["meu-documento","MEU DOCUMENTO","Documentos","📁",
-  "Crie e organize documentos."],
- ["meu-negocio","MEU NEGÓCIO","Gestão","🏢",
-  "Organize informações da empresa."],
- ["meu-orcamento","MEU ORÇAMENTO","Finanças","🧾",
-  "Prepare propostas e orçamentos."],
- ["meu-financeiro","MEU FINANCEIRO","Finanças","💳",
-  "Controle receitas, despesas e saldos."],
- ["meu-estoque","MEU ESTOQUE","Gestão","📦",
-  "Controle produtos e movimentações."],
- ["meu-contrato","MEU CONTRATO","Documentos","📝",
-  "Organize contratos e documentos."],
- ["meu-trabalho","MEU TRABALHO","Carreira","💼",
-  "Organize atividades profissionais."],
- ["meu-empreendedor","MEU EMPREENDEDOR","Gestão","🚀",
-  "Planeje e organize seu empreendimento."],
- ["meu-protocolo","MEU PROTOCOLO","Documentos","📋",
-  "Acompanhe protocolos e solicitações."],
- ["meu-rh","MEU RH","Gestão","👥",
-  "Organize informações de recursos humanos."],
- ["meu-requerimento","MEU REQUERIMENTO","Documentos","📝",
-  "Prepare e acompanhe requerimentos."],
- ["meu-atendimento","MEU ATENDIMENTO","Gestão","🎧",
-  "Organize atendimentos e clientes."],
- ["meu-prazo","MEU PRAZO","Produtividade","⏰",
-  "Controle vencimentos e compromissos."],
- ["meu-imovel","MEU IMÓVEL","Patrimônio","🏠",
-  "Organize informações de imóveis."],
- ["meu-concurso","MEU CONCURSO","Educação","🎓",
-  "Organize concursos e estudos."],
- ["meu-direito","MEU DIREITO","Cidadania","⚖️",
-  "Organize informações e solicitações."],
- ["meu-consumidor","MEU CONSUMIDOR","Cidadania","🛒",
-  "Organize reclamações e comprovantes."],
- ["meu-migrante","MEU MIGRANTE","Cidadania","🌍",
-  "Organize documentos e processos migratórios."],
- ["meu-edital","MEU EDITAL","Educação","📚",
-  "Acompanhe editais e seus prazos."],
- ["meu-imposto","MEU IMPOSTO","Finanças","🧮",
-  "Organize informações fiscais."]
+const $=id=>document.getElementById(id);
+const APPS=[
+ ["meu-curriculo","MEU CURRÍCULO","Carreira","👔","Crie currículos profissionais."],
+ ["meu-pdf","MEU PDF","Documentos","📑","Organize arquivos PDF."],
+ ["meu-documento","MEU DOCUMENTO","Documentos","📁","Crie documentos."],
+ ["meu-negocio","MEU NEGÓCIO","Gestão","🏢","Organize sua empresa."],
+ ["meu-orcamento","MEU ORÇAMENTO","Finanças","🧾","Crie orçamentos."],
+ ["meu-financeiro","MEU FINANCEIRO","Finanças","💳","Controle suas finanças."],
+ ["meu-estoque","MEU ESTOQUE","Gestão","📦","Controle produtos."],
+ ["meu-contrato","MEU CONTRATO","Documentos","📝","Prepare contratos."],
+ ["meu-trabalho","MEU TRABALHO","Carreira","💼","Organize seu trabalho."],
+ ["meu-empreendedor","MEU EMPREENDEDOR","Gestão","🚀","Planeje seu negócio."],
+ ["meu-protocolo","MEU PROTOCOLO","Documentos","📋","Acompanhe protocolos."],
+ ["meu-rh","MEU RH","Gestão","👥","Organize recursos humanos."],
+ ["meu-requerimento","MEU REQUERIMENTO","Documentos","📝","Prepare requerimentos."],
+ ["meu-atendimento","MEU ATENDIMENTO","Gestão","🎧","Organize atendimentos."],
+ ["meu-prazo","MEU PRAZO","Produtividade","⏰","Controle prazos."],
+ ["meu-imovel","MEU IMÓVEL","Patrimônio","🏠","Organize imóveis."],
+ ["meu-concurso","MEU CONCURSO","Educação","🎓","Prepare seus estudos."],
+ ["meu-direito","MEU DIREITO","Cidadania","⚖️","Consulte informações."],
+ ["meu-consumidor","MEU CONSUMIDOR","Cidadania","🛒","Organize reclamações."],
+ ["meu-migrante","MEU MIGRANTE","Cidadania","🌍","Organize processos migratórios."],
+ ["meu-edital","MEU EDITAL","Educação","📚","Acompanhe editais."],
+ ["meu-imposto","MEU IMPOSTO","Finanças","🧮","Organize impostos."]
 ];
 
-/*
- MÓDULOS COM ASSISTENTE IA
-*/
-const AI_MODULES = new Set([
- "meu-negocio",
- "meu-financeiro",
- "meu-empreendedor",
- "meu-trabalho",
- "meu-rh",
- "meu-atendimento",
- "meu-prazo",
- "meu-imovel",
- "meu-concurso",
- "meu-direito",
- "meu-consumidor",
- "meu-migrante",
- "meu-edital",
- "meu-imposto",
- "meu-estoque",
- "meu-protocolo",
- "meu-requerimento",
- "meu-contrato",
+const AI_MODULES=new Set([
+ "meu-negocio","meu-financeiro","meu-empreendedor",
+ "meu-trabalho","meu-rh","meu-atendimento",
+ "meu-prazo","meu-imovel","meu-concurso",
+ "meu-direito","meu-consumidor","meu-migrante",
+ "meu-edital","meu-imposto","meu-estoque",
+ "meu-protocolo","meu-requerimento","meu-contrato",
  "meu-curso"
 ]);
 
-/*
- ENDEREÇO DO WORKER
- A CHAVE GROQ FICA NO CLOUDFLARE
-*/
-const AI_WORKER_URL =
+const AI_WORKER_URL=
  "https://little-wood-47e8meu-concurso-ia.junhodorval.workers.dev";
 
-const PHOTOS = [
+const PHOTOS=[
  "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&q=85",
  "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&q=85",
  "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=900&q=85",
@@ -822,639 +401,332 @@ const PHOTOS = [
  "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=900&q=85"
 ];
 
-const $ = id => document.getElementById(id);
-
-const THEME_KEY = "businesspro_theme_v2";
-const FAVORITES_KEY = "businesspro_favorites_v1";
+const THEME_KEY="businesspro_theme_v2";
+const FAVORITES_KEY="businesspro_favorites_v1";
 
 function getSaved(key,fallback){
  try{
-  const value = localStorage.getItem(key);
-  return value === null
-   ? fallback
-   : JSON.parse(value);
- }catch{
-  return fallback;
- }
+  const v=localStorage.getItem(key);
+  return v===null?fallback:JSON.parse(v);
+ }catch{return fallback;}
 }
 
-let favorites = getSaved(FAVORITES_KEY,[]);
-if(!Array.isArray(favorites)){
- favorites = [];
-}
-
-let theme = "dark";
-try{
- theme = localStorage.getItem(THEME_KEY) || "dark";
-}catch{}
-
-let category = "Todas";
-let favoritesOnly = false;
+let favorites=getSaved(FAVORITES_KEY,[]);
+if(!Array.isArray(favorites))favorites=[];
+let theme=localStorage.getItem(THEME_KEY)||"dark";
+let category="Todas",favoritesOnly=false;
+let activeModule=null,openingId=0,loadingTimer=null;
+let aiRequest=null;
 
 function notify(message){
- const el = $("toast");
- el.textContent = message;
- el.hidden = false;
+ $("toast").textContent=message;
+ $("toast").hidden=false;
  clearTimeout(notify.timer);
- notify.timer = setTimeout(()=>{
-  el.hidden = true;
- },3500);
+ notify.timer=setTimeout(()=>$("toast").hidden=true,3500);
+}
+
+function syncFrameTheme(){
+ try{
+  const doc=$("appFrame").contentDocument;
+  if(!doc?.head)return;
+  doc.body?.classList.toggle("light",theme==="light");
+  let style=doc.getElementById("bp-theme-sync");
+  if(!style){
+   style=doc.createElement("style");
+   style.id="bp-theme-sync";
+   doc.head.appendChild(style);
+  }
+  style.textContent=theme==="dark"
+   ?":root{color-scheme:dark;--bg:#081326;--surface:#13223b;--text:#f5f8ff;--muted:#a9bbd6;--line:#304563}"
+   :":root{color-scheme:light}";
+ }catch{}
 }
 
 function setTheme(value){
- theme = value === "light" ? "light" : "dark";
-
- document.body.classList.toggle(
-  "light",theme === "light"
- );
-
- $("themeButton").textContent =
-  theme === "light" ? "☾" : "☀";
-
- $("appTheme").textContent =
-  theme === "light" ? "☾" : "☀";
-
- document.querySelector(
-  'meta[name="theme-color"]'
- ).setAttribute(
-  "content",
-  theme === "light" ? "#f1f5fc" : "#081326"
- );
-
- try{
-  localStorage.setItem(THEME_KEY,theme);
- }catch{}
-
+ theme=value==="light"?"light":"dark";
+ document.body.classList.toggle("light",theme==="light");
+ $("themeButton").textContent=theme==="light"?"☾":"☀";
+ $("appTheme").textContent=theme==="light"?"☾":"☀";
+ document.querySelector('meta[name="theme-color"]')
+  .content=theme==="light"?"#f1f5fc":"#081326";
+ localStorage.setItem(THEME_KEY,theme);
  syncFrameTheme();
 }
-
-function toggleTheme(){
- setTheme(theme === "light" ? "dark" : "light");
-}
-
-$("themeButton").addEventListener(
- "click",toggleTheme
-);
-
-$("appTheme").addEventListener(
- "click",toggleTheme
-);
-
-function syncFrameTheme(){
- const frame = $("appFrame");
-
- try{
-  const doc = frame.contentDocument;
-
-  if(!doc || !doc.documentElement){
-   return;
-  }
-
-  doc.documentElement.dataset.businessTheme =
-   theme;
-
-  doc.body?.classList.toggle(
-   "light",theme === "light"
-  );
-
-  let style = doc.getElementById(
-   "bp-theme-sync"
-  );
-
-  if(!style){
-   style = doc.createElement("style");
-   style.id = "bp-theme-sync";
-   doc.head.appendChild(style);
-  }
-
-  style.textContent = theme === "dark" ? `
-   :root{
-    color-scheme:dark;
-    --bg:#081326;
-    --surface:#13223b;
-    --text:#f5f8ff;
-    --muted:#a9bbd6;
-    --line:#304563;
-   }
-  ` : `
-   :root{color-scheme:light}
-  `;
-
- }catch{
-  // Somente páginas da mesma origem.
- }
-}
+function toggleTheme(){setTheme(theme==="light"?"dark":"light");}
+$("themeButton").onclick=toggleTheme;
+$("appTheme").onclick=toggleTheme;
 
 function makeFilters(){
- const categories = [
-  "Todas",
-  ...new Set(APPS.map(a=>a[2]))
- ];
-
- const container = $("filters");
+ const cats=["Todas",...new Set(APPS.map(a=>a[2]))];
+ const container=$("filters");
  container.replaceChildren();
 
- function addFilter(label,callback,active){
-  const button = document.createElement("button");
-
-  button.className =
-   "filter" + (active ? " active" : "");
-
-  button.textContent = label;
-  button.type = "button";
-
-  button.addEventListener(
-   "click",callback
-  );
-
-  container.appendChild(button);
+ function add(label,active,callback){
+  const b=document.createElement("button");
+  b.className="filter"+(active?" active":"");
+  b.textContent=label;
+  b.onclick=callback;
+  container.append(b);
  }
-
- addFilter("⭐ Favoritos",()=>{
-  favoritesOnly = !favoritesOnly;
-  makeFilters();
-  renderApps();
- },favoritesOnly);
-
- categories.forEach(cat=>{
-  addFilter(cat,()=>{
-   category = cat;
-   makeFilters();
-   renderApps();
-  },category === cat);
+ add("⭐ Favoritos",favoritesOnly,()=>{
+  favoritesOnly=!favoritesOnly;
+  makeFilters();renderApps();
  });
+ cats.forEach(cat=>add(cat,category===cat,()=>{
+  category=cat;makeFilters();renderApps();
+ }));
 }
 
 function createCard(app,index){
- const [slug,name,cat,icon,desc] = app;
-
- const article = document.createElement("article");
- article.className = "card";
-
- const photo = document.createElement("div");
- photo.className = "card-image";
-
- photo.style.backgroundImage =
-  `linear-gradient(0deg,#08132630,transparent),url("${PHOTOS[index % PHOTOS.length]}")`;
-
- const iconEl = document.createElement("span");
- iconEl.className = "card-icon";
- iconEl.textContent = icon;
-
- const label = document.createElement("span");
- label.className = "card-label";
- label.textContent = "APLICATIVO";
-
+ const [slug,name,cat,icon,desc]=app;
+ const article=document.createElement("article");
+ article.className="card";
+ const photo=document.createElement("div");
+ photo.className="card-image";
+ photo.style.backgroundImage=
+  `linear-gradient(0deg,#08132630,transparent),url("${PHOTOS[index%PHOTOS.length]}")`;
+ const iconEl=document.createElement("span");
+ iconEl.className="card-icon";
+ iconEl.textContent=icon;
+ const label=document.createElement("span");
+ label.className="card-label";
+ label.textContent="GRATUITO";
  photo.append(iconEl,label);
 
- const body = document.createElement("div");
- body.className = "card-body";
+ const body=document.createElement("div");
+ body.className="card-body";
+ const catEl=document.createElement("span");
+ catEl.className="category";catEl.textContent=cat;
+ const h=document.createElement("h3");h.textContent=name;
+ const p=document.createElement("p");p.textContent=desc;
+ const actions=document.createElement("div");
+ actions.className="card-actions";
 
- const categoryEl = document.createElement("span");
- categoryEl.className = "category";
- categoryEl.textContent = cat;
-
- const heading = document.createElement("h3");
- heading.textContent = name;
-
- const description = document.createElement("p");
- description.textContent = desc;
-
- const actions = document.createElement("div");
- actions.className = "card-actions";
-
- const open = document.createElement("button");
- open.className = "open-app";
- open.type = "button";
- open.textContent = "Abrir aplicativo →";
-
- open.addEventListener("click",()=>{
-  openApp(app);
- });
-
- const fav = document.createElement("button");
- fav.className = "favorite";
- fav.type = "button";
-
- function updateFav(){
-  const selected = favorites.includes(slug);
-
-  fav.textContent = selected ? "★" : "☆";
-  fav.classList.toggle("saved",selected);
-
-  fav.setAttribute(
-   "aria-pressed",String(selected)
-  );
-
-  fav.setAttribute(
-   "aria-label",
-   selected
-    ? `Remover ${name} dos favoritos`
-    : `Favoritar ${name}`
-  );
- }
-
- fav.addEventListener("click",()=>{
-  favorites = favorites.includes(slug)
-   ? favorites.filter(x=>x!==slug)
-   : [...favorites,slug];
-
-  try{
-   localStorage.setItem(
-    FAVORITES_KEY,
-    JSON.stringify(favorites)
-   );
-  }catch{}
-
-  updateFav();
-
-  if(favoritesOnly){
-   renderApps();
-  }
- });
-
- updateFav();
+ const open=document.createElement("button");
+ open.className="open-app";
+ open.textContent="Abrir aplicativo →";
+ open.onclick=()=>openApp(app);
+ actions.append(open);
 
  if(AI_MODULES.has(slug)){
-  const ai = document.createElement("button");
-  ai.type = "button";
-  ai.className = "open-app";
-  ai.textContent = "✦ IA";
-
-  ai.setAttribute(
-   "aria-label",
-   `Perguntar à IA sobre ${name}`
-  );
-
-  ai.addEventListener("click",()=>{
-   openAI(slug,name);
-  });
-
+  const ai=document.createElement("button");
+  ai.className="open-app";
+  ai.textContent="👑 IA";
+  ai.onclick=()=>openAI(slug,name);
   actions.append(ai);
  }
 
- actions.append(open,fav);
- body.append(
-  categoryEl,
-  heading,
-  description,
-  actions
- );
-
+ const fav=document.createElement("button");
+ fav.className="favorite";
+ function updateFav(){
+  const saved=favorites.includes(slug);
+  fav.textContent=saved?"★":"☆";
+  fav.classList.toggle("saved",saved);
+  fav.setAttribute("aria-label",
+   saved?"Remover dos favoritos":"Adicionar aos favoritos");
+ }
+ fav.onclick=()=>{
+  favorites=favorites.includes(slug)
+   ?favorites.filter(x=>x!==slug):[...favorites,slug];
+  localStorage.setItem(FAVORITES_KEY,JSON.stringify(favorites));
+  updateFav();
+  if(favoritesOnly)renderApps();
+ };
+ updateFav();
+ actions.append(fav);
+ body.append(catEl,h,p,actions);
  article.append(photo,body);
-
  return article;
 }
 
 function renderApps(){
- const search = $("search").value
-  .trim()
-  .toLocaleLowerCase("pt-BR");
-
- const grid = $("grid");
- grid.replaceChildren();
-
- let count = 0;
-
+ const search=$("search").value.trim().toLowerCase();
+ $("grid").replaceChildren();
+ let count=0;
  APPS.forEach((app,index)=>{
-  const [slug,name,cat,icon,desc] = app;
-
-  const searchable =
-   `${slug} ${name} ${cat} ${desc}`
-    .toLocaleLowerCase("pt-BR");
-
-  if(category !== "Todas" && cat !== category){
-   return;
-  }
-
-  if(favoritesOnly && !favorites.includes(slug)){
-   return;
-  }
-
-  if(!searchable.includes(search)){
-   return;
-  }
-
-  grid.appendChild(createCard(app,index));
+  const [slug,name,cat,,desc]=app;
+  if(category!=="Todas"&&cat!==category)return;
+  if(favoritesOnly&&!favorites.includes(slug))return;
+  if(!`${slug} ${name} ${cat} ${desc}`
+   .toLowerCase().includes(search))return;
+  $("grid").append(createCard(app,index));
   count++;
  });
-
- $("empty").hidden = count !== 0;
+ $("empty").hidden=count!==0;
 }
-
-$("search").addEventListener(
- "input",renderApps
-);
-
-let openingId = 0;
-let activeModule = null;
-let loadingTimer = null;
-
-function stopLoading(){
- clearTimeout(loadingTimer);
- $("appLoading").hidden = true;
-}
+$("search").oninput=renderApps;
 
 function showLoading(message){
- $("appLoadingText").textContent = message;
- $("appLoading").hidden = false;
+ $("appLoadingText").textContent=message;
+ $("appLoading").hidden=false;
+}
+function stopLoading(){
+ clearTimeout(loadingTimer);
+ $("appLoading").hidden=true;
 }
 
 async function openApp(app){
- const [slug,name] = app;
-
- const url = new URL(
-  "./" + slug + "/index.html",
-  location.href
- );
-
- if(url.origin !== location.origin){
-  return notify("Endereço não permitido.");
- }
-
- const id = ++openingId;
-
- activeModule = {
-  slug,
-  name,
-  url:url.href
- };
-
- $("appTitle").textContent = name;
-
- $("appAI").hidden =
-  !AI_MODULES.has(slug);
-
- $("appShell").hidden = false;
- document.body.style.overflow = "hidden";
-
+ const [slug,name]=app;
+ const url=new URL("./"+slug+"/index.html",location.href);
+ if(url.origin!==location.origin)return notify("Endereço inválido.");
+ const id=++openingId;
+ activeModule={slug,name,url:url.href};
+ $("appTitle").textContent=name;
+ $("appAI").hidden=!AI_MODULES.has(slug);
+ $("appShell").hidden=false;
+ document.body.style.overflow="hidden";
  $("appFrame").removeAttribute("src");
-
  showLoading("Verificando aplicativo...");
 
- const controller = new AbortController();
-
- const timer = setTimeout(()=>{
-  controller.abort();
- },7000);
-
+ const controller=new AbortController();
+ const timer=setTimeout(()=>controller.abort(),7000);
  try{
-  const response = await fetch(url.href,{
-   signal:controller.signal,
-   cache:"no-store"
+  const res=await fetch(url.href,{
+   signal:controller.signal,cache:"no-store"
   });
-
-  if(
-   !response.ok ||
-   !(response.headers.get("content-type") || "")
-    .includes("text/html")
-  ){
-   throw new Error("Aplicativo não publicado");
+  if(!res.ok||!(res.headers.get("content-type")||"")
+   .includes("text/html")){
+   throw Error("Aplicativo não publicado");
   }
-
-  if(id !== openingId){
-   return;
-  }
-
-  showLoading("Carregando " + name + "...");
-
+  if(id!==openingId)return;
+  showLoading("Carregando "+name+"...");
   url.searchParams.set("bp_theme",theme);
-
-  $("appFrame").src = url.href;
-
-  loadingTimer = setTimeout(()=>{
-   if(id === openingId){
-    showLoading(
-     "O aplicativo está demorando. Tente recarregar ou voltar."
-    );
-   }
+  $("appFrame").src=url.href;
+  loadingTimer=setTimeout(()=>{
+   if(id===openingId)
+    showLoading("Demorando para carregar. Tente novamente.");
   },12000);
-
- }catch(error){
-  if(id !== openingId){
-   return;
-  }
-
-  showLoading(
-   error.name === "AbortError"
-    ? "Tempo esgotado. Tente novamente."
-    : "Não foi possível abrir. Verifique a pasta " +
-      slug + "/index.html no GitHub."
-  );
-
- }finally{
-  clearTimeout(timer);
- }
+ }catch(e){
+  if(id===openingId)
+   showLoading("Não foi possível abrir "+slug+
+    ". Confira a pasta no GitHub.");
+ }finally{clearTimeout(timer);}
 }
 
 function closeApp(){
- ++openingId;
- stopLoading();
-
- $("appShell").hidden = true;
+ ++openingId;stopLoading();
+ $("appShell").hidden=true;
  $("appFrame").removeAttribute("src");
-
- document.body.style.overflow = "";
- activeModule = null;
+ document.body.style.overflow="";
+ activeModule=null;
 }
-
-$("appClose").addEventListener(
- "click",closeApp
-);
-
-$("appReload").addEventListener("click",()=>{
+$("appClose").onclick=closeApp;
+$("appReload").onclick=()=>{
  if(activeModule){
-  openApp(
-   APPS.find(a=>a[0]===activeModule.slug) ||
-   [activeModule.slug,activeModule.name]
-  );
+  const app=APPS.find(a=>a[0]===activeModule.slug);
+  if(app)openApp(app);
  }
-});
-
-$("appAI").addEventListener("click",()=>{
- if(activeModule){
-  openAI(
-   activeModule.slug,
-   activeModule.name
-  );
- }
-});
-
-$("appFrame").addEventListener("load",()=>{
- stopLoading();
- syncFrameTheme();
-});
-
-$("appTryAgain").addEventListener("click",()=>{
- $("appReload").click();
-});
-
-$("appLoadingBack").addEventListener(
- "click",closeApp
-);
-
-document.addEventListener("keydown",event=>{
- if(event.key === "Escape"){
-  if(!$("aiDialog").hidden){
-   closeAI();
-  }else if(!$("appShell").hidden){
-   closeApp();
-  }
- }
-});
-
-/*
- ASSISTENTE IA GROQ
-*/
-
-let aiRequest = null;
+};
+$("appAI").onclick=()=>{
+ if(activeModule)openAI(activeModule.slug,activeModule.name);
+};
+$("appFrame").onload=()=>{
+ stopLoading();syncFrameTheme();
+};
+$("appTryAgain").onclick=()=>$("appReload").click();
+$("appLoadingBack").onclick=closeApp;
 
 function openAI(slug,name){
- if(!AI_MODULES.has(slug)){
+ if(!AI_MODULES.has(slug))return;
+ $("aiDialog").dataset.module=slug;
+ $("aiTitle").textContent="Assistente IA · "+name;
+ $("aiAnswer").textContent=
+  "A IA Premium exige assinatura ativa. Confirme informações importantes em fontes oficiais.";
+ $("aiQuestion").value="";
+ $("aiDialog").hidden=false;
+ window.dispatchEvent(new Event("bp:ai-open"));
+}
+function closeAI(){
+ aiRequest?.abort();
+ aiRequest=null;
+ $("aiDialog").hidden=true;
+}
+$("aiClose").onclick=closeAI;
+$("aiDialog").onclick=e=>{
+ if(e.target===$("aiDialog"))closeAI();
+};
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"){
+  if(!$("premiumDialog").hidden)
+   window.dispatchEvent(new Event("bp:close-premium"));
+  else if(!$("aiDialog").hidden)closeAI();
+  else if(!$("appShell").hidden)closeApp();
+ }
+});
+
+$("aiForm").onsubmit=async e=>{
+ e.preventDefault();
+ const question=$("aiQuestion").value.trim();
+ if(!question)return;
+
+ if(!window.BusinessPremium?.canAsk()){
+  $("aiAnswer").textContent=
+   "Assinatura inativa, limite diário atingido ou verificação indisponível.";
+  window.dispatchEvent(new Event("bp:open-premium"));
   return;
  }
 
- $("aiDialog").dataset.module = slug;
- $("aiDialog").dataset.moduleName = name;
+ const controller=new AbortController();
+ aiRequest=controller;
+ const timer=setTimeout(()=>controller.abort(),30000);
+ $("aiSend").disabled=true;
+ $("aiAnswer").textContent="Consultando IA Premium...";
 
- $("aiTitle").textContent =
-  "Assistente IA · " + name;
+ try{
+  const token=await window.BusinessPremium.getToken();
+  if(!token)throw Error("Entre com Google.");
 
- $("aiAnswer").textContent =
-  "Pergunte sobre este assunto. Para serviços e procedimentos, confirme sempre as informações nos sites oficiais.";
+  const res=await fetch(AI_WORKER_URL+"/premium/ask",{
+   method:"POST",
+   headers:{
+    "Content-Type":"application/json",
+    "Authorization":"Bearer "+token
+   },
+   body:JSON.stringify({
+    module:$("aiDialog").dataset.module,question
+   }),
+   signal:controller.signal
+  });
+  const data=await res.json().catch(()=>({}));
+  if(!res.ok)throw Error(data.error||"Serviço indisponível");
 
- $("aiQuestion").value = "";
- $("aiDialog").hidden = false;
- $("aiQuestion").focus();
-}
+  $("aiAnswer").textContent=
+   data.answer||"Nenhuma resposta recebida.";
 
-function closeAI(){
- if(aiRequest){
-  aiRequest.abort();
- }
-
- aiRequest = null;
- $("aiSend").disabled = false;
- $("aiDialog").hidden = true;
-}
-
-$("aiClose").addEventListener(
- "click",closeAI
-);
-
-$("aiDialog").addEventListener("click",e=>{
- if(e.target === $("aiDialog")){
-  closeAI();
- }
-});
-
-$("aiForm").addEventListener(
- "submit",
- async e=>{
-  e.preventDefault();
-
-  const question = $("aiQuestion").value.trim();
-
-  if(!question){
-   return;
+  for(const link of (Array.isArray(data.links)?data.links:[]).slice(0,5)){
+   try{
+    const u=new URL(link.url);
+    if(u.protocol!=="https:")continue;
+    const a=document.createElement("a");
+    a.href=u.href;a.target="_blank";
+    a.rel="noopener noreferrer";
+    a.textContent="Abrir fonte: "+u.hostname;
+    a.style.display="block";
+    $("aiAnswer").append(document.createElement("br"),a);
+   }catch{}
   }
-
-  if(!AI_WORKER_URL){
-   $("aiAnswer").textContent =
-    "A IA ainda não foi conectada. Configure o Worker Groq.";
-   return;
+ }catch(err){
+  if(aiRequest===controller){
+   $("aiAnswer").textContent=controller.signal.aborted
+    ?"A consulta demorou ou foi cancelada."
+    :"Erro na IA: "+err.message;
   }
-
-  const controller = new AbortController();
-  aiRequest = controller;
-
-  const timer = setTimeout(()=>{
-   controller.abort();
-  },25000);
-
-  $("aiSend").disabled = true;
-
-  $("aiAnswer").textContent =
-   "Consultando a IA...";
-
-  try{
-   const res = await fetch(AI_WORKER_URL,{
-    method:"POST",
-    headers:{
-     "Content-Type":"application/json"
-    },
-    body:JSON.stringify({
-     module:$("aiDialog").dataset.module,
-     question
-    }),
-    signal:controller.signal
-   });
-
-   const data = await res.json();
-
-   if(!res.ok){
-    throw new Error(
-     data.error || "Serviço indisponível"
-    );
-   }
-
-   $("aiAnswer").textContent =
-    data.answer || "Nenhuma resposta recebida.";
-
-   const links = Array.isArray(data.links)
-    ? data.links
-    : [];
-
-   for(const link of links.slice(0,5)){
-    try{
-     const u = new URL(link.url);
-
-     if(u.protocol !== "https:"){
-      continue;
-     }
-
-     const a = document.createElement("a");
-     a.href = u.href;
-     a.target = "_blank";
-     a.rel = "noopener noreferrer";
-     a.textContent =
-      "Abrir fonte: " + u.hostname;
-     a.style.display = "block";
-
-     $("aiAnswer").append(
-      document.createElement("br"),
-      a
-     );
-
-    }catch{}
-   }
-
-  }catch(err){
-   if(aiRequest !== controller){
-    return;
-   }
-
-   $("aiAnswer").textContent =
-    controller.signal.aborted
-     ? "A consulta demorou demais ou foi cancelada. Tente novamente."
-     : "Não foi possível consultar a IA: " +
-       err.message;
-
-  }finally{
-   clearTimeout(timer);
-
-   if(aiRequest === controller){
-    aiRequest = null;
-    $("aiSend").disabled = false;
-   }
+ }finally{
+  clearTimeout(timer);
+  if(aiRequest===controller){
+   aiRequest=null;
+   window.dispatchEvent(new Event("bp:premium-refresh"));
   }
  }
-);
+};
+
+$("aboutPremium").onclick=()=>
+ window.dispatchEvent(new Event("bp:open-premium"));
 
 setTheme(theme);
 makeFilters();
 renderApps();
-
 </script>
+<script type="module" src="./business-premium.js"></script>
 </body>
 </html>
