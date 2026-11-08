@@ -4,773 +4,832 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#2563eb">
-<title>MEU MIGRANTE | BUSINESS PRO</title>
+<title>Meu Migrante Pro | Business Pro</title>
 <style>
 :root{
- --blue:#2563eb;--navy:#17376e;--ink:#102747;
- --muted:#60758f;--bg:#f2f6ff;--line:#d8e4f5;
- --green:#059669;--red:#dc2626;--amber:#b45309
+ --bg:#eef3ff;--card:#fff;--ink:#10284b;
+ --muted:#61738f;--line:#d7e2f7;--blue:#285df0;
+ --dark:#10244b;--green:#11754b
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-a{text-decoration:none;color:inherit}
-header{background:white;border-bottom:1px solid var(--line);padding:16px 4%;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-size:20px;font-weight:900}.logo span{color:var(--blue)}
-main{max-width:1550px;margin:auto;padding:24px 18px}
-.hero{background:linear-gradient(115deg,#17376e,#2563eb);color:white;padding:44px;border-radius:28px;margin-bottom:28px}
-.hero small{font-weight:900;letter-spacing:2px}
-.hero h1{font-size:clamp(32px,5vw,54px);margin:20px 0}
-.hero p{font-size:18px;line-height:1.7;max-width:980px}
-.btn{border:0;border-radius:12px;padding:13px 17px;background:var(--blue);color:white;font-weight:800}
-.btn.light{background:white;color:var(--ink);border:1px solid var(--line)}
-.btn.alt{background:#e9f0ff;color:#1d4ed8}
-.btn.red{background:#fee2e2;color:#b91c1c}
-.btn.sm{padding:9px 12px;font-size:12px}
-.btn:hover{filter:brightness(.96)}
-.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:25px}
-.toolbar input{flex:1;min-width:220px}
-input,select,textarea{width:100%;padding:13px;border:1px solid #cbd8eb;border-radius:12px;background:white;color:var(--ink);outline:none}
-input:focus,select:focus,textarea:focus{border-color:var(--blue)}
-textarea{min-height:100px;resize:vertical}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;margin-bottom:28px}
-.stat,.panel{background:white;border:1px solid var(--line);border-radius:21px;box-shadow:0 8px 28px #17376e0b}
-.stat{padding:26px}.stat small{color:var(--muted)}
-.stat strong{display:block;font-size:31px;margin-top:13px}
-.panel{padding:27px;margin-bottom:24px}
-.panel h2{margin:0 0 20px}
-.links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.linkCard{display:block;background:#f8fbff;border:1px solid var(--line);border-radius:17px;padding:20px}
-.linkCard:hover{border-color:var(--blue)}
-.linkCard strong{display:block;color:var(--blue);margin-bottom:10px}
-.linkCard p{font-size:13px;line-height:1.6;color:var(--muted);margin:0}
-.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.field{display:flex;flex-direction:column;gap:7px;min-width:0}
-.field label{font-size:12px;font-weight:800}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font:15px/1.5 system-ui,Arial,sans-serif}
+header{background:linear-gradient(120deg,#10244b,#285df0);
+ color:white;padding:28px 18px}
+.wrap{max-width:1200px;margin:auto}
+h1{margin:0;font-size:clamp(25px,4vw,38px)}
+h2{font-size:23px;margin:0 0 14px}
+h3{margin:0 0 8px;font-size:18px}
+p{margin:8px 0}
+.muted{color:var(--muted)}
+header p{color:#dce7ff}
+main{padding:22px 15px 60px}
+nav{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}
+button,.btn{
+ background:var(--blue);color:white;border:0;
+ padding:12px 16px;border-radius:12px;
+ font:inherit;font-weight:700;cursor:pointer;
+ text-decoration:none;display:inline-block
+}
+button:hover,.btn:hover{filter:brightness(.93)}
+button.alt,.btn.alt{background:#e7eeff;color:#1742bd}
+button.danger{background:#b53042}
+button:focus-visible,a:focus-visible{
+ outline:3px solid #ffb62b;outline-offset:3px
+}
+.panel{background:var(--card);border:1px solid var(--line);
+ border-radius:20px;padding:22px;margin:20px 0;
+ box-shadow:0 7px 20px #15316a0b}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.card{border:1px solid var(--line);border-radius:17px;
+ padding:20px;background:#f8faff}
+.card p{color:var(--muted)}
+.tag{display:inline-block;background:#e7eeff;color:#2852ae;
+ border-radius:30px;padding:4px 10px;font-size:12px;font-weight:700}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+input,select,textarea{
+ width:100%;padding:13px;border:1px solid #cbd9f3;
+ border-radius:11px;background:white;color:var(--ink);font:inherit
+}
+textarea{min-height:95px;resize:vertical}
+label{display:block;font-weight:700;margin:12px 0 6px}
+.controls{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 15px}
 .full{grid-column:1/-1}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
-.tabs{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:20px}
-.tab{background:white;border:1px solid var(--line);padding:10px 15px;border-radius:22px;font-weight:800}
-.tab.active{background:var(--blue);color:white}
-.card{background:#f9fbff;border:1px solid var(--line);border-radius:17px;padding:21px;margin-bottom:14px;overflow-wrap:anywhere}
-.card h3{margin:12px 0}
-.card p{color:var(--muted);font-size:13px;line-height:1.7;white-space:pre-wrap}
-.badge{display:inline-block;padding:7px 12px;border-radius:20px;background:#e9f0ff;color:#1d4ed8;font-size:12px;font-weight:800}
-.badge.green{background:#d1fae5;color:#047857}
-.badge.red{background:#fee2e2;color:#b91c1c}
-.badge.orange{background:#fef3c7;color:#92400e}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.checkitem{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:9px;background:#f8fbff}
-.checkitem input{width:18px;height:18px;flex-shrink:0}
-.checkitem span{overflow-wrap:anywhere}
-.timeline{border-left:3px solid #bfdbfe;margin:18px 0 0 10px;padding-left:18px}
-.timelineItem{padding:10px 0;border-bottom:1px solid var(--line)}
-.timelineItem small{color:var(--muted)}
-.note{color:var(--muted);font-size:13px;line-height:1.7}
-.empty{text-align:center;padding:45px;color:var(--muted)}
+.notice{background:#e8f1ff;border-left:4px solid var(--blue);
+ padding:15px;border-radius:10px;margin:15px 0}
+.good{color:var(--green)}
 .hidden{display:none!important}
-#toast{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:white;padding:14px 20px;border-radius:12px;z-index:20;max-width:90vw;text-align:center}
-#printArea{display:none}
-@media(max-width:950px){
- .stats{grid-template-columns:repeat(2,1fr)}
- .links{grid-template-columns:repeat(2,1fr)}
- .grid{grid-template-columns:1fr}
+small{color:var(--muted)}
+.checklist{display:grid;gap:8px;margin:14px 0}
+.checklist label{display:flex;align-items:center;gap:9px;
+ margin:0;font-weight:400}
+.checklist input{width:auto}
+.status{font-weight:700}
+.linkdomain{display:block;font-size:12px;color:var(--muted);margin-top:5px}
+#services{margin-top:16px}
+#empty{padding:20px;text-align:center}
+footer{text-align:center;padding:25px;color:var(--muted)}
+@media(max-width:700px){
+ .grid,.formgrid,.controls{grid-template-columns:1fr}
+ .panel{padding:16px}
+ .actions>*{flex:1;text-align:center}
 }
-@media(max-width:600px){
- main{padding:12px 9px}
- .hero{padding:28px 20px}.hero p{font-size:14px}
- .stat{padding:17px}.stat strong{font-size:24px}
- .panel{padding:17px}
- .fields,.links{grid-template-columns:1fr}
- .full{grid-column:auto}
- .toolbar>*{width:100%}
- .logo{font-size:16px}
-}
-@page{size:A4;margin:15mm}
 @media print{
- body>*:not(#printArea){display:none!important}
- #printArea{display:block!important;color:black}
- #printArea h1{font-size:22px}
- #printArea table{width:100%;border-collapse:collapse}
- #printArea th,#printArea td{border:1px solid #aaa;padding:8px;text-align:left;font-size:11px;overflow-wrap:anywhere}
- #printArea p{white-space:pre-wrap}
+ header,nav,#catalog,#assistant,#editor,#backups,
+ .actions,button{display:none!important}
+ body{background:white}
+ .panel{box-shadow:none;border:0}
 }
 </style>
 </head>
 <body>
-
 <header>
- <div class="logo">🌍 MEU <span>MIGRANTE</span></div>
- <a href="../" class="btn alt">← Business Pro</a>
+ <div class="wrap">
+  <h1>🌍 MEU MIGRANTE PRO</h1>
+  <p>Business Pro · Serviços migratórios e portais oficiais</p>
+  <p>Organize documentos e acesse os canais governamentais.</p>
+ </div>
 </header>
 
-<main>
-<section class="hero">
- <small>DOCUMENTAÇÃO E ORGANIZAÇÃO MIGRATÓRIA</small>
- <h1>🌍 MEU MIGRANTE</h1>
- <p>Organize processos migratórios, vistos, residência, reunião familiar, protocolos, documentos e datas importantes. Acompanhe solicitações e prepare listas de documentos em um único lugar.</p>
-</section>
+<main class="wrap">
+ <nav>
+  <button onclick="go('catalog')">🌐 Serviços oficiais</button>
+  <button onclick="go('assistant')">🧭 Encontrar serviço</button>
+  <button onclick="go('editor')">➕ Novo processo</button>
+  <button onclick="go('records')">📋 Meus processos</button>
+  <button onclick="go('backups')">💾 Backup</button>
+ </nav>
 
-<div class="toolbar">
- <button class="btn" onclick="openForm()">+ Novo processo</button>
- <input id="search" placeholder="🔎 Pesquisar processo, país ou protocolo...">
- <button class="btn light" onclick="exportCSV()">Exportar CSV</button>
- <button class="btn light" onclick="exportBackup()">Backup JSON</button>
- <button class="btn light" onclick="$('backupFile').click()">Importar backup</button>
- <button class="btn light" onclick="printReport()">Imprimir relatório</button>
- <input id="backupFile" type="file" accept=".json,application/json" hidden>
-</div>
+ <section class="notice">
+  <strong>Segurança:</strong> solicitações reais são realizadas
+  exclusivamente no órgão competente. Este aplicativo não
+  representa o governo, não cobra taxas e não confirma
+  aprovação de vistos. Verifique sempre o endereço do site
+  antes de fornecer documentos.
+ </section>
 
-<div class="stats">
- <div class="stat"><small>Processos cadastrados</small><strong id="total">0</strong></div>
- <div class="stat"><small>Em andamento</small><strong id="ongoing">0</strong></div>
- <div class="stat"><small>Aprovados</small><strong id="approved">0</strong></div>
- <div class="stat"><small>Datas de acompanhamento vencidas</small><strong id="overdue">0</strong></div>
-</div>
-
-<section class="panel">
- <h2>Portais oficiais de imigração no Brasil</h2>
- <div class="links">
-  <a class="linkCard" href="https://www.gov.br/mj/" target="_blank" rel="noopener noreferrer"><strong>🇧🇷 Ministério da Justiça</strong><p>Informações sobre imigração, residência e serviços migratórios.</p></a>
-  <a class="linkCard" href="https://www.gov.br/pf/" target="_blank" rel="noopener noreferrer"><strong>🛂 Polícia Federal</strong><p>Serviços de imigração, registro migratório e residência.</p></a>
-  <a class="linkCard" href="https://www.gov.br/mre/" target="_blank" rel="noopener noreferrer"><strong>🌐 Itamaraty</strong><p>Informações consulares, vistos e representações brasileiras no exterior.</p></a>
-  <a class="linkCard" href="https://www.gov.br/" target="_blank" rel="noopener noreferrer"><strong>🏛️ Gov.br</strong><p>Serviços e orientações do Governo Federal.</p></a>
-  <a class="linkCard" href="https://www.acnur.org/br/" target="_blank" rel="noopener noreferrer"><strong>🤝 ACNUR Brasil</strong><p>Informações e apoio relacionado à proteção de pessoas refugiadas.</p></a>
-  <a class="linkCard" href="https://help.unhcr.org/brazil/" target="_blank" rel="noopener noreferrer"><strong>📘 Help ACNUR</strong><p>Orientações para refugiados e solicitantes de reconhecimento da condição de refugiado.</p></a>
- </div>
-</section>
-
-<section class="panel">
- <h2>Portais internacionais</h2>
- <div class="links">
-  <a class="linkCard" href="https://www.iom.int/" target="_blank" rel="noopener noreferrer"><strong>🌍 OIM — Migração</strong><p>Organização Internacional para as Migrações.</p></a>
-  <a class="linkCard" href="https://www.unhcr.org/" target="_blank" rel="noopener noreferrer"><strong>🇺🇳 UNHCR</strong><p>Informações globais sobre proteção de refugiados.</p></a>
-  <a class="linkCard" href="https://travel.state.gov/" target="_blank" rel="noopener noreferrer"><strong>🇺🇸 Estados Unidos</strong><p>Informações oficiais sobre vistos e serviços consulares.</p></a>
-  <a class="linkCard" href="https://www.canada.ca/en/immigration-refugees-citizenship.html" target="_blank" rel="noopener noreferrer"><strong>🇨🇦 Canadá</strong><p>Imigração, refúgio e cidadania.</p></a>
-  <a class="linkCard" href="https://immigration-portal.ec.europa.eu/" target="_blank" rel="noopener noreferrer"><strong>🇪🇺 União Europeia</strong><p>Informações sobre imigração para países da União Europeia.</p></a>
-  <a class="linkCard" href="https://www.gov.uk/browse/visas-immigration" target="_blank" rel="noopener noreferrer"><strong>🇬🇧 Reino Unido</strong><p>Vistos e imigração.</p></a>
-  <a class="linkCard" href="https://www.service-public.fr/" target="_blank" rel="noopener noreferrer"><strong>🇫🇷 França</strong><p>Serviços administrativos e informações sobre residência.</p></a>
-  <a class="linkCard" href="https://www.make-it-in-germany.com/" target="_blank" rel="noopener noreferrer"><strong>🇩🇪 Alemanha</strong><p>Informações sobre imigração qualificada e trabalho.</p></a>
-  <a class="linkCard" href="https://immi.homeaffairs.gov.au/" target="_blank" rel="noopener noreferrer"><strong>🇦🇺 Austrália</strong><p>Vistos e imigração.</p></a>
- </div>
- <p class="note">Os procedimentos variam por país, nacionalidade e tipo de solicitação. Consulte sempre o órgão competente antes de pagar taxas ou enviar documentos.</p>
-</section>
-
-<section class="panel">
- <h2>Guias de organização migratória</h2>
- <div class="grid">
-  <div class="card">
-   <h3>👨‍👩‍👧 Reunião familiar</h3>
-   <p>Organize comprovantes de parentesco, identificação, residência, formulários, traduções e protocolos.</p>
-   <button class="btn alt" onclick="startTemplate('Reunião familiar')">Criar processo</button>
-  </div>
-  <div class="card">
-   <h3>🛂 Vistos</h3>
-   <p>Controle tipo de visto, país, representação consular, documentos exigidos, taxas e agendamentos.</p>
-   <button class="btn alt" onclick="startTemplate('Visto')">Criar processo</button>
-  </div>
-  <div class="card">
-   <h3>🏠 Residência</h3>
-   <p>Organize solicitações de residência, documentos pessoais, registros e datas de acompanhamento.</p>
-   <button class="btn alt" onclick="startTemplate('Residência')">Criar processo</button>
-  </div>
-  <div class="card">
-   <h3>🕊️ Refúgio e proteção</h3>
-   <p>Registre informações de acompanhamento e consulte canais oficiais de proteção.</p>
-   <button class="btn alt" onclick="startTemplate('Refúgio')">Criar processo</button>
-  </div>
- </div>
-</section>
-
-<section id="formPanel" class="panel hidden">
- <h2 id="formHeading">Novo processo migratório</h2>
- <div class="fields">
-  <div class="field">
-   <label>Nome do processo *</label>
-   <input id="fTitle" placeholder="Ex.: Reunião familiar da minha irmã">
-  </div>
-  <div class="field">
-   <label>Tipo de processo</label>
-   <select id="fType">
-    <option>Reunião familiar</option><option>Visto</option>
-    <option>Residência</option><option>Renovação de residência</option>
-    <option>Naturalização</option><option>Refúgio</option>
-    <option>Autorização de trabalho</option>
-    <option>Registro migratório</option><option>Outros</option>
+ <section id="catalog" class="panel">
+  <h2>Serviços migratórios oficiais</h2>
+  <p class="muted">Pesquise e abra o canal oficial correspondente.</p>
+  <div class="controls">
+   <input id="search" placeholder="Buscar visto, refúgio, CRNM, família..."
+    oninput="renderServices()">
+   <select id="filter" onchange="renderServices()">
+    <option value="">Todas as categorias</option>
+    <option>Família</option>
+    <option>Vistos</option>
+    <option>Residência</option>
+    <option>Documentos</option>
+    <option>Proteção</option>
+    <option>Cidadania</option>
+    <option>Atendimento</option>
    </select>
   </div>
-  <div class="field">
-   <label>Nome do solicitante</label>
-   <input id="fApplicant">
-  </div>
-  <div class="field">
-   <label>Familiar / beneficiário</label>
-   <input id="fBeneficiary">
-  </div>
-  <div class="field">
-   <label>Nacionalidade</label>
-   <input id="fNationality" placeholder="Ex.: Haitiana">
-  </div>
-  <div class="field">
-   <label>País de destino</label>
-   <input id="fDestination" value="Brasil">
-  </div>
-  <div class="field">
-   <label>País de origem</label>
-   <input id="fOrigin">
-  </div>
-  <div class="field">
-   <label>Consulado / órgão responsável</label>
-   <input id="fAgency">
-  </div>
-  <div class="field">
-   <label>Protocolo / referência</label>
-   <input id="fProtocol">
-  </div>
-  <div class="field">
-   <label>Data da solicitação</label>
-   <input id="fStart" type="date">
-  </div>
-  <div class="field">
-   <label>Próxima data de acompanhamento</label>
-   <input id="fFollowup" type="date">
-  </div>
-  <div class="field">
-   <label>Validade do visto ou documento</label>
-   <input id="fExpiry" type="date">
-  </div>
-  <div class="field">
-   <label>Status</label>
-   <select id="fStatus">
-    <option>Preparando documentos</option>
-    <option>Aguardando agendamento</option>
-    <option>Solicitação enviada</option>
-    <option>Em análise</option>
-    <option>Documentos complementares</option>
-    <option>Aprovado</option>
-    <option>Indeferido</option>
-    <option>Concluído</option>
-    <option>Cancelado</option>
-   </select>
-  </div>
-  <div class="field">
-   <label>Prioridade</label>
-   <select id="fPriority">
-    <option>Normal</option><option>Alta</option><option>Urgente</option>
-   </select>
-  </div>
-  <div class="field full">
-   <label>Link oficial de acompanhamento</label>
-   <input id="fLink" type="url" placeholder="https://...">
-  </div>
-  <div class="field full">
-   <label>Documentos exigidos / observações</label>
-   <textarea id="fDocuments" placeholder="Anote os requisitos confirmados no site oficial."></textarea>
-  </div>
-  <div class="field full">
-   <label>Observações adicionais</label>
-   <textarea id="fNotes"></textarea>
-  </div>
- </div>
- <div class="actions">
-  <button class="btn" onclick="saveProcess()">Salvar processo</button>
-  <button class="btn light" onclick="closeForm()">Cancelar</button>
- </div>
-</section>
+  <div id="services" class="grid"></div>
+  <p id="empty" class="hidden">Nenhum serviço encontrado.</p>
+ </section>
 
-<section class="panel">
- <h2>Meus processos migratórios</h2>
- <div class="tabs" id="filters">
-  <button class="tab active" data-filter="Todos">Todos</button>
-  <button class="tab" data-filter="Preparando documentos">Preparando</button>
-  <button class="tab" data-filter="Em análise">Em análise</button>
-  <button class="tab" data-filter="Aprovado">Aprovados</button>
-  <button class="tab" data-filter="Concluído">Concluídos</button>
-  <button class="tab" data-filter="Vencidos">Acompanhamento vencido</button>
- </div>
- <div id="processList"></div>
-</section>
+ <section id="assistant" class="panel">
+  <h2>🧭 Qual serviço devo procurar?</h2>
+  <p class="muted">
+   Escolha sua situação. Esta orientação é inicial;
+   o órgão oficial confirma os requisitos.
+  </p>
+  <label for="situation">Sua situação</label>
+  <select id="situation" onchange="suggest()">
+   <option value="">Selecione</option>
+   <option value="familiafora">Trazer familiar que está fora do Brasil</option>
+   <option value="familiadentro">Regularizar familiar que já está no Brasil</option>
+   <option value="visto">Solicitar visto em consulado</option>
+   <option value="residencia">Solicitar ou renovar residência</option>
+   <option value="documento">Obter documento migratório</option>
+   <option value="refugio">Solicitar refúgio no Brasil</option>
+   <option value="naturalizacao">Solicitar naturalização</option>
+  </select>
+  <div id="suggestion" class="notice">
+   Selecione uma situação para visualizar orientações.
+  </div>
+ </section>
 
-<section class="panel">
- <h2>Datas importantes</h2>
- <div class="grid">
-  <div><h3>Próximos acompanhamentos</h3><div id="followupList"></div></div>
-  <div><h3>Validade dos documentos</h3><div id="expiryList"></div></div>
- </div>
-</section>
+ <section id="editor" class="panel">
+  <h2>📝 Organizar processo migratório</h2>
+  <p class="muted">
+   Registro particular. Não envia solicitações ao governo.
+  </p>
+  <form id="processForm">
+   <input id="editId" type="hidden">
+   <div class="formgrid">
+    <div>
+     <label for="processName">Nome do processo *</label>
+     <input id="processName" required maxlength="120"
+      placeholder="Ex.: Reunião familiar">
+    </div>
+    <div>
+     <label for="processType">Tipo</label>
+     <select id="processType">
+      <option>Reunião familiar</option>
+      <option>Visto</option>
+      <option>Residência</option>
+      <option>Refúgio</option>
+      <option>Naturalização</option>
+      <option>Documento migratório</option>
+      <option>Outro</option>
+     </select>
+    </div>
+    <div>
+     <label for="applicant">Solicitante</label>
+     <input id="applicant" maxlength="120">
+    </div>
+    <div>
+     <label for="beneficiary">Familiar / beneficiário</label>
+     <input id="beneficiary" maxlength="120">
+    </div>
+    <div>
+     <label for="originCountry">País de origem</label>
+     <input id="originCountry" maxlength="80">
+    </div>
+    <div>
+     <label for="destinationCountry">País de destino</label>
+     <input id="destinationCountry" value="Brasil" maxlength="80">
+    </div>
+    <div>
+     <label for="authority">Órgão / consulado</label>
+     <input id="authority" maxlength="150">
+    </div>
+    <div>
+     <label for="reference">Protocolo / referência</label>
+     <input id="reference" maxlength="100">
+    </div>
+    <div>
+     <label for="requested">Data da solicitação</label>
+     <input id="requested" type="date">
+    </div>
+    <div>
+     <label for="followup">Próximo acompanhamento</label>
+     <input id="followup" type="date">
+    </div>
+    <div>
+     <label for="expires">Validade do documento</label>
+     <input id="expires" type="date">
+    </div>
+    <div>
+     <label for="progress">Situação informada pelo usuário</label>
+     <select id="progress">
+      <option>Em preparação</option>
+      <option>Enviado ao órgão oficial</option>
+      <option>Aguardando atendimento</option>
+      <option>Aguardando resposta</option>
+      <option>Exigência de documentos</option>
+      <option>Concluído</option>
+     </select>
+    </div>
+    <div class="full">
+     <label for="notes">Observações</label>
+     <textarea id="notes" maxlength="3000"
+      placeholder="Documentos, orientações e próximos passos"></textarea>
+    </div>
+   </div>
+   <h3>Checklist pessoal</h3>
+   <div class="checklist">
+    <label><input type="checkbox" name="doc" value="Identificação"> Identificação</label>
+    <label><input type="checkbox" name="doc" value="Comprovantes"> Comprovantes</label>
+    <label><input type="checkbox" name="doc" value="Formulários"> Formulários</label>
+    <label><input type="checkbox" name="doc" value="Traduções"> Traduções, se exigidas</label>
+    <label><input type="checkbox" name="doc" value="Taxas"> Taxas, se aplicáveis</label>
+    <label><input type="checkbox" name="doc" value="Agendamento"> Agendamento</label>
+   </div>
+   <small>
+    Checklist genérico: a lista oficial varia conforme o serviço.
+   </small>
+   <div class="actions">
+    <button type="submit">💾 Salvar processo</button>
+    <button type="button" class="alt" onclick="resetForm()">Limpar formulário</button>
+   </div>
+  </form>
+ </section>
 
-<section class="panel">
- <h2>Privacidade e informações importantes</h2>
- <p class="note">Os registros são salvos apenas neste navegador. Não existe sincronização automática, envio de documentos, consulta de processos oficiais ou verificação de aprovação. Faça backups JSON e proteja dados pessoais. As listas de documentos são auxiliares: exigências reais, taxas e prazos devem ser confirmados junto às autoridades competentes.</p>
-</section>
+ <section id="records" class="panel">
+  <h2>📋 Meus processos</h2>
+  <p class="muted">
+   Os registros abaixo são locais e não indicam
+   situação confirmada pelo governo.
+  </p>
+  <div id="recordList" class="grid"></div>
+ </section>
+
+ <section id="backups" class="panel">
+  <h2>💾 Backup e privacidade</h2>
+  <p>
+   Salve uma cópia dos seus registros em JSON.
+   O arquivo pode conter dados pessoais: guarde-o
+   em local protegido.
+  </p>
+  <div class="actions">
+   <button onclick="exportBackup()">Exportar backup</button>
+   <button class="alt" onclick="document.getElementById('importFile').click()">
+    Importar backup
+   </button>
+   <button class="danger" onclick="deleteAll()">Apagar registros locais</button>
+  </div>
+  <input type="file" id="importFile" accept=".json,application/json"
+   class="hidden" onchange="importBackup(event)">
+  <p><small>
+   O armazenamento local pode ser perdido ao limpar os
+   dados do navegador. Não use este aplicativo como
+   único local de guarda de documentos importantes.
+  </small></p>
+ </section>
 </main>
 
-<div id="printArea"></div>
-<div id="toast" role="status"></div>
+<footer>
+ Meu Migrante Pro · Business Pro
+ <p>Ferramenta independente de organização e acesso a serviços.</p>
+</footer>
 
 <script>
 "use strict";
-const $=id=>document.getElementById(id);
-const KEY="businesspro_meu_migrante_v3";
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
- "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-}[c]));
-const uid=()=>crypto.randomUUID?
- crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
 
-function today(){
- const d=new Date();
- return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
-}
-function fmt(s){
- if(!s)return "—";
- const p=s.split("-");
- return p.length===3?p.reverse().join("/"):s;
-}
-function toast(s){
- $("toast").textContent=s;$("toast").style.display="block";
- clearTimeout(toast.timer);
- toast.timer=setTimeout(()=>$("toast").style.display="none",3000);
-}
-let db={processes:[]};
-try{
- const v=JSON.parse(localStorage.getItem(KEY)||"null");
- if(v&&Array.isArray(v.processes))db=v;
-}catch(e){}
-let editing=null,filter="Todos";
+const $ = id => document.getElementById(id);
+const KEY = "business_pro_migrante_v1";
 
-const fields={
- fTitle:"title",fType:"type",fApplicant:"applicant",
- fBeneficiary:"beneficiary",fNationality:"nationality",
- fDestination:"destination",fOrigin:"origin",
- fAgency:"agency",fProtocol:"protocol",
- fStart:"start",fFollowup:"followup",fExpiry:"expiry",
- fStatus:"status",fPriority:"priority",
- fLink:"link",fDocuments:"documents",fNotes:"notes"
+/*
+ Links para páginas institucionais.
+ Algumas são páginas de orientação, não
+ formulários de solicitação direta.
+*/
+const SERVICES = [
+ {
+  id:"familia",
+  name:"👨‍👩‍👧 Reunião familiar",
+  category:"Família",
+  description:"Orientações sobre residência por vínculo familiar no Brasil.",
+  url:"https://www.gov.br/pf/pt-br/assuntos/imigracao",
+  detail:"Confirme se o familiar está dentro ou fora do Brasil. Visto consular e residência são procedimentos diferentes."
+ },
+ {
+  id:"consular",
+  name:"🛂 Serviços consulares",
+  category:"Vistos",
+  description:"Acesso ao portal e-Consular do Itamaraty.",
+  url:"https://econsular.itamaraty.gov.br/",
+  detail:"Consulte o posto responsável. O e-Consular não substitui todos os sistemas específicos de visto."
+ },
+ {
+  id:"vistos",
+  name:"🌐 Informações sobre vistos",
+  category:"Vistos",
+  description:"Orientações do Ministério das Relações Exteriores.",
+  url:"https://www.gov.br/mre/pt-br",
+  detail:"As exigências dependem da nacionalidade, finalidade da viagem e repartição consular."
+ },
+ {
+  id:"residencia",
+  name:"🏠 Autorização de residência",
+  category:"Residência",
+  description:"Solicitar, renovar ou transformar residência e obter CRNM.",
+  url:"https://www.gov.br/pt-br/servicos/obter-autorizacao-de-residencia-e-carteira-de-registro-migratorio",
+  detail:"Leia os requisitos antes de preencher formulários ou agendar atendimento."
+ },
+ {
+  id:"regularizacao",
+  name:"📋 Regularização migratória",
+  category:"Residência",
+  description:"Serviços de regularização da Polícia Federal.",
+  url:"https://www.gov.br/pf/pt-br/assuntos/imigracao",
+  detail:"Escolha o serviço correto para sua situação migratória."
+ },
+ {
+  id:"crnm",
+  name:"🪪 CRNM e registro migratório",
+  category:"Documentos",
+  description:"Orientações sobre registro e documentos de imigrantes.",
+  url:"https://www.gov.br/pf/pt-br/assuntos/imigracao",
+  detail:"Confira emissão, renovação, segunda via e atualização cadastral."
+ },
+ {
+  id:"refugio",
+  name:"🕊️ Solicitar refúgio",
+  category:"Proteção",
+  description:"Instruções oficiais para pedir refúgio pelo Sisconare.",
+  url:"https://www.gov.br/pt-br/servicos/solicitar-refugio",
+  detail:"O pedido de refúgio deve seguir as etapas oficiais, inclusive atendimento na Polícia Federal."
+ },
+ {
+  id:"sisconare",
+  name:"📑 Sisconare",
+  category:"Proteção",
+  description:"Sistema oficial para solicitação e acompanhamento de refúgio.",
+  url:"https://sisconare.mj.gov.br/",
+  detail:"O serviço de refúgio é gratuito. Não compartilhe sua senha."
+ },
+ {
+  id:"refugio-servicos",
+  name:"🔎 Serviços para refugiados",
+  category:"Proteção",
+  description:"Renovação de protocolo, recursos, documentos e acompanhamento.",
+  url:"https://www.gov.br/mj/pt-br/assuntos/seus-direitos/refugio/servicos",
+  detail:"O portal reúne procedimentos e orientações específicas."
+ },
+ {
+  id:"naturalizacao",
+  name:"🇧🇷 Naturalização brasileira",
+  category:"Cidadania",
+  description:"Informações e serviços de naturalização no Ministério da Justiça.",
+  url:"https://www.gov.br/mj/pt-br/assuntos/seus-direitos/migracoes",
+  detail:"Consulte os requisitos e o canal de solicitação indicado pelo governo."
+ },
+ {
+  id:"pf",
+  name:"👮 Polícia Federal — Imigração",
+  category:"Atendimento",
+  description:"Atendimento, registros, residência e documentação.",
+  url:"https://www.gov.br/pf/pt-br/assuntos/imigracao",
+  detail:"Consulte os serviços e a necessidade de agendamento."
+ },
+ {
+  id:"govbr",
+  name:"🏛️ Portal de serviços gov.br",
+  category:"Atendimento",
+  description:"Busque serviços oficiais do Governo Federal.",
+  url:"https://www.gov.br/pt-br/servicos",
+  detail:"Pesquise pelo nome do serviço e confira o órgão responsável."
+ },
+ {
+  id:"migracoes",
+  name:"📚 Portal de Migrações",
+  category:"Atendimento",
+  description:"Informações governamentais sobre políticas migratórias.",
+  url:"https://www.gov.br/mj/pt-br/assuntos/seus-direitos/migracoes",
+  detail:"Consulte legislação, serviços e orientações atualizadas."
+ }
+];
+
+function safeText(value){
+ return String(value ?? "");
+}
+
+function make(tag, className, text){
+ const el=document.createElement(tag);
+ if(className) el.className=className;
+ if(text!==undefined) el.textContent=safeText(text);
+ return el;
+}
+
+function officialLink(service){
+ const a=make("a","btn","Abrir site oficial ↗");
+ a.href=service.url;
+ a.target="_blank";
+ a.rel="noopener noreferrer";
+ return a;
+}
+
+function renderServices(){
+ const query=$("search").value
+  .trim().toLocaleLowerCase("pt-BR");
+ const filter=$("filter").value;
+ const list=$("services");
+ list.replaceChildren();
+
+ const matches=SERVICES.filter(s=>
+  (!filter||s.category===filter)&&
+  (s.name+" "+s.description+" "+s.detail)
+   .toLocaleLowerCase("pt-BR").includes(query)
+ );
+
+ matches.forEach(s=>{
+  const card=make("article","card");
+  card.append(
+   make("span","tag",s.category),
+   make("h3","",s.name),
+   make("p","",s.description),
+   make("p","",s.detail)
+  );
+
+  const actions=make("div","actions");
+  actions.append(officialLink(s));
+
+  const save=make("button","alt","Organizar processo");
+  save.type="button";
+  save.onclick=()=>startProcess(s);
+  actions.append(save);
+  card.append(actions);
+
+  const domain=make("span","linkdomain",
+   new URL(s.url).hostname);
+  card.append(domain);
+  list.append(card);
+ });
+
+ $("empty").classList.toggle("hidden",matches.length>0);
+}
+
+function startProcess(s){
+ resetForm();
+ $("processName").value=s.name.replace(/^[^\p{L}\p{N}]+/u,"");
+ const mapping={
+  familia:"Reunião familiar",
+  consular:"Visto",vistos:"Visto",
+  residencia:"Residência",
+  regularizacao:"Residência",
+  refugio:"Refúgio",sisconare:"Refúgio",
+  "refugio-servicos":"Refúgio",
+  naturalizacao:"Naturalização",
+  crnm:"Documento migratório"
+ };
+ $("processType").value=mapping[s.id]||"Outro";
+ $("notes").value="Portal oficial: "+s.url;
+ go("editor");
+}
+
+const suggestions={
+ familiafora:{
+  text:"Se o familiar está fora do Brasil, consulte as regras do posto consular responsável e o tipo de visto aplicável. A autorização de residência de quem já está no país pode seguir outro caminho.",
+  ids:["consular","vistos","familia"]
+ },
+ familiadentro:{
+  text:"Para familiar que já está no Brasil, verifique os requisitos de autorização de residência por reunião familiar na Polícia Federal.",
+  ids:["residencia","familia","pf"]
+ },
+ visto:{
+  text:"Identifique o consulado competente, o tipo de visto e o sistema de solicitação indicado pelo posto.",
+  ids:["consular","vistos"]
+ },
+ residencia:{
+  text:"Verifique a modalidade de residência e os documentos exigidos antes de iniciar o pedido.",
+  ids:["residencia","pf"]
+ },
+ documento:{
+  text:"Consulte os serviços de registro, CRNM, atualização ou segunda via na Polícia Federal.",
+  ids:["crnm","pf"]
+ },
+ refugio:{
+  text:"O pedido de refúgio no Brasil passa pelo Sisconare e pelas etapas indicadas pelo Ministério da Justiça e pela Polícia Federal.",
+  ids:["refugio","sisconare","refugio-servicos"]
+ },
+ naturalizacao:{
+  text:"Consulte os requisitos oficiais de naturalização e o serviço correspondente.",
+  ids:["naturalizacao","migracoes"]
+ }
 };
+
+function suggest(){
+ const result=$("suggestion");
+ result.replaceChildren();
+ const selected=suggestions[$("situation").value];
+
+ if(!selected){
+  result.textContent="Selecione uma situação.";
+  return;
+ }
+
+ result.append(make("p","",selected.text));
+ const actions=make("div","actions");
+ selected.ids.forEach(id=>{
+  const s=SERVICES.find(item=>item.id===id);
+  if(s){
+   const a=officialLink(s);
+   a.textContent=s.name+" ↗";
+   actions.append(a);
+  }
+ });
+ result.append(actions);
+}
+
+function go(id){
+ $(id).scrollIntoView({
+  behavior:"smooth",block:"start"
+ });
+}
+
+function loadRecords(){
+ try{
+  const data=JSON.parse(localStorage.getItem(KEY)||"[]");
+  return Array.isArray(data)?data:[];
+ }catch{return [];}
+}
+
+let records=loadRecords();
 
 function persist(){
- try{localStorage.setItem(KEY,JSON.stringify(db));return true}
- catch(e){toast("Não foi possível salvar os dados.");return false}
+ try{
+  localStorage.setItem(KEY,JSON.stringify(records));
+  return true;
+ }catch{
+  alert("Não foi possível salvar. Verifique o armazenamento do navegador.");
+  return false;
+ }
 }
 
-const checklistTemplates={
- "Reunião familiar":[
-  "Documento de identificação do solicitante",
-  "Documento de identificação do familiar",
-  "Comprovante do vínculo familiar",
-  "Formulário exigido pelo órgão competente",
-  "Comprovante de residência, se exigido",
-  "Traduções ou legalizações, se exigidas",
-  "Comprovante de pagamento da taxa, se aplicável",
-  "Comprovante de agendamento ou protocolo"
- ],
- "Visto":[
-  "Passaporte válido",
-  "Formulário consular",
-  "Fotografia conforme exigências",
-  "Comprovantes da finalidade da viagem",
-  "Comprovantes financeiros, se exigidos",
-  "Documentos complementares",
-  "Comprovante de pagamento, se aplicável",
-  "Agendamento consular"
- ],
- "Residência":[
-  "Documento de identificação",
-  "Comprovante da hipótese de residência",
-  "Formulário oficial",
-  "Comprovante de endereço, se exigido",
-  "Certidões exigidas",
-  "Comprovante de pagamento, se aplicável",
-  "Protocolo de solicitação"
- ],
- "Refúgio":[
-  "Documento de identificação, se disponível",
-  "Informações pessoais e de contato",
-  "Documentos relevantes ao pedido, se disponíveis",
-  "Protocolo e orientações recebidas"
- ]
-};
-
-function templateFor(type){
- return checklistTemplates[type]||[
-  "Conferir requisitos oficiais",
-  "Separar documentos exigidos",
-  "Preencher formulário oficial",
-  "Conferir taxas e agendamento",
-  "Guardar protocolo"
- ];
+function resetForm(){
+ $("processForm").reset();
+ $("editId").value="";
+ $("destinationCountry").value="Brasil";
 }
 
-function openForm(id=null){
- editing=id;
- Object.keys(fields).forEach(k=>$(k).value="");
- $("fType").value="Reunião familiar";
- $("fDestination").value="Brasil";
- $("fStatus").value="Preparando documentos";
- $("fPriority").value="Normal";
- $("fStart").value=today();
+function formValue(id){
+ return $(id).value.trim();
+}
 
- if(id){
-  const r=db.processes.find(x=>x.id===id);
-  if(!r)return;
-  Object.entries(fields).forEach(([field,key])=>$(field).value=r[key]??"");
+$("processForm").addEventListener("submit",event=>{
+ event.preventDefault();
+
+ const id=formValue("editId")||
+  (crypto.randomUUID?
+   crypto.randomUUID():
+   String(Date.now())+"-"+Math.random());
+
+ const record={
+  id,
+  processName:formValue("processName"),
+  processType:formValue("processType"),
+  applicant:formValue("applicant"),
+  beneficiary:formValue("beneficiary"),
+  originCountry:formValue("originCountry"),
+  destinationCountry:formValue("destinationCountry"),
+  authority:formValue("authority"),
+  reference:formValue("reference"),
+  requested:formValue("requested"),
+  followup:formValue("followup"),
+  expires:formValue("expires"),
+  progress:formValue("progress"),
+  notes:formValue("notes"),
+  checklist:[...document.querySelectorAll(
+   'input[name="doc"]:checked'
+  )].map(x=>x.value)
+ };
+
+ const index=records.findIndex(x=>x.id===id);
+ if(index>=0) records[index]=record;
+ else records.unshift(record);
+
+ if(persist()){
+  resetForm();
+  renderRecords();
+  go("records");
+  alert("Processo salvo neste navegador.");
+ }
+});
+
+function formatDate(value){
+ if(!value)return "Não informada";
+ const [y,m,d]=value.split("-");
+ return `${d}/${m}/${y}`;
+}
+
+function daysUntil(value){
+ if(!value)return null;
+ const today=new Date();
+ today.setHours(0,0,0,0);
+ const target=new Date(value+"T00:00:00");
+ return Math.ceil((target-today)/86400000);
+}
+
+function dateInfo(value,label){
+ const days=daysUntil(value);
+ if(days===null)return "";
+ const suffix=days<0?"(data passada)":
+  days===0?"(hoje)":
+  days<=30?`(em ${days} dias)`:"";
+ return `${label}: ${formatDate(value)} ${suffix}`;
+}
+
+function renderRecords(){
+ const list=$("recordList");
+ list.replaceChildren();
+
+ if(!records.length){
+  list.append(make("p","muted","Nenhum processo salvo."));
+  return;
  }
 
- $("formHeading").textContent=id?"Editar processo":"Novo processo migratório";
- $("formPanel").classList.remove("hidden");
- $("formPanel").scrollIntoView({behavior:"smooth"});
-}
+ records.forEach(record=>{
+  const card=make("article","card");
+  card.append(
+   make("span","tag",record.processType),
+   make("h3","",record.processName),
+   make("p","status",record.progress),
+   make("p","",
+    "Solicitante: "+(record.applicant||"Não informado")),
+   make("p","",
+    "Protocolo: "+(record.reference||"Não informado"))
+  );
 
-function startTemplate(type){
- openForm();
- $("fType").value=type;
- $("fTitle").value=type+" — ";
- $("fTitle").focus();
-}
+  const follow=dateInfo(record.followup,"Acompanhamento");
+  const expires=dateInfo(record.expires,"Validade");
+  if(follow)card.append(make("p","",follow));
+  if(expires)card.append(make("p","",expires));
 
-function closeForm(){
- editing=null;$("formPanel").classList.add("hidden");
-}
+  const actions=make("div","actions");
 
-function saveProcess(){
- if(!$("fTitle").value.trim()){
-  toast("Informe o nome do processo.");$("fTitle").focus();return;
- }
+  const edit=make("button","alt","Editar");
+  edit.onclick=()=>editRecord(record.id);
 
- const data={};
- Object.entries(fields).forEach(([field,key])=>data[key]=$(field).value.trim());
- const previous=JSON.stringify(db);
+  const print=make("button","alt","Imprimir");
+  print.onclick=()=>printRecord(record.id);
 
- if(editing){
-  const r=db.processes.find(x=>x.id===editing);
-  if(!r)return;
-  Object.assign(r,data);
- }else{
-  db.processes.unshift({
-   id:uid(),createdAt:new Date().toISOString(),
-   checklist:templateFor(data.type).map(text=>({id:uid(),text,done:false})),
-   history:[],...data
-  });
- }
+  const del=make("button","danger","Excluir");
+  del.onclick=()=>deleteRecord(record.id);
 
- if(!persist()){db=JSON.parse(previous);return}
- closeForm();render();toast("Processo salvo.");
-}
-
-function finished(r){
- return ["Aprovado","Indeferido","Concluído","Cancelado"].includes(r.status);
-}
-function overdue(r){
- return Boolean(r.followup&&r.followup<today()&&!finished(r));
-}
-
-function renderStats(){
- $("total").textContent=db.processes.length;
- $("ongoing").textContent=db.processes.filter(r=>!finished(r)).length;
- $("approved").textContent=db.processes.filter(r=>r.status==="Aprovado").length;
- $("overdue").textContent=db.processes.filter(overdue).length;
-}
-
-function filtered(){
- const q=$("search").value.toLowerCase().trim();
- return db.processes.filter(r=>{
-  const content=[r.title,r.type,r.applicant,r.beneficiary,r.nationality,r.destination,r.origin,r.agency,r.protocol].join(" ").toLowerCase();
-  if(q&&!content.includes(q))return false;
-  if(filter==="Todos")return true;
-  if(filter==="Vencidos")return overdue(r);
-  return r.status===filter;
+  actions.append(edit,print,del);
+  card.append(actions);
+  list.append(card);
  });
 }
 
-function renderProcesses(){
- const list=filtered();
-
- $("processList").innerHTML=list.length?list.map(r=>{
-  const checks=Array.isArray(r.checklist)?r.checklist:[];
-  const history=Array.isArray(r.history)?r.history:[];
-  const done=checks.filter(x=>x.done).length;
-  const badge=overdue(r)?"red":finished(r)?"green":r.priority==="Urgente"?"orange":"";
-
-  let safeLink="";
-  try{
-   const u=new URL(r.link);
-   if(["https:","http:"].includes(u.protocol)){
-    safeLink=`<a class="btn alt sm" href="${esc(u.href)}" target="_blank" rel="noopener noreferrer">Abrir acompanhamento</a>`;
-   }
-  }catch(e){}
-
-  return `
-   <article class="card">
-    <span class="badge ${badge}">${esc(r.status)}${overdue(r)?" · Acompanhamento vencido":""}</span>
-    <h3>${esc(r.title)}</h3>
-    <p><b>Tipo:</b> ${esc(r.type)}</p>
-    <p><b>Solicitante:</b> ${esc(r.applicant||"—")}</p>
-    <p><b>Beneficiário:</b> ${esc(r.beneficiary||"—")}</p>
-    <p><b>Origem → Destino:</b> ${esc(r.origin||"—")} → ${esc(r.destination||"—")}</p>
-    <p><b>Nacionalidade:</b> ${esc(r.nationality||"—")}</p>
-    <p><b>Órgão:</b> ${esc(r.agency||"—")}</p>
-    <p><b>Protocolo:</b> ${esc(r.protocol||"—")}</p>
-    <p><b>Solicitação:</b> ${fmt(r.start)}</p>
-    <p><b>Acompanhamento:</b> ${fmt(r.followup)}</p>
-    <p><b>Validade:</b> ${fmt(r.expiry)}</p>
-    ${r.documents?`<p><b>Documentos / requisitos:</b> ${esc(r.documents)}</p>`:""}
-    ${r.notes?`<p><b>Observações:</b> ${esc(r.notes)}</p>`:""}
-
-    <div class="actions">
-     <button class="btn sm" data-action="edit" data-id="${esc(r.id)}">Editar</button>
-     <button class="btn alt sm" data-action="history" data-id="${esc(r.id)}">+ Histórico</button>
-     <button class="btn alt sm" data-action="addcheck" data-id="${esc(r.id)}">+ Documento</button>
-     <button class="btn light sm" data-action="print" data-id="${esc(r.id)}">Imprimir / PDF</button>
-     ${safeLink}
-     <button class="btn red sm" data-action="delete" data-id="${esc(r.id)}">Excluir</button>
-    </div>
-
-    <h3>Checklist de documentos (${done}/${checks.length})</h3>
-    ${checks.map(c=>`
-     <div class="checkitem">
-      <input type="checkbox" aria-label="Marcar documento" data-action="check" data-id="${esc(r.id)}" data-check="${esc(c.id)}" ${c.done?"checked":""}>
-      <span style="flex:1;${c.done?"text-decoration:line-through;color:#64748b":""}">${esc(c.text)}</span>
-      <button class="btn red sm" data-action="delcheck" data-id="${esc(r.id)}" data-check="${esc(c.id)}">×</button>
-     </div>
-    `).join("")}
-
-    ${history.length?`
-     <h3>Histórico de acompanhamento</h3>
-     <div class="timeline">
-      ${history.map(h=>`
-       <div class="timelineItem">
-        <small>${esc(new Date(h.date).toLocaleString("pt-BR"))}</small>
-        <p>${esc(h.text)}</p>
-        <button class="btn red sm" data-action="delhistory" data-id="${esc(r.id)}" data-history="${esc(h.id)}">Excluir movimentação</button>
-       </div>
-      `).join("")}
-     </div>
-    `:""}
-   </article>
-  `;
- }).join(""):"<div class='empty'>Nenhum processo encontrado. Cadastre seu primeiro processo migratório.</div>";
-}
-
-function mutate(id,fn){
- const previous=JSON.stringify(db);
- const r=db.processes.find(x=>x.id===id);
+function editRecord(id){
+ const r=records.find(x=>x.id===id);
  if(!r)return;
- fn(r);
- if(!persist()){db=JSON.parse(previous);return}
- render();
-}
 
-function addHistory(id){
- const text=prompt("Descreva a movimentação ou resposta recebida:");
- if(text===null||!text.trim())return;
- mutate(id,r=>{
-  if(!Array.isArray(r.history))r.history=[];
-  r.history.unshift({id:uid(),date:new Date().toISOString(),text:text.trim()});
+ [
+  "processName","processType","applicant",
+  "beneficiary","originCountry","destinationCountry",
+  "authority","reference","requested","followup",
+  "expires","progress","notes"
+ ].forEach(field=>{
+  $(field).value=r[field]||"";
  });
+
+ $("editId").value=r.id;
+
+ document.querySelectorAll('input[name="doc"]')
+  .forEach(box=>{
+   box.checked=(r.checklist||[]).includes(box.value);
+  });
+
+ go("editor");
 }
 
-function addCheck(id){
- const text=prompt("Nome do documento ou tarefa:");
- if(text===null||!text.trim())return;
- mutate(id,r=>{
-  if(!Array.isArray(r.checklist))r.checklist=[];
-  r.checklist.push({id:uid(),text:text.trim(),done:false});
+function deleteRecord(id){
+ if(!confirm("Excluir este processo salvo?"))return;
+ records=records.filter(r=>r.id!==id);
+ if(persist())renderRecords();
+}
+
+function printRecord(id){
+ const r=records.find(x=>x.id===id);
+ if(!r)return;
+
+ const oldTitle=document.title;
+ const printSection=document.createElement("section");
+ printSection.className="panel";
+ printSection.id="temporaryPrint";
+ printSection.style.background="white";
+
+ const fields=[
+  ["Tipo",r.processType],
+  ["Solicitante",r.applicant],
+  ["Beneficiário",r.beneficiary],
+  ["País de origem",r.originCountry],
+  ["País de destino",r.destinationCountry],
+  ["Órgão",r.authority],
+  ["Protocolo",r.reference],
+  ["Data da solicitação",formatDate(r.requested)],
+  ["Acompanhamento",formatDate(r.followup)],
+  ["Validade",formatDate(r.expires)],
+  ["Situação informada",r.progress],
+  ["Checklist",(r.checklist||[]).join(", ")],
+  ["Observações",r.notes]
+ ];
+
+ printSection.append(
+  make("h2","",r.processName),
+  make("p","",
+   "REGISTRO PARTICULAR — NÃO É DOCUMENTO OFICIAL")
+ );
+
+ fields.forEach(([label,value])=>{
+  if(value){
+   printSection.append(
+    make("p","",label+": "+value)
+   );
+  }
  });
-}
 
-function deleteProcess(id){
- if(!confirm("Excluir permanentemente este processo?"))return;
- const previous=JSON.stringify(db);
- db.processes=db.processes.filter(x=>x.id!==id);
- if(!persist()){db=JSON.parse(previous);return}
- render();toast("Processo excluído.");
-}
+ document.querySelector("main").append(printSection);
+ document.title="Meu Migrante - "+r.processName;
 
-$("processList").addEventListener("click",e=>{
- const b=e.target.closest("[data-action]");
- if(!b||b.dataset.action==="check")return;
- const id=b.dataset.id,a=b.dataset.action;
+ const style=document.createElement("style");
+ style.textContent="@media print{main>section{display:none!important}#temporaryPrint{display:block!important}}";
+ document.head.append(style);
 
- if(a==="edit")openForm(id);
- if(a==="delete")deleteProcess(id);
- if(a==="history")addHistory(id);
- if(a==="addcheck")addCheck(id);
- if(a==="print")printProcess(id);
+ const cleanup=()=>{
+  printSection.remove();
+  style.remove();
+  document.title=oldTitle;
+  window.removeEventListener("afterprint",cleanup);
+ };
 
- if(a==="delcheck"){
-  if(!confirm("Excluir este item do checklist?"))return;
-  mutate(id,r=>r.checklist=r.checklist.filter(x=>x.id!==b.dataset.check));
- }
- if(a==="delhistory"){
-  if(!confirm("Excluir esta movimentação?"))return;
-  mutate(id,r=>r.history=r.history.filter(x=>x.id!==b.dataset.history));
- }
-});
-
-$("processList").addEventListener("change",e=>{
- const b=e.target;
- if(b.dataset.action!=="check")return;
- mutate(b.dataset.id,r=>{
-  const c=(r.checklist||[]).find(x=>x.id===b.dataset.check);
-  if(c)c.done=b.checked;
- });
-});
-
-$("filters").addEventListener("click",e=>{
- const b=e.target.closest("[data-filter]");
- if(!b)return;
- filter=b.dataset.filter;
- document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));
- renderProcesses();
-});
-
-$("search").addEventListener("input",renderProcesses);
-
-function renderDates(){
- const followups=db.processes.filter(r=>r.followup&&!finished(r))
-  .sort((a,b)=>a.followup.localeCompare(b.followup));
- const expiry=db.processes.filter(r=>r.expiry)
-  .sort((a,b)=>a.expiry.localeCompare(b.expiry));
-
- $("followupList").innerHTML=followups.length?followups.map(r=>`
-  <div class="card">
-   <strong>${esc(r.title)}</strong>
-   <p>${fmt(r.followup)}</p>
-   <span class="badge ${overdue(r)?"red":"orange"}">${overdue(r)?"Data vencida":"Acompanhamento previsto"}</span>
-  </div>
- `).join(""):"<p class='note'>Nenhum acompanhamento agendado.</p>";
-
- $("expiryList").innerHTML=expiry.length?expiry.map(r=>`
-  <div class="card">
-   <strong>${esc(r.title)}</strong>
-   <p>${fmt(r.expiry)}</p>
-   <span class="badge ${r.expiry<today()?"red":"green"}">${r.expiry<today()?"Validade informada vencida":"Validade informada vigente"}</span>
-  </div>
- `).join(""):"<p class='note'>Nenhuma validade cadastrada.</p>";
-}
-
-function render(){
- renderStats();renderProcesses();renderDates();
-}
-
-function download(name,content,type){
- const url=URL.createObjectURL(new Blob([content],{type}));
- const a=document.createElement("a");
- a.href=url;a.download=name;document.body.appendChild(a);
- a.click();a.remove();
- setTimeout(()=>URL.revokeObjectURL(url),1500);
-}
-
-function csv(rows){
- return "\uFEFF"+rows.map(row=>row.map(v=>
-  '"'+String(v??"").replace(/"/g,'""')+'"'
- ).join(";")).join("\r\n");
-}
-
-function exportCSV(){
- download("meu-migrante.csv",csv([
-  ["Processo","Tipo","Solicitante","Beneficiário","Nacionalidade",
-   "Origem","Destino","Órgão","Protocolo","Solicitação",
-   "Acompanhamento","Validade","Status","Prioridade","Observações"],
-  ...db.processes.map(r=>[
-   r.title,r.type,r.applicant,r.beneficiary,r.nationality,
-   r.origin,r.destination,r.agency,r.protocol,r.start,
-   r.followup,r.expiry,r.status,r.priority,r.notes
-  ])
- ]),"text/csv;charset=utf-8");
+ window.addEventListener("afterprint",cleanup);
+ window.print();
 }
 
 function exportBackup(){
- download("backup-meu-migrante.json",
-  JSON.stringify({version:3,...db},null,2),"application/json");
- toast("Backup exportado.");
+ const blob=new Blob(
+  [JSON.stringify({
+   app:"Meu Migrante Pro",
+   version:1,
+   exportedAt:new Date().toISOString(),
+   records
+  },null,2)],
+  {type:"application/json"}
+ );
+
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download="backup-meu-migrante.json";
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 
-$("backupFile").addEventListener("change",async e=>{
- const file=e.target.files[0];
+async function importBackup(event){
+ const file=event.target.files?.[0];
  if(!file)return;
+
+ if(file.size>2*1024*1024){
+  alert("Arquivo muito grande.");
+  event.target.value="";
+  return;
+ }
+
  try{
-  if(file.size>10*1024*1024)throw Error("Arquivo muito grande.");
-  const data=JSON.parse(await file.text());
+  const parsed=JSON.parse(await file.text());
+  if(parsed.app!=="Meu Migrante Pro"||
+     !Array.isArray(parsed.records)){
+   throw Error("Formato inválido");
+  }
 
-  if(data.version!==3||!Array.isArray(data.processes)||
-   !data.processes.every(r=>
-    typeof r.id==="string"&&typeof r.title==="string"&&
-    (!r.checklist||Array.isArray(r.checklist))&&
-    (!r.history||Array.isArray(r.history))
-   ))throw Error("Backup incompatível.");
+  if(!confirm("Substituir os registros locais pelo backup?")){
+   return;
+  }
 
-  if(!confirm("Substituir os processos atuais pelo backup?"))return;
+  records=parsed.records
+   .filter(r=>r&&typeof r==="object"&&
+    typeof r.id==="string"&&
+    typeof r.processName==="string")
+   .slice(0,1000);
 
-  const previous=db;
-  db={processes:data.processes};
-  if(!persist()){db=previous;return}
-  closeForm();render();toast("Backup importado.");
- }catch(err){toast("Erro: "+err.message)}
- finally{e.target.value=""}
-});
-
-function printProcess(id){
- const r=db.processes.find(x=>x.id===id);
- if(!r)return;
-
- const rows=[
-  ["Processo",r.title],["Tipo",r.type],
-  ["Solicitante",r.applicant],["Beneficiário",r.beneficiary],
-  ["Nacionalidade",r.nationality],["Origem",r.origin],
-  ["Destino",r.destination],["Órgão",r.agency],
-  ["Protocolo",r.protocol],["Solicitação",fmt(r.start)],
-  ["Acompanhamento",fmt(r.followup)],["Validade",fmt(r.expiry)],
-  ["Status",r.status],["Prioridade",r.priority],
-  ["Documentos",r.documents],["Observações",r.notes]
- ];
-
- $("printArea").innerHTML=`
-  <h1>MEU MIGRANTE — PROCESSO</h1>
-  <p>Emitido em ${new Date().toLocaleString("pt-BR")}</p>
-  <table>${rows.map(([k,v])=>`
-   <tr><th>${esc(k)}</th><td>${esc(v||"—")}</td></tr>
-  `).join("")}</table>
-  <h2>Checklist</h2>
-  <table>
-   ${(r.checklist||[]).map(c=>`
-    <tr><td>${c.done?"Concluído":"Pendente"}</td><td>${esc(c.text)}</td></tr>
-   `).join("")}
-  </table>
-  <h2>Histórico</h2>
-  <table>
-   ${(r.history||[]).map(h=>`
-    <tr><td>${esc(new Date(h.date).toLocaleString("pt-BR"))}</td><td>${esc(h.text)}</td></tr>
-   `).join("")}
-  </table>
-  <p>Documento de organização pessoal. Não comprova protocolo ou decisão oficial.</p>
- `;
- window.print();
+  if(persist()){
+   renderRecords();
+   alert("Backup importado.");
+  }
+ }catch{
+  alert("Não foi possível importar o backup.");
+ }finally{
+  event.target.value="";
+ }
 }
 
-function printReport(){
- $("printArea").innerHTML=`
-  <h1>MEU MIGRANTE — RELATÓRIO</h1>
-  <p>Emitido em ${new Date().toLocaleString("pt-BR")}</p>
-  <p>Total de processos: ${db.processes.length}</p>
-  <table>
-   <tr><th>Processo</th><th>Tipo</th><th>País</th><th>Status</th><th>Protocolo</th><th>Acompanhamento</th></tr>
-   ${db.processes.map(r=>`
-    <tr>
-     <td>${esc(r.title)}</td><td>${esc(r.type)}</td>
-     <td>${esc(r.destination)}</td><td>${esc(r.status)}</td>
-     <td>${esc(r.protocol)}</td><td>${fmt(r.followup)}</td>
-    </tr>
-   `).join("")}
-  </table>
- `;
- window.print();
+function deleteAll(){
+ if(!confirm("Apagar TODOS os processos deste navegador?"))return;
+ if(!confirm("Confirma a exclusão definitiva dos registros locais?"))return;
+ records=[];
+ if(persist())renderRecords();
 }
 
-render();
+renderServices();
+renderRecords();
 </script>
 </body>
 </html>
