@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meu Papel Timbrado | Business Pro</title>
+<style>
+:root{
+  --bg:#091426;
+  --panel:#14243d;
+  --line:#304461;
+  --text:#f5f8ff;
+  --muted:#aebed7;
+  --blue:#2864f5;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,system-ui,sans-serif;
+}
+header{
+  background:var(--panel);
+  border-bottom:1px solid var(--line);
+  padding:20px;
+  text-align:center;
+}
+header h1{margin:0;font-size:24px}
+header p{color:var(--muted);margin:8px 0 0}
+main{
+  max-width:1250px;
+  margin:auto;
+  padding:20px;
+  display:grid;
+  grid-template-columns:370px minmax(0,1fr);
+  gap:20px;
+}
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:20px;
+}
+h2{font-size:19px;margin:0 0 20px}
+label{
+  display:block;
+  margin:14px 0 7px;
+  font-size:13px;
+  font-weight:bold;
+}
+input,textarea,select{
+  width:100%;
+  background:#09182d;
+  color:white;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px;
+  font:inherit;
+}
+textarea{
+  min-height:150px;
+  resize:vertical;
+}
+input[type=checkbox]{width:auto}
+input[type=file]{font-size:12px}
+button{
+  border:0;
+  border-radius:11px;
+  padding:13px 17px;
+  background:var(--blue);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+button.secondary{
+  background:#263b5d;
+}
+.buttons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+.buttons button{flex:1}
+.note{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+.preview-container{
+  overflow:auto;
+  background:#1b2d47;
+  border-radius:12px;
+  padding:20px;
+}
+.paper{
+  width:210mm;
+  min-height:297mm;
+  background:white;
+  color:#17233b;
+  padding:20mm;
+  margin:auto;
+  box-shadow:0 10px 30px #0005;
+  font-family:Arial,sans-serif;
+  display:flex;
+  flex-direction:column;
+}
+.paper-header{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  border-bottom:2px solid #d8e2f4;
+  padding-bottom:17px;
+  margin-bottom:30px;
+}
+.paper-header.center{
+  flex-direction:column;
+  text-align:center;
+}
+.paper-header.right{
+  flex-direction:row-reverse;
+  text-align:right;
+}
+.paper-logo{
+  max-width:95px;
+  max-height:95px;
+  object-fit:contain;
+}
+.company-name{
+  font-size:20px;
+  font-weight:bold;
+  overflow-wrap:anywhere;
+}
+.company-info{
+  font-size:11px;
+  color:#64748b;
+  line-height:1.6;
+  margin-top:5px;
+  overflow-wrap:anywhere;
+}
+.doc-title{
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  margin:15px 0 30px;
+  overflow-wrap:anywhere;
+}
+.doc-date{
+  text-align:right;
+  font-size:12px;
+  margin-bottom:30px;
+}
+.doc-content{
+  flex:1;
+  font-size:14px;
+  line-height:1.8;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+.signature{
+  text-align:center;
+  margin:65px auto 0;
+  width:min(320px,100%);
+  font-size:12px;
+}
+.signature-line{
+  border-top:1px solid #333;
+  margin-bottom:8px;
+}
+@media(max-width:850px){
+  main{grid-template-columns:1fr}
+  .preview-container{padding:10px}
+  .paper{
+    transform-origin:top left;
+  }
+}
+@page{
+  size:A4;
+  margin:0;
+}
+@media print{
+  html,body{
+    margin:0!important;
+    padding:0!important;
+    background:white!important;
+  }
+  header,.editor-panel,.preview-title{
+    display:none!important;
+  }
+  main{
+    display:block!important;
+    padding:0!important;
+    margin:0!important;
+    max-width:none!important;
+  }
+  .panel,.preview-container{
+    border:0!important;
+    background:white!important;
+    padding:0!important;
+    box-shadow:none!important;
+    overflow:visible!important;
+  }
+  .paper{
+    width:210mm!important;
+    min-height:297mm!important;
+    padding:20mm!important;
+    box-shadow:none!important;
+    margin:0!important;
+    transform:none!important;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📄 MEU PAPEL TIMBRADO</h1>
+  <p>Business Pro · Documentos empresariais</p>
+</header>
+
+<main>
+  <section class="panel editor-panel">
+    <h2>Configurar documento</h2>
+
+    <label>
+      <input type="checkbox" id="useLogo" checked>
+      Incluir logo da empresa
+    </label>
+
+    <label for="logo">Escolher logo da galeria</label>
+    <input id="logo" type="file" accept="image/png,image/jpeg,image/webp">
+
+    <label for="position">Posição do logo</label>
+    <select id="position">
+      <option value="left">Esquerda</option>
+      <option value="center">Centro</option>
+      <option value="right">Direita</option>
+    </select>
+
+    <label for="company">Nome da empresa</label>
+    <input id="company" placeholder="Minha Empresa LTDA">
+
+    <label for="cnpj">CNPJ</label>
+    <input id="cnpj" placeholder="00.000.000/0000-00">
+
+    <label for="address">Endereço</label>
+    <input id="address" placeholder="Rua, número, cidade e estado">
+
+    <label for="contact">Contato</label>
+    <input id="contact" placeholder="Telefone ou e-mail">
+
+    <label for="title">Título do documento</label>
+    <input id="title" value="DOCUMENTO EMPRESARIAL">
+
+    <label for="date">Data</label>
+    <input id="date" type="date">
+
+    <label for="content">Conteúdo do documento</label>
+    <textarea id="content" placeholder="Escreva aqui o conteúdo do documento..."></textarea>
+
+    <label for="signer">Nome para assinatura</label>
+    <input id="signer" placeholder="Nome do responsável">
+
+    <div class="buttons">
+      <button type="button" onclick="window.print()">
+        🖨 Imprimir / PDF
+      </button>
+      <button class="secondary" type="button" id="clear">
+        Limpar
+      </button>
+    </div>
+
+    <p class="note">
+      Para salvar em PDF, clique em Imprimir / PDF e escolha
+      "Salvar como PDF" no navegador. O logo fica somente
+      neste documento e não é enviado a nenhum servidor.
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2 class="preview-title">Prévia da folha A4</h2>
+    <div class="preview-container">
+      <article class="paper" id="paper">
+        <div class="paper-header" id="paperHeader">
+          <img class="paper-logo" id="paperLogo" alt="Logo da empresa" hidden>
+          <div>
+            <div class="company-name" id="paperCompany"></div>
+            <div class="company-info" id="paperInfo"></div>
+          </div>
+        </div>
+
+        <div class="doc-title" id="paperTitle"></div>
+        <div class="doc-date" id="paperDate"></div>
+        <div class="doc-content" id="paperContent"></div>
+
+        <div class="signature">
+          <div class="signature-line"></div>
+          <div id="paperSigner">Assinatura do responsável</div>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+
+let logoData = "";
+
+function formatDate(value){
+  if(!value) return "";
+  const [year,month,day] = value.split("-");
+  return `${day}/${month}/${year}`;
+}
+
+function updatePreview(){
+  const logo = $("paperLogo");
+
+  logo.hidden = !($("useLogo").checked && logoData);
+  if(!logo.hidden){
+    logo.src = logoData;
+  }else{
+    logo.removeAttribute("src");
+  }
+
+  $("paperHeader").className =
+    "paper-header " + $("position").value;
+
+  $("paperCompany").textContent =
+    $("company").value.trim();
+
+  const info = [
+    $("cnpj").value.trim()
+      ? "CNPJ: " + $("cnpj").value.trim()
+      : "",
+    $("address").value.trim(),
+    $("contact").value.trim()
+  ].filter(Boolean);
+
+  $("paperInfo").textContent = info.join(" · ");
+
+  $("paperHeader").hidden =
+    !logoData &&
+    !$("company").value.trim() &&
+    info.length === 0;
+
+  $("paperTitle").textContent =
+    $("title").value.trim();
+
+  $("paperDate").textContent =
+    formatDate($("date").value);
+
+  $("paperContent").textContent =
+    $("content").value;
+
+  $("paperSigner").textContent =
+    $("signer").value.trim() ||
+    "Assinatura do responsável";
+}
+
+document.querySelectorAll(
+  "input:not([type=file]), textarea, select"
+).forEach(element=>{
+  element.addEventListener("input",updatePreview);
+  element.addEventListener("change",updatePreview);
+});
+
+$("logo").addEventListener("change",event=>{
+  const file = event.target.files?.[0];
+
+  if(!file){
+    logoData = "";
+    updatePreview();
+    return;
+  }
+
+  if(!["image/png","image/jpeg","image/webp"].includes(file.type)){
+    alert("Escolha uma imagem PNG, JPG ou WebP.");
+    event.target.value = "";
+    return;
+  }
+
+  if(file.size > 3*1024*1024){
+    alert("O logo deve ter no máximo 3 MB.");
+    event.target.value = "";
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = ()=>{
+    logoData = String(reader.result || "");
+    updatePreview();
+  };
+
+  reader.readAsDataURL(file);
+});
+
+$("clear").addEventListener("click",()=>{
+  if(!confirm("Limpar os dados deste documento?")){
+    return;
+  }
+
+  document.querySelectorAll(
+    "input:not([type=file]), textarea"
+  ).forEach(element=>{
+    if(element.type === "checkbox"){
+      element.checked = true;
+    }else{
+      element.value = "";
+    }
+  });
+
+  $("logo").value = "";
+  $("position").value = "left";
+  $("title").value = "DOCUMENTO EMPRESARIAL";
+
+  logoData = "";
+  updatePreview();
+});
+
+$("date").value = new Date().toLocaleDateString("en-CA");
+updatePreview();
+</script>
+</body>
+</html>
